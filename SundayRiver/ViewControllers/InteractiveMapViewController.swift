@@ -118,6 +118,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.cameraBoundary = MKMapView.CameraBoundary(
           coordinateRegion: initialRegion)
         
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotation))
+        longPress.minimumPressDuration = 1
+        
+        myMap.addGestureRecognizer(longPress)
         myMap.region = initialRegion
         myMap.showsUserLocation = true
         myMap.showsCompass = true
@@ -146,13 +150,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
             ])
     }
-    
-    private func assignOrigin()
+    private func getClosestAnnotation(origin: ImageAnnotation) -> Vertex<ImageAnnotation>
     {
-        guard let latitude = locationManager.location?.coordinate.latitude, let longitude = locationManager.location?.coordinate.longitude else{
-            return
-        }
-        origin = TrailsDatabase.createAnnotation(title: "origin", latitude: latitude, longitude: longitude, difficulty: .easy)
         var nearestAnnotation = TrailsDatabase.annotations[0]
         for annotation in TrailsDatabase.annotations
         {
@@ -161,9 +160,17 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 nearestAnnotation = annotation
             }
         }
+        return nearestAnnotation
+    }
+    private func assignOrigin()
+    {
+        guard let latitude = locationManager.location?.coordinate.latitude, let longitude = locationManager.location?.coordinate.longitude else{
+            return
+        }
+        origin = TrailsDatabase.createAnnotation(title: "origin", latitude: latitude, longitude: longitude, difficulty: .easy)
         originVertex = Vertex<ImageAnnotation>(origin)
         TrailsDatabase.graph.addVertex(originVertex!)
-        TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: nearestAnnotation, weight: 1)
+        TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: getClosestAnnotation(origin: origin), weight: 1)
     }
     
     func createRoute()
@@ -273,6 +280,24 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             }
         }
     }
+    @objc func addAnnotation(gesture: UIGestureRecognizer) {
+
+            if gesture.state == .ended {
+
+                if let mapView = gesture.view as? MKMapView {
+                    let point = gesture.location(in: mapView)
+                    let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = coordinate
+                    annotation.subtitle = "Trail Report"
+                    mapView.addAnnotation(annotation)
+                    let originAnnotation = TrailsDatabase.createAnnotation(title: "Trail Report", latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude, difficulty: .easy)
+                    let trail = getClosestAnnotation(origin: originAnnotation).value.title
+                    print(trail)
+                }
+            }
+        }
+
 }
 
 extension InteractiveMapViewController: MKMapViewDelegate
