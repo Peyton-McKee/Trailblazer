@@ -32,12 +32,14 @@ class ImageAnnotation : NSObject, MKAnnotation{
         var subtitle: String?
         var colour: UIColor?
         var difficulty: Difficulty?
+        var trailReport : TrailReport?
 
         override init() {
             self.coordinate = CLLocationCoordinate2D()
             self.title = nil
             self.subtitle = nil
             self.difficulty = nil
+            self.trailReport = nil
             self.colour = UIColor.white
         }
 }
