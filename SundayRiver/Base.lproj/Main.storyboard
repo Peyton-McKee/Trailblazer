@@ -41,6 +41,22 @@
             </objects>
             <point key="canvasLocation" x="2745" y="1499"/>
         </scene>
+        <!--Settings-->
+        <scene sceneID="CXf-5c-KnN">
+            <objects>
+                <viewController id="apt-Zv-aya" customClass="UserSettingsViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eNn-Bf-knJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="HBk-pg-jl6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="TKX-FI-ccD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJb-j3-C25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3577" y="1499"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="MVH-BW-6gd">
             <objects>
@@ -53,6 +69,7 @@
                     <connections>
                         <segue destination="FMY-e1-cEd" kind="relationship" relationship="viewControllers" id="jQC-tQ-XTU"/>
                         <segue destination="weU-Gu-pbw" kind="relationship" relationship="viewControllers" id="nOr-dD-TaV"/>
+                        <segue destination="apt-Zv-aya" kind="relationship" relationship="viewControllers" id="S14-dd-ldO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5o-44-eYU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -127,6 +144,7 @@
     </scenes>
     <resources>
         <image name="figure.skiing.crosscountry" catalog="system" width="128" height="107"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
         <image name="map" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
