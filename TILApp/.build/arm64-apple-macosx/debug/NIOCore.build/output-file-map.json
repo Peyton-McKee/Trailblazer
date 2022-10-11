@@ -1,0 +1,329 @@
+{
+  "": {
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/master.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/AddressedEnvelope.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AddressedEnvelope.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AddressedEnvelope.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AddressedEnvelope~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AddressedEnvelope.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/AsyncAwaitSupport+OldXcodes.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncAwaitSupport+OldXcodes.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncAwaitSupport+OldXcodes.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncAwaitSupport+OldXcodes~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncAwaitSupport+OldXcodes.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/AsyncAwaitSupport.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncAwaitSupport.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncAwaitSupport.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncAwaitSupport~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncAwaitSupport.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/AsyncSequences/NIOAsyncSequenceProducer.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncSequenceProducer.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncSequenceProducer.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncSequenceProducer~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncSequenceProducer.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/AsyncSequences/NIOAsyncSequenceProducerStrategies.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncSequenceProducerStrategies.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncSequenceProducerStrategies.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncSequenceProducerStrategies~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncSequenceProducerStrategies.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/AsyncSequences/NIOAsyncWriter.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncWriter.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncWriter.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncWriter~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOAsyncWriter.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/AsyncSequences/NIOThrowingAsyncSequenceProducer.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOThrowingAsyncSequenceProducer.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOThrowingAsyncSequenceProducer.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOThrowingAsyncSequenceProducer~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/AsyncSequences/NIOThrowingAsyncSequenceProducer.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/BSDSocketAPI.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/BSDSocketAPI.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/BSDSocketAPI.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/BSDSocketAPI~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/BSDSocketAPI.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ByteBuffer-aux.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-aux.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-aux.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-aux~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-aux.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ByteBuffer-conversions.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-conversions.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-conversions.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-conversions~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-conversions.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ByteBuffer-core.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-core.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-core.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-core~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-core.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ByteBuffer-int.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-int.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-int.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-int~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-int.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ByteBuffer-lengthPrefix.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-lengthPrefix.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-lengthPrefix.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-lengthPrefix~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-lengthPrefix.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ByteBuffer-multi-int.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-multi-int.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-multi-int.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-multi-int~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-multi-int.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ByteBuffer-views.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-views.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-views.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-views~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ByteBuffer-views.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/Channel.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Channel.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Channel.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Channel~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Channel.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ChannelHandler.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelHandler.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelHandler.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelHandler.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ChannelHandlers.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelHandlers.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelHandlers.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelHandlers~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelHandlers.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ChannelInvoker.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelInvoker.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelInvoker.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelInvoker~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelInvoker.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ChannelOption.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelOption.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelOption.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelOption~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelOption.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ChannelPipeline.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelPipeline.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelPipeline.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelPipeline~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ChannelPipeline.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/CircularBuffer.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/CircularBuffer.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/CircularBuffer.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/CircularBuffer~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/CircularBuffer.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/Codec.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Codec.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Codec.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Codec~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Codec.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/ConvenienceOptionSupport.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ConvenienceOptionSupport.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ConvenienceOptionSupport.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ConvenienceOptionSupport~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/ConvenienceOptionSupport.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/DeadChannel.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/DeadChannel.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/DeadChannel.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/DeadChannel~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/DeadChannel.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/DispatchQueue+WithFuture.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/DispatchQueue+WithFuture.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/DispatchQueue+WithFuture.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/DispatchQueue+WithFuture~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/DispatchQueue+WithFuture.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/EventLoop+Deprecated.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoop+Deprecated.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoop+Deprecated.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoop+Deprecated~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoop+Deprecated.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/EventLoop.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoop.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoop.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoop~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoop.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/EventLoopFuture+Deprecated.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture+Deprecated.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture+Deprecated.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture+Deprecated~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture+Deprecated.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/EventLoopFuture+WithEventLoop.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture+WithEventLoop.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture+WithEventLoop.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture+WithEventLoop~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture+WithEventLoop.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/EventLoopFuture.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/EventLoopFuture.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/FileDescriptor.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileDescriptor.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileDescriptor.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileDescriptor~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileDescriptor.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/FileHandle.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileHandle.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileHandle.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileHandle~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileHandle.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/FileRegion.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileRegion.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileRegion.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileRegion~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/FileRegion.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/IO.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IO.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IO.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IO~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IO.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/IOData.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IOData.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IOData.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IOData~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IOData.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/IntegerBitPacking.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IntegerBitPacking.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IntegerBitPacking.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IntegerBitPacking~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IntegerBitPacking.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/IntegerTypes.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IntegerTypes.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IntegerTypes.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IntegerTypes~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/IntegerTypes.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/Interfaces.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Interfaces.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Interfaces.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Interfaces~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Interfaces.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/Linux.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Linux.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Linux.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Linux~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Linux.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/MarkedCircularBuffer.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/MarkedCircularBuffer.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/MarkedCircularBuffer.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/MarkedCircularBuffer~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/MarkedCircularBuffer.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/MulticastChannel.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/MulticastChannel.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/MulticastChannel.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/MulticastChannel~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/MulticastChannel.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/NIOAny.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOAny.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOAny.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOAny~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOAny.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/NIOCloseOnErrorHandler.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOCloseOnErrorHandler.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOCloseOnErrorHandler.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOCloseOnErrorHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOCloseOnErrorHandler.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/NIOSendable.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOSendable.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOSendable.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOSendable~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/NIOSendable.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/PointerHelpers.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/PointerHelpers.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/PointerHelpers.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/PointerHelpers~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/PointerHelpers.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/RecvByteBufferAllocator.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/RecvByteBufferAllocator.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/RecvByteBufferAllocator.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/RecvByteBufferAllocator~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/RecvByteBufferAllocator.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/SingleStepByteToMessageDecoder.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SingleStepByteToMessageDecoder.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SingleStepByteToMessageDecoder.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SingleStepByteToMessageDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SingleStepByteToMessageDecoder.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/SocketAddresses.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SocketAddresses.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SocketAddresses.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SocketAddresses~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SocketAddresses.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/SocketOptionProvider.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SocketOptionProvider.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SocketOptionProvider.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SocketOptionProvider~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SocketOptionProvider.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/SystemCallHelpers.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SystemCallHelpers.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SystemCallHelpers.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SystemCallHelpers~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/SystemCallHelpers.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/TypeAssistedChannelHandler.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/TypeAssistedChannelHandler.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/TypeAssistedChannelHandler.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/TypeAssistedChannelHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/TypeAssistedChannelHandler.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/UniversalBootstrapSupport.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/UniversalBootstrapSupport.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/UniversalBootstrapSupport.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/UniversalBootstrapSupport~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/UniversalBootstrapSupport.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOCore/Utilities.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Utilities.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Utilities.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Utilities~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOCore.build/Utilities.swiftdeps"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "": {
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/master.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/Acronym.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Acronym.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Acronym.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Acronym~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Acronym.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/Controllers/AcronymsController.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Controllers/AcronymsController.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Controllers/AcronymsController.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Controllers/AcronymsController~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Controllers/AcronymsController.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/Controllers/UsersController.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Controllers/UsersController.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Controllers/UsersController.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Controllers/UsersController~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Controllers/UsersController.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/Migrations/CreateAcronym.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Migrations/CreateAcronym.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Migrations/CreateAcronym.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Migrations/CreateAcronym~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Migrations/CreateAcronym.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/Migrations/CreateUsers.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Migrations/CreateUsers.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Migrations/CreateUsers.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Migrations/CreateUsers~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/Migrations/CreateUsers.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/User.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/User.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/User.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/User~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/User.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/configure.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/configure.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/configure.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/configure~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/configure.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/routes.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/routes.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/routes.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/routes~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/App.build/routes.swiftdeps"
+  }
+}

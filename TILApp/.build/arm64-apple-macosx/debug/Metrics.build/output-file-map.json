@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Metrics.build/master.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-metrics/Sources/Metrics/Metrics.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Metrics.build/Metrics.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Metrics.build/Metrics.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Metrics.build/Metrics~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Metrics.build/Metrics.swiftdeps"
+  }
+}

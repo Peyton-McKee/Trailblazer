@@ -1,0 +1,4 @@
+module _NIODataStructures {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/_NIODataStructures.build/_NIODataStructures-Swift.h"
+    requires objc
+}

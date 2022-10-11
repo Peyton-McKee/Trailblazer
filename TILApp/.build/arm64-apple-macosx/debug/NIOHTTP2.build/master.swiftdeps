@@ -1,0 +1,105 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "ba7aa3301deb00de84d307af4acfdedad460227865905bfdc33e6af7bc62a669"
+build_start_time: [1665451832, 108330011]
+build_end_time: [1665451833, 984056949]
+inputs:
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/ConnectionStateMachine.swift"
+  : [1665451810, 542721271]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/ConnectionStreamsState.swift"
+  : [1665451810, 542865276]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/MayReceiveFrames.swift"
+  : [1665451810, 543002128]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingDataState.swift"
+  : [1665451810, 543081045]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingGoAwayState.swift"
+  : [1665451810, 543153762]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingHeadersState.swift"
+  : [1665451810, 543239116]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingPushPromiseState.swift"
+  : [1665451810, 543321609]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingRstStreamState.swift"
+  : [1665451810, 543532371]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameReceivingStates/ReceivingWindowUpdateState.swift"
+  : [1665451810, 543625831]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/MaySendFrames.swift"
+  : [1665451810, 543730258]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingDataState.swift"
+  : [1665451810, 543793678]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingGoawayState.swift"
+  : [1665451810, 543850421]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingHeadersState.swift"
+  : [1665451810, 543921232]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingPushPromiseState.swift"
+  : [1665451810, 544014930]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingRstStreamState.swift"
+  : [1665451810, 544077396]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/FrameSendingStates/SendingWindowUpdateState.swift"
+  : [1665451810, 544140338]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/HTTP2SettingsState.swift"
+  : [1665451810, 544221401]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/HasFlowControlWindows.swift"
+  : [1665451810, 544304370]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/HasLocalSettings.swift"
+  : [1665451810, 544369459]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/HasRemoteSettings.swift"
+  : [1665451810, 544430255]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/LocallyQuiescingState.swift"
+  : [1665451810, 544508934]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/QuiescingState.swift"
+  : [1665451810, 544580936]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/RemotelyQuiescingState.swift"
+  : [1665451810, 544641256]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/SendAndReceiveGoawayState.swift"
+  : [1665451810, 544699192]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ConnectionStateMachine/StateMachineResult.swift"
+  : [1665451810, 544772624]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/ContentLengthVerifier.swift"
+  : [1665451810, 544836282]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/DOSHeuristics.swift": [1665451810, 544899702]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/Frame Buffers/ConcurrentStreamBuffer.swift"
+  : [1665451810, 545328617]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/Frame Buffers/ControlFrameBuffer.swift"
+  : [1665451810, 545459032]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/Frame Buffers/OutboundFlowControlBuffer.swift"
+  : [1665451810, 545589923]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/Frame Buffers/OutboundFrameBuffer.swift"
+  : [1665451810, 545720577]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HPACKHeaders+Validation.swift"
+  : [1665451810, 545852184]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2ChannelHandler.swift"
+  : [1665451810, 546053886]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2ConnectionStateChange.swift"
+  : [1665451810, 546216487]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2Error.swift": [1665451810, 546445369]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2ErrorCode.swift": [1665451810, 546535253]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2FlowControlWindow.swift"
+  : [1665451810, 546600103]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2Frame.swift": [1665451810, 546707391]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2FrameEncoder.swift": [1665451810, 547001600]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2FrameParser.swift": [1665451810, 547184944]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2PingData.swift": [1665451810, 547276020]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2PipelineHelpers.swift"
+  : [1665451810, 547370433]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2Settings.swift": [1665451810, 547459363]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2Stream.swift": [1665451810, 547539949]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2StreamChannel.swift"
+  : [1665451810, 547710418]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2StreamID.swift": [1665451810, 547797203]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2StreamMultiplexer.swift"
+  : [1665451810, 547911643]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2ToHTTP1Codec.swift": [1665451810, 548070430]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/HTTP2UserEvents.swift": [1665451810, 548163890]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/InboundEventBuffer.swift"
+  : [1665451810, 548246383]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/InboundWindowManager.swift"
+  : [1665451810, 548480510]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/MultiplexerAbstractChannel.swift"
+  : [1665451810, 548558712]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/StreamChannelFlowController.swift"
+  : [1665451810, 548645496]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/StreamChannelList.swift": [1665451810, 548726558]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/StreamMap.swift": [1665451810, 549035787]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/StreamStateMachine.swift"
+  : [1665451810, 549252986]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-http2/Sources/NIOHTTP2/WatermarkedFlowController.swift"
+  : [1665451810, 549344539]

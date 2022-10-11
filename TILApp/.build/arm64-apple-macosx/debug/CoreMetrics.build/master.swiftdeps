@@ -1,0 +1,7 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "0e1125e8d1155637e2b69a16fae4811e947f5ef3438a2e301f495cdd27e990d1"
+build_start_time: [1665451817, 909337043]
+build_end_time: [1665451820, 174751043]
+inputs:
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-metrics/Sources/CoreMetrics/Locks.swift": [1665451811, 297036170]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-metrics/Sources/CoreMetrics/Metrics.swift": [1665451811, 297242164]

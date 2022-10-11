@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/master.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-backtrace/Sources/Backtrace/Backtrace.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/Backtrace.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/Backtrace.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/Backtrace~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/Backtrace.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-backtrace/Sources/Backtrace/Demangle.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/Demangle.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/Demangle.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/Demangle~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Backtrace.build/Demangle.swiftdeps"
+  }
+}

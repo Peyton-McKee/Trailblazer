@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "a81001797eaa07901cf7d9f1afc119b243f98fe66c0b5b97371e3dc0e345b673"
+build_start_time: [1665451817, 883306026]
+build_end_time: [1665451819, 343573093]
+inputs:
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-log/Sources/Logging/Locks.swift": [1665451812, 39864063]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-log/Sources/Logging/LogHandler.swift": [1665451812, 39948463]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-log/Sources/Logging/Logging.swift": [1665451812, 40211439]

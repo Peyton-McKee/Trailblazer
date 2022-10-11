@@ -1,0 +1,40 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "12cc23e55187dc4d1c77e792459226e3a93abf1bee1cbb0601a3b2c560f41172"
+build_start_time: [1665451831, 333167076]
+build_end_time: [1665451833, 553268909]
+inputs:
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/BasicCodingKey.swift": [1665451809, 118140220]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/Deprecated/MultipartError.swift"
+  : [1665451809, 118244409]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/Exports.swift": [1665451809, 118338108]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.Decoder.swift"
+  : [1665451809, 118433952]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.KeyedContainer.swift"
+  : [1665451809, 118501663]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.SingleValueContainer.swift"
+  : [1665451809, 118565797]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.UnkeyedContainer.swift"
+  : [1665451809, 118637800]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataDecoder/FormDataDecoder.swift"
+  : [1665451809, 118731021]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.Encoder.swift"
+  : [1665451809, 118823528]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.KeyedContainer.swift"
+  : [1665451809, 118886470]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.SingleValueContainer.swift"
+  : [1665451809, 118946075]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.UnkeyedContainer.swift"
+  : [1665451809, 119012832]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/FormDataEncoder.swift"
+  : [1665451809, 119101047]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/FormDataEncoder/Storage.swift"
+  : [1665451809, 119162559]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartFormData.swift"
+  : [1665451809, 119263410]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartParser.swift": [1665451809, 119370460]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartPart.swift": [1665451809, 119452476]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartPartConvertible.swift"
+  : [1665451809, 119518995]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/MultipartSerializer.swift"
+  : [1665451809, 119708538]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/multipart-kit/Sources/MultipartKit/Utilities.swift": [1665451809, 119771480]

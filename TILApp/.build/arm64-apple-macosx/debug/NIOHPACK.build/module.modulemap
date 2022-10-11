@@ -1,0 +1,4 @@
+module NIOHPACK {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOHPACK.build/NIOHPACK-Swift.h"
+    requires objc
+}

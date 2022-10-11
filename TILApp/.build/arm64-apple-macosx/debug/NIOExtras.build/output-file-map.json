@@ -1,0 +1,89 @@
+{
+  "": {
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/master.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/DebugInboundEventsHandler.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/DebugInboundEventsHandler.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/DebugInboundEventsHandler.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/DebugInboundEventsHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/DebugInboundEventsHandler.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/DebugOutboundEventsHandler.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/DebugOutboundEventsHandler.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/DebugOutboundEventsHandler.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/DebugOutboundEventsHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/DebugOutboundEventsHandler.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/FixedLengthFrameDecoder.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/FixedLengthFrameDecoder.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/FixedLengthFrameDecoder.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/FixedLengthFrameDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/FixedLengthFrameDecoder.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/JSONRPCFraming+ContentLengthHeader.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/JSONRPCFraming+ContentLengthHeader.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/JSONRPCFraming+ContentLengthHeader.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/JSONRPCFraming+ContentLengthHeader~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/JSONRPCFraming+ContentLengthHeader.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/JSONRPCFraming.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/JSONRPCFraming.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/JSONRPCFraming.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/JSONRPCFraming~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/JSONRPCFraming.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/LengthFieldBasedFrameDecoder.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LengthFieldBasedFrameDecoder.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LengthFieldBasedFrameDecoder.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LengthFieldBasedFrameDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LengthFieldBasedFrameDecoder.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/LengthFieldPrepender.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LengthFieldPrepender.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LengthFieldPrepender.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LengthFieldPrepender~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LengthFieldPrepender.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/LineBasedFrameDecoder.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LineBasedFrameDecoder.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LineBasedFrameDecoder.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LineBasedFrameDecoder~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/LineBasedFrameDecoder.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/NIOExtrasError.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/NIOExtrasError.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/NIOExtrasError.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/NIOExtrasError~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/NIOExtrasError.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/NIOLengthFieldBitLength.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/NIOLengthFieldBitLength.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/NIOLengthFieldBitLength.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/NIOLengthFieldBitLength~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/NIOLengthFieldBitLength.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/PCAPRingBuffer.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/PCAPRingBuffer.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/PCAPRingBuffer.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/PCAPRingBuffer~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/PCAPRingBuffer.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/QuiescingHelper.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/QuiescingHelper.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/QuiescingHelper.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/QuiescingHelper~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/QuiescingHelper.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/RequestResponseHandler.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/RequestResponseHandler.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/RequestResponseHandler.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/RequestResponseHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/RequestResponseHandler.swiftdeps"
+  },
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOExtras/WritePCAPHandler.swift": {
+    "dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/WritePCAPHandler.d",
+    "object": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/WritePCAPHandler.swift.o",
+    "swiftmodule": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/WritePCAPHandler~partial.swiftmodule",
+    "swift-dependencies": "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOExtras.build/WritePCAPHandler.swiftdeps"
+  }
+}

@@ -1,0 +1,50 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "0a209884f47dfd536368becde908c39ed28a73db52b9b2f47b18400f214c5466"
+build_start_time: [1665451829, 780520915]
+build_end_time: [1665451835, 636066913]
+inputs:
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/ConnectionPoolError.swift"
+  : [1665451809, 823421716]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/ConnectionPoolItem.swift"
+  : [1665451809, 823510169]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/ConnectionPoolSource.swift"
+  : [1665451809, 823638439]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/EventLoopConnectionPool.swift"
+  : [1665451809, 823735713]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/ConnectionPool/EventLoopGroupConnectionPool.swift"
+  : [1665451809, 823975563]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoop+Concurrency.swift"
+  : [1665451809, 824222087]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoop+Flatten.swift"
+  : [1665451809, 824287414]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoop+Future.swift"
+  : [1665451809, 824354410]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoopGroup+Concurrency.swift"
+  : [1665451809, 824417352]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoop/EventLoopGroup+Throwing.swift"
+  : [1665451809, 824480295]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Collection+Flatten.swift"
+  : [1665451809, 824578285]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/EventLoopFutureQueue+Sequence.swift"
+  : [1665451809, 824654102]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/EventLoopFutureQueue.swift"
+  : [1665451809, 824739456]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Collection.swift"
+  : [1665451809, 824826002]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Conjunctions.swift"
+  : [1665451809, 824956417]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Miscellaneous.swift"
+  : [1665451809, 825034618]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Nonempty.swift"
+  : [1665451809, 825094699]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Optional.swift"
+  : [1665451809, 825163364]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Transform.swift"
+  : [1665451809, 825222730]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Future+Try.swift"
+  : [1665451809, 825288772]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/FutureOperators.swift"
+  : [1665451809, 825362205]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/EventLoopFuture/Optional+StrictMap.swift"
+  : [1665451809, 825426101]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-kit/Sources/AsyncKit/Exports.swift": [1665451809, 825483798]

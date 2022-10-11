@@ -1,0 +1,21 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "1924ad294a8f0a999a1d44701e579479c16341967c4ee4f9566aa35ad5221acc"
+build_start_time: [1665451829, 779520988]
+build_end_time: [1665451831, 267328023]
+inputs:
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/ByteCollectionUtils.swift": [1665451811, 578973531]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPDecoder.swift": [1665451811, 579177856]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPEncoder.swift": [1665451811, 579318523]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPHeaderValidator.swift": [1665451811, 579391956]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPHeaders+Validation.swift": [1665451811, 579463005]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPPipelineSetup.swift": [1665451811, 579557418]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPServerPipelineHandler.swift"
+  : [1665451811, 579690933]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPServerProtocolErrorHandler.swift"
+  : [1665451811, 579774379]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPServerUpgradeHandler.swift"
+  : [1665451811, 579895973]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/HTTPTypes.swift": [1665451811, 580164909]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/NIOHTTPClientUpgradeHandler.swift"
+  : [1665451811, 580307483]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOHTTP1/NIOHTTPObjectAggregator.swift": [1665451811, 580430030]

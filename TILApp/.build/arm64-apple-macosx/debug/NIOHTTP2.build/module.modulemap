@@ -1,0 +1,4 @@
+module NIOHTTP2 {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOHTTP2.build/NIOHTTP2-Swift.h"
+    requires objc
+}

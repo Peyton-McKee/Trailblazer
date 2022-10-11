@@ -1,0 +1,4 @@
+module CVaporURLParser {
+    umbrella "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/vapor/Sources/CVaporURLParser/include"
+    export *
+}

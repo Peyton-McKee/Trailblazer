@@ -1,0 +1,115 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "e6ecd010e1315923d445fd43fbf9425fa7d2ef7bbd2c560993785b2210dd9f6b"
+build_start_time: [1665451834, 135548114]
+build_end_time: [1665451835, 710499048]
+inputs:
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClient+execute.swift"
+  : [1665451810, 386545181]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClient+shutdown.swift"
+  : [1665451810, 386641025]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClientRequest+Prepared.swift"
+  : [1665451810, 386717319]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClientRequest.swift"
+  : [1665451810, 386830806]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/HTTPClientResponse.swift"
+  : [1665451810, 386925220]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/Transaction+StateMachine.swift"
+  : [1665451810, 387104511]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/AsyncAwait/Transaction.swift"
+  : [1665451810, 387197017]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/Base64.swift": [1665451810, 387269973]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/BestEffortHashableTLSConfiguration.swift"
+  : [1665451810, 387329578]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool.swift"
+  : [1665451810, 387448310]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/ChannelHandler/HTTP1ProxyConnectHandler.swift"
+  : [1665451810, 387623071]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/ChannelHandler/SOCKSEventsHandler.swift"
+  : [1665451810, 387701034]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/ChannelHandler/TLSEventsHandler.swift"
+  : [1665451810, 387780666]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP1/HTTP1ClientChannelHandler.swift"
+  : [1665451810, 387983560]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP1/HTTP1Connection.swift"
+  : [1665451810, 388113021]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP1/HTTP1ConnectionStateMachine.swift"
+  : [1665451810, 388371229]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP2/HTTP2ClientRequestHandler.swift"
+  : [1665451810, 388486385]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP2/HTTP2Connection.swift"
+  : [1665451810, 388556957]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTP2/HTTP2IdleHandler.swift"
+  : [1665451810, 388649463]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPConnectionEvent.swift"
+  : [1665451810, 388721942]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPConnectionPool+Factory.swift"
+  : [1665451810, 388861894]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPConnectionPool+Manager.swift"
+  : [1665451810, 388957500]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPConnectionPool.swift"
+  : [1665451810, 389086246]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPExecutableRequest.swift"
+  : [1665451810, 389208793]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPRequestStateMachine+Demand.swift"
+  : [1665451810, 389303684]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/HTTPRequestStateMachine.swift"
+  : [1665451810, 389394760]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/RequestBodyLength.swift"
+  : [1665451810, 389470577]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/RequestFramingMetadata.swift"
+  : [1665451810, 389556407]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/RequestOptions.swift"
+  : [1665451810, 389667034]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+Backoff.swift"
+  : [1665451810, 389818668]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+HTTP1Connections.swift"
+  : [1665451810, 390001296]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+HTTP1StateMachine.swift"
+  : [1665451810, 390132188]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+HTTP2Connections.swift"
+  : [1665451810, 390284776]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+HTTP2StateMachine.swift"
+  : [1665451810, 390408039]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+RequestQueue.swift"
+  : [1665451810, 390522480]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionPool/State Machine/HTTPConnectionPool+StateMachine.swift"
+  : [1665451810, 390883684]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/ConnectionTarget.swift"
+  : [1665451810, 390980243]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/DeconstructedURL.swift"
+  : [1665451810, 391064643]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/FileDownloadDelegate.swift"
+  : [1665451810, 391351699]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/FoundationExtensions.swift"
+  : [1665451810, 391432523]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/HTTPClient+HTTPCookie.swift"
+  : [1665451810, 391718387]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/HTTPClient+Proxy.swift"
+  : [1665451810, 391793251]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/HTTPClient.swift"
+  : [1665451810, 391990661]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/HTTPHandler.swift"
+  : [1665451810, 392143964]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/LRUCache.swift": [1665451810, 392227172]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/NIOTransportServices/NWErrorHandler.swift"
+  : [1665451810, 392344713]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/NIOTransportServices/NWWaitingHandler.swift"
+  : [1665451810, 392529010]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/NIOTransportServices/TLSConfiguration.swift"
+  : [1665451810, 392638206]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/RedirectState.swift"
+  : [1665451810, 392719268]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/RequestBag+StateMachine.swift"
+  : [1665451810, 392869949]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/RequestBag.swift"
+  : [1665451810, 393015384]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/RequestValidation.swift"
+  : [1665451810, 393126010]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/SSLContextCache.swift"
+  : [1665451810, 393199920]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/Scheme.swift": [1665451810, 393258094]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/StringConvertibleInstances.swift"
+  : [1665451810, 393350839]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/UnsafeTransfer.swift"
+  : [1665451810, 393409967]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/AsyncHTTPClient/Utils.swift": [1665451810, 393477916]

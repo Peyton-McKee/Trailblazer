@@ -1,0 +1,4 @@
+module NIOTransportServices {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOTransportServices.build/NIOTransportServices-Swift.h"
+    requires objc
+}

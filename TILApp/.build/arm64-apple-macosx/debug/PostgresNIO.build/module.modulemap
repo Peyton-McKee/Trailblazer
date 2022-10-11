@@ -1,0 +1,4 @@
+module PostgresNIO {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/PostgresNIO.build/PostgresNIO-Swift.h"
+    requires objc
+}

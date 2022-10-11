@@ -1,0 +1,4 @@
+module NIOConcurrencyHelpers {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/NIOConcurrencyHelpers.build/NIOConcurrencyHelpers-Swift.h"
+    requires objc
+}

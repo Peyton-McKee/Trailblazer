@@ -1,0 +1,4 @@
+module CAsyncHTTPClient {
+    umbrella header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/async-http-client/Sources/CAsyncHTTPClient/include/CAsyncHTTPClient.h"
+    export *
+}
