@@ -16,13 +16,13 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var myMap = MKMapView()
     var tileRenderer: MKTileOverlayRenderer!
     var myPolyLine = CustomPolyline()
-    
+
     var easyLabel = UILabel()
     var intermediateLabel = UILabel()
     var advancedLabel = UILabel()
     var expertsOnlyLabel = UILabel()
     var liftLabel = UILabel()
-    
+ 
     var searchString = ""
     let locationManager = CLLocationManager()
     
@@ -41,7 +41,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         TrailsDatabase.addVertexes()
         TrailsDatabase.createEdges()
         configureMyMap()
-        //        configureKey()
+//        configureKey()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
@@ -69,22 +69,22 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         intermediateLabel.textColor = .blue
         intermediateLabel.translatesAutoresizingMaskIntoConstraints = false
         intermediateLabel.font = preferredFont
-        
+
         advancedLabel.text = "Advanced Trails: ♢"
         advancedLabel.textColor = .black
         advancedLabel.translatesAutoresizingMaskIntoConstraints = false
         advancedLabel.font = preferredFont
-        
+
         expertsOnlyLabel.text = "Experts Only Trails: ♢♢"
         expertsOnlyLabel.textColor = .red
         expertsOnlyLabel.translatesAutoresizingMaskIntoConstraints = false
         expertsOnlyLabel.font = preferredFont
-        
+
         liftLabel.text = "Lifts: -"
         liftLabel.textColor = .purple
         liftLabel.translatesAutoresizingMaskIntoConstraints = false
         liftLabel.font = preferredFont
-        
+
         
         self.view.addSubview(easyLabel)
         self.view.addSubview(intermediateLabel)
@@ -110,18 +110,14 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         
         let initialRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
-            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
+          span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
         
         myMap.cameraZoomRange = MKMapView.CameraZoomRange(
-            minCenterCoordinateDistance: 1550,
-            maxCenterCoordinateDistance: 12500)
+          minCenterCoordinateDistance: 1550,
+          maxCenterCoordinateDistance: 12500)
         myMap.cameraBoundary = MKMapView.CameraBoundary(
-            coordinateRegion: initialRegion)
+          coordinateRegion: initialRegion)
         
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotation))
-        longPress.minimumPressDuration = 1
-        
-        myMap.addGestureRecognizer(longPress)
         myMap.region = initialRegion
         myMap.showsUserLocation = true
         myMap.showsCompass = true
@@ -148,20 +144,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             item.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: distFromLeft),
             item.heightAnchor.constraint(equalToConstant: 40),
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-        ])
-    }
-    
-    private func getClosestAnnotation(origin: ImageAnnotation) -> Vertex<ImageAnnotation>
-    {
-        var nearestAnnotation = TrailsDatabase.annotations[0]
-        for annotation in TrailsDatabase.annotations
-        {
-            
-            if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(nearestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(nearestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2))))){
-                nearestAnnotation = annotation
-            }
-        }
-        return nearestAnnotation
+            ])
     }
     
     private func assignOrigin()
@@ -170,9 +153,17 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             return
         }
         origin = TrailsDatabase.createAnnotation(title: "origin", latitude: latitude, longitude: longitude, difficulty: .easy)
+        var nearestAnnotation = TrailsDatabase.annotations[0]
+        for annotation in TrailsDatabase.annotations
+        {
+
+            if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(nearestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(nearestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2))))){
+                nearestAnnotation = annotation
+            }
+        }
         originVertex = Vertex<ImageAnnotation>(origin)
         TrailsDatabase.graph.addVertex(originVertex!)
-        TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to:         getClosestAnnotation(origin: origin), weight: 1)
+        TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: nearestAnnotation, weight: 1)
     }
     
     func createRoute()
@@ -282,24 +273,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             }
         }
     }
-    @objc func addAnnotation(gesture: UIGestureRecognizer) {
-        
-        if gesture.state == .ended {
-            
-            if let mapView = gesture.view as? MKMapView {
-                let point = gesture.location(in: mapView)
-                let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = coordinate
-                annotation.subtitle = "Trail Report"
-                mapView.addAnnotation(annotation)
-                let originAnnotation = TrailsDatabase.createAnnotation(title: "Trail Report", latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude, difficulty: .easy)
-                let trail = getClosestAnnotation(origin: originAnnotation).value.title
-                print(trail)
-            }
-        }
-    }
-
 }
 
 extension InteractiveMapViewController: MKMapViewDelegate
