@@ -415,9 +415,10 @@ class TrailsDatabase : NSObject {
                 graph.addEdge(direction: .directed, from: endKans, to: topCyclone, weight: 1)
                 graph.addEdge(direction: .directed, from: endKans, to: northernLightsJunctionCyclone, weight: 1)
         //woodsman
-                graph.addEdge(direction: .undirected, from: topWoodsman, to: junctionWoodsman, weight: 4000)
+                graph.addEdge(direction: .directed, from: topWoodsman, to: junctionWoodsman, weight: 4000)
+                graph.addEdge(direction: .undirected, from: junctionWoodsman, to: woodsmanJunctionKans, weight: 1)
                 graph.addEdge(direction: .directed, from: junctionWoodsman, to: endWoodsman, weight: 4000)
-                graph.addEdge(direction: .directed, from: endWoodsman, to: woodsmanJunctionCyclone, weight: 4000)
+                graph.addEdge(direction: .undirected, from: endWoodsman, to: woodsmanJunctionCyclone, weight: 4000)
         //Cyclone
                 graph.addEdge(direction: .directed, from: topCyclone, to: northernLightsJunctionCyclone, weight: 1)
                 graph.addEdge(direction: .undirected, from: topCyclone, to: startLO, weight: 1)

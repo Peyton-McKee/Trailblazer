@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		150D062428F4DEB90051F160 /* TrailSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */; };
+		150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062728F529260051F160 /* UserSettingsViewController.swift */; };
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
 		153B2E3C28ED1EDF00A23163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3B28ED1EDF00A23163 /* User.swift */; };
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorViewController.swift; sourceTree = "<group>"; };
+		150D062728F529260051F160 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				153B2E3928ED135D00A23163 /* SignUpViewController.swift */,
 				15545B0228E02268005D0886 /* InteractiveMapViewController.swift */,
 				153B2E3F28F3262000A23163 /* TabBarViewController.swift */,
+				150D062728F529260051F160 /* UserSettingsViewController.swift */,
 				150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */,
 			);
 			path = ViewControllers;
@@ -220,6 +223,7 @@
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
 				15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */,
+				150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */,
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,
 				158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */,
 				153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */,
