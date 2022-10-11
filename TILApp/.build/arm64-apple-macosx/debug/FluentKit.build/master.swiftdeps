@@ -1,153 +1,153 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "32c4d629e38aef74ef05c2d84ba48cee5d009ec1cd6157b02b79ac67e41e8b51"
-build_start_time: [1665451835, 689803123]
-build_end_time: [1665451837, 628098964]
+build_start_time: [1665452306, 485820055]
+build_end_time: [1665452307, 576570034]
 inputs:
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/AsyncMigration.swift"
-  : [1665451808, 703862667]
+  : [1665452290, 688634872]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/AsyncModelMiddleware.swift"
-  : [1665451808, 703930139]
+  : [1665452290, 688694953]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/Children+Concurrency.swift"
-  : [1665451808, 704002857]
+  : [1665452290, 688760042]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/Database+Concurrency.swift"
-  : [1665451808, 704068183]
+  : [1665452290, 688819885]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/EnumBuilder+Concurrency.swift"
-  : [1665451808, 704138278]
+  : [1665452290, 688896179]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/Model+Concurrency.swift"
-  : [1665451808, 704199790]
+  : [1665452290, 688961029]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/ModelResponder+Concurrency.swift"
-  : [1665451808, 704257011]
+  : [1665452290, 689024925]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/OptionalChild+Concurrency.swift"
-  : [1665451808, 704311847]
+  : [1665452290, 689086198]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/OptionalParent+Concurrency.swift"
-  : [1665451808, 704370021]
+  : [1665452290, 689143657]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/Parent+Concurrency.swift"
-  : [1665451808, 704433679]
+  : [1665452290, 689197540]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/QueryBuilder+Concurrency.swift"
-  : [1665451808, 704504489]
+  : [1665452290, 689265727]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/Relation+Concurrency.swift"
-  : [1665451808, 704570770]
+  : [1665452290, 689334630]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/SchemaBuilder+Concurrency.swift"
-  : [1665451808, 704631567]
+  : [1665452290, 689404487]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Concurrency/Siblings+Concurrency.swift"
-  : [1665451808, 704683303]
+  : [1665452290, 689467906]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/Database+Logging.swift"
-  : [1665451808, 704774856]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/Database.swift": [1665451808, 704837560]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/DatabaseID.swift": [1665451808, 704889774]
+  : [1665452290, 689583778]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/Database.swift": [1665452290, 689781665]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/DatabaseID.swift": [1665452290, 689879894]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/DatabaseInput.swift"
-  : [1665451808, 704945087]
+  : [1665452290, 689960002]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/DatabaseOutput+Cascade.swift"
-  : [1665451808, 705005168]
+  : [1665452290, 690063714]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/DatabaseOutput+Prefix.swift"
-  : [1665451808, 705061674]
+  : [1665452290, 690162658]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/DatabaseOutput.swift"
-  : [1665451808, 705121994]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/Databases.swift": [1665451808, 705192089]
+  : [1665452290, 690261840]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/Databases.swift": [1665452290, 690368652]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Database/TransactionControlDatabase.swift"
-  : [1665451808, 705250263]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/DatabaseEnum.swift": [1665451808, 705340147]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/EnumBuilder.swift": [1665451808, 705402851]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/EnumMetadata.swift": [1665451808, 705460548]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/EnumProperty.swift": [1665451808, 705540895]
+  : [1665452290, 690450191]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/DatabaseEnum.swift": [1665452290, 690587997]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/EnumBuilder.swift": [1665452290, 690679311]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/EnumMetadata.swift": [1665452290, 690772056]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/EnumProperty.swift": [1665452290, 690866231]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Enum/OptionalEnumProperty.swift"
-  : [1665451808, 705606937]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Exports.swift": [1665451808, 705675601]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/FluentError.swift": [1665451808, 705750942]
+  : [1665452290, 690938234]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Exports.swift": [1665452290, 691018819]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/FluentError.swift": [1665452290, 691099643]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Middleware/ModelMiddleware.swift"
-  : [1665451808, 705865859]
+  : [1665452290, 691277980]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Middleware/ModelResponder.swift"
-  : [1665451808, 705934047]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Migration/Migration.swift": [1665451808, 706058502]
+  : [1665452290, 691350460]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Migration/Migration.swift": [1665452290, 691457986]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Migration/MigrationLog.swift"
-  : [1665451808, 706137180]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Migration/Migrations.swift": [1665451808, 706201076]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Migration/Migrator.swift": [1665451808, 706295013]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/AnyModel.swift": [1665451808, 706405878]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/EagerLoad.swift": [1665451808, 706614017]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Fields+Codable.swift": [1665451808, 706695079]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Fields.swift": [1665451808, 706783294]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/MirrorBypass.swift": [1665451808, 706863880]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Model+CRUD.swift": [1665451808, 706977367]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Model.swift": [1665451808, 707050323]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/ModelAlias.swift": [1665451808, 707121610]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Schema.swift": [1665451808, 707187652]
+  : [1665452290, 691525459]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Migration/Migrations.swift": [1665452290, 691585302]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Migration/Migrator.swift": [1665452290, 691668987]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/AnyModel.swift": [1665452290, 691763401]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/EagerLoad.swift": [1665452290, 691836118]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Fields+Codable.swift": [1665452290, 691904544]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Fields.swift": [1665452290, 691977500]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/MirrorBypass.swift": [1665452290, 692047834]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Model+CRUD.swift": [1665452290, 692160367]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Model.swift": [1665452290, 692228555]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/ModelAlias.swift": [1665452290, 692291021]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Model/Schema.swift": [1665452290, 692348003]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Operators/FieldOperators.swift"
-  : [1665451808, 707311868]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Operators/Operators.swift": [1665451808, 707387447]
+  : [1665452290, 692446231]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Operators/Operators.swift": [1665452290, 692500352]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Operators/ValueOperators+Array.swift"
-  : [1665451808, 707465410]
+  : [1665452290, 692566156]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Operators/ValueOperators+String.swift"
-  : [1665451808, 707535743]
+  : [1665452290, 692626953]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Operators/ValueOperators.swift"
-  : [1665451808, 707609653]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Boolean.swift": [1665451808, 707732677]
+  : [1665452290, 692690849]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Boolean.swift": [1665452290, 692812919]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/BooleanPropertyFormat.swift"
-  : [1665451808, 707806825]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Children.swift": [1665451808, 707896709]
+  : [1665452290, 692894935]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Children.swift": [1665452290, 692990303]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/CompositeID.swift"
-  : [1665451808, 707957267]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Field.swift": [1665451808, 708019733]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/FieldKey.swift": [1665451808, 708081245]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Group.swift": [1665451808, 708147287]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/ID.swift": [1665451808, 708218336]
+  : [1665452290, 693054914]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Field.swift": [1665452290, 693123340]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/FieldKey.swift": [1665452290, 693190574]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Group.swift": [1665452290, 693259954]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/ID.swift": [1665452290, 693329334]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/OptionalBoolean.swift"
-  : [1665451808, 708276033]
+  : [1665452290, 693389177]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/OptionalChild.swift"
-  : [1665451808, 708353757]
+  : [1665452290, 693467617]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/OptionalField.swift"
-  : [1665451808, 708577632]
+  : [1665452290, 693537712]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/OptionalParent.swift"
-  : [1665451808, 708725929]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Parent.swift": [1665451808, 708815574]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Property.swift": [1665451808, 708942890]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Relation.swift": [1665451808, 709024429]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Siblings.swift": [1665451808, 709136009]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Timestamp.swift": [1665451808, 709239959]
+  : [1665452290, 693597555]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Parent.swift": [1665452290, 693663835]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Property.swift": [1665452290, 693764686]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Relation.swift": [1665452290, 693829536]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Siblings.swift": [1665452290, 693921089]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/Timestamp.swift": [1665452290, 694002389]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Properties/TimestampFormat.swift"
-  : [1665451808, 709326267]
+  : [1665452290, 694069623]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+Aggregate.swift"
-  : [1665451808, 709526062]
+  : [1665452290, 694211006]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+EagerLoad.swift"
-  : [1665451808, 709612846]
+  : [1665452290, 694276571]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+Filter.swift"
-  : [1665451808, 709708929]
+  : [1665452290, 694349288]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+Group.swift"
-  : [1665451808, 709836006]
+  : [1665452290, 694408178]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+Join.swift"
-  : [1665451808, 710690498]
+  : [1665452290, 694480419]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+Paginate.swift"
-  : [1665451808, 710820674]
+  : [1665452290, 694548606]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+Range.swift"
-  : [1665451808, 710909843]
+  : [1665452290, 694608688]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+Set.swift"
-  : [1665451808, 711000442]
+  : [1665452290, 694667577]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder+Sort.swift"
-  : [1665451808, 711091756]
+  : [1665452290, 694735050]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Builder/QueryBuilder.swift"
-  : [1665451808, 711265087]
+  : [1665452290, 694827318]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery+Action.swift"
-  : [1665451808, 711446046]
+  : [1665452290, 694938659]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery+Aggregate.swift"
-  : [1665451808, 711543560]
+  : [1665452290, 695003509]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery+Field.swift"
-  : [1665451808, 711630344]
+  : [1665452290, 695067405]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery+Filter.swift"
-  : [1665451808, 711722135]
+  : [1665452290, 695135593]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery+Join.swift"
-  : [1665451808, 711797237]
+  : [1665452290, 695207834]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery+Range.swift"
-  : [1665451808, 711875438]
+  : [1665452290, 695270538]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery+Sort.swift"
-  : [1665451808, 711953878]
+  : [1665452290, 695327281]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery+Value.swift"
-  : [1665451808, 712027072]
+  : [1665452290, 695446014]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/Database/DatabaseQuery.swift"
-  : [1665451808, 712109565]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/QueryHistory.swift": [1665451808, 712191820]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Schema/DatabaseSchema.swift": [1665451808, 712344169]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Schema/SchemaBuilder.swift": [1665451808, 712458133]
+  : [1665452290, 695556163]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Query/QueryHistory.swift": [1665452290, 695634365]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Schema/DatabaseSchema.swift": [1665452290, 695751905]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Schema/SchemaBuilder.swift": [1665452290, 695822238]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Utilities/OptionalType.swift"
-  : [1665451808, 712598562]
+  : [1665452290, 695918083]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent-kit/Sources/FluentKit/Utilities/RandomGeneratable.swift"
-  : [1665451808, 712666988]
+  : [1665452290, 695977210]

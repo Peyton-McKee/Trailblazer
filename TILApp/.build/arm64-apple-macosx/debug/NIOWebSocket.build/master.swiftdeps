@@ -1,22 +1,22 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "71d0f74b315713bb038f5ac973b19fe48eb64a4636404c1944bbab5ddd38ecc9"
-build_start_time: [1665451831, 327419042]
-build_end_time: [1665451832, 21993160]
+build_start_time: [1665452305, 211233139]
+build_end_time: [1665452305, 871319055]
 inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/Base64.swift": [1665451811, 591281890]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/Base64.swift": [1665452289, 952560901]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/NIOWebSocketClientUpgrader.swift"
-  : [1665451811, 591384887]
+  : [1665452289, 952645301]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/NIOWebSocketFrameAggregator.swift"
-  : [1665451811, 591476917]
+  : [1665452289, 952716827]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/NIOWebSocketServerUpgrader.swift"
-  : [1665451811, 591572761]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/SHA1.swift": [1665451811, 591657638]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketErrorCodes.swift": [1665451811, 591748237]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketFrame.swift": [1665451811, 591845035]
+  : [1665452289, 952798843]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/SHA1.swift": [1665452289, 952866077]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketErrorCodes.swift": [1665452289, 952938079]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketFrame.swift": [1665452289, 953012704]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketFrameDecoder.swift"
-  : [1665451811, 591968536]
+  : [1665452289, 953133583]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketFrameEncoder.swift"
-  : [1665451811, 592069625]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketOpcode.swift": [1665451811, 592164278]
+  : [1665452289, 953373193]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketOpcode.swift": [1665452289, 953494787]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOWebSocket/WebSocketProtocolErrorHandler.swift"
-  : [1665451811, 592236518]
+  : [1665452289, 953584671]

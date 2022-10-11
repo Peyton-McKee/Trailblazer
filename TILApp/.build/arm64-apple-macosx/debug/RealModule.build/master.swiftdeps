@@ -1,18 +1,18 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "2471e155d0da8f3c4dd9101d54107e9c34d414b50e1172cacfe258e184f19990"
-build_start_time: [1665451817, 881528854]
-build_end_time: [1665451819, 255671977]
+build_start_time: [1665452293, 28677940]
+build_end_time: [1665452293, 245182991]
 inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/AlgebraicField.swift": [1665451811, 58927536]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/AlgebraicField.swift": [1665452289, 697439670]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/ApproximateEquality.swift"
-  : [1665451811, 59082984]
+  : [1665452289, 697525262]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/AugmentedArithmetic.swift"
-  : [1665451811, 59192419]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Double+Real.swift": [1665451811, 59383392]
+  : [1665452289, 697855234]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Double+Real.swift": [1665452289, 698070764]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/ElementaryFunctions.swift"
-  : [1665451811, 59502363]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Float+Real.swift": [1665451811, 59582233]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Float16+Real.swift": [1665451811, 59665203]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Float80+Real.swift": [1665451811, 59772253]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Real.swift": [1665451811, 60030937]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/RealFunctions.swift": [1665451811, 60127735]
+  : [1665452289, 698174953]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Float+Real.swift": [1665452289, 698302030]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Float16+Real.swift": [1665452289, 698393106]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Float80+Real.swift": [1665452289, 698505401]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/Real.swift": [1665452289, 698719978]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-numerics/Sources/RealModule/RealFunctions.swift": [1665452289, 698814392]

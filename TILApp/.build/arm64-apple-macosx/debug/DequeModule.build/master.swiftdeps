@@ -1,39 +1,39 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "fcd9bb420ee8648e163d8dacc7a44bc723624916791cff52cd1b87de991a1a17"
-build_start_time: [1665451817, 882721900]
-build_end_time: [1665451819, 203498840]
+build_start_time: [1665452293, 408208847]
+build_end_time: [1665452294, 299329042]
 inputs:
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Compatibility.swift"
-  : [1665451812, 538923740]
+  : [1665452288, 861869573]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+Codable.swift"
-  : [1665451812, 539007186]
+  : [1665452288, 861950397]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+Collection.swift"
-  : [1665451812, 539239883]
+  : [1665452288, 862141609]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+CustomDebugStringConvertible.swift"
-  : [1665451812, 539392948]
+  : [1665452288, 862229347]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+CustomReflectable.swift"
-  : [1665451812, 539467811]
+  : [1665452288, 862304449]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+CustomStringConvertible.swift"
-  : [1665451812, 539540767]
+  : [1665452288, 862379074]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+Equatable.swift"
-  : [1665451812, 539657592]
+  : [1665452288, 862507104]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+ExpressibleByArrayLiteral.swift"
-  : [1665451812, 539738416]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+Extras.swift": [1665451812, 539818763]
+  : [1665452288, 862588882]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+Extras.swift": [1665452288, 862687110]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+Hashable.swift"
-  : [1665451812, 539901018]
+  : [1665452288, 862778663]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque+Testing.swift"
-  : [1665451812, 539970397]
+  : [1665452288, 862859487]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque._Storage.swift"
-  : [1665451812, 540050029]
+  : [1665452288, 862942457]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque._UnsafeHandle.swift"
-  : [1665451812, 540180206]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque.swift": [1665451812, 540272712]
+  : [1665452288, 863071441]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/Deque.swift": [1665452288, 863165378]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/UnsafeMutableBufferPointer+Utilities.swift"
-  : [1665451812, 540344715]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/_DequeBuffer.swift": [1665451812, 540410995]
+  : [1665452288, 863247632]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/_DequeBuffer.swift": [1665452288, 863327026]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/_DequeBufferHeader.swift"
-  : [1665451812, 540470600]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/_DequeSlot.swift": [1665451812, 540531158]
+  : [1665452288, 863401889]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/_DequeSlot.swift": [1665452288, 863474845]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/DequeModule/_UnsafeWrappedBuffer.swift"
-  : [1665451812, 540602684]
+  : [1665452288, 863556385]

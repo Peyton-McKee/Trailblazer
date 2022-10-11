@@ -1,17 +1,17 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "cd519bde0599a253ece0aaaddc5d1b095a64accd2ee528c2ae7b303c6a5e5820"
-build_start_time: [1665451831, 320894956]
-build_end_time: [1665451832, 22820949]
+build_start_time: [1665452305, 210685968]
+build_end_time: [1665452306, 77741146]
 inputs:
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPCompression.swift"
-  : [1665451809, 373204469]
+  : [1665452290, 250862598]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPDecompression.swift"
-  : [1665451809, 373286008]
+  : [1665452290, 250973701]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPRequestCompressor.swift"
-  : [1665451809, 373379230]
+  : [1665452290, 251073837]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPRequestDecompressor.swift"
-  : [1665451809, 373473644]
+  : [1665452290, 251177787]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPResponseCompressor.swift"
-  : [1665451809, 373575925]
+  : [1665452290, 251287460]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOHTTPCompression/HTTPResponseDecompressor.swift"
-  : [1665451809, 373656988]
+  : [1665452290, 251438617]

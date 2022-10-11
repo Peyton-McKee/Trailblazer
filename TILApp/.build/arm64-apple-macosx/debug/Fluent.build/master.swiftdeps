@@ -1,26 +1,26 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "b7f96c03b335b57c38aed6e63a53aee525a9a2747ac1077dba1f66ae9cf7dc98"
-build_start_time: [1665451839, 244922161]
-build_end_time: [1665451839, 566616058]
+build_start_time: [1665452317, 873208045]
+build_end_time: [1665452318, 287064075]
 inputs:
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Concurrency/FluentProvider+Concurrency.swift"
-  : [1665451811, 184440135]
+  : [1665452289, 85235357]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Concurrency/ModelCredentialsAuthenticatable+Concurrency.swift"
-  : [1665451811, 184505224]
+  : [1665452289, 85305690]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Concurrency/Pagination+Concurrency.swift"
-  : [1665451811, 184561729]
+  : [1665452289, 85372209]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Concurrency/Sessions+Concurrency.swift"
-  : [1665451811, 184632062]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Exports.swift": [1665451811, 184697628]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+Cache.swift": [1665451811, 184765815]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+History.swift": [1665451811, 184843301]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+Paginate.swift": [1665451811, 184912919]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+Pagination.swift": [1665451811, 184996128]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+Sessions.swift": [1665451811, 185068607]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/FluentProvider.swift": [1665451811, 185148000]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/MigrateCommand.swift": [1665451811, 185236930]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/ModelAuthenticatable.swift": [1665451811, 185325145]
+  : [1665452289, 85445404]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Exports.swift": [1665452289, 85505962]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+Cache.swift": [1665452289, 85580348]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+History.swift": [1665452289, 85713148]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+Paginate.swift": [1665452289, 85803985]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+Pagination.swift": [1665452289, 85896730]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/Fluent+Sessions.swift": [1665452289, 85987091]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/FluentProvider.swift": [1665452289, 86071729]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/MigrateCommand.swift": [1665452289, 86159229]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/ModelAuthenticatable.swift": [1665452289, 86250305]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/ModelCredentialsAuthenticatable.swift"
-  : [1665451811, 185399293]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/ModelTokenAuthenticatable.swift": [1665451811, 185472011]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/PageLimit.swift": [1665451811, 185571670]
+  : [1665452289, 86325168]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/ModelTokenAuthenticatable.swift": [1665452289, 86407661]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/fluent/Sources/Fluent/PageLimit.swift": [1665452289, 86532592]

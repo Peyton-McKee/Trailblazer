@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "7dbbae19b6231babf62d44bfd1f8ee8b6374df2ad385b0377c2be15a4e8d4769"
-build_start_time: [1665451839, 606769084]
-build_end_time: [1665451841, 551466941]
+build_start_time: [1665452318, 330112934]
+build_end_time: [1665452326, 749598026]
 inputs:
   "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/Acronym.swift": [1665451658, 481221914]
   "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/App/Controllers/AcronymsController.swift": [1665451658, 481467247]

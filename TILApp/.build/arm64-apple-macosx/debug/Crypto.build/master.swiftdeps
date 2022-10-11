@@ -1,100 +1,100 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "11645eec5e92d613642fb5c0b0e7c5d57369155d9e29b73e0ad0f62590780873"
-build_start_time: [1665451817, 898231029]
-build_end_time: [1665451822, 812103986]
+build_start_time: [1665452293, 451464176]
+build_end_time: [1665452294, 516902923]
 inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/AES/GCM/AES-GCM.swift": [1665451809, 587667226]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/AES/GCM/AES-GCM.swift": [1665452291, 265128135]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/AES/GCM/BoringSSL/AES-GCM_boring.swift"
-  : [1665451809, 587791442]
+  : [1665452291, 265268325]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/ChachaPoly/BoringSSL/ChaChaPoly_boring.swift"
-  : [1665451809, 587903976]
+  : [1665452291, 265410661]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/ChachaPoly/ChaChaPoly.swift"
-  : [1665451809, 587962627]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/Cipher.swift": [1665451809, 588028907]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/Nonces.swift": [1665451809, 588095664]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/ASN1.swift": [1665451809, 588342666]
+  : [1665452291, 265470981]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/Cipher.swift": [1665452291, 265547752]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/AEADs/Nonces.swift": [1665452291, 265622854]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/ASN1.swift": [1665452291, 265877008]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/Basic ASN1 Types/ASN1BitString.swift"
-  : [1665451809, 588466882]
+  : [1665452291, 266028165]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/Basic ASN1 Types/ASN1Identifier.swift"
-  : [1665451809, 588534355]
+  : [1665452291, 266099452]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/Basic ASN1 Types/ASN1Integer.swift"
-  : [1665451809, 588622570]
+  : [1665452291, 266183376]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/Basic ASN1 Types/ASN1OctetString.swift"
-  : [1665451809, 588683843]
+  : [1665452291, 266245126]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/Basic ASN1 Types/ArraySliceBigint.swift"
-  : [1665451809, 588760375]
+  : [1665452291, 266326904]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/Basic ASN1 Types/ObjectIdentifier.swift"
-  : [1665451809, 588843822]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/ECDSASignature.swift": [1665451809, 589231014]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/PEMDocument.swift": [1665451809, 589314460]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/PKCS8PrivateKey.swift": [1665451809, 589391231]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/SEC1PrivateKey.swift": [1665451809, 589443683]
+  : [1665452291, 266415596]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/ECDSASignature.swift": [1665452291, 266512393]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/PEMDocument.swift": [1665452291, 266584396]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/PKCS8PrivateKey.swift": [1665452291, 266663551]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/SEC1PrivateKey.swift": [1665452291, 266758918]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/ASN1/SubjectPublicKeyInfo.swift"
-  : [1665451809, 589508295]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/CryptoKitErrors.swift": [1665451809, 589629888]
+  : [1665452291, 266865015]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/CryptoKitErrors.swift": [1665452291, 267081737]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Digests/BoringSSL/Digest_boring.swift"
-  : [1665451809, 589798927]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Digests/Digest.swift": [1665451809, 589858531]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Digests/Digests.swift": [1665451809, 589931488]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Digests/HashFunctions.swift": [1665451809, 590074062]
+  : [1665452291, 267358779]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Digests/Digest.swift": [1665452291, 267458915]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Digests/Digests.swift": [1665452291, 267599105]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Digests/HashFunctions.swift": [1665452291, 267820596]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Digests/HashFunctions_SHA2.swift"
-  : [1665451809, 590147018]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Insecure/Insecure.swift": [1665451809, 590275764]
+  : [1665452291, 267916440]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Insecure/Insecure.swift": [1665452291, 268066167]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Insecure/Insecure_HashFunctions.swift"
-  : [1665451809, 590353012]
+  : [1665452291, 268146514]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Agreement/BoringSSL/ECDH_boring.swift"
-  : [1665451809, 590739250]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Agreement/DH.swift": [1665451809, 590825080]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Agreement/ECDH.swift": [1665451809, 592522144]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Derivation/HKDF.swift": [1665451809, 592761993]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Wrapping/AESWrap.swift": [1665451809, 592863082]
+  : [1665452291, 268303871]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Agreement/DH.swift": [1665452291, 268403053]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Agreement/ECDH.swift": [1665452291, 268517017]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Derivation/HKDF.swift": [1665452291, 268754959]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Wrapping/AESWrap.swift": [1665452291, 268864154]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Key Wrapping/BoringSSL/AESWrap_boring.swift"
-  : [1665451809, 592965126]
+  : [1665452291, 268970489]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/BoringSSL/Ed25519_boring.swift"
-  : [1665451809, 593133926]
+  : [1665452291, 269140720]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/BoringSSL/EllipticCurvePoint_boring.swift"
-  : [1665451809, 593249797]
+  : [1665452291, 269262790]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/BoringSSL/EllipticCurve_boring.swift"
-  : [1665451809, 593316555]
+  : [1665452291, 269359827]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/BoringSSL/NISTCurvesKeys_boring.swift"
-  : [1665451809, 593395709]
+  : [1665452291, 269449710]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/BoringSSL/X25519Keys_boring.swift"
-  : [1665451809, 593461036]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/Curve25519.swift": [1665451809, 593534946]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/Ed25519.swift": [1665451809, 593595981]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/NISTCurvesKeys.swift": [1665451809, 593658685]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/X25519Keys.swift": [1665451809, 593722820]
+  : [1665452291, 269534111]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/Curve25519.swift": [1665452291, 269614696]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/Ed25519.swift": [1665452291, 269689798]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/NISTCurvesKeys.swift": [1665452291, 269762516]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/EC/X25519Keys.swift": [1665452291, 269853591]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Keys/Symmetric/SymmetricKeys.swift"
-  : [1665451809, 593832015]
+  : [1665452291, 270000934]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Message Authentication Codes/HMAC/HMAC.swift"
-  : [1665451809, 594016551]
+  : [1665452291, 270267963]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Message Authentication Codes/MACFunctions.swift"
-  : [1665451809, 594083786]
+  : [1665452291, 270356178]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Message Authentication Codes/MessageAuthenticationCode.swift"
-  : [1665451809, 594147205]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/PRF/AES.swift": [1665451809, 594238758]
+  : [1665452291, 270439147]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/PRF/AES.swift": [1665452291, 270547389]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/BoringSSL/ECDSASignature_boring.swift"
-  : [1665451809, 594367027]
+  : [1665452291, 270734548]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/BoringSSL/ECDSA_boring.swift"
-  : [1665451809, 594446182]
+  : [1665452291, 270824193]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/BoringSSL/EdDSA_boring.swift"
-  : [1665451809, 594506263]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/ECDSA.swift": [1665451809, 594591856]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/EdDSA.swift": [1665451809, 594727516]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/Signature.swift": [1665451809, 594785690]
+  : [1665452291, 270886898]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/ECDSA.swift": [1665452291, 270980834]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/EdDSA.swift": [1665452291, 271129608]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Signatures/Signature.swift": [1665452291, 271209716]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/BoringSSL/ArbitraryPrecisionInteger_boring.swift"
-  : [1665451809, 594942569]
+  : [1665452291, 271411418]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/BoringSSL/CryptoKitErrors_boring.swift"
-  : [1665451809, 595018386]
+  : [1665452291, 271509408]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/BoringSSL/FiniteFieldArithmeticContext_boring.swift"
-  : [1665451809, 595074892]
+  : [1665452291, 271574974]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/BoringSSL/RNG_boring.swift"
-  : [1665451809, 595186233]
+  : [1665452291, 271690845]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/BoringSSL/SafeCompare_boring.swift"
-  : [1665451809, 595249652]
+  : [1665452291, 271757602]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/BoringSSL/Zeroization_boring.swift"
-  : [1665451809, 595347881]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/PrettyBytes.swift": [1665451809, 595413208]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/SafeCompare.swift": [1665451809, 595471858]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/SecureBytes.swift": [1665451809, 595533370]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/Zeroization.swift": [1665451809, 595604419]
+  : [1665452291, 271865367]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/PrettyBytes.swift": [1665452291, 271936893]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/SafeCompare.swift": [1665452291, 272006034]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/SecureBytes.swift": [1665452291, 272081851]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-crypto/Sources/Crypto/Util/Zeroization.swift": [1665452291, 272155046]

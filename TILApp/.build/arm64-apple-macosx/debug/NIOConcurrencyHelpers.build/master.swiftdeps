@@ -1,11 +1,11 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "82ec7c58bcc07935396f56ad83afb420f0b9274a3e0b9b4b599e3b2fa7b5717f"
-build_start_time: [1665451827, 35979986]
-build_end_time: [1665451827, 288815021]
+build_start_time: [1665452299, 824525833]
+build_end_time: [1665452300, 152430057]
 inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOAtomic.swift": [1665451811, 569727420]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOLock.swift": [1665451811, 569851160]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOAtomic.swift": [1665452289, 931682586]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOLock.swift": [1665452289, 931813240]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/NIOLockedValueBox.swift"
-  : [1665451811, 569913864]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/atomics.swift": [1665451811, 569979667]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/lock.swift": [1665451811, 570055007]
+  : [1665452289, 931941986]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/atomics.swift": [1665452289, 932058334]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOConcurrencyHelpers/lock.swift": [1665452289, 932145357]

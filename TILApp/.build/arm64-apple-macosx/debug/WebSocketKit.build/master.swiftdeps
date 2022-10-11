@@ -1,16 +1,16 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "f2376889afaae36085745c6131ccddc3d6248b3c2b66e2116903717be4e3872e"
-build_start_time: [1665451833, 949050903]
-build_end_time: [1665451834, 599820137]
+build_start_time: [1665452312, 229754924]
+build_end_time: [1665452313, 46647071]
 inputs:
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/Concurrency/WebSocket+Concurrency.swift"
-  : [1665451810, 838632583]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/Exports.swift": [1665451810, 838692665]
+  : [1665452290, 812654018]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/Exports.swift": [1665452290, 812717676]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/HTTPInitialRequestHandler.swift"
-  : [1665451810, 838764190]
+  : [1665452290, 812785863]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocket+Connect.swift"
-  : [1665451810, 838827133]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocket.swift": [1665451810, 838930130]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocketClient.swift": [1665451810, 839034080]
+  : [1665452290, 812847852]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocket.swift": [1665452290, 812949180]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocketClient.swift": [1665452290, 813053131]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/websocket-kit/Sources/WebSocketKit/WebSocketHandler.swift"
-  : [1665451810, 839103937]
+  : [1665452290, 813120841]

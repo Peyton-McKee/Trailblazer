@@ -1,6 +1,6 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "06bdc7ffddad54b7d982963e6f844a75b8fc096f8346fcbf43c7398b335ad05b"
-build_start_time: [1665451819, 676732063]
-build_end_time: [1665451819, 835934162]
+build_start_time: [1665452295, 57410001]
+build_end_time: [1665452295, 120624065]
 inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/Collections/Collections.swift": [1665451812, 538759708]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-collections/Sources/Collections/Collections.swift": [1665452288, 861705064]

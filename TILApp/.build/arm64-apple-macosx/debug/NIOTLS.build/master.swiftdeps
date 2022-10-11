@@ -1,9 +1,9 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "529a450cfc3297ad964bace4abb8b351a547d6e833fd67ea327a408fbd2e49f1"
-build_start_time: [1665451829, 778788089]
-build_end_time: [1665451830, 726359844]
+build_start_time: [1665452303, 762333869]
+build_end_time: [1665452304, 465981006]
 inputs:
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOTLS/ApplicationProtocolNegotiationHandler.swift"
-  : [1665451811, 589689970]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOTLS/SNIHandler.swift": [1665451811, 589903831]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOTLS/TLSEvents.swift": [1665451811, 590070247]
+  : [1665452289, 951583862]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOTLS/SNIHandler.swift": [1665452289, 951714992]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOTLS/TLSEvents.swift": [1665452289, 951787710]

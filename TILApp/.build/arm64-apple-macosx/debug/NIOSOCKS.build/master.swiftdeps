@@ -1,27 +1,27 @@
 version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
 options: "54b193573f996850cfd27fbe62a3427b10145b30cf9b27e3e98cba8c3fb63a31"
-build_start_time: [1665451829, 779549121]
-build_end_time: [1665451830, 790802955]
+build_start_time: [1665452303, 763104915]
+build_end_time: [1665452304, 605349063]
 inputs:
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Channel Handlers/SOCKSClientHandler.swift"
-  : [1665451809, 373902797]
+  : [1665452290, 251614332]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Channel Handlers/SOCKSServerHandshakeHandler.swift"
-  : [1665451809, 373994827]
+  : [1665452290, 251720905]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/AuthenticationMethod.swift"
-  : [1665451809, 374235630]
+  : [1665452290, 252044677]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/ClientGreeting.swift"
-  : [1665451809, 374313831]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/Errors.swift": [1665451809, 374388933]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/Helpers.swift": [1665451809, 374460697]
+  : [1665452290, 252144575]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/Errors.swift": [1665452290, 252217292]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/Helpers.swift": [1665452290, 252282142]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/Messages.swift"
-  : [1665451809, 374547004]
+  : [1665452290, 252346992]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/SOCKSRequest.swift"
-  : [1665451809, 374635696]
+  : [1665452290, 252429962]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/SOCKSResponse.swift"
-  : [1665451809, 374696254]
+  : [1665452290, 252491235]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/Messages/SelectedAuthenticationMethod.swift"
-  : [1665451809, 374764919]
+  : [1665452290, 252567291]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/State/ClientStateMachine.swift"
-  : [1665451809, 374880313]
+  : [1665452290, 252717018]
   ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio-extras/Sources/NIOSOCKS/State/ServerStateMachine.swift"
-  : [1665451809, 374939918]
+  : [1665452290, 252797126]

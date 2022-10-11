@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "555737c900cf674682cec95e1a8669680a1da709fc71072498040be2a741513e"
+build_start_time: [1665451829, 650936126]
+build_end_time: [1665451829, 729583024]
+inputs:
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIO/Exports.swift": [1665451811, 568920373]

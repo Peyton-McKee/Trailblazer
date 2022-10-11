@@ -1,0 +1,122 @@
+version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
+options: "8328e0a337da9d912403bb9f72ae723ac4f708dc67a55d84cbdad6ef3cc38825"
+build_start_time: [1665451829, 786349058]
+build_end_time: [1665451832, 98039150]
+inputs:
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLAlterEnumBuilder.swift"
+  : [1665451811, 795946359]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLAlterTableBuilder.swift"
+  : [1665451811, 796123266]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLColumnUpdateBuilder.swift"
+  : [1665451811, 796239852]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLConflictUpdateBuilder.swift"
+  : [1665451811, 796319246]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLCreateEnumBuilder.swift"
+  : [1665451811, 796384572]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLCreateIndexBuilder.swift"
+  : [1665451811, 796502590]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLCreateTableAsSubqueryBuilder.swift"
+  : [1665451811, 796597480]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLCreateTableBuilder.swift"
+  : [1665451811, 796731948]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLCreateTriggerBuilder.swift"
+  : [1665451811, 796860694]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLDeleteBuilder.swift": [1665451811, 796981811]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLDropEnumBuilder.swift": [1665451811, 797150135]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLDropIndexBuilder.swift"
+  : [1665451811, 797235488]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLDropTableBuilder.swift"
+  : [1665451811, 797313690]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLDropTriggerBuilder.swift"
+  : [1665451811, 797469615]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLInsertBuilder.swift": [1665451811, 797614097]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLJoinBuilder.swift": [1665451811, 797695875]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLPartialResultBuilder.swift"
+  : [1665451811, 797768115]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLPredicateBuilder.swift"
+  : [1665451811, 797917366]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLPredicateGroupBuilder.swift"
+  : [1665451811, 797986984]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLQueryBuilder.swift": [1665451811, 798062086]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLQueryFetcher.swift": [1665451811, 798279285]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLRawBuilder.swift": [1665451811, 798363685]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLReturningBuilder.swift"
+  : [1665451811, 798752784]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLSecondaryPredicateBuilder.swift"
+  : [1665451811, 798833847]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLSecondaryPredicateGroupBuilder.swift"
+  : [1665451811, 798915386]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLSelectBuilder.swift": [1665451811, 798996686]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLSubqeryClauseBuilder.swift"
+  : [1665451811, 799109458]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLUnionBuilder.swift": [1665451811, 799246311]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Builders/SQLUpdateBuilder.swift": [1665451811, 799338817]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Concurrency/SQLDatabase+Concurrency.swift"
+  : [1665451811, 799442768]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Concurrency/SQLQueryBuilder+Concurrency.swift"
+  : [1665451811, 799503803]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Concurrency/SQLQueryFetcher+Concurrency.swift"
+  : [1665451811, 799565553]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Exports.swift": [1665451811, 799629688]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLAlias.swift": [1665451811, 799754381]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLAlterColumnDefinitionType.swift"
+  : [1665451811, 799871206]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLAlterEnum.swift": [1665451811, 799926757]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLAlterTable.swift": [1665451811, 799985885]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLBinaryExpression.swift": [1665451811, 800050735]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLBinaryOperator.swift": [1665451811, 800248622]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLBind.swift": [1665451811, 800318956]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLColumnAssignment.swift": [1665451811, 800388336]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLColumnConstraintAlgorithm.swift"
+  : [1665451811, 800467014]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLColumnDefinition.swift": [1665451811, 800563335]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLColumnIdentifier.swift": [1665451811, 800651550]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLConflictAction.swift": [1665451811, 800716400]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLConflictResolutionStrategy.swift"
+  : [1665451811, 800807952]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLConstraint.swift": [1665451811, 800894975]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLCreateEnum.swift": [1665451811, 800958633]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLCreateIndex.swift": [1665451811, 801021575]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLCreateTable.swift": [1665451811, 801089048]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLCreateTrigger.swift": [1665451811, 801180124]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDataType.swift": [1665451811, 801244020]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDelete.swift": [1665451811, 801311492]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDirection.swift": [1665451811, 801372528]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDistinct.swift": [1665451811, 801430940]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDropBehaviour.swift": [1665451811, 801495552]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDropEnum.swift": [1665451811, 801554918]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDropIndex.swift": [1665451811, 801627159]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDropTable.swift": [1665451811, 801692962]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLDropTrigger.swift": [1665451811, 801760196]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLEnumDataType.swift": [1665451811, 801828384]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLExcludedColumn.swift": [1665451811, 801901340]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLForeignKey.swift": [1665451811, 801958322]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLForeignKeyAction.swift": [1665451811, 802021026]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLFunction.swift": [1665451811, 802081108]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLGroupExpression.swift": [1665451811, 802144527]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLIdentifier.swift": [1665451811, 802223920]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLInsert.swift": [1665451811, 802301645]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLJoin.swift": [1665451811, 802392005]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLJoinMethod.swift": [1665451811, 802504301]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLList.swift": [1665451811, 802585124]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLLiteral.swift": [1665451811, 802690982]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLLockingClause.swift": [1665451811, 802766799]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLOrderBy.swift": [1665451811, 802826881]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLQueryString.swift": [1665451811, 802907466]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLRaw.swift": [1665451811, 802973985]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLReturning.swift": [1665451811, 803041696]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLSelect.swift": [1665451811, 803106784]
+  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLTableConstraintAlgorithm.swift"
+  : [1665451811, 803164005]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLUnion.swift": [1665451811, 803234577]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/Query/SQLUpdate.swift": [1665451811, 803295135]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLDatabase.swift": [1665451811, 803387641]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLDatabaseReportedVersion.swift": [1665451811, 803464889]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLDialect.swift": [1665451811, 803581237]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLError.swift": [1665451811, 803644180]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLExpression.swift": [1665451811, 803697109]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLQueryEncoder.swift": [1665451811, 803777217]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLRow.swift": [1665451811, 803843975]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLRowDecoder.swift": [1665451811, 803925514]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLSerializer.swift": [1665451811, 804171323]
+  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/sql-kit/Sources/SQLKit/SQLStatement.swift": [1665451811, 804234504]
