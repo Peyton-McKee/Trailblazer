@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-enum TrailReport {
+enum TrailReportType {
     case moguls
     case ice
     case crowded
