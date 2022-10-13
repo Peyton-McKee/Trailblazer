@@ -23,6 +23,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var expertsOnlyLabel = UILabel()
     var liftLabel = UILabel()
     
+    var settingArray = ["Moguls","Icy","Crowded","Cancel"]
+    var transparentView = UIView()
+    var tableView = UITableView()
+    let height : CGFloat = 250
     var searchString = ""
     let locationManager = CLLocationManager()
     
@@ -33,9 +37,9 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var originVertex : Vertex<ImageAnnotation>?
     static var destination : Trail?
     
-    let trailReportView = TrailReportView(frame: .zero)
     var mogulsButton : UIButton?
-    
+    var cancelButton: UIButton?
+    var icyButton : UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,18 +66,12 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     
     private func configureTrailReportView()
     {
-        trailReportView.translatesAutoresizingMaskIntoConstraints = false
-        trailReportView.isHidden = true
-        mogulsButton = trailReportView.mogulButton
-        mogulsButton?.addTarget(self, action: #selector(mogulsButtonPressed), for: .touchUpInside)
-        view.addSubview(trailReportView)
-        NSLayoutConstraint.activate(
-            [trailReportView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: view.bounds.height * 13/20),
-            trailReportView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 0),
-            trailReportView.heightAnchor.constraint(equalToConstant: 100),
-            trailReportView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)])
-        trailReportView.organizeButtons()
-    
+        tableView.isScrollEnabled = true
+        tableView.layer.cornerRadius = 15
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "Cell")
+        
     }
     private func configureKey()
     {
@@ -179,6 +177,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         }
         return nearestAnnotation
     }
+    
     private func assignOrigin()
     {
         guard let latitude = locationManager.location?.coordinate.latitude, let longitude = locationManager.location?.coordinate.longitude else{
@@ -306,31 +305,60 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
                 self.trailReportAnnotation = ImageAnnotation()
                 self.trailReportAnnotation.coordinate = coordinate
-                self.trailReportView.isHidden = false
+                presentMenu()
+                
             }
         }
     }
+    private func presentMenu()
+    {
+        let window = UIApplication.shared.keyWindow
+        transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+        transparentView.frame = self.view.frame
+        window?.addSubview(transparentView)
+        
+        let screenSize = UIScreen.main.bounds.size
+        tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: height)
+        window?.addSubview(tableView)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenu))
+        transparentView.addGestureRecognizer(tapGesture)
+        
+        transparentView.alpha = 0
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.transparentView.alpha = 0.5
+            self.tableView.frame = CGRect(x: 0, y: screenSize.height - self.height, width: screenSize.width, height: self.height)
+        }, completion: nil)
+    }
+    @objc func dismissMenu() {
+        let screenSize = UIScreen.main.bounds.size
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.transparentView.alpha = 0
+            self.tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.height)
+        }, completion: nil)
+    }
+
     func createTrailReport(type: TrailReportType)
     {
-        self.trailReportView.isHidden = true
+        dismissMenu()
         let originAnnotation = TrailsDatabase.createAnnotation(title: "", latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
         let trail = getClosestAnnotation(origin: originAnnotation).value.title
         switch type
         {
         case .moguls:
-            self.trailReportAnnotation.subtitle = "Moguls"
-        case .ice: break
+            originAnnotation.subtitle = "Moguls"
+            _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        case .ice:
+            originAnnotation.subtitle = "Icy"
+            _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
             
         case .crowded: break
+            
         }
-        _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        print(trail)
         myMap.addAnnotation(originAnnotation)
         
-        print(trail!)
-    }
-    @objc func mogulsButtonPressed(sender: UIButton)
-    {
-        createTrailReport(type: .moguls)
     }
 }
 
@@ -353,3 +381,41 @@ extension InteractiveMapViewController: MKMapViewDelegate
     }
 }
 
+extension InteractiveMapViewController: UITableViewDataSource, UITableViewDelegate {
+     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return settingArray.count
+     }
+     
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? CustomTableViewCell else {fatalError("Unable to deque cell")}
+         cell.lbl.text = settingArray[indexPath.row]
+//         cell.settingImage.image = UIImage(named: settingArray[indexPath.row])!
+         return cell
+     }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Select A Trail Report"
+    }
+     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+         return 50
+     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
+        if (cell.lbl.text == "Moguls")
+        {
+            createTrailReport(type: .moguls)
+        }
+        else if(cell.lbl.text == "Icy")
+        {
+            createTrailReport(type: .ice)
+        }
+        else if (cell.lbl.text == "Crowded")
+        {
+            createTrailReport(type: .crowded)
+        }
+        else if(cell.lbl.text == "Cancel")
+        {
+            dismissMenu()
+        }
+    }
+ }
