@@ -14,7 +14,7 @@ class MapOverlay: MKTileOverlay
     override func url(forTilePath path: MKTileOverlayPath) -> URL {
         MapOverlay.count += 1
         let tileUrl =
-          "https://tile.openstreetmap.org/\(path.z)/\(path.x)/\(path.y).png"
+        "https://tile.mapzen.com/mapzen/terrain/v1/terrarium/\(path.z)/\(path.x)/\(path.y).png"
         return URL(string: tileUrl)!
       }
 //    override func url(forTilePath path: MKTileOverlayPath) -> URL {

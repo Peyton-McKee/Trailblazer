@@ -54,6 +54,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         myMap.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        self.tabBarController?.tabBar.backgroundColor = .white
     }
     override func viewDidAppear(_ animated: Bool) {
         if InteractiveMapViewController.destination != nil{
@@ -117,7 +118,11 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     
     private func configureMyMap()
     {
-        setupTileRenderer()
+//        setupTileRenderer()
+        myMap.mapType = MKMapType.hybrid
+        myMap.mapType = MKMapType.hybridFlyover
+//        myMap.mapType = MKMapType.satellite
+//        myMap.mapType = MKMapType.satelliteFlyover
         
         myMap.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         
@@ -353,7 +358,9 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             originAnnotation.subtitle = "Icy"
             _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
             
-        case .crowded: break
+        case .crowded:
+            originAnnotation.subtitle = "Crowded"
+            _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
             
         }
         print(trail)
