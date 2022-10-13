@@ -16,23 +16,25 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var myMap = MKMapView()
     var tileRenderer: MKTileOverlayRenderer!
     var myPolyLine = CustomPolyline()
-
+    
     var easyLabel = UILabel()
     var intermediateLabel = UILabel()
     var advancedLabel = UILabel()
     var expertsOnlyLabel = UILabel()
     var liftLabel = UILabel()
- 
+    
     var searchString = ""
     let locationManager = CLLocationManager()
     
     var origin = ImageAnnotation()
     
+    var trailReportAnnotation = ImageAnnotation()
+    
     var originVertex : Vertex<ImageAnnotation>?
     static var destination : Trail?
     
-    
-    
+    let trailReportView = TrailReportView(frame: .zero)
+    var mogulsButton : UIButton?
     
     
     override func viewDidLoad() {
@@ -41,12 +43,13 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         TrailsDatabase.addVertexes()
         TrailsDatabase.createEdges()
         configureMyMap()
-//        configureKey()
+        //        configureKey()
+        configureTrailReportView()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
-        
+        myMap.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
     }
     override func viewDidAppear(_ animated: Bool) {
         if InteractiveMapViewController.destination != nil{
@@ -57,6 +60,21 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         }
     }
     
+    private func configureTrailReportView()
+    {
+        trailReportView.translatesAutoresizingMaskIntoConstraints = false
+        trailReportView.isHidden = true
+        mogulsButton = trailReportView.mogulButton
+        mogulsButton?.addTarget(self, action: #selector(mogulsButtonPressed), for: .touchUpInside)
+        view.addSubview(trailReportView)
+        NSLayoutConstraint.activate(
+            [trailReportView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: view.bounds.height * 13/20),
+            trailReportView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 0),
+            trailReportView.heightAnchor.constraint(equalToConstant: 100),
+            trailReportView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)])
+        trailReportView.organizeButtons()
+    
+    }
     private func configureKey()
     {
         let preferredFont = UIFont.systemFont(ofSize: 15)
@@ -69,22 +87,22 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         intermediateLabel.textColor = .blue
         intermediateLabel.translatesAutoresizingMaskIntoConstraints = false
         intermediateLabel.font = preferredFont
-
+        
         advancedLabel.text = "Advanced Trails: ♢"
         advancedLabel.textColor = .black
         advancedLabel.translatesAutoresizingMaskIntoConstraints = false
         advancedLabel.font = preferredFont
-
+        
         expertsOnlyLabel.text = "Experts Only Trails: ♢♢"
         expertsOnlyLabel.textColor = .red
         expertsOnlyLabel.translatesAutoresizingMaskIntoConstraints = false
         expertsOnlyLabel.font = preferredFont
-
+        
         liftLabel.text = "Lifts: -"
         liftLabel.textColor = .purple
         liftLabel.translatesAutoresizingMaskIntoConstraints = false
         liftLabel.font = preferredFont
-
+        
         
         self.view.addSubview(easyLabel)
         self.view.addSubview(intermediateLabel)
@@ -110,16 +128,16 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         
         let initialRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
-          span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
+            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
         
         myMap.cameraZoomRange = MKMapView.CameraZoomRange(
-          minCenterCoordinateDistance: 1550,
-          maxCenterCoordinateDistance: 12500)
+            minCenterCoordinateDistance: 1550,
+            maxCenterCoordinateDistance: 12500)
         myMap.cameraBoundary = MKMapView.CameraBoundary(
-          coordinateRegion: initialRegion)
+            coordinateRegion: initialRegion)
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(addAnnotation))
-        longPress.minimumPressDuration = 1
+        longPress.minimumPressDuration = 0.3
         
         myMap.addGestureRecognizer(longPress)
         myMap.region = initialRegion
@@ -128,7 +146,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.setUserTrackingMode(.followWithHeading, animated: true)
         myMap.delegate = self
         view.addSubview(myMap)
-        
     }
     
     
@@ -148,14 +165,14 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             item.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: distFromLeft),
             item.heightAnchor.constraint(equalToConstant: 40),
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-            ])
+        ])
     }
     private func getClosestAnnotation(origin: ImageAnnotation) -> Vertex<ImageAnnotation>
     {
         var nearestAnnotation = TrailsDatabase.annotations[0]
         for annotation in TrailsDatabase.annotations
         {
-
+            
             if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(nearestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(nearestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2))))){
                 nearestAnnotation = annotation
             }
@@ -281,23 +298,40 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         }
     }
     @objc func addAnnotation(gesture: UIGestureRecognizer) {
-
-            if gesture.state == .ended {
-
-                if let mapView = gesture.view as? MKMapView {
-                    let point = gesture.location(in: mapView)
-                    let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
-                    let annotation = MKPointAnnotation()
-                    annotation.coordinate = coordinate
-                    annotation.subtitle = "Trail Report"
-                    mapView.addAnnotation(annotation)
-                    let originAnnotation = TrailsDatabase.createAnnotation(title: "Trail Report", latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude, difficulty: .easy)
-                    let trail = getClosestAnnotation(origin: originAnnotation).value.title
-                    print(trail)
-                }
+        
+        if gesture.state == .ended {
+            
+            if let mapView = gesture.view as? MKMapView {
+                let point = gesture.location(in: mapView)
+                let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+                self.trailReportAnnotation = ImageAnnotation()
+                self.trailReportAnnotation.coordinate = coordinate
+                self.trailReportView.isHidden = false
             }
         }
-
+    }
+    func createTrailReport(type: TrailReportType)
+    {
+        self.trailReportView.isHidden = true
+        let originAnnotation = TrailsDatabase.createAnnotation(title: "", latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
+        let trail = getClosestAnnotation(origin: originAnnotation).value.title
+        switch type
+        {
+        case .moguls:
+            self.trailReportAnnotation.subtitle = "Moguls"
+        case .ice: break
+            
+        case .crowded: break
+        }
+        _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        myMap.addAnnotation(originAnnotation)
+        
+        print(trail!)
+    }
+    @objc func mogulsButtonPressed(sender: UIButton)
+    {
+        createTrailReport(type: .moguls)
+    }
 }
 
 extension InteractiveMapViewController: MKMapViewDelegate

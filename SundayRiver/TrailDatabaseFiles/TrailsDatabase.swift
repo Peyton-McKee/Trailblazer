@@ -32,17 +32,46 @@ class ImageAnnotation : NSObject, MKAnnotation{
         var subtitle: String?
         var colour: UIColor?
         var difficulty: Difficulty?
-        var trailReport : TrailReport?
-
+        var trailReport : TrailReportType?
+        var image: UIImage?
+        
         override init() {
             self.coordinate = CLLocationCoordinate2D()
             self.title = nil
             self.subtitle = nil
             self.difficulty = nil
             self.trailReport = nil
+            self.image = nil
             self.colour = UIColor.white
         }
 }
+class ImageAnnotationView: MKAnnotationView {
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        
+        frame = CGRect(x: 0, y: 0, width: 40, height: 50)
+        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
+        
+        canShowCallout = true
+        setupUI()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: Setup
+    
+    private func setupUI() {
+        backgroundColor = .clear
+        let view = UIView(frame: .zero)
+        addSubview(view)
+        
+        view.frame = bounds
+    }
+}
+
 
 class TrailsDatabase : NSObject {
     
