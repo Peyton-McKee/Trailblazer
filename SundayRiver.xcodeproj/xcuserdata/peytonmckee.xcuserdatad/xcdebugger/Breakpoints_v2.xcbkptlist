@@ -3,4 +3,117 @@
    uuid = "8B60AE16-CF3C-4638-9D9B-45B07F833F4C"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "77016863-85D6-47AC-96DE-FE61FAF6BAA6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/RouteOverviewView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "configureItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BDAB27A5-6778-425D-9050-4CE4FDFE057A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/RouteOverviewView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "configureItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52840D44-A0CA-447E-B7FE-C374D926B7DF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/RouteOverviewView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "configureItems()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
+            landmarkName = "TrailsDatabase"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - 2d37b1da5438f78c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "one-time initialization function for witchWayTop"
+                  moduleName = "SundayRiver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/peytonmckee/Documents/GitHub/Trailblazer/SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - f0e4ad92fadafa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SundayRiver.TrailsDatabase.witchWayTop.unsafeMutableAddressor : SundayRiver.Vertex&lt;SundayRiver.ImageAnnotation&gt;"
+                  moduleName = "SundayRiver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/peytonmckee/Documents/GitHub/Trailblazer/SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - e850f1ffdb8d2899"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SundayRiver.TrailsDatabase.witchWayTop.getter : SundayRiver.Vertex&lt;SundayRiver.ImageAnnotation&gt;"
+                  moduleName = "SundayRiver"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/peytonmckee/Documents/GitHub/Trailblazer/SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "275"
+                  endingLineNumber = "275"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

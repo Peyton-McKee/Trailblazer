@@ -17,6 +17,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var tileRenderer: MKTileOverlayRenderer!
     var myPolyLine = CustomPolyline()
     
+    static var routeInProgress = false
+    
     var easyLabel = UILabel()
     var intermediateLabel = UILabel()
     var advancedLabel = UILabel()
@@ -24,22 +26,21 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var liftLabel = UILabel()
     
     var settingArray = ["Moguls","Icy","Crowded","Cancel"]
-    var transparentView = UIView()
-    var tableView = UITableView()
-    let height : CGFloat = 250
-    var searchString = ""
+    var trailReportMenu : PopUpMenuFramework?
+    var trailReportTableView = UITableView()
+    
     let locationManager = CLLocationManager()
     
     var origin = ImageAnnotation()
+    
+    var routeOverviewMenu : PopUpMenuFramework?
+    var routeOverviewView : RouteOverviewView?
     
     var trailReportAnnotation = ImageAnnotation()
     
     var originVertex : Vertex<ImageAnnotation>?
     static var destination : Trail?
     
-    var mogulsButton : UIButton?
-    var cancelButton: UIButton?
-    var icyButton : UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +58,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         self.tabBarController?.tabBar.backgroundColor = .white
     }
     override func viewDidAppear(_ animated: Bool) {
-        if InteractiveMapViewController.destination != nil{
+        if InteractiveMapViewController.destination != nil {
             createRoute()
         }
         else {
@@ -67,11 +68,11 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     
     private func configureTrailReportView()
     {
-        tableView.isScrollEnabled = true
-        tableView.layer.cornerRadius = 15
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "Cell")
+        trailReportTableView.isScrollEnabled = true
+        trailReportTableView.layer.cornerRadius = 15
+        trailReportTableView.delegate = self
+        trailReportTableView.dataSource = self
+        trailReportTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "Cell")
         
     }
     private func configureKey()
@@ -119,7 +120,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     private func configureMyMap()
     {
 //        setupTileRenderer()
-        myMap.mapType = MKMapType.hybrid
         myMap.mapType = MKMapType.hybridFlyover
 //        myMap.mapType = MKMapType.satellite
 //        myMap.mapType = MKMapType.satelliteFlyover
@@ -199,6 +199,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         for overlay in myMap.overlays(in: .aboveLabels){
             myMap.removeOverlay(overlay)
         }
+        
         assignOrigin()
         let destinationTrail = InteractiveMapViewController.destination!
         var destinationAnnotation = destinationTrail.annotations[0]
@@ -231,6 +232,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         }
         if let pathToDestination = DijkstraShortestPath(TrailsDatabase.graph, source: originVertex!).pathTo(destinationVertex){
             var previousEdge = pathToDestination[0]
+            var description = ""
+            var trailReports = ""
             for edge in pathToDestination{
                 if(previousEdge.value.difficulty == .easy)
                 {
@@ -262,10 +265,41 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                     myPolyLine.color = .red
                     myMap.addOverlay(myPolyLine, level: .aboveLabels)
                 }
+                for annotation in TrailsDatabase.keyAnnotations
+                {
+                    if (annotation.value == edge.value) && (!description.localizedStandardContains(annotation.value.title!))
+                    {
+                        description.append("\(edge.value.title!); ")
+                    }
+                }
                 previousEdge = edge
+                if let trailReport = (edge.value.trailReport)
+                {
+                    trailReports.append("\(trailReport.subtitle!), ")
+                }
             }
+            if(!InteractiveMapViewController.routeInProgress)
+            {
+                routeOverviewView = RouteOverviewView(frame: self.view.frame)
+                
+                var index = description.index(description.startIndex, offsetBy: description.count - 2)
+                description = String(description.prefix(upTo: index))
+                routeOverviewView?.directionsTextView.text = "\(description)"
+                
+                routeOverviewView?.tripLbl.text = "Your Location -> \(destinationTrail.name)"
+                
+                index = trailReports.index(trailReports.startIndex, offsetBy: trailReports.count - 2)
+                trailReports = String(trailReports.prefix(upTo: index))
+                routeOverviewView?.trailReportTextView.text = trailReports
+                
+                routeOverviewView?.configureItems()
+                presentRouteOverviewMenu()
+                InteractiveMapViewController.routeInProgress = true
+            }
+            
         }
     }
+    
     private func showTrails()
     {
         for edge in TrailsDatabase.graph.edges(){
@@ -310,45 +344,48 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
                 self.trailReportAnnotation = ImageAnnotation()
                 self.trailReportAnnotation.coordinate = coordinate
-                presentMenu()
-                
+                presentTrailReportMenu()
+                InteractiveMapViewController.routeInProgress = true
             }
         }
     }
-    private func presentMenu()
+    private func presentTrailReportMenu()
     {
+        trailReportTableView.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 250)
         let window = UIApplication.shared.keyWindow
-        transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
-        transparentView.frame = self.view.frame
-        window?.addSubview(transparentView)
-        
-        let screenSize = UIScreen.main.bounds.size
-        tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: height)
-        window?.addSubview(tableView)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenu))
-        transparentView.addGestureRecognizer(tapGesture)
-        
-        transparentView.alpha = 0
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.transparentView.alpha = 0.5
-            self.tableView.frame = CGRect(x: 0, y: screenSize.height - self.height, width: screenSize.width, height: self.height)
-        }, completion: nil)
+        trailReportMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 250)
+        trailReportMenu?.view = trailReportTableView
+        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissMenu))
+        trailReportMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
+        trailReportMenu?.presentItems()
     }
+    
     @objc func dismissMenu() {
-        let screenSize = UIScreen.main.bounds.size
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.transparentView.alpha = 0
-            self.tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.height)
-        }, completion: nil)
+        trailReportMenu!.dismissItems()
     }
 
+    
+    private func presentRouteOverviewMenu()
+    {
+        routeOverviewView!.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 200)
+        let window = UIApplication.shared.keyWindow
+        routeOverviewMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 200)
+        routeOverviewMenu?.view = routeOverviewView
+        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissRouteOverviewMenu))
+        routeOverviewMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
+        routeOverviewView?.letsGoButton.addTarget(self, action: #selector(dismissRouteOverviewMenu), for: .touchUpInside)
+        routeOverviewMenu?.presentItems()
+    }
+    
+    @objc func dismissRouteOverviewMenu() {
+        self.routeOverviewMenu?.dismissItems()
+    }
+    
     func createTrailReport(type: TrailReportType)
     {
         dismissMenu()
         let originAnnotation = TrailsDatabase.createAnnotation(title: "", latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
-        let trail = getClosestAnnotation(origin: originAnnotation).value.title
+        let trail = getClosestAnnotation(origin: originAnnotation).value
         switch type
         {
         case .moguls:
@@ -363,7 +400,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
             
         }
-        print(trail)
+        trail.trailReport = originAnnotation
         myMap.addAnnotation(originAnnotation)
         
     }

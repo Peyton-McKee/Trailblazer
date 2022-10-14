@@ -35,7 +35,7 @@ class TrailSelectorViewController : UIViewController{
     private func configureTableViewAndSearchBar()
     {
         searchController = UISearchController(searchResultsController: nil)
-        searchBarTableView.frame = CGRect(x: 0, y: 40, width: view.bounds.width, height: view.bounds.height * 9 / 10)
+        searchBarTableView.frame = CGRect(x: 0, y: 50, width: view.bounds.width, height: view.bounds.height * 9 / 10)
         searchBarTableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         searchBarTableView.tableHeaderView = searchController.searchBar
         searchBarTableView.dataSource = self
@@ -287,6 +287,7 @@ extension TrailSelectorViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? CustomCell{
             InteractiveMapViewController.destination = cell.cellTrail
+            InteractiveMapViewController.routeInProgress = false
             self.tabBarController?.selectedIndex = 0
         }
         

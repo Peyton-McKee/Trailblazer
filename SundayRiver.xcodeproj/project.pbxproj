@@ -12,6 +12,8 @@
 		150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062B28F5D6C00051F160 /* TrailReports.swift */; };
 		150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */; };
 		150D063228F7D96A0051F160 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063128F7D96A0051F160 /* CustomTableViewCell.swift */; };
+		150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */; };
+		150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063528F8E0C00051F160 /* RouteOverviewView.swift */; };
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
 		153B2E3C28ED1EDF00A23163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3B28ED1EDF00A23163 /* User.swift */; };
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
@@ -42,6 +44,8 @@
 		150D062B28F5D6C00051F160 /* TrailReports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReports.swift; sourceTree = "<group>"; };
 		150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerAnnotationViews.swift; sourceTree = "<group>"; };
 		150D063128F7D96A0051F160 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpMenuFramework.swift; sourceTree = "<group>"; };
+		150D063528F8E0C00051F160 /* RouteOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOverviewView.swift; sourceTree = "<group>"; };
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				150D063128F7D96A0051F160 /* CustomTableViewCell.swift */,
 				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
 				15545B1B28E4CD42005D0886 /* CustomCell.swift */,
+				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
+				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
 				15545B0728E148A9005D0886 /* MapOverlay.swift */,
 				15545AD828DEA598005D0886 /* Web Analysis.swift */,
 				153B2E3B28ED1EDF00A23163 /* User.swift */,
@@ -224,7 +230,9 @@
 				15545B1C28E4CD42005D0886 /* CustomCell.swift in Sources */,
 				150D063228F7D96A0051F160 /* CustomTableViewCell.swift in Sources */,
 				15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */,
+				150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */,
 				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,
+				150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
 				153B2E4028F3262000A23163 /* TabBarViewController.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
