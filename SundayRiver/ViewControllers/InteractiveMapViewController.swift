@@ -119,10 +119,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     
     private func configureMyMap()
     {
-//        setupTileRenderer()
+        //        setupTileRenderer()
         myMap.mapType = MKMapType.hybridFlyover
-//        myMap.mapType = MKMapType.satellite
-//        myMap.mapType = MKMapType.satelliteFlyover
+        //        myMap.mapType = MKMapType.satellite
+        //        myMap.mapType = MKMapType.satelliteFlyover
         
         myMap.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
         
@@ -199,11 +199,12 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         for overlay in myMap.overlays(in: .aboveLabels){
             myMap.removeOverlay(overlay)
         }
-        
         assignOrigin()
+        
         let destinationTrail = InteractiveMapViewController.destination!
         var destinationAnnotation = destinationTrail.annotations[0]
         var destinationVertex : Vertex<ImageAnnotation> = TrailsDatabase.annotations[0]
+        
         for trailName in TrailsDatabase.CommonlyJunctionedTrailNames
         {
             if trailName == destinationTrail.name
@@ -275,7 +276,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 previousEdge = edge
                 if let trailReport = (edge.value.trailReport)
                 {
-                    trailReports.append("\(trailReport.subtitle!), ")
+                    trailReports.append("\(trailReport.subtitle!) ")
                 }
             }
             if(!InteractiveMapViewController.routeInProgress)
@@ -288,8 +289,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 
                 routeOverviewView?.tripLbl.text = "Your Location -> \(destinationTrail.name)"
                 
-                index = trailReports.index(trailReports.startIndex, offsetBy: trailReports.count - 2)
-                trailReports = String(trailReports.prefix(upTo: index))
                 routeOverviewView?.trailReportTextView.text = trailReports
                 
                 routeOverviewView?.configureItems()
@@ -404,6 +403,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.addAnnotation(originAnnotation)
         
     }
+    
 }
 
 extension InteractiveMapViewController: MKMapViewDelegate
