@@ -11,9 +11,14 @@ import UIKit
 class UserSettingsViewController : UIViewController {
     var logOutButton = UIButton()
     var userNameLabel = UILabel()
+    var backgroundImageView = UIImageView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .red
+        backgroundImageView.image = UIImage(named: "SRMoon.png")!
+        backgroundImageView.frame = view.frame
+        view.addSubview(backgroundImageView)
         configureButtons()
         configureLabels()
     }
@@ -25,7 +30,7 @@ class UserSettingsViewController : UIViewController {
         logOutButton.setTitleColor(.blue, for: .normal)
         logOutButton.addTarget(self, action: #selector(logOutPressed), for: .touchUpInside)
         view.addSubview(logOutButton)
-        createConstraints(item: logOutButton, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 + Double(view.bounds.height) / 10)
+        createConstraints(item: logOutButton, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 + Double(view.bounds.height) / 20)
     }
     
     private func configureLabels()
@@ -33,6 +38,7 @@ class UserSettingsViewController : UIViewController {
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .title1), size: 20)
         userNameLabel.text = "Username: \(InteractiveMapViewController.currentUser.userName)"
+        userNameLabel.textColor = .red
         view.addSubview(userNameLabel)
         createConstraints(item: userNameLabel, distFromLeft: 0, distFromTop: Double(view.bounds.height)/10)
     }

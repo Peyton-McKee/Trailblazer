@@ -54,7 +54,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
-        myMap.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         self.tabBarController?.tabBar.backgroundColor = .white
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -148,6 +147,9 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.showsCompass = true
         myMap.setUserTrackingMode(.followWithHeading, animated: true)
         myMap.delegate = self
+        myMap.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        myMap.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
+        createKeyTrailAnnotation()
         view.addSubview(myMap)
     }
     
@@ -196,7 +198,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     
     func createRoute()
     {
-        for overlay in myMap.overlays(in: .aboveLabels){
+        for overlay in myMap.overlays(in: .aboveRoads){
             myMap.removeOverlay(overlay)
         }
         assignOrigin()
@@ -240,36 +242,42 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 {
                     myPolyLine = CustomPolyline(coordinates: [previousEdge.value.coordinate, edge.value.coordinate], count: 2)
                     myPolyLine.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
-                    myMap.addOverlay(myPolyLine, level: .aboveLabels)
                 }
                 else if (previousEdge.value.difficulty == .intermediate)
                 {
                     myPolyLine = CustomPolyline(coordinates: [previousEdge.value.coordinate, edge.value.coordinate], count: 2)
                     myPolyLine.color = .blue
-                    myMap.addOverlay(myPolyLine, level: .aboveLabels)
                 }
                 else if (previousEdge.value.difficulty == .advanced)
                 {
                     myPolyLine = CustomPolyline(coordinates: [previousEdge.value.coordinate, edge.value.coordinate], count: 2)
                     myPolyLine.color = .black
-                    myMap.addOverlay(myPolyLine, level: .aboveLabels)
                 }
                 else if (previousEdge.value.difficulty == .lift)
                 {
                     myPolyLine = CustomPolyline(coordinates: [previousEdge.value.coordinate, edge.value.coordinate], count: 2)
                     myPolyLine.color = .purple
-                    myMap.addOverlay(myPolyLine, level: .aboveLabels)
+                }
+                else if (previousEdge.value.difficulty == .terrainPark)
+                {
+                    myPolyLine = CustomPolyline(coordinates: [previousEdge.value.coordinate, edge.value.coordinate], count: 2)
+                    myPolyLine.color = .orange
                 }
                 else
                 {
                     myPolyLine = CustomPolyline(coordinates: [previousEdge.value.coordinate, edge.value.coordinate], count: 2)
                     myPolyLine.color = .red
-                    myMap.addOverlay(myPolyLine, level: .aboveLabels)
+                }
+                myMap.addOverlay(myPolyLine, level: .aboveRoads)
+                for annotation in TrailsDatabase.keyAnnotations
+                {
+                    myMap.removeAnnotation(annotation.value)
                 }
                 for annotation in TrailsDatabase.keyAnnotations
                 {
-                    if (annotation.value == edge.value) && (!description.localizedStandardContains(annotation.value.title!))
+                    if (annotation.value == edge.value) && (!description.contains(annotation.value.title!))
                     {
+                        myMap.addAnnotation(annotation.value)
                         description.append("\(edge.value.title!); ")
                     }
                 }
@@ -283,7 +291,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             {
                 routeOverviewView = RouteOverviewView(frame: self.view.frame)
                 
-                var index = description.index(description.startIndex, offsetBy: description.count - 2)
+                let index = description.index(description.startIndex, offsetBy: description.count - 2)
                 description = String(description.prefix(upTo: index))
                 routeOverviewView?.directionsTextView.text = "\(description)"
                 
@@ -306,34 +314,37 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             {
                 myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
                 myPolyLine.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
-                myMap.addOverlay(myPolyLine, level: .aboveLabels)
             }
             else if (edge.source.value.difficulty == .intermediate)
             {
                 myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
                 myPolyLine.color = .blue
-                myMap.addOverlay(myPolyLine, level: .aboveLabels)
             }
             else if (edge.source.value.difficulty == .advanced)
             {
                 myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
                 myPolyLine.color = .black
-                myMap.addOverlay(myPolyLine, level: .aboveLabels)
             }
             else if (edge.source.value.difficulty == .lift)
             {
                 myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
                 myPolyLine.color = .purple
-                myMap.addOverlay(myPolyLine, level: .aboveLabels)
+                
+            }
+            else if (edge.source.value.difficulty == .terrainPark)
+            {
+                myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
+                myPolyLine.color = .orange
             }
             else
             {
                 myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
                 myPolyLine.color = .red
-                myMap.addOverlay(myPolyLine, level: .aboveLabels)
             }
+            myMap.addOverlay(myPolyLine, level: .aboveRoads)
         }
     }
+    
     @objc func addAnnotation(gesture: UIGestureRecognizer) {
         
         if gesture.state == .ended {
@@ -348,6 +359,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             }
         }
     }
+    
     private func presentTrailReportMenu()
     {
         trailReportTableView.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 250)
@@ -358,7 +370,13 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         trailReportMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
         trailReportMenu?.presentItems()
     }
-    
+    func createKeyTrailAnnotation()
+    {
+        for annotation in TrailsDatabase.keyAnnotations
+        {
+            myMap.addAnnotation(annotation.value)
+        }
+    }
     @objc func dismissMenu() {
         trailReportMenu!.dismissItems()
     }
@@ -389,14 +407,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         {
         case .moguls:
             originAnnotation.subtitle = "Moguls"
-            _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         case .ice:
             originAnnotation.subtitle = "Icy"
-            _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-            
         case .crowded:
             originAnnotation.subtitle = "Crowded"
-            _ = CustomAnnotationView(annotation: originAnnotation, reuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
             
         }
         trail.trailReport = originAnnotation
@@ -423,6 +437,16 @@ extension InteractiveMapViewController: MKMapViewDelegate
         }
         return tileRenderer
     }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        guard view is ClusterAnnotationView else { return }
+        print("test")
+        // if the user taps a cluster, zoom in
+        let currentSpan = mapView.region.span
+        let zoomSpan = MKCoordinateSpan(latitudeDelta: currentSpan.latitudeDelta / 2.0, longitudeDelta: currentSpan.longitudeDelta / 2.0)
+        let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
+        let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
+        mapView.setRegion(zoomed, animated: true)
+    }
 }
 
 extension InteractiveMapViewController: UITableViewDataSource, UITableViewDelegate {
@@ -434,7 +458,14 @@ extension InteractiveMapViewController: UITableViewDataSource, UITableViewDelega
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? CustomTableViewCell else {fatalError("Unable to deque cell")}
          cell.lbl.text = settingArray[indexPath.row]
-//         cell.settingImage.image = UIImage(named: settingArray[indexPath.row])!
+         if(settingArray[indexPath.row] == "Moguls")
+         {
+             cell.settingImage.image = UIImage(named: "MogulSquare.png")!
+         }
+         else if (settingArray[indexPath.row] == "Icy")
+         {
+             cell.settingImage.image = UIImage(named: "IcySquare.png")!
+         }
          return cell
      }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

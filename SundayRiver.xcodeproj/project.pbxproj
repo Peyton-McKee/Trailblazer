@@ -14,10 +14,13 @@
 		150D063228F7D96A0051F160 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063128F7D96A0051F160 /* CustomTableViewCell.swift */; };
 		150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */; };
 		150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063528F8E0C00051F160 /* RouteOverviewView.swift */; };
+		150D0640290063AB0051F160 /* SRMoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D063F290063AB0051F160 /* SRMoon.png */; };
+		150D0642290066C00051F160 /* MogulSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D0641290066C00051F160 /* MogulSquare.png */; };
+		150D06442900682F0051F160 /* IcySquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D06432900682F0051F160 /* IcySquare.png */; };
+		150D064629006C190051F160 /* SRSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D064529006C190051F160 /* SRSun.png */; };
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
 		153B2E3C28ED1EDF00A23163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3B28ED1EDF00A23163 /* User.swift */; };
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
-		153B2E4028F3262000A23163 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3F28F3262000A23163 /* TabBarViewController.swift */; };
 		15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545AD828DEA598005D0886 /* Web Analysis.swift */; };
 		15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545AFE28E01813005D0886 /* SignInViewController.swift */; };
 		15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0228E02268005D0886 /* InteractiveMapViewController.swift */; };
@@ -46,10 +49,13 @@
 		150D063128F7D96A0051F160 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpMenuFramework.swift; sourceTree = "<group>"; };
 		150D063528F8E0C00051F160 /* RouteOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOverviewView.swift; sourceTree = "<group>"; };
+		150D063F290063AB0051F160 /* SRMoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRMoon.png; sourceTree = "<group>"; };
+		150D0641290066C00051F160 /* MogulSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MogulSquare.png; sourceTree = "<group>"; };
+		150D06432900682F0051F160 /* IcySquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IcySquare.png; sourceTree = "<group>"; };
+		150D064529006C190051F160 /* SRSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRSun.png; sourceTree = "<group>"; };
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
-		153B2E3F28F3262000A23163 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		15545AD828DEA598005D0886 /* Web Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web Analysis.swift"; sourceTree = "<group>"; };
 		15545AFE28E01813005D0886 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		15545B0228E02268005D0886 /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +106,17 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		150D063E290063900051F160 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				150D064529006C190051F160 /* SRSun.png */,
+				150D06432900682F0051F160 /* IcySquare.png */,
+				150D0641290066C00051F160 /* MogulSquare.png */,
+				150D063F290063AB0051F160 /* SRMoon.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		15545B0428E022A5005D0886 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,7 +124,6 @@
 				15545AFE28E01813005D0886 /* SignInViewController.swift */,
 				153B2E3928ED135D00A23163 /* SignUpViewController.swift */,
 				15545B0228E02268005D0886 /* InteractiveMapViewController.swift */,
-				153B2E3F28F3262000A23163 /* TabBarViewController.swift */,
 				150D062728F529260051F160 /* UserSettingsViewController.swift */,
 				150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */,
 			);
@@ -142,6 +158,7 @@
 				15545B1728E297CA005D0886 /* Game Test.gpx */,
 				15545B1D28E4CEB2005D0886 /* CustomCell.xib */,
 				15874A0027D82636001B9025 /* Assets.xcassets */,
+				150D063E290063900051F160 /* Images */,
 				15874A0227D82636001B9025 /* LaunchScreen.storyboard */,
 				15545B1928E4ABD1005D0886 /* Tiles */,
 				15874A0527D82636001B9025 /* Info.plist */,
@@ -220,10 +237,14 @@
 			files = (
 				15545B1E28E4CEB2005D0886 /* CustomCell.xib in Resources */,
 				15545B1828E297CA005D0886 /* Game Test.gpx in Resources */,
+				150D06442900682F0051F160 /* IcySquare.png in Resources */,
 				15874A0427D82636001B9025 /* LaunchScreen.storyboard in Resources */,
+				150D064629006C190051F160 /* SRSun.png in Resources */,
+				150D0640290063AB0051F160 /* SRMoon.png in Resources */,
 				15874A0127D82636001B9025 /* Assets.xcassets in Resources */,
 				158749FF27D82635001B9025 /* Main.storyboard in Resources */,
 				15545B1A28E4ABD1005D0886 /* Tiles in Resources */,
+				150D0642290066C00051F160 /* MogulSquare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +263,6 @@
 				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,
 				150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
-				153B2E4028F3262000A23163 /* TabBarViewController.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
@@ -414,8 +434,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -445,8 +465,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

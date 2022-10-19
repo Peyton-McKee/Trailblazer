@@ -147,10 +147,21 @@ extension TrailSelectorViewController: UISearchBarDelegate, UISearchResultsUpdat
 extension TrailSelectorViewController: UITableViewDelegate, UITableViewDataSource
 {
     func numberOfSections(in tableView: UITableView) -> Int {
-        9
+        if(shouldShowSearchResults)
+        {
+            return 1
+        }
+        else
+        {
+            return 9
+        }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section == 0)
+        if(shouldShowSearchResults)
+        {
+            return "Results"
+        }
+        else if(section == 0)
         {
             return "Barker Mountain"
         }
@@ -286,6 +297,7 @@ extension TrailSelectorViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? CustomCell{
+            print(cell.cellTrail)
             InteractiveMapViewController.destination = cell.cellTrail
             InteractiveMapViewController.routeInProgress = false
             self.tabBarController?.selectedIndex = 0
