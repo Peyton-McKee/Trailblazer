@@ -562,6 +562,7 @@ class TrailsDatabase : NSObject {
     static let endTT = Vertex<ImageAnnotation>(spruceTrails[5].annotations[2])
 
     static let keyAnnotations = [botSpruce, botQLT, botNP, botChondola, auroraSideJD, jordanSideJD, botAurora, botJord, topLol, topExcal, topRogue, topCaram, topKans, junctionWoodsman, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, witchWayTop, cycloneJunctionAirglow, topBlackHole, topFirestar, startLO, topBorealis, kansasJunctionVortex, topParadigm, startSM, SMJunctionGR, topQuantum, topGR, topLD, topDM, Bend2DM, topT72, topSensation, topDMTP, topEscapade, top3D, botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW, botSouthridge, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT]
+    
     static let jordanKeyAnnotations = [botJord, topLol, topRogue, topExcal, topCaram, jordanSideJD]
     
     static let auroraKeyAnnotations = [botAurora, botQLT, topBorealis, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, kansasJunctionVortex, startLO, topFirestar, topBlackHole, cycloneJunctionAirglow, witchWayTop]

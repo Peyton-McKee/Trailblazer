@@ -20,7 +20,7 @@ class TitleScreen: UIViewController{
     var vLabel = UILabel()
     var eLabel = UILabel()
     var r1Label = UILabel()
-    var preferredFont = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .largeTitle), size: 40)
+    var preferredFont = UIFont(name: "Times New Roman", size: 40)
     var trailblazerLabel = UILabel()
     var signInButton = UIButton()
     var continueAsGuestButton = UIButton()
@@ -113,7 +113,7 @@ class TitleScreen: UIViewController{
         trailblazerLabel.translatesAutoresizingMaskIntoConstraints = false
         trailblazerLabel.font = preferredFont
         trailblazerLabel.alpha = 0
-        trailblazerLabel.textColor = .red
+        trailblazerLabel.textColor = .black
 
         
         self.view.addSubview(sLabel)

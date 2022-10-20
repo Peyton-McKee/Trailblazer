@@ -25,33 +25,33 @@
             </objects>
             <point key="canvasLocation" x="1048" y="56"/>
         </scene>
-        <!--Trails-->
+        <!--Trail Selector View Controller-->
         <scene sceneID="kgY-Hy-WSh">
             <objects>
                 <viewController id="weU-Gu-pbw" customClass="TrailSelectorViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9qE-9O-AIN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="QgM-B1-Km2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Trails" image="figure.skiing.crosscountry" catalog="system" id="W5J-Nd-X1j"/>
+                    <tabBarItem key="tabBarItem" title="" image="figure.skiing.crosscountry" catalog="system" id="W5J-Nd-X1j"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Qq-FM-xRP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2745" y="1499"/>
         </scene>
-        <!--Settings-->
+        <!--User Settings View Controller-->
         <scene sceneID="CXf-5c-KnN">
             <objects>
                 <viewController id="apt-Zv-aya" customClass="UserSettingsViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eNn-Bf-knJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="HBk-pg-jl6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="TKX-FI-ccD"/>
+                    <tabBarItem key="tabBarItem" title="" image="gear" catalog="system" id="TKX-FI-ccD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LJb-j3-C25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,7 +61,7 @@
         <scene sceneID="MVH-BW-6gd">
             <objects>
                 <tabBarController storyboardIdentifier="MainTabBarController" id="pl0-tK-5EH" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cFr-3Z-2fQ">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="centered" id="cFr-3Z-2fQ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,17 +76,17 @@
             </objects>
             <point key="canvasLocation" x="997" y="1499"/>
         </scene>
-        <!--Map-->
+        <!--Interactive Map View Controller-->
         <scene sceneID="y9u-qY-msQ">
             <objects>
                 <viewController id="FMY-e1-cEd" customClass="InteractiveMapViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NfF-NP-KJy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ZQ9-nl-gsF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="zaK-5q-wim"/>
+                    <tabBarItem key="tabBarItem" title="" image="map" catalog="system" id="zaK-5q-wim"/>
                     <navigationItem key="navigationItem" id="JmZ-9i-lYF"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBF-ae-uHE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

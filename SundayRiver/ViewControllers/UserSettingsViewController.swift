@@ -44,6 +44,7 @@ class UserSettingsViewController : UIViewController {
     }
     @objc func logOutPressed(sender: UIButton)
     {
+        InteractiveMapViewController.destination = nil
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
             

@@ -13,11 +13,16 @@ import CoreLocation
 class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
 {
     static var currentUser = User(userName: "Guest", password: "")
+    static var routeInProgress = false
+    static var destination : ImageAnnotation?
+
+    let initialRegion = MKCoordinateRegion(
+        center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
+        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
     var myMap = MKMapView()
     var tileRenderer: MKTileOverlayRenderer!
     var myPolyLine = CustomPolyline()
     
-    static var routeInProgress = false
     
     var easyLabel = UILabel()
     var intermediateLabel = UILabel()
@@ -39,7 +44,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var trailReportAnnotation = ImageAnnotation()
     
     var originVertex : Vertex<ImageAnnotation>?
-    static var destination : Trail?
     
     
     override func viewDidLoad() {
@@ -58,7 +62,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     }
     override func viewDidAppear(_ animated: Bool) {
         if InteractiveMapViewController.destination != nil {
-            createRoute()
+            sampleRoute()
         }
         else {
             showTrails()
@@ -128,12 +132,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.isZoomEnabled = true
         myMap.isScrollEnabled = true
         
-        let initialRegion = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
-            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
+        
         
         myMap.cameraZoomRange = MKMapView.CameraZoomRange(
-            minCenterCoordinateDistance: 1550,
+            minCenterCoordinateDistance: 400,
             maxCenterCoordinateDistance: 12500)
         myMap.cameraBoundary = MKMapView.CameraBoundary(
             coordinateRegion: initialRegion)
@@ -149,7 +151,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.delegate = self
         myMap.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         myMap.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
-        createKeyTrailAnnotation()
         view.addSubview(myMap)
     }
     
@@ -195,37 +196,13 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         TrailsDatabase.graph.addVertex(originVertex!)
         TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: getClosestAnnotation(origin: origin), weight: 1)
     }
-    
-    func createRoute()
+    func createRoute() -> [Vertex<ImageAnnotation>]?
     {
-        for overlay in myMap.overlays(in: .aboveRoads){
-            myMap.removeOverlay(overlay)
-        }
         assignOrigin()
         
-        let destinationTrail = InteractiveMapViewController.destination!
-        var destinationAnnotation = destinationTrail.annotations[0]
+        let destinationAnnotation = InteractiveMapViewController.destination!
         var destinationVertex : Vertex<ImageAnnotation> = TrailsDatabase.annotations[0]
         
-        for trailName in TrailsDatabase.CommonlyJunctionedTrailNames
-        {
-            if trailName == destinationTrail.name
-            {
-                if trailName == "Northern Lights"
-                {
-                    destinationAnnotation = destinationTrail.annotations[2]
-                }
-                else if trailName == "Dream Maker"
-                {
-                    destinationAnnotation = destinationTrail.annotations[3]
-                }
-                else
-                {
-                    destinationAnnotation = destinationTrail.annotations[1]
-                }
-                break
-            }
-        }
         for vertex in TrailsDatabase.annotations
         {
             if vertex.value.coordinate.latitude == destinationAnnotation.coordinate.latitude && vertex.value.coordinate.longitude == destinationAnnotation.coordinate.longitude
@@ -233,10 +210,63 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 destinationVertex = vertex
             }
         }
-        if let pathToDestination = DijkstraShortestPath(TrailsDatabase.graph, source: originVertex!).pathTo(destinationVertex){
-            var previousEdge = pathToDestination[0]
+        if let pathToDestination = DijkstraShortestPath(TrailsDatabase.graph, source: originVertex!).pathTo(destinationVertex)
+        {
+            return pathToDestination
+        }
+        return nil
+    }
+    func sampleRoute()
+    {
+        let destinationAnnotation = InteractiveMapViewController.destination!
+        if let pathToDestination = createRoute(){
             var description = ""
             var trailReports = ""
+            for edge in pathToDestination
+            {
+                for annotation in TrailsDatabase.keyAnnotations
+                {
+                    if (annotation.value == edge.value) && (!description.contains(annotation.value.title!))
+                    {
+                        myMap.addAnnotation(annotation.value)
+                        description.append("\(edge.value.title!); ")
+                    }
+                }
+                if let trailReport = (edge.value.trailReport)
+                {
+                    trailReports.append("\(trailReport.subtitle!) ")
+                }
+            }
+            if(!InteractiveMapViewController.routeInProgress)
+            {
+                routeOverviewView = RouteOverviewView(frame: self.view.frame)
+                
+                let index = description.index(description.startIndex, offsetBy: description.count - 2)
+                description = String(description.prefix(upTo: index))
+                routeOverviewView?.directionsTextView.text = "\(description)"
+                
+                routeOverviewView?.tripLbl.text = "Your Location -> \(destinationAnnotation.title!)"
+                
+                routeOverviewView?.trailReportTextView.text = trailReports
+                
+                routeOverviewView?.configureItems()
+                presentRouteOverviewMenu()
+                InteractiveMapViewController.routeInProgress = true
+            }
+        }
+    }
+    func displayRoute()
+    {
+        for overlay in myMap.overlays(in: .aboveRoads){
+            myMap.removeOverlay(overlay)
+        }
+        for annotation in TrailsDatabase.keyAnnotations
+        {
+            myMap.removeAnnotation(annotation.value)
+        }
+        if let pathToDestination = createRoute(){
+            var previousEdge = pathToDestination[0]
+            
             for edge in pathToDestination{
                 if(previousEdge.value.difficulty == .easy)
                 {
@@ -269,41 +299,16 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                     myPolyLine.color = .red
                 }
                 myMap.addOverlay(myPolyLine, level: .aboveRoads)
+                
                 for annotation in TrailsDatabase.keyAnnotations
                 {
-                    myMap.removeAnnotation(annotation.value)
-                }
-                for annotation in TrailsDatabase.keyAnnotations
-                {
-                    if (annotation.value == edge.value) && (!description.contains(annotation.value.title!))
+                    if(annotation.value == edge.value)
                     {
                         myMap.addAnnotation(annotation.value)
-                        description.append("\(edge.value.title!); ")
                     }
                 }
                 previousEdge = edge
-                if let trailReport = (edge.value.trailReport)
-                {
-                    trailReports.append("\(trailReport.subtitle!) ")
-                }
             }
-            if(!InteractiveMapViewController.routeInProgress)
-            {
-                routeOverviewView = RouteOverviewView(frame: self.view.frame)
-                
-                let index = description.index(description.startIndex, offsetBy: description.count - 2)
-                description = String(description.prefix(upTo: index))
-                routeOverviewView?.directionsTextView.text = "\(description)"
-                
-                routeOverviewView?.tripLbl.text = "Your Location -> \(destinationTrail.name)"
-                
-                routeOverviewView?.trailReportTextView.text = trailReports
-                
-                routeOverviewView?.configureItems()
-                presentRouteOverviewMenu()
-                InteractiveMapViewController.routeInProgress = true
-            }
-            
         }
     }
     
@@ -343,6 +348,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             }
             myMap.addOverlay(myPolyLine, level: .aboveRoads)
         }
+        createKeyTrailAnnotation()
+
     }
     
     @objc func addAnnotation(gesture: UIGestureRecognizer) {
@@ -390,14 +397,22 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         routeOverviewMenu?.view = routeOverviewView
         let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissRouteOverviewMenu))
         routeOverviewMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
-        routeOverviewView?.letsGoButton.addTarget(self, action: #selector(dismissRouteOverviewMenu), for: .touchUpInside)
+        routeOverviewView?.letsGoButton.addTarget(self, action: #selector(letsGoButtonPressed), for: .touchUpInside)
         routeOverviewMenu?.presentItems()
+        displayRoute()
     }
     
-    @objc func dismissRouteOverviewMenu() {
+    @objc func dismissRouteOverviewMenu()
+    {
+        InteractiveMapViewController.destination = nil
+        InteractiveMapViewController.routeInProgress = false
+        viewDidAppear(true)
         self.routeOverviewMenu?.dismissItems()
     }
-    
+    @objc func letsGoButtonPressed()
+    {
+        self.routeOverviewMenu?.dismissItems()
+    }
     func createTrailReport(type: TrailReportType)
     {
         dismissMenu()
@@ -411,7 +426,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             originAnnotation.subtitle = "Icy"
         case .crowded:
             originAnnotation.subtitle = "Crowded"
-            
         }
         trail.trailReport = originAnnotation
         myMap.addAnnotation(originAnnotation)
@@ -438,14 +452,14 @@ extension InteractiveMapViewController: MKMapViewDelegate
         return tileRenderer
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        guard view is ClusterAnnotationView else { return }
-        print("test")
-        // if the user taps a cluster, zoom in
         let currentSpan = mapView.region.span
         let zoomSpan = MKCoordinateSpan(latitudeDelta: currentSpan.latitudeDelta / 2.0, longitudeDelta: currentSpan.longitudeDelta / 2.0)
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
         mapView.setRegion(zoomed, animated: true)
+        print("test")
+        InteractiveMapViewController.destination = view.annotation as? ImageAnnotation
+        sampleRoute()
     }
 }
 

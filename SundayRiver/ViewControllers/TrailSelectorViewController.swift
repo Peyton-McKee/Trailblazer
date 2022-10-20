@@ -134,7 +134,7 @@ extension TrailSelectorViewController: UISearchBarDelegate, UISearchResultsUpdat
         else {
             shouldShowSearchResults = true
             if let cell = searchBarTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CustomCell{
-                InteractiveMapViewController.destination = cell.cellTrail
+                InteractiveMapViewController.destination = cell.cellTrail.annotations[0]
             }
             searchBarTableView.reloadData()
         }
@@ -298,7 +298,7 @@ extension TrailSelectorViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? CustomCell{
             print(cell.cellTrail)
-            InteractiveMapViewController.destination = cell.cellTrail
+            InteractiveMapViewController.destination = cell.cellTrail.annotations[0]
             InteractiveMapViewController.routeInProgress = false
             self.tabBarController?.selectedIndex = 0
         }
