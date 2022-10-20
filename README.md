@@ -4,6 +4,8 @@ The Waze of Skiing
 
 Setup Instructions:
 
+(Requires Xcode Installation and docker installation)
+
   Clone Repository
 
   Navigate to /trailblazer/TILApp in terminal
