@@ -3,10 +3,13 @@
 The Waze of Skiing
 
 Setup Instructions:
+
   Clone Repository
 
   Navigate to /trailblazer/TILApp in terminal
+  
     Run command in terminal: 
+    
       docker run --name postgres -e POSTGRES_DB=vapor_database \
       -e POSTGRES_USER=vapor_username \
       -e POSTGRES_PASSWORD=vapor_password \
@@ -23,8 +26,11 @@ Setup Instructions:
     Run the program
 
 Optional: Set up tests
+
   Navigate to /trailblazer/TILApp in terminal
+  
   Run command in terminal: 
+  
     docker run --name postgres-test \
     -e POSTGRES_DB=vapor-test \
     -e POSTGRES_USER=vapor_username \
@@ -32,5 +38,7 @@ Optional: Set up tests
     -p 5433:5432 -d postgres
   
   Reveal Trailblazer Folder in Finder
+  
     Open Package.swift in TILApp
+    
       Run Tests(Command U)
