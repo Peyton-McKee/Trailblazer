@@ -15,7 +15,7 @@ struct UsersController: RouteCollection {
     let usersRoute = routes.grouped("api", "users")
     // 4
     usersRoute.post(use: createHandler)
-    usersRoute.get( use: getAllHandler)
+    usersRoute.get(use: getAllHandler)
     usersRoute.get(":userID", use: getHandler)
     usersRoute.delete(":userID", use: deleteHandler)
   }

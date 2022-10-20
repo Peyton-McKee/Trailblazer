@@ -67,7 +67,7 @@ class SignUpViewController : UIViewController {
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.backgroundColor = .cyan
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
-
+        
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.setTitle("Already have an account? Sign In...", for: .normal)
@@ -87,7 +87,7 @@ class SignUpViewController : UIViewController {
             item.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: distFromLeft),
             item.heightAnchor.constraint(equalToConstant: 40),
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-            ])
+        ])
     }
     @objc func signUpButtonPressed(sender: UIButton)
     {
@@ -119,11 +119,11 @@ class SignUpViewController : UIViewController {
                 self.saveUser(myUser)
                 InteractiveMapViewController.currentUser = myUser
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                    
-                    // This is to get the SceneDelegate object from your view controller
-                    // then call the change root view controller function to change to main tab bar
-                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                
+                // This is to get the SceneDelegate object from your view controller
+                // then call the change root view controller function to change to main tab bar
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
                 //say user successfully created
             }
         })
@@ -134,27 +134,28 @@ class SignUpViewController : UIViewController {
     }
     
     func saveUser(_ user: User) {
-            let url = URL(string: "http://localhost:8080/api/users")!
-
-            let encoder = JSONEncoder()
-
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = try? encoder.encode(user)
-
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let data = data {
-                    let decoder = JSONDecoder()
-                    if let item = try? decoder.decode(User.self, from: data) {
-                        print(item.userName)
-                    } else {
-                        print("Bad JSON received back.")
-                        print(data)
-                    }
+        let url = URL(string: "http://localhost:8080/api/users")!
+        
+        let encoder = JSONEncoder()
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? encoder.encode(user)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let decoder = JSONDecoder()
+                if let item = try? decoder.decode(User.self, from: data) {
+                    print(item.userName)
+                } else {
+                    print("Bad JSON received back.")
+                    print(data)
                 }
-            }.resume()
-        }
+            }
+        }.resume()
+    }
+    
     
     func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
         let url = URL(string: "http://localhost:8080/api/users")!
@@ -164,7 +165,7 @@ class SignUpViewController : UIViewController {
                 print(error?.localizedDescription ?? "Unknown error")
                 return
             }
-
+            
             let decoder = JSONDecoder()
             if let users = try? decoder.decode([User].self, from: data) {
                 DispatchQueue.main.async {
@@ -175,7 +176,6 @@ class SignUpViewController : UIViewController {
                 completion(.failure(error!))
             }
         }.resume()
-        
     }
 }
 

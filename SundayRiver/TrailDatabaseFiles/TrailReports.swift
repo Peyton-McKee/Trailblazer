@@ -13,3 +13,9 @@ enum TrailReportType {
     case ice
     case crowded
 }
+
+struct TrailReport: Codable {
+    var id : String?
+    var type : String
+    var location : String
+}

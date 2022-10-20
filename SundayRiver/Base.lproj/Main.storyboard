@@ -30,7 +30,7 @@
             <objects>
                 <viewController id="weU-Gu-pbw" customClass="TrailSelectorViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9qE-9O-AIN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="QgM-B1-Km2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -46,7 +46,7 @@
             <objects>
                 <viewController id="apt-Zv-aya" customClass="UserSettingsViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eNn-Bf-knJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="HBk-pg-jl6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -61,7 +61,7 @@
         <scene sceneID="MVH-BW-6gd">
             <objects>
                 <tabBarController storyboardIdentifier="MainTabBarController" id="pl0-tK-5EH" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" itemPositioning="centered" id="cFr-3Z-2fQ">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" itemPositioning="centered" id="cFr-3Z-2fQ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -81,7 +81,7 @@
             <objects>
                 <viewController id="FMY-e1-cEd" customClass="InteractiveMapViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NfF-NP-KJy">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="ZQ9-nl-gsF"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

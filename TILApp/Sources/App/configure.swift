@@ -31,9 +31,7 @@ public func configure(_ app: Application) throws {
 
   // 3
   app.migrations.add(CreateUser())
-  app.migrations.add(CreateAcronym())
-
-    
+  app.migrations.add(CreateTrailReports())
   app.logger.logLevel = .debug
 
   // 4

@@ -58,7 +58,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
-        self.tabBarController?.tabBar.backgroundColor = .white
+        getTrailReportsFromDB()
+        self.tabBarController?.tabBar.backgroundColor = .black
     }
     override func viewDidAppear(_ animated: Bool) {
         if InteractiveMapViewController.destination != nil {
@@ -154,6 +155,27 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         view.addSubview(myMap)
     }
     
+    private func getTrailReportsFromDB()
+    {
+        getTrailReports(completion: { value in
+            guard let trailReports = try? value.get() else
+            {
+                print("Error: \(value)")
+                return
+            }
+            for report in trailReports
+            {
+                let coordinateString = report.location
+                print(coordinateString)
+                let comma = coordinateString.firstIndex(of: ",")!
+                let latitude = Double(String(coordinateString.prefix(upTo: comma)))!
+                let longitude = Double(String(coordinateString.suffix(coordinateString.suffix(from: comma).count - 1)))!
+                let annotation = TrailsDatabase.createAnnotation(title: "", latitude: latitude, longitude: longitude, difficulty: .easy)
+                annotation.subtitle = report.type
+                self.myMap.addAnnotation(annotation)
+            }
+        })
+    }
     
     private func setupTileRenderer() {
         let overlay = MapOverlay()
@@ -427,11 +449,54 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         case .crowded:
             originAnnotation.subtitle = "Crowded"
         }
+        saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, location: "\(originAnnotation.coordinate.latitude),\(originAnnotation.coordinate.longitude)"))
         trail.trailReport = originAnnotation
         myMap.addAnnotation(originAnnotation)
         
     }
-    
+    func saveTrailReporrt(_ trailReport: TrailReport) {
+        let url = URL(string: "http://localhost:8080/api/trail-reports")!
+        
+        let encoder = JSONEncoder()
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? encoder.encode(trailReport)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let decoder = JSONDecoder()
+                if let item = try? decoder.decode(TrailReport.self, from: data) {
+                    print(item.type)
+                } else {
+                    print(data)
+                    print("Bad JSON received back.")
+                }
+            }
+        }.resume()
+    }
+    func getTrailReports(completion: @escaping (Result<[TrailReport], Error>) -> Void) {
+        let url = URL(string: "http://127.0.0.1:8080/api/trail-reports")!
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "Unknown error")
+                return
+            }
+
+            let decoder = JSONDecoder()
+            if let trailReports = try? decoder.decode([TrailReport].self, from: data) {
+                DispatchQueue.main.async {
+                    completion(.success(trailReports))
+                }
+            } else {
+                print("Unable to parse JSON response.")
+                completion(.failure(error!))
+            }
+        }.resume()
+        
+    }
 }
 
 extension InteractiveMapViewController: MKMapViewDelegate
@@ -457,7 +522,6 @@ extension InteractiveMapViewController: MKMapViewDelegate
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
         mapView.setRegion(zoomed, animated: true)
-        print("test")
         InteractiveMapViewController.destination = view.annotation as? ImageAnnotation
         sampleRoute()
     }
