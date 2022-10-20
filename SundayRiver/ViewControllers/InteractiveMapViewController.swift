@@ -172,6 +172,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 let longitude = Double(String(coordinateString.suffix(coordinateString.suffix(from: comma).count - 1)))!
                 let annotation = TrailsDatabase.createAnnotation(title: "", latitude: latitude, longitude: longitude, difficulty: .easy)
                 annotation.subtitle = report.type
+                
+                let closestTrail = self.getClosestAnnotation(origin: annotation).value
+                closestTrail.trailReport = annotation
+
                 self.myMap.addAnnotation(annotation)
             }
         })
@@ -439,7 +443,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     {
         dismissMenu()
         let originAnnotation = TrailsDatabase.createAnnotation(title: "", latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
-        let trail = getClosestAnnotation(origin: originAnnotation).value
+        let closestTrail = getClosestAnnotation(origin: originAnnotation).value
         switch type
         {
         case .moguls:
@@ -450,7 +454,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             originAnnotation.subtitle = "Crowded"
         }
         saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, location: "\(originAnnotation.coordinate.latitude),\(originAnnotation.coordinate.longitude)"))
-        trail.trailReport = originAnnotation
+        closestTrail.trailReport = originAnnotation
         myMap.addAnnotation(originAnnotation)
         
     }
