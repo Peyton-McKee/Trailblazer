@@ -8,22 +8,24 @@ Setup Instructions:
 
   Navigate to /trailblazer/TILApp in terminal
   
-    Run command in terminal: 
+  Run command in terminal:
     
       docker run --name postgres -e POSTGRES_DB=vapor_database \
       -e POSTGRES_USER=vapor_username \
       -e POSTGRES_PASSWORD=vapor_password \
       -p 5432:5432 -d postgres
 
-  Reveal TrailBlazer Folder in Finder:
+  Reveal TrailBlazer Folder in Finder
   
-    Open Package.swift in TILApp
-      Run the program(Command R), make sure target is my computer
+  Open Package.swift in TILApp
+  
+  Run the program(Command R), make sure target is my computer
 
-    Return to root folder 
+  Return to root folder 
   
-    Open xcode.proj
-    Run the program
+  Open xcode.proj
+  
+  Run the program (Command R)
 
 Optional: Set up tests
 
@@ -39,6 +41,6 @@ Optional: Set up tests
   
   Reveal Trailblazer Folder in Finder
   
-    Open Package.swift in TILApp
+  Open Package.swift in TILApp
     
-      Run Tests(Command U)
+  Run Tests(Command U)
