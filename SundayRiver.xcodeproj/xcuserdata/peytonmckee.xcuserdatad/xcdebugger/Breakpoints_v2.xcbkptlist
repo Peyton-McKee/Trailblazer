@@ -62,13 +62,13 @@
             filePath = "SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "TrailsDatabase"
             landmarkType = "3">
             <Locations>
                <Location
-                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - 2d37b1da5438f78c"
+                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - 2d37b1da5438f708"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -78,12 +78,12 @@
                   urlString = "file:///Users/peytonmckee/Documents/GitHub/Trailblazer/SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "275"
-                  endingLineNumber = "275"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
                   offsetFromSymbolStart = "24">
                </Location>
                <Location
-                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - f0e4ad92fadafa"
+                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - f0e4ad92fada7e"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -93,12 +93,12 @@
                   urlString = "file:///Users/peytonmckee/Documents/GitHub/Trailblazer/SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "275"
-                  endingLineNumber = "275"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
-                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - e850f1ffdb8d2899"
+                  uuid = "889646FB-6E6E-4D59-81F4-8733DA01D81A - e850f1ffdb8d281d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -108,8 +108,8 @@
                   urlString = "file:///Users/peytonmckee/Documents/GitHub/Trailblazer/SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "275"
-                  endingLineNumber = "275"
+                  startingLineNumber = "271"
+                  endingLineNumber = "271"
                   offsetFromSymbolStart = "40">
                </Location>
             </Locations>

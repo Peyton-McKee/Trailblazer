@@ -25,22 +25,6 @@
             </objects>
             <point key="canvasLocation" x="1048" y="56"/>
         </scene>
-        <!--Trail Selector View Controller-->
-        <scene sceneID="kgY-Hy-WSh">
-            <objects>
-                <viewController id="weU-Gu-pbw" customClass="TrailSelectorViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9qE-9O-AIN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="QgM-B1-Km2"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" image="figure.skiing.crosscountry" catalog="system" id="W5J-Nd-X1j"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Qq-FM-xRP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2745" y="1499"/>
-        </scene>
         <!--User Settings View Controller-->
         <scene sceneID="CXf-5c-KnN">
             <objects>
@@ -55,20 +39,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LJb-j3-C25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3577" y="1499"/>
+            <point key="canvasLocation" x="2938" y="1499"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="MVH-BW-6gd">
             <objects>
                 <tabBarController storyboardIdentifier="MainTabBarController" id="pl0-tK-5EH" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" itemPositioning="centered" id="cFr-3Z-2fQ">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="cFr-3Z-2fQ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="FMY-e1-cEd" kind="relationship" relationship="viewControllers" id="jQC-tQ-XTU"/>
-                        <segue destination="weU-Gu-pbw" kind="relationship" relationship="viewControllers" id="nOr-dD-TaV"/>
                         <segue destination="apt-Zv-aya" kind="relationship" relationship="viewControllers" id="S14-dd-ldO"/>
                     </connections>
                 </tabBarController>
@@ -143,7 +126,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="figure.skiing.crosscountry" catalog="system" width="128" height="107"/>
         <image name="gear" catalog="system" width="128" height="122"/>
         <image name="map" catalog="system" width="128" height="112"/>
         <systemColor name="systemBackgroundColor">

@@ -9,21 +9,21 @@ import Fluent
 import Vapor
 
 final class TrailReport: Model, Content {
-  static let schema = "trailReports"
-
-  @ID
-  var id: UUID?
-   
-  @Field(key: "type")
-  var type: String
-   
-  @Field(key: "location")
-  var location: String
+    static let schema = "trailReports"
     
-  init() {}
+    @ID
+    var id: UUID?
     
-  init(id: UUID? = nil, type: String, location: String) {
-    self.type = type
-    self.location = location
-  }
+    @Field(key: "type")
+    var type: String
+    
+    @Field(key: "location")
+    var location: String
+    
+    init() {}
+    
+    init(id: UUID? = nil, type: String, location: String) {
+        self.type = type
+        self.location = location
+    }
 }

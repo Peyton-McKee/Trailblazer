@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		150D062428F4DEB90051F160 /* TrailSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */; };
+		150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */; };
+		150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C6EB029035BE10055AD59 /* HextoColor.swift */; };
+		150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062328F4DEB90051F160 /* TrailSelectorView.swift */; };
 		150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062728F529260051F160 /* UserSettingsViewController.swift */; };
 		150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062B28F5D6C00051F160 /* TrailReports.swift */; };
 		150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */; };
-		150D063228F7D96A0051F160 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063128F7D96A0051F160 /* CustomTableViewCell.swift */; };
+		150D063228F7D96A0051F160 /* TrailReportTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */; };
 		150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */; };
 		150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063528F8E0C00051F160 /* RouteOverviewView.swift */; };
 		150D0640290063AB0051F160 /* SRMoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D063F290063AB0051F160 /* SRMoon.png */; };
@@ -26,13 +28,12 @@
 		15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545AFE28E01813005D0886 /* SignInViewController.swift */; };
 		15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0228E02268005D0886 /* InteractiveMapViewController.swift */; };
 		15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0728E148A9005D0886 /* MapOverlay.swift */; };
-		15545B0C28E224A2005D0886 /* TrailAnnotationDataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0B28E224A2005D0886 /* TrailAnnotationDataStructure.swift */; };
+		15545B0C28E224A2005D0886 /* GraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0B28E224A2005D0886 /* GraphStructure.swift */; };
 		15545B0E28E224C8005D0886 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0D28E224C8005D0886 /* Trail.swift */; };
 		15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */; };
 		15545B1828E297CA005D0886 /* Game Test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1728E297CA005D0886 /* Game Test.gpx */; };
 		15545B1A28E4ABD1005D0886 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1928E4ABD1005D0886 /* Tiles */; };
-		15545B1C28E4CD42005D0886 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B1B28E4CD42005D0886 /* CustomCell.swift */; };
-		15545B1E28E4CEB2005D0886 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1D28E4CEB2005D0886 /* CustomCell.xib */; };
+		15545B1C28E4CD42005D0886 /* TrailSelectorCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B1B28E4CD42005D0886 /* TrailSelectorCustomCell.swift */; };
 		158749F827D82635001B9025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749F727D82635001B9025 /* AppDelegate.swift */; };
 		158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749F927D82635001B9025 /* SceneDelegate.swift */; };
 		158749FC27D82635001B9025 /* TitleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749FB27D82635001B9025 /* TitleScreen.swift */; };
@@ -43,11 +44,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorViewController.swift; sourceTree = "<group>"; };
+		150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuFramework.swift; sourceTree = "<group>"; };
+		150C6EB029035BE10055AD59 /* HextoColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HextoColor.swift; sourceTree = "<group>"; };
+		150D062328F4DEB90051F160 /* TrailSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorView.swift; sourceTree = "<group>"; };
 		150D062728F529260051F160 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		150D062B28F5D6C00051F160 /* TrailReports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReports.swift; sourceTree = "<group>"; };
 		150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerAnnotationViews.swift; sourceTree = "<group>"; };
-		150D063128F7D96A0051F160 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportTypeTableViewCell.swift; sourceTree = "<group>"; };
 		150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpMenuFramework.swift; sourceTree = "<group>"; };
 		150D063528F8E0C00051F160 /* RouteOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOverviewView.swift; sourceTree = "<group>"; };
 		150D063F290063AB0051F160 /* SRMoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRMoon.png; sourceTree = "<group>"; };
@@ -62,13 +65,12 @@
 		15545AFE28E01813005D0886 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		15545B0228E02268005D0886 /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
 		15545B0728E148A9005D0886 /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
-		15545B0B28E224A2005D0886 /* TrailAnnotationDataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAnnotationDataStructure.swift; sourceTree = "<group>"; };
+		15545B0B28E224A2005D0886 /* GraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphStructure.swift; sourceTree = "<group>"; };
 		15545B0D28E224C8005D0886 /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailsDatabase.swift; sourceTree = "<group>"; };
 		15545B1728E297CA005D0886 /* Game Test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Game Test.gpx"; sourceTree = "<group>"; };
 		15545B1928E4ABD1005D0886 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
-		15545B1B28E4CD42005D0886 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		15545B1D28E4CEB2005D0886 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		15545B1B28E4CD42005D0886 /* TrailSelectorCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorCustomCell.swift; sourceTree = "<group>"; };
 		158749F427D82635001B9025 /* SundayRiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SundayRiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158749F727D82635001B9025 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		158749F927D82635001B9025 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,19 +93,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		150C6EAD29031B0C0055AD59 /* Unused.Utils */ = {
+			isa = PBXGroup;
+			children = (
+				15545B0728E148A9005D0886 /* MapOverlay.swift */,
+				15545AD828DEA598005D0886 /* Web Analysis.swift */,
+				15874A0D27D82AFA001B9025 /* Scraper.swift */,
+			);
+			path = Unused.Utils;
+			sourceTree = "<group>";
+		};
 		150D063728FB020B0051F160 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
+				150C6EB029035BE10055AD59 /* HextoColor.swift */,
 				153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */,
-				150D063128F7D96A0051F160 /* CustomTableViewCell.swift */,
+				150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */,
+				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
 				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
-				15545B1B28E4CD42005D0886 /* CustomCell.swift */,
+				15545B1B28E4CD42005D0886 /* TrailSelectorCustomCell.swift */,
 				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
-				15545B0728E148A9005D0886 /* MapOverlay.swift */,
 				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
-				15545AD828DEA598005D0886 /* Web Analysis.swift */,
 				153B2E3B28ED1EDF00A23163 /* User.swift */,
-				15874A0D27D82AFA001B9025 /* Scraper.swift */,
+				150C6EAD29031B0C0055AD59 /* Unused.Utils */,
 				150D06472900A8CD0051F160 /* Fonts */,
 			);
 			path = Utils;
@@ -136,7 +149,6 @@
 				153B2E3928ED135D00A23163 /* SignUpViewController.swift */,
 				15545B0228E02268005D0886 /* InteractiveMapViewController.swift */,
 				150D062728F529260051F160 /* UserSettingsViewController.swift */,
-				150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -167,7 +179,6 @@
 				159B0EC628E68DDC00DAFEAA /* TrailDatabaseFiles */,
 				150D063728FB020B0051F160 /* Utils */,
 				15545B1728E297CA005D0886 /* Game Test.gpx */,
-				15545B1D28E4CEB2005D0886 /* CustomCell.xib */,
 				15874A0027D82636001B9025 /* Assets.xcassets */,
 				150D063E290063900051F160 /* Images */,
 				15874A0227D82636001B9025 /* LaunchScreen.storyboard */,
@@ -181,7 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				15545B0D28E224C8005D0886 /* Trail.swift */,
-				15545B0B28E224A2005D0886 /* TrailAnnotationDataStructure.swift */,
+				15545B0B28E224A2005D0886 /* GraphStructure.swift */,
 				15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */,
 				150D062B28F5D6C00051F160 /* TrailReports.swift */,
 			);
@@ -246,7 +257,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15545B1E28E4CEB2005D0886 /* CustomCell.xib in Resources */,
 				15545B1828E297CA005D0886 /* Game Test.gpx in Resources */,
 				150D06442900682F0051F160 /* IcySquare.png in Resources */,
 				15874A0427D82636001B9025 /* LaunchScreen.storyboard in Resources */,
@@ -268,13 +278,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				15545B0E28E224C8005D0886 /* Trail.swift in Sources */,
-				15545B1C28E4CD42005D0886 /* CustomCell.swift in Sources */,
-				150D063228F7D96A0051F160 /* CustomTableViewCell.swift in Sources */,
+				15545B1C28E4CD42005D0886 /* TrailSelectorCustomCell.swift in Sources */,
+				150D063228F7D96A0051F160 /* TrailReportTypeTableViewCell.swift in Sources */,
 				15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */,
 				150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */,
 				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,
 				150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
+				150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
@@ -284,11 +295,12 @@
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,
 				158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */,
 				153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */,
+				150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */,
 				153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */,
 				15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */,
 				15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */,
-				150D062428F4DEB90051F160 /* TrailSelectorViewController.swift in Sources */,
-				15545B0C28E224A2005D0886 /* TrailAnnotationDataStructure.swift in Sources */,
+				150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */,
+				15545B0C28E224A2005D0886 /* GraphStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

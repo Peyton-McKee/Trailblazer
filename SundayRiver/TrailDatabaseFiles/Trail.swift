@@ -10,7 +10,7 @@ import MapKit
 
 struct Trail {
     let name: String
-    let difficulty: String
+    let difficulty: Difficulty
     let annotations : [ImageAnnotation]
 }
 

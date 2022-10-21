@@ -73,7 +73,7 @@ class SignInViewController: UIViewController
             item.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: distFromLeft),
             item.heightAnchor.constraint(equalToConstant: 40),
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-            ])
+        ])
     }
     @objc func signInButtonPressed(sender: UIButton)
     {
@@ -98,11 +98,11 @@ class SignInViewController: UIViewController
                     InteractiveMapViewController.currentUser = user
                     self.navigationController?.show(InteractiveMapViewController(), sender: sender)
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                        
-                        // This is to get the SceneDelegate object from your view controller
-                        // then call the change root view controller function to change to main tab bar
-                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                    let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                    
+                    // This is to get the SceneDelegate object from your view controller
+                    // then call the change root view controller function to change to main tab bar
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
                     //you have successfully logged in
                     break
                 }
@@ -125,7 +125,7 @@ class SignInViewController: UIViewController
                 print(error?.localizedDescription ?? "Unknown error")
                 return
             }
-
+            
             let decoder = JSONDecoder()
             if let users = try? decoder.decode([User].self, from: data) {
                 DispatchQueue.main.async {

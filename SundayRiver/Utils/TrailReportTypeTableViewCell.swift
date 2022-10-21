@@ -1,12 +1,12 @@
 //
-//  CustomTableViewCell.swift
+//  TrailReportTypeTableViewCell.swift
 //  SundayRiver
 //
 //  Created by Peyton McKee on 10/13/22.
 //
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+class TrailReportTypeTableViewCell: UITableViewCell {
     
     lazy var backView: UIView = {
        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: 50))

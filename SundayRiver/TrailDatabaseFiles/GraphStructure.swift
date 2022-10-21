@@ -44,8 +44,8 @@ class DirectedEdge<Element: Equatable> {
 extension DirectedEdge: Equatable {
     static func ==(lhs: DirectedEdge, rhs: DirectedEdge) -> Bool {
         return lhs.source == rhs.source &&
-            lhs.destination == rhs.destination &&
-            lhs.weight == rhs.weight
+        lhs.destination == rhs.destination &&
+        lhs.weight == rhs.weight
     }
 }
 
@@ -90,7 +90,7 @@ class EdgeWeightedDigraph<Element: Equatable> {
             .reduce([DirectedEdge<Element>]()) {
                 (result, vertex) -> [DirectedEdge<Element>] in
                 return result + vertex.adjacentEdges
-        }
+            }
     }
     
     func edgesCount() -> Int {

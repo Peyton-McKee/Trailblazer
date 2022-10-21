@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum userStatus
+{
+    case guest
+    case member
+}
+
 struct User : Codable{
     var id : String?
     var userName : String

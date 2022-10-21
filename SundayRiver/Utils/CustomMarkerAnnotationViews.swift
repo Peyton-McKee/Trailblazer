@@ -12,18 +12,6 @@ import UIKit
 class CustomAnnotationView: MKMarkerAnnotationView {
     let mogulGlyphImage: UIImage = {
         let rect = CGRect(origin: .zero, size: CGSize(width: 40, height: 40))
-//        return UIGraphicsImageRenderer(bounds: rect).image { _ in
-//            let radius: CGFloat = 11
-//            let offset: CGFloat = 7
-//            let insetY: CGFloat = 5
-//            let center = CGPoint(x: rect.midX, y: rect.maxY - radius - insetY)
-//            let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: 0, endAngle: .pi, clockwise: true)
-//            path.addQuadCurve(to: CGPoint(x: rect.midX, y: rect.minY + insetY), controlPoint: CGPoint(x: rect.midX - radius, y: center.y - offset))
-//            path.addQuadCurve(to: CGPoint(x: rect.midX + radius, y: center.y), controlPoint: CGPoint(x: rect.midX + radius, y: center.y - offset))
-//            path.close()
-//            UIColor.white.setFill()
-//            path.fill()
-//        }
         return UIGraphicsImageRenderer(bounds: rect).image(actions: { _ in
             let radius: CGFloat = 12
             let offset: CGFloat = 30
@@ -81,7 +69,7 @@ class CustomAnnotationView: MKMarkerAnnotationView {
             if let annotation = annotation as? ImageAnnotation{
                 if(annotation.difficulty == .easy)
                 {
-                    markerTintColor = .green
+                    markerTintColor = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else if(annotation.difficulty == .intermediate)
@@ -96,7 +84,7 @@ class CustomAnnotationView: MKMarkerAnnotationView {
                 }
                 else if (annotation.difficulty == .expertsOnly)
                 {
-                    markerTintColor = .red
+                    markerTintColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else if (annotation.difficulty == .advanced)

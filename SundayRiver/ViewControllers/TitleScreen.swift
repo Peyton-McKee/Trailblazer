@@ -68,53 +68,53 @@ class TitleScreen: UIViewController{
         nLabel.translatesAutoresizingMaskIntoConstraints = false
         nLabel.font = preferredFont
         nLabel.textColor = .red
-
+        
         dLabel.text = "d"
         dLabel.translatesAutoresizingMaskIntoConstraints = false
         dLabel.font = preferredFont
         dLabel.textColor = .red
-
+        
         aLabel.text = "a"
         aLabel.translatesAutoresizingMaskIntoConstraints = false
         aLabel.font = preferredFont
         aLabel.textColor = .red
-
+        
         yLabel.text = "y"
         yLabel.translatesAutoresizingMaskIntoConstraints = false
         yLabel.font = preferredFont
         yLabel.textColor = .red
-
+        
         rLabel.text = "R"
         rLabel.translatesAutoresizingMaskIntoConstraints = false
         rLabel.font = preferredFont
         rLabel.textColor = .red
-
+        
         iLabel.text = "i"
         iLabel.translatesAutoresizingMaskIntoConstraints = false
         iLabel.font = preferredFont
         iLabel.textColor = .red
-
+        
         vLabel.text = "v"
         vLabel.translatesAutoresizingMaskIntoConstraints = false
         vLabel.font = preferredFont
         vLabel.textColor = .red
-
+        
         eLabel.text = "e"
         eLabel.translatesAutoresizingMaskIntoConstraints = false
         eLabel.font = preferredFont
         eLabel.textColor = .red
-
+        
         r1Label.text = "r"
         r1Label.translatesAutoresizingMaskIntoConstraints = false
         r1Label.font = preferredFont
         r1Label.textColor = .red
-
+        
         trailblazerLabel.text = "Trailblazer"
         trailblazerLabel.translatesAutoresizingMaskIntoConstraints = false
         trailblazerLabel.font = preferredFont
         trailblazerLabel.alpha = 0
         trailblazerLabel.textColor = .black
-
+        
         
         self.view.addSubview(sLabel)
         self.view.addSubview(uLabel)
@@ -141,7 +141,7 @@ class TitleScreen: UIViewController{
         createConstraints(item: eLabel, distFromLeft: Double(view.bounds.width)/2 + 2, distFromTop: 120)
         createConstraints(item: r1Label, distFromLeft: Double(view.bounds.width)/2 + 22, distFromTop: 120)
         createConstraints(item: trailblazerLabel, distFromLeft: Double(view.bounds.width)/2 - 100, distFromTop: 160)
-
+        
     }
     func configureButtons()
     {
@@ -166,7 +166,7 @@ class TitleScreen: UIViewController{
         continueAsGuestButton.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
         continueAsGuestButton.titleLabel!.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 20)
         
-
+        
         view.addSubview(signInButton)
         view.addSubview(continueAsGuestButton)
         view.addSubview(signUpButton)
@@ -183,7 +183,7 @@ class TitleScreen: UIViewController{
             item.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: distFromLeft),
             item.heightAnchor.constraint(equalToConstant: 40),
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-            ])
+        ])
     }
     
     func animateLabels(label: UILabel, delay: Double)
@@ -211,11 +211,11 @@ class TitleScreen: UIViewController{
     @objc func toInteractiveMap(sender: UIButton!)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-            
-            // This is to get the SceneDelegate object from your view controller
-            // then call the change root view controller function to change to main tab bar
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+        
+        // This is to get the SceneDelegate object from your view controller
+        // then call the change root view controller function to change to main tab bar
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
         InteractiveMapViewController.currentUser = User(userName: "Guest", password: "")
     }
     @objc func toSignUp(sender: UIButton!)

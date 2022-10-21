@@ -46,11 +46,11 @@ class UserSettingsViewController : UIViewController {
     {
         InteractiveMapViewController.destination = nil
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
-            
-            // This is to get the SceneDelegate object from your view controller
-            // then call the change root view controller function to change to main tab bar
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
+        let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
+        
+        // This is to get the SceneDelegate object from your view controller
+        // then call the change root view controller function to change to main tab bar
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
     }
     func createConstraints(item: UIView, distFromLeft: Double, distFromTop: Double)
     {
@@ -59,6 +59,6 @@ class UserSettingsViewController : UIViewController {
             item.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: distFromLeft),
             item.heightAnchor.constraint(equalToConstant: 40),
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-            ])
+        ])
     }
 }
