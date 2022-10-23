@@ -61,11 +61,17 @@ class TrailsDatabase : NSObject {
      Lift(name: "Quantum Leap Triple", annotations: [createAnnotation(title: "Quantum Leap Triple", latitude: 44.47135602096759, longitude: -70.88539833730681, difficulty: .lift), createAnnotation(title: "Top of Quantum Leap Triple", latitude: 44.469956233389304, longitude: -70.88004779413315, difficulty: .lift)]),
      
      Lift(name: "Spruce Triple", annotations: [createAnnotation(title: "Spruce", latitude: 44.46956649226089, longitude: -70.86889775439303, difficulty: .lift), createAnnotation(title: "Top of Spruce", latitude: 44.463183391461904, longitude: -70.88237835188288, difficulty: .lift)]),
+     
      Lift(name: "Southridge Express", annotations: [createAnnotation(title: "South Ridge Express", latitude: 44.47349766967515, longitude: -70.85804872495724, difficulty: .lift), createAnnotation(title: "topSouthridge", latitude: 44.47140473269554, longitude: -70.8690669747966, difficulty: .lift)]),
+     
      Lift(name: "Barker Express", annotations: [createAnnotation(title: "Barker Express", latitude: 44.470336293576615, longitude: -70.86235471500864, difficulty: .lift), createAnnotation(title: "topBarker", latitude: 44.45939892927216, longitude: -70.87209354638405, difficulty: .lift)]),
+     
      Lift(name: "Locke Triple", annotations: [createAnnotation(title: "Locke Triple", latitude: 44.46939397490112, longitude: -70.8620473764752, difficulty: .lift), createAnnotation(title: "topLocke", latitude: 44.45732043619839, longitude: -70.86721732867319, difficulty: .lift)]),
+     
      Lift(name: "Tempest Quad", annotations: [createAnnotation(title: "Tempest Quad", latitude: 44.46906778899057, longitude: -70.84833766968724, difficulty: .lift), createAnnotation(title: "topTempest", latitude: 44.464289208270316, longitude: -70.86019280483269, difficulty: .lift)]),
+     
      Lift(name: "Little White Cap Quad", annotations: [createAnnotation(title: "Little White Cap Quad", latitude: 44.46919453030537, longitude: -70.84688269791349, difficulty: .lift), createAnnotation(title: "topLWC", latitude: 44.46127568629244, longitude: -70.85098869452358, difficulty: .lift)]),
+     
      Lift(name: "White Heat Quad", annotations: [createAnnotation(title: "White Heat Quad", latitude: 44.46537254108104, longitude: -70.85170418417664, difficulty: .lift), createAnnotation(title: "topWHQ", latitude: 44.458371170992024, longitude: -70.8598457828036, difficulty: .lift)])]
     
     static let barkerTrails : [Trail] = [
@@ -78,9 +84,9 @@ class TrailsDatabase : NSObject {
         Trail(name: "Top Gun", difficulty: .expertsOnly, annotations: [createAnnotation(title: "Top Gun", latitude: 44.46052492553666, longitude: -70.87122997646192, difficulty: .expertsOnly), createAnnotation(title: "bend1TG", latitude: 44.4632487372244, longitude: -70.87123330508894, difficulty: .expertsOnly), createAnnotation(title: "LSPJunctionTG", latitude: 44.46695531620989, longitude: -70.86638410668483, difficulty: .expertsOnly)]),
         Trail(name: "Ecstasy", difficulty: .intermediate, annotations: [createAnnotation(title: "Ecstasy", latitude: 44.45966692011528, longitude: -70.87135166364119, difficulty: .intermediate), createAnnotation(title: "bend1Ecstasy", latitude: 44.460016590788584, longitude: -70.87084852853677, difficulty: .intermediate), createAnnotation(title: "bend2Ecstasy", latitude: 44.46032795232815, longitude: -70.86718600985445, difficulty: .intermediate), createAnnotation(title: "southPawJunctionEcstasy", latitude: 44.461297881305626, longitude: -70.8663917106066, difficulty: .intermediate), createAnnotation(title: "uppercutJunctionEcstasy", latitude: 44.4613493437183, longitude: -70.86555394520701, difficulty: .intermediate)]),
         Trail(name: "Jungle Road", difficulty: .intermediate, annotations: [createAnnotation(title: "Jungle Road", latitude: 44.45966830075108, longitude: -70.87132308134012, difficulty: .intermediate), createAnnotation(title: "bend1JR", latitude: 44.459513174807036, longitude: -70.87016928026638, difficulty: .intermediate), createAnnotation(title: "bend2JR", latitude: 44.45902428223, longitude: -70.86971606313978, difficulty: .intermediate), createAnnotation(title: "GPJunctionJR", latitude: 44.45888651945049, longitude: -70.86907843269005, difficulty: .intermediate), createAnnotation(title: "USPJunctionJR", latitude: 44.45866032666825, longitude: -70.86775321054346, difficulty: .intermediate)]),
-        Trail(name: "Lower Upper Cut", difficulty: .intermediate, annotations: [createAnnotation(title: "Lower Uppercut", latitude: 44.461503816429364, longitude: -70.86549642959537, difficulty: .intermediate), createAnnotation(title: "bottomUppercut", latitude: 44.46241757333772, longitude: -70.8651424743854, difficulty: .intermediate)]),
-        Trail(name: "Southpaw", difficulty: .intermediate, annotations: [createAnnotation(title: "South Paw", latitude: 44.46137352810597, longitude: -70.86642583630629, difficulty: .intermediate), createAnnotation(title: "southPawSplit", latitude: 44.46213546672406, longitude: -70.86638870223543, difficulty: .intermediate), createAnnotation(title: "LSPJunctionSP", latitude: 44.46253123478195, longitude: -70.86535354781799, difficulty: .intermediate), createAnnotation(title: "bend1SP", latitude: 44.46276805273417, longitude: -70.86601223095431, difficulty: .intermediate), createAnnotation(title: "bend2SP", latitude: 44.46319899549631, longitude: -70.86688265387109, difficulty: .intermediate), createAnnotation(title: "bend3SouthPaw", latitude: 44.46375343519025, longitude: -70.86722425833486, difficulty: .intermediate), createAnnotation(title: "agonyJunctionSP", latitude: 44.464981534834564, longitude: -70.86704927562877, difficulty: .intermediate), createAnnotation(title: "LSPJunction2SP", latitude: 44.466084243678694, longitude: -70.86595438952699, difficulty: .intermediate)]),
-        Trail(name: "Lower Sunday Punch", difficulty: .intermediate, annotations: [createAnnotation(title: "Lower Sunday Punch", latitude: 44.462333820213146, longitude: -70.86448440473603, difficulty: .intermediate), createAnnotation(title: "SPJunctionLSP", latitude: 44.4625240631385, longitude: -70.86520501198373, difficulty: .intermediate), createAnnotation(title: "bend1SP", latitude: 44.46367022702908, longitude: -70.86500787270711, difficulty: .intermediate), createAnnotation(title: "SP&RCJunctionLSP", latitude: 44.466043015366544, longitude: -70.86592477230046, difficulty: .intermediate), createAnnotation(title: "TGJunctionLSP", latitude: 44.4669271429763, longitude: -70.8661816527247, difficulty: .intermediate), createAnnotation(title: "RSJunctionLSP", latitude: 44.46749072664456, longitude: -70.86647954730529, difficulty: .intermediate), createAnnotation(title: "TTJunctionLSP", latitude: 44.46954650476462, longitude: -70.86438018168907, difficulty: .intermediate), createAnnotation(title: "endLSP", latitude: 44.46971832425021, longitude: -70.86315139834717, difficulty: .intermediate)]),
+        Trail(name: "Lower Upper Cut", difficulty: .intermediate, annotations: [createAnnotation(title: "Lower Uppercut", latitude: 44.46137352810597, longitude: -70.86642583630629, difficulty: .intermediate), createAnnotation(title: "SPJunctinLUC", latitude: 44.46213546672406, longitude: -70.86638870223543, difficulty: .intermediate), createAnnotation(title: "bottomUppercut", latitude: 44.46253123478195, longitude: -70.86535354781799, difficulty: .intermediate)]),
+        Trail(name: "Southpaw", difficulty: .intermediate, annotations: [createAnnotation(title: "Southpaw", latitude: 44.46276805273417, longitude: -70.86601223095431, difficulty: .intermediate), createAnnotation(title: "bend2SP", latitude: 44.46319899549631, longitude: -70.86688265387109, difficulty: .intermediate), createAnnotation(title: "bend3SouthPaw", latitude: 44.46375343519025, longitude: -70.86722425833486, difficulty: .intermediate), createAnnotation(title: "agonyJunctionSP", latitude: 44.464981534834564, longitude: -70.86704927562877, difficulty: .intermediate), createAnnotation(title: "LSPJunction2SP", latitude: 44.466084243678694, longitude: -70.86595438952699, difficulty: .intermediate)]),
+        Trail(name: "Lower Sunday Punch", difficulty: .intermediate, annotations: [createAnnotation(title: "Lower Sunday Punch", latitude: 44.462333820213146, longitude: -70.86448440473603, difficulty: .intermediate), createAnnotation(title: "LUCJunctionLSP", latitude: 44.4625240631385, longitude: -70.86520501198373, difficulty: .intermediate), createAnnotation(title: "bend1SP", latitude: 44.46367022702908, longitude: -70.86500787270711, difficulty: .intermediate), createAnnotation(title: "SP&RCJunctionLSP", latitude: 44.466043015366544, longitude: -70.86592477230046, difficulty: .intermediate), createAnnotation(title: "TGJunctionLSP", latitude: 44.4669271429763, longitude: -70.8661816527247, difficulty: .intermediate), createAnnotation(title: "RSJunctionLSP", latitude: 44.46749072664456, longitude: -70.86647954730529, difficulty: .intermediate), createAnnotation(title: "TTJunctionLSP", latitude: 44.46954650476462, longitude: -70.86438018168907, difficulty: .intermediate), createAnnotation(title: "endLSP", latitude: 44.46971832425021, longitude: -70.86315139834717, difficulty: .intermediate)]),
         Trail(name: "Rocking Chair", difficulty: .intermediate, annotations: [createAnnotation(title: "Rocking Chair", latitude: 44.46633242158953, longitude: -70.86542313921537, difficulty: .intermediate), createAnnotation(title: "bend1RC", latitude: 44.46893816110395, longitude: -70.86396468658349, difficulty: .intermediate), createAnnotation(title: "endRC", latitude: 44.46955007566205, longitude: -70.86287985731924, difficulty: .intermediate)]),
         Trail(name: "Tightwire", difficulty: .advanced, annotations: [createAnnotation(title: "Tightwire", latitude: 44.46315831820998, longitude: -70.86468326750321, difficulty: .advanced), createAnnotation(title: "bend1TW", latitude: 44.46641701498706, longitude: -70.86342087036127, difficulty: .advanced), createAnnotation(title: "RCJunctionTW", latitude: 44.467342723580636, longitude: -70.86453099495536, difficulty: .advanced)])]
     
@@ -102,38 +108,40 @@ class TrailsDatabase : NSObject {
         Trail(name: "Exit Right", difficulty: .easy, annotations: [createAnnotation(title: "Exit Right", latitude: 44.47135372033121, longitude: -70.86992747990317, difficulty: .easy), createAnnotation(title: "endER", latitude: 44.470999193012005, longitude: -70.86952416392006, difficulty: .easy)]),
         Trail(name: "Exit Left", difficulty: .easy, annotations: [createAnnotation(title: "Exit Left", latitude: 44.471211769327596, longitude: -70.8696094100586, difficulty: .easy), createAnnotation(title: "endEL", latitude: 44.471840249971066, longitude: -70.86955148201567, difficulty: .easy)])]
     
-    static let lockeTrails  : [Trail] = [
-        Trail(name: "Goat Path", difficulty: .intermediate, annotations: []),
-        Trail(name: "Upper Cut", difficulty: .advanced, annotations: []),
-        Trail(name: "Upper Sunday Punch", difficulty: .intermediate, annotations: []),
-        Trail(name: "Locke Line", difficulty: .advanced, annotations: []),
-        Trail(name: "Jim's Whim", difficulty: .advanced, annotations: []),
-        Trail(name: "T2", difficulty: .advanced, annotations: []),
-        Trail(name: "Bim's Whim", difficulty: .advanced, annotations: []),
-        Trail(name: "Cascades", difficulty: .intermediate, annotations: []),
-        Trail(name: "Monday Morning", difficulty: .advanced, annotations: []),
-        Trail(name: "Bear Paw", difficulty: .easy, annotations: []),
-        Trail(name: "WildFire", difficulty: .intermediate, annotations: []),
-        Trail(name: "RoadRunner", difficulty: .easy, annotations: []),
-        Trail(name: "Snowbound", difficulty: .advanced, annotations: [])]
+    static let lockeTrails = [
+        Trail(name: "Goat Path", difficulty: .intermediate, annotations: [createAnnotation(title: "Goat Path", latitude: 44.45743693264429, longitude: -70.86818892101017, difficulty: .intermediate), createAnnotation(title: "UCJunctionGP", latitude: 44.45786227278814, longitude: -70.86913280437817, difficulty: .intermediate), createAnnotation(title: "JRJunctionGP", latitude: 44.45886904088148, longitude: -70.86905920108418, difficulty: .intermediate), createAnnotation(title: "EcstasyJunctionGP", latitude: 44.46009835256276, longitude: -70.86883828571136, difficulty: .intermediate), createAnnotation(title: "bend2GP", latitude: 44.4603351555924, longitude: -70.86913902016163, difficulty: .intermediate), createAnnotation(title: "bend3GP", latitude: 44.460895287117395, longitude: -70.87009791704583, difficulty: .intermediate), createAnnotation(title: "agonyJunctionGP", latitude: 44.46124547051831, longitude: -70.87023187988675, difficulty: .intermediate), createAnnotation(title: "TGJunctionGP", latitude: 44.46140278721097, longitude: -70.87133062704991, difficulty: .intermediate), createAnnotation(title: "LRJunctionGP", latitude: 44.46135362157697, longitude: -70.87305328528684, difficulty: .intermediate)]),
+        Trail(name: "Upper Cut", difficulty: .advanced, annotations: [createAnnotation(title: "Upper Cut", latitude: 44.45793322767762, longitude: -70.8690652225351, difficulty: .advanced), createAnnotation(title: "JRJunctionUC", latitude: 44.458659942193506, longitude: -70.86819410200806, difficulty: .advanced), createAnnotation(title: "bend1UC", latitude: 44.45904928433035, longitude: -70.86815468450483, difficulty: .advanced), createAnnotation(title: "ecstasyJunctionUC", latitude: 44.46032095392963, longitude: -70.86720227324808, difficulty: .advanced)]),
+        Trail(name: "Upper Sunday Punch", difficulty: .intermediate, annotations: [createAnnotation(title: "Upper Sunday Punch", latitude: 44.4574192254598, longitude: -70.86788675882315, difficulty: .intermediate), createAnnotation(title: "JRJunctionUSP", latitude: 44.45864423452321, longitude: -70.86772065119717, difficulty: .intermediate), createAnnotation(title: "bend1USP", latitude: 44.459633787036026, longitude: -70.86672485549994, difficulty: .intermediate), createAnnotation(title: "bend2USP", latitude: 44.460100490638666, longitude: -70.86651829141081, difficulty: .intermediate), createAnnotation(title: "LLJunctionUSP", latitude: 44.460316145138286, longitude: -70.86593615911332, difficulty: .intermediate), createAnnotation(title: "bend3USP", latitude: 44.46078125137312, longitude: -70.86496726250363, difficulty: .intermediate), createAnnotation(title: "grandJunctionUSP", latitude: 44.46152436542715, longitude: -70.86443787795557, difficulty: .intermediate)]),
+        Trail(name: "Locke Line", difficulty: .advanced, annotations: [createAnnotation(title: "Locke Line", latitude: 44.457868805088665, longitude: -70.86697109813392, difficulty: .advanced), createAnnotation(title: "JWJunctionLL", latitude: 44.45863048641886, longitude: -70.86667068086437, difficulty: .advanced), createAnnotation(title: "USPJunctionLL", latitude: 44.46030460534658, longitude: -70.86598076630092, difficulty: .advanced), createAnnotation(title: "EcstasyJunctionLL", latitude: 44.461333789549116, longitude: -70.86555690159848, difficulty: .advanced)]),
+        Trail(name: "Jim's Whim", difficulty: .advanced, annotations: [createAnnotation(title: "Jim's Whim", latitude: 44.45866621943885, longitude: -70.86744632797787, difficulty: .advanced), createAnnotation(title: "LLJunctionJW", latitude: 44.45864321190542, longitude: -70.86672052994747, difficulty: .advanced), createAnnotation(title: "T2JunctionJW", latitude: 44.45889175995814, longitude: -70.86563375333701, difficulty: .advanced)]),
+        Trail(name: "T2", difficulty: .advanced, annotations: [createAnnotation(title: "T2", latitude: 44.45735978792861, longitude: -70.86737398311872, difficulty: .advanced), createAnnotation(title: "LLJunctionT2", latitude: 44.45784138370962, longitude: -70.86671774296467, difficulty: .advanced), createAnnotation(title: "JWJunctionT2", latitude: 44.45888746743546, longitude: -70.86561181370546, difficulty: .advanced), createAnnotation(title: "EndT2", latitude: 44.46141599281048, longitude: -70.8640310915411, difficulty: .advanced)]),
+        Trail(name: "Bim's Whim", difficulty: .advanced, annotations: [createAnnotation(title: "Bim's Whim", latitude: 44.456793321867444, longitude: -70.86712462149937, difficulty: .advanced), createAnnotation(title: "bend1BW", latitude: 44.456946452067335, longitude: -70.86630273398389, difficulty: .advanced), createAnnotation(title: "bend2BW", latitude: 44.4568473617074, longitude: -70.86612639969591, difficulty: .advanced), createAnnotation(title: "bend3BW", latitude: 44.45732031661159, longitude: -70.86470570901785, difficulty: .advanced), createAnnotation(title: "bend4BW", latitude: 44.45754295004562, longitude: -70.86285456570242, difficulty: .advanced), createAnnotation(title: "bend5BW", latitude: 44.457997380038236, longitude: -70.8626604982426, difficulty: .advanced), createAnnotation(title: "SalvationJunctionBW", latitude: 44.45853385118159, longitude: -70.86296829173801, difficulty: .advanced), createAnnotation(title: "WCJunctionBW", latitude: 44.45820011192838, longitude: -70.86006621322885, difficulty: .advanced)]),
+        Trail(name: "Cascades", difficulty: .intermediate, annotations: [createAnnotation(title: "Cascades", latitude: 44.46255933194429, longitude: -70.86203560633224, difficulty: .intermediate), createAnnotation(title: "SnowboundJunctionCascades", latitude: 44.46319273953846, longitude: -70.86139710396205, difficulty: .intermediate), createAnnotation(title: "TempestJunctionCascades", latitude: 44.46462844765911, longitude: -70.86130681480886, difficulty: .intermediate), createAnnotation(title: "endCascades", latitude: 44.46878916321214, longitude: -70.86107505455976, difficulty: .intermediate)]),
+        Trail(name: "Monday Mourning", difficulty: .advanced, annotations: [createAnnotation(title: "Monday Mourning", latitude: 44.462402841818104, longitude: -70.8633472124859, difficulty: .advanced), createAnnotation(title: "endMM", latitude: 44.46900202714522, longitude: -70.86215258113216, difficulty: .advanced)]),
+        Trail(name: "Bear Paw", difficulty: .easy, annotations: [createAnnotation(title: "Bear Paw", latitude: 44.464488845043874, longitude: -70.85983989724394, difficulty: .easy), createAnnotation(title: "bend1BP", latitude: 44.46512084628069, longitude: -70.86087861514909, difficulty: .easy), createAnnotation(title: "bend2BP", latitude: 44.46564809786406, longitude: -70.85988118338261, difficulty: .easy), createAnnotation(title: "bend3BP", latitude: 44.46581879162974, longitude: -70.8608567740475, difficulty: .easy), createAnnotation(title: "bend4BP", latitude: 44.466301304643146, longitude: -70.8598652996761, difficulty: .easy), createAnnotation(title: "bend5BP", latitude: 44.46661617345175, longitude: -70.86027643202667, difficulty: .easy), createAnnotation(title: "cutOffJunctionBP", latitude: 44.46724231626774, longitude: -70.8600064219411, difficulty: .easy), createAnnotation(title: "endCutOffJunctionBP", latitude: 44.46747235977663, longitude: -70.86040408841197, difficulty: .easy), createAnnotation(title: "bend6BP", latitude: 44.468299103853134, longitude: -70.8596350907055, difficulty: .easy), createAnnotation(title: "endBP", latitude: 44.468980738321356, longitude: -70.86091806671445, difficulty: .easy)]),
+        Trail(name: "WildFire", difficulty: .intermediate, annotations: [createAnnotation(title: "WildFire", latitude: 44.46476940739254, longitude: -70.85985454988528, difficulty: .intermediate), createAnnotation(title: "bend1WF", latitude: 44.46607118239925, longitude: -70.85928376323406, difficulty: .intermediate), createAnnotation(title: "COJunctionWF", latitude: 44.46704711700395, longitude: -70.85951170909081, difficulty: .intermediate), createAnnotation(title: "CBJunctionWF", latitude: 44.4681116238182, longitude: -70.85925461516578, difficulty: .intermediate), createAnnotation(title: "endWF", latitude: 44.4695193767508, longitude: -70.85819717521642, difficulty: .intermediate)]),
+        Trail(name: "Cut Off", difficulty: .intermediate, annotations: [createAnnotation(title: "Cut Off", latitude: 44.46718599867918, longitude: -70.85977825361167, difficulty: .intermediate), createAnnotation(title: "endCutOff", latitude: 44.46757047502923, longitude: -70.86058997806956, difficulty: .intermediate)]),
+        Trail(name: "Cut Back", difficulty: .intermediate, annotations: [createAnnotation(title: "Cut Back", latitude: 44.46822319671841, longitude: -70.85944907531936, difficulty: .intermediate)]),
+        Trail(name: "RoadRunner", difficulty: .easy, annotations: [createAnnotation(title: "Road Runner", latitude: 44.46917904218135, longitude: -70.86087320257772, difficulty: .easy), createAnnotation(title: "WFJunctionRR", latitude: 44.46959335316187, longitude: -70.85819076306049, difficulty: .easy), createAnnotation(title: "bend1RR", latitude: 44.47009494574761, longitude: -70.85451613671009, difficulty: .easy), createAnnotation(title: "bend2RR", latitude: 44.470044402373766, longitude: -70.85152006733094, difficulty: .easy), createAnnotation(title: "endRR", latitude: 44.469276188899386, longitude: -70.8481848535303, difficulty: .easy)]),
+        Trail(name: "Snowbound", difficulty: .advanced, annotations: [createAnnotation(title: "Snowbound", latitude: 44.4631925840547, longitude: -70.86116574162392, difficulty: .advanced), createAnnotation(title: "endSnowbound", latitude: 44.46296477969226, longitude: -70.85888925862076, difficulty: .advanced)])]
     
-    static let whiteCapTrails : [Trail] = [
-        Trail(name: "Salvation", difficulty: .intermediate, annotations: []),
-        Trail(name: "Heat's Off", difficulty: .intermediate, annotations: []),
-        Trail(name: "Obsession", difficulty: .advanced, annotations: []),
-        Trail(name: "Chutzpah", difficulty: .expertsOnly, annotations: []),
-        Trail(name: "White Heat", difficulty: .expertsOnly, annotations: []),
-        Trail(name: "Shock Wave", difficulty: .expertsOnly, annotations: []),
-        Trail(name: "Tempest", difficulty: .advanced, annotations: []),
-        Trail(name: "Jibe", difficulty: .intermediate, annotations: []),
-        Trail(name: "Heat's On", difficulty: .intermediate, annotations: []),
-        Trail(name: "Green Cheese", difficulty: .easy, annotations: []),
-        Trail(name: "Moonstruck", difficulty: .easy, annotations: []),
-        Trail(name: "Assumption", difficulty: .intermediate, annotations: []),
-        Trail(name: "Starlight", difficulty: .easy, annotations: []),
-        Trail(name: "Starstruck", difficulty: .advanced, annotations: []),
-        Trail(name: "Starwood", difficulty: .advanced, annotations: []),
-        Trail(name: "Starburst", difficulty: .intermediate, annotations: [])]
+    static let whiteCapTrails = [
+        Trail(name: "Salvation", difficulty: .intermediate, annotations: [createAnnotation(title: "Salvation", latitude: 44.458483169096866, longitude: -70.86042598349411, difficulty: .intermediate), createAnnotation(title: "BWJunctionSalvation", latitude: 44.45863953323299, longitude: -70.86282693916186, difficulty: .intermediate), createAnnotation(title: "bend1Salvation", latitude: 44.45914311488431, longitude: -70.86304708493333, difficulty: .intermediate), createAnnotation(title: "BW2JunctionSalvation", latitude: 44.45951743622001, longitude: -70.86368555648342, difficulty: .intermediate), createAnnotation(title: "HOJunctionSalvation", latitude: 44.46083349948976, longitude: -70.86157913730908, difficulty: .intermediate)]),
+        Trail(name: "Heat's Off", difficulty: .intermediate, annotations: [createAnnotation(title: "Heat's Off", latitude: 44.46083349948976, longitude: -70.86157913730908, difficulty: .intermediate), createAnnotation(title: "endHO", latitude: 44.46268057168865, longitude: -70.86187494293544, difficulty: .intermediate)]),
+        Trail(name: "Obsession", difficulty: .advanced, annotations: [createAnnotation(title: "Obsession", latitude: 44.45861688693798, longitude: -70.86018982712098, difficulty: .advanced), createAnnotation(title: "bend1Obsession", latitude: 44.45958572242971, longitude: -70.86133536613758, difficulty: .advanced), createAnnotation(title: "HOJunctionObsession", latitude: 44.460737029836885, longitude: -70.86133253499462, difficulty: .advanced), createAnnotation(title: "SBJunctionObsession", latitude: 44.46288071586098, longitude: -70.85875946536018, difficulty: .advanced), createAnnotation(title: "bend2Obsesion", latitude: 44.46337555152756, longitude: -70.8561913746322, difficulty: .advanced), createAnnotation(title: "HeatsOnJunctionObsession", latitude: 44.46547977559036, longitude: -70.85364710455535, difficulty: .advanced)]),
+        Trail(name: "Chutzpah", difficulty: .expertsOnly, annotations: [createAnnotation(title: "Chutzpah", latitude: 44.45901194158459, longitude: -70.860380099453, difficulty: .expertsOnly), createAnnotation(title: "MidChutzpah", latitude: 44.46214269678367, longitude: -70.85745309749989, difficulty: .expertsOnly), createAnnotation(title: "endChutzpah", latitude: 44.461963173473954, longitude: -70.85540487916239, difficulty: .expertsOnly)]),
+        Trail(name: "White Heat", difficulty: .expertsOnly, annotations: [createAnnotation(title: "White Heat", latitude: 44.45838692332843, longitude: -70.85947594677012, difficulty: .expertsOnly), createAnnotation(title: "ChutzpahJunctionWhiteHeat", latitude: 44.461596501445776, longitude: -70.85561722954975, difficulty: .expertsOnly), createAnnotation(title: "assumptionJunctionWH", latitude: 44.46370782925331, longitude: -70.85331858123513, difficulty: .expertsOnly)]),
+        Trail(name: "Shock Wave", difficulty: .expertsOnly, annotations: [createAnnotation(title: "Shock Wave", latitude: 44.45848257576402, longitude: -70.85790599684091, difficulty: .expertsOnly), createAnnotation(title: "bend1SW", latitude: 44.45960664537479, longitude: -70.8547128689182, difficulty: .expertsOnly), createAnnotation(title: "bend2SW", latitude: 44.461373052305674, longitude: -70.8532714749393, difficulty: .expertsOnly), createAnnotation(title: "AssumptionJunctionSW", latitude: 44.46271957527544, longitude: -70.85286952077271, difficulty: .expertsOnly)]),
+        Trail(name: "Tempest", difficulty: .advanced, annotations: [createAnnotation(title: "Tempest", latitude: 44.46482488905358, longitude: -70.8587707158816, difficulty: .advanced), createAnnotation(title: "HOJunctionTempest", latitude: 44.46603844515163, longitude: -70.855317539413, difficulty: .advanced), createAnnotation(title: "endTempest", latitude: 44.469034451416476, longitude: -70.84817301469715, difficulty: .advanced)]),
+        Trail(name: "Jibe", difficulty: .intermediate, annotations: [createAnnotation(title: "Jibe", latitude: 44.46512557360144, longitude: -70.85876598010631, difficulty: .intermediate), createAnnotation(title: "bend1Jibe", latitude: 44.46552726157362, longitude: -70.85823410644056, difficulty: .intermediate), createAnnotation(title: "endJibe", latitude: 44.466469707015264, longitude: -70.85598289488675, difficulty: .intermediate)]),
+        Trail(name: "Heat's On", difficulty: .intermediate, annotations: [createAnnotation(title: "Heat's On", latitude: 44.46590669415151, longitude: -70.85504936042102, difficulty: .intermediate), createAnnotation(title: "ObsessionJunctionHO", latitude: 44.465541588293874, longitude: -70.85386633860739, difficulty: .intermediate), createAnnotation(title: "AssumptionJunctionHO", latitude: 44.46567086608029, longitude: -70.85110689345942, difficulty: .intermediate), createAnnotation(title: "SLJunctionHO", latitude: 44.46620634074322, longitude: -70.85033639377404, difficulty: .intermediate)]),
+        Trail(name: "Green Cheese", difficulty: .easy, annotations: [createAnnotation(title: "Green Cheese", latitude: 44.462265201253445, longitude: -70.85158965848217, difficulty: .easy), createAnnotation(title: "SBJunctionGC", latitude: 44.46213288954053, longitude: 70.85059284065638, difficulty: .easy), createAnnotation(title: "endGC", latitude: 44.46176576523678, longitude: -70.84931075831236, difficulty: .easy)]),
+        Trail(name: "Moonstruck", difficulty: .easy, annotations: [createAnnotation(title: "Moonstruck", latitude: 44.46079516912933, longitude: -70.85026015889024, difficulty: .easy), createAnnotation(title: "bend1MS", latitude: 44.46085327095977, longitude: -70.84989915934273, difficulty: .easy), createAnnotation(title: "bend2MS", latitude: 44.46135270602178, longitude: -70.84987433985663, difficulty: .easy), createAnnotation(title: "bend3MS", latitude: 44.46127079293708, longitude: -70.84896739753873, difficulty: .easy), createAnnotation(title: "GCJunctionMS", latitude: 44.46182136930712, longitude: -70.8486231038866, difficulty: .easy), createAnnotation(title: "bend4MS", latitude: 44.46245505222505, longitude: -70.84807118332712, difficulty: .easy), createAnnotation(title: "SBJunctionMS", latitude: 44.466192032922756, longitude: -70.84822477145208, difficulty: .easy), createAnnotation(title: "SLJunctoinMS", latitude: 44.46759456175538, longitude: -70.84810232442435, difficulty: .easy), createAnnotation(title: "endMS", latitude: 44.469005066431215, longitude: -70.84810366431672, difficulty: .easy)]),
+        Trail(name: "Assumption", difficulty: .intermediate, annotations: [createAnnotation(title: "Assumption", latitude: 44.46211663889562, longitude: -70.85213502446611, difficulty: .intermediate), createAnnotation(title: "SWJunctionAssumption", latitude: 44.46284413935481, longitude: -70.85284153508444, difficulty: .intermediate), createAnnotation(title: "WHJunctionAssumption", latitude: 44.46381318866854, longitude: -70.85318276236255, difficulty: .intermediate), createAnnotation(title: "WHQJunctionAssumption", latitude: 44.46519273562941, longitude: -70.85141179195095, difficulty: .intermediate)]),
+        Trail(name: "Starlight", difficulty: .easy, annotations: [createAnnotation(title: "Starlight", latitude: 44.46214972089107, longitude: -70.851891613998, difficulty: .easy), createAnnotation(title: "bend1SL", latitude: 44.4629594163276, longitude: -70.85190334866245, difficulty: .easy), createAnnotation(title: "bend2SL", latitude: 44.463883328813466, longitude: -70.85116096349854, difficulty: .easy), createAnnotation(title: "bend3SL", latitude: 44.464610149234666, longitude: -70.84984320259143, difficulty: .easy), createAnnotation(title: "HOJunctionSL", latitude: 44.46623164400667, longitude: -70.85018753117372, difficulty: .easy), createAnnotation(title: "MSJunctionSL", latitude: 44.467428332277954, longitude: -70.84831270898182, difficulty: .easy)]),
+        Trail(name: "Starstruck", difficulty: .advanced, annotations: [createAnnotation(title: "Starstruck", latitude: 44.462366577991936, longitude: -70.85023061415602, difficulty: .advanced), createAnnotation(title: "endSS", latitude: 44.465180263232845, longitude: -70.84833131680686, difficulty: .advanced)]),
+        Trail(name: "Starwood", difficulty: .advanced, annotations: [createAnnotation(title: "Starwood", latitude: 44.46241446591349, longitude: -70.8507002102812, difficulty: .advanced), createAnnotation(title: "endSW", latitude: 44.46396229245787, longitude: -70.85054627662946, difficulty: .advanced)]),
+        Trail(name: "Starburst", difficulty: .intermediate, annotations: [createAnnotation(title: "Starburst", latitude: 44.461385599781984, longitude: -70.85104671815832, difficulty: .intermediate), createAnnotation(title: "GCJunctionSB", latitude: 44.462125462757015, longitude: -70.85059522694398, difficulty: .intermediate), createAnnotation(title: "endSB", latitude: 44.465833998663086, longitude: -70.84866001313974, difficulty: .intermediate)])]
     
     static let spruceTrails : [Trail] = [
         Trail(name: "Sirius", difficulty: .easy, annotations: [createAnnotation(title: "Sirius", latitude: 44.46402015560722, longitude: -70.88287192667336, difficulty: .easy), createAnnotation(title: "endSirius", latitude: 44.463942115466686, longitude: -70.88490373252286, difficulty: .easy)]),
@@ -428,13 +436,10 @@ class TrailsDatabase : NSObject {
     static let botLUC = Vertex<ImageAnnotation>(barkerTrails[8].annotations[1])
     //South Paw
     static let topSP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[0])
-    static let splitSP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[1])
-    static let LSPJunctionSP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[2])
-    static let bend1SP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[3])
-    static let bend2SP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[4])
-    static let bend3SP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[5])
-    static let agonyJunctionSP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[6])
-    static let LSP2JunctionSP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[7])
+    static let bend1SP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[1])
+    static let bend2SP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[2])
+    static let agonyJunctionSP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[3])
+    static let LSP2JunctionSP = Vertex<ImageAnnotation>(barkerTrails[9].annotations[4])
     // Lower Sunday Punch
     static let topLSP = Vertex<ImageAnnotation>(barkerTrails[10].annotations[0])
     static let SPJunctionuLSP = Vertex<ImageAnnotation>(barkerTrails[10].annotations[1])
@@ -556,8 +561,183 @@ class TrailsDatabase : NSObject {
     static let topTT = Vertex<ImageAnnotation>(spruceTrails[5].annotations[0])
     static let OHJunctionTT = Vertex<ImageAnnotation>(spruceTrails[5].annotations[1])
     static let endTT = Vertex<ImageAnnotation>(spruceTrails[5].annotations[2])
-    
-    static let keyAnnotations = [botSpruce, botQLT, botNP, botChondola, auroraSideJD, jordanSideJD, botAurora, botJord, topLol, topExcal, topRogue, topCaram, topKans, junctionWoodsman, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, witchWayTop, cycloneJunctionAirglow, topBlackHole, topFirestar, startLO, topBorealis, kansasJunctionVortex, topParadigm, startSM, SMJunctionGR, topQuantum, topGR, topLD, topDM, Bend2DM, topT72, topSensation, topDMTP, topEscapade, top3D, botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW, botSouthridge, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT]
+    //Locke
+    static let botLocke = Vertex<ImageAnnotation>(Lifts[9].annotations[0])
+    static let topLocke = Vertex<ImageAnnotation>(Lifts[9].annotations[1])
+    //Goat Path
+    static let topGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[0])
+    static let UCJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[1])
+    static let JRJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[2])
+    static let bend1GP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[3])
+    static let EcstasyJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[4])
+    static let bend2GP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[5])
+    static let agonyJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[6])
+    static let TGJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[7])
+    static let LRJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[8])
+    //Upper cut
+    static let topUC = Vertex<ImageAnnotation>(lockeTrails[1].annotations[0])
+    static let JRJunctionUC = Vertex<ImageAnnotation>(lockeTrails[1].annotations[1])
+    static let bend1UC = Vertex<ImageAnnotation>(lockeTrails[1].annotations[2])
+    static let ecstasyJunctionUC = Vertex<ImageAnnotation>(lockeTrails[1].annotations[3])
+    //Upper Sunday Punch
+    static let topUSP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[0])
+    static let JRJunctionUSP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[1])
+    static let bend1USP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[2])
+    static let bend2USP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[3])
+    static let LLUSP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[4])
+    static let bend3USP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[5])
+    static let GrandJunctionUSP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[6])
+    //Locke Line
+    static let topLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[0])
+    static let JWJunctionLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[1])
+    static let USPJunctionLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[2])
+    static let EcstasyLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[3])
+    //Jim's Whim
+    static let topJW = Vertex<ImageAnnotation>(lockeTrails[4].annotations[0])
+    static let LLJunctionJW = Vertex<ImageAnnotation>(lockeTrails[4].annotations[1])
+    static let T2JunctionJW = Vertex<ImageAnnotation>(lockeTrails[4].annotations[2])
+    //T2
+    static let topT2 = Vertex<ImageAnnotation>(lockeTrails[5].annotations[0])
+    static let LLJunctionT2 = Vertex<ImageAnnotation>(lockeTrails[5].annotations[1])
+    static let JWJunctionT2 = Vertex<ImageAnnotation>(lockeTrails[5].annotations[2])
+    static let endT2 = Vertex<ImageAnnotation>(lockeTrails[5].annotations[3])
+    //Bim's Whim
+    static let topBW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[0])
+    static let bend1BW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[1])
+    static let bend2BW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[2])
+    static let bend3BW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[3])
+    static let bend4BW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[4])
+    static let bend5BW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[5])
+    static let salvationJunctionBW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[6])
+    static let WCJunctionBW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[7])
+    //Cascades
+    static let topCC = Vertex<ImageAnnotation>(lockeTrails[7].annotations[0])
+    static let SBJunctionCC = Vertex<ImageAnnotation>(lockeTrails[7].annotations[1])
+    static let TempestJunctionCC = Vertex<ImageAnnotation>(lockeTrails[7].annotations[2])
+    static let endCC = Vertex<ImageAnnotation>(lockeTrails[7].annotations[3])
+    //Monday Mourning
+    static let topMM = Vertex<ImageAnnotation>(lockeTrails[8].annotations[0])
+    static let endMM = Vertex<ImageAnnotation>(lockeTrails[8].annotations[1])
+    //Bear Paw
+    static let topBP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[0])
+    static let bend1BP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[1])
+    static let bend2BP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[2])
+    static let bend3BP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[3])
+    static let bend4BP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[4])
+    static let bend5BP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[5])
+    static let COJunctionBP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[6])
+    static let endCOJunctionBP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[7])
+    static let bend6BP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[8])
+    static let endBP = Vertex<ImageAnnotation>(lockeTrails[9].annotations[9])
+    //Wildfire
+    static let topWF = Vertex<ImageAnnotation>(lockeTrails[10].annotations[0])
+    static let bend1WF = Vertex<ImageAnnotation>(lockeTrails[10].annotations[1])
+    static let COJunctionWF = Vertex<ImageAnnotation>(lockeTrails[10].annotations[2])
+    static let CBJunctionWF = Vertex<ImageAnnotation>(lockeTrails[10].annotations[3])
+    static let endWF = Vertex<ImageAnnotation>(lockeTrails[10].annotations[4])
+    //Cut Off
+    static let topCO = Vertex<ImageAnnotation>(lockeTrails[11].annotations[0])
+    static let endCO = Vertex<ImageAnnotation>(lockeTrails[11].annotations[1])
+    //Cut Back
+    static let topCB = Vertex<ImageAnnotation>(lockeTrails[12].annotations[0])
+    //Road Runner
+    static let topRR = Vertex<ImageAnnotation>(lockeTrails[13].annotations[0])
+    static let WFJunctionRoadR = Vertex<ImageAnnotation>(lockeTrails[13].annotations[1])
+    static let bend1RoadR = Vertex<ImageAnnotation>(lockeTrails[13].annotations[2])
+    static let bend2RoadR = Vertex<ImageAnnotation>(lockeTrails[13].annotations[3])
+    static let endRoadR = Vertex<ImageAnnotation>(lockeTrails[13].annotations[4])
+    //Snowbound
+    static let topSB = Vertex<ImageAnnotation>(lockeTrails[14].annotations[0])
+    static let endSB = Vertex<ImageAnnotation>(lockeTrails[14].annotations[1])
+    //Tempest Quad
+    static let botTQ = Vertex<ImageAnnotation>(Lifts[10].annotations[0])
+    static let topTQ = Vertex<ImageAnnotation>(Lifts[10].annotations[1])
+    //White Heat Quad
+    static let botWHQ = Vertex<ImageAnnotation>(Lifts[12].annotations[0])
+    static let topWHQ = Vertex<ImageAnnotation>(Lifts[12].annotations[1])
+    //Salvation
+    static let topSalvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[0])
+    static let BWJunctionSalvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[1])
+    static let bend1Salvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[2])
+    static let BW2JunctionSalvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[3])
+    static let HOJunctionSalvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[4])
+    //Heat's Off
+    static let topHO = Vertex<ImageAnnotation>(whiteCapTrails[1].annotations[0])
+    static let endHO = Vertex<ImageAnnotation>(whiteCapTrails[1].annotations[1])
+    //Obsession
+    static let topObsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[0])
+    static let bend1Obsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[1])
+    static let HOJunctionObsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[2])
+    static let SBJunctionObsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[3])
+    static let bend2Obsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[4])
+    static let HOnJunctionObsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[5])
+    //Chutzpah
+    static let topChutzpah = Vertex<ImageAnnotation>(whiteCapTrails[3].annotations[0])
+    static let midChutzpah = Vertex<ImageAnnotation>(whiteCapTrails[3].annotations[1])
+    static let endChutzpah = Vertex<ImageAnnotation>(whiteCapTrails[3].annotations[2])
+    //White Heat
+    static let topWH = Vertex<ImageAnnotation>(whiteCapTrails[4].annotations[0])
+    static let chutzpahJunctionWH = Vertex<ImageAnnotation>(whiteCapTrails[4].annotations[1])
+    static let assumptionJunctionWH = Vertex<ImageAnnotation>(whiteCapTrails[4].annotations[2])
+    //Shock Wave
+    static let topSW = Vertex<ImageAnnotation>(whiteCapTrails[5].annotations[0])
+    static let bend1SW = Vertex<ImageAnnotation>(whiteCapTrails[5].annotations[1])
+    static let bend2SW = Vertex<ImageAnnotation>(whiteCapTrails[5].annotations[2])
+    static let assumptionJunctionSW = Vertex<ImageAnnotation>(whiteCapTrails[5].annotations[3])
+    //Tempest
+    static let topTempest = Vertex<ImageAnnotation>(whiteCapTrails[6].annotations[0])
+    static let HOJunctionTempest = Vertex<ImageAnnotation>(whiteCapTrails[6].annotations[1])
+    static let endTempest = Vertex<ImageAnnotation>(whiteCapTrails[6].annotations[2])
+    //Jibe
+    static let topJibe = Vertex<ImageAnnotation>(whiteCapTrails[7].annotations[0])
+    static let bend1Jibe = Vertex<ImageAnnotation>(whiteCapTrails[7].annotations[1])
+    static let endJibe = Vertex<ImageAnnotation>(whiteCapTrails[7].annotations[2])
+    //Heat's On
+    static let topHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[0])
+    static let obsessionJunctionHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[1])
+    static let assumptionJunctionHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[2])
+    static let SLJunctionHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[3])
+    //Green Cheese
+    static let topGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[0])
+    static let SBJunctionGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[0])
+    static let endGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[0])
+    //Moonstruck
+    static let topMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[0])
+    static let bend1MS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[1])
+    static let bend2MS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[2])
+    static let bend3MS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[3])
+    static let GCJunctionMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[4])
+    static let bend4MS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[5])
+    static let SBJunctionMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[6])
+    static let SLJunctionMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[7])
+    static let endMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[8])
+    //Assumption
+    static let topAssumption = Vertex<ImageAnnotation>(whiteCapTrails[11].annotations[0])
+    static let SWJunctionAssumption = Vertex<ImageAnnotation>(whiteCapTrails[11].annotations[1])
+    static let WHJunctionAssumption = Vertex<ImageAnnotation>(whiteCapTrails[11].annotations[2])
+    static let WHQJunctionAssumption = Vertex<ImageAnnotation>(whiteCapTrails[11].annotations[3])
+    //Starlight
+    static let topSL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[0])
+    static let bend1SL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[1])
+    static let bend2SL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[2])
+    static let bend3SL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[3])
+    static let HOJunctionSL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[4])
+    static let MSJunctionSL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[5])
+    //Starstruck
+    static let topSS = Vertex<ImageAnnotation>(whiteCapTrails[13].annotations[0])
+    static let endSS = Vertex<ImageAnnotation>(whiteCapTrails[13].annotations[1])
+    //Starwood
+    static let topStarW = Vertex<ImageAnnotation>(whiteCapTrails[14].annotations[0])
+    static let endStarW = Vertex<ImageAnnotation>(whiteCapTrails[14].annotations[1])
+    //Starburst
+    static let topStarB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[0])
+    static let GCJunctionSB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[1])
+    static let endStarB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[2])
+    //Little White Cap Quad
+    static let botLWCQ = Vertex<ImageAnnotation>(Lifts[12].annotations[0])
+    static let topLWCQ = Vertex<ImageAnnotation>(Lifts[12].annotations[1])
+
+    static let keyAnnotations = [botSpruce, botQLT, botNP, botChondola, auroraSideJD, jordanSideJD, botAurora, botJord, topLol, topExcal, topRogue, topCaram, topKans, junctionWoodsman, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, witchWayTop, cycloneJunctionAirglow, topBlackHole, topFirestar, startLO, topBorealis, kansasJunctionVortex, topParadigm, startSM, SMJunctionGR, topQuantum, topGR, topLD, topDM, Bend2DM, topT72, topSensation, topDMTP, topEscapade, top3D, botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW, botSouthridge, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT, botLocke, topGP, topUC, topUSP, topLL, topJW, topT2, topBW, topCC, topMM, topBP, topWF, topCO, topCB, topRR, topSB, botTQ, botWHQ, botLWCQ, topSalvation, topObsession, topChutzpah, topWH, topSW, topTempest, topJibe, topHON, topGC, topMS, topAssumption, topSL, topSS, topStarW, topStarB, botLWCQ]
     
     static let jordanKeyAnnotations = [botJord, topLol, topRogue, topExcal, topCaram, jordanSideJD]
     
@@ -571,7 +751,11 @@ class TrailsDatabase : NSObject {
     
     static let spruceKeyAnnotations = [botSpruce, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT]
     
-    static let annotations = [botSpruce, topSpruce, botQLT, topQLT, botNP, topNP, botChondola, topChondola, auroraSideJD, jordanSideJD, botAurora, topAurora, botJord, topJord, topLol, bend1Lol, bend2Lol, topExcal, bend1Excal, midExcal, botExcal, topRogue, midRogue, botRogue, topCaram, botCaram, topKans, bend1Kans, ozJunctionKans, woodsmanJunctionKans, bend2Kans, bend3Kans, bend4Kans, endKans, topWoodsman, junctionWoodsman, endWoodsman, topCyclone, northernLightsJunctionCyclone, poppyFieldsJunctionCyclone, woodsmanJunctionCyclone, carambaJunctionCyclone, rogueAngelJunctionCyclone, northernLightsTop, witchWayJunctionNL, kansasNLJunction, cycloneJunctionNL, bend1NL, fireStarJunctionNL, witchWayTop, kansJunctionWitchWay, topAirglow, cycloneJunctionAirglow, bend1Airglow, blackHoleJunctionAirglow, bend2Airglow, botAirglow, topBlackHole, botBlackHole, topFirestar, bend1Firestar, bend2Firestar, endFirestar, topBorealis, bend1Borealis, bend2Borealis, vortexJunctionBorealis,bend3Borealis, endBorealis, topVortex, kansasJunctionVortex, botVortex, topParadigm, bend1Paradigm, vortexJunctionParadigm, botParadigm, startSM, GRJunctionSM, DMTerrainJunctionSM, escapadeJunctionSM, ThreeDJunctionSM, T72JunctionSM, DMJunctionSM, endSM, topQuantum, backsideJunctionQL, bend1QL, botQuantum, topGR, SMJunctionGR, bend1GR, downdraftJunctionGR, bend2GR, bend3GR, lazyRiverJunctionGR, endGR, topLD, GRJunctionLD, AEJunctionLD, topDM, bend1DM, TPJunctionDM, Bend2DM, Bend3DM, RRJunctionDM, T72JunctionDM, topT72, lastMileJunctionT72, RRJunctionT72, endT72, topSensation, bend1Sensation, bend2Sensation, bend3Sensation, QLJunctionSensation, topDMTP, botDMTP, topEscapade, bend1Escapade, LMJunctionEscapade, top3D, LMJunction3D, RRJunction3D, bend13D, bot3D, startLO, vortexJunctionLO, UpperDownDraftJunctionLO, endLightsOut, botBarker, topBarker, start3ML, bend13ML, sluiceJunction3ML, gnarniaJunction3ML, RBJunction3ML, AEJunction3ML, bend23ML, bend33ML, end3ML, startLR, bend1LR, ThreeMLJunctionLR, bend2LR, bend3LR, bend4LR, sluiceJunctionLR, gnarniaJunctionLR, RBJunctionLR, bend5LR, AEJunctionLR, GRJunctionLR, endLR, startSluice, bend1Sluice, endSluice, topRS, bend1RS, bend2RS, bend3RS, LSPJunctionRS, topAgony, TGJunctionAgony, endAgony, topTG, bend1TG, LSPJunctionTG, topEcstasy, bend1Ecstasy, bend2Ecstasy, southPawEcstasy, uppercutJunctionEcstasy, startJR, bend1JR, bend2JR, GPJunctionJR, USPJunctionJR, topSP, splitSP, LSPJunctionSP, bend1SP, bend2SP, bend3SP, agonyJunctionSP, LSP2JunctionSP, topLUC, botLUC, topLSP, SPJunctionuLSP, bend1LSP, SPRCJunctionLSP, TGJunctionLSP, RSJunctionLSP, TTJunctionLSP, endLSP, topRC, bend1RC, endRC, topTW, bend1TW, RCJunctionTW, botSouthridge, topSouthridge, startRR, EFJunctionRR, TDJunctionRR, bend1RR, T72JunctionRR, DMJunctionRR, STJunctionRR, LCJunctionRR, bend2RR, bend3RR, bend4RR, bend5RR, bend6RR, endRR, topLE, broadwayJunctionLE, NWJunctionLE, endLE, topBroadway, NWJunctionBroadway, MBJunctionBroadway, WVJunctionBroadway, WLJunctionBroadway, endBroadway, topLLR, bend1LLR, broadwayJunctionLLR, endLLR, startThataway, endThataway, topMB, bend1MB, endMB, topLCL, endLCL, topWV, endWV, topWL, endWL, topNW, LEJunctionNW, EFJunctionNW, endNW, topSpectator, sundanceJunctionSpectator, endSpectator, topDD, DMJunctionDD, endDD, topSD, DDSPRJunctionSD, DMJunctionSD, bend1SD, botSD, topST, bend1ST, endST, topER, endER, topEL, endEL, topSirius, endSirius, topDowndraft, endDowndraft, topAE, TMLJunctionAE, bend1AE, LRJunctionAE, topRB, bend1RB, bend2RB, LRJunctionRB, topGnarnia, TMLJunctionGnarnia, endGnarnia, topTT, OHJunctionTT, endTT]
+    static let lockeKeyAnnotations = [topGP, topUC, topUSP, topLL, topJW, topT2, topBW, topCC, topMM, topBP, topWF, topCO, topCB, topRR, topSB]
+    
+    static let whiteCapKeyAnnotations = [topSalvation, topHO, topObsession, topChutzpah, topWH, topStarW, topTempest, topJibe, topHON, topGC, topMS, topAssumption, topSL, topSS, topStarW, topSB]
+    
+    static let annotations = [botSpruce, topSpruce, botQLT, topQLT, botNP, topNP, botChondola, topChondola, auroraSideJD, jordanSideJD, botAurora, topAurora, botJord, topJord,  botLWCQ, topLWCQ, topLol, bend1Lol, bend2Lol, topExcal, bend1Excal, midExcal, botExcal, topRogue, midRogue, botRogue, topCaram, botCaram, topKans, bend1Kans, ozJunctionKans, woodsmanJunctionKans, bend2Kans, bend3Kans, bend4Kans, endKans, topWoodsman, junctionWoodsman, endWoodsman, topCyclone, northernLightsJunctionCyclone, poppyFieldsJunctionCyclone, woodsmanJunctionCyclone, carambaJunctionCyclone, rogueAngelJunctionCyclone, northernLightsTop, witchWayJunctionNL, kansasNLJunction, cycloneJunctionNL, bend1NL, fireStarJunctionNL, witchWayTop, kansJunctionWitchWay, topAirglow, cycloneJunctionAirglow, bend1Airglow, blackHoleJunctionAirglow, bend2Airglow, botAirglow, topBlackHole, botBlackHole, topFirestar, bend1Firestar, bend2Firestar, endFirestar, topBorealis, bend1Borealis, bend2Borealis, vortexJunctionBorealis,bend3Borealis, endBorealis, topVortex, kansasJunctionVortex, botVortex, topParadigm, bend1Paradigm, vortexJunctionParadigm, botParadigm, startSM, GRJunctionSM, DMTerrainJunctionSM, escapadeJunctionSM, ThreeDJunctionSM, T72JunctionSM, DMJunctionSM, endSM, topQuantum, backsideJunctionQL, bend1QL, botQuantum, topGR, SMJunctionGR, bend1GR, downdraftJunctionGR, bend2GR, bend3GR, lazyRiverJunctionGR, endGR, topLD, GRJunctionLD, AEJunctionLD, topDM, bend1DM, bend1GP, TPJunctionDM, Bend2DM, Bend3DM, RRJunctionDM, T72JunctionDM, topT72, lastMileJunctionT72, RRJunctionT72, endT72, topSensation, bend1Sensation, bend2Sensation, bend3Sensation, QLJunctionSensation, topDMTP, botDMTP, topEscapade, bend1Escapade, LMJunctionEscapade, top3D, LMJunction3D, RRJunction3D, bend13D, bot3D, startLO, vortexJunctionLO, UpperDownDraftJunctionLO, endLightsOut, botBarker, topBarker, start3ML, bend13ML, sluiceJunction3ML, gnarniaJunction3ML, RBJunction3ML, AEJunction3ML, bend23ML, bend33ML, end3ML, startLR, bend1LR, ThreeMLJunctionLR, bend2LR, bend3LR, bend4LR, sluiceJunctionLR, gnarniaJunctionLR, RBJunctionLR, bend5LR, AEJunctionLR, GRJunctionLR, endLR, startSluice, bend1Sluice, endSluice, topRS, bend1RS, bend2RS, bend3RS, LSPJunctionRS, topAgony, TGJunctionAgony, endAgony, topTG, bend1TG, LSPJunctionTG, topEcstasy, bend1Ecstasy, bend2Ecstasy, southPawEcstasy, uppercutJunctionEcstasy, startJR, bend1JR, bend2JR, GPJunctionJR, USPJunctionJR, topSP, bend1SP, bend2SP, agonyJunctionSP, LSP2JunctionSP, topLUC, botLUC, topLSP, SPJunctionuLSP, bend1LSP, SPRCJunctionLSP, TGJunctionLSP, RSJunctionLSP, TTJunctionLSP, endLSP, topRC, bend1RC, endRC, topTW, bend1TW, RCJunctionTW, botSouthridge, topSouthridge, startRR, EFJunctionRR, TDJunctionRR, bend1RR, T72JunctionRR, DMJunctionRR, STJunctionRR, LCJunctionRR, bend2RR, bend3RR, bend4RR, bend5RR, bend6RR, endRR, topLE, broadwayJunctionLE, NWJunctionLE, endLE, topBroadway, NWJunctionBroadway, MBJunctionBroadway, WVJunctionBroadway, WLJunctionBroadway, endBroadway, topLLR, bend1LLR, broadwayJunctionLLR, endLLR, startThataway, endThataway, topMB, bend1MB, endMB, topLCL, endLCL, topWV, endWV, topWL, endWL, topNW, LEJunctionNW, EFJunctionNW, endNW, topSpectator, sundanceJunctionSpectator, endSpectator, topDD, DMJunctionDD, endDD, topSD, DDSPRJunctionSD, DMJunctionSD, bend1SD, botSD, topST, bend1ST, endST, topER, endER, topEL, endEL, topSirius, endSirius, topDowndraft, endDowndraft, topAE, TMLJunctionAE, bend1AE, LRJunctionAE, topRB, bend1RB, bend2RB, LRJunctionRB, topGnarnia, TMLJunctionGnarnia, endGnarnia, topTT, OHJunctionTT, endTT, botLocke, topLocke, topGP, UCJunctionGP, JRJunctionGP, EcstasyJunctionGP, bend2GP, agonyJunctionGP, TGJunctionGP, LRJunctionGP, topUC, JRJunctionUC, bend1UC, ecstasyJunctionUC, topUSP, JRJunctionUSP, bend1USP, bend2USP, LLUSP, bend3USP, GrandJunctionUSP, topLL, JWJunctionLL, T2JunctionJW, topT2, LLJunctionT2, JWJunctionT2, endT2, LLJunctionJW, T2JunctionJW, topBW, bend1BW, bend2BW, bend3BW, bend4BW, bend5BW, salvationJunctionBW, WCJunctionBW, topCC, SBJunctionCC, TempestJunctionCC, endCC, topMM, endMM, topBP, bend1BP, bend2BP, bend3BP, bend4BP, bend5BP, COJunctionBP, endCOJunctionBP, bend6BP, endBP, topWF, bend1WF, COJunctionWF, CBJunctionWF, endWF, topCO, endCO, topCB, topRR, WFJunctionRoadR, bend1RoadR, bend2RoadR, endRoadR, topSB, endSB, botTQ, topTQ, botWHQ, topWHQ, topSalvation, BWJunctionSalvation, bend1Salvation, BWJunctionSalvation, bend1Salvation, BW2JunctionSalvation, HOJunctionSalvation, topHO, endHO, topObsession, bend1Obsession, HOJunctionObsession, SBJunctionObsession, bend2Obsession, HOnJunctionObsession, topChutzpah, midChutzpah, endChutzpah, topWH, chutzpahJunctionWH, assumptionJunctionWH, topSW, bend1SW, bend2SW, assumptionJunctionSW, topTempest, HOJunctionTempest, endTempest, topJibe, bend1Jibe, endJibe, topHON, obsessionJunctionHON, assumptionJunctionHON, SLJunctionHON, topGC, SBJunctionCC, endGC, topMS, bend1MS, bend2MS, bend3MS, GCJunctionMS, bend4MS, SBJunctionMS, SLJunctionMS, endMS, topAssumption, SWJunctionAssumption, WHJunctionAssumption, WHQJunctionAssumption, topSL, bend1SL, bend2SL, bend3SL, HOJunctionSL, MSJunctionSL, topSS, endSS, topStarW, endStarW, topStarB, GCJunctionSB, endStarB]
     
     static let graph = EdgeWeightedDigraph<ImageAnnotation>()
     
@@ -626,7 +810,6 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: topCyclone, to: northernLightsJunctionCyclone, weight: 1)
         graph.addEdge(direction: .undirected, from: topCyclone, to: startLO, weight: 1)
         graph.addEdge(direction: .directed, from: northernLightsJunctionCyclone, to: poppyFieldsJunctionCyclone, weight: 1)
-        //                graph.addEdge(direction: .directed, from: northernLightsJunctionCyclone, to: bend1NL, weight: 1)
         graph.addEdge(direction: .directed, from: poppyFieldsJunctionCyclone, to: woodsmanJunctionCyclone, weight: 1)
         graph.addEdge(direction: .directed, from: woodsmanJunctionCyclone, to: carambaJunctionCyclone, weight: 1)
         graph.addEdge(direction: .directed, from: carambaJunctionCyclone, to: rogueAngelJunctionCyclone, weight: 1)
@@ -815,6 +998,7 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .undirected, from: endTT, to: TTJunctionLSP, weight: 1)
         //Barker
         graph.addEdge(direction: .directed, from: botBarker, to: topBarker, weight: 100)
+        graph.addEdge(direction: .undirected, from: botBarker, to: botLocke, weight: 100)
         //3 Mile Trail
         graph.addEdge(direction: .undirected, from: ThreeMLJunctionLR, to: start3ML, weight: 1)
         graph.addEdge(direction: .directed, from: start3ML, to: bend13ML, weight: 1)
@@ -854,7 +1038,7 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: bend1Sluice, to: endSluice, weight: 50)
         //Right Stuff
         graph.addEdge(direction: .undirected, from: topBarker, to: topRS, weight: 1)
-        graph.addEdge(direction: .directed, from: topRS, to: bend1RS, weight: 300)
+        graph.addEdge(direction: .directed, from: topRS, to: LRJunctionGP, weight: 300)
         graph.addEdge(direction: .directed, from: bend1RS, to: bend2RS, weight: 300)
         graph.addEdge(direction: .directed, from: bend2RS, to: bend3RS, weight: 300)
         graph.addEdge(direction: .directed, from: bend3RS, to: LSPJunctionRS, weight: 300)
@@ -874,28 +1058,26 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .undirected, from: topBarker, to: topEcstasy, weight: 1)
         graph.addEdge(direction: .undirected, from: topEcstasy, to: startJR, weight: 1)
         graph.addEdge(direction: .directed, from: topEcstasy, to: bend1Ecstasy, weight: 50)
-        graph.addEdge(direction: .directed, from: bend1Ecstasy, to: bend2Ecstasy, weight: 50)
+        graph.addEdge(direction: .directed, from: bend1Ecstasy, to: bend1GP, weight: 50)
+        graph.addEdge(direction: .directed, from: bend1GP, to: bend2Ecstasy, weight: 50)
         graph.addEdge(direction: .directed, from: bend2Ecstasy, to: southPawEcstasy, weight: 50)
-        graph.addEdge(direction: .undirected, from: southPawEcstasy, to: topSP, weight: 50)
         graph.addEdge(direction: .directed, from: southPawEcstasy, to: uppercutJunctionEcstasy, weight: 50)
+        graph.addEdge(direction: .directed, from: uppercutJunctionEcstasy, to: GrandJunctionUSP, weight: 50)
         //Jungle Road
         graph.addEdge(direction: .undirected, from: startJR, to: topBarker, weight: 1)
         graph.addEdge(direction: .directed, from: startJR, to: bend1JR, weight: 50)
         graph.addEdge(direction: .directed, from: bend1JR, to: bend2JR, weight: 50)
         graph.addEdge(direction: .directed, from: bend2JR, to: GPJunctionJR, weight: 50)
-        graph.addEdge(direction: .directed, from: GPJunctionJR, to: USPJunctionJR, weight: 50)
+        graph.addEdge(direction: .directed, from: GPJunctionJR, to: JRJunctionUC, weight: 50)
         //Lower Upper Cut
-        graph.addEdge(direction: .undirected, from: uppercutJunctionEcstasy, to: topLUC, weight: 1)
+        graph.addEdge(direction: .undirected, from: southPawEcstasy, to: topLUC, weight: 1)
         graph.addEdge(direction: .directed, from: topLUC, to: botLUC, weight: 50)
-        graph.addEdge(direction: .directed, from: botLUC, to: topLSP, weight: 50)
+        graph.addEdge(direction: .directed, from: botLUC, to: topSP, weight: 50)
+        graph.addEdge(direction: .directed, from: botLUC, to: SPJunctionuLSP, weight: 50)
         //South Paw
-        graph.addEdge(direction: .directed, from: topSP, to: splitSP, weight: 50)
-        graph.addEdge(direction: .directed, from: splitSP, to: LSPJunctionSP, weight: 50)
-        graph.addEdge(direction: .undirected, from: LSPJunctionSP, to: SPJunctionuLSP, weight: 1)
-        graph.addEdge(direction: .directed, from: splitSP, to: bend1SP, weight: 50)
+        graph.addEdge(direction: .directed, from: topSP, to: bend1SP, weight: 50)
         graph.addEdge(direction: .directed, from: bend1SP, to: bend2SP, weight: 50)
-        graph.addEdge(direction: .directed, from: bend2SP, to: bend3SP, weight: 50)
-        graph.addEdge(direction: .directed, from: bend3SP, to: agonyJunctionSP, weight: 50)
+        graph.addEdge(direction: .directed, from: bend2SP, to: agonyJunctionSP, weight: 50)
         graph.addEdge(direction: .directed, from: agonyJunctionSP, to: LSP2JunctionSP, weight: 50)
         graph.addEdge(direction: .undirected, from: LSP2JunctionSP, to: SPRCJunctionLSP, weight: 1)
         //Lower Sunday Punch
@@ -909,10 +1091,12 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: RSJunctionLSP, to: TTJunctionLSP, weight: 50)
         graph.addEdge(direction: .directed, from: TTJunctionLSP, to: endLSP, weight: 50)
         graph.addEdge(direction: .directed, from: endLSP, to: botBarker, weight: 50)
+        graph.addEdge(direction: .undirected, from: endLSP, to: endRC, weight: 1)
         //Rocking Chair
         graph.addEdge(direction: .directed, from: topRC, to: bend1RC, weight: 50)
         graph.addEdge(direction: .directed, from: bend1RC, to: endRC, weight: 50)
         graph.addEdge(direction: .directed, from: endRC, to: botBarker, weight: 50)
+        graph.addEdge(direction: .undirected, from: endRC, to: botLocke, weight: 1)
         //Tightwire
         graph.addEdge(direction: .directed, from: topLSP, to: topTW, weight: 1)
         graph.addEdge(direction: .directed, from: topTW, to: bend1TW, weight: 300)
@@ -1025,6 +1209,229 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: endLR, to: topEL, weight: 1)
         graph.addEdge(direction: .directed, from: topEL, to: endEL, weight: 1)
         graph.addEdge(direction: .directed, from: endEL, to: topLE, weight: 1)
+        //Locke Triple
+        graph.addEdge(direction: .directed, from: botLocke, to: topLocke, weight: 100)
+        //Goat Path
+        graph.addEdge(direction: .undirected, from: topUSP, to: topGP, weight: 1)
+        graph.addEdge(direction: .directed, from: topGP, to: UCJunctionGP, weight: 50)
+        graph.addEdge(direction: .directed, from: UCJunctionGP, to: JRJunctionGP, weight: 50)
+        graph.addEdge(direction: .undirected, from: JRJunctionGP, to: GPJunctionJR, weight: 1)
+        graph.addEdge(direction: .directed, from: JRJunctionGP, to: bend1GP, weight: 50)
+        graph.addEdge(direction: .undirected, from: bend1GP, to: EcstasyJunctionGP, weight: 50)
+        graph.addEdge(direction: .directed, from: bend1GP, to: bend2Ecstasy, weight: 50)
+        graph.addEdge(direction: .directed, from: EcstasyJunctionGP, to: bend2GP, weight: 50)
+        graph.addEdge(direction: .directed, from: bend2GP, to: agonyJunctionGP, weight: 50)
+        graph.addEdge(direction: .undirected, from: TGJunctionAgony, to: agonyJunctionGP, weight: 1)
+        graph.addEdge(direction: .directed, from: agonyJunctionGP, to: TGJunctionGP, weight: 50)
+        graph.addEdge(direction: .undirected, from: TGJunctionGP, to: bend1TG, weight: 1)
+        graph.addEdge(direction: .directed, from: TGJunctionGP, to: LRJunctionGP, weight: 50)
+        graph.addEdge(direction: .directed, from: LRJunctionGP, to: bend1RS, weight: 50)
+        //Upper Cut
+        graph.addEdge(direction: .undirected, from: UCJunctionGP, to: topUC, weight: 1)
+        graph.addEdge(direction: .directed, from: topUC, to: JRJunctionUC, weight: 300)
+        graph.addEdge(direction: .undirected, from: JRJunctionUC, to: USPJunctionJR, weight: 1)
+        graph.addEdge(direction: .directed, from: JRJunctionUC, to: bend1UC, weight: 300)
+        graph.addEdge(direction: .directed, from: bend1UC, to: ecstasyJunctionUC, weight: 300)
+        graph.addEdge(direction: .directed, from: ecstasyJunctionUC, to: bend2Ecstasy, weight: 50)
+        //Upper Sunday Punch
+        graph.addEdge(direction: .directed, from: topLocke, to: topUSP, weight: 50)
+        graph.addEdge(direction: .directed, from: topUSP, to: JRJunctionUSP, weight: 50)
+        graph.addEdge(direction: .undirected, from: JRJunctionUSP, to: USPJunctionJR, weight: 1)
+        graph.addEdge(direction: .directed, from: JRJunctionUSP, to: bend1USP, weight: 50)
+        graph.addEdge(direction: .directed, from: bend1USP, to: bend2USP, weight: 50)
+        graph.addEdge(direction: .directed, from: bend2USP, to: LLUSP, weight: 50)
+        graph.addEdge(direction: .undirected, from: LLUSP, to: USPJunctionLL, weight: 1)
+        graph.addEdge(direction: .directed, from: LLUSP, to: bend3USP, weight: 50)
+        graph.addEdge(direction: .directed, from: bend3USP, to: GrandJunctionUSP, weight: 50)
+        graph.addEdge(direction: .directed, from: GrandJunctionUSP, to: topLSP, weight: 50)
+        //Locke Line
+        graph.addEdge(direction: .undirected, from: LLJunctionT2, to: topLL, weight: 1)
+        graph.addEdge(direction: .directed, from: topLL, to: JWJunctionLL, weight: 300)
+        graph.addEdge(direction: .undirected, from: JWJunctionLL, to: LLJunctionJW, weight: 1)
+        graph.addEdge(direction: .directed, from: JWJunctionLL, to: USPJunctionLL, weight: 300)
+        graph.addEdge(direction: .undirected, from: USPJunctionLL, to: LLUSP, weight: 1)
+        //Jim's Whim
+        graph.addEdge(direction: .undirected, from: USPJunctionJR, to: topJW, weight: 1)
+        graph.addEdge(direction: .directed, from: topJW, to: LLJunctionJW, weight: 300)
+        graph.addEdge(direction: .directed, from: LLJunctionJW, to: T2JunctionJW, weight: 300)
+        //T2
+        graph.addEdge(direction: .undirected, from: topLocke, to: topT2, weight: 1)
+        graph.addEdge(direction: .directed, from: topT2, to: LLJunctionT2, weight: 300)
+        graph.addEdge(direction: .directed, from: LLJunctionT2, to: JWJunctionT2, weight: 300)
+        graph.addEdge(direction: .directed, from: JWJunctionT2, to: endT2, weight: 300)
+        //Bim's Whim
+        graph.addEdge(direction: .undirected, from: topLocke, to: topBW, weight: 1)
+        graph.addEdge(direction: .directed, from: topBW, to: bend1BW, weight: 300)
+        graph.addEdge(direction: .directed, from: bend1BW, to: bend2BW, weight: 300)
+        graph.addEdge(direction: .directed, from: bend2BW, to: bend3BW, weight: 300)
+        graph.addEdge(direction: .directed, from: bend3BW, to: bend4BW, weight: 300)
+        graph.addEdge(direction: .directed, from: bend4BW, to: bend5BW, weight: 300)
+        graph.addEdge(direction: .directed, from: bend5BW, to: WCJunctionBW, weight: 300)
+        graph.addEdge(direction: .undirected, from: topWHQ, to: WCJunctionBW, weight: 300)
+        graph.addEdge(direction: .directed, from: bend5BW, to: salvationJunctionBW, weight: 300)
+        graph.addEdge(direction: .undirected, from: salvationJunctionBW, to: BWJunctionSalvation, weight: 1)
+        //Cascades
+        graph.addEdge(direction: .directed, from: GrandJunctionUSP, to: topCC, weight: 50)
+        graph.addEdge(direction: .directed, from: topCC, to: endHO, weight: 50)
+        graph.addEdge(direction: .directed, from: endHO, to: SBJunctionCC, weight: 50)
+        graph.addEdge(direction: .directed, from: SBJunctionCC, to: topTQ, weight: 50)
+        graph.addEdge(direction: .directed, from: topTQ, to: TempestJunctionCC, weight: 50)
+        graph.addEdge(direction: .directed, from: SBJunctionCC, to: TempestJunctionCC, weight: 50)
+        graph.addEdge(direction: .directed, from: TempestJunctionCC, to: endCC, weight: 50)
+        graph.addEdge(direction: .directed, from: endCC, to: topRR, weight: 50)
+        graph.addEdge(direction: .directed, from: endCC, to: botLocke, weight: 50)
+        //Monday Mourning
+        graph.addEdge(direction: .directed, from: GrandJunctionUSP, to: topMM, weight: 50)
+        graph.addEdge(direction: .directed, from: endT2, to: topMM, weight: 300)
+        graph.addEdge(direction: .directed, from: topMM, to: endMM, weight: 300)
+        graph.addEdge(direction: .directed, from: endMM, to: topRR, weight: 300)
+        graph.addEdge(direction: .directed, from: endMM, to: endRC, weight: 300)
+        //Bear Paw
+        graph.addEdge(direction: .undirected, from: topTQ, to: topBP, weight: 1)
+        graph.addEdge(direction: .undirected, from: topBP, to: topWF, weight: 1)
+        graph.addEdge(direction: .directed, from: topBP, to: topTempest, weight: 1)
+        graph.addEdge(direction: .directed, from: topBP, to: bend1BP, weight: 1)
+        graph.addEdge(direction: .directed, from: bend1BP, to: bend2BP, weight: 1)
+        graph.addEdge(direction: .directed, from: bend2BP, to: bend3BP, weight: 1)
+        graph.addEdge(direction: .directed, from: bend3BP, to: bend4BP, weight: 1)
+        graph.addEdge(direction: .directed, from: bend4BP, to: bend5BP, weight: 1)
+        graph.addEdge(direction: .directed, from: bend5BP, to: COJunctionBP, weight: 1)
+        graph.addEdge(direction: .directed, from: COJunctionBP, to: endCOJunctionBP, weight: 1)
+        graph.addEdge(direction: .undirected, from: endCOJunctionBP, to: endCO, weight: 1)
+        graph.addEdge(direction: .directed, from: endCOJunctionBP, to: bend6BP, weight: 1)
+        graph.addEdge(direction: .directed, from: bend6BP, to: endBP, weight: 1)
+        graph.addEdge(direction: .directed, from: endBP, to: topRR, weight: 1)
+        graph.addEdge(direction: .directed, from: endBP, to: botLocke, weight: 1)
+        //Wildfire
+        graph.addEdge(direction: .directed, from: topWF, to: bend1WF, weight: 50)
+        graph.addEdge(direction: .directed, from: bend1WF, to: COJunctionWF, weight: 50)
+        graph.addEdge(direction: .directed, from: COJunctionWF, to: CBJunctionWF, weight: 50)
+        graph.addEdge(direction: .directed, from: CBJunctionWF, to: endWF, weight: 50)
+        graph.addEdge(direction: .undirected, from: endWF, to: WFJunctionRoadR, weight: 1)
+        //Cut Off
+        graph.addEdge(direction: .undirected, from: COJunctionWF, to: topCO, weight: 1)
+        graph.addEdge(direction: .undirected, from: topCO, to: COJunctionBP, weight: 1)
+        graph.addEdge(direction: .directed, from: endCO, to: endCC, weight: 50)
+        //Cut Back
+        graph.addEdge(direction: .undirected, from: CBJunctionWF, to: topCB, weight: 1)
+        graph.addEdge(direction: .undirected, from: topCB, to: bend6BP, weight: 1)
+        //Road Runner
+        graph.addEdge(direction: .directed, from: botLocke, to: topRR, weight: 1)
+        graph.addEdge(direction: .directed, from: topRR, to: WFJunctionRoadR, weight: 1)
+        graph.addEdge(direction: .directed, from: WFJunctionRoadR, to: bend1RoadR, weight: 1)
+        graph.addEdge(direction: .directed, from: bend1RoadR, to: bend2RoadR, weight: 1)
+        graph.addEdge(direction: .directed, from: bend2RoadR, to: endRoadR, weight: 1)
+        graph.addEdge(direction: .undirected, from: endRoadR, to: botTQ, weight: 1)
+        graph.addEdge(direction: .undirected, from: endRoadR, to: botLWCQ, weight: 1)
+        //Snowbound
+        graph.addEdge(direction: .undirected, from: SBJunctionCC, to: topSB, weight: 1)
+        graph.addEdge(direction: .directed, from: topSB, to: endSB, weight: 300)
+        graph.addEdge(direction: .undirected, from: endSB, to: SBJunctionObsession, weight: 300)
+        //Tempest Quad
+        graph.addEdge(direction: .directed, from: botTQ, to: topTQ, weight: 100)
+        graph.addEdge(direction: .undirected, from: botTQ, to: botLWCQ, weight: 1)
+        //White heat Quad
+        graph.addEdge(direction: .directed, from: botWHQ, to: topWHQ, weight: 100)
+        //Salvation
+        graph.addEdge(direction: .undirected, from: topWHQ, to: topSalvation, weight: 1)
+        graph.addEdge(direction: .directed, from: topSalvation, to: BWJunctionSalvation, weight: 50)
+        graph.addEdge(direction: .directed, from: BWJunctionSalvation, to: bend1Salvation, weight: 50)
+        graph.addEdge(direction: .directed, from: bend1Salvation, to: BW2JunctionSalvation, weight: 50)
+        graph.addEdge(direction: .directed, from: BW2JunctionSalvation, to: HOJunctionSalvation, weight: 50)
+        graph.addEdge(direction: .undirected, from: HOJunctionSalvation, to: topHO, weight: 1)
+        graph.addEdge(direction: .undirected, from: HOJunctionSalvation, to: HOJunctionObsession, weight: 1)
+        //Heat's Off
+        graph.addEdge(direction: .directed, from: topHO, to: endHO, weight: 50)
+//Obsession
+        graph.addEdge(direction: .undirected, from: topWHQ, to: topObsession, weight: 1)
+        graph.addEdge(direction: .directed, from: topObsession, to: bend1Obsession, weight: 300)
+        graph.addEdge(direction: .directed, from: bend1Obsession, to: HOJunctionObsession, weight: 300)
+        graph.addEdge(direction: .directed, from: HOJunctionObsession, to: SBJunctionObsession, weight: 300)
+        graph.addEdge(direction: .directed, from: SBJunctionObsession, to: bend2Obsession, weight: 300)
+        graph.addEdge(direction: .directed, from: bend2Obsession, to: HOnJunctionObsession, weight: 300)
+        graph.addEdge(direction: .undirected, from: HOnJunctionObsession, to: obsessionJunctionHON, weight: 1)
+        //Chutzpah
+        graph.addEdge(direction: .undirected, from: topObsession, to: topChutzpah, weight: 300)
+        graph.addEdge(direction: .directed, from: topChutzpah, to: midChutzpah, weight: 4000)
+        graph.addEdge(direction: .directed, from: midChutzpah, to: endChutzpah, weight: 4000)
+        graph.addEdge(direction: .undirected, from: endChutzpah, to: chutzpahJunctionWH, weight: 1)
+        //White Heat
+        graph.addEdge(direction: .undirected, from: topWHQ, to: topWH, weight: 1)
+        graph.addEdge(direction: .undirected, from: topWH, to: topSW, weight: 1)
+        graph.addEdge(direction: .directed, from: topWH, to: chutzpahJunctionWH, weight: 4000)
+        graph.addEdge(direction: .directed, from: chutzpahJunctionWH, to: assumptionJunctionWH, weight: 4000)
+        graph.addEdge(direction: .undirected, from: assumptionJunctionWH, to: WHJunctionAssumption, weight: 1)
+        //Shock Wave
+        graph.addEdge(direction: .directed, from: topSW, to: bend1SW, weight: 4000)
+        graph.addEdge(direction: .directed, from: bend1SW, to: bend2SW, weight: 4000)
+        graph.addEdge(direction: .directed, from: bend2SW, to: assumptionJunctionSW, weight: 4000)
+        graph.addEdge(direction: .undirected, from: assumptionJunctionSW, to: SWJunctionAssumption, weight: 1)
+        //Tempest
+        graph.addEdge(direction: .undirected, from: topTempest, to: topJibe, weight: 1)
+        graph.addEdge(direction: .directed, from: topTempest, to: HOJunctionTempest, weight: 300)
+        graph.addEdge(direction: .undirected, from: endJibe, to: HOJunctionTempest, weight: 1)
+        graph.addEdge(direction: .directed, from: HOJunctionTempest, to: endTempest, weight: 300)
+        graph.addEdge(direction: .undirected, from: endTempest, to: botTQ, weight: 1)
+        graph.addEdge(direction: .undirected, from: endTempest, to: botLWCQ, weight: 1)
+        //Jibe
+        graph.addEdge(direction: .directed, from: topJibe, to: bend1Jibe, weight: 50)
+        graph.addEdge(direction: .directed, from: bend1Jibe, to: endJibe, weight: 50)
+        //Heat's On
+        graph.addEdge(direction: .undirected, from: HOJunctionTempest, to: topHON, weight: 1)
+        graph.addEdge(direction: .directed, from: topHON, to: obsessionJunctionHON, weight: 50)
+        graph.addEdge(direction: .directed, from: obsessionJunctionHON, to: botWHQ, weight: 50)
+        graph.addEdge(direction: .directed, from: obsessionJunctionHON, to: assumptionJunctionHON, weight: 50)
+        graph.addEdge(direction: .directed, from: assumptionJunctionHON, to: SLJunctionHON, weight: 50)
+        //Green Cheese
+        graph.addEdge(direction: .undirected, from: topSL, to: topGC, weight: 1)
+        graph.addEdge(direction: .directed, from: topGC, to: SBJunctionGC, weight: 1)
+        graph.addEdge(direction: .undirected, from: SBJunctionGC, to: GCJunctionSB, weight: 1)
+        graph.addEdge(direction: .directed, from: SBJunctionGC, to: endGC, weight: 1)
+        graph.addEdge(direction: .directed, from: endGC, to: GCJunctionMS, weight: 1)
+        //MoonStruck
+        graph.addEdge(direction: .undirected, from: topLWCQ, to: topMS, weight: 1)
+        graph.addEdge(direction: .directed, from: topMS, to: bend1MS, weight: 1)
+        graph.addEdge(direction: .directed, from: bend1MS, to: bend2MS, weight: 1)
+        graph.addEdge(direction: .directed, from: bend2MS, to: bend3MS, weight: 1)
+        graph.addEdge(direction: .directed, from: bend3MS, to: GCJunctionMS, weight: 1)
+        graph.addEdge(direction: .directed, from: GCJunctionMS, to: bend4MS, weight: 1)
+        graph.addEdge(direction: .directed, from: bend4MS, to: SBJunctionMS, weight: 1)
+        graph.addEdge(direction: .directed, from: SBJunctionMS, to: SLJunctionMS, weight: 1)
+        graph.addEdge(direction: .directed, from: SLJunctionMS, to: endMS, weight: 1)
+        graph.addEdge(direction: .undirected, from: endMS, to: botTQ, weight: 1)
+        graph.addEdge(direction: .directed, from: endMS, to: botLWCQ, weight: 1)
+        //Assumption
+        graph.addEdge(direction: .undirected, from: topAssumption, to: topSL, weight: 1)
+        graph.addEdge(direction: .directed, from: topAssumption, to: SWJunctionAssumption, weight: 50)
+        graph.addEdge(direction: .directed, from: SWJunctionAssumption, to: WHJunctionAssumption, weight: 50)
+        graph.addEdge(direction: .directed, from: WHJunctionAssumption, to: WHQJunctionAssumption, weight: 50)
+        graph.addEdge(direction: .undirected, from: WHQJunctionAssumption, to: botWHQ, weight: 50)
+        graph.addEdge(direction: .directed, from: WHQJunctionAssumption, to: assumptionJunctionHON, weight: 50)
+        //Starlight
+        graph.addEdge(direction: .directed, from: topLWCQ, to: topSL, weight: 1)
+        graph.addEdge(direction: .directed, from: topSL, to: bend1SL, weight: 1)
+        graph.addEdge(direction: .directed, from: bend1SL, to: bend2SL, weight: 1)
+        graph.addEdge(direction: .directed, from: bend2SL, to: bend3SL, weight: 1)
+        graph.addEdge(direction: .directed, from: bend3SL, to: HOJunctionSL, weight: 1)
+        graph.addEdge(direction: .undirected, from: HOJunctionSL, to: SLJunctionHON, weight: 1)
+        graph.addEdge(direction: .directed, from: HOJunctionSL, to: MSJunctionSL, weight: 1)
+        graph.addEdge(direction: .undirected, from: MSJunctionSL, to: SLJunctionMS, weight: 1)
+        //Star Struck
+        graph.addEdge(direction: .undirected, from: GCJunctionSB, to: topSS, weight: 1)
+        graph.addEdge(direction: .directed, from: topSS, to: endSS, weight: 300)
+        graph.addEdge(direction: .directed, from: endSS, to: SBJunctionMS, weight: 300)
+        //Starwood
+        graph.addEdge(direction: .undirected, from: GCJunctionSB, to: topStarW, weight: 1)
+        graph.addEdge(direction: .directed, from: topStarW, to: endStarW, weight: 300)
+        graph.addEdge(direction: .directed, from: endStarW, to: bend3SL, weight: 300)
+        //Starburst
+        graph.addEdge(direction: .undirected, from: topLWCQ, to: topStarB, weight: 1)
+        graph.addEdge(direction: .directed, from: topStarB, to: GCJunctionSB, weight: 50)
+        graph.addEdge(direction: .directed, from: GCJunctionSB, to: endStarB, weight: 50)
+        graph.addEdge(direction: .undirected, from: endStarB, to: SBJunctionMS, weight: 1)
+        //Little White Cap Quad
+//       graph.addEdge(direction: .directed, from: botLWCQ, to: topLWCQ, weight: 100)
+
     }
     
     static func createAnnotation(title: String?, latitude: Double, longitude: Double, difficulty: Difficulty) -> ImageAnnotation

@@ -24,7 +24,7 @@ class Vertex<Element: Equatable> {
 }
 
 extension Vertex: Equatable {
-    static func ==(lhs: Vertex, rhs: Vertex) -> Bool {
+    static func == (lhs: Vertex, rhs: Vertex) -> Bool {
         return lhs.value == rhs.value && lhs.adjacentEdges == rhs.adjacentEdges
     }
 }
@@ -49,123 +49,6 @@ extension DirectedEdge: Equatable {
     }
 }
 
-class EdgeWeightedDigraph<Element: Equatable> {
-    private(set) var vertices: [Vertex<Element>] = []
-    
-    func addVertex(_ vertex: Vertex<Element>) {
-        vertices.append(vertex)
-    }
-    
-    // This function assumes that the source and destination vertices are in the vertices array.
-    func addEdge(direction: EdgeType, from: Vertex<Element>, to: Vertex<Element>, weight: Double) {
-        
-        switch direction{
-        case .undirected:
-            if let existingEdge = from.edgeForDestination(to) {
-                existingEdge.weight = weight
-            } else {
-                let newEdge = DirectedEdge<Element>(source: from, destination: to, weight: weight)
-                from.addEdge(newEdge)
-                let otherEdge = DirectedEdge<Element>(source: to, destination: from, weight: weight)
-                from.addEdge(otherEdge)
-            }
-        case .directed :
-            if let existingEdge = from.edgeForDestination(to) {
-                existingEdge.weight = weight
-            } else {
-                let newEdge = DirectedEdge<Element>(source: from, destination: to, weight: weight)
-                from.addEdge(newEdge)
-            }
-        }
-        // If we find an existing edge, just update the weight.
-        
-    }
-    
-    func adjacentEdges(forVertex vertex: Vertex<Element>) -> [DirectedEdge<Element>] {
-        return vertex.adjacentEdges
-    }
-    
-    func edges() -> [DirectedEdge<Element>] {
-        return vertices
-            .reduce([DirectedEdge<Element>]()) {
-                (result, vertex) -> [DirectedEdge<Element>] in
-                return result + vertex.adjacentEdges
-            }
-    }
-    
-    func edgesCount() -> Int {
-        return edges().count
-    }
-    
-    func verticesCount() -> Int {
-        return vertices.count
-    }
-}
-
-private class QueueItem<Element: Equatable>: Comparable {
-    
-    let value: Element
-    var priority: Double
-    
-    init(_ value: Element, priority: Double) {
-        self.value = value
-        self.priority = priority
-    }
-    
-    static func < (lhs: QueueItem<Element>, rhs: QueueItem<Element>) -> Bool {
-        return lhs.priority < rhs.priority
-    }
-    
-    static func == (lhs: QueueItem<Element>, rhs: QueueItem<Element>) -> Bool {
-        return lhs.priority == rhs.priority
-    }
-}
-
-public class SimplePriorityQueue<Element: Equatable> {
-    
-    //private class QueueItem<Element: Equatable>: Comparable {//..Redacted for clarity..//}
-    
-    private var items: [QueueItem<Element>] = []
-    
-    public var isEmpty: Bool {
-        return items.isEmpty
-    }
-    
-    public func contains(_ item: Element) -> Bool {
-        return items.contains { $0.value == item }
-    }
-    
-    public func insert(_ item: Element, priority: Double) {
-        if contains(item) {
-            update(item, priority: priority)
-        } else {
-            let newItem = QueueItem<Element>(item, priority: priority)
-            items.append(newItem)
-            sortItems()
-        }
-    }
-    
-    public func update(_ item: Element, priority: Double) {
-        if let existingItem = items.filter({ $0.value == item }).first {
-            existingItem.priority = priority
-            sortItems()
-        }
-    }
-    
-    public func deleteMin() -> Element? {
-        guard isEmpty == false else {
-            return nil
-        }
-        
-        let item = items.removeFirst()
-        return item.value
-    }
-    
-    private func sortItems() {
-        items = items.sorted(by: < )
-    }
-}
-
 class Destination<Element: Equatable> {
     let vertex: Vertex<Element>
     var previousVertex: Vertex<Element>?
@@ -176,6 +59,117 @@ class Destination<Element: Equatable> {
     
     init(_ vertex: Vertex<Element>) {
         self.vertex = vertex
+    }
+}
+
+class EdgeWeightedDigraph<Element: Equatable> {
+    private(set) var vertices: [Vertex<Element>] = []
+
+    func addVertex(_ vertex: Vertex<Element>) {
+        vertices.append(vertex)
+    }
+
+    // This function assumes that the source and destination vertices are in the vertices array.
+    func addEdge(direction: EdgeType, from: Vertex<Element>, to: Vertex<Element>, weight: Double) {
+
+        switch direction{
+        case .undirected:
+                let newEdge = DirectedEdge<Element>(source: from, destination: to, weight: weight)
+                from.addEdge(newEdge)
+                let otherEdge = DirectedEdge<Element>(source: to, destination: from, weight: weight)
+                to.addEdge(otherEdge)
+            
+        case .directed :
+                let newEdge = DirectedEdge<Element>(source: from, destination: to, weight: weight)
+                from.addEdge(newEdge)
+            
+        }
+        // If we find an existing edge, just update the weight.
+
+    }
+
+    func adjacentEdges(forVertex vertex: Vertex<Element>) -> [DirectedEdge<Element>] {
+        return vertex.adjacentEdges
+    }
+
+    func edges() -> [DirectedEdge<Element>] {
+        return vertices
+            .reduce([DirectedEdge<Element>]()) {
+                (result, vertex) -> [DirectedEdge<Element>] in
+                return result + vertex.adjacentEdges
+            }
+    }
+
+    func edgesCount() -> Int {
+        return edges().count
+    }
+
+    func verticesCount() -> Int {
+        return vertices.count
+    }
+}
+
+private class QueueItem<Element: Equatable>: Comparable {
+
+    let value: Element
+    var priority: Double
+
+    init(_ value: Element, priority: Double) {
+        self.value = value
+        self.priority = priority
+    }
+
+    static func < (lhs: QueueItem<Element>, rhs: QueueItem<Element>) -> Bool {
+        return lhs.priority < rhs.priority
+    }
+
+    static func == (lhs: QueueItem<Element>, rhs: QueueItem<Element>) -> Bool {
+        return lhs.priority == rhs.priority
+    }
+}
+
+public class SimplePriorityQueue<Element: Equatable> {
+
+    //private class QueueItem<Element: Equatable>: Comparable {//..Redacted for clarity..//}
+
+    private var items: [QueueItem<Element>] = []
+
+    public var isEmpty: Bool {
+        return items.isEmpty
+    }
+
+    public func contains(_ item: Element) -> Bool {
+        return items.contains { $0.value == item }
+    }
+
+    public func insert(_ item: Element, priority: Double) {
+        if contains(item) {
+            update(item, priority: priority)
+        } else {
+            let newItem = QueueItem<Element>(item, priority: priority)
+            items.append(newItem)
+            sortItems()
+        }
+    }
+
+    public func update(_ item: Element, priority: Double) {
+        if let existingItem = items.filter({ $0.value == item }).first {
+            existingItem.priority = priority
+            sortItems()
+        }
+    }
+
+    public func deleteMin() -> Element? {
+        guard isEmpty == false else {
+            return nil
+        }
+
+        let item = items.removeFirst()
+        return item.value
+    }
+
+    private func sortItems() {
+        items = items.sorted(by: < )
     }
 }
 

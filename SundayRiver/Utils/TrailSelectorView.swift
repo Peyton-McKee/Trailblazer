@@ -23,7 +23,7 @@ class SearchBarTableHeaderView: UIView {
         textField.placeholderRect(forBounds: textField.bounds)
         
         textField.placeholder = "Enter Destination"
-        textField.backgroundColor = UIColor(hex: "#800000ff")
+        textField.backgroundColor = UIColor(hex: "#6488eaff")
         textField.layer.cornerRadius = 10
         
         self.addSubview(textField)
@@ -310,7 +310,7 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             cell.label.textColor = .orange
         }
         cell.label.font = UIFont(name: "Times New Roman", size: 15)
-        cell.backgroundColor = UIColor(hex: "#6488eaff")
+        cell.backgroundColor = UIColor(hex: "#800000ff")
         return cell
     }
     

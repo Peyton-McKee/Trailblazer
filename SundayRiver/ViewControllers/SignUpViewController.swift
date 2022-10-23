@@ -19,7 +19,7 @@ class SignUpViewController : UIViewController {
     var url = URL(string: "http://127.0.0.1:8080")!
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         configureTextFields()
         configureButtons()
     }

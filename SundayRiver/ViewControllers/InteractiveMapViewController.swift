@@ -282,7 +282,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         TrailsDatabase.graph.addVertex(originVertex!)
         TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: getClosestAnnotation(origin: origin), weight: 1)
     }
-    
+
     /// createRoute: void -> [Vertex<ImageAnnotatioin>] || null
     /// Creates a route for the easiest path from the users location to the selected destination
     func createRoute() -> [Vertex<ImageAnnotation>]?
@@ -311,8 +311,9 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     func sampleRoute()
     {
         let destinationAnnotation = InteractiveMapViewController.destination!
-        
+        print("test1")
         if let pathToDestination = createRoute(){
+            print("test2")
             var description = ""
             var trailReports = ""
             for edge in pathToDestination

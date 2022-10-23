@@ -17,7 +17,7 @@ class SignInViewController: UIViewController
     static var currentUser = User(userName: "", password: "")
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         configureTextFields()
         configureButtons()
     }
