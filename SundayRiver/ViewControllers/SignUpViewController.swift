@@ -13,6 +13,8 @@ class SignUpViewController : UIViewController {
     var passwordTextField = UITextField()
     var confirmPasswordTextField = UITextField()
     
+    var incorrectSignUpLabel = UILabel()
+    
     var signInButton = UIButton()
     var signUpButton = UIButton()
     
@@ -22,8 +24,18 @@ class SignUpViewController : UIViewController {
         view.backgroundColor = .black
         configureTextFields()
         configureButtons()
+        configureLabels()
     }
     
+    func configureLabels()
+    {
+        incorrectSignUpLabel.translatesAutoresizingMaskIntoConstraints = false
+        incorrectSignUpLabel.isHidden = true
+        incorrectSignUpLabel.textColor = .red
+        view.addSubview(incorrectSignUpLabel)
+        createConstraints(item: incorrectSignUpLabel, distFromLeft: 0, distFromTop:   Double(view.bounds.height)/2 - Double(view.bounds.height) *  9 / 20)
+
+    }
     func configureTextFields()
     {
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -96,6 +108,8 @@ class SignUpViewController : UIViewController {
         }
         if passwordText != confirmPasswordText
         {
+            self.incorrectSignUpLabel.text = "Passwords Do Not Match"
+            self.incorrectSignUpLabel.isHidden = false
             return //display text saying passwords do not match
         }
         getUsers(completion: { value in
@@ -111,7 +125,8 @@ class SignUpViewController : UIViewController {
                 if user.userName == myUser.userName
                 {
                     foundMatch = true
-                    //say this username has been taken
+                    self.incorrectSignUpLabel.text = "Username Already Taken"
+                    self.incorrectSignUpLabel.isHidden = false
                     break
                 }
             }

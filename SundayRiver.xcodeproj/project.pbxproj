@@ -21,7 +21,7 @@
 		150D06442900682F0051F160 /* IcySquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D06432900682F0051F160 /* IcySquare.png */; };
 		150D064629006C190051F160 /* SRSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D064529006C190051F160 /* SRSun.png */; };
 		150D064C2900AC780051F160 /* MilkyNice.otf in Resources */ = {isa = PBXBuildFile; fileRef = 150D064B2900AC780051F160 /* MilkyNice.otf */; };
-		15213F032904800D0027749B /* BelmontFordGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15213F022904800D0027749B /* BelmontFordGraphStructure.swift */; };
+		15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15213F022904800D0027749B /* BellmanFordGraphStructure.swift */; };
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
 		153B2E3C28ED1EDF00A23163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3B28ED1EDF00A23163 /* User.swift */; };
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
@@ -59,7 +59,7 @@
 		150D06432900682F0051F160 /* IcySquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IcySquare.png; sourceTree = "<group>"; };
 		150D064529006C190051F160 /* SRSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRSun.png; sourceTree = "<group>"; };
 		150D064B2900AC780051F160 /* MilkyNice.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MilkyNice.otf; sourceTree = "<group>"; };
-		15213F022904800D0027749B /* BelmontFordGraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BelmontFordGraphStructure.swift; sourceTree = "<group>"; };
+		15213F022904800D0027749B /* BellmanFordGraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellmanFordGraphStructure.swift; sourceTree = "<group>"; };
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 				15545B0D28E224C8005D0886 /* Trail.swift */,
 				15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */,
 				15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */,
-				15213F022904800D0027749B /* BelmontFordGraphStructure.swift */,
+				15213F022904800D0027749B /* BellmanFordGraphStructure.swift */,
 				150D062B28F5D6C00051F160 /* TrailReports.swift */,
 			);
 			path = TrailDatabaseFiles;
@@ -304,7 +304,7 @@
 				15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */,
 				150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */,
 				15545B0C28E224A2005D0886 /* DijsktrasGraphStructure.swift in Sources */,
-				15213F032904800D0027749B /* BelmontFordGraphStructure.swift in Sources */,
+				15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

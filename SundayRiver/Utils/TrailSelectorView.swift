@@ -10,6 +10,13 @@ import UIKit
 
 class SearchBarTableHeaderView: UIView {
     var textField = UITextField()
+    var searchButton = UIButton()
+    var imageView = UIImageView()
+    var leftBackgroundView = UIView()
+    var rightBackgroundView = UIView()
+    var extendedFrame: CGRect?
+    var initialFrame: CGRect?
+    var isExtended = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,19 +24,77 @@ class SearchBarTableHeaderView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    func configure() {
-        textField.frame = CGRect(x: 10, y: 10, width: 180, height: self.bounds.height)
-        textField.placeholderRect(forBounds: textField.bounds)
+    func setInitialFrame()
+    {
+        self.frame = initialFrame!
+        self.leftBackgroundView.layer.cornerRadius = 10
+    }
+    func reloadView() {
+        imageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        imageView.image = UIImage(systemName: "magnifyingglass")!
+        imageView.tintColor = .white
         
+        searchButton.frame = CGRect(x: self.bounds.width-36, y: 5, width: 30, height: 30)
+        searchButton.setImage(imageView.image, for: .normal)
+        searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
+        
+        textField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 36, height: self.bounds.height)
+        textField.placeholderRect(forBounds: textField.bounds)
         textField.placeholder = "Enter Destination"
-        textField.backgroundColor = UIColor(hex: "#6488eaff")
+        textField.backgroundColor = UIColor(hex: "#dddddd70")
         textField.layer.cornerRadius = 10
         
+        leftBackgroundView.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 30, height: self.bounds.height)
+        leftBackgroundView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        rightBackgroundView.frame = CGRect(x: self.bounds.width - 20, y: 0, width: 20, height: self.bounds.height)
+        rightBackgroundView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        rightBackgroundView.layer.cornerRadius = 10
+        
+        self.layer.cornerRadius = 10
+        self.layer.borderWidth = 1
+        self.layer.borderColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        
         self.addSubview(textField)
+        self.addSubview(rightBackgroundView)
+        self.addSubview(leftBackgroundView)
+        self.addSubview(searchButton)
+    }
+    
+    func presentExtendedView(){
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.frame = self.extendedFrame!
+            self.reloadView()
+        }, completion: nil)
+    }
+    func dismissExtendedView()
+    {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.frame = self.initialFrame!
+            self.reloadView()
+        }, completion: nil)
+    }
+    @objc func searchButtonPressed()
+    {
+        if !isExtended
+        {
+            self.presentExtendedView()
+            self.isExtended = true
+            self.leftBackgroundView.layer.cornerRadius = 0
+        }
+        else
+        {
+            InteractiveMapViewController.wasCancelled = true
+            self.textField.endEditing(true)
+            self.dismissExtendedView()
+            self.isExtended = false
+            self.leftBackgroundView.layer.cornerRadius = 10
+        }
+        
     }
 }
 class TrailSelectorView : UIView {
+    
+    static var searchText : String?
     
     var barkerTrails : [Trail] = []
     var southridgeTrails : [Trail] = []
@@ -58,19 +123,23 @@ class TrailSelectorView : UIView {
     func configureTableViewAndSearchBar()
     {
         createMyTrails()
-        searchBarHeaderView = SearchBarTableHeaderView(frame: CGRect(x: 0, y: 0, width: self.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height/20 ))
-        searchBarHeaderView!.configure()
-        searchBarTableView.frame = CGRect(x: 0, y: 50, width: self.bounds.width, height: self.bounds.height * 8.5 / 10)
+//        searchBarHeaderView = SearchBarTableHeaderView(frame: CGRect(x: 0, y: 0, width: self.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height/20 ))
+//        searchBarHeaderView!.configure()
+//        searchBarTableView.tableHeaderView = searchBarHeaderView
+//        searchBar = searchBarHeaderView?.textField
+//        searchBar!.delegate = self
+        searchBarTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 8.5 / 10)
         searchBarTableView.layer.cornerRadius = 15
         searchBarTableView.register(TrailSelectorCustomCell.self, forCellReuseIdentifier: "TrailSelectorCustomCell")
-        searchBarTableView.tableHeaderView = searchBarHeaderView
         searchBarTableView.backgroundColor = .black
         searchBarTableView.dataSource = self
         searchBarTableView.delegate = self
-        searchBar = searchBarHeaderView?.textField
-        searchBar!.delegate = self
+
         //        searchBar.frame = CGRect(x: 10, y: 10, width: searchBarTableView.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height / 20)
         self.addSubview(searchBarTableView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(filterTrails), name: Notification.Name(rawValue: "searchTrail"), object: nil)
+        
     }
     private func createMyTrails()
     {
@@ -118,6 +187,38 @@ class TrailSelectorView : UIView {
         totalTrails.append(contentsOf: auroraTrails)
         totalTrails.append(contentsOf: ozTrails)
         totalTrails.append(contentsOf: jordanTrails)
+    }
+    @objc func filterTrails()
+    {
+        if let searchString = TrailSelectorView.searchText{
+            for trail in totalTrails
+            {
+                if trail.name.lowercased().contains(searchString.lowercased()) && !filteredTrails.contains(where: {$0.name.lowercased() == trail.name.lowercased()})
+                {
+                    filteredTrails.append(trail)
+                }
+                if searchString == ""
+                {
+                    filteredTrails = []
+                    shouldShowSearchResults = false
+                    searchBarTableView.reloadData()
+                }
+                if filteredTrails.contains(where: {!$0.name.lowercased().contains(searchString.lowercased())})
+                {
+                    filteredTrails.remove(at: 0)
+                }
+            }
+            if searchString == ""
+            {
+                shouldShowSearchResults = false
+                searchBarTableView.reloadData()
+            }
+            else
+            {
+                shouldShowSearchResults = true
+                searchBarTableView.reloadData()
+            }
+        }
     }
 }
 extension TrailSelectorView: UITextFieldDelegate
@@ -299,18 +400,18 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
         }
         switch cell.cellTrail?.difficulty{
         case .easy:
-            cell.label.textColor = .green
+            cell.label.textColor = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
         case .intermediate:
             cell.label.textColor = .blue
         case .advanced:
             cell.label.textColor = .black
         case .expertsOnly:
-            cell.label.textColor = .red
+            cell.label.textColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
         default:
             cell.label.textColor = .orange
         }
         cell.label.font = UIFont(name: "Times New Roman", size: 15)
-        cell.backgroundColor = UIColor(hex: "#800000ff")
+        cell.backgroundColor =  .gray
         return cell
     }
     

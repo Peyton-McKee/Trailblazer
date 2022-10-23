@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
+class InteractiveMapViewController: UIViewController
 {
     static var currentUser = User(userName: "Guest", password: "")
     static var routeInProgress = false
@@ -23,7 +23,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var tileRenderer: MKTileOverlayRenderer!
     var myPolyLine = CustomPolyline()
     
-    var searchButton = UIButton()
+    static var wasCancelled = false
+    var searchBar = SearchBarTableHeaderView()
     
     //    var easyLabel = UILabel()
     //    var intermediateLabel = UILabel()
@@ -62,8 +63,9 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         getTrailReportsFromDB()
-        configureButtons()
+        configureSearchBar()
         self.tabBarController?.tabBar.backgroundColor = .black
+        
         NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -75,30 +77,24 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         }
     }
     
-    private func configureButtons()
+    private func configureSearchBar()
     {
-        searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.setBackgroundImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        searchButton.addTarget(self, action: #selector(presentSideMenu), for: .touchUpInside)
-        searchButton.backgroundColor = UIColor(hex: "#000000e3")
-        view.addSubview(searchButton)
-        NSLayoutConstraint.activate([
-            searchButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
-            searchButton.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 20),
-            searchButton.heightAnchor.constraint(equalToConstant: 20),
-            searchButton.widthAnchor.constraint(equalToConstant: 20)
-        ])
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.initialFrame = CGRect(x: 20, y: 40, width: 40, height: view.bounds.height/20)
+        searchBar.extendedFrame = CGRect(x: 20, y: 40, width: view.bounds.width - 36, height: view.bounds.height/20)
+        searchBar.setInitialFrame()
+        searchBar.reloadView()
+        searchBar.textField.delegate = self
+        view.addSubview(searchBar)
+
     }
     @objc func presentSideMenu()
     {
-        self.trailSelectorView = TrailSelectorView(frame: self.view.frame)
-        trailSelectorView!.frame = CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 0, width: 200, height: UIScreen.main.bounds.size.height)
+        self.trailSelectorView = TrailSelectorView(frame: CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 80, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
         trailSelectorView?.configureTableViewAndSearchBar()
-        let window = UIApplication.shared.keyWindow
-        trailSelectorMenu = SideMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), width: 200)
+        let window = self.view
+        trailSelectorMenu = SideMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, width: UIScreen.main.bounds.size.width)
         trailSelectorMenu?.view = trailSelectorView
-        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissTrailSelector))
-        trailSelectorMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
         trailSelectorMenu?.presentItems()
     }
     @objc func dismissTrailSelector()
@@ -172,14 +168,12 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.mapType = MKMapType.hybridFlyover
         //        myMap.mapType = MKMapType.satellite
         //        myMap.mapType = MKMapType.satelliteFlyover
-        
+        myMap.isRotateEnabled = true
+        myMap.showsCompass = false
+        myMap.setCamera(MKMapCamera(lookingAtCenter: myMap.centerCoordinate, fromDistance: CLLocationDistance(1200), pitch: 90, heading: CLLocationDirection(180)), animated: true)
         myMap.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        
         myMap.isZoomEnabled = true
         myMap.isScrollEnabled = true
-        
-        
-        
         myMap.cameraZoomRange = MKMapView.CameraZoomRange(
             minCenterCoordinateDistance: 400,
             maxCenterCoordinateDistance: 12500)
@@ -192,7 +186,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.addGestureRecognizer(longPress)
         myMap.region = initialRegion
         myMap.showsUserLocation = true
-        myMap.showsCompass = true
         myMap.setUserTrackingMode(.followWithHeading, animated: true)
         myMap.delegate = self
         myMap.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
@@ -310,6 +303,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     ///  Presents a routeOverviewMenu for the selected path
     func sampleRoute()
     {
+        self.searchBar.dismissExtendedView()
         let destinationAnnotation = InteractiveMapViewController.destination!
         print("test1")
         if let pathToDestination = createRoute(){
@@ -334,10 +328,16 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             if(!InteractiveMapViewController.routeInProgress)
             {
                 routeOverviewView = RouteOverviewView(frame: self.view.frame)
-                
-                let index = description.index(description.startIndex, offsetBy: description.count - 2)
-                description = String(description.prefix(upTo: index))
-                routeOverviewView?.directionsTextView.text = "\(description)"
+                if !description.isEmpty
+                {
+                    let index = description.index(description.startIndex, offsetBy: description.count - 2)
+                    description = String(description.prefix(upTo: index))
+                    routeOverviewView?.directionsTextView.text = "\(description)"
+                }
+                else
+                {
+                    routeOverviewView?.directionsTextView.text = "Could not find Route"
+                }
                 
                 routeOverviewView?.tripLbl.text = "Your Location -> \(destinationAnnotation.title!)"
                 
@@ -347,6 +347,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 presentRouteOverviewMenu()
                 InteractiveMapViewController.routeInProgress = true
             }
+            return
         }
     }
     
@@ -358,9 +359,9 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         for overlay in myMap.overlays(in: .aboveRoads){
             myMap.removeOverlay(overlay)
         }
-        for annotation in TrailsDatabase.keyAnnotations
+        for annotation in myMap.annotations
         {
-            myMap.removeAnnotation(annotation.value)
+            myMap.removeAnnotation(annotation)
         }
         if let pathToDestination = createRoute(){
             var previousEdge = pathToDestination[0]
@@ -397,7 +398,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                     myPolyLine.color = .red
                 }
                 myMap.addOverlay(myPolyLine, level: .aboveRoads)
-                
+                if let trailReport = edge.value.trailReport
+                {
+                    myMap.addAnnotation(trailReport)
+                }
                 for annotation in TrailsDatabase.keyAnnotations
                 {
                     if(annotation.value == edge.value)
@@ -689,4 +693,49 @@ extension InteractiveMapViewController: UITableViewDataSource, UITableViewDelega
             dismissTrailReportMenu()
         }
     }
+}
+
+extension InteractiveMapViewController: UITextFieldDelegate
+{
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        presentSideMenu()
+        return true
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        TrailSelectorView.searchText = textField.text!
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
+        return true
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return true
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if InteractiveMapViewController.wasCancelled{
+            self.trailSelectorMenu?.dismissItems()
+            self.searchBar.textField.text = nil
+        }
+        else{
+            return
+        }
+    }
+}
+extension InteractiveMapViewController: CLLocationManagerDelegate
+{
+//    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading){
+//        myMap.camera.heading = newHeading.magneticHeading
+//        myMap.setCamera(myMap.camera, animated: true)
+//       }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        let location = locations[0]
+//        let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
+//            let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude)
+//            let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
+//            myMap.setRegion(region, animated: true)
+//            self.myMap.showsUserLocation = true
+//
+//            let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 5000, pitch: 30, heading: 0)
+//            myMap.setCamera(mapCamera, animated: true)
+//     }
+
 }

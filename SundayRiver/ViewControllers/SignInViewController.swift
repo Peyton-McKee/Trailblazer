@@ -14,14 +14,26 @@ class SignInViewController: UIViewController
     var passwordTextField = UITextField()
     var signInButton = UIButton()
     var signUpButton = UIButton()
+    
+    var incorrectSignInLabel = UILabel()
+    
     static var currentUser = User(userName: "", password: "")
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
         configureTextFields()
         configureButtons()
+        configureLabels()
     }
     
+    func configureLabels()
+    {
+        incorrectSignInLabel.textColor = .red
+        incorrectSignInLabel.translatesAutoresizingMaskIntoConstraints = false
+        incorrectSignInLabel.isHidden = true
+        view.addSubview(incorrectSignInLabel)
+        createConstraints(item: incorrectSignInLabel, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 - Double(view.bounds.height) * 9 / 20)
+    }
     func configureTextFields()
     {
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +121,8 @@ class SignInViewController: UIViewController
             }
             if !foundMatch
             {
-                //username or password is incorrect
+                self.incorrectSignInLabel.text = "Incorrect Username or Password"
+                self.incorrectSignInLabel.isHidden = false
             }
         })
     }
