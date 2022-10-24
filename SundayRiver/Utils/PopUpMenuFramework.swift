@@ -13,11 +13,11 @@ class PopUpMenuFramework
     var viewController: UIViewController
     var transparentView : UIView
     var view :  UIView?
-    var window : UIWindow
+    var window : UIView
     var height : CGFloat
     var screenSize: CGSize
     
-    init(viewController : UIViewController, window: UIWindow, screenSize : CGSize, transparentView: UIView, height: CGFloat) {
+    init(viewController : UIViewController, window: UIView, screenSize : CGSize, transparentView: UIView, height: CGFloat) {
         self.viewController = viewController
         self.window = window
         self.screenSize = screenSize

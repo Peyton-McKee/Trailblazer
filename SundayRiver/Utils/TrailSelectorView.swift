@@ -32,9 +32,9 @@ class SearchBarTableHeaderView: UIView {
     func reloadView() {
         imageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
         imageView.image = UIImage(systemName: "magnifyingglass")!
-        imageView.tintColor = .white
+        searchButton.tintColor = .white
         
-        searchButton.frame = CGRect(x: self.bounds.width-36, y: 5, width: 30, height: 30)
+        searchButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
         searchButton.setImage(imageView.image, for: .normal)
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         
@@ -61,6 +61,8 @@ class SearchBarTableHeaderView: UIView {
     }
     
     func presentExtendedView(){
+        self.isExtended = true
+        self.leftBackgroundView.layer.cornerRadius = 0
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.frame = self.extendedFrame!
             self.reloadView()
@@ -68,6 +70,9 @@ class SearchBarTableHeaderView: UIView {
     }
     func dismissExtendedView()
     {
+        self.textField.endEditing(true)
+        self.isExtended = false
+        self.leftBackgroundView.layer.cornerRadius = 10
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.frame = self.initialFrame!
             self.reloadView()
@@ -78,16 +83,11 @@ class SearchBarTableHeaderView: UIView {
         if !isExtended
         {
             self.presentExtendedView()
-            self.isExtended = true
-            self.leftBackgroundView.layer.cornerRadius = 0
         }
         else
         {
             InteractiveMapViewController.wasCancelled = true
-            self.textField.endEditing(true)
             self.dismissExtendedView()
-            self.isExtended = false
-            self.leftBackgroundView.layer.cornerRadius = 10
         }
         
     }
@@ -137,9 +137,7 @@ class TrailSelectorView : UIView {
 
         //        searchBar.frame = CGRect(x: 10, y: 10, width: searchBarTableView.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height / 20)
         self.addSubview(searchBarTableView)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(filterTrails), name: Notification.Name(rawValue: "searchTrail"), object: nil)
-        
     }
     private func createMyTrails()
     {
@@ -190,6 +188,7 @@ class TrailSelectorView : UIView {
     }
     @objc func filterTrails()
     {
+        print("test")
         if let searchString = TrailSelectorView.searchText{
             for trail in totalTrails
             {
@@ -417,9 +416,10 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? TrailSelectorCustomCell{
+            
             InteractiveMapViewController.destination = cell.cellTrail!.annotations[0]
             InteractiveMapViewController.routeInProgress = false
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "selectedTrail"), object: nil)
+            InteractiveMapViewController.container.add()
         }
     }
     

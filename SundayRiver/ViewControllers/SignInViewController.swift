@@ -105,13 +105,15 @@ class SignInViewController: UIViewController
             {
                 if user.userName == myUser.userName && user.password == myUser.password
                 {
+                    let userIdString = user.id!
                     foundMatch = true
-                    UserDefaults.standard.register(defaults: ["username" : user.userName])
                     InteractiveMapViewController.currentUser = user
                     self.navigationController?.show(InteractiveMapViewController(), sender: sender)
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                    
+                    UserDefaults.standard.set("\(user.userName)", forKey: "userUsername")
+                    UserDefaults.standard.set("\(user.password)", forKey: "userPassword")
+                    UserDefaults.standard.set("\(userIdString)", forKey: "userId")
                     // This is to get the SceneDelegate object from your view controller
                     // then call the change root view controller function to change to main tab bar
                     (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)

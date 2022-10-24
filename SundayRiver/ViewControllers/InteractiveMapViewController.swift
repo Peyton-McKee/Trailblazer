@@ -10,11 +10,23 @@ import UIKit
 import MapKit
 import CoreLocation
 
+class Container {
+    private(set) var urls: [URL] = []
+    func add() {
+        NotificationCenter.default.post(
+            name: Notification.Name(rawValue: "selectedTrail"),
+            object: self)
+    }
+}
+
 class InteractiveMapViewController: UIViewController
 {
-    static var currentUser = User(userName: "Guest", password: "")
+    static var currentUser : User?
     static var routeInProgress = false
     static var destination : ImageAnnotation?
+    static var configuredClasses = false
+    
+    static var container = Container()
     
     let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
@@ -53,22 +65,20 @@ class InteractiveMapViewController: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        TrailsDatabase.addVertexes()
-        TrailsDatabase.createEdges()
+        configureClasses()
         configureMyMap()
+        configureSearchBar()
+        checkUserDefaults()
         //        configureKey()
-        configureTrailReportView()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
-        getTrailReportsFromDB()
-        configureSearchBar()
         self.tabBarController?.tabBar.backgroundColor = .black
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: InteractiveMapViewController.container)
+        
         if InteractiveMapViewController.destination != nil {
             sampleRoute()
         }
@@ -76,7 +86,38 @@ class InteractiveMapViewController: UIViewController
             showAllTrails()
         }
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: Notification.Name(rawValue: "selectedTrail"),
+                                                  object: Self.container)
+    }
+    private func checkUserDefaults()
+    {
+        guard let userId = UserDefaults.standard.string(forKey: "userId") else {
+            return
+        }
+        getSingleUser(id: userId, completion: { result in
+            guard let user = try? result.get() else
+            {
+                print("Error: \(result)")
+                return
+            }
+            InteractiveMapViewController.currentUser = user
+        })
+                
+    }
+    private func configureClasses()
+    {
+        if (!Self.configuredClasses)
+        {
+            print("ctest")
+            TrailsDatabase.addVertexes()
+            TrailsDatabase.createEdges()
+            configureTrailReportView()
+            Self.configuredClasses = true
+            getTrailReportsFromDB()
+        }
+    }
     private func configureSearchBar()
     {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -85,8 +126,7 @@ class InteractiveMapViewController: UIViewController
         searchBar.setInitialFrame()
         searchBar.reloadView()
         searchBar.textField.delegate = self
-        view.addSubview(searchBar)
-
+        
     }
     @objc func presentSideMenu()
     {
@@ -102,10 +142,12 @@ class InteractiveMapViewController: UIViewController
         trailSelectorMenu?.dismissItems()
     }
     
-    @objc func selectedTrail()
+    @objc func selectedTrail(sender: Notification)
     {
+        self.searchBar.textField.text = nil
         trailSelectorMenu?.dismissItems()
         sampleRoute()
+        return
     }
     ///configureTrailReportVieiw: void -> void
     ///Configures and formats the trailReportTableView
@@ -275,7 +317,7 @@ class InteractiveMapViewController: UIViewController
         TrailsDatabase.graph.addVertex(originVertex!)
         TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: getClosestAnnotation(origin: origin), weight: 1)
     }
-
+    
     /// createRoute: void -> [Vertex<ImageAnnotatioin>] || null
     /// Creates a route for the easiest path from the users location to the selected destination
     func createRoute() -> [Vertex<ImageAnnotation>]?
@@ -332,18 +374,18 @@ class InteractiveMapViewController: UIViewController
                 {
                     let index = description.index(description.startIndex, offsetBy: description.count - 2)
                     description = String(description.prefix(upTo: index))
-                    routeOverviewView?.directionsTextView.text = "\(description)"
+                    routeOverviewView!.directionsTextView.text = "\(description)"
                 }
                 else
                 {
-                    routeOverviewView?.directionsTextView.text = "Could not find Route"
+                    routeOverviewView!.directionsTextView.text = "Could not find Route"
                 }
                 
-                routeOverviewView?.tripLbl.text = "Your Location -> \(destinationAnnotation.title!)"
+                routeOverviewView!.tripLbl.text = "Your Location -> \(destinationAnnotation.title!)"
                 
-                routeOverviewView?.trailReportTextView.text = trailReports
+                routeOverviewView!.trailReportTextView.text = trailReports
                 
-                routeOverviewView?.configureItems()
+                routeOverviewView!.configureItems()
                 presentRouteOverviewMenu()
                 InteractiveMapViewController.routeInProgress = true
             }
@@ -479,8 +521,8 @@ class InteractiveMapViewController: UIViewController
     private func presentTrailReportMenu()
     {
         trailReportTableView.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 250)
-        let window = UIApplication.shared.keyWindow
-        trailReportMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 250)
+        let window = self.view
+        trailReportMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 300)
         trailReportMenu?.view = trailReportTableView
         let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissTrailReportMenu))
         trailReportMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
@@ -508,8 +550,8 @@ class InteractiveMapViewController: UIViewController
     private func presentRouteOverviewMenu()
     {
         routeOverviewView!.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 200)
-        let window = UIApplication.shared.keyWindow
-        routeOverviewMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 200)
+        let window = self.view
+        routeOverviewMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 300)
         routeOverviewMenu?.view = routeOverviewView
         let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissRouteOverviewMenu))
         routeOverviewMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
@@ -586,6 +628,27 @@ class InteractiveMapViewController: UIViewController
         }.resume()
     }
     
+    func getSingleUser(id: String, completion: @escaping (Result<User, Error>) -> Void) {
+        print("http://127.0.0.1:8080/api/users/\(id)")
+        let url = URL(string: "http://127.0.0.1:8080/api/users/\(id)")!
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "Unknown error")
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            if let user = try? decoder.decode(User.self, from: data) {
+                DispatchQueue.main.async {
+                    completion(.success(user))
+                }
+            } else {
+                print("Unable to parse JSON response.")
+                completion(.failure(error!))
+            }
+        }.resume()
+    }
     /// getTrailReports: void -> [TrailReport] || Error
     /// gets all the trail reports being stored on the database
     func getTrailReports(completion: @escaping (Result<[TrailReport], Error>) -> Void) {
@@ -699,6 +762,7 @@ extension InteractiveMapViewController: UITextFieldDelegate
 {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         presentSideMenu()
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
         return true
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -711,6 +775,7 @@ extension InteractiveMapViewController: UITextFieldDelegate
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
         if InteractiveMapViewController.wasCancelled{
             self.trailSelectorMenu?.dismissItems()
             self.searchBar.textField.text = nil
@@ -722,20 +787,20 @@ extension InteractiveMapViewController: UITextFieldDelegate
 }
 extension InteractiveMapViewController: CLLocationManagerDelegate
 {
-//    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading){
-//        myMap.camera.heading = newHeading.magneticHeading
-//        myMap.setCamera(myMap.camera, animated: true)
-//       }
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        let location = locations[0]
-//        let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
-//            let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude)
-//            let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
-//            myMap.setRegion(region, animated: true)
-//            self.myMap.showsUserLocation = true
-//
-//            let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 5000, pitch: 30, heading: 0)
-//            myMap.setCamera(mapCamera, animated: true)
-//     }
-
+    //    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading){
+    //        myMap.camera.heading = newHeading.magneticHeading
+    //        myMap.setCamera(myMap.camera, animated: true)
+    //       }
+    //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    //        let location = locations[0]
+    //        let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
+    //            let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude)
+    //            let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
+    //            myMap.setRegion(region, animated: true)
+    //            self.myMap.showsUserLocation = true
+    //
+    //            let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 5000, pitch: 30, heading: 0)
+    //            myMap.setCamera(mapCamera, animated: true)
+    //     }
+    
 }

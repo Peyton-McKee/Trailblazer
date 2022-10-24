@@ -37,14 +37,19 @@ class UserSettingsViewController : UIViewController {
     {
         userNameLabel.translatesAutoresizingMaskIntoConstraints = false
         userNameLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .title1), size: 20)
-        userNameLabel.text = "Username: \(InteractiveMapViewController.currentUser.userName)"
+        userNameLabel.text = "Username: \(InteractiveMapViewController.currentUser!.userName)"
         userNameLabel.textColor = .red
         view.addSubview(userNameLabel)
         createConstraints(item: userNameLabel, distFromLeft: 0, distFromTop: Double(view.bounds.height)/10)
     }
     @objc func logOutPressed(sender: UIButton)
     {
+        UserDefaults.standard.set(nil, forKey: "userUsername")
+        UserDefaults.standard.set(nil, forKey: "userPassword")
+        UserDefaults.standard.set(nil, forKey: "userId")
+        InteractiveMapViewController.currentUser = nil
         InteractiveMapViewController.destination = nil
+        InteractiveMapViewController.routeInProgress = false
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
         
