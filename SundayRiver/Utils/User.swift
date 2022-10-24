@@ -15,7 +15,8 @@ enum userStatus
 
 struct User : Codable{
     var id : String?
-    var userName : String
-    var password : String
+    var userName : String?
+    var password : String?
+    var trailReports: [TrailReport]?
 }
 

@@ -20,6 +20,9 @@ final class User: Model, Content {
     @Field(key: "password")
     var password: String
     
+    @Children(for: \.$user)
+    var trailReports: [TrailReport]
+    
     init() {}
     
     init(id: UUID? = nil, userName: String, password: String) {

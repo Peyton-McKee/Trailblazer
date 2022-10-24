@@ -20,10 +20,15 @@ final class TrailReport: Model, Content {
     @Field(key: "location")
     var location: String
     
+    @Parent(key: "userID")
+    var user: User
+    
+    
     init() {}
     
-    init(id: UUID? = nil, type: String, location: String) {
+    init(id: UUID? = nil, type: String, location: String, userID: User.IDValue) {
         self.type = type
         self.location = location
+        self.$user.id = userID
     }
 }

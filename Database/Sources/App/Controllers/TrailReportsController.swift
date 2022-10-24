@@ -22,7 +22,9 @@ struct TrailReportsController: RouteCollection {
     
     func createHandler(_ req: Request)
     throws -> EventLoopFuture<TrailReport> {
-        let trailReport = try req.content.decode(TrailReport.self)
+        let data = try req.content.decode(CreateTrailReportData.self)
+        
+        let trailReport = TrailReport(type: data.type, location: data.location, userID: data.userID)
         
         return trailReport.save(on: req.db).map { trailReport }
     }
@@ -42,5 +44,10 @@ struct TrailReportsController: RouteCollection {
                 trailReport.delete(on: req.db).transform(to: .noContent)
             }
     }
-    
+}
+
+struct CreateTrailReportData: Content{
+    let type: String
+    let location: String
+    let userID: UUID
 }

@@ -162,7 +162,7 @@ class SignUpViewController : UIViewController {
             if let data = data {
                 let decoder = JSONDecoder()
                 if let item = try? decoder.decode(User.self, from: data) {
-                    print(item.userName)
+                    print(item.userName!)
                 } else {
                     print("Bad JSON received back.")
                     print(data)

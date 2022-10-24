@@ -18,4 +18,6 @@ struct TrailReport: Codable {
     var id : String?
     var type : String
     var location : String
+    var userID : String?
+    var user : User?
 }

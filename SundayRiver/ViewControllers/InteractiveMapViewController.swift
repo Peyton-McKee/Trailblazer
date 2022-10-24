@@ -10,22 +10,13 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class Container {
-    private(set) var urls: [URL] = []
-    func add() {
-        NotificationCenter.default.post(
-            name: Notification.Name(rawValue: "selectedTrail"),
-            object: self)
-    }
-}
-
-class InteractiveMapViewController: UIViewController
+class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
 {
     static var currentUser : User?
     static var routeInProgress = false
     static var destination : ImageAnnotation?
     static var configuredClasses = false
-    
+    static var wasCancelled = false
     static var container = Container()
     
     let initialRegion = MKCoordinateRegion(
@@ -35,7 +26,6 @@ class InteractiveMapViewController: UIViewController
     var tileRenderer: MKTileOverlayRenderer!
     var myPolyLine = CustomPolyline()
     
-    static var wasCancelled = false
     var searchBar = SearchBarTableHeaderView()
     
     //    var easyLabel = UILabel()
@@ -62,13 +52,18 @@ class InteractiveMapViewController: UIViewController
     var trailSelectorView : TrailSelectorView?
     var trailSelectorMenu : SideMenuFramework?
     
+    var recenterButton = UIButton()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        configureTrailReportView()
         configureClasses()
         configureMyMap()
         configureSearchBar()
         checkUserDefaults()
+        configureTrailReportView()
+        configureButtons()
         //        configureKey()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
@@ -87,9 +82,36 @@ class InteractiveMapViewController: UIViewController
         }
     }
     override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: Notification.Name(rawValue: "selectedTrail"),
-                                                  object: Self.container)
+        NotificationCenter.default.removeObserver(self.trailSelectorView as Any, name: Notification.Name(rawValue: "searchTrail"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectedTrail"), object: Self.container)
+    }
+    private func configureButtons()
+    {
+        recenterButton.translatesAutoresizingMaskIntoConstraints = false
+        recenterButton.setImage(UIImage(systemName: "location.circle"), for: .normal)
+        recenterButton.tintColor = .white
+        recenterButton.backgroundColor = .gray
+        recenterButton.layer.cornerRadius = 10
+        recenterButton.addTarget(self, action: #selector(recenter), for: .touchUpInside)
+        
+        view.addSubview(recenterButton)
+        NSLayoutConstraint.activate([
+            recenterButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            recenterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            recenterButton.heightAnchor.constraint(equalToConstant: 40),
+            recenterButton.widthAnchor.constraint(equalToConstant: 40)])
+
+    }
+    @objc func recenter()
+    {
+        let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
+        let myLocation = CLLocationCoordinate2D(latitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude)
+        let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
+        myMap.setRegion(region, animated: true)
+        self.myMap.showsUserLocation = true
+    
+        let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 5000, pitch: 30, heading: 0)
+        myMap.setCamera(mapCamera, animated: true)
     }
     private func checkUserDefaults()
     {
@@ -104,16 +126,14 @@ class InteractiveMapViewController: UIViewController
             }
             InteractiveMapViewController.currentUser = user
         })
-                
+        
     }
     private func configureClasses()
     {
         if (!Self.configuredClasses)
         {
-            print("ctest")
             TrailsDatabase.addVertexes()
             TrailsDatabase.createEdges()
-            configureTrailReportView()
             Self.configuredClasses = true
             getTrailReportsFromDB()
         }
@@ -121,20 +141,23 @@ class InteractiveMapViewController: UIViewController
     private func configureSearchBar()
     {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.initialFrame = CGRect(x: 20, y: 40, width: 40, height: view.bounds.height/20)
-        searchBar.extendedFrame = CGRect(x: 20, y: 40, width: view.bounds.width - 36, height: view.bounds.height/20)
+        searchBar.initialFrame = CGRect(x: 20, y: 40, width: 40, height: 40)
+        searchBar.extendedFrame = CGRect(x: 20, y: 40, width: view.bounds.width - 36, height: 40)
         searchBar.setInitialFrame()
         searchBar.reloadView()
         searchBar.textField.delegate = self
         view.addSubview(searchBar)
     }
-    @objc func presentSideMenu()
+    private func configureTrailSelectorView()
     {
         self.trailSelectorView = TrailSelectorView(frame: CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 80, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
         trailSelectorView?.configureTableViewAndSearchBar()
         let window = self.view
         trailSelectorMenu = SideMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, width: UIScreen.main.bounds.size.width)
         trailSelectorMenu?.view = trailSelectorView
+    }
+    @objc func presentSideMenu()
+    {
         trailSelectorMenu?.presentItems()
     }
     @objc func dismissTrailSelector()
@@ -160,48 +183,6 @@ class InteractiveMapViewController: UIViewController
         trailReportTableView.register(TrailReportTypeTableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
-    //    private func configureKey()
-    //    {
-    //        let preferredFont = UIFont.systemFont(ofSize: 15)
-    //        easyLabel.text = "Easier Trails: 🟢"
-    //        easyLabel.textColor = .green
-    //        easyLabel.translatesAutoresizingMaskIntoConstraints = false
-    //        easyLabel.font = preferredFont
-    //
-    //        intermediateLabel.text = "Intermediate Trails: 🟦"
-    //        intermediateLabel.textColor = .blue
-    //        intermediateLabel.translatesAutoresizingMaskIntoConstraints = false
-    //        intermediateLabel.font = preferredFont
-    //
-    //        advancedLabel.text = "Advanced Trails: ♢"
-    //        advancedLabel.textColor = .black
-    //        advancedLabel.translatesAutoresizingMaskIntoConstraints = false
-    //        advancedLabel.font = preferredFont
-    //
-    //        expertsOnlyLabel.text = "Experts Only Trails: ♢♢"
-    //        expertsOnlyLabel.textColor = .red
-    //        expertsOnlyLabel.translatesAutoresizingMaskIntoConstraints = false
-    //        expertsOnlyLabel.font = preferredFont
-    //
-    //        liftLabel.text = "Lifts: -"
-    //        liftLabel.textColor = .purple
-    //        liftLabel.translatesAutoresizingMaskIntoConstraints = false
-    //        liftLabel.font = preferredFont
-    //
-    //
-    //        self.view.addSubview(easyLabel)
-    //        self.view.addSubview(intermediateLabel)
-    //        self.view.addSubview(advancedLabel)
-    //        self.view.addSubview(expertsOnlyLabel)
-    //        self.view.addSubview(liftLabel)
-    //
-    //        createConstraints(item: easyLabel, distFromLeft: Double(view.bounds.width)/2, distFromTop: Double(view.bounds.height)/2 + Double(view.bounds.height) / 20 )
-    //        createConstraints(item: intermediateLabel, distFromLeft: Double(view.bounds.width)/2, distFromTop: Double(view.bounds.height)/2 + Double(view.bounds.height) / 10  )
-    //        createConstraints(item: advancedLabel, distFromLeft: Double(view.bounds.width)/2, distFromTop: Double(view.bounds.height)/2 + Double(view.bounds.height) * 3 / 20)
-    //        createConstraints(item: expertsOnlyLabel, distFromLeft: Double(view.bounds.width)/2, distFromTop: Double(view.bounds.height)/2 + Double(view.bounds.height) / 5)
-    //        createConstraints(item: liftLabel, distFromLeft: Double(view.bounds.width)/2, distFromTop: Double(view.bounds.height)/2 + Double(view.bounds.height) / 4)
-    //    }
-    //
     ///configureMyMap void -> voidj
     ///Configures and formats myMap
     private func configureMyMap()
@@ -263,15 +244,7 @@ class InteractiveMapViewController: UIViewController
         })
     }
     
-    //
-    //    private func setupTileRenderer() {
-    //        let overlay = MapOverlay()
-    //        overlay.canReplaceMapContent = true
-    //        myMap.addOverlay(overlay, level: .aboveRoads)
-    //        tileRenderer = MKTileOverlayRenderer(tileOverlay: overlay)
-    //        overlay.minimumZ = 13
-    //        overlay.maximumZ = 17
-    //    }
+
     
     /// createConstraints: UIView, Double, Double -> void
     ///paramters:
@@ -595,7 +568,9 @@ class InteractiveMapViewController: UIViewController
         case .crowded:
             originAnnotation.subtitle = "Crowded"
         }
-        saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, location: "\(originAnnotation.coordinate.latitude),\(originAnnotation.coordinate.longitude)"))
+        guard let currentUserId = InteractiveMapViewController.currentUser?.id else { return }
+        print("test")
+        saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, location: "\(originAnnotation.coordinate.latitude),\(originAnnotation.coordinate.longitude)", userID: "\(currentUserId)"))
         closestTrail.trailReport = originAnnotation
         myMap.addAnnotation(originAnnotation)
         
@@ -697,7 +672,7 @@ extension InteractiveMapViewController: MKMapViewDelegate
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
         mapView.setRegion(zoomed, animated: true)
-        if let userLocatoin = view.annotation as? MKUserLocation
+        if view.annotation is MKUserLocation
         {
             return
             //then you selected the user location
@@ -785,22 +760,4 @@ extension InteractiveMapViewController: UITextFieldDelegate
         }
     }
 }
-extension InteractiveMapViewController: CLLocationManagerDelegate
-{
-    //    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading){
-    //        myMap.camera.heading = newHeading.magneticHeading
-    //        myMap.setCamera(myMap.camera, animated: true)
-    //       }
-    //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    //        let location = locations[0]
-    //        let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
-    //            let myLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(location.coordinate.latitude,location.coordinate.longitude)
-    //            let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
-    //            myMap.setRegion(region, animated: true)
-    //            self.myMap.showsUserLocation = true
-    //
-    //            let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 5000, pitch: 30, heading: 0)
-    //            myMap.setCamera(mapCamera, animated: true)
-    //     }
-    
-}
+
