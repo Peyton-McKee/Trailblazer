@@ -126,7 +126,7 @@ class InteractiveMapViewController: UIViewController
         searchBar.setInitialFrame()
         searchBar.reloadView()
         searchBar.textField.delegate = self
-        
+        view.addSubview(searchBar)
     }
     @objc func presentSideMenu()
     {
