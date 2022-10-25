@@ -26,6 +26,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var tileRenderer: MKTileOverlayRenderer!
     var myPolyLine = CustomPolyline()
     
+    var cancelButton = UIButton()
+    
     var searchBar = SearchBarTableHeaderView()
     
     //    var easyLabel = UILabel()
@@ -62,7 +64,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         configureMyMap()
         configureSearchBar()
         checkUserDefaults()
-        configureTrailReportView()
+        configureTrailSelectorView()
         configureButtons()
         //        configureKey()
         locationManager.delegate = self
@@ -94,13 +96,34 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         recenterButton.layer.cornerRadius = 10
         recenterButton.addTarget(self, action: #selector(recenter), for: .touchUpInside)
         
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        cancelButton.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        cancelButton.tintColor = .white
+        cancelButton.backgroundColor = .cyan
+        cancelButton.layer.cornerRadius = 10
+        cancelButton.isHidden = true
+        cancelButton.addTarget(self, action: #selector(cancelRoute), for: .touchUpInside)
+        
         view.addSubview(recenterButton)
+        view.addSubview(cancelButton)
+        
         NSLayoutConstraint.activate([
             recenterButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             recenterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
             recenterButton.heightAnchor.constraint(equalToConstant: 40),
-            recenterButton.widthAnchor.constraint(equalToConstant: 40)])
+            recenterButton.widthAnchor.constraint(equalToConstant: 40),
+            cancelButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            cancelButton.heightAnchor.constraint(equalToConstant: 40),
+            cancelButton.widthAnchor.constraint(equalToConstant: 40)])
 
+    }
+    @objc func cancelRoute()
+    {
+        InteractiveMapViewController.routeInProgress = false
+        InteractiveMapViewController.destination = nil
+        self.cancelButton.isHidden = true
+        showAllTrails()
     }
     @objc func recenter()
     {
@@ -113,6 +136,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 5000, pitch: 30, heading: 0)
         myMap.setCamera(mapCamera, animated: true)
     }
+    
     private func checkUserDefaults()
     {
         guard let userId = UserDefaults.standard.string(forKey: "userId") else {
@@ -138,6 +162,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             getTrailReportsFromDB()
         }
     }
+    
     private func configureSearchBar()
     {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -148,6 +173,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         searchBar.textField.delegate = self
         view.addSubview(searchBar)
     }
+    
     private func configureTrailSelectorView()
     {
         self.trailSelectorView = TrailSelectorView(frame: CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 80, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
@@ -156,10 +182,12 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         trailSelectorMenu = SideMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, width: UIScreen.main.bounds.size.width)
         trailSelectorMenu?.view = trailSelectorView
     }
+    
     @objc func presentSideMenu()
     {
         trailSelectorMenu?.presentItems()
     }
+    
     @objc func dismissTrailSelector()
     {
         trailSelectorMenu?.dismissItems()
@@ -172,6 +200,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         sampleRoute()
         return
     }
+    
     ///configureTrailReportVieiw: void -> void
     ///Configures and formats the trailReportTableView
     private func configureTrailReportView()
@@ -325,12 +354,14 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             print("test2")
             var description = ""
             var trailReports = ""
+            var count = 0
             for edge in pathToDestination
             {
                 for annotation in TrailsDatabase.keyAnnotations
                 {
                     if (annotation.value == edge.value) && (!description.contains(annotation.value.title!))
                     {
+                        count += 1
                         myMap.addAnnotation(annotation.value)
                         description.append("\(edge.value.title!); ")
                     }
@@ -343,16 +374,31 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             if(!InteractiveMapViewController.routeInProgress)
             {
                 routeOverviewView = RouteOverviewView(frame: self.view.frame)
-                if !description.isEmpty
+                if description.isEmpty
+                {
+                    routeOverviewView!.directionsTextView.text = "Could not find Route"
+                }
+                else if count <= 2
                 {
                     let index = description.index(description.startIndex, offsetBy: description.count - 2)
                     description = String(description.prefix(upTo: index))
                     routeOverviewView!.directionsTextView.text = "\(description)"
+
                 }
                 else
                 {
-                    routeOverviewView!.directionsTextView.text = "Could not find Route"
+                    var searchRange = description.startIndex..<description.endIndex
+                    var indices: [String.Index] = []
+                    while let range = description.range(of: ";", options: .caseInsensitive, range: searchRange)
+                    {
+                        searchRange = range.upperBound..<searchRange.upperBound
+                        indices.append(range.lowerBound)
+                    }
+                    print(description.prefix(upTo: indices[1]))
+                    routeOverviewView!.directionsTextView.text = "\(description.prefix(upTo: indices[1]))"
+
                 }
+
                 
                 routeOverviewView!.tripLbl.text = "Your Location -> \(destinationAnnotation.title!)"
                 
@@ -548,6 +594,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     @objc func letsGoButtonPressed()
     {
         self.routeOverviewMenu?.dismissItems()
+        self.cancelButton.isHidden = false
+        self.recenter()
     }
     
     /// createTrailReport: TrailReportType -> void
@@ -736,6 +784,7 @@ extension InteractiveMapViewController: UITableViewDataSource, UITableViewDelega
 extension InteractiveMapViewController: UITextFieldDelegate
 {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("test")
         presentSideMenu()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
         return true
