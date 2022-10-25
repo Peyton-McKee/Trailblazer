@@ -71,6 +71,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
+        getTrailReportsFromDB()
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -159,7 +160,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             TrailsDatabase.addVertexes()
             TrailsDatabase.createEdges()
             Self.configuredClasses = true
-            getTrailReportsFromDB()
         }
     }
     
@@ -249,6 +249,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     ///Attempts to connect to database and adds any found trailReports to myMap
     private func getTrailReportsFromDB()
     {
+        print("test")
         getTrailReports(completion: { value in
             guard let trailReports = try? value.get() else
             {
@@ -652,7 +653,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     }
     
     func getSingleUser(id: String, completion: @escaping (Result<User, Error>) -> Void) {
-        print("http://127.0.0.1:8080/api/users/\(id)")
         let url = URL(string: "http://127.0.0.1:8080/api/users/\(id)")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in

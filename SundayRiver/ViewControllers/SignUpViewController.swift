@@ -132,6 +132,7 @@ class SignUpViewController : UIViewController {
             }
             if !foundMatch {
                 self.saveUser(myUser)
+                
                 InteractiveMapViewController.currentUser = myUser
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")

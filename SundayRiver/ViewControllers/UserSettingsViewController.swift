@@ -12,6 +12,9 @@ class UserSettingsViewController : UIViewController {
     var logOutButton = UIButton()
     var userNameLabel = UILabel()
     var backgroundImageView = UIImageView()
+    var dimmedBackground = UIView()
+    var settingsTableView = UITableView()
+    var options: [Setting] = [Setting(name: "Trail Reports Made", image: UIImage(systemName: "snowflake")!, textColor: .green, viewController: UserTrailReportsViewController()), Setting(name: "More Settings", image: UIImage(systemName: "circle")!, textColor: .red, viewController: UserTrailReportsViewController())]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +22,29 @@ class UserSettingsViewController : UIViewController {
         backgroundImageView.image = UIImage(named: "SRMoon.png")!
         backgroundImageView.frame = view.frame
         view.addSubview(backgroundImageView)
+        configureTableView()
         configureButtons()
         configureLabels()
     }
-    
+    private func configureTableView()
+    {
+        dimmedBackground.backgroundColor = UIColor(hex: "#000000A0")
+        view.addSubview(dimmedBackground)
+        dimmedBackground.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
+        settingsTableView.layer.cornerRadius = 15
+        settingsTableView.delegate = self
+        settingsTableView.dataSource = self
+        settingsTableView.frame = CGRect(x: 20, y: view.bounds.height/5, width: view.bounds.width - 40, height: view.bounds.height - view.bounds.height/5)
+        settingsTableView.backgroundColor = UIColor(hex: "#00000000")
+        settingsTableView.register(UserSettingsTableViewCell.self, forCellReuseIdentifier: "userSettingsCell")
+        view.addSubview(settingsTableView)
+        
+    }
     private func configureButtons()
     {
         logOutButton.translatesAutoresizingMaskIntoConstraints = false
         logOutButton.setTitle("Log Out", for: .normal)
+        logOutButton.titleLabel?.font = UIFont(name: "markerfelt-wide", size: 20)
         logOutButton.setTitleColor(.blue, for: .normal)
         logOutButton.addTarget(self, action: #selector(logOutPressed), for: .touchUpInside)
         view.addSubview(logOutButton)
@@ -41,12 +59,14 @@ class UserSettingsViewController : UIViewController {
         userNameLabel.textColor = .red
         view.addSubview(userNameLabel)
         createConstraints(item: userNameLabel, distFromLeft: 0, distFromTop: Double(view.bounds.height)/10)
+        userNameLabel.font = UIFont(name: "markerfelt-wide", size: 20)
         guard let currentUser = InteractiveMapViewController.currentUser else {
             userNameLabel.text = "User not found"
             return
             
         }
         userNameLabel.text = "Username: \(currentUser.userName!)"
+        
 
     }
     @objc func logOutPressed(sender: UIButton)
@@ -72,5 +92,30 @@ class UserSettingsViewController : UIViewController {
             item.heightAnchor.constraint(equalToConstant: 40),
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
         ])
+    }
+}
+extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
+{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.options.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "userSettingsCell", for: indexPath) as! UserSettingsTableViewCell
+        cell.layer.cornerRadius = 15
+        cell.backgroundColor = .black
+        cell.backView.frame = CGRect(x: 0, y: 0, width: cell.bounds.width, height: cell.bounds.height)
+        cell.setting = options[indexPath.row]
+        cell.configure()
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! UserSettingsTableViewCell
+        print("test")
+        self.tabBarController?.present(cell.setting!.viewController, animated: true)
     }
 }

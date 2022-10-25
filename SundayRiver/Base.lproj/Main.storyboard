@@ -124,6 +124,21 @@
             </objects>
             <point key="canvasLocation" x="1580" y="806"/>
         </scene>
+        <!--User Trail Reports View Controller-->
+        <scene sceneID="AC0-UW-k5O">
+            <objects>
+                <viewController id="hHb-mV-1cj" customClass="UserTrailReportsViewController" customModule="SundayRiver" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sHY-de-E5i">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="O7d-ha-IV9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bpe-te-OOV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3338" y="2215"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="128" height="122"/>

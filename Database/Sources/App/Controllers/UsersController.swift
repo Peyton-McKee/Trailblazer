@@ -18,6 +18,7 @@ struct UsersController: RouteCollection {
         usersRoute.get(use: getAllHandler)
         usersRoute.get(":userID", use: getHandler)
         usersRoute.delete(":userID", use: deleteHandler)
+        usersRoute.get(":userID", "trail-reports", use: getTrailReportsHandler)
     }
     
     // 5
@@ -36,6 +37,16 @@ struct UsersController: RouteCollection {
         // 4
         User.find(req.parameters.get("userID"), on: req.db)
             .unwrap(or: Abort(.notFound))
+    }
+    func getTrailReportsHandler(_ req: Request)
+      -> EventLoopFuture<[TrailReport]> {
+      // 2
+      User.find(req.parameters.get("userID"), on: req.db)
+        .unwrap(or: Abort(.notFound))
+        .flatMap { user in
+          // 3
+          user.$trailReports.get(on: req.db)
+        }
     }
     func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
         User.find(req.parameters.get("userID"), on: req.db)

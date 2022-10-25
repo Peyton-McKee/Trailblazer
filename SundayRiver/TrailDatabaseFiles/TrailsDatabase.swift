@@ -8,7 +8,6 @@
 import Foundation
 import MapKit
 
-
 enum Difficulty
 {
     case easy
@@ -18,9 +17,6 @@ enum Difficulty
     case lift
     case terrainPark
 }
-
-
-
 
 class ImageAnnotation : NSObject, MKAnnotation{
     var coordinate: CLLocationCoordinate2D
@@ -736,7 +732,7 @@ class TrailsDatabase : NSObject {
     //Little White Cap Quad
     static let botLWCQ = Vertex<ImageAnnotation>(Lifts[12].annotations[0])
     static let topLWCQ = Vertex<ImageAnnotation>(Lifts[12].annotations[1])
-
+    
     static let keyAnnotations = [botSpruce, botQLT, botNP, botChondola, auroraSideJD, jordanSideJD, botAurora, botJord, topLol, topExcal, topRogue, topCaram, topKans, junctionWoodsman, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, witchWayTop, cycloneJunctionAirglow, topBlackHole, topFirestar, startLO, topBorealis, kansasJunctionVortex, topParadigm, startSM, SMJunctionGR, topQuantum, topGR, topLD, topDM, Bend2DM, topT72, topSensation, topDMTP, topEscapade, top3D, botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW, botSouthridge, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT, botLocke, topGP, topUC, topUSP, topLL, topJW, topT2, topBW, topCC, topMM, topBP, topWF, topCO, topCB, topRR, topSB, botTQ, botWHQ, botLWCQ, topSalvation, topObsession, topChutzpah, topWH, topSW, topTempest, topJibe, topHON, topGC, topMS, topAssumption, topSL, topSS, topStarW, topStarB, botLWCQ]
     
     static let jordanKeyAnnotations = [botJord, topLol, topRogue, topExcal, topCaram, jordanSideJD]
@@ -769,18 +765,18 @@ class TrailsDatabase : NSObject {
         //Jordan
         graph.addEdge(direction: .undirected, from: jordanSideJD, to: botJord, weight: 100)
         graph.addEdge(direction: .directed, from: botJord, to: topJord, weight: 100)
-        //lollapalooza
+        //Lollapalooza
         graph.addEdge(direction: .undirected, from: topJord, to: topLol, weight: 1)
         graph.addEdge(direction: .directed, from: topLol, to: bend1Lol, weight: 1)
         graph.addEdge(direction: .directed, from: bend1Lol, to: bend2Lol, weight: 1)
         graph.addEdge(direction: .directed, from: bend2Lol, to: botJord, weight: 1)
-        //excalibur
+        //Excalibur
         graph.addEdge(direction: .directed, from: topLol, to: topExcal, weight: 1)
         graph.addEdge(direction: .directed, from: topExcal, to: bend1Excal, weight: 50)
         graph.addEdge(direction: .directed, from: bend1Excal, to: midExcal, weight: 50)
         graph.addEdge(direction: .directed, from: midExcal, to: botExcal, weight: 50)
         graph.addEdge(direction: .directed, from: botExcal, to: botJord, weight: 50)
-        //rogue
+        //Rogue Angel
         graph.addEdge(direction: .undirected, from: topJord, to: topRogue, weight: 1)
         graph.addEdge(direction: .directed, from: topRogue, to: midRogue, weight: 50)
         graph.addEdge(direction: .directed, from: topRogue, to: topCaram, weight: 50)
@@ -789,7 +785,7 @@ class TrailsDatabase : NSObject {
         //iCaramba
         graph.addEdge(direction: .directed, from: topCaram, to: botCaram, weight: 4000)
         graph.addEdge(direction: .directed, from: botCaram, to: carambaJunctionCyclone, weight: 4000)
-        //kansas
+        //Kansas
         graph.addEdge(direction: .undirected, from: topJord, to: topKans, weight: 1)
         graph.addEdge(direction: .directed, from: topKans, to: bend1Kans, weight: 1)
         graph.addEdge(direction: .directed, from: bend1Kans, to: ozJunctionKans, weight: 1)
@@ -801,7 +797,7 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: bend4Kans, to: kansJunctionWitchWay, weight: 1)
         graph.addEdge(direction: .directed, from: endKans, to: topCyclone, weight: 1)
         graph.addEdge(direction: .directed, from: endKans, to: northernLightsJunctionCyclone, weight: 1)
-        //woodsman
+        //Woodsman
         graph.addEdge(direction: .directed, from: topWoodsman, to: junctionWoodsman, weight: 4000)
         graph.addEdge(direction: .undirected, from: woodsmanJunctionKans, to: junctionWoodsman, weight: 1)
         graph.addEdge(direction: .directed, from: junctionWoodsman, to: endWoodsman, weight: 4000)
@@ -818,9 +814,9 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: botAurora, to: topAurora, weight: 100)
         graph.addEdge(direction: .undirected, from: botAurora, to: auroraSideJD, weight: 1)
         graph.addEdge(direction: .undirected, from: botAurora, to: botQLT, weight: 1)
-        //Jordan double
+        //Jordan Double
         graph.addEdge(direction: .undirected, from: auroraSideJD, to: jordanSideJD, weight: 100)
-        //northernlights
+        //Northern Lights
         graph.addEdge(direction: .undirected, from: topAurora, to: northernLightsTop, weight: 50)
         graph.addEdge(direction: .directed, from: northernLightsTop, to: witchWayJunctionNL, weight: 50)
         graph.addEdge(direction: .undirected, from: witchWayJunctionNL, to: witchWayTop, weight: 50)
@@ -833,10 +829,10 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: bend1NL, to: fireStarJunctionNL, weight: 50)
         graph.addEdge(direction: .undirected, from: fireStarJunctionNL, to: topFirestar, weight: 50)
         graph.addEdge(direction: .directed, from: fireStarJunctionNL, to: botAurora, weight: 50)
-        //witchway
+        //Witchway
         graph.addEdge(direction: .directed, from: witchWayTop, to: kansJunctionWitchWay, weight: 50)
         graph.addEdge(direction: .directed, from: kansJunctionWitchWay, to: endKans, weight: 1)
-        //firestar
+        //Firestar
         graph.addEdge(direction: .directed, from: topFirestar, to: bend1Firestar, weight: 50)
         graph.addEdge(direction: .directed, from: bend1Firestar, to: bend2Firestar, weight: 50)
         graph.addEdge(direction: .directed, from: bend2Firestar, to: endFirestar, weight: 50)
@@ -865,10 +861,10 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: blackHoleJunctionAirglow, to: bend2Airglow, weight: 300)
         graph.addEdge(direction: .directed, from: bend2Airglow, to: botAirglow, weight: 300)
         graph.addEdge(direction: .directed, from: botAirglow, to: botAurora, weight: 300)
-        //blackHole
+        //Black Hole
         graph.addEdge(direction: .directed, from: topBlackHole, to: botBlackHole, weight: 4000)
         graph.addEdge(direction: .directed, from: botBlackHole, to: botAirglow, weight: 4000)
-        //LightsOut
+        //Lights Out
         graph.addEdge(direction: .directed, from: startLO, to: vortexJunctionLO, weight: 1)
         graph.addEdge(direction: .undirected, from: vortexJunctionLO, to: kansasJunctionVortex, weight: 1)
         graph.addEdge(direction: .directed, from: vortexJunctionLO, to: UpperDownDraftJunctionLO, weight: 1)
@@ -1221,7 +1217,7 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: bend1GP, to: bend2Ecstasy, weight: 50)
         graph.addEdge(direction: .directed, from: EcstasyJunctionGP, to: bend2GP, weight: 50)
         graph.addEdge(direction: .directed, from: bend2GP, to: agonyJunctionGP, weight: 50)
-        graph.addEdge(direction: .undirected, from: TGJunctionAgony, to: agonyJunctionGP, weight: 1)
+        graph.addEdge(direction: .directed, from: TGJunctionAgony, to: agonyJunctionGP, weight: 1)
         graph.addEdge(direction: .directed, from: agonyJunctionGP, to: TGJunctionGP, weight: 50)
         graph.addEdge(direction: .undirected, from: TGJunctionGP, to: bend1TG, weight: 1)
         graph.addEdge(direction: .directed, from: TGJunctionGP, to: LRJunctionGP, weight: 50)
@@ -1342,7 +1338,7 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .undirected, from: HOJunctionSalvation, to: HOJunctionObsession, weight: 1)
         //Heat's Off
         graph.addEdge(direction: .directed, from: topHO, to: endHO, weight: 50)
-//Obsession
+        //Obsession
         graph.addEdge(direction: .undirected, from: topWHQ, to: topObsession, weight: 1)
         graph.addEdge(direction: .directed, from: topObsession, to: bend1Obsession, weight: 300)
         graph.addEdge(direction: .directed, from: bend1Obsession, to: HOJunctionObsession, weight: 300)
@@ -1430,8 +1426,8 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: GCJunctionSB, to: endStarB, weight: 50)
         graph.addEdge(direction: .undirected, from: endStarB, to: SBJunctionMS, weight: 1)
         //Little White Cap Quad
-//       graph.addEdge(direction: .directed, from: botLWCQ, to: topLWCQ, weight: 100)
-
+        //       graph.addEdge(direction: .directed, from: botLWCQ, to: topLWCQ, weight: 100)
+        
     }
     
     static func createAnnotation(title: String?, latitude: Double, longitude: Double, difficulty: Difficulty) -> ImageAnnotation

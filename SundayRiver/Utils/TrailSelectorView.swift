@@ -108,6 +108,7 @@ class TrailSelectorView : UIView {
     var filteredTrails : [Trail] = []
     var totalTrails : [Trail]  = []
     
+    var sections = ["Barker Mountain", "Southridge", "Locke Mountain", "North Peak", "Spruce Peak", "White Cap", "Aurora Peak", "Oz Mountain", "Jordan Bowl"]
     var searchBar : UITextField?
     var searchBarHeaderView : SearchBarTableHeaderView?
     var searchBarTableView = UITableView()
@@ -278,41 +279,9 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
         {
             return "Results"
         }
-        else if(section == 0)
-        {
-            return "Barker Mountain"
-        }
-        else if (section == 1)
-        {
-            return "South Ridge"
-        }
-        else if (section == 2)
-        {
-            return "Locke Mountain"
-        }
-        else if (section == 3)
-        {
-            return "North Peak"
-        }
-        else if (section == 4)
-        {
-            return "Spruce Peak"
-        }
-        else if (section == 5)
-        {
-            return "White Cap"
-        }
-        else if (section == 6)
-        {
-            return "Aurora Peak"
-        }
-        else if (section == 7)
-        {
-            return "Oz Mountain"
-        }
         else
         {
-            return "Jordan Bowl"
+            return sections[section]
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -409,7 +378,7 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
         default:
             cell.label.textColor = .orange
         }
-        cell.label.font = UIFont(name: "Times New Roman", size: 15)
+        cell.label.font = UIFont(name: "markerfelt-wide", size: 15)
         cell.backgroundColor =  .gray
         return cell
     }
@@ -429,6 +398,7 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             headerView.textLabel?.textColor = .purple
         }
     }
+    
 }
 
 
