@@ -16,7 +16,10 @@ struct CreateTrailReports: Migration {
             .id()
     
             .field("type", .string, .required)
-            .field("location", .string, .required)
+            .field("latitude", .double, .required)
+            .field("longitude", .double, .required)
+            .field("dateMade", .string, .required)
+            .field("trailMadeOn", .string, .required)
             .field("userID", .uuid, .required)
             .create()
     }

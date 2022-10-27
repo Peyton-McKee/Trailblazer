@@ -17,8 +17,17 @@ final class TrailReport: Model, Content {
     @Field(key: "type")
     var type: String
     
-    @Field(key: "location")
-    var location: String
+    @Field(key: "latitude")
+    var latitude: Double
+    
+    @Field(key: "longitude")
+    var longitude: Double
+    
+    @Field(key: "dateMade")
+    var dateMade: String
+    
+    @Field(key: "trailMadeOn")
+    var trailMadeOn: String
     
     @Parent(key: "userID")
     var user: User
@@ -26,9 +35,12 @@ final class TrailReport: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, type: String, location: String, userID: User.IDValue) {
+    init(id: UUID? = nil, type: String, latitude: Double, longitude: Double, dateMade: String, trailMadeOn: String, userID: User.IDValue) {
         self.type = type
-        self.location = location
+        self.latitude = latitude
+        self.longitude = longitude
+        self.dateMade = dateMade
+        self.trailMadeOn = trailMadeOn
         self.$user.id = userID
     }
 }

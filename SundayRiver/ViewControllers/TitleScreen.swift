@@ -20,7 +20,7 @@ class TitleScreen: UIViewController{
     var vLabel = UILabel()
     var eLabel = UILabel()
     var r1Label = UILabel()
-    var preferredFont = UIFont(name: "Times New Roman", size: 40)
+    var preferredFont = UIFont(name: "markerfelt-wide", size: 40)
     var trailblazerLabel = UILabel()
     var signInButton = UIButton()
     var continueAsGuestButton = UIButton()
@@ -59,11 +59,13 @@ class TitleScreen: UIViewController{
         sLabel.text = "S"
         sLabel.translatesAutoresizingMaskIntoConstraints = false
         sLabel.font = preferredFont
-        sLabel.textColor = .red
+        sLabel.textColor = .red//UIColor(red: 0.27, green: 0.23, blue: 0.42, alpha: 1)
+        
         uLabel.text = "u"
         uLabel.translatesAutoresizingMaskIntoConstraints = false
         uLabel.font = preferredFont
         uLabel.textColor = .red
+        
         nLabel.text = "n"
         nLabel.translatesAutoresizingMaskIntoConstraints = false
         nLabel.font = preferredFont
@@ -147,16 +149,16 @@ class TitleScreen: UIViewController{
     {
         signInButton.setTitle("Sign In", for: .normal)
         signInButton.setTitleColor(.black, for: .normal)
+        signInButton.titleLabel?.font = UIFont(name: "markerfelt-wide", size: 20)
         signInButton.backgroundColor = .cyan
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.titleLabel!.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 20)
         signInButton.addTarget(self, action: #selector(toSignIn), for: .touchUpInside)
         
         signUpButton.setTitle("Sign Up", for: .normal)
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.backgroundColor = .lightGray
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        signUpButton.titleLabel!.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 20)
+        signUpButton.titleLabel!.font = UIFont(name: "markerfelt-wide", size: 20)
         signUpButton.addTarget(self, action: #selector(toSignUp), for: .touchUpInside)
         
         continueAsGuestButton.setTitle("or continue as guest", for: .normal)
@@ -164,7 +166,7 @@ class TitleScreen: UIViewController{
         continueAsGuestButton.addTarget(self, action: #selector(toInteractiveMap), for: .touchUpInside)
         continueAsGuestButton.translatesAutoresizingMaskIntoConstraints = false
         continueAsGuestButton.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
-        continueAsGuestButton.titleLabel!.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .body), size: 20)
+        continueAsGuestButton.titleLabel!.font = UIFont(name: "markerfelt-wide", size: 20)
         
         
         view.addSubview(signInButton)

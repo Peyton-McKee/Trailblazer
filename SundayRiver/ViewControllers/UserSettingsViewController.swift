@@ -60,12 +60,12 @@ class UserSettingsViewController : UIViewController {
         view.addSubview(userNameLabel)
         createConstraints(item: userNameLabel, distFromLeft: 0, distFromTop: Double(view.bounds.height)/10)
         userNameLabel.font = UIFont(name: "markerfelt-wide", size: 20)
-        guard let currentUser = InteractiveMapViewController.currentUser else {
+        guard let currentUserUserName = InteractiveMapViewController.currentUser?.userName else {
             userNameLabel.text = "User not found"
             return
             
         }
-        userNameLabel.text = "Username: \(currentUser.userName!)"
+        userNameLabel.text = "Username: \(currentUserUserName)"
         
 
     }

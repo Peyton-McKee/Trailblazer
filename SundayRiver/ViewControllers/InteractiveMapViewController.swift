@@ -50,6 +50,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var trailReportAnnotation = ImageAnnotation()
     
     var originVertex : Vertex<ImageAnnotation>?
+    var closestAnnotation: Vertex<ImageAnnotation>?
     
     var trailSelectorView : TrailSelectorView?
     var trailSelectorMenu : SideMenuFramework?
@@ -133,8 +134,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
         myMap.setRegion(region, animated: true)
         self.myMap.showsUserLocation = true
-    
-        let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 5000, pitch: 30, heading: 0)
+        let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 1000, pitch: 60, heading: 50)
         myMap.setCamera(mapCamera, animated: true)
     }
     
@@ -258,13 +258,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             }
             for report in trailReports
             {
-                let coordinateString = report.location
-                print(coordinateString)
-                let comma = coordinateString.firstIndex(of: ",")!
-                let latitude = Double(String(coordinateString.prefix(upTo: comma)))!
-                let longitude = Double(String(coordinateString.suffix(coordinateString.suffix(from: comma).count - 1)))!
+                let latitude = report.latitude
+                let longitude = report.longitude
                 let annotation = TrailsDatabase.createAnnotation(title: nil, latitude: latitude, longitude: longitude, difficulty: .easy)
-                annotation.subtitle = report.type
+                annotation.subtitle = "\(report.type)"
                 
                 let closestTrail = self.getClosestAnnotation(origin: annotation).value
                 closestTrail.trailReport = annotation
@@ -298,14 +295,15 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     /// Finds the annotation the least distacne from the passed in origin
     private func getClosestAnnotation(origin: ImageAnnotation) -> Vertex<ImageAnnotation>
     {
-        var nearestAnnotation = TrailsDatabase.annotations[0]
+        self.closestAnnotation = TrailsDatabase.annotations[0]
         for annotation in TrailsDatabase.annotations
         {
-            if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(nearestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(nearestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2))))){
-                nearestAnnotation = annotation
+            if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(closestAnnotation!.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(closestAnnotation!.value.coordinate.longitude - origin.coordinate.longitude, 2))))){
+                self.closestAnnotation = annotation
             }
         }
-        return nearestAnnotation
+        
+        return self.closestAnnotation!
     }
     
     /// assignOrigin: void -> void
@@ -597,6 +595,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         self.routeOverviewMenu?.dismissItems()
         self.cancelButton.isHidden = false
         self.recenter()
+        guard let currentUserId = InteractiveMapViewController.currentUser?.id else{return}
+        self.saveUserRoute(UserRoute(destinationTrailName: (InteractiveMapViewController.destination?.title)!, originTrailName: (self.closestAnnotation?.value.title)!, dateMade: "\(Date.now)", timeTook: 0, userID: currentUserId))
     }
     
     /// createTrailReport: TrailReportType -> void
@@ -619,7 +619,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         }
         guard let currentUserId = InteractiveMapViewController.currentUser?.id else { return }
         print("test")
-        saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, location: "\(originAnnotation.coordinate.latitude),\(originAnnotation.coordinate.longitude)", userID: "\(currentUserId)"))
+        saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
         closestTrail.trailReport = originAnnotation
         myMap.addAnnotation(originAnnotation)
         
@@ -691,6 +691,28 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             } else {
                 print("Unable to parse JSON response.")
                 completion(.failure(error!))
+            }
+        }.resume()
+    }
+    func saveUserRoute(_ userRoute: UserRoute) {
+        let url = URL(string: "http://localhost:8080/api/user-routes/")!
+        
+        let encoder = JSONEncoder()
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? encoder.encode(userRoute)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let decoder = JSONDecoder()
+                if let item = try? decoder.decode(UserRoute.self, from: data) {
+                    print(item.destinationTrailName)
+                } else {
+                    print(data)
+                    print("Bad JSON received back.")
+                }
             }
         }.resume()
     }

@@ -118,7 +118,7 @@ class SignUpViewController : UIViewController {
                 print("Error: \(value)")
                 return
             }
-            let myUser = User(userName: usernameText, password: passwordText)
+            let myUser = User(userName: usernameText, password: passwordText, role: "member")
             var foundMatch = false
             for user in users
             {
@@ -132,14 +132,10 @@ class SignUpViewController : UIViewController {
             }
             if !foundMatch {
                 self.saveUser(myUser)
-                
-                InteractiveMapViewController.currentUser = myUser
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                
-                // This is to get the SceneDelegate object from your view controller
-                // then call the change root view controller function to change to main tab bar
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                
                 //say user successfully created
             }
         })
@@ -162,8 +158,11 @@ class SignUpViewController : UIViewController {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 let decoder = JSONDecoder()
-                if let item = try? decoder.decode(User.self, from: data) {
-                    print(item.userName!)
+                if let user = try? decoder.decode(User.self, from: data) {
+                    print(user.userName!)
+                    InteractiveMapViewController.currentUser = user
+                    
+                    
                 } else {
                     print("Bad JSON received back.")
                     print(data)

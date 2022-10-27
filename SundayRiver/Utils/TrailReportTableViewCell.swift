@@ -34,7 +34,7 @@ class TrailReportTableViewCell : UITableViewCell
         backView.layer.cornerRadius = 15
         backView.backgroundColor = .darkGray
         backView.addSubview(trailReportTypeLabel)
-        trailReportTypeLabel.text = cellTrailReport?.type
+        trailReportTypeLabel.text = "\(cellTrailReport!.type)"
         trailReportTypeLabel.textColor = .white
         trailReportTypeLabel.frame = CGRect(x: backView.frame.minX, y: backView.frame.minY, width: backView.bounds.width, height: backView.bounds.height)
     }

@@ -385,7 +385,6 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? TrailSelectorCustomCell{
-            
             InteractiveMapViewController.destination = cell.cellTrail!.annotations[0]
             InteractiveMapViewController.routeInProgress = false
             InteractiveMapViewController.container.add()

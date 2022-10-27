@@ -20,8 +20,17 @@ final class User: Model, Content {
     @Field(key: "password")
     var password: String
     
+    @Field(key: "role")
+    var role: String
+    
     @Children(for: \.$user)
     var trailReports: [TrailReport]
+    
+    @Children(for: \.$user)
+    var userLocations: [UserLocation]
+    
+    @Children(for: \.$user)
+    var userRoutes: [UserRoute]
     
     init() {}
     

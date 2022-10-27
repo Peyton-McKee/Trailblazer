@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum userStatus
+enum UserRole
 {
     case guest
     case member
@@ -17,6 +17,7 @@ struct User : Codable{
     var id : String?
     var userName : String?
     var password : String?
+    var role: String?
     var trailReports: [TrailReport]?
 }
 

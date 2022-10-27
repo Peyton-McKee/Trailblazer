@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum TrailReportType {
+enum TrailReportType: Codable {
     case moguls
     case ice
     case crowded
@@ -17,7 +17,10 @@ enum TrailReportType {
 struct TrailReport: Codable {
     var id : String?
     var type : String
-    var location : String
+    var latitude : Double
+    var longitude: Double
+    var dateMade: String
+    var trailMadeOn: String
     var userID : String?
     var user : User?
 }
