@@ -425,7 +425,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         self.searchBar.dismissExtendedView()
         let destinationAnnotation = InteractiveMapViewController.destination!
         print("test1")
-        print(Self.origin?.title)
         if let pathToDestination = createRoute(){
             print("test2")
             var description = ""

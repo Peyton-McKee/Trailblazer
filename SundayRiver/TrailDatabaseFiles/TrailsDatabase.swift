@@ -648,6 +648,9 @@ class TrailsDatabase : NSObject {
     //Tempest Quad
     static let botTQ = Vertex<ImageAnnotation>(Lifts[10].annotations[0])
     static let topTQ = Vertex<ImageAnnotation>(Lifts[10].annotations[1])
+    //Little White Cap Quad
+    static let botLWCQ = Vertex<ImageAnnotation>(Lifts[11].annotations[0])
+    static let topLWCQ = Vertex<ImageAnnotation>(Lifts[11].annotations[1])
     //White Heat Quad
     static let botWHQ = Vertex<ImageAnnotation>(Lifts[12].annotations[0])
     static let topWHQ = Vertex<ImageAnnotation>(Lifts[12].annotations[1])
@@ -695,8 +698,8 @@ class TrailsDatabase : NSObject {
     static let SLJunctionHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[3])
     //Green Cheese
     static let topGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[0])
-    static let SBJunctionGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[0])
-    static let endGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[0])
+    static let SBJunctionGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[1])
+    static let endGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[2])
     //Moonstruck
     static let topMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[0])
     static let bend1MS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[1])
@@ -729,11 +732,9 @@ class TrailsDatabase : NSObject {
     static let topStarB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[0])
     static let GCJunctionSB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[1])
     static let endStarB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[2])
-    //Little White Cap Quad
-    static let botLWCQ = Vertex<ImageAnnotation>(Lifts[12].annotations[0])
-    static let topLWCQ = Vertex<ImageAnnotation>(Lifts[12].annotations[1])
+
     
-    static let keyAnnotations = [botSpruce, botQLT, botNP, botChondola, auroraSideJD, jordanSideJD, botAurora, botJord, topLol, topExcal, topRogue, topCaram, topKans, junctionWoodsman, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, witchWayTop, cycloneJunctionAirglow, topBlackHole, topFirestar, startLO, topBorealis, kansasJunctionVortex, topParadigm, startSM, SMJunctionGR, topQuantum, topGR, topLD, topDM, Bend2DM, topT72, topSensation, topDMTP, topEscapade, top3D, botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW, botSouthridge, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT, botLocke, topGP, topUC, topUSP, topLL, topJW, topT2, topBW, topCC, topMM, topBP, topWF, topCO, topCB, topRR, topSB, botTQ, botWHQ, botLWCQ, topSalvation, topObsession, topChutzpah, topWH, topSW, topTempest, topJibe, topHON, topGC, topMS, topAssumption, topSL, topSS, topStarW, topStarB, botLWCQ]
+    static let keyAnnotations = [botSpruce, botQLT, botNP, botChondola, auroraSideJD, jordanSideJD, botAurora, botJord, topLol, topExcal, topRogue, topCaram, topKans, junctionWoodsman, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, witchWayTop, cycloneJunctionAirglow, topBlackHole, topFirestar, startLO, topBorealis, kansasJunctionVortex, topParadigm, startSM, SMJunctionGR, topQuantum, topGR, topLD, topDM, Bend2DM, topT72, topSensation, topDMTP, topEscapade, top3D, botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW, botSouthridge, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT, botLocke, topGP, topUC, topUSP, topLL, topJW, topT2, topBW, topCC, topMM, topBP, topWF, topCO, topCB, topRR, topSB, botTQ, botWHQ, topSalvation, topObsession, topChutzpah, topWH, topSW, topTempest, topJibe, topHON, topGC, topMS, topAssumption, topSL, topSS, topStarW, topStarB, botLWCQ]
     
     static let jordanKeyAnnotations = [botJord, topLol, topRogue, topExcal, topCaram, jordanSideJD]
     
@@ -760,6 +761,7 @@ class TrailsDatabase : NSObject {
             graph.addVertex(vertex)
         }
     }
+    
     static func createEdges()
     {
         //Jordan
@@ -1378,6 +1380,17 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: obsessionJunctionHON, to: botWHQ, weight: 50)
         graph.addEdge(direction: .directed, from: obsessionJunctionHON, to: assumptionJunctionHON, weight: 50)
         graph.addEdge(direction: .directed, from: assumptionJunctionHON, to: SLJunctionHON, weight: 50)
+        //Little White Cap Quad
+        graph.addEdge(direction: .directed, from: botLWCQ, to: topLWCQ, weight: 100)
+        //Starlight
+        graph.addEdge(direction: .directed, from: topLWCQ, to: topSL, weight: 1)
+        graph.addEdge(direction: .directed, from: topSL, to: bend1SL, weight: 1)
+        graph.addEdge(direction: .directed, from: bend1SL, to: bend2SL, weight: 1)
+        graph.addEdge(direction: .directed, from: bend2SL, to: bend3SL, weight: 1)
+        graph.addEdge(direction: .directed, from: bend3SL, to: HOJunctionSL, weight: 1)
+        graph.addEdge(direction: .undirected, from: HOJunctionSL, to: SLJunctionHON, weight: 1)
+        graph.addEdge(direction: .directed, from: HOJunctionSL, to: MSJunctionSL, weight: 1)
+        graph.addEdge(direction: .undirected, from: MSJunctionSL, to: SLJunctionMS, weight: 1)
         //Green Cheese
         graph.addEdge(direction: .undirected, from: topSL, to: topGC, weight: 1)
         graph.addEdge(direction: .directed, from: topGC, to: SBJunctionGC, weight: 1)
@@ -1403,15 +1416,11 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: WHJunctionAssumption, to: WHQJunctionAssumption, weight: 50)
         graph.addEdge(direction: .undirected, from: WHQJunctionAssumption, to: botWHQ, weight: 50)
         graph.addEdge(direction: .directed, from: WHQJunctionAssumption, to: assumptionJunctionHON, weight: 50)
-        //Starlight
-        graph.addEdge(direction: .directed, from: topLWCQ, to: topSL, weight: 1)
-        graph.addEdge(direction: .directed, from: topSL, to: bend1SL, weight: 1)
-        graph.addEdge(direction: .directed, from: bend1SL, to: bend2SL, weight: 1)
-        graph.addEdge(direction: .directed, from: bend2SL, to: bend3SL, weight: 1)
-        graph.addEdge(direction: .directed, from: bend3SL, to: HOJunctionSL, weight: 1)
-        graph.addEdge(direction: .undirected, from: HOJunctionSL, to: SLJunctionHON, weight: 1)
-        graph.addEdge(direction: .directed, from: HOJunctionSL, to: MSJunctionSL, weight: 1)
-        graph.addEdge(direction: .undirected, from: MSJunctionSL, to: SLJunctionMS, weight: 1)
+        //Starburst
+        graph.addEdge(direction: .undirected, from: topLWCQ, to: topStarB, weight: 1)
+        graph.addEdge(direction: .directed, from: topStarB, to: GCJunctionSB, weight: 50)
+        graph.addEdge(direction: .directed, from: GCJunctionSB, to: endStarB, weight: 50)
+        graph.addEdge(direction: .undirected, from: endStarB, to: SBJunctionMS, weight: 1)
         //Star Struck
         graph.addEdge(direction: .undirected, from: GCJunctionSB, to: topSS, weight: 1)
         graph.addEdge(direction: .directed, from: topSS, to: endSS, weight: 300)
@@ -1420,13 +1429,6 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .undirected, from: GCJunctionSB, to: topStarW, weight: 1)
         graph.addEdge(direction: .directed, from: topStarW, to: endStarW, weight: 300)
         graph.addEdge(direction: .directed, from: endStarW, to: bend3SL, weight: 300)
-        //Starburst
-        graph.addEdge(direction: .undirected, from: topLWCQ, to: topStarB, weight: 1)
-        graph.addEdge(direction: .directed, from: topStarB, to: GCJunctionSB, weight: 50)
-        graph.addEdge(direction: .directed, from: GCJunctionSB, to: endStarB, weight: 50)
-        graph.addEdge(direction: .undirected, from: endStarB, to: SBJunctionMS, weight: 1)
-        //Little White Cap Quad
-        //       graph.addEdge(direction: .directed, from: botLWCQ, to: topLWCQ, weight: 100)
         
     }
     
