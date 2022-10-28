@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class TrailSelectorCustomCell : UITableViewCell
+class TrailSelectorTableViewCell : UITableViewCell
 {
     lazy var label: UILabel = {
        let lbl = UILabel(frame: CGRect(x: 10, y: 10, width: self.frame.width - 80, height: 30))

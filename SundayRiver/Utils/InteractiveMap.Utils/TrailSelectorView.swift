@@ -7,16 +7,25 @@
 
 import Foundation
 import UIKit
+enum TextFieldType {
+    case origin
+    case destination
+}
 
 class SearchBarTableHeaderView: UIView {
-    var textField = UITextField()
+    var destinationTextField = UITextField()
     var searchButton = UIButton()
-    var imageView = UIImageView()
+    var directionsButton = UIButton()
+    var searchImageView = UIImageView()
+    var directionsImageView = UIImageView()
     var leftBackgroundView = UIView()
     var rightBackgroundView = UIView()
     var extendedFrame: CGRect?
     var initialFrame: CGRect?
+    var droppedDownFrame : CGRect?
     var isExtended = false
+    var isDroppedDown = false
+    var originTextField = UITextField()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,37 +36,58 @@ class SearchBarTableHeaderView: UIView {
     func setInitialFrame()
     {
         self.frame = initialFrame!
-        self.leftBackgroundView.layer.cornerRadius = 10
-    }
-    func reloadView() {
-        imageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
-        imageView.image = UIImage(systemName: "magnifyingglass")!
-        searchButton.tintColor = .white
+        leftBackgroundView.layer.cornerRadius = 10
+        directionsButton.isHidden = true
         
+        searchImageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        searchImageView.image = UIImage(systemName: "magnifyingglass")!
+        
+        directionsImageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        directionsImageView.image = UIImage(systemName: "eye.circle")!
         searchButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
-        searchButton.setImage(imageView.image, for: .normal)
+        searchButton.tintColor = .white
+        searchButton.setImage(searchImageView.image, for: .normal)
         searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
         
-        textField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 36, height: self.bounds.height)
-        textField.placeholderRect(forBounds: textField.bounds)
-        textField.placeholder = "Enter Destination"
-        textField.backgroundColor = UIColor(hex: "#dddddd70")
-        textField.layer.cornerRadius = 10
+        directionsButton.tintColor = .white
+        directionsButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
+        directionsButton.setImage(directionsImageView.image, for: .normal)
+        directionsButton.addTarget(self, action: #selector(directionsButtonPressed), for: .touchUpInside)
         
-        leftBackgroundView.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 30, height: self.bounds.height)
+        destinationTextField.placeholderRect(forBounds: destinationTextField.bounds)
+        destinationTextField.placeholder = "Enter Destination"
+        destinationTextField.backgroundColor = UIColor(hex: "#dddddd70")
+        destinationTextField.layer.cornerRadius = 10
+        
+        originTextField.placeholderRect(forBounds: originTextField.bounds)
+        originTextField.placeholder = "Origin: Your Location..."
+        originTextField.backgroundColor = UIColor(hex: "#dddddd70")
+        originTextField.layer.cornerRadius = 10
+        originTextField.isHidden = true
+        
         leftBackgroundView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
-        rightBackgroundView.frame = CGRect(x: self.bounds.width - 20, y: 0, width: 20, height: self.bounds.height)
         rightBackgroundView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
         rightBackgroundView.layer.cornerRadius = 10
+        
+        leftBackgroundView.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 30, height: self.bounds.height)
         
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 1
         self.layer.borderColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
         
-        self.addSubview(textField)
+    
+        self.addSubview(destinationTextField)
+        self.addSubview(originTextField)
         self.addSubview(rightBackgroundView)
         self.addSubview(leftBackgroundView)
         self.addSubview(searchButton)
+        self.addSubview(directionsButton)
+    }
+    func reloadView() {
+        
+        originTextField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 40, height: self.bounds.height/2)
+
+        rightBackgroundView.frame = CGRect(x: self.bounds.width - 20, y: 0, width: 20, height: self.bounds.height)
     }
     
     func presentExtendedView(){
@@ -66,16 +96,58 @@ class SearchBarTableHeaderView: UIView {
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.frame = self.extendedFrame!
             self.reloadView()
+            self.searchButton.frame = CGRect(x: self.bounds.width-80, y: 0, width: 40, height: 40)
+            self.directionsButton.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 40, height: 40)
+            self.leftBackgroundView.frame = CGRect(x: self.bounds.width - 80, y: 0, width: 70, height: self.bounds.height)
+            self.destinationTextField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 40, height: self.bounds.height)
+            self.directionsButton.isHidden = false
         }, completion: nil)
     }
     func dismissExtendedView()
     {
-        self.textField.endEditing(true)
+        self.destinationTextField.endEditing(true)
+        self.originTextField.endEditing(true)
         self.isExtended = false
         self.leftBackgroundView.layer.cornerRadius = 10
+        self.directionsButton.isHidden = true
+        self.isDroppedDown = false
+        self.originTextField.isHidden = true
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.frame = self.initialFrame!
             self.reloadView()
+            self.searchButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
+            self.directionsButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
+            self.leftBackgroundView.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 30, height: self.bounds.height)
+            self.destinationTextField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 40, height: self.bounds.height)
+        }, completion: nil)
+    }
+    
+    func presentDropDownView()
+    {
+        self.originTextField.isHidden = false
+        self.isDroppedDown = true
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.frame = self.droppedDownFrame!
+            self.reloadView()
+            self.searchButton.frame = CGRect(x: self.bounds.width-80, y: self.bounds.height/4, width: 40, height: 40)
+            self.directionsButton.frame = CGRect(x: self.bounds.width - 40, y: self.bounds.height/4, width: 40, height: 40)
+            self.leftBackgroundView.frame = CGRect(x: self.bounds.width - 80, y: 0, width: 70, height: self.bounds.height)
+            self.destinationTextField.frame = CGRect(x: 0, y: self.bounds.height/2, width: self.bounds.width - 40, height: self.bounds.height/2)
+        }, completion: nil)
+    }
+    func dismissDropDownView()
+    {
+        self.originTextField.endEditing(true)
+        self.originTextField.isHidden = true
+        self.isDroppedDown = false
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.frame = self.extendedFrame!
+            self.reloadView()
+            self.searchButton.frame = CGRect(x: self.bounds.width-80, y: 0, width: 40, height: 40)
+            self.directionsButton.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 40, height: 40)
+            self.leftBackgroundView.frame = CGRect(x: self.bounds.width - 80, y: 0, width: 70, height: self.bounds.height)
+            self.destinationTextField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 40, height: self.bounds.height)
+
         }, completion: nil)
     }
     @objc func searchButtonPressed()
@@ -91,11 +163,25 @@ class SearchBarTableHeaderView: UIView {
         }
         
     }
+    @objc func directionsButtonPressed()
+    {
+        if !isDroppedDown
+        {
+            presentDropDownView()
+        }
+        else
+        {
+            dismissDropDownView()
+        }
+    }
 }
 class TrailSelectorView : UIView {
     
     static var searchText : String?
     
+    var isPresented = false
+    var currentTextField: UITextField?
+    var currentTextFieldType: TextFieldType = .destination
     var barkerTrails : [Trail] = []
     var southridgeTrails : [Trail] = []
     var lockeTrails : [Trail] = []
@@ -131,7 +217,7 @@ class TrailSelectorView : UIView {
 //        searchBar!.delegate = self
         searchBarTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 8.5 / 10)
         searchBarTableView.layer.cornerRadius = 15
-        searchBarTableView.register(TrailSelectorCustomCell.self, forCellReuseIdentifier: "TrailSelectorCustomCell")
+        searchBarTableView.register(TrailSelectorTableViewCell.self, forCellReuseIdentifier: "TrailSelectorCustomCell")
         searchBarTableView.backgroundColor = .black
         searchBarTableView.dataSource = self
         searchBarTableView.delegate = self
@@ -328,7 +414,7 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TrailSelectorCustomCell", for: indexPath) as! TrailSelectorCustomCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TrailSelectorCustomCell", for: indexPath) as! TrailSelectorTableViewCell
         if shouldShowSearchResults{
             cell.label.text = filteredTrails[indexPath.row].name
             cell.cellTrail = filteredTrails[indexPath.row]
@@ -384,10 +470,19 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? TrailSelectorCustomCell{
-            InteractiveMapViewController.destination = cell.cellTrail!.annotations[0]
-            InteractiveMapViewController.routeInProgress = false
-            InteractiveMapViewController.container.add()
+        if let cell = tableView.cellForRow(at: indexPath) as? TrailSelectorTableViewCell{
+            print(currentTextFieldType)
+            switch currentTextFieldType
+            {
+            case .destination:
+                InteractiveMapViewController.destination = cell.cellTrail!.annotations[0]
+                InteractiveMapViewController.routeInProgress = false
+                InteractiveMapViewController.container.add() 
+            case .origin:
+                currentTextField?.text = cell.cellTrail?.name
+                InteractiveMapViewController.origin = cell.cellTrail!.annotations[0]
+            }
+            
         }
     }
     

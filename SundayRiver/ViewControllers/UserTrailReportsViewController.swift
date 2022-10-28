@@ -15,7 +15,10 @@ class UserTrailReportsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+    }
+    override func viewWillAppear(_ animated: Bool) {
         getUsersTrailReports()
+
     }
     private func getUsersTrailReports()
     {

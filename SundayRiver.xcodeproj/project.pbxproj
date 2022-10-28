@@ -42,7 +42,7 @@
 		15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */; };
 		15545B1828E297CA005D0886 /* Game Test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1728E297CA005D0886 /* Game Test.gpx */; };
 		15545B1A28E4ABD1005D0886 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1928E4ABD1005D0886 /* Tiles */; };
-		15545B1C28E4CD42005D0886 /* TrailSelectorCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B1B28E4CD42005D0886 /* TrailSelectorCustomCell.swift */; };
+		15545B1C28E4CD42005D0886 /* TrailSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */; };
 		158749F827D82635001B9025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749F727D82635001B9025 /* AppDelegate.swift */; };
 		158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749F927D82635001B9025 /* SceneDelegate.swift */; };
 		158749FC27D82635001B9025 /* TitleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749FB27D82635001B9025 /* TitleScreen.swift */; };
@@ -88,7 +88,7 @@
 		15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailsDatabase.swift; sourceTree = "<group>"; };
 		15545B1728E297CA005D0886 /* Game Test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Game Test.gpx"; sourceTree = "<group>"; };
 		15545B1928E4ABD1005D0886 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
-		15545B1B28E4CD42005D0886 /* TrailSelectorCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorCustomCell.swift; sourceTree = "<group>"; };
+		15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		158749F427D82635001B9025 /* SundayRiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SundayRiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158749F727D82635001B9025 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		158749F927D82635001B9025 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,20 +126,10 @@
 		150D063728FB020B0051F160 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
-				150C6EB029035BE10055AD59 /* HextoColor.swift */,
-				153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */,
-				1531661F290AE84E00206E7E /* Modals */,
-				150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */,
-				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
-				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
-				15545B1B28E4CD42005D0886 /* TrailSelectorCustomCell.swift */,
-				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
-				15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */,
-				1524944E29074F7E009E7059 /* NotificationUtils.swift */,
-				1524945829085D88009E7059 /* TrailReportTableViewCell.swift */,
-				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
-				1524945429082897009E7059 /* Settings.swift */,
+				15316626290B174C00206E7E /* UserSettings.Utils */,
+				15316627290B177000206E7E /* InteractiveMap.Utils */,
+				15316624290B170300206E7E /* Models */,
+				15316625290B172200206E7E /* Miscellaneous.Utils */,
 				150C6EAD29031B0C0055AD59 /* Unused.Utils */,
 				150D06472900A8CD0051F160 /* Fonts */,
 			);
@@ -165,15 +155,49 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		1531661F290AE84E00206E7E /* Modals */ = {
+		15316624290B170300206E7E /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				150D062B28F5D6C00051F160 /* TrailReports.swift */,
-				153B2E3B28ED1EDF00A23163 /* User.swift */,
-				15316620290AE86100206E7E /* UserLocation.swift */,
 				15316622290AE86800206E7E /* UserRoute.swift */,
+				15316620290AE86100206E7E /* UserLocation.swift */,
+				153B2E3B28ED1EDF00A23163 /* User.swift */,
 			);
-			path = Modals;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		15316625290B172200206E7E /* Miscellaneous.Utils */ = {
+			isa = PBXGroup;
+			children = (
+				153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */,
+				150C6EB029035BE10055AD59 /* HextoColor.swift */,
+				1524944E29074F7E009E7059 /* NotificationUtils.swift */,
+			);
+			path = Miscellaneous.Utils;
+			sourceTree = "<group>";
+		};
+		15316626290B174C00206E7E /* UserSettings.Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1524945429082897009E7059 /* Settings.swift */,
+				1524945829085D88009E7059 /* TrailReportTableViewCell.swift */,
+				15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */,
+			);
+			path = UserSettings.Utils;
+			sourceTree = "<group>";
+		};
+		15316627290B177000206E7E /* InteractiveMap.Utils */ = {
+			isa = PBXGroup;
+			children = (
+				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
+				150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */,
+				15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */,
+				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
+				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
+				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
+				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
+			);
+			path = InteractiveMap.Utils;
 			sourceTree = "<group>";
 		};
 		15545B0428E022A5005D0886 /* ViewControllers */ = {
@@ -314,7 +338,7 @@
 			files = (
 				1524945529082897009E7059 /* Settings.swift in Sources */,
 				15545B0E28E224C8005D0886 /* Trail.swift in Sources */,
-				15545B1C28E4CD42005D0886 /* TrailSelectorCustomCell.swift in Sources */,
+				15545B1C28E4CD42005D0886 /* TrailSelectorTableViewCell.swift in Sources */,
 				15316623290AE86800206E7E /* UserRoute.swift in Sources */,
 				150D063228F7D96A0051F160 /* TrailReportTypeTableViewCell.swift in Sources */,
 				15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */,
