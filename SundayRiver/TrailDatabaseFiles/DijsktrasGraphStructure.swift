@@ -68,7 +68,11 @@ class EdgeWeightedDigraph<Element: Equatable> {
     func addVertex(_ vertex: Vertex<Element>) {
         vertices.append(vertex)
     }
-
+    
+    func removeLastVertex(_vertex: Vertex<Element>){
+        vertices.removeLast()
+    }
+    
     // This function assumes that the source and destination vertices are in the vertices array.
     func addEdge(direction: EdgeType, from: Vertex<Element>, to: Vertex<Element>, weight: Double) {
 

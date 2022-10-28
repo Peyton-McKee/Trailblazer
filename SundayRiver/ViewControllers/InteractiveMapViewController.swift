@@ -126,6 +126,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         InteractiveMapViewController.routeInProgress = false
         InteractiveMapViewController.destination = nil
         InteractiveMapViewController.origin = nil
+        self.trailSelectorView?.isPresented = false
         self.cancelButton.isHidden = true
         showAllTrails()
     }
@@ -381,10 +382,20 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             return createRouteHelper()
         }
         originVertex = Vertex<ImageAnnotation>(origin)
-        TrailsDatabase.graph.addVertex(originVertex!)
-        TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: getClosestAnnotation(origin: origin), weight: 1)
-        
-        return createRouteHelper()
+        var found = false
+        for annotation in TrailsDatabase.keyAnnotations
+        {
+            if annotation.value == originVertex!.value{
+                originVertex = annotation
+                found = true
+                break
+            }
+        }
+        if found
+        {
+            return createRouteHelper()
+        }
+        return nil
     }
     private func createRouteHelper() -> [Vertex<ImageAnnotation>]?
     {
@@ -414,6 +425,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         self.searchBar.dismissExtendedView()
         let destinationAnnotation = InteractiveMapViewController.destination!
         print("test1")
+        print(Self.origin?.title)
         if let pathToDestination = createRoute(){
             print("test2")
             var description = ""
@@ -911,6 +923,7 @@ extension InteractiveMapViewController: UITextFieldDelegate
         return true
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        print("test")
         TrailSelectorView.searchText = textField.text!
         NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
         return true

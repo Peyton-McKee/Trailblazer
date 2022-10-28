@@ -210,18 +210,13 @@ class TrailSelectorView : UIView {
     func configureTableViewAndSearchBar()
     {
         createMyTrails()
-//        searchBarHeaderView = SearchBarTableHeaderView(frame: CGRect(x: 0, y: 0, width: self.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height/20 ))
-//        searchBarHeaderView!.configure()
-//        searchBarTableView.tableHeaderView = searchBarHeaderView
-//        searchBar = searchBarHeaderView?.textField
-//        searchBar!.delegate = self
         searchBarTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 8.5 / 10)
         searchBarTableView.layer.cornerRadius = 15
         searchBarTableView.register(TrailSelectorTableViewCell.self, forCellReuseIdentifier: "TrailSelectorCustomCell")
         searchBarTableView.backgroundColor = .black
         searchBarTableView.dataSource = self
         searchBarTableView.delegate = self
-
+        
         //        searchBar.frame = CGRect(x: 10, y: 10, width: searchBarTableView.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height / 20)
         self.addSubview(searchBarTableView)
         NotificationCenter.default.addObserver(self, selector: #selector(filterTrails), name: Notification.Name(rawValue: "searchTrail"), object: nil)
@@ -307,47 +302,6 @@ class TrailSelectorView : UIView {
         }
     }
 }
-extension TrailSelectorView: UITextFieldDelegate
-{
-    func textField(
-        _ textField: UITextField,
-        shouldChangeCharactersIn range: NSRange,
-        replacementString string: String
-    ) -> Bool {
-        if let searchString = textField.text{
-            for trail in totalTrails
-            {
-                if trail.name.lowercased().contains(searchString.lowercased()) && !filteredTrails.contains(where: {$0.name.lowercased() == trail.name.lowercased()})
-                {
-                    filteredTrails.append(trail)
-                }
-                if searchString == ""
-                {
-                    filteredTrails = []
-                    shouldShowSearchResults = false
-                    searchBarTableView.reloadData()
-                }
-                if filteredTrails.contains(where: {!$0.name.lowercased().contains(searchString.lowercased())})
-                {
-                    filteredTrails.remove(at: 0)
-                }
-            }
-            if searchString == ""
-            {
-                shouldShowSearchResults = false
-                searchBarTableView.reloadData()
-            }
-            else
-            {
-                shouldShowSearchResults = true
-                searchBarTableView.reloadData()
-            }
-        }
-        return true
-    }
-    
-}
-
 extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
 {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -477,7 +431,8 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             case .destination:
                 InteractiveMapViewController.destination = cell.cellTrail!.annotations[0]
                 InteractiveMapViewController.routeInProgress = false
-                InteractiveMapViewController.container.add() 
+                InteractiveMapViewController.container.add()
+                self.isPresented = false
             case .origin:
                 currentTextField?.text = cell.cellTrail?.name
                 InteractiveMapViewController.origin = cell.cellTrail!.annotations[0]
