@@ -116,8 +116,6 @@
 			children = (
 				15213F022904800D0027749B /* BellmanFordGraphStructure.swift */,
 				15545B0728E148A9005D0886 /* MapOverlay.swift */,
-				15545AD828DEA598005D0886 /* Web Analysis.swift */,
-				15874A0D27D82AFA001B9025 /* Scraper.swift */,
 				15249450290754DA009E7059 /* UnusedFunctions.swift */,
 			);
 			path = Unused.Utils;
@@ -194,6 +192,8 @@
 				15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */,
 				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
 				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
+				15545AD828DEA598005D0886 /* Web Analysis.swift */,
+				15874A0D27D82AFA001B9025 /* Scraper.swift */,
 				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
 				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
 			);

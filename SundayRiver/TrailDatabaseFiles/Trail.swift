@@ -8,6 +8,13 @@
 import Foundation
 import MapKit
 
+enum Status{
+    case open
+    case onHold
+    case closed
+    case scheduled
+    case event
+}
 struct Trail {
     let name: String
     let difficulty: Difficulty

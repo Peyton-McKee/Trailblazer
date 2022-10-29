@@ -54,8 +54,11 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var trailSelectorView : TrailSelectorView?
     var trailSelectorMenu : SideMenuFramework?
     
+    var webAnalysis = WebAnalysis()
+    
     var recenterButton = UIButton()
     var recenterButtonYConstraint = NSLayoutConstraint()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -72,6 +75,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         locationManager.startUpdatingHeading()
         locationManager.startUpdatingLocation()
         getTrailReportsFromDB()
+        webAnalysis.makeRequest()
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     override func viewDidAppear(_ animated: Bool) {
