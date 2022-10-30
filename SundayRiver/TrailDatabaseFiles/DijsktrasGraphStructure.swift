@@ -43,6 +43,10 @@ class DirectedEdge<Element: Equatable> {
 
 extension DirectedEdge: Equatable {
     static func ==(lhs: DirectedEdge, rhs: DirectedEdge) -> Bool {
+//        if let source = lhs.source.value as? ImageAnnotation, let destination = lhs.destination.value as? ImageAnnotation
+//        {
+//            print("\(source.title) -> \(destination.title)")
+//        }
         return lhs.source == rhs.source &&
         lhs.destination == rhs.destination &&
         lhs.weight == rhs.weight

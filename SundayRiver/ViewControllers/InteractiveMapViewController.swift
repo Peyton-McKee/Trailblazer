@@ -842,6 +842,13 @@ extension InteractiveMapViewController: MKMapViewDelegate
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
         mapView.setRegion(zoomed, animated: true)
+        guard let annotation = view.annotation as? ImageAnnotation else {
+            return
+        }
+        if let status = annotation.status
+        {
+            print(status)
+        }
         if view.annotation is MKUserLocation
         {
             return
