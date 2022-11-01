@@ -93,6 +93,7 @@ extension UserTrailReportsViewController: UITableViewDelegate, UITableViewDataSo
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! TrailReportTableViewCell
+        
         print("hello")
     }
     

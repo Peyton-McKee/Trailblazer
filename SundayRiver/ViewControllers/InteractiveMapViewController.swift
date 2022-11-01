@@ -21,7 +21,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     static var origin : ImageAnnotation?
     static var selectedGraph = TrailsDatabase.graph
     
+    
     var isRealTimeGraph = false
+    var toggleGraphButton = UIButton()
+    
     let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
@@ -57,6 +60,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     var trailSelectorMenu : SideMenuFramework?
     
     var webAnalysis = WebAnalysis()
+    
+    var totalDirections : String?
     
     var recenterButton = UIButton()
     var recenterButtonYConstraint = NSLayoutConstraint()
@@ -114,6 +119,14 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         cancelButton.isHidden = true
         cancelButton.addTarget(self, action: #selector(cancelRoute), for: .touchUpInside)
         
+        toggleGraphButton.translatesAutoresizingMaskIntoConstraints = false
+        toggleGraphButton.setImage(UIImage(systemName: "perspective"), for: .normal)
+        toggleGraphButton.tintColor = .white
+        toggleGraphButton.backgroundColor = .lightText
+        toggleGraphButton.layer.cornerRadius = 10
+        toggleGraphButton.addTarget(self, action: #selector(toggleGraph), for: .touchUpInside)
+        
+        view.addSubview(toggleGraphButton)
         view.addSubview(recenterButton)
         view.addSubview(cancelButton)
         
@@ -127,12 +140,34 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             recenterButton.widthAnchor.constraint(equalToConstant: 40),
             cancelButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20), cancelButtonYContraint,
             cancelButton.heightAnchor.constraint(equalToConstant: 40),
-            cancelButton.widthAnchor.constraint(equalToConstant: 40)])
+            cancelButton.widthAnchor.constraint(equalToConstant: 40),
+            toggleGraphButton.leftAnchor.constraint(equalTo: recenterButton.leftAnchor),
+            toggleGraphButton.topAnchor.constraint(equalTo: recenterButton.bottomAnchor),
+            toggleGraphButton.heightAnchor.constraint(equalToConstant: 40),
+            toggleGraphButton.widthAnchor.constraint(equalToConstant: 40)])
         
+    }
+    @objc func toggleGraph()
+    {
+        if Self.routeInProgress
+        {
+            cancelRoute()
+        }
+        if !isRealTimeGraph
+        {
+            InteractiveMapViewController.selectedGraph = TrailsDatabase.realTimeGraph
+            isRealTimeGraph = true
+            selectGraph()
+        }
+        else
+        {
+            InteractiveMapViewController.selectedGraph = TrailsDatabase.graph
+            isRealTimeGraph = false
+            selectGraph()
+        }
     }
     @objc func selectGraph()
     {
-        isRealTimeGraph = true
         myMap.removeOverlays(myMap.overlays)
         myMap.removeAnnotations(myMap.annotations)
         showAllTrails()
@@ -319,7 +354,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     ///Attempts to connect to database and adds any found trailReports to myMap
     private func getTrailReportsFromDB()
     {
-        print("test")
         getTrailReports(completion: { value in
             guard let trailReports = try? value.get() else
             {
@@ -341,6 +375,16 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         })
     }
     
+    func displayCurrentTrailReports(graph: EdgeWeightedDigraph<ImageAnnotation>)
+    {
+        for annotation in graph.vertices
+        {
+            if let trailReport = annotation.value.trailReport
+            {
+                myMap.addAnnotation(trailReport)
+            }
+        }
+    }
     
     
     /// createConstraints: UIView, Double, Double -> void
@@ -465,15 +509,18 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             if(!InteractiveMapViewController.routeInProgress)
             {
                 routeOverviewView = RouteOverviewView(frame: self.view.frame)
+                self.totalDirections = description
                 if description.isEmpty
                 {
-                    routeOverviewView!.directionsTextView.text = "Could not find Route"
+                    routeOverviewView!.directionsLabel.text = "Could not find Route"
+                    routeOverviewView?.viewFullDirectionsButton.isHidden = true
                 }
                 else if count <= 2
                 {
                     let index = description.index(description.startIndex, offsetBy: description.count - 2)
                     description = String(description.prefix(upTo: index))
-                    routeOverviewView!.directionsTextView.text = "\(description)"
+                    routeOverviewView!.directionsLabel.text = "\(description)"
+                    routeOverviewView?.viewFullDirectionsButton.isHidden = false
                     
                 }
                 else
@@ -485,14 +532,14 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                         searchRange = range.upperBound..<searchRange.upperBound
                         indices.append(range.lowerBound)
                     }
-                    print(description.prefix(upTo: indices[1]))
-                    routeOverviewView!.directionsTextView.text = "\(description.prefix(upTo: indices[1]))"
+                    routeOverviewView!.directionsLabel.text = "\(description.prefix(upTo: indices[1]))"
+                    routeOverviewView?.viewFullDirectionsButton.isHidden = false
                     
                 }
                 
                 routeOverviewView!.tripLbl.text = "\(InteractiveMapViewController.origin!.title!) -> \(destinationAnnotation.title!)"
-                routeOverviewView!.trailReportTextView.text = trailReports
-                
+                routeOverviewView!.trailReportLabel.text = trailReports
+                routeOverviewView!.viewFullDirectionsButton.addTarget(self, action: #selector(presentFullDirections), for: .touchUpInside)
                 routeOverviewView!.configureItems()
                 presentRouteOverviewMenu()
                 InteractiveMapViewController.routeInProgress = true
@@ -501,11 +548,23 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         }
     }
     
+    @objc func presentFullDirections()
+    {
+        guard let fullDirections = self.totalDirections else { return }
+        //show some sort of direction pop up
+        print(fullDirections)
+        
+    }
     
     /// displayRoute: void -> void
     /// Shows the selected route on the map
     func displayRoute()
     {
+        let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
+        let zoomCoordinate = Self.destination?.coordinate ?? myMap.region.center
+        let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
+        myMap.setRegion(zoomed, animated: true)
+        
         for overlay in myMap.overlays(in: .aboveRoads){
             myMap.removeOverlay(overlay)
         }
@@ -524,6 +583,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         displayRouteHelper(route: route)
         self.pathCreated = nil
     }
+    
     func displayRouteHelper(route: [Vertex<ImageAnnotation>])
     {
         var previousEdge = route[0]
@@ -616,7 +676,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             myMap.addOverlay(myPolyLine, level: .aboveRoads)
         }
         createKeyTrailAnnotations()
-        
+        displayCurrentTrailReports(graph: InteractiveMapViewController.selectedGraph)
+
     }
     
     /// addTrailReport: UIGestureRecognizer -> void
@@ -656,7 +717,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     {
         if isRealTimeGraph
         {
-            for annotation in TrailsDatabase.annotations
+            for annotation in TrailsDatabase.keyAnnotations
             {
                 if annotation.value.status != .closed
                 {
@@ -957,11 +1018,9 @@ extension InteractiveMapViewController: UITextFieldDelegate
         NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
         return true
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print("test")
+    func textFieldDidChangeSelection(_ textField: UITextField) {
         TrailSelectorView.searchText = textField.text!
         NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
-        return true
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
