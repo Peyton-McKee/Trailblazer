@@ -211,45 +211,56 @@ class TrailsDatabase : NSObject {
         Trail(name: "Escapade", difficulty: .intermediate, annotations: [createAnnotation(title: "Escapade", latitude: 44.470882935117665, longitude: -70.87588241388997, difficulty: .intermediate), createAnnotation(title: "bend1Escapade", latitude: 44.47042148619526, longitude: -70.87252464845587, difficulty: .intermediate), createAnnotation(title: "LMJunctionEscapade", latitude: 44.47141532781848, longitude: -70.87013850162772, difficulty: .intermediate), createAnnotation(title: "Lower Escapade", latitude: 44.47186608016329, longitude: -70.86945449960109, difficulty: .easy), createAnnotation(title: "BroadwayJunctionLE", latitude: 44.47186608016329, longitude: -70.86945449960109, difficulty: .easy), createAnnotation(title: "NWJunctionLE", latitude: 44.47315536119423, longitude: -70.86574560528885, difficulty: .easy), createAnnotation(title: "endLE", latitude: 44.473892525500894, longitude: -70.86457915169618, difficulty: .easy)]),
         //25
         Trail(name: "3D", difficulty: .terrainPark, annotations: [createAnnotation(title: "3D", latitude: 44.47198060772869, longitude: -70.87525217806382, difficulty: .terrainPark), createAnnotation(title: "Last Mile Junction of 3D", latitude: 44.47277555409285, longitude: -70.87325638692266, difficulty: .terrainPark), createAnnotation(title: "Ridge Run Junction of 3D", latitude: 44.47357813833369, longitude: -70.87069873813503, difficulty: .terrainPark), createAnnotation(title: "bend13D", latitude: 44.47391397246592, longitude: -70.86865469996928, difficulty: .intermediate), createAnnotation(title: "bot3D", latitude: 44.474622082181334, longitude: -70.86708734917693, difficulty: .terrainPark)]),
-        Trail(name: "Second Thoughts", difficulty: .easy, annotations: [createAnnotation(title: "Second Thoughts", latitude: 44.47638729191411, longitude: -70.870552774431, difficulty: .easy), createAnnotation(title: "bend1ST", latitude: 44.47629604259682, longitude: -70.86976874309151, difficulty: .easy), createAnnotation(title: "endSecondThoughts", latitude: 44.475530029337875, longitude: -70.86868889749921, difficulty: .easy)]),]
+        Trail(name: "Second Thoughts", difficulty: .easy, annotations: [createAnnotation(title: "Second Thoughts", latitude: 44.47638729191411, longitude: -70.870552774431, difficulty: .easy), createAnnotation(title: "bend1ST", latitude: 44.47629604259682, longitude: -70.86976874309151, difficulty: .easy), createAnnotation(title: "endSecondThoughts", latitude: 44.475530029337875, longitude: -70.86868889749921, difficulty: .easy)])]
     
     //Spruce
     static let botSpruce = Vertex<ImageAnnotation>(Lifts[6].annotations[0])
     static let topSpruce = Vertex<ImageAnnotation>(Lifts[6].annotations[1])
+    static let spruce = [botSpruce, topSpruce]
     //QLT
     static let botQLT = Vertex<ImageAnnotation>(Lifts[2].annotations[0])
     static let topQLT = Vertex<ImageAnnotation>(Lifts[2].annotations[1])
+    static let QLT = [botQLT, topQLT]
     //North peak
     static let botNP = Vertex<ImageAnnotation>(Lifts[4].annotations[0])
     static let topNP = Vertex<ImageAnnotation>(Lifts[4].annotations[1])
+    static let northPeak = [botNP, topNP]
     //chondola
     static let botChondola = Vertex<ImageAnnotation>(Lifts[5].annotations[0])
     static let topChondola = Vertex<ImageAnnotation>(Lifts[5].annotations[1])
+    static let chondola = [botChondola, topChondola]
     //Jordan DOuble
     static let auroraSideJD = Vertex<ImageAnnotation>(Lifts[11].annotations[0])
     static let jordanSideJD = Vertex<ImageAnnotation>(Lifts[11].annotations[1])
+    static let jordanDouble = [auroraSideJD, jordanSideJD]
     //aurora
     static let botAurora = Vertex<ImageAnnotation>(Lifts[10].annotations[0])
     static let topAurora = Vertex<ImageAnnotation>(Lifts[10].annotations[1])
+    static let aurora = [botAurora, topAurora]
     //jordan
     static let topJord = Vertex<ImageAnnotation>(Lifts[12].annotations[1])
     static let botJord = Vertex<ImageAnnotation>(Lifts[12].annotations[0])
+    static let jordan = [botJord, topJord]
     //lolapalooza
     static let topLol = Vertex<ImageAnnotation>(jordanTrails[0].annotations[0])
     static let bend1Lol = Vertex<ImageAnnotation>(jordanTrails[0].annotations[1])
     static let bend2Lol = Vertex<ImageAnnotation>(jordanTrails[0].annotations[2])
+    static let lollapalooza = [topLol, bend1Lol, bend2Lol]
     //excalibur
     static let topExcal = Vertex<ImageAnnotation>(jordanTrails[1].annotations[0])
     static let bend1Excal = Vertex<ImageAnnotation>(jordanTrails[1].annotations[1])
     static let midExcal = Vertex<ImageAnnotation>(jordanTrails[1].annotations[2])
     static let botExcal = Vertex<ImageAnnotation>(jordanTrails[1].annotations[3])
+    static let excalibur = [topExcal, bend1Excal, midExcal, botExcal]
     //rogueangel
     static let topRogue = Vertex<ImageAnnotation>(jordanTrails[2].annotations[0])
     static let midRogue = Vertex<ImageAnnotation>(jordanTrails[2].annotations[1])
     static let botRogue = Vertex<ImageAnnotation>(jordanTrails[2].annotations[2])
+    static let rogueAngel = [topRogue, midRogue, botRogue]
     //icaramba
     static let topCaram = Vertex<ImageAnnotation>(jordanTrails[3].annotations[0])
     static let botCaram = Vertex<ImageAnnotation>(jordanTrails[3].annotations[1])
+    static let iCaramba = [topCaram, botCaram]
     //kansas
     static let topKans = Vertex<ImageAnnotation>(OzTrails[1].annotations[0])
     static let bend1Kans = Vertex<ImageAnnotation>(OzTrails[1].annotations[1])
@@ -259,11 +270,13 @@ class TrailsDatabase : NSObject {
     static let bend3Kans = Vertex<ImageAnnotation>(OzTrails[1].annotations[5])
     static let bend4Kans = Vertex<ImageAnnotation>( OzTrails[1].annotations[6])
     static let endKans = Vertex<ImageAnnotation>(OzTrails[1].annotations[7])
+    static let kansas = [topKans, bend1Kans, ozJunctionKans, woodsmanJunctionKans, bend2Kans, bend3Kans, bend4Kans, endKans]
     
     //tin woodsman
     static let topWoodsman = Vertex<ImageAnnotation>(OzTrails[0].annotations[0])
     static let junctionWoodsman = Vertex<ImageAnnotation>(OzTrails[0].annotations[1])
     static let endWoodsman = Vertex<ImageAnnotation>(OzTrails[0].annotations[2])
+    static let tinWoodsman = [topWoodsman, junctionWoodsman, endWoodsman]
     
     //cyclone
     static let topCyclone = Vertex<ImageAnnotation>(AuroraTrails[0].annotations[0])
@@ -272,6 +285,7 @@ class TrailsDatabase : NSObject {
     static let woodsmanJunctionCyclone = Vertex<ImageAnnotation>(AuroraTrails[0].annotations[3])
     static let carambaJunctionCyclone = Vertex<ImageAnnotation>(AuroraTrails[0].annotations[4])
     static let rogueAngelJunctionCyclone = Vertex<ImageAnnotation>(AuroraTrails[0].annotations[5])
+    static let cyclone = [topCyclone, northernLightsJunctionCyclone, poppyFieldsJunctionCyclone, woodsmanJunctionCyclone, carambaJunctionCyclone, rogueAngelJunctionCyclone]
     //northernlights
     static let northernLightsTop = Vertex<ImageAnnotation>(AuroraTrails[1].annotations[0])
     static let witchWayJunctionNL = Vertex<ImageAnnotation>(AuroraTrails[1].annotations[1])
@@ -279,9 +293,11 @@ class TrailsDatabase : NSObject {
     static let cycloneJunctionNL = Vertex<ImageAnnotation>(AuroraTrails[1].annotations[3])
     static let bend1NL = Vertex<ImageAnnotation>(AuroraTrails[1].annotations[4])
     static let fireStarJunctionNL = Vertex<ImageAnnotation>(AuroraTrails[1].annotations[5])
+    static let northernLights = [northernLightsTop, witchWayJunctionNL, kansasNLJunction, cycloneJunctionNL, bend1NL, fireStarJunctionNL]
     //witchway
     static let witchWayTop = Vertex<ImageAnnotation>(AuroraTrails[2].annotations[0])
     static let kansJunctionWitchWay = Vertex<ImageAnnotation>(AuroraTrails[2].annotations[1])
+    static let witchWay = [witchWayTop, kansJunctionWitchWay]
     //airglow
     static let topAirglow = Vertex<ImageAnnotation>(AuroraTrails[3].annotations[0])
     static let cycloneJunctionAirglow = Vertex<ImageAnnotation>(AuroraTrails[3].annotations[1])
@@ -289,19 +305,23 @@ class TrailsDatabase : NSObject {
     static let blackHoleJunctionAirglow = Vertex<ImageAnnotation>(AuroraTrails[3].annotations[3])
     static let bend2Airglow = Vertex<ImageAnnotation>(AuroraTrails[3].annotations[4])
     static let botAirglow = Vertex<ImageAnnotation>(AuroraTrails[3].annotations[5])
+    static let airglow = [topAirglow, cycloneJunctionAirglow, bend1Airglow, bend2Airglow, blackHoleJunctionAirglow, botAirglow]
     //blackhole
     static let topBlackHole = Vertex<ImageAnnotation>(AuroraTrails[4].annotations[0])
     static let botBlackHole = Vertex<ImageAnnotation>(AuroraTrails[4].annotations[1])
+    static let blackHole = [topBlackHole, botBlackHole]
     //firestar
     static let topFirestar = Vertex<ImageAnnotation>(AuroraTrails[5].annotations[0])
     static let bend1Firestar = Vertex<ImageAnnotation>(AuroraTrails[5].annotations[1])
     static let bend2Firestar = Vertex<ImageAnnotation>(AuroraTrails[5].annotations[2])
     static let endFirestar = Vertex<ImageAnnotation>(AuroraTrails[5].annotations[3])
+    static let firestar = [topFirestar, bend1Firestar, bend2Firestar, endFirestar]
     //lights out
     static let startLO = Vertex<ImageAnnotation>(AuroraTrails[6].annotations[0])
     static let vortexJunctionLO = Vertex<ImageAnnotation>(AuroraTrails[6].annotations[1])
     static let UpperDownDraftJunctionLO = Vertex<ImageAnnotation>(AuroraTrails[6].annotations[2])
     static let endLightsOut = Vertex<ImageAnnotation>(AuroraTrails[6].annotations[3])
+    static let lightsOut = [startLO, vortexJunctionLO, UpperDownDraftJunctionLO, endLightsOut]
     //borealis
     static let topBorealis = Vertex<ImageAnnotation>(AuroraTrails[7].annotations[0])
     static let bend1Borealis = Vertex<ImageAnnotation>(AuroraTrails[7].annotations[1])
@@ -309,16 +329,18 @@ class TrailsDatabase : NSObject {
     static let vortexJunctionBorealis = Vertex<ImageAnnotation>(AuroraTrails[7].annotations[3])
     static let bend3Borealis = Vertex<ImageAnnotation>(AuroraTrails[7].annotations[4])
     static let endBorealis = Vertex<ImageAnnotation>(AuroraTrails[7].annotations[5])
+    static let borealis = [topBorealis, bend1Borealis, bend2Borealis, bend3Borealis, vortexJunctionBorealis, endBorealis]
     //vortex
     static let topVortex = Vertex<ImageAnnotation>(AuroraTrails[8].annotations[0])
     static let kansasJunctionVortex = Vertex<ImageAnnotation>(AuroraTrails[8].annotations[1])
     static let botVortex = Vertex<ImageAnnotation>(AuroraTrails[8].annotations[2])
-    
+    static let vortex = [topVortex, kansasJunctionVortex, botVortex]
     //paradigm
     static let topParadigm = Vertex<ImageAnnotation>(NorthPeakTrails[0].annotations[0])
     static let bend1Paradigm = Vertex<ImageAnnotation>(NorthPeakTrails[0].annotations[1])
     static let vortexJunctionParadigm = Vertex<ImageAnnotation>(NorthPeakTrails[0].annotations[2])
     static let botParadigm = Vertex<ImageAnnotation>(NorthPeakTrails[0].annotations[3])
+    static let paradigm = [topParadigm, bend1Paradigm, vortexJunctionParadigm, botParadigm]
     //second mile
     static let startSM = Vertex<ImageAnnotation>(NorthPeakTrails[1].annotations[0])
     static let GRJunctionSM = Vertex<ImageAnnotation>(NorthPeakTrails[1].annotations[1])
@@ -328,11 +350,13 @@ class TrailsDatabase : NSObject {
     static let T72JunctionSM = Vertex<ImageAnnotation>(NorthPeakTrails[1].annotations[5])
     static let DMJunctionSM = Vertex<ImageAnnotation>(NorthPeakTrails[1].annotations[6])
     static let endSM = Vertex<ImageAnnotation>(NorthPeakTrails[1].annotations[7])
+    static let secondMile = [startSM, GRJunctionSM, DMTerrainJunctionSM, escapadeJunctionSM, ThreeDJunctionSM, T72JunctionSM, DMJunctionSM, endSM]
     //quantum leap
     static let topQuantum = Vertex<ImageAnnotation>(AuroraTrails[9].annotations[0])
     static let backsideJunctionQL = Vertex<ImageAnnotation>(AuroraTrails[9].annotations[1])
     static let bend1QL = Vertex<ImageAnnotation>(AuroraTrails[9].annotations[2])
     static let botQuantum = Vertex<ImageAnnotation>(AuroraTrails[9].annotations[3])
+    static let quantumLeap = [topQuantum, backsideJunctionQL, bend1QL, botQuantum]
     //Grand rapids
     static let topGR = Vertex<ImageAnnotation>(NorthPeakTrails[2].annotations[0])
     static let SMJunctionGR = Vertex<ImageAnnotation>(NorthPeakTrails[2].annotations[1])
@@ -342,10 +366,12 @@ class TrailsDatabase : NSObject {
     static let bend3GR = Vertex<ImageAnnotation>(NorthPeakTrails[2].annotations[5])
     static let lazyRiverJunctionGR = Vertex<ImageAnnotation>(NorthPeakTrails[2].annotations[6])
     static let endGR = Vertex<ImageAnnotation>(NorthPeakTrails[2].annotations[7])
+    static let grandRapids = [topGR, SMJunctionGR, bend1GR, downdraftJunctionGR, bend2GR, bend3GR, lazyRiverJunctionGR, endGR]
     //lower downdraft
     static let topLD = Vertex<ImageAnnotation>(spruceTrails[5].annotations[0])
     static let GRJunctionLD = Vertex<ImageAnnotation>(spruceTrails[5].annotations[1])
     static let AEJunctionLD = Vertex<ImageAnnotation>(spruceTrails[5].annotations[2])
+    static let lowerDowndraft = [topLD, GRJunctionLD, AEJunctionLD]
     //dream maker
     static let topDM = Vertex<ImageAnnotation>(NorthPeakTrails[3].annotations[0])
     static let bend1DM = Vertex<ImageAnnotation>(NorthPeakTrails[3].annotations[1])
@@ -354,20 +380,24 @@ class TrailsDatabase : NSObject {
     static let Bend3DM = Vertex<ImageAnnotation>(NorthPeakTrails[3].annotations[4])
     static let RRJunctionDM = Vertex<ImageAnnotation>(NorthPeakTrails[3].annotations[5])
     static let T72JunctionDM = Vertex<ImageAnnotation>(NorthPeakTrails[3].annotations[7])
+    static let dreamMaker = [topDM, bend1DM, bend1GP, TPJunctionDM, Bend2DM, Bend3DM, RRJunctionDM, T72JunctionDM]
     //t72
     static let topT72 = Vertex<ImageAnnotation>(NorthPeakTrails[4].annotations[0])
     static let lastMileJunctionT72 = Vertex<ImageAnnotation>(NorthPeakTrails[4].annotations[1])
     static let RRJunctionT72 = Vertex<ImageAnnotation>(NorthPeakTrails[4].annotations[2])
     static let endT72 = Vertex<ImageAnnotation>(NorthPeakTrails[4].annotations[3])
+    static let T72 = [topT72, lastMileJunctionT72, RRJunctionT72, endT72]
     //sensation
     static let topSensation = Vertex<ImageAnnotation>(NorthPeakTrails[5].annotations[0])
     static let bend1Sensation = Vertex<ImageAnnotation>(NorthPeakTrails[5].annotations[1])
     static let bend2Sensation = Vertex<ImageAnnotation>(NorthPeakTrails[5].annotations[2])
     static let bend3Sensation = Vertex<ImageAnnotation>(NorthPeakTrails[5].annotations[3])
     static let QLJunctionSensation = Vertex<ImageAnnotation>(NorthPeakTrails[5].annotations[4])
+    static let sensation = [topSensation, bend1Sensation, bend2Sensation, bend3Sensation, QLJunctionSensation]
     //dream maker terrain park
     static let topDMTP = Vertex<ImageAnnotation>(NorthPeakTrails[6].annotations[0])
     static let botDMTP = Vertex<ImageAnnotation>(NorthPeakTrails[6].annotations[1])
+    static let DMTP = [topDMTP, botDMTP]
     //escapade
     static let topEscapade = Vertex<ImageAnnotation>(NorthPeakTrails[7].annotations[0])
     static let bend1Escapade = Vertex<ImageAnnotation>(NorthPeakTrails[7].annotations[1])
@@ -378,9 +408,11 @@ class TrailsDatabase : NSObject {
     static let RRJunction3D = Vertex<ImageAnnotation>(NorthPeakTrails[8].annotations[2])
     static let bend13D = Vertex<ImageAnnotation>(NorthPeakTrails[8].annotations[3])
     static let bot3D = Vertex<ImageAnnotation>(NorthPeakTrails[8].annotations[4])
+    static let threeD = [top3D, LMJunction3D, RRJunction3D, bend13D, bot3D]
     //Barker
     static let botBarker = Vertex<ImageAnnotation>(Lifts[0].annotations[0])
     static let topBarker = Vertex<ImageAnnotation>(Lifts[0].annotations[1])
+    static let barker = [botBarker, topBarker]
     //Three Mile Trail
     static let start3ML = Vertex<ImageAnnotation>(barkerTrails[0].annotations[0])
     static let bend13ML = Vertex<ImageAnnotation>(barkerTrails[0].annotations[1])
@@ -391,6 +423,7 @@ class TrailsDatabase : NSObject {
     static let AEJunction3ML = Vertex<ImageAnnotation>(barkerTrails[0].annotations[6])
     static let bend33ML = Vertex<ImageAnnotation>(barkerTrails[0].annotations[7])
     static let end3ML = Vertex<ImageAnnotation>(barkerTrails[0].annotations[8])
+    static let threeMileTrail = [start3ML, bend13ML, sluiceJunction3ML, gnarniaJunction3ML, RBJunction3ML, AEJunction3ML, bend23ML, bend33ML, end3ML]
     // Lazy River
     static let startLR = Vertex<ImageAnnotation>(barkerTrails[1].annotations[0])
     static let bend1LR = Vertex<ImageAnnotation>(barkerTrails[1].annotations[1])
@@ -405,45 +438,54 @@ class TrailsDatabase : NSObject {
     static let AEJunctionLR = Vertex<ImageAnnotation>(barkerTrails[1].annotations[10])
     static let GRJunctionLR = Vertex<ImageAnnotation>(barkerTrails[1].annotations[11])
     static let endLR = Vertex<ImageAnnotation>(barkerTrails[1].annotations[12])
+    static let lazyRiver = [startLR, bend1LR, ThreeMLJunctionLR, bend2LR, bend3LR, bend4LR, sluiceJunctionLR, gnarniaJunctionLR, RBJunctionLR, bend5LR, AEJunctionLR, GRJunctionLR, endLR]
     // Sluice
     static let startSluice = Vertex<ImageAnnotation>(barkerTrails[2].annotations[0])
     static let bend1Sluice = Vertex<ImageAnnotation>(barkerTrails[2].annotations[1])
     static let endSluice = Vertex<ImageAnnotation>(barkerTrails[2].annotations[2])
+    static let sluice = [startSluice, bend1Sluice, endSluice]
     //Right Stuff
     static let topRS = Vertex<ImageAnnotation>(barkerTrails[3].annotations[0])
     static let bend1RS = Vertex<ImageAnnotation>(barkerTrails[3].annotations[1])
     static let bend2RS = Vertex<ImageAnnotation>(barkerTrails[3].annotations[2])
     static let bend3RS = Vertex<ImageAnnotation>(barkerTrails[3].annotations[3])
     static let LSPJunctionRS = Vertex<ImageAnnotation>(barkerTrails[3].annotations[4])
+    static let rightStuff = [topRS, bend1RS, bend2RS, bend3RS, LSPJunctionRS]
     //Agony
     static let topAgony = Vertex<ImageAnnotation>(barkerTrails[4].annotations[0])
     static let TGJunctionAgony = Vertex<ImageAnnotation>(barkerTrails[4].annotations[1])
     static let endAgony = Vertex<ImageAnnotation>(barkerTrails[4].annotations[2])
+    static let agony = [topAgony, TGJunctionAgony, endAgony]
     //Top Gun
     static let topTG = Vertex<ImageAnnotation>(barkerTrails[5].annotations[0])
     static let bend1TG = Vertex<ImageAnnotation>(barkerTrails[5].annotations[1])
     static let LSPJunctionTG = Vertex<ImageAnnotation>(barkerTrails[5].annotations[2])
+    static let topGun = [topTG, bend1TG, LSPJunctionTG]
     //Ecstasy
     static let topEcstasy = Vertex<ImageAnnotation>(barkerTrails[6].annotations[0])
     static let bend1Ecstasy = Vertex<ImageAnnotation>(barkerTrails[6].annotations[1])
     static let bend2Ecstasy = Vertex<ImageAnnotation>(barkerTrails[6].annotations[2])
     static let southPawEcstasy = Vertex<ImageAnnotation>(barkerTrails[6].annotations[3])
     static let uppercutJunctionEcstasy = Vertex<ImageAnnotation>(barkerTrails[6].annotations[4])
+    static let ecstasy = [topEcstasy, bend1Ecstasy, bend2Ecstasy, southPawEcstasy, uppercutJunctionEcstasy]
     // Jungle Road
     static let startJR = Vertex<ImageAnnotation>(barkerTrails[7].annotations[0])
     static let bend1JR = Vertex<ImageAnnotation>(barkerTrails[7].annotations[1])
     static let bend2JR = Vertex<ImageAnnotation>(barkerTrails[7].annotations[2])
     static let GPJunctionJR = Vertex<ImageAnnotation>(barkerTrails[7].annotations[3])
     static let USPJunctionJR = Vertex<ImageAnnotation>(barkerTrails[7].annotations[4])
+    static let jungleRoad = [startJR, bend1JR, bend2JR, GPJunctionJR, USPJunctionJR]
     // Lower Upper Cut
     static let topLUC = Vertex<ImageAnnotation>(lockeTrails[10].annotations[0])
     static let botLUC = Vertex<ImageAnnotation>(lockeTrails[10].annotations[1])
+    static let lowerUpperCut = [topLUC, botLUC]
     //South Paw
     static let topSP = Vertex<ImageAnnotation>(barkerTrails[8].annotations[0])
     static let bend1SP = Vertex<ImageAnnotation>(barkerTrails[8].annotations[1])
     static let bend2SP = Vertex<ImageAnnotation>(barkerTrails[8].annotations[2])
     static let agonyJunctionSP = Vertex<ImageAnnotation>(barkerTrails[8].annotations[3])
     static let LSP2JunctionSP = Vertex<ImageAnnotation>(barkerTrails[8].annotations[4])
+    static let southPaw = [topSP, bend1SP, bend2SP, agonyJunctionSP, LSP2JunctionSP]
     // Lower Sunday Punch
     static let topLSP = Vertex<ImageAnnotation>(lockeTrails[11].annotations[0])
     static let SPJunctionuLSP = Vertex<ImageAnnotation>(lockeTrails[11].annotations[1])
@@ -453,17 +495,21 @@ class TrailsDatabase : NSObject {
     static let RSJunctionLSP = Vertex<ImageAnnotation>(lockeTrails[11].annotations[5])
     static let TTJunctionLSP = Vertex<ImageAnnotation>(lockeTrails[11].annotations[6])
     static let endLSP = Vertex<ImageAnnotation>(lockeTrails[11].annotations[7])
+    static let sundayPunch = [topLSP, SPJunctionuLSP, bend1LSP, SPRCJunctionLSP, TGJunctionLSP, RSJunctionLSP, TTJunctionLSP, endLSP]
     //Rocking Chair
     static let topRC = Vertex<ImageAnnotation>(barkerTrails[9].annotations[0])
     static let bend1RC = Vertex<ImageAnnotation>(barkerTrails[9].annotations[1])
     static let endRC = Vertex<ImageAnnotation>(barkerTrails[9].annotations[2])
+    static let rockingChair = [topRC, bend1RC, endRC]
     //Tightwire
     static let topTW = Vertex<ImageAnnotation>(lockeTrails[12].annotations[0])
     static let bend1TW = Vertex<ImageAnnotation>(lockeTrails[12].annotations[1])
     static let RCJunctionTW = Vertex<ImageAnnotation>(lockeTrails[12].annotations[2])
+    static let tightWire = [topTW, bend1TW, RCJunctionTW]
     //Southridge
     static let botSouthridge = Vertex<ImageAnnotation>(Lifts[1].annotations[0])
     static let topSouthridge = Vertex<ImageAnnotation>(Lifts[1].annotations[1])
+    static let southridge = [botSouthridge, topSouthridge]
     //Ridge Run
     static let startRR = Vertex<ImageAnnotation>(southRidgeTrails[0].annotations[0])
     static let EFJunctionRR = Vertex<ImageAnnotation>(southRidgeTrails[0].annotations[1])
@@ -479,11 +525,13 @@ class TrailsDatabase : NSObject {
     static let bend5RR = Vertex<ImageAnnotation>(southRidgeTrails[0].annotations[11])
     static let bend6RR = Vertex<ImageAnnotation>(southRidgeTrails[0].annotations[12])
     static let endRR = Vertex<ImageAnnotation>(southRidgeTrails[0].annotations[13])
+    static let ridgeRun = [startRR, EFJunctionRR, TDJunctionRR, bend1RR, T72JunctionRR, DMJunctionRR, STJunctionRR, LCJunctionRR, bend2RR, bend3RR, bend4RR, bend5RR, bend6RR, endRR]
     //Lower Escapade
     static let topLE = Vertex<ImageAnnotation>(NorthPeakTrails[7].annotations[3])
     static let broadwayJunctionLE = Vertex<ImageAnnotation>(NorthPeakTrails[7].annotations[4])
     static let NWJunctionLE = Vertex<ImageAnnotation>(NorthPeakTrails[7].annotations[5])
     static let endLE = Vertex<ImageAnnotation>(NorthPeakTrails[7].annotations[6])
+    static let escapeade = [topEscapade, bend1Escapade, LMJunctionEscapade, topLE, broadwayJunctionLE, NWJunctionLE, endLE]
     //Broadway
     static let topBroadway = Vertex<ImageAnnotation>(southRidgeTrails[1].annotations[0])
     static let NWJunctionBroadway = Vertex<ImageAnnotation>(southRidgeTrails[1].annotations[1])
@@ -491,83 +539,104 @@ class TrailsDatabase : NSObject {
     static let WVJunctionBroadway = Vertex<ImageAnnotation>(southRidgeTrails[1].annotations[3])
     static let WLJunctionBroadway = Vertex<ImageAnnotation>(southRidgeTrails[1].annotations[4])
     static let endBroadway = Vertex<ImageAnnotation>(southRidgeTrails[1].annotations[5])
+    static let broadway = [topBroadway, NWJunctionBroadway, MBJunctionBroadway, WVJunctionBroadway, WLJunctionBroadway, endBroadway]
     //Lower Lazy River
     static let topLLR = Vertex<ImageAnnotation>(southRidgeTrails[2].annotations[0])
     static let bend1LLR = Vertex<ImageAnnotation>(southRidgeTrails[2].annotations[1])
     static let broadwayJunctionLLR = Vertex<ImageAnnotation>(southRidgeTrails[2].annotations[2])
     static let endLLR = Vertex<ImageAnnotation>(southRidgeTrails[2].annotations[3])
+    static let lowerLazyRiver = [topLLR, bend1LLR, broadwayJunctionLLR, endLLR]
     //Thataway
     static let startThataway = Vertex<ImageAnnotation>(southRidgeTrails[3].annotations[0])
     static let endThataway = Vertex<ImageAnnotation>(southRidgeTrails[3].annotations[1])
+    static let thataway = [startThataway, endThataway]
     //Mixing Bowl
     static let topMB = Vertex<ImageAnnotation>(southRidgeTrails[4].annotations[0])
     static let bend1MB = Vertex<ImageAnnotation>(southRidgeTrails[4].annotations[1])
     static let endMB = Vertex<ImageAnnotation>(southRidgeTrails[4].annotations[2])
+    static let mixingBowl = [topMB, bend1MB, endMB]
     //Lower Chondi Line
     static let topLCL = Vertex<ImageAnnotation>(southRidgeTrails[5].annotations[0])
     static let endLCL = Vertex<ImageAnnotation>(southRidgeTrails[5].annotations[1])
+    static let lowerChondiLine = [topLCL, endLCL]
     //Who ville
     static let topWV = Vertex<ImageAnnotation>(southRidgeTrails[6].annotations[0])
     static let endWV = Vertex<ImageAnnotation>(southRidgeTrails[6].annotations[1])
+    static let whoVille = [topWV, endWV]
     //Wonderland
     static let topWL = Vertex<ImageAnnotation>(southRidgeTrails[7].annotations[0])
     static let endWL = Vertex<ImageAnnotation>(southRidgeTrails[7].annotations[1])
+    static let wonderland = [topWL, endWL]
     //Northway
     static let topNW = Vertex<ImageAnnotation>(southRidgeTrails[8].annotations[0])
     static let LEJunctionNW = Vertex<ImageAnnotation>(southRidgeTrails[8].annotations[1])
     static let EFJunctionNW = Vertex<ImageAnnotation>(southRidgeTrails[8].annotations[2])
     static let endNW = Vertex<ImageAnnotation>(southRidgeTrails[8].annotations[3])
+    static let northway = [topNW, LEJunctionNW, EFJunctionNW, endNW]
     //Spectator
     static let topSpectator = Vertex<ImageAnnotation>(southRidgeTrails[9].annotations[0])
     static let sundanceJunctionSpectator = Vertex<ImageAnnotation>(southRidgeTrails[9].annotations[1])
     static let endSpectator = Vertex<ImageAnnotation>(southRidgeTrails[9].annotations[2])
+    static let spectator = [topSpectator, sundanceJunctionSpectator, endSpectator]
     //Double Dipper
     static let topDD = Vertex<ImageAnnotation>(southRidgeTrails[10].annotations[0])
     static let DMJunctionDD = Vertex<ImageAnnotation>(southRidgeTrails[10].annotations[1])
     static let endDD = Vertex<ImageAnnotation>(southRidgeTrails[10].annotations[2])
+    static let doubleDipper = [topDD, DMJunctionDD, endDD]
     //Sundance
     static let topSD = Vertex<ImageAnnotation>(southRidgeTrails[11].annotations[0])
     static let DDSPRJunctionSD = Vertex<ImageAnnotation>(southRidgeTrails[11].annotations[1])
     static let DMJunctionSD = Vertex<ImageAnnotation>(southRidgeTrails[11].annotations[2])
     static let bend1SD = Vertex<ImageAnnotation>(southRidgeTrails[11].annotations[3])
     static let botSD = Vertex<ImageAnnotation>(southRidgeTrails[11].annotations[4])
+    static let sundance = [topSD, DDSPRJunctionSD, DMJunctionSD, bend1SD, botSD]
     //second thoughts
     static let topST = Vertex<ImageAnnotation>(NorthPeakTrails[9].annotations[0])
     static let bend1ST = Vertex<ImageAnnotation>(NorthPeakTrails[9].annotations[1])
     static let endST = Vertex<ImageAnnotation>(NorthPeakTrails[9].annotations[2])
+    static let secondThoughts = [topST, bend1ST, endST]
     //Exit Right
     static let topER = Vertex<ImageAnnotation>(southRidgeTrails[12].annotations[0])
     static let endER = Vertex<ImageAnnotation>(southRidgeTrails[12].annotations[1])
+    static let exitRight = [topER, endER]
     //Exit Left
     static let topEL = Vertex<ImageAnnotation>(southRidgeTrails[13].annotations[0])
     static let endEL = Vertex<ImageAnnotation>(southRidgeTrails[13].annotations[1])
+    static let exitLeft = [topEL, endEL]
     //Sirius
     static let topSirius = Vertex<ImageAnnotation>(spruceTrails[0].annotations[0])
     static let endSirius = Vertex<ImageAnnotation>(spruceTrails[0].annotations[1])
+    static let sirius = [topSirius, endSirius]
     // Upper Downdraft
     static let topDowndraft = Vertex<ImageAnnotation>(spruceTrails[1].annotations[0])
     static let endDowndraft = Vertex<ImageAnnotation>(spruceTrails[1].annotations[1])
+    static let upperDowndraft = [topDowndraft, endDowndraft]
     //American Express
     static let topAE = Vertex<ImageAnnotation>(spruceTrails[2].annotations[0])
     static let TMLJunctionAE = Vertex<ImageAnnotation>(spruceTrails[2].annotations[1])
     static let bend1AE = Vertex<ImageAnnotation>(spruceTrails[2].annotations[2])
     static let LRJunctionAE = Vertex<ImageAnnotation>(spruceTrails[2].annotations[3])
+    static let americanExpress = [topAE, TMLJunctionAE, bend1AE, LRJunctionAE]
     //Risky Business
     static let topRB = Vertex<ImageAnnotation>(spruceTrails[3].annotations[0])
     static let bend1RB = Vertex<ImageAnnotation>(spruceTrails[3].annotations[1])
     static let bend2RB = Vertex<ImageAnnotation>(spruceTrails[3].annotations[2])
     static let LRJunctionRB = Vertex<ImageAnnotation>(spruceTrails[3].annotations[3])
+    static let riskyBusiness = [topRB, bend1RB, bend2RB, LRJunctionRB]
     //Gnarnia
     static let topGnarnia = Vertex<ImageAnnotation>(spruceTrails[4].annotations[0])
     static let TMLJunctionGnarnia = Vertex<ImageAnnotation>(spruceTrails[4].annotations[1])
     static let endGnarnia = Vertex<ImageAnnotation>(spruceTrails[4].annotations[2])
+    static let gnarnia = [topGnarnia, TMLJunctionGnarnia, endGnarnia]
     //Tourist Trap
     static let topTT = Vertex<ImageAnnotation>(barkerTrails[10].annotations[0])
     static let OHJunctionTT = Vertex<ImageAnnotation>(barkerTrails[10].annotations[1])
     static let endTT = Vertex<ImageAnnotation>(barkerTrails[10].annotations[2])
+    static let touristTrap = [topTT, OHJunctionTT, endTT]
     //Locke
     static let botLocke = Vertex<ImageAnnotation>(Lifts[3].annotations[0])
     static let topLocke = Vertex<ImageAnnotation>(Lifts[3].annotations[1])
+    static let locke = [botLocke, topLocke]
     //Goat Path
     static let topGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[0])
     static let UCJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[1])
@@ -578,11 +647,13 @@ class TrailsDatabase : NSObject {
     static let agonyJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[6])
     static let TGJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[7])
     static let LRJunctionGP = Vertex<ImageAnnotation>(lockeTrails[0].annotations[8])
+    static let goatPath = [topGP, UCJunctionGP, JRJunctionGP, EcstasyJunctionGP, bend2GP, agonyJunctionGP, TGJunctionGP, LRJunctionGP]
     //Upper cut
     static let topUC = Vertex<ImageAnnotation>(lockeTrails[1].annotations[0])
     static let JRJunctionUC = Vertex<ImageAnnotation>(lockeTrails[1].annotations[1])
     static let bend1UC = Vertex<ImageAnnotation>(lockeTrails[1].annotations[2])
     static let ecstasyJunctionUC = Vertex<ImageAnnotation>(lockeTrails[1].annotations[3])
+    static let upperCut = [topUC, JRJunctionUC, bend1UC, ecstasyJunctionUC]
     //Upper Sunday Punch
     static let topUSP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[0])
     static let JRJunctionUSP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[1])
@@ -591,20 +662,24 @@ class TrailsDatabase : NSObject {
     static let LLUSP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[4])
     static let bend3USP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[5])
     static let GrandJunctionUSP = Vertex<ImageAnnotation>(lockeTrails[2].annotations[6])
+    static let upperSundayPunch = [topUSP, JRJunctionUSP, bend1USP, bend2USP, LLUSP, bend3USP, GrandJunctionUSP]
     //Locke Line
     static let topLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[0])
     static let JWJunctionLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[1])
     static let USPJunctionLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[2])
-    static let EcstasyLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[3])
+    static let EcstasyJunctionLL = Vertex<ImageAnnotation>(lockeTrails[3].annotations[3])
+    static let lockeLine = [topLL, JWJunctionLL, USPJunctionLL, EcstasyJunctionLL]
     //Jim's Whim
     static let topJW = Vertex<ImageAnnotation>(lockeTrails[4].annotations[0])
     static let LLJunctionJW = Vertex<ImageAnnotation>(lockeTrails[4].annotations[1])
     static let T2JunctionJW = Vertex<ImageAnnotation>(lockeTrails[4].annotations[2])
+    static let jimsWhim = [topJW, LLJunctionJW, T2JunctionJW]
     //T2
     static let topT2 = Vertex<ImageAnnotation>(lockeTrails[5].annotations[0])
     static let LLJunctionT2 = Vertex<ImageAnnotation>(lockeTrails[5].annotations[1])
     static let JWJunctionT2 = Vertex<ImageAnnotation>(lockeTrails[5].annotations[2])
     static let endT2 = Vertex<ImageAnnotation>(lockeTrails[5].annotations[3])
+    static let T2 = [topT2, LLJunctionT2, JWJunctionT2, endT2]
     //Bim's Whim
     static let topBW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[0])
     static let bend1BW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[1])
@@ -614,14 +689,17 @@ class TrailsDatabase : NSObject {
     static let bend5BW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[5])
     static let salvationJunctionBW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[6])
     static let WCJunctionBW = Vertex<ImageAnnotation>(lockeTrails[6].annotations[7])
+    static let bimsWhim = [topBW, bend1BW, bend2BW, bend3BW, bend4BW, bend5BW, salvationJunctionBW, WCJunctionBW]
     //Cascades
     static let topCC = Vertex<ImageAnnotation>(lockeTrails[7].annotations[0])
     static let SBJunctionCC = Vertex<ImageAnnotation>(lockeTrails[7].annotations[1])
     static let TempestJunctionCC = Vertex<ImageAnnotation>(lockeTrails[7].annotations[2])
     static let endCC = Vertex<ImageAnnotation>(lockeTrails[7].annotations[3])
+    static let cascades = [topCC, SBJunctionCC, TempestJunctionCC, endCC]
     //Monday Mourning
     static let topMM = Vertex<ImageAnnotation>(lockeTrails[8].annotations[0])
     static let endMM = Vertex<ImageAnnotation>(lockeTrails[8].annotations[1])
+    static let mondayMourning = [topMM, endMM]
     //Bear Paw
     static let topBP = Vertex<ImageAnnotation>(whiteCapTrails[16].annotations[0])
     static let bend1BP = Vertex<ImageAnnotation>(whiteCapTrails[16].annotations[1])
@@ -633,44 +711,55 @@ class TrailsDatabase : NSObject {
     static let endCOJunctionBP = Vertex<ImageAnnotation>(whiteCapTrails[16].annotations[7])
     static let bend6BP = Vertex<ImageAnnotation>(whiteCapTrails[16].annotations[8])
     static let endBP = Vertex<ImageAnnotation>(whiteCapTrails[16].annotations[9])
+    static let bearPaw = [topBP, bend1BP, bend2BP, bend3BP, bend4BP, bend5BP, COJunctionBP, endCOJunctionBP, bend6BP, endBP]
     //Wildfire
     static let topWF = Vertex<ImageAnnotation>(whiteCapTrails[17].annotations[0])
     static let bend1WF = Vertex<ImageAnnotation>(whiteCapTrails[17].annotations[1])
     static let COJunctionWF = Vertex<ImageAnnotation>(whiteCapTrails[17].annotations[2])
     static let CBJunctionWF = Vertex<ImageAnnotation>(whiteCapTrails[17].annotations[3])
     static let endWF = Vertex<ImageAnnotation>(whiteCapTrails[17].annotations[4])
+    static let wildFire = [topWF, bend1WF, COJunctionWF, CBJunctionWF, endWF]
     //Cut Off
     static let topCO = Vertex<ImageAnnotation>(whiteCapTrails[18].annotations[0])
     static let endCO = Vertex<ImageAnnotation>(whiteCapTrails[18].annotations[1])
+    static let cutOff = [topCO, endCO]
     //Cut Back
     static let topCB = Vertex<ImageAnnotation>(whiteCapTrails[20].annotations[0])
+    static let cutBack = [topCB]
     //Road Runner
     static let topRR = Vertex<ImageAnnotation>(lockeTrails[9].annotations[0])
     static let WFJunctionRoadR = Vertex<ImageAnnotation>(lockeTrails[9].annotations[1])
     static let bend1RoadR = Vertex<ImageAnnotation>(lockeTrails[9].annotations[2])
     static let bend2RoadR = Vertex<ImageAnnotation>(lockeTrails[9].annotations[3])
     static let endRoadR = Vertex<ImageAnnotation>(lockeTrails[9].annotations[4])
+    static let roadRunner = [topRR, WFJunctionRoadR, bend1RoadR, bend2RoadR, endRoadR]
     //Snowbound
     static let topSB = Vertex<ImageAnnotation>(whiteCapTrails[19].annotations[0])
     static let endSB = Vertex<ImageAnnotation>(whiteCapTrails[19].annotations[1])
+    static let snowBound = [topSB, endSB]
     //Tempest Quad
     static let botTQ = Vertex<ImageAnnotation>(Lifts[7].annotations[0])
     static let topTQ = Vertex<ImageAnnotation>(Lifts[7].annotations[1])
+    static let TQ = [botTQ, topTQ]
     //Little White Cap Quad
-    static let botLWCQ = Vertex<ImageAnnotation>(Lifts[8].annotations[0])
-    static let topLWCQ = Vertex<ImageAnnotation>(Lifts[8].annotations[1])
+    static let botLWCQ = Vertex<ImageAnnotation>(Lifts[9].annotations[0])
+    static let topLWCQ = Vertex<ImageAnnotation>(Lifts[9].annotations[1])
+    static let LWCQ = [botLWCQ, topLWCQ]
     //White Heat Quad
-    static let botWHQ = Vertex<ImageAnnotation>(Lifts[9].annotations[0])
-    static let topWHQ = Vertex<ImageAnnotation>(Lifts[9].annotations[1])
+    static let botWHQ = Vertex<ImageAnnotation>(Lifts[8].annotations[0])
+    static let topWHQ = Vertex<ImageAnnotation>(Lifts[8].annotations[1])
+    static let WHQ = [botWHQ, topWHQ]
     //Salvation
     static let topSalvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[0])
     static let BWJunctionSalvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[1])
     static let bend1Salvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[2])
     static let BW2JunctionSalvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[3])
     static let HOJunctionSalvation = Vertex<ImageAnnotation>(whiteCapTrails[0].annotations[4])
+    static let salvation = [topSalvation, BWJunctionSalvation, bend1Salvation, BWJunctionSalvation, bend1Salvation, BW2JunctionSalvation, HOJunctionSalvation]
     //Heat's Off
     static let topHO = Vertex<ImageAnnotation>(whiteCapTrails[1].annotations[0])
     static let endHO = Vertex<ImageAnnotation>(whiteCapTrails[1].annotations[1])
+    static let heatsOff = [topHO, endHO]
     //Obsession
     static let topObsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[0])
     static let bend1Obsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[1])
@@ -678,36 +767,44 @@ class TrailsDatabase : NSObject {
     static let SBJunctionObsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[3])
     static let bend2Obsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[4])
     static let HOnJunctionObsession = Vertex<ImageAnnotation>(whiteCapTrails[2].annotations[5])
+    static let obsession = [topObsession, bend1Obsession, HOJunctionObsession, SBJunctionObsession, bend2Obsession, HOnJunctionObsession]
     //Chutzpah
     static let topChutzpah = Vertex<ImageAnnotation>(whiteCapTrails[3].annotations[0])
     static let midChutzpah = Vertex<ImageAnnotation>(whiteCapTrails[3].annotations[1])
     static let endChutzpah = Vertex<ImageAnnotation>(whiteCapTrails[3].annotations[2])
+    static let chutzpah = [topChutzpah, midChutzpah, endChutzpah]
     //White Heat
     static let topWH = Vertex<ImageAnnotation>(whiteCapTrails[4].annotations[0])
     static let chutzpahJunctionWH = Vertex<ImageAnnotation>(whiteCapTrails[4].annotations[1])
     static let assumptionJunctionWH = Vertex<ImageAnnotation>(whiteCapTrails[4].annotations[2])
+    static let whiteHeat = [ topWH, chutzpahJunctionWH, assumptionJunctionWH]
     //Shock Wave
     static let topSW = Vertex<ImageAnnotation>(whiteCapTrails[5].annotations[0])
     static let bend1SW = Vertex<ImageAnnotation>(whiteCapTrails[5].annotations[1])
     static let bend2SW = Vertex<ImageAnnotation>(whiteCapTrails[5].annotations[2])
     static let assumptionJunctionSW = Vertex<ImageAnnotation>(whiteCapTrails[5].annotations[3])
+    static let shockWave = [topSW, bend1SW, bend2SW, assumptionJunctionSW]
     //Tempest
     static let topTempest = Vertex<ImageAnnotation>(whiteCapTrails[6].annotations[0])
     static let HOJunctionTempest = Vertex<ImageAnnotation>(whiteCapTrails[6].annotations[1])
     static let endTempest = Vertex<ImageAnnotation>(whiteCapTrails[6].annotations[2])
+    static let tempest = [topTempest, HOJunctionTempest, endTempest]
     //Jibe
     static let topJibe = Vertex<ImageAnnotation>(whiteCapTrails[7].annotations[0])
     static let bend1Jibe = Vertex<ImageAnnotation>(whiteCapTrails[7].annotations[1])
     static let endJibe = Vertex<ImageAnnotation>(whiteCapTrails[7].annotations[2])
+    static let jibe = [topJibe, bend1Jibe, endJibe]
     //Heat's On
     static let topHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[0])
     static let obsessionJunctionHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[1])
     static let assumptionJunctionHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[2])
     static let SLJunctionHON = Vertex<ImageAnnotation>(whiteCapTrails[8].annotations[3])
+    static let heatsOn = [topHON, obsessionJunctionHON, assumptionJunctionHON, SLJunctionHON]
     //Green Cheese
     static let topGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[0])
     static let SBJunctionGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[1])
     static let endGC = Vertex<ImageAnnotation>(whiteCapTrails[9].annotations[2])
+    static let greenCheese = [topGC, SBJunctionCC, endGC]
     //Moonstruck
     static let topMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[0])
     static let bend1MS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[1])
@@ -718,11 +815,13 @@ class TrailsDatabase : NSObject {
     static let SBJunctionMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[6])
     static let SLJunctionMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[7])
     static let endMS = Vertex<ImageAnnotation>(whiteCapTrails[10].annotations[8])
+    static let moonStruck = [topMS, bend1MS, bend2MS, bend3MS, GCJunctionMS, bend4MS, SBJunctionMS, SLJunctionMS, endMS]
     //Assumption
     static let topAssumption = Vertex<ImageAnnotation>(whiteCapTrails[11].annotations[0])
     static let SWJunctionAssumption = Vertex<ImageAnnotation>(whiteCapTrails[11].annotations[1])
     static let WHJunctionAssumption = Vertex<ImageAnnotation>(whiteCapTrails[11].annotations[2])
     static let WHQJunctionAssumption = Vertex<ImageAnnotation>(whiteCapTrails[11].annotations[3])
+    static let assumption = [topAssumption, SWJunctionAssumption, WHJunctionAssumption, WHQJunctionAssumption]
     //Starlight
     static let topSL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[0])
     static let bend1SL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[1])
@@ -730,37 +829,46 @@ class TrailsDatabase : NSObject {
     static let bend3SL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[3])
     static let HOJunctionSL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[4])
     static let MSJunctionSL = Vertex<ImageAnnotation>(whiteCapTrails[12].annotations[5])
+    static let starlight = [topSL, bend1SL, bend2SL, bend3SL, HOJunctionSL, MSJunctionSL]
     //Starstruck
     static let topSS = Vertex<ImageAnnotation>(whiteCapTrails[13].annotations[0])
     static let endSS = Vertex<ImageAnnotation>(whiteCapTrails[13].annotations[1])
+    static let starStruck = [topSS, endSS]
     //Starwood
     static let topStarW = Vertex<ImageAnnotation>(whiteCapTrails[14].annotations[0])
     static let endStarW = Vertex<ImageAnnotation>(whiteCapTrails[14].annotations[1])
+    static let starwood = [topStarW, endStarW]
     //Starburst
     static let topStarB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[0])
     static let GCJunctionSB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[1])
     static let endStarB = Vertex<ImageAnnotation>(whiteCapTrails[15].annotations[2])
+    static let starburst = [topStarB, GCJunctionSB, endStarB]
 
+    static let realTimeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     
     static let keyAnnotations = [botSpruce, botQLT, botNP, botChondola, auroraSideJD, jordanSideJD, botAurora, botJord, topLol, topExcal, topRogue, topCaram, topKans, junctionWoodsman, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, witchWayTop, cycloneJunctionAirglow, topBlackHole, topFirestar, startLO, topBorealis, kansasJunctionVortex, topParadigm, startSM, SMJunctionGR, topQuantum, topGR, topLD, topDM, Bend2DM, topT72, topSensation, topDMTP, topEscapade, top3D, botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW, botSouthridge, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT, botLocke, topGP, topUC, topUSP, topLL, topJW, topT2, topBW, topCC, topMM, topBP, topWF, topCO, topCB, topRR, topSB, botTQ, botWHQ, topSalvation, topObsession, topChutzpah, topWH, topSW, topTempest, topJibe, topHON, topGC, topMS, topAssumption, topSL, topSS, topStarW, topStarB, botLWCQ, northernLightsTop]
     
-    static let jordanKeyAnnotations = [botJord, topLol, topRogue, topExcal, topCaram, jordanSideJD]
+    static let jordanTrailsAnnotations = [lollapalooza, excalibur, rogueAngel, iCaramba]
     
-    static let auroraKeyAnnotations = [botAurora, botQLT, topBorealis, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, kansasJunctionVortex, startLO, topFirestar, topBlackHole, cycloneJunctionAirglow, witchWayTop]
+    static let auroraTrailAnnotations = [cyclone, northernLights, witchWay, airglow, blackHole, firestar, lightsOut, borealis, vortex, quantumLeap]
     
-    static let northPeakKeyAnnotations = [botNP, topParadigm, startSM, topEscapade, top3D, topSensation, topDM, topLD, topGR, topQuantum]
+    static let northPeakTrailAnnotations = [paradigm, secondMile, grandRapids, dreamMaker, T72, sensation, DMTP, escapeade, threeD, secondThoughts]
     
-    static let barkerKeyAnnotations = [botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW]
+    static let barkerTrailAnnotations = [threeMileTrail, lazyRiver, sluice, rightStuff, agony, topGun, ecstasy, jungleRoad, southPaw, rockingChair, touristTrap]
     
-    static let southRidgeKeyAnnotations = [botSouthridge, botChondola, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL]
+    static let southRidgeTrailAnnotations = [ridgeRun, broadway, lowerLazyRiver, thataway, mixingBowl, lowerChondiLine, whoVille, wonderland, northway, spectator, doubleDipper, sundance, exitRight, exitLeft]
     
-    static let spruceKeyAnnotations = [botSpruce, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT]
+    static let ozTrailAnnotations = [tinWoodsman, kansas]
+
+    static let spruceTrailAnnotations = [sirius, upperDowndraft, americanExpress, riskyBusiness, gnarnia, lowerDowndraft]
     
-    static let lockeKeyAnnotations = [topGP, topUC, topUSP, topLL, topJW, topT2, topBW, topCC, topMM, topBP, topWF, topCO, topCB, topRR, topSB]
+    static let lockeTrailAnnotations = [goatPath, upperCut, upperSundayPunch, lockeLine, jimsWhim, T2, bimsWhim, cascades, mondayMourning, roadRunner, lowerUpperCut, sundayPunch, tightWire]
     
-    static let whiteCapKeyAnnotations = [topSalvation, topHO, topObsession, topChutzpah, topWH, topStarW, topTempest, topJibe, topHON, topGC, topMS, topAssumption, topSL, topSS, topStarW, topSB]
+    static let whiteCapTrailAnnotations = [salvation, heatsOff, obsession, chutzpah, whiteHeat, shockWave, tempest, jibe, heatsOn, greenCheese, moonStruck, assumption, starlight, starStruck, starwood, starburst, bearPaw, wildFire, cutOff, snowBound, cutBack]
     
-    static let annotations = [botSpruce, topSpruce, botQLT, topQLT, botNP, topNP, botChondola, topChondola, auroraSideJD, jordanSideJD, botAurora, topAurora, botJord, topJord,  botLWCQ, topLWCQ, topLol, bend1Lol, bend2Lol, topExcal, bend1Excal, midExcal, botExcal, topRogue, midRogue, botRogue, topCaram, botCaram, topKans, bend1Kans, ozJunctionKans, woodsmanJunctionKans, bend2Kans, bend3Kans, bend4Kans, endKans, topWoodsman, junctionWoodsman, endWoodsman, topCyclone, northernLightsJunctionCyclone, poppyFieldsJunctionCyclone, woodsmanJunctionCyclone, carambaJunctionCyclone, rogueAngelJunctionCyclone, northernLightsTop, witchWayJunctionNL, kansasNLJunction, cycloneJunctionNL, bend1NL, fireStarJunctionNL, witchWayTop, kansJunctionWitchWay, topAirglow, cycloneJunctionAirglow, bend1Airglow, blackHoleJunctionAirglow, bend2Airglow, botAirglow, topBlackHole, botBlackHole, topFirestar, bend1Firestar, bend2Firestar, endFirestar, topBorealis, bend1Borealis, bend2Borealis, vortexJunctionBorealis,bend3Borealis, endBorealis, topVortex, kansasJunctionVortex, botVortex, topParadigm, bend1Paradigm, vortexJunctionParadigm, botParadigm, startSM, GRJunctionSM, DMTerrainJunctionSM, escapadeJunctionSM, ThreeDJunctionSM, T72JunctionSM, DMJunctionSM, endSM, topQuantum, backsideJunctionQL, bend1QL, botQuantum, topGR, SMJunctionGR, bend1GR, downdraftJunctionGR, bend2GR, bend3GR, lazyRiverJunctionGR, endGR, topLD, GRJunctionLD, AEJunctionLD, topDM, bend1DM, bend1GP, TPJunctionDM, Bend2DM, Bend3DM, RRJunctionDM, T72JunctionDM, topT72, lastMileJunctionT72, RRJunctionT72, endT72, topSensation, bend1Sensation, bend2Sensation, bend3Sensation, QLJunctionSensation, topDMTP, botDMTP, topEscapade, bend1Escapade, LMJunctionEscapade, top3D, LMJunction3D, RRJunction3D, bend13D, bot3D, startLO, vortexJunctionLO, UpperDownDraftJunctionLO, endLightsOut, botBarker, topBarker, start3ML, bend13ML, sluiceJunction3ML, gnarniaJunction3ML, RBJunction3ML, AEJunction3ML, bend23ML, bend33ML, end3ML, startLR, bend1LR, ThreeMLJunctionLR, bend2LR, bend3LR, bend4LR, sluiceJunctionLR, gnarniaJunctionLR, RBJunctionLR, bend5LR, AEJunctionLR, GRJunctionLR, endLR, startSluice, bend1Sluice, endSluice, topRS, bend1RS, bend2RS, bend3RS, LSPJunctionRS, topAgony, TGJunctionAgony, endAgony, topTG, bend1TG, LSPJunctionTG, topEcstasy, bend1Ecstasy, bend2Ecstasy, southPawEcstasy, uppercutJunctionEcstasy, startJR, bend1JR, bend2JR, GPJunctionJR, USPJunctionJR, topSP, bend1SP, bend2SP, agonyJunctionSP, LSP2JunctionSP, topLUC, botLUC, topLSP, SPJunctionuLSP, bend1LSP, SPRCJunctionLSP, TGJunctionLSP, RSJunctionLSP, TTJunctionLSP, endLSP, topRC, bend1RC, endRC, topTW, bend1TW, RCJunctionTW, botSouthridge, topSouthridge, startRR, EFJunctionRR, TDJunctionRR, bend1RR, T72JunctionRR, DMJunctionRR, STJunctionRR, LCJunctionRR, bend2RR, bend3RR, bend4RR, bend5RR, bend6RR, endRR, topLE, broadwayJunctionLE, NWJunctionLE, endLE, topBroadway, NWJunctionBroadway, MBJunctionBroadway, WVJunctionBroadway, WLJunctionBroadway, endBroadway, topLLR, bend1LLR, broadwayJunctionLLR, endLLR, startThataway, endThataway, topMB, bend1MB, endMB, topLCL, endLCL, topWV, endWV, topWL, endWL, topNW, LEJunctionNW, EFJunctionNW, endNW, topSpectator, sundanceJunctionSpectator, endSpectator, topDD, DMJunctionDD, endDD, topSD, DDSPRJunctionSD, DMJunctionSD, bend1SD, botSD, topST, bend1ST, endST, topER, endER, topEL, endEL, topSirius, endSirius, topDowndraft, endDowndraft, topAE, TMLJunctionAE, bend1AE, LRJunctionAE, topRB, bend1RB, bend2RB, LRJunctionRB, topGnarnia, TMLJunctionGnarnia, endGnarnia, topTT, OHJunctionTT, endTT, botLocke, topLocke, topGP, UCJunctionGP, JRJunctionGP, EcstasyJunctionGP, bend2GP, agonyJunctionGP, TGJunctionGP, LRJunctionGP, topUC, JRJunctionUC, bend1UC, ecstasyJunctionUC, topUSP, JRJunctionUSP, bend1USP, bend2USP, LLUSP, bend3USP, GrandJunctionUSP, topLL, JWJunctionLL, topT2, LLJunctionT2, JWJunctionT2, endT2, topJW, LLJunctionJW, T2JunctionJW, topBW, bend1BW, bend2BW, bend3BW, bend4BW, bend5BW, salvationJunctionBW, WCJunctionBW, topCC, SBJunctionCC, TempestJunctionCC, endCC, topMM, endMM, topBP, bend1BP, bend2BP, bend3BP, bend4BP, bend5BP, COJunctionBP, endCOJunctionBP, bend6BP, endBP, topWF, bend1WF, COJunctionWF, CBJunctionWF, endWF, topCO, endCO, topCB, topRR, WFJunctionRoadR, bend1RoadR, bend2RoadR, endRoadR, topSB, endSB, botTQ, topTQ, botWHQ, topWHQ, topSalvation, BWJunctionSalvation, bend1Salvation, BWJunctionSalvation, bend1Salvation, BW2JunctionSalvation, HOJunctionSalvation, topHO, endHO, topObsession, bend1Obsession, HOJunctionObsession, SBJunctionObsession, bend2Obsession, HOnJunctionObsession, topChutzpah, midChutzpah, endChutzpah, topWH, chutzpahJunctionWH, assumptionJunctionWH, topSW, bend1SW, bend2SW, assumptionJunctionSW, topTempest, HOJunctionTempest, endTempest, topJibe, bend1Jibe, endJibe, topHON, obsessionJunctionHON, assumptionJunctionHON, SLJunctionHON, topGC, SBJunctionCC, endGC, topMS, bend1MS, bend2MS, bend3MS, GCJunctionMS, bend4MS, SBJunctionMS, SLJunctionMS, endMS, topAssumption, SWJunctionAssumption, WHJunctionAssumption, WHQJunctionAssumption, topSL, bend1SL, bend2SL, bend3SL, HOJunctionSL, MSJunctionSL, topSS, endSS, topStarW, endStarW, topStarB, GCJunctionSB, endStarB]
+    static let lifts = [barker, southridge, QLT, locke, northPeak, chondola, spruce, TQ, WHQ, LWCQ, aurora, jordanDouble, jordan]
+    
+    static let annotations = [botSpruce, topSpruce, botQLT, topQLT, botNP, topNP, botChondola, topChondola, auroraSideJD, jordanSideJD, botAurora, topAurora, botJord, topJord,  botLWCQ, topLWCQ, topLol, bend1Lol, bend2Lol, topExcal, bend1Excal, midExcal, botExcal, topRogue, midRogue, botRogue, topCaram, botCaram, topKans, bend1Kans, ozJunctionKans, woodsmanJunctionKans, bend2Kans, bend3Kans, bend4Kans, endKans, topWoodsman, junctionWoodsman, endWoodsman, topCyclone, northernLightsJunctionCyclone, poppyFieldsJunctionCyclone, woodsmanJunctionCyclone, carambaJunctionCyclone, rogueAngelJunctionCyclone, northernLightsTop, witchWayJunctionNL, kansasNLJunction, cycloneJunctionNL, bend1NL, fireStarJunctionNL, witchWayTop, kansJunctionWitchWay, topAirglow, cycloneJunctionAirglow, bend1Airglow, blackHoleJunctionAirglow, bend2Airglow, botAirglow, topBlackHole, botBlackHole, topFirestar, bend1Firestar, bend2Firestar, endFirestar, topBorealis, bend1Borealis, bend2Borealis, vortexJunctionBorealis,bend3Borealis, endBorealis, topVortex, kansasJunctionVortex, botVortex, topParadigm, bend1Paradigm, vortexJunctionParadigm, botParadigm, startSM, GRJunctionSM, DMTerrainJunctionSM, escapadeJunctionSM, ThreeDJunctionSM, T72JunctionSM, DMJunctionSM, endSM, topQuantum, backsideJunctionQL, bend1QL, botQuantum, topGR, SMJunctionGR, bend1GR, downdraftJunctionGR, bend2GR, bend3GR, lazyRiverJunctionGR, endGR, topLD, GRJunctionLD, AEJunctionLD, topDM, bend1DM, bend1GP, TPJunctionDM, Bend2DM, Bend3DM, RRJunctionDM, T72JunctionDM, topT72, lastMileJunctionT72, RRJunctionT72, endT72, topSensation, bend1Sensation, bend2Sensation, bend3Sensation, QLJunctionSensation, topDMTP, botDMTP, topEscapade, bend1Escapade, LMJunctionEscapade, top3D, LMJunction3D, RRJunction3D, bend13D, bot3D, startLO, vortexJunctionLO, UpperDownDraftJunctionLO, endLightsOut, botBarker, topBarker, start3ML, bend13ML, sluiceJunction3ML, gnarniaJunction3ML, RBJunction3ML, AEJunction3ML, bend23ML, bend33ML, end3ML, startLR, bend1LR, ThreeMLJunctionLR, bend2LR, bend3LR, bend4LR, sluiceJunctionLR, gnarniaJunctionLR, RBJunctionLR, bend5LR, AEJunctionLR, GRJunctionLR, endLR, startSluice, bend1Sluice, endSluice, topRS, bend1RS, bend2RS, bend3RS, LSPJunctionRS, topAgony, TGJunctionAgony, endAgony, topTG, bend1TG, LSPJunctionTG, topEcstasy, bend1Ecstasy, bend2Ecstasy, southPawEcstasy, uppercutJunctionEcstasy, startJR, bend1JR, bend2JR, GPJunctionJR, USPJunctionJR, topSP, bend1SP, bend2SP, agonyJunctionSP, LSP2JunctionSP, topLUC, botLUC, topLSP, SPJunctionuLSP, bend1LSP, SPRCJunctionLSP, TGJunctionLSP, RSJunctionLSP, TTJunctionLSP, endLSP, topRC, bend1RC, endRC, topTW, bend1TW, RCJunctionTW, botSouthridge, topSouthridge, startRR, EFJunctionRR, TDJunctionRR, bend1RR, T72JunctionRR, DMJunctionRR, STJunctionRR, LCJunctionRR, bend2RR, bend3RR, bend4RR, bend5RR, bend6RR, endRR, topLE, broadwayJunctionLE, NWJunctionLE, endLE, topBroadway, NWJunctionBroadway, MBJunctionBroadway, WVJunctionBroadway, WLJunctionBroadway, endBroadway, topLLR, bend1LLR, broadwayJunctionLLR, endLLR, startThataway, endThataway, topMB, bend1MB, endMB, topLCL, endLCL, topWV, endWV, topWL, endWL, topNW, LEJunctionNW, EFJunctionNW, endNW, topSpectator, sundanceJunctionSpectator, endSpectator, topDD, DMJunctionDD, endDD, topSD, DDSPRJunctionSD, DMJunctionSD, bend1SD, botSD, topST, bend1ST, endST, topER, endER, topEL, endEL, topSirius, endSirius, topDowndraft, endDowndraft, topAE, TMLJunctionAE, bend1AE, LRJunctionAE, topRB, bend1RB, bend2RB, LRJunctionRB, topGnarnia, TMLJunctionGnarnia, endGnarnia, topTT, OHJunctionTT, endTT, botLocke, topLocke, topGP, UCJunctionGP, JRJunctionGP, EcstasyJunctionGP, bend2GP, agonyJunctionGP, TGJunctionGP, LRJunctionGP, topUC, JRJunctionUC, bend1UC, ecstasyJunctionUC, topUSP, JRJunctionUSP, bend1USP, bend2USP, LLUSP, bend3USP, GrandJunctionUSP, topLL, JWJunctionLL, USPJunctionLL, EcstasyJunctionLL, topT2, LLJunctionT2, JWJunctionT2, endT2, topJW, LLJunctionJW, T2JunctionJW, topBW, bend1BW, bend2BW, bend3BW, bend4BW, bend5BW, salvationJunctionBW, WCJunctionBW, topCC, SBJunctionCC, TempestJunctionCC, endCC, topMM, endMM, topBP, bend1BP, bend2BP, bend3BP, bend4BP, bend5BP, COJunctionBP, endCOJunctionBP, bend6BP, endBP, topWF, bend1WF, COJunctionWF, CBJunctionWF, endWF, topCO, endCO, topCB, topRR, WFJunctionRoadR, bend1RoadR, bend2RoadR, endRoadR, topSB, endSB, botTQ, topTQ, botWHQ, topWHQ, topSalvation, BWJunctionSalvation, bend1Salvation, BWJunctionSalvation, bend1Salvation, BW2JunctionSalvation, HOJunctionSalvation, topHO, endHO, topObsession, bend1Obsession, HOJunctionObsession, SBJunctionObsession, bend2Obsession, HOnJunctionObsession, topChutzpah, midChutzpah, endChutzpah, topWH, chutzpahJunctionWH, assumptionJunctionWH, topSW, bend1SW, bend2SW, assumptionJunctionSW, topTempest, HOJunctionTempest, endTempest, topJibe, bend1Jibe, endJibe, topHON, obsessionJunctionHON, assumptionJunctionHON, SLJunctionHON, topGC, SBJunctionCC, endGC, topMS, bend1MS, bend2MS, bend3MS, GCJunctionMS, bend4MS, SBJunctionMS, SLJunctionMS, endMS, topAssumption, SWJunctionAssumption, WHJunctionAssumption, WHQJunctionAssumption, topSL, bend1SL, bend2SL, bend3SL, HOJunctionSL, MSJunctionSL, topSS, endSS, topStarW, endStarW, topStarB, GCJunctionSB, endStarB]
     
     static let graph = EdgeWeightedDigraph<ImageAnnotation>()
     
@@ -770,7 +878,7 @@ class TrailsDatabase : NSObject {
         }
     }
     
-    static func createEdges()
+    static func createEdges(graph: EdgeWeightedDigraph<ImageAnnotation>)
     {
         //Jordan
         graph.addEdge(direction: .undirected, from: jordanSideJD, to: botJord, weight: 100)

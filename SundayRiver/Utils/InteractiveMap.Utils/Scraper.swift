@@ -64,7 +64,7 @@ func parseData(queryItems: [String], queryLocation: String) -> [String]
     var substring: Substring
     for item in queryItems
     {
-        print("\(item): \(queryLocation.contains(item))")
+        print("\(item), \(queryLocation.contains(item))")
         if let trail = queryLocation.index(of: item)
         {
             substring = queryLocation[..<trail]

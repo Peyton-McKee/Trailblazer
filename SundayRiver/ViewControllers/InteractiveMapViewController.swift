@@ -19,7 +19,9 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     static var wasCancelled = false
     static var container = Container()
     static var origin : ImageAnnotation?
+    static var selectedGraph = TrailsDatabase.graph
     
+    var isRealTimeGraph = false
     let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
         span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
@@ -80,7 +82,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     }
     override func viewDidAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: InteractiveMapViewController.container)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(selectGraph), name: Notification.Name(rawValue: "selectGraph"), object: nil)
         if InteractiveMapViewController.destination != nil {
             sampleRoute()
         }
@@ -91,7 +93,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self.trailSelectorView as Any, name: Notification.Name(rawValue: "searchTrail"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectedTrail"), object: Self.container)
+        NotificationCenter.default.addObserver(self, selector: #selector(selectGraph), name: Notification.Name(rawValue: "selectGraph"), object: nil)
+
     }
+    
     private func configureButtons()
     {
         recenterButton.translatesAutoresizingMaskIntoConstraints = false
@@ -124,6 +129,13 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             cancelButton.heightAnchor.constraint(equalToConstant: 40),
             cancelButton.widthAnchor.constraint(equalToConstant: 40)])
         
+    }
+    @objc func selectGraph()
+    {
+        isRealTimeGraph = true
+        myMap.removeOverlays(myMap.overlays)
+        myMap.removeAnnotations(myMap.annotations)
+        showAllTrails()
     }
     @objc func cancelRoute()
     {
@@ -165,7 +177,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         if (!Self.configuredClasses)
         {
             TrailsDatabase.addVertexes()
-            TrailsDatabase.createEdges()
+            TrailsDatabase.createEdges(graph: InteractiveMapViewController.selectedGraph)
             Self.configuredClasses = true
         }
     }
@@ -414,7 +426,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             }
         }
         
-        if let pathToDestination = DijkstraShortestPath(TrailsDatabase.graph, source: originVertex!).pathTo(destinationVertex)
+        if let pathToDestination = DijkstraShortestPath(InteractiveMapViewController.selectedGraph, source: originVertex!).pathTo(destinationVertex)
         {
             self.pathCreated = pathToDestination
             return pathToDestination
@@ -568,7 +580,8 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     /// Shows all the trails on the map
     private func showAllTrails()
     {
-        for edge in TrailsDatabase.graph.edges(){
+        myMap.removeOverlays(myMap.overlays)
+        for edge in Self.selectedGraph.edges(){
             if(edge.source.value.difficulty == .easy)
             {
                 myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
@@ -641,9 +654,22 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     ///  Presents all the key annotations to the map
     func createKeyTrailAnnotations()
     {
-        for annotation in TrailsDatabase.keyAnnotations
+        if isRealTimeGraph
         {
-            myMap.addAnnotation(annotation.value)
+            for annotation in TrailsDatabase.annotations
+            {
+                if annotation.value.status != .closed
+                {
+                    myMap.addAnnotation(annotation.value)
+                }
+            }
+        }
+        else
+        {
+            for annotation in TrailsDatabase.keyAnnotations
+            {
+                myMap.addAnnotation(annotation.value)
+            }
         }
     }
     
@@ -718,7 +744,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             originAnnotation.subtitle = "Crowded"
         }
         guard let currentUserId = InteractiveMapViewController.currentUser?.id else { return }
-        print("test")
         saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
         closestTrail.trailReport = originAnnotation
         myMap.addAnnotation(originAnnotation)

@@ -40,15 +40,15 @@ class CustomAnnotationView: MKMarkerAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-
+        
         markerTintColor = .blue
         configure(for: annotation)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func configure(for annotation: MKAnnotation?) {
         displayPriority = .defaultLow
         if(annotation?.subtitle == "Moguls")
@@ -97,28 +97,56 @@ class CustomAnnotationView: MKMarkerAnnotationView {
                     markerTintColor = .orange
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
-                if(TrailsDatabase.jordanKeyAnnotations.contains(Vertex<ImageAnnotation>(annotation)))
+                if checkClusteringIdentifier(trailList: TrailsDatabase.jordanTrailsAnnotations, identifier: "Jordan", annotation: annotation)
                 {
-                    clusteringIdentifier = "Jordan"
+                    return
                 }
-                else if(TrailsDatabase.auroraKeyAnnotations.contains(Vertex<ImageAnnotation>(annotation)))
+                if checkClusteringIdentifier(trailList: TrailsDatabase.auroraTrailAnnotations, identifier: "Aurora", annotation: annotation)
                 {
-                    clusteringIdentifier = "Aurora"
+                    return
                 }
-                else if(TrailsDatabase.northPeakKeyAnnotations.contains(Vertex<ImageAnnotation>(annotation)))
+                if checkClusteringIdentifier(trailList: TrailsDatabase.ozTrailAnnotations, identifier: "Oz", annotation: annotation)
                 {
-                    clusteringIdentifier = "North Peak"
+                    return
                 }
-                else if(TrailsDatabase.barkerKeyAnnotations.contains(Vertex<ImageAnnotation>(annotation)))
+                if checkClusteringIdentifier(trailList: TrailsDatabase.northPeakTrailAnnotations, identifier: "North Peak", annotation: annotation)
                 {
-                    clusteringIdentifier = "Barker"
+                    return
                 }
-                else if(TrailsDatabase.southRidgeKeyAnnotations.contains(Vertex<ImageAnnotation>(annotation)))
+                if checkClusteringIdentifier(trailList: TrailsDatabase.southRidgeTrailAnnotations, identifier: "SouthRidge", annotation: annotation)
                 {
-                    clusteringIdentifier = "Southridge"
+                    return
+                }
+                if checkClusteringIdentifier(trailList: TrailsDatabase.spruceTrailAnnotations, identifier: "Spruce", annotation: annotation)
+                {
+                    return
+                }
+                if checkClusteringIdentifier(trailList: TrailsDatabase.lockeTrailAnnotations, identifier: "Locke", annotation: annotation)
+                {
+                    return
+                }
+                if checkClusteringIdentifier(trailList: TrailsDatabase.barkerTrailAnnotations, identifier: "Barker", annotation: annotation)
+                {
+                    return
+                }
+                if checkClusteringIdentifier(trailList: TrailsDatabase.whiteCapTrailAnnotations, identifier: "White Cap", annotation: annotation)
+                {
+                    return
                 }
             }
         }
+    }
+    func checkClusteringIdentifier(trailList : [[Vertex<ImageAnnotation>]], identifier: String, annotation: ImageAnnotation) -> Bool
+    {
+        for trail in trailList
+        {
+            if trail.contains(Vertex<ImageAnnotation>(annotation))
+            {
+                clusteringIdentifier = identifier
+                return true
+            }
+        }
+        return false
     }
 }
 
