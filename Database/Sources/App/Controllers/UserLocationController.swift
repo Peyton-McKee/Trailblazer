@@ -47,8 +47,8 @@ struct UserLocationController: RouteCollection {
 }
 
 struct CreateUserLocationData: Content{
-    let latitude: String
-    let longitude: String
+    let latitude: Double
+    let longitude: Double
     let timeReported: String
     let userID: UUID
 }

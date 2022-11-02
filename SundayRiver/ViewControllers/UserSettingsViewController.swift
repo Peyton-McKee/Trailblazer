@@ -67,7 +67,7 @@ class UserSettingsViewController : UIViewController {
         }
         userNameLabel.text = "Username: \(currentUserUserName)"
         
-
+        
     }
     @objc func logOutPressed(sender: UIButton)
     {

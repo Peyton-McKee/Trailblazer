@@ -10,21 +10,40 @@
         <time>2020-03-31T13:09:00Z</time>
         <name>5th Ave Subway</name>
         <cmt>Starting Point</cmt>
-        
     </wpt>
-<!--    <wpt lat="40.767769" lon="-73.971870">-->
-<!--        <time>2020-03-31T13:09:30Z</time>-->
-<!--        <name>Central Park Zoo</name>-->
-<!--        <cmt>Goblin Fight</cmt>-->
-<!--    </wpt>-->
-<!--    <wpt lat="40.763560" lon="-73.972321">-->
-<!--        <time>2020-03-31T13:10:00Z</time>-->
-<!--        <name>5th Ave Apple Store</name>-->
-<!--        <cmt>The Mothership</cmt>-->
-<!--    </wpt>-->
-<!--    <wpt lat="40.765169" lon="-73.974788">-->
-<!--        <time>2020-03-31T13:10:30Z</time>-->
-<!--        <name>5th Ave Subway</name>-->
-<!--        <cmt>Ending Point</cmt>-->
-<!--    </wpt>-->
+    <wpt lat="44.46456443017323" lon="-70.88952523556077">
+    <time>2020-03-31T13:09:30Z</time>
+    <name>Central Park Zoo</name>
+     <cmt>Goblin Fight</cmt>
+    </wpt>
+    <wpt lat="44.46943702535925" lon="-70.8789654647034">
+        <time>2020-03-31T13:10:00Z</time>
+        <name>5th Ave Apple Store</name>
+        <cmt>The Mothership</cmt>
+    </wpt>
+    <wpt lat="44.46966600600691" lon="-70.86793455018984">
+        <time>2020-03-31T13:10:30Z</time>
+        <name>5th Ave Subway</name>
+        <cmt>Ending Point</cmt>
+    </wpt>
+    <wpt lat="44.46917904218135" lon="-70.86087320257772">
+        <time>2020-03-31T13:10:30Z</time>
+        <name>5th Ave Subway</name>
+        <cmt>Ending Point</cmt>
+    </wpt>
+    <wpt lat="44.46906778899057" lon="-70.84833766968724">
+        <time>2020-03-31T13:10:30Z</time>
+        <name>5th Ave Subway</name>
+        <cmt>Ending Point</cmt>
+    </wpt>
+    <wpt lat="44.458371170992024" lon="-70.8598457828036">
+        <time>2020-03-31T13:10:30Z</time>
+        <name>5th Ave Subway</name>
+        <cmt>Ending Point</cmt>
+    </wpt>
+    <wpt lat="44.46000309303237" lon="-70.90520452974141">
+        <time>2020-03-31T13:09:00Z</time>
+        <name>5th Ave Subway</name>
+        <cmt>Starting Point</cmt>
+    </wpt>
 </gpx>

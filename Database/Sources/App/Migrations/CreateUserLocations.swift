@@ -15,8 +15,8 @@ struct CreateUserLocations: Migration {
     
             .id()
     
-            .field("latitude", .string, .required)
-            .field("longitude", .string, .required)
+            .field("latitude", .double, .required)
+            .field("longitude", .double, .required)
             .field("timeReported", .string, .required)
             .field("userID", .uuid, .required)
             .create()

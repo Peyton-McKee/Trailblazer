@@ -15,10 +15,10 @@ final class UserLocation: Model, Content {
     var id: UUID?
     
     @Field(key: "latitude")
-    var latitude: String
+    var latitude: Double
     
     @Field(key: "longitude")
-    var longitude: String
+    var longitude: Double
     
     @Field(key: "timeReported")
     var timeReported: String
@@ -28,7 +28,7 @@ final class UserLocation: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, latitude: String, longitude: String, timeReported: String, userID: User.IDValue) {
+    init(id: UUID? = nil, latitude: Double, longitude: Double, timeReported: String, userID: User.IDValue) {
         self.latitude = latitude
         self.longitude = longitude
         self.timeReported = timeReported

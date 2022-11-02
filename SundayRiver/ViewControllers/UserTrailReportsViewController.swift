@@ -18,7 +18,7 @@ class UserTrailReportsViewController: UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         getUsersTrailReports()
-
+        
     }
     private func getUsersTrailReports()
     {
@@ -33,7 +33,7 @@ class UserTrailReportsViewController: UIViewController{
             }
             if userTrailReports.isEmpty
             {
-               return
+                return
                 //user has not made any trail reports
             }
             self.trailReports = userTrailReports

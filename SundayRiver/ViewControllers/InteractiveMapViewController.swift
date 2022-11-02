@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
+class InteractiveMapViewController: UIViewController
 {
     static var currentUser : User?
     static var routeInProgress = false
@@ -21,9 +21,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     static var origin : ImageAnnotation?
     static var selectedGraph = TrailsDatabase.graph
     
-    
+    var canFindPathAgain = true
     var isRealTimeGraph = false
     var toggleGraphButton = UIButton()
+    var followingRoute = false
     
     let initialRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
@@ -99,7 +100,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         NotificationCenter.default.removeObserver(self.trailSelectorView as Any, name: Notification.Name(rawValue: "searchTrail"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectedTrail"), object: Self.container)
         NotificationCenter.default.addObserver(self, selector: #selector(selectGraph), name: Notification.Name(rawValue: "selectGraph"), object: nil)
-
+        
     }
     
     private func configureButtons()
@@ -132,7 +133,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         
         recenterButtonYConstraint = recenterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
         cancelButtonYContraint =             cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
-
+        
         NSLayoutConstraint.activate([
             recenterButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
             recenterButtonYConstraint,
@@ -179,6 +180,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         InteractiveMapViewController.origin = nil
         self.trailSelectorView?.isPresented = false
         self.cancelButton.isHidden = true
+        InteractiveMapViewController.selectedGraph.removeLastVertex()
         showAllTrails()
     }
     @objc func recenter()
@@ -186,10 +188,10 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
         let myLocation = CLLocationCoordinate2D(latitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude)
         let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
-        myMap.setRegion(region, animated: true)
-        self.myMap.showsUserLocation = true
+        myMap.setRegion(region, animated: false)
         let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 1000, pitch: 60, heading: 50)
-        myMap.setCamera(mapCamera, animated: true)
+        myMap.setCamera(mapCamera, animated: false)
+        myMap.setUserTrackingMode(.follow, animated: true)
     }
     
     private func checkUserDefaults()
@@ -339,7 +341,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(addTrailReport))
         longPress.minimumPressDuration = 0.3
-        
+        myMap.userTrackingMode = .followWithHeading
         myMap.addGestureRecognizer(longPress)
         myMap.region = initialRegion
         myMap.showsUserLocation = true
@@ -349,7 +351,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         myMap.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         view.addSubview(myMap)
     }
-    
     ///getTrailReportsFromDB void -> void
     ///Attempts to connect to database and adds any found trailReports to myMap
     private func getTrailReportsFromDB()
@@ -431,6 +432,13 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         originVertex = Vertex<ImageAnnotation>(InteractiveMapViewController.origin!)
         TrailsDatabase.graph.addVertex(originVertex!)
         TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: getClosestAnnotation(origin: InteractiveMapViewController.origin!), weight: 1)
+        if closestAnnotation?.value == Self.destination
+        {
+            //Then youve completed your journey
+            //figure out something to do buckoh
+            cancelRoute()
+            print("Huzzah")
+        }
     }
     
     /// createRoute: void -> [Vertex<ImageAnnotatioin>] || null
@@ -459,7 +467,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
     }
     private func createRouteHelper() -> [Vertex<ImageAnnotation>]?
     {
-        let destinationAnnotation = InteractiveMapViewController.destination!
+        guard let destinationAnnotation = InteractiveMapViewController.destination else { return nil }
         var destinationVertex : Vertex<ImageAnnotation> = TrailsDatabase.annotations[0]
         
         for vertex in TrailsDatabase.annotations
@@ -543,6 +551,11 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
                 routeOverviewView!.configureItems()
                 presentRouteOverviewMenu()
                 InteractiveMapViewController.routeInProgress = true
+                
+                let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
+                let zoomCoordinate = Self.destination?.coordinate ?? myMap.region.center
+                let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
+                myMap.setRegion(zoomed, animated: true)
             }
             return
         }
@@ -553,27 +566,17 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         guard let fullDirections = self.totalDirections else { return }
         //show some sort of direction pop up
         print(fullDirections)
-        
     }
     
     /// displayRoute: void -> void
     /// Shows the selected route on the map
     func displayRoute()
     {
-        let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
-        let zoomCoordinate = Self.destination?.coordinate ?? myMap.region.center
-        let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
-        myMap.setRegion(zoomed, animated: true)
-        
-        for overlay in myMap.overlays(in: .aboveRoads){
-            myMap.removeOverlay(overlay)
-        }
-        for annotation in myMap.annotations
-        {
-            myMap.removeAnnotation(annotation)
-        }
+        myMap.removeOverlays(myMap.overlays)
+        myMap.removeAnnotations(myMap.annotations)
         guard let route = self.pathCreated else
         {
+            print("test")
             if let pathToDestination = createRoute()
             {
                 displayRouteHelper(route: pathToDestination)
@@ -633,9 +636,11 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             }
             previousEdge = edge
         }
+        
+        canFindPathAgain = true
     }
     
-        
+    
     /// showAllTrails: void -> void
     /// Shows all the trails on the map
     private func showAllTrails()
@@ -677,7 +682,6 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         }
         createKeyTrailAnnotations()
         displayCurrentTrailReports(graph: InteractiveMapViewController.selectedGraph)
-
     }
     
     /// addTrailReport: UIGestureRecognizer -> void
@@ -774,12 +778,7 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
         self.routeOverviewMenu?.dismissItems()
         self.cancelButton.isHidden = false
         
-        let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
-        let region:MKCoordinateRegion = MKCoordinateRegion.init(center: InteractiveMapViewController.origin!.coordinate, span: span)
-        myMap.setRegion(region, animated: true)
-        self.myMap.showsUserLocation = true
-        let mapCamera = MKMapCamera(lookingAtCenter: InteractiveMapViewController.origin!.coordinate, fromDistance: 1000, pitch: 60, heading: 50)
-        myMap.setCamera(mapCamera, animated: true)
+        recenter()
         
         Self.origin = nil
         guard let currentUserId = InteractiveMapViewController.currentUser?.id else{return}
@@ -902,6 +901,28 @@ class InteractiveMapViewController: UIViewController, CLLocationManagerDelegate
             }
         }.resume()
     }
+    func saveUserLocation(_ userLocation: UserLocation) {
+        let url = URL(string: "http://localhost:8080/api/user-locations")!
+        
+        let encoder = JSONEncoder()
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? encoder.encode(userLocation)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                let decoder = JSONDecoder()
+                if (try? decoder.decode(UserLocation.self, from: data)) != nil {
+                    
+                } else {
+                    print(data)
+                    print("Bad JSON received back.")
+                }
+            }
+        }.resume()
+    }
     
 }
 
@@ -945,6 +966,10 @@ extension InteractiveMapViewController: MKMapViewDelegate
             return
             //then its a trail report
         }
+        if Self.routeInProgress
+        {
+            return
+        }
         InteractiveMapViewController.destination = view.annotation as? ImageAnnotation
         sampleRoute()
     }
@@ -955,7 +980,6 @@ extension InteractiveMapViewController: UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return settingArray.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? TrailReportTypeTableViewCell else {fatalError("Unable to deque cell")}
         cell.lbl.text = settingArray[indexPath.row]
@@ -1040,3 +1064,21 @@ extension InteractiveMapViewController: UITextFieldDelegate
     }
 }
 
+extension InteractiveMapViewController: CLLocationManagerDelegate
+{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if Self.routeInProgress && canFindPathAgain
+        {
+            InteractiveMapViewController.selectedGraph.removeLastVertex()
+            Self.origin = nil
+            canFindPathAgain = false
+            displayRoute()
+        }
+        guard let currentUserId = InteractiveMapViewController.currentUser?.id else
+        {
+            return
+        }
+        saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
+        
+    }
+}
