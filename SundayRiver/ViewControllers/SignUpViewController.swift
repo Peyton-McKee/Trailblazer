@@ -45,6 +45,7 @@ class SignUpViewController : UIViewController {
         userNameTextField.autocapitalizationType = .none
         userNameTextField.borderStyle = .roundedRect
         userNameTextField.autocorrectionType = .no
+        userNameTextField.tag = 1
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "Enter Password..."
@@ -54,6 +55,7 @@ class SignUpViewController : UIViewController {
         passwordTextField.isSecureTextEntry = true
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.autocorrectionType = .no
+        passwordTextField.tag = 2
         
         confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
         confirmPasswordTextField.placeholder = "Confirm Password..."
@@ -63,6 +65,7 @@ class SignUpViewController : UIViewController {
         confirmPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.borderStyle = .roundedRect
         confirmPasswordTextField.autocorrectionType = .no
+        confirmPasswordTextField.tag = 3
         
         view.addSubview(userNameTextField)
         view.addSubview(passwordTextField)
@@ -79,7 +82,6 @@ class SignUpViewController : UIViewController {
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.backgroundColor = .cyan
         signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
-        
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.setTitle("Already have an account? Sign In...", for: .normal)
@@ -196,11 +198,16 @@ class SignUpViewController : UIViewController {
 
 extension SignUpViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if( textField == confirmPasswordTextField)
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        }
+        else
         {
+            textField.resignFirstResponder()
             signUpButtonPressed(sender: signUpButton)
         }
-        return true
+        return false
     }
     
 }
+

@@ -10,4 +10,5 @@ import MapKit
 
 class CustomPolyline : MKPolyline{
     var color: UIColor?
+    var initialAnnotation : ImageAnnotation?
 }

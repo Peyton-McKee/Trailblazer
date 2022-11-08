@@ -43,6 +43,7 @@ class SignInViewController: UIViewController
         userNameTextField.autocapitalizationType = .none
         userNameTextField.borderStyle = .roundedRect
         userNameTextField.autocorrectionType = .no
+        userNameTextField.tag = 1
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "Enter Password..."
@@ -52,6 +53,7 @@ class SignInViewController: UIViewController
         passwordTextField.isSecureTextEntry = true
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.autocorrectionType = .no
+        passwordTextField.tag = 2
         
         view.addSubview(userNameTextField)
         view.addSubview(passwordTextField)
@@ -157,11 +159,15 @@ class SignInViewController: UIViewController
 
 extension SignInViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if( textField == passwordTextField)
-        {
-            signInButtonPressed(sender: signUpButton)
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
         }
-        return true
+        else
+        {
+            textField.resignFirstResponder()
+            signInButtonPressed(sender: signInButton)
+        }
+        return false
     }
     
 }

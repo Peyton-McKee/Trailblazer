@@ -10,30 +10,13 @@ import MapKit
 import UIKit
 
 class CustomAnnotationView: MKMarkerAnnotationView {
-    let mogulGlyphImage: UIImage = {
-        let rect = CGRect(origin: .zero, size: CGSize(width: 40, height: 40))
-        return UIGraphicsImageRenderer(bounds: rect).image(actions: { _ in
-            let radius: CGFloat = 12
-            let offset: CGFloat = 30
-            let insetY: CGFloat = 3
-            let center = CGPoint(x: rect.midX, y: rect.maxY - radius - insetY)
-            let path = UIBezierPath()
-            path.move(to: CGPoint(x: rect.midX - rect.midX/2, y: rect.maxY - radius - insetY))
-            path.addCurve(to: CGPoint(x: rect.midX + rect.midX/2, y: rect.maxY - radius - insetY), controlPoint1: CGPoint(x: rect.midX, y: rect.maxY - offset), controlPoint2: CGPoint(x: rect.midX, y: rect.maxY - offset))
-            path.close()
-            UIColor.white.setFill()
-            path.fill()
-        })
-    }()
+    let mogulGlyphImage: UIImage = .init(systemName: "exclamationmark.triangle")!
     
-    let icyGlyphImage: UIImage = {
-        return .init(systemName: "snowflake")!
-    }()
+    let icyGlyphImage: UIImage = .init(systemName: "snowflake")!
     
-    let crowdedGlyphImage: UIImage = {
-        return .init(systemName: "figure.walk")!
-    }()
+    let crowdedGlyphImage: UIImage = .init(systemName: "figure.walk")!
     
+    let thinCoverGlyphImage : UIImage = .init(systemName: "leaf.fill")!
     override var annotation: MKAnnotation? {
         didSet { configure(for: annotation) }
     }
@@ -51,22 +34,34 @@ class CustomAnnotationView: MKMarkerAnnotationView {
     
     func configure(for annotation: MKAnnotation?) {
         displayPriority = .defaultLow
-        if(annotation?.subtitle == "Moguls")
+        guard let annotation = annotation as? ImageAnnotation else { return }
+        
+        if let subtitle = annotation.subtitle
         {
-            glyphImage = self.mogulGlyphImage
-            markerTintColor = .black
-        }
-        else if (annotation?.subtitle == "Crowded")
-        {
-            markerTintColor = .yellow
-            glyphImage = self.crowdedGlyphImage
-        }
-        else if (annotation?.subtitle == "Icy"){
-            glyphImage = self.icyGlyphImage
+            if subtitle == "Moguls"
+            {
+                markerTintColor = .black
+                glyphImage = mogulGlyphImage
+            }
+            else if subtitle == "Icy"
+            {
+                markerTintColor = .blue
+                glyphImage = icyGlyphImage
+            }
+            else if subtitle == "Crowded"
+            {
+                markerTintColor = .yellow
+                glyphImage = crowdedGlyphImage
+            }
+            else if subtitle == "Thin Cover"
+            {
+                markerTintColor = .brown
+                glyphImage = thinCoverGlyphImage
+            }
+            clusteringIdentifier = "trailReport"
         }
         else
         {
-            if let annotation = annotation as? ImageAnnotation{
                 if(annotation.difficulty == .easy)
                 {
                     markerTintColor = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
@@ -97,47 +92,12 @@ class CustomAnnotationView: MKMarkerAnnotationView {
                     markerTintColor = .orange
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.jordanTrailsAnnotations, identifier: "Jordan", annotation: annotation)
-                {
-                    return
-                }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.auroraTrailAnnotations, identifier: "Aurora", annotation: annotation)
-                {
-                    return
-                }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.ozTrailAnnotations, identifier: "Oz", annotation: annotation)
-                {
-                    return
-                }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.northPeakTrailAnnotations, identifier: "North Peak", annotation: annotation)
-                {
-                    return
-                }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.southRidgeTrailAnnotations, identifier: "SouthRidge", annotation: annotation)
-                {
-                    return
-                }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.spruceTrailAnnotations, identifier: "Spruce", annotation: annotation)
-                {
-                    return
-                }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.lockeTrailAnnotations, identifier: "Locke", annotation: annotation)
-                {
-                    return
-                }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.barkerTrailAnnotations, identifier: "Barker", annotation: annotation)
-                {
-                    return
-                }
-                if checkClusteringIdentifier(trailList: TrailsDatabase.whiteCapTrailAnnotations, identifier: "White Cap", annotation: annotation)
-                {
-                    return
-                }
-            }
+            clusteringIdentifier = "cluster"
         }
     }
     func checkClusteringIdentifier(trailList : [[Vertex<ImageAnnotation>]], identifier: String, annotation: ImageAnnotation) -> Bool
     {
+        
         for trail in trailList
         {
             if trail.contains(Vertex<ImageAnnotation>(annotation))

@@ -140,6 +140,7 @@ class SearchBarTableHeaderView: UIView {
         self.originTextField.endEditing(true)
         self.originTextField.isHidden = true
         self.isDroppedDown = false
+        InteractiveMapViewController.origin = nil
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.frame = self.extendedFrame!
             self.reloadView()
@@ -219,7 +220,6 @@ class TrailSelectorView : UIView {
         
         //        searchBar.frame = CGRect(x: 10, y: 10, width: searchBarTableView.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height / 20)
         self.addSubview(searchBarTableView)
-        NotificationCenter.default.addObserver(self, selector: #selector(filterTrails), name: Notification.Name(rawValue: "searchTrail"), object: nil)
     }
     private func createMyTrails()
     {
@@ -419,23 +419,24 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             cell.label.textColor = .orange
         }
         cell.label.font = UIFont(name: "markerfelt-wide", size: 15)
-        cell.backgroundColor =  .gray
+        cell.backgroundColor = .gray
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? TrailSelectorTableViewCell{
-            print(currentTextFieldType)
             switch currentTextFieldType
             {
             case .destination:
                 InteractiveMapViewController.destination = cell.cellTrail!.annotations[0]
                 InteractiveMapViewController.routeInProgress = false
+                InteractiveMapViewController.didChooseDestination = true
                 InteractiveMapViewController.container.add()
                 self.isPresented = false
             case .origin:
                 currentTextField?.text = cell.cellTrail?.name
                 InteractiveMapViewController.origin = cell.cellTrail!.annotations[0]
+                InteractiveMapViewController.wasSelectedWithOrigin = true
             }
             
         }

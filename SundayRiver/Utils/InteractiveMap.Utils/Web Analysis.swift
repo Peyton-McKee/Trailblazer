@@ -86,6 +86,7 @@ class WebAnalysis: NSObject, WKNavigationDelegate {
             }
         }
     }
+    
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         getMountainReport(webView: webView, queryItems: TrailData(lifts: liftNames, whiteCapTrails: whiteCapTrailNames, lockeTrails: lockeTrailNames, barkerTrails: barkerTrailNames, southRidgeTrails: southRidgeNames, spruceTrails: spruceNames, northPeakTrails: northPeakNames, auroraTrails: auroraNames, ozTrails: ozNames, jordantrails: jordanNames), completion: {
             value in

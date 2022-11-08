@@ -50,6 +50,7 @@
 		15874A0127D82636001B9025 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15874A0027D82636001B9025 /* Assets.xcassets */; };
 		15874A0427D82636001B9025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15874A0227D82636001B9025 /* LaunchScreen.storyboard */; };
 		15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15874A0D27D82AFA001B9025 /* Scraper.swift */; };
+		1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +99,7 @@
 		15874A0327D82636001B9025 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15874A0527D82636001B9025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15874A0D27D82AFA001B9025 /* Scraper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scraper.swift; sourceTree = "<group>"; };
+		1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTrailReportView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +194,7 @@
 				15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */,
 				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
 				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
+				1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */,
 				15545AD828DEA598005D0886 /* Web Analysis.swift */,
 				15874A0D27D82AFA001B9025 /* Scraper.swift */,
 				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
@@ -355,6 +358,7 @@
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
 				15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */,
 				1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */,
+				1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */,
 				150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */,
 				150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */,
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,

@@ -12,6 +12,7 @@ enum TrailReportType: Codable {
     case moguls
     case ice
     case crowded
+    case thinCover
 }
 
 struct TrailReport: Codable {

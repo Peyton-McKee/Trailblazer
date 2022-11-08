@@ -28,12 +28,14 @@ class RouteOverviewView : UIView {
         self.tripLbl.translatesAutoresizingMaskIntoConstraints = false
         self.tripLbl.textAlignment = .center
         self.tripLbl.layer.cornerRadius = 10
-        
+        self.tripLbl.textColor = .black
         self.directionsLabel.translatesAutoresizingMaskIntoConstraints = false
         self.directionsLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .title1), size: 15)
+        self.directionsLabel.textColor = .black
         
         self.trailReportLabel.translatesAutoresizingMaskIntoConstraints = false
         self.trailReportLabel.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .title1), size: 10)
+        self.trailReportLabel.textColor = .black
         
         self.letsGoButton.translatesAutoresizingMaskIntoConstraints = false
         self.letsGoButton.backgroundColor = .blue
