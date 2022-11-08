@@ -86,7 +86,6 @@ class InteractiveMapViewController: UIViewController
         checkUserDefaults()
         configureTrailSelectorView()
         configureButtons()
-        //        configureKey()
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingHeading()
@@ -174,7 +173,6 @@ class InteractiveMapViewController: UIViewController
             if Double(nearestDistance) <= maxMeters {
                 if let line = nearestPoly
                 {
-                    print(line)
                     let initialAnnotation = line.initialAnnotation!
                     let coordinate = initialAnnotation.coordinate
                     var closestAnnotation = TrailsDatabase.trails[0][0][0]
@@ -198,7 +196,6 @@ class InteractiveMapViewController: UIViewController
                     Self.destination = closestTrail[0].value
                     sampleRoute()
                 }
-                print("Touched poly: \(String(describing: nearestPoly)) distance: \(nearestDistance)")
 
             }
         }
