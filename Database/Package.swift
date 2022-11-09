@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "TILApp",
+    name: "Database",
     platforms: [
        .macOS(.v12)
     ],

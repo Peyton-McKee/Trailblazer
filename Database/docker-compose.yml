@@ -71,4 +71,4 @@ services:
       POSTGRES_PASSWORD: vapor_password
       POSTGRES_DB: vapor_database
     ports:
-      - '5432:5432'
+      - '8080:8080'
