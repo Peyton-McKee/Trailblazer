@@ -431,7 +431,7 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
                 InteractiveMapViewController.destination = cell.cellTrail!.annotations[0]
                 InteractiveMapViewController.routeInProgress = false
                 InteractiveMapViewController.didChooseDestination = true
-                InteractiveMapViewController.container.add()
+                NotificationCenter.default.post(name: Notification.Name("selectedTrail"), object: nil)
                 self.isPresented = false
             case .origin:
                 currentTextField?.text = cell.cellTrail?.name

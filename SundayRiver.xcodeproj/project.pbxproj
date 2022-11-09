@@ -28,6 +28,7 @@
 		1524945529082897009E7059 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945429082897009E7059 /* Settings.swift */; };
 		1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945629084F89009E7059 /* UserTrailReportsViewController.swift */; };
 		1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945829085D88009E7059 /* TrailReportTableViewCell.swift */; };
+		152C69BA291B50120092E537 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C69B9291B50120092E537 /* LocationManager.swift */; };
 		15316621290AE86100206E7E /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15316620290AE86100206E7E /* UserLocation.swift */; };
 		15316623290AE86800206E7E /* UserRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15316622290AE86800206E7E /* UserRoute.swift */; };
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
@@ -51,6 +52,10 @@
 		15874A0427D82636001B9025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15874A0227D82636001B9025 /* LaunchScreen.storyboard */; };
 		15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15874A0D27D82AFA001B9025 /* Scraper.swift */; };
 		1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */; };
+		1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */; };
+		1591DBBB291AE7B800978FD8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBBA291AE7B800978FD8 /* ContentView.swift */; };
+		1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBC291AE7B900978FD8 /* Assets.xcassets */; };
+		1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,6 +80,9 @@
 		1524945429082897009E7059 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1524945629084F89009E7059 /* UserTrailReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrailReportsViewController.swift; sourceTree = "<group>"; };
 		1524945829085D88009E7059 /* TrailReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportTableViewCell.swift; sourceTree = "<group>"; };
+		152C69B7291B39530092E537 /* SundayRiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SundayRiver.entitlements; sourceTree = "<group>"; };
+		152C69B8291B3A750092E537 /* Trailblazer Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Trailblazer Watch App.entitlements"; sourceTree = "<group>"; };
+		152C69B9291B50120092E537 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		15316620290AE86100206E7E /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		15316622290AE86800206E7E /* UserRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRoute.swift; sourceTree = "<group>"; };
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -100,10 +108,22 @@
 		15874A0527D82636001B9025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15874A0D27D82AFA001B9025 /* Scraper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scraper.swift; sourceTree = "<group>"; };
 		1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTrailReportView.swift; sourceTree = "<group>"; };
+		1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trailblazer Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailblazerApp.swift; sourceTree = "<group>"; };
+		1591DBBA291AE7B800978FD8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1591DBBC291AE7B900978FD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		158749F127D82635001B9025 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1591DBB3291AE7B800978FD8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -197,6 +217,7 @@
 				1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */,
 				15545AD828DEA598005D0886 /* Web Analysis.swift */,
 				15874A0D27D82AFA001B9025 /* Scraper.swift */,
+				152C69B9291B50120092E537 /* LocationManager.swift */,
 				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
 				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
 			);
@@ -220,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				158749F627D82635001B9025 /* SundayRiver */,
+				1591DBB7291AE7B800978FD8 /* Trailblazer Watch App */,
 				158749F527D82635001B9025 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -228,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				158749F427D82635001B9025 /* SundayRiver.app */,
+				1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +258,7 @@
 		158749F627D82635001B9025 /* SundayRiver */ = {
 			isa = PBXGroup;
 			children = (
+				152C69B7291B39530092E537 /* SundayRiver.entitlements */,
 				158749F727D82635001B9025 /* AppDelegate.swift */,
 				158749F927D82635001B9025 /* SceneDelegate.swift */,
 				158749FD27D82635001B9025 /* Main.storyboard */,
@@ -249,6 +273,26 @@
 				15874A0527D82636001B9025 /* Info.plist */,
 			);
 			path = SundayRiver;
+			sourceTree = "<group>";
+		};
+		1591DBB7291AE7B800978FD8 /* Trailblazer Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				152C69B8291B3A750092E537 /* Trailblazer Watch App.entitlements */,
+				1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */,
+				1591DBBA291AE7B800978FD8 /* ContentView.swift */,
+				1591DBBC291AE7B900978FD8 /* Assets.xcassets */,
+				1591DBBE291AE7B900978FD8 /* Preview Content */,
+			);
+			path = "Trailblazer Watch App";
+			sourceTree = "<group>";
+		};
+		1591DBBE291AE7B900978FD8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		159B0EC628E68DDC00DAFEAA /* TrailDatabaseFiles */ = {
@@ -281,6 +325,23 @@
 			productReference = 158749F427D82635001B9025 /* SundayRiver.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1591DBB5291AE7B800978FD8 /* Trailblazer Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1591DBC3291AE7B900978FD8 /* Build configuration list for PBXNativeTarget "Trailblazer Watch App" */;
+			buildPhases = (
+				1591DBB2291AE7B800978FD8 /* Sources */,
+				1591DBB3291AE7B800978FD8 /* Frameworks */,
+				1591DBB4291AE7B800978FD8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trailblazer Watch App";
+			productName = "Trailblazer Watch App";
+			productReference = 1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -288,11 +349,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					158749F327D82635001B9025 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					1591DBB5291AE7B800978FD8 = {
+						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
@@ -310,6 +374,7 @@
 			projectRoot = "";
 			targets = (
 				158749F327D82635001B9025 /* SundayRiver */,
+				1591DBB5291AE7B800978FD8 /* Trailblazer Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -329,6 +394,15 @@
 				158749FF27D82635001B9025 /* Main.storyboard in Resources */,
 				15545B1A28E4ABD1005D0886 /* Tiles in Resources */,
 				150D0642290066C00051F160 /* MogulSquare.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1591DBB4291AE7B800978FD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */,
+				1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +430,7 @@
 				1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
+				152C69BA291B50120092E537 /* LocationManager.swift in Sources */,
 				15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */,
 				1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */,
 				1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */,
@@ -373,6 +448,15 @@
 				150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */,
 				15545B0C28E224A2005D0886 /* DijsktrasGraphStructure.swift in Sources */,
 				15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1591DBB2291AE7B800978FD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1591DBBB291AE7B800978FD8 /* ContentView.swift in Sources */,
+				1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,9 +603,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SundayRiver/SundayRiver.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GTXY2R57XP;
+				DEVELOPMENT_TEAM = K728A8S3D6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SundayRiver/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sunday River TB";
@@ -537,8 +623,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mckee.SundayRiver;
+				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -550,9 +637,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SundayRiver/SundayRiver.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GTXY2R57XP;
+				DEVELOPMENT_TEAM = K728A8S3D6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SundayRiver/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sunday River TB";
@@ -568,11 +657,80 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mckee.SundayRiver;
+				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1591DBC1291AE7B900978FD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Trailblazer Watch App/Trailblazer Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Trailblazer Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = K728A8S3D6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Trailblazer;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		1591DBC2291AE7B900978FD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Trailblazer Watch App/Trailblazer Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Trailblazer Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = K728A8S3D6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Trailblazer;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
@@ -593,6 +751,15 @@
 			buildConfigurations = (
 				15874A0927D82636001B9025 /* Debug */,
 				15874A0A27D82636001B9025 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1591DBC3291AE7B900978FD8 /* Build configuration list for PBXNativeTarget "Trailblazer Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1591DBC1291AE7B900978FD8 /* Debug */,
+				1591DBC2291AE7B900978FD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

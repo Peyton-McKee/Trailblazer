@@ -4,6 +4,7 @@
 //
 //  Created by Peyton McKee on 10/13/22.
 //
+
 import UIKit
 
 class TrailReportTypeTableViewCell: UITableViewCell {

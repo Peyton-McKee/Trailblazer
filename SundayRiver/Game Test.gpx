@@ -11,6 +11,11 @@
         <name>5th Ave Subway</name>
         <cmt>Starting Point</cmt>
     </wpt>
+    <wpt lat="44.4616900357902" lon="-70.89608157418769">
+        <time>2020-03-31T13:09:00Z</time>
+        <name>5th Ave Subway</name>
+        <cmt>Starting Point</cmt>
+    </wpt>
     <wpt lat="44.46456443017323" lon="-70.88952523556077">
     <time>2020-03-31T13:09:30Z</time>
     <name>Central Park Zoo</name>

@@ -17,12 +17,11 @@ class InteractiveMapViewController: UIViewController
     static var destination : ImageAnnotation?
     static var configuredClasses = false
     static var wasCancelled = false
-    static var container = Container()
     static var origin : ImageAnnotation?
     static var selectedGraph = TrailsDatabase.graph
     static var wasSelectedWithOrigin = false
     static var didChooseDestination = false
-    
+        
     var trailReports : [TrailReport]?
     var selectedTrailReport : TrailReport?
     var selectedTrailReportAnnotation : ImageAnnotation?
@@ -55,7 +54,7 @@ class InteractiveMapViewController: UIViewController
     var trailReportMenu : PopUpMenuFramework?
     var trailReportTableView = UITableView()
     
-    let locationManager = CLLocationManager()
+    let locationManager = LocationManager()
     
     var routeOverviewMenu : PopUpMenuFramework?
     var routeOverviewView : RouteOverviewView?
@@ -86,17 +85,17 @@ class InteractiveMapViewController: UIViewController
         checkUserDefaults()
         configureTrailSelectorView()
         configureButtons()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingHeading()
-        locationManager.startUpdatingLocation()
+        locationManager.locationManager.delegate = self
+        locationManager.locationManager.requestWhenInUseAuthorization()
+        locationManager.locationManager.startUpdatingHeading()
+        locationManager.locationManager.startUpdatingLocation()
         getTrailReportsFromDB()
         webAnalysis.makeRequest()
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: Self.container)
+        NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(selectGraph), name: Notification.Name(rawValue: "selectGraph"), object: nil)
         NotificationCenter.default.addObserver(self.trailSelectorView as Any, selector: #selector(trailSelectorView?.filterTrails), name: Notification.Name(rawValue: "searchTrail"), object: nil)
         if Self.destination != nil {
@@ -109,7 +108,7 @@ class InteractiveMapViewController: UIViewController
     
     override func viewDidDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self.trailSelectorView as Any, name: Notification.Name(rawValue: "searchTrail"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectedTrail"), object: Self.container)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectedTrail"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectGraph"), object: nil)
     }
     
@@ -339,7 +338,7 @@ class InteractiveMapViewController: UIViewController
     @objc func recenter()
     {
         let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
-        let myLocation = CLLocationCoordinate2D(latitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude)
+        let myLocation = CLLocationCoordinate2D(latitude: locationManager.locationManager.location!.coordinate.latitude, longitude: locationManager.locationManager.location!.coordinate.longitude)
         let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
         myMap.setRegion(region, animated: false)
         let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 1000, pitch: 60, heading: 50)
@@ -506,8 +505,9 @@ class InteractiveMapViewController: UIViewController
                 annotation.id = report.id
                 let closestTrail = self.getClosestAnnotation(origin: annotation).value
                 closestTrail.trailReport = annotation
-                
                 self.myMap.addAnnotation(annotation)
+                self.locationManager.makeTrailReportRegion(trailReport: annotation)
+                self.locationManager.registerNotification()
             }
         })
     }
@@ -555,7 +555,7 @@ class InteractiveMapViewController: UIViewController
     ///  Creates an annotation for the users current location
     private func assignOrigin() -> Bool
     {
-        guard let latitude = locationManager.location?.coordinate.latitude, let longitude = locationManager.location?.coordinate.longitude, locationManager.authorizationStatus == .authorizedWhenInUse else {
+        guard let latitude = locationManager.locationManager.location?.coordinate.latitude, let longitude = locationManager.locationManager.location?.coordinate.longitude, locationManager.locationManager.authorizationStatus == .authorizedWhenInUse else {
             return false
         }
         Self.origin = TrailsDatabase.createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)
@@ -746,13 +746,13 @@ class InteractiveMapViewController: UIViewController
             case .intermediate:
                 myPolyLine.color = .blue
             case .advanced:
-                myPolyLine.color = .black
+                myPolyLine.color = .gray
             case .lift:
-                myPolyLine.color = .purple
+                myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
             case .terrainPark:
                 myPolyLine.color = .orange
             default:
-                myPolyLine.color = .red
+                myPolyLine.color = .black
             }
             myPolyLine.initialAnnotation = previousVertex.value
             myMap.addOverlay(myPolyLine, level: .aboveRoads)
@@ -789,13 +789,13 @@ class InteractiveMapViewController: UIViewController
             case .intermediate:
                 myPolyLine.color = UIColor(red: 0.03, green: 0, blue: 0.5, alpha: 1)
             case .advanced:
-                myPolyLine.color = .black
+                myPolyLine.color = .gray
             case .lift:
-                myPolyLine.color = .purple
+                myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
             case .terrainPark:
                 myPolyLine.color = .orange
             default:
-                myPolyLine.color =  UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+                myPolyLine.color = .black
             }
             myPolyLine.initialAnnotation = edge.source.value
             myMap.addOverlay(myPolyLine, level: .aboveRoads)
@@ -1065,7 +1065,6 @@ extension InteractiveMapViewController: MKMapViewDelegate
         if overlay.isKind(of: CustomPolyline.self)
         {
             let polyLine = overlay as! CustomPolyline
-            print(polyLine.initialAnnotation)
             let polylineRenderer = MKPolylineRenderer(overlay: polyLine)
             polylineRenderer.strokeColor = polyLine.color!
             polylineRenderer.lineWidth = 2.0
@@ -1080,7 +1079,7 @@ extension InteractiveMapViewController: MKMapViewDelegate
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
         mapView.setRegion(zoomed, animated: true)
-        
+        print(view.annotation?.coordinate)
         guard let annotation = view.annotation as? ImageAnnotation else {
             return
         }
@@ -1257,6 +1256,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
             displayRoute()
             getTrailReportsFromDB()
         }
+        
         guard let currentUserId = Self.currentUser?.id else
         {
             return
