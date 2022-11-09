@@ -7,26 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		150D062428F4DEB90051F160 /* TrailSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */; };
+		150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */; };
+		150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C6EB029035BE10055AD59 /* HextoColor.swift */; };
+		150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062328F4DEB90051F160 /* TrailSelectorView.swift */; };
 		150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062728F529260051F160 /* UserSettingsViewController.swift */; };
 		150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062B28F5D6C00051F160 /* TrailReports.swift */; };
-		150D062E28F5E12E0051F160 /* TrailReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062D28F5E12E0051F160 /* TrailReportView.swift */; };
-		150D063028F7797B0051F160 /* CustomMarkerAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062F28F7797B0051F160 /* CustomMarkerAnnotationView.swift */; };
+		150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */; };
+		150D063228F7D96A0051F160 /* TrailReportTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */; };
+		150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */; };
+		150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D063528F8E0C00051F160 /* RouteOverviewView.swift */; };
+		150D0640290063AB0051F160 /* SRMoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D063F290063AB0051F160 /* SRMoon.png */; };
+		150D0642290066C00051F160 /* MogulSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D0641290066C00051F160 /* MogulSquare.png */; };
+		150D06442900682F0051F160 /* IcySquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D06432900682F0051F160 /* IcySquare.png */; };
+		150D064629006C190051F160 /* SRSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D064529006C190051F160 /* SRSun.png */; };
+		150D064C2900AC780051F160 /* MilkyNice.otf in Resources */ = {isa = PBXBuildFile; fileRef = 150D064B2900AC780051F160 /* MilkyNice.otf */; };
+		15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15213F022904800D0027749B /* BellmanFordGraphStructure.swift */; };
+		1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524944E29074F7E009E7059 /* NotificationUtils.swift */; };
+		15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249450290754DA009E7059 /* UnusedFunctions.swift */; };
+		15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */; };
+		1524945529082897009E7059 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945429082897009E7059 /* Settings.swift */; };
+		1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945629084F89009E7059 /* UserTrailReportsViewController.swift */; };
+		1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945829085D88009E7059 /* TrailReportTableViewCell.swift */; };
+		152C69BA291B50120092E537 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C69B9291B50120092E537 /* LocationManager.swift */; };
+		15316621290AE86100206E7E /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15316620290AE86100206E7E /* UserLocation.swift */; };
+		15316623290AE86800206E7E /* UserRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15316622290AE86800206E7E /* UserRoute.swift */; };
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
 		153B2E3C28ED1EDF00A23163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3B28ED1EDF00A23163 /* User.swift */; };
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
-		153B2E4028F3262000A23163 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3F28F3262000A23163 /* TabBarViewController.swift */; };
 		15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545AD828DEA598005D0886 /* Web Analysis.swift */; };
 		15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545AFE28E01813005D0886 /* SignInViewController.swift */; };
 		15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0228E02268005D0886 /* InteractiveMapViewController.swift */; };
 		15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0728E148A9005D0886 /* MapOverlay.swift */; };
-		15545B0C28E224A2005D0886 /* TrailAnnotationDataStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0B28E224A2005D0886 /* TrailAnnotationDataStructure.swift */; };
+		15545B0C28E224A2005D0886 /* DijsktrasGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */; };
 		15545B0E28E224C8005D0886 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0D28E224C8005D0886 /* Trail.swift */; };
 		15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */; };
 		15545B1828E297CA005D0886 /* Game Test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1728E297CA005D0886 /* Game Test.gpx */; };
 		15545B1A28E4ABD1005D0886 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1928E4ABD1005D0886 /* Tiles */; };
-		15545B1C28E4CD42005D0886 /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B1B28E4CD42005D0886 /* CustomCell.swift */; };
-		15545B1E28E4CEB2005D0886 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1D28E4CEB2005D0886 /* CustomCell.xib */; };
+		15545B1C28E4CD42005D0886 /* TrailSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */; };
 		158749F827D82635001B9025 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749F727D82635001B9025 /* AppDelegate.swift */; };
 		158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749F927D82635001B9025 /* SceneDelegate.swift */; };
 		158749FC27D82635001B9025 /* TitleScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158749FB27D82635001B9025 /* TitleScreen.swift */; };
@@ -34,29 +51,53 @@
 		15874A0127D82636001B9025 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15874A0027D82636001B9025 /* Assets.xcassets */; };
 		15874A0427D82636001B9025 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15874A0227D82636001B9025 /* LaunchScreen.storyboard */; };
 		15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15874A0D27D82AFA001B9025 /* Scraper.swift */; };
+		1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */; };
+		1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */; };
+		1591DBBB291AE7B800978FD8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBBA291AE7B800978FD8 /* ContentView.swift */; };
+		1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBC291AE7B900978FD8 /* Assets.xcassets */; };
+		1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorViewController.swift; sourceTree = "<group>"; };
+		150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuFramework.swift; sourceTree = "<group>"; };
+		150C6EB029035BE10055AD59 /* HextoColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HextoColor.swift; sourceTree = "<group>"; };
+		150D062328F4DEB90051F160 /* TrailSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorView.swift; sourceTree = "<group>"; };
 		150D062728F529260051F160 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		150D062B28F5D6C00051F160 /* TrailReports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReports.swift; sourceTree = "<group>"; };
-		150D062D28F5E12E0051F160 /* TrailReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportView.swift; sourceTree = "<group>"; };
-		150D062F28F7797B0051F160 /* CustomMarkerAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerAnnotationView.swift; sourceTree = "<group>"; };
+		150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMarkerAnnotationViews.swift; sourceTree = "<group>"; };
+		150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportTypeTableViewCell.swift; sourceTree = "<group>"; };
+		150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpMenuFramework.swift; sourceTree = "<group>"; };
+		150D063528F8E0C00051F160 /* RouteOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOverviewView.swift; sourceTree = "<group>"; };
+		150D063F290063AB0051F160 /* SRMoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRMoon.png; sourceTree = "<group>"; };
+		150D0641290066C00051F160 /* MogulSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MogulSquare.png; sourceTree = "<group>"; };
+		150D06432900682F0051F160 /* IcySquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IcySquare.png; sourceTree = "<group>"; };
+		150D064529006C190051F160 /* SRSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRSun.png; sourceTree = "<group>"; };
+		150D064B2900AC780051F160 /* MilkyNice.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MilkyNice.otf; sourceTree = "<group>"; };
+		15213F022904800D0027749B /* BellmanFordGraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellmanFordGraphStructure.swift; sourceTree = "<group>"; };
+		1524944E29074F7E009E7059 /* NotificationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtils.swift; sourceTree = "<group>"; };
+		15249450290754DA009E7059 /* UnusedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnusedFunctions.swift; sourceTree = "<group>"; };
+		15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTableViewCell.swift; sourceTree = "<group>"; };
+		1524945429082897009E7059 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		1524945629084F89009E7059 /* UserTrailReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrailReportsViewController.swift; sourceTree = "<group>"; };
+		1524945829085D88009E7059 /* TrailReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportTableViewCell.swift; sourceTree = "<group>"; };
+		152C69B7291B39530092E537 /* SundayRiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SundayRiver.entitlements; sourceTree = "<group>"; };
+		152C69B8291B3A750092E537 /* Trailblazer Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Trailblazer Watch App.entitlements"; sourceTree = "<group>"; };
+		152C69B9291B50120092E537 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		15316620290AE86100206E7E /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
+		15316622290AE86800206E7E /* UserRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRoute.swift; sourceTree = "<group>"; };
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
-		153B2E3F28F3262000A23163 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		15545AD828DEA598005D0886 /* Web Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web Analysis.swift"; sourceTree = "<group>"; };
 		15545AFE28E01813005D0886 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		15545B0228E02268005D0886 /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
 		15545B0728E148A9005D0886 /* MapOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapOverlay.swift; sourceTree = "<group>"; };
-		15545B0B28E224A2005D0886 /* TrailAnnotationDataStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailAnnotationDataStructure.swift; sourceTree = "<group>"; };
+		15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DijsktrasGraphStructure.swift; sourceTree = "<group>"; };
 		15545B0D28E224C8005D0886 /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
 		15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailsDatabase.swift; sourceTree = "<group>"; };
 		15545B1728E297CA005D0886 /* Game Test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Game Test.gpx"; sourceTree = "<group>"; };
 		15545B1928E4ABD1005D0886 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
-		15545B1B28E4CD42005D0886 /* CustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
-		15545B1D28E4CEB2005D0886 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		158749F427D82635001B9025 /* SundayRiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SundayRiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158749F727D82635001B9025 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		158749F927D82635001B9025 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +107,12 @@
 		15874A0327D82636001B9025 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15874A0527D82636001B9025 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15874A0D27D82AFA001B9025 /* Scraper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scraper.swift; sourceTree = "<group>"; };
+		1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelTrailReportView.swift; sourceTree = "<group>"; };
+		1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Trailblazer Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailblazerApp.swift; sourceTree = "<group>"; };
+		1591DBBA291AE7B800978FD8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1591DBBC291AE7B900978FD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,9 +123,107 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1591DBB3291AE7B800978FD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		150C6EAD29031B0C0055AD59 /* Unused.Utils */ = {
+			isa = PBXGroup;
+			children = (
+				15213F022904800D0027749B /* BellmanFordGraphStructure.swift */,
+				15545B0728E148A9005D0886 /* MapOverlay.swift */,
+				15249450290754DA009E7059 /* UnusedFunctions.swift */,
+			);
+			path = Unused.Utils;
+			sourceTree = "<group>";
+		};
+		150D063728FB020B0051F160 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				15316626290B174C00206E7E /* UserSettings.Utils */,
+				15316627290B177000206E7E /* InteractiveMap.Utils */,
+				15316624290B170300206E7E /* Models */,
+				15316625290B172200206E7E /* Miscellaneous.Utils */,
+				150C6EAD29031B0C0055AD59 /* Unused.Utils */,
+				150D06472900A8CD0051F160 /* Fonts */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		150D063E290063900051F160 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				150D064529006C190051F160 /* SRSun.png */,
+				150D06432900682F0051F160 /* IcySquare.png */,
+				150D0641290066C00051F160 /* MogulSquare.png */,
+				150D063F290063AB0051F160 /* SRMoon.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		150D06472900A8CD0051F160 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				150D064B2900AC780051F160 /* MilkyNice.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		15316624290B170300206E7E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				150D062B28F5D6C00051F160 /* TrailReports.swift */,
+				15316622290AE86800206E7E /* UserRoute.swift */,
+				15316620290AE86100206E7E /* UserLocation.swift */,
+				153B2E3B28ED1EDF00A23163 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		15316625290B172200206E7E /* Miscellaneous.Utils */ = {
+			isa = PBXGroup;
+			children = (
+				153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */,
+				150C6EB029035BE10055AD59 /* HextoColor.swift */,
+				1524944E29074F7E009E7059 /* NotificationUtils.swift */,
+			);
+			path = Miscellaneous.Utils;
+			sourceTree = "<group>";
+		};
+		15316626290B174C00206E7E /* UserSettings.Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1524945429082897009E7059 /* Settings.swift */,
+				1524945829085D88009E7059 /* TrailReportTableViewCell.swift */,
+				15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */,
+			);
+			path = UserSettings.Utils;
+			sourceTree = "<group>";
+		};
+		15316627290B177000206E7E /* InteractiveMap.Utils */ = {
+			isa = PBXGroup;
+			children = (
+				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
+				150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */,
+				15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */,
+				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
+				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
+				1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */,
+				15545AD828DEA598005D0886 /* Web Analysis.swift */,
+				15874A0D27D82AFA001B9025 /* Scraper.swift */,
+				152C69B9291B50120092E537 /* LocationManager.swift */,
+				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
+				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
+			);
+			path = InteractiveMap.Utils;
+			sourceTree = "<group>";
+		};
 		15545B0428E022A5005D0886 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -86,10 +231,8 @@
 				15545AFE28E01813005D0886 /* SignInViewController.swift */,
 				153B2E3928ED135D00A23163 /* SignUpViewController.swift */,
 				15545B0228E02268005D0886 /* InteractiveMapViewController.swift */,
-				153B2E3F28F3262000A23163 /* TabBarViewController.swift */,
 				150D062728F529260051F160 /* UserSettingsViewController.swift */,
-				150D062328F4DEB90051F160 /* TrailSelectorViewController.swift */,
-				150D062D28F5E12E0051F160 /* TrailReportView.swift */,
+				1524945629084F89009E7059 /* UserTrailReportsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -98,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				158749F627D82635001B9025 /* SundayRiver */,
+				1591DBB7291AE7B800978FD8 /* Trailblazer Watch App */,
 				158749F527D82635001B9025 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -106,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				158749F427D82635001B9025 /* SundayRiver.app */,
+				1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -113,21 +258,16 @@
 		158749F627D82635001B9025 /* SundayRiver */ = {
 			isa = PBXGroup;
 			children = (
+				152C69B7291B39530092E537 /* SundayRiver.entitlements */,
 				158749F727D82635001B9025 /* AppDelegate.swift */,
 				158749F927D82635001B9025 /* SceneDelegate.swift */,
 				158749FD27D82635001B9025 /* Main.storyboard */,
 				15545B0428E022A5005D0886 /* ViewControllers */,
 				159B0EC628E68DDC00DAFEAA /* TrailDatabaseFiles */,
-				153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */,
-				150D062F28F7797B0051F160 /* CustomMarkerAnnotationView.swift */,
-				15545B1B28E4CD42005D0886 /* CustomCell.swift */,
-				15545B0728E148A9005D0886 /* MapOverlay.swift */,
-				15545AD828DEA598005D0886 /* Web Analysis.swift */,
-				153B2E3B28ED1EDF00A23163 /* User.swift */,
-				15874A0D27D82AFA001B9025 /* Scraper.swift */,
+				150D063728FB020B0051F160 /* Utils */,
 				15545B1728E297CA005D0886 /* Game Test.gpx */,
-				15545B1D28E4CEB2005D0886 /* CustomCell.xib */,
 				15874A0027D82636001B9025 /* Assets.xcassets */,
+				150D063E290063900051F160 /* Images */,
 				15874A0227D82636001B9025 /* LaunchScreen.storyboard */,
 				15545B1928E4ABD1005D0886 /* Tiles */,
 				15874A0527D82636001B9025 /* Info.plist */,
@@ -135,13 +275,32 @@
 			path = SundayRiver;
 			sourceTree = "<group>";
 		};
+		1591DBB7291AE7B800978FD8 /* Trailblazer Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				152C69B8291B3A750092E537 /* Trailblazer Watch App.entitlements */,
+				1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */,
+				1591DBBA291AE7B800978FD8 /* ContentView.swift */,
+				1591DBBC291AE7B900978FD8 /* Assets.xcassets */,
+				1591DBBE291AE7B900978FD8 /* Preview Content */,
+			);
+			path = "Trailblazer Watch App";
+			sourceTree = "<group>";
+		};
+		1591DBBE291AE7B900978FD8 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		159B0EC628E68DDC00DAFEAA /* TrailDatabaseFiles */ = {
 			isa = PBXGroup;
 			children = (
 				15545B0D28E224C8005D0886 /* Trail.swift */,
-				15545B0B28E224A2005D0886 /* TrailAnnotationDataStructure.swift */,
+				15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */,
 				15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */,
-				150D062B28F5D6C00051F160 /* TrailReports.swift */,
 			);
 			path = TrailDatabaseFiles;
 			sourceTree = "<group>";
@@ -166,6 +325,23 @@
 			productReference = 158749F427D82635001B9025 /* SundayRiver.app */;
 			productType = "com.apple.product-type.application";
 		};
+		1591DBB5291AE7B800978FD8 /* Trailblazer Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1591DBC3291AE7B900978FD8 /* Build configuration list for PBXNativeTarget "Trailblazer Watch App" */;
+			buildPhases = (
+				1591DBB2291AE7B800978FD8 /* Sources */,
+				1591DBB3291AE7B800978FD8 /* Frameworks */,
+				1591DBB4291AE7B800978FD8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Trailblazer Watch App";
+			productName = "Trailblazer Watch App";
+			productReference = 1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -173,11 +349,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1320;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
 					158749F327D82635001B9025 = {
 						CreatedOnToolsVersion = 13.2.1;
+					};
+					1591DBB5291AE7B800978FD8 = {
+						CreatedOnToolsVersion = 14.1;
 					};
 				};
 			};
@@ -195,6 +374,7 @@
 			projectRoot = "";
 			targets = (
 				158749F327D82635001B9025 /* SundayRiver */,
+				1591DBB5291AE7B800978FD8 /* Trailblazer Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -204,12 +384,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15545B1E28E4CEB2005D0886 /* CustomCell.xib in Resources */,
 				15545B1828E297CA005D0886 /* Game Test.gpx in Resources */,
+				150D06442900682F0051F160 /* IcySquare.png in Resources */,
 				15874A0427D82636001B9025 /* LaunchScreen.storyboard in Resources */,
+				150D064629006C190051F160 /* SRSun.png in Resources */,
+				150D064C2900AC780051F160 /* MilkyNice.otf in Resources */,
+				150D0640290063AB0051F160 /* SRMoon.png in Resources */,
 				15874A0127D82636001B9025 /* Assets.xcassets in Resources */,
 				158749FF27D82635001B9025 /* Main.storyboard in Resources */,
 				15545B1A28E4ABD1005D0886 /* Tiles in Resources */,
+				150D0642290066C00051F160 /* MogulSquare.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1591DBB4291AE7B800978FD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */,
+				1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,27 +413,50 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1524945529082897009E7059 /* Settings.swift in Sources */,
 				15545B0E28E224C8005D0886 /* Trail.swift in Sources */,
-				15545B1C28E4CD42005D0886 /* CustomCell.swift in Sources */,
+				15545B1C28E4CD42005D0886 /* TrailSelectorTableViewCell.swift in Sources */,
+				15316623290AE86800206E7E /* UserRoute.swift in Sources */,
+				150D063228F7D96A0051F160 /* TrailReportTypeTableViewCell.swift in Sources */,
 				15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */,
-				150D063028F7797B0051F160 /* CustomMarkerAnnotationView.swift in Sources */,
+				15316621290AE86100206E7E /* UserLocation.swift in Sources */,
+				150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */,
+				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,
+				150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */,
+				1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
-				153B2E4028F3262000A23163 /* TabBarViewController.swift in Sources */,
-				150D062E28F5E12E0051F160 /* TrailReportView.swift in Sources */,
+				150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
+				1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
+				152C69BA291B50120092E537 /* LocationManager.swift in Sources */,
 				15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */,
+				1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */,
+				1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */,
 				150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */,
 				150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */,
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,
 				158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */,
+				15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */,
 				153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */,
+				150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */,
+				15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */,
 				153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */,
 				15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */,
 				15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */,
-				150D062428F4DEB90051F160 /* TrailSelectorViewController.swift in Sources */,
-				15545B0C28E224A2005D0886 /* TrailAnnotationDataStructure.swift in Sources */,
+				150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */,
+				15545B0C28E224A2005D0886 /* DijsktrasGraphStructure.swift in Sources */,
+				15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1591DBB2291AE7B800978FD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1591DBBB291AE7B800978FD8 /* ContentView.swift in Sources */,
+				1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,9 +603,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SundayRiver/SundayRiver.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GTXY2R57XP;
+				DEVELOPMENT_TEAM = K728A8S3D6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SundayRiver/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sunday River TB";
@@ -398,15 +616,16 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mckee.SundayRiver;
+				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -418,9 +637,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SundayRiver/SundayRiver.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GTXY2R57XP;
+				DEVELOPMENT_TEAM = K728A8S3D6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SundayRiver/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Sunday River TB";
@@ -429,18 +650,87 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mckee.SundayRiver;
+				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1591DBC1291AE7B900978FD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Trailblazer Watch App/Trailblazer Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Trailblazer Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = K728A8S3D6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Trailblazer;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
+			};
+			name = Debug;
+		};
+		1591DBC2291AE7B900978FD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "Trailblazer Watch App/Trailblazer Watch App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Trailblazer Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = K728A8S3D6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Trailblazer;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerWatchOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.1;
 			};
 			name = Release;
 		};
@@ -461,6 +751,15 @@
 			buildConfigurations = (
 				15874A0927D82636001B9025 /* Debug */,
 				15874A0A27D82636001B9025 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1591DBC3291AE7B900978FD8 /* Build configuration list for PBXNativeTarget "Trailblazer Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1591DBC1291AE7B900978FD8 /* Debug */,
+				1591DBC2291AE7B900978FD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

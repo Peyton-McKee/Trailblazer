@@ -14,14 +14,26 @@ class SignInViewController: UIViewController
     var passwordTextField = UITextField()
     var signInButton = UIButton()
     var signUpButton = UIButton()
+    
+    var incorrectSignInLabel = UILabel()
+    
     static var currentUser = User(userName: "", password: "")
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         configureTextFields()
         configureButtons()
+        configureLabels()
     }
     
+    func configureLabels()
+    {
+        incorrectSignInLabel.textColor = .red
+        incorrectSignInLabel.translatesAutoresizingMaskIntoConstraints = false
+        incorrectSignInLabel.isHidden = true
+        view.addSubview(incorrectSignInLabel)
+        createConstraints(item: incorrectSignInLabel, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 - Double(view.bounds.height) * 9 / 20)
+    }
     func configureTextFields()
     {
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +43,7 @@ class SignInViewController: UIViewController
         userNameTextField.autocapitalizationType = .none
         userNameTextField.borderStyle = .roundedRect
         userNameTextField.autocorrectionType = .no
+        userNameTextField.tag = 1
         
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "Enter Password..."
@@ -40,6 +53,7 @@ class SignInViewController: UIViewController
         passwordTextField.isSecureTextEntry = true
         passwordTextField.borderStyle = .roundedRect
         passwordTextField.autocorrectionType = .no
+        passwordTextField.tag = 2
         
         view.addSubview(userNameTextField)
         view.addSubview(passwordTextField)
@@ -73,7 +87,7 @@ class SignInViewController: UIViewController
             item.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: distFromLeft),
             item.heightAnchor.constraint(equalToConstant: 40),
             item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-            ])
+        ])
     }
     @objc func signInButtonPressed(sender: UIButton)
     {
@@ -93,23 +107,26 @@ class SignInViewController: UIViewController
             {
                 if user.userName == myUser.userName && user.password == myUser.password
                 {
+                    let userIdString = user.id!
                     foundMatch = true
-                    UserDefaults.standard.register(defaults: ["username" : user.userName])
                     InteractiveMapViewController.currentUser = user
                     self.navigationController?.show(InteractiveMapViewController(), sender: sender)
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                        
-                        // This is to get the SceneDelegate object from your view controller
-                        // then call the change root view controller function to change to main tab bar
-                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                    let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                    UserDefaults.standard.set("\(user.userName!)", forKey: "userUsername")
+                    UserDefaults.standard.set("\(user.password!)", forKey: "userPassword")
+                    UserDefaults.standard.set("\(userIdString)", forKey: "userId")
+                    // This is to get the SceneDelegate object from your view controller
+                    // then call the change root view controller function to change to main tab bar
+                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
                     //you have successfully logged in
                     break
                 }
             }
             if !foundMatch
             {
-                //username or password is incorrect
+                self.incorrectSignInLabel.text = "Incorrect Username or Password"
+                self.incorrectSignInLabel.isHidden = false
             }
         })
     }
@@ -125,7 +142,7 @@ class SignInViewController: UIViewController
                 print(error?.localizedDescription ?? "Unknown error")
                 return
             }
-
+            
             let decoder = JSONDecoder()
             if let users = try? decoder.decode([User].self, from: data) {
                 DispatchQueue.main.async {
@@ -142,11 +159,15 @@ class SignInViewController: UIViewController
 
 extension SignInViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if( textField == passwordTextField)
-        {
-            signInButtonPressed(sender: signUpButton)
+        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
         }
-        return true
+        else
+        {
+            textField.resignFirstResponder()
+            signInButtonPressed(sender: signInButton)
+        }
+        return false
     }
     
 }
