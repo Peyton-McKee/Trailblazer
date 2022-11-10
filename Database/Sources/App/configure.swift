@@ -18,7 +18,7 @@ public func configure(_ app: Application) throws {
     
     app.databases.use(.postgres(
         hostname: Environment.get("DATABASE_HOST")
-        ?? "localhost",
+        ?? "35.172.135.117",
         port: databasePort,
         username: Environment.get("DATABASE_USERNAME")
         ?? "vapor_username",
