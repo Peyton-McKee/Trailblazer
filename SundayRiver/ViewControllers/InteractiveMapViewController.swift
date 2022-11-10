@@ -22,6 +22,8 @@ class InteractiveMapViewController: UIViewController
     static var wasSelectedWithOrigin = false
     static var didChooseDestination = false
         
+    let baseURL = "http://35.172.135.117/"
+    
     var trailReports : [TrailReport]?
     var selectedTrailReport : TrailReport?
     var selectedTrailReportAnnotation : ImageAnnotation?
@@ -925,7 +927,7 @@ class InteractiveMapViewController: UIViewController
     /// - trailReport: the trail report to be sent to the database
     /// sends the given trail report to the database
     func saveTrailReporrt(_ trailReport: TrailReport) {
-        let url = URL(string: "http://localhost:8080/api/trail-reports")!
+        let url = URL(string: "\(baseURL)/api/trail-reports")!
         
         let encoder = JSONEncoder()
         
@@ -948,7 +950,7 @@ class InteractiveMapViewController: UIViewController
     }
     
     func getSingleUser(id: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let url = URL(string: "http://127.0.0.1:8080/api/users/\(id)")!
+        let url = URL(string: "\(baseURL)/api/users/\(id)")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -970,7 +972,7 @@ class InteractiveMapViewController: UIViewController
     /// getTrailReports: void -> [TrailReport] || Error
     /// gets all the trail reports being stored on the database
     func getTrailReports(completion: @escaping (Result<[TrailReport], Error>) -> Void) {
-        let url = URL(string: "http://127.0.0.1:8080/api/trail-reports")!
+        let url = URL(string: "\(baseURL)/api/trail-reports")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -990,7 +992,7 @@ class InteractiveMapViewController: UIViewController
         }.resume()
     }
     func saveUserRoute(_ userRoute: UserRoute) {
-        let url = URL(string: "http://localhost:8080/api/user-routes/")!
+        let url = URL(string: "\(baseURL)/api/user-routes/")!
         
         let encoder = JSONEncoder()
         
@@ -1012,7 +1014,7 @@ class InteractiveMapViewController: UIViewController
         }.resume()
     }
     func saveUserLocation(_ userLocation: UserLocation) {
-        let url = URL(string: "http://localhost:8080/api/user-locations")!
+        let url = URL(string: "\(baseURL)/api/user-locations")!
         
         let encoder = JSONEncoder()
         
@@ -1040,7 +1042,7 @@ class InteractiveMapViewController: UIViewController
             //just remove the annotation from the map
             return
         }
-        let url = URL(string: "http://localhost:8080/api/trail-reports/\(id)")!
+        let url = URL(string: "\(baseURL)/api/trail-reports/\(id)")!
                 
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"

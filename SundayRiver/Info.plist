@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoadsForMedia</key>
+		<false/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>tovapor-trailblazer.ctyve6nsk49p.us-east-1.rds.amazonaws.com</key>
+			<dict/>
+			<key>NSExceptionAllowsInsecureHTTPLoads</key>
+			<false/>
+		</dict>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>MilkyNice.otf</string>

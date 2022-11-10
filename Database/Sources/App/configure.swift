@@ -12,18 +12,18 @@ public func configure(_ app: Application) throws {
         databaseName = "vapor-test"
         databasePort = 5433
     } else {
-        databaseName = "vapor_database"
+        databaseName = "VaporTrailblazer"
         databasePort = 5432
     }
     
     app.databases.use(.postgres(
         hostname: Environment.get("DATABASE_HOST")
-        ?? "35.172.135.117",
+        ?? "vapor-trailblazer.ctyve6nsk49p.us-east-1.rds.amazonaws.com",
         port: databasePort,
         username: Environment.get("DATABASE_USERNAME")
-        ?? "vapor_username",
+        ?? "mckee_p",
         password: Environment.get("DATABASE_PASSWORD")
-        ?? "vapor_password",
+        ?? "trailblazer",
         database: Environment.get("DATABASE_NAME")
         ?? databaseName
     ), as: .psql)
