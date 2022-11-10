@@ -14,7 +14,7 @@ class SignInViewController: UIViewController
     var passwordTextField = UITextField()
     var signInButton = UIButton()
     var signUpButton = UIButton()
-    
+    let baseURL = "https://155.33.133.18:8080"
     var incorrectSignInLabel = UILabel()
     
     static var currentUser = User(userName: "", password: "")
@@ -135,7 +135,7 @@ class SignInViewController: UIViewController
         self.navigationController?.pushViewController(SignUpViewController(), animated: true)
     }
     func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
-        let url = URL(string: "http://127.0.0.1:8080/api/users")!
+        let url = URL(string: "\(baseURL)/api/users")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {

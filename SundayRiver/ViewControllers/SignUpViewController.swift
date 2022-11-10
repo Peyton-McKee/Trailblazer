@@ -12,13 +12,12 @@ class SignUpViewController : UIViewController {
     var userNameTextField = UITextField()
     var passwordTextField = UITextField()
     var confirmPasswordTextField = UITextField()
-    
+    let baseURL = "http://155.33.133.18:8080"
     var incorrectSignUpLabel = UILabel()
     
     var signInButton = UIButton()
     var signUpButton = UIButton()
     
-    var url = URL(string: "http://127.0.0.1:8080")!
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -148,7 +147,7 @@ class SignUpViewController : UIViewController {
     }
     
     func saveUser(_ user: User) {
-        let url = URL(string: "http://localhost:8080/api/users")!
+        let url = URL(string: "\(baseURL)/api/users")!
         
         let encoder = JSONEncoder()
         
@@ -175,7 +174,7 @@ class SignUpViewController : UIViewController {
     
     
     func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
-        let url = URL(string: "http://localhost:8080/api/users")!
+        let url = URL(string: "\(baseURL)/api/users")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
