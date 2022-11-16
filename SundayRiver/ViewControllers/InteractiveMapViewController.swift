@@ -4,7 +4,7 @@
 //
 //  Created by Peyton McKee on 9/25/22.
 //
-
+import SwiftUI
 import Foundation
 import UIKit
 import MapKit
@@ -12,6 +12,8 @@ import CoreLocation
 
 class InteractiveMapViewController: UIViewController
 {
+    @ObservedObject private var connectivityController = ConnectivityController.shared
+    
     static var currentUser : User?
     static var routeInProgress = false
     static var destination : ImageAnnotation?
@@ -21,8 +23,8 @@ class InteractiveMapViewController: UIViewController
     static var selectedGraph = TrailsDatabase.graph
     static var wasSelectedWithOrigin = false
     static var didChooseDestination = false
-        
-    let baseURL = "http://35.172.135.117/"
+    
+    let baseURL = "http://35.172.135.117"
     
     var trailReports : [TrailReport]?
     var selectedTrailReport : TrailReport?
@@ -285,7 +287,7 @@ class InteractiveMapViewController: UIViewController
             //Then the trail report hasnt been stored on the database yet
             return
         }
-        deleteTrailReport(selectedTrailReport)
+        deleteTrailReport(id: selectedTrailReport.id)
         self.selectedTrailReport = nil
         myMap.removeAnnotation(selectedTrailReportAnnotation!)
         annotation?.value.trailReport = nil
@@ -509,7 +511,7 @@ class InteractiveMapViewController: UIViewController
                 closestTrail.trailReport = annotation
                 self.myMap.addAnnotation(annotation)
                 self.locationManager.makeTrailReportRegion(trailReport: annotation)
-                self.locationManager.registerNotification()
+                self.locationManager.registerNotification(title: "CAUTION: \(annotation.subtitle!.uppercased()) AHEAD", body: annotation.subtitle!, trailReportID: report.id!)
             }
         })
     }
@@ -739,6 +741,8 @@ class InteractiveMapViewController: UIViewController
     {
         var previousVertex = route[0]
         var foundAnnotations : [ImageAnnotation] = []
+        var routes : [Route] = []
+        var id = 0
         for vertex in route{
             myPolyLine = CustomPolyline(coordinates: [previousVertex.value.coordinate, vertex.value.coordinate], count: 2)
             switch previousVertex.value.difficulty
@@ -760,12 +764,15 @@ class InteractiveMapViewController: UIViewController
             myMap.addOverlay(myPolyLine, level: .aboveRoads)
             if let trailReport = vertex.value.trailReport
             {
-                myMap.addAnnotation(trailReport)
+                print(vertex.value.trailReport?.subtitle)
+                foundAnnotations.append(trailReport)
             }
             if (TrailsDatabase.keyAnnotations.contains(vertex))
             {
-                foundAnnotations.append(TrailsDatabase.keyAnnotations.map({ $0.value }).filter({ $0 == vertex.value })[0])
+                foundAnnotations.append(vertex.value)
             }
+            routes.append(Route(id: id, annotationName: previousVertex.value.title!, coordinates: [previousVertex.value.coordinate.latitude, previousVertex.value.coordinate.longitude]))
+            id += 1
             previousVertex = vertex
         }
         let set1 = Set(previousAnnotations)
@@ -774,6 +781,7 @@ class InteractiveMapViewController: UIViewController
         myMap.addAnnotations(foundAnnotations)
         myMap.removeOverlays(previousOverlays)
         canFindPathAgain = true
+        connectivityController.setRoute(route: routes)
     }
     
     
@@ -1035,11 +1043,11 @@ class InteractiveMapViewController: UIViewController
             }
         }.resume()
     }
-    func deleteTrailReport(_ trailReport: TrailReport)
+    public func deleteTrailReport(id: String?)
     {
-        guard let id = trailReport.id else
+        guard let id = id else
         {
-            //just remove the annotation from the map
+            //its a local trail report
             return
         }
         let url = URL(string: "\(baseURL)/api/trail-reports/\(id)")!
@@ -1049,7 +1057,7 @@ class InteractiveMapViewController: UIViewController
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let response = response {
-                print(response.suggestedFilename)
+                print(response.suggestedFilename ?? "ahhh")
             } else
             {
                 print("Bad JSON received back")
@@ -1081,7 +1089,6 @@ extension InteractiveMapViewController: MKMapViewDelegate
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
         mapView.setRegion(zoomed, animated: true)
-        print(view.annotation?.coordinate)
         guard let annotation = view.annotation as? ImageAnnotation else {
             return
         }
@@ -1256,7 +1263,6 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
             Self.origin = nil
             canFindPathAgain = false
             displayRoute()
-            getTrailReportsFromDB()
         }
         
         guard let currentUserId = Self.currentUser?.id else

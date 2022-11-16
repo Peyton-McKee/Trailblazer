@@ -34,6 +34,11 @@
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
 		153B2E3C28ED1EDF00A23163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3B28ED1EDF00A23163 /* User.swift */; };
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
+		15489A492922AF2F00898FD0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A482922AF2F00898FD0 /* Connectivity.swift */; };
+		15489A4A2922AFAC00898FD0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A482922AF2F00898FD0 /* Connectivity.swift */; };
+		15489A4C2922BAD100898FD0 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A4B2922BAD100898FD0 /* ConnectivityController.swift */; };
+		15489A4D2922C0A900898FD0 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A4B2922BAD100898FD0 /* ConnectivityController.swift */; };
+		15489A4E2922FA8100898FD0 /* Game Test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 15545B1728E297CA005D0886 /* Game Test.gpx */; };
 		15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545AD828DEA598005D0886 /* Web Analysis.swift */; };
 		15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545AFE28E01813005D0886 /* SignInViewController.swift */; };
 		15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0228E02268005D0886 /* InteractiveMapViewController.swift */; };
@@ -88,6 +93,8 @@
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
+		15489A482922AF2F00898FD0 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		15489A4B2922BAD100898FD0 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		15545AD828DEA598005D0886 /* Web Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web Analysis.swift"; sourceTree = "<group>"; };
 		15545AFE28E01813005D0886 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		15545B0228E02268005D0886 /* InteractiveMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveMapViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +288,8 @@
 				152C69B8291B3A750092E537 /* Trailblazer Watch App.entitlements */,
 				1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */,
 				1591DBBA291AE7B800978FD8 /* ContentView.swift */,
+				15489A482922AF2F00898FD0 /* Connectivity.swift */,
+				15489A4B2922BAD100898FD0 /* ConnectivityController.swift */,
 				1591DBBC291AE7B900978FD8 /* Assets.xcassets */,
 				1591DBBE291AE7B900978FD8 /* Preview Content */,
 			);
@@ -402,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */,
+				15489A4E2922FA8100898FD0 /* Game Test.gpx in Resources */,
 				1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +436,7 @@
 				1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
 				150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */,
+				15489A4D2922C0A900898FD0 /* ConnectivityController.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
 				1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
@@ -433,6 +444,7 @@
 				152C69BA291B50120092E537 /* LocationManager.swift in Sources */,
 				15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */,
 				1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */,
+				15489A4A2922AFAC00898FD0 /* Connectivity.swift in Sources */,
 				1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */,
 				150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */,
 				150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */,
@@ -457,6 +469,8 @@
 			files = (
 				1591DBBB291AE7B800978FD8 /* ContentView.swift in Sources */,
 				1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */,
+				15489A4C2922BAD100898FD0 /* ConnectivityController.swift in Sources */,
+				15489A492922AF2F00898FD0 /* Connectivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +632,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -652,6 +667,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

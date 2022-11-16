@@ -11,7 +11,7 @@ import UIKit
 class UserTrailReportsViewController: UIViewController{
     var trailReports : [TrailReport]?
     var trailReportsTableView = UITableView()
-    
+    let baseURL = "http://35.172.135.117"
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
@@ -42,7 +42,7 @@ class UserTrailReportsViewController: UIViewController{
         })
     }
     private func getSingleUserTrailReports(id: String, completion: @escaping (Result<[TrailReport], Error>) -> Void) {
-        let url = URL(string: "http://localhost:8080/api/users/\(id)/trail-reports")!
+        let url = URL(string: "\(baseURL)/api/users/\(id)/trail-reports")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {

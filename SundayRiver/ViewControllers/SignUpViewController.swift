@@ -12,7 +12,7 @@ class SignUpViewController : UIViewController {
     var userNameTextField = UITextField()
     var passwordTextField = UITextField()
     var confirmPasswordTextField = UITextField()
-    let baseURL = "http://155.33.133.18:8080"
+    let baseURL = "http://35.172.135.117"
     var incorrectSignUpLabel = UILabel()
     
     var signInButton = UIButton()

@@ -14,7 +14,7 @@ class SignInViewController: UIViewController
     var passwordTextField = UITextField()
     var signInButton = UIButton()
     var signUpButton = UIButton()
-    let baseURL = "https://155.33.133.18:8080"
+    let baseURL = "http://35.172.135.117"
     var incorrectSignInLabel = UILabel()
     
     static var currentUser = User(userName: "", password: "")
