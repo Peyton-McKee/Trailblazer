@@ -1,33 +1,51 @@
 import Foundation
 import MapKit
 
-struct Map : Codable
+struct Map : Codable, Equatable
 {
+    var id: String?
     var name: String
-    var trails: [MapTrail]
+    var mapTrail: [MapTrail]?
+    
+    public static func == (lhs: Map, rhs: Map) -> Bool
+    {
+        return lhs.id == rhs.id
+    }
 }
 
-struct MapTrail: Codable {
+struct MapTrail: Codable, Equatable {
+    var id: String?
     var name: String
-    var latitudes: [Double]
-    var longitudes: [Double]
+    var mapId: Map
+    var points: [Point]?
+    
+    public static func == (lhs: MapTrail, rhs: MapTrail) -> Bool
+    {
+        return lhs.id == rhs.id
+    }
 }
-
+struct Point: Codable {
+    var id: String?
+    var mapTrailId: MapTrail
+    var latitude: Float
+    var longitude: Float
+}
 final class MapInterpreter: NSObject {
     static let shared = MapInterpreter()
     var mapView = MKMapView()
     let baseURL = "http://35.172.135.117"
+    var map : Map?
     var graph = EdgeWeightedDigraph<ImageAnnotation>()
     override init() {
         super.init()
         
     }
-    func downloadTrails(id: String)
+    func getMap(id: String)
     {
         let url = URL(string: "\(baseURL)/api/maps/\(id)")!
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                print("Error with fetching trails: \(error)")
+                print("Error with fetching Map: \(error)")
                 return
             }
             guard let data = data else {
@@ -36,10 +54,65 @@ final class MapInterpreter: NSObject {
             }
             do {
                 let decoder = JSONDecoder()
-                let map = try decoder.decode(Map.self, from: data)
-                self.createMap(map: map)
+                self.map = try decoder.decode(Map.self, from: data)
+                self.getMapTrails(id: id)
             } catch {
-                print("Error decoding trails: \(error)")
+                print("Error decoding Map: \(error)")
+            }
+        }.resume()
+    }
+    private func getMapTrails(id: String)
+    {
+        let url = URL(string: "\(baseURL)/api/maps/\(id)/map-trails")!
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error {
+                print("Error with fetching map trails: \(error)")
+                return
+            }
+            guard let data = data else {
+                print("No data returned from data task")
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                self.map?.mapTrail = try decoder.decode([MapTrail].self, from: data)
+                if self.map?.mapTrail != nil
+                {
+                    for index in 0...self.map!.mapTrail!.count
+                    {
+                        self.getPoints(id: self.map!.mapTrail![index].id!, completion: { result in
+                            guard let points = try? result.get() else
+                            {
+                                print("Error: \(result)")
+                                return
+                            }
+                            self.map!.mapTrail![index].points = points
+                        })
+                    }
+                }
+            } catch {
+                print("Error decoding map trails: \(error)")
+            }
+        }.resume()
+    }
+    private func getPoints(id: String, completion: @escaping (Result<[Point], Error>) -> Void)
+    {
+        let url = URL(string: "\(baseURL)/api/map-trails/\(id)/points")!
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "Unknown error")
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            if let points = try? decoder.decode([Point].self, from: data) {
+                DispatchQueue.main.async {
+                    completion(.success(points))
+                }
+            } else {
+                print("Unable to parse JSON response.")
+                completion(.failure(error!))
             }
         }.resume()
     }
@@ -47,17 +120,19 @@ final class MapInterpreter: NSObject {
     {
         var annotations : [ImageAnnotation] = []
         var polylines: [CustomPolyline] = []
-        for trail in map.trails
+        guard let trails = map.mapTrail else { return }
+        for trail in trails
         {
             var coordinates : [CLLocationCoordinate2D] = []
-            for index in 0...trail.latitudes.count
+            guard let points = trail.points else { return }
+            for index in 0...points.count
             {
-                let lat = trail.latitudes[index]
-                let long = trail.longitudes[index]
-                coordinates.append(CLLocationCoordinate2D(latitude: lat, longitude: long))
+                let lat = points[index].latitude
+                let long = points[index].longitude
+                coordinates.append(CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)))
             }
             
-            let polyline = CustomPolyline(coordinates: coordinates, count: trail.latitudes.count)
+            let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
             polyline.title = trail.name
             polyline.initialAnnotation = TrailsDatabase.createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
             polylines.append(polyline)
@@ -124,9 +199,9 @@ final class MapInterpreter: NSObject {
                 graph.addEdge(direction: .undirected, from: closestInitialVertex, to: initialVertex, weight: 1)
                 graph.addEdge(direction: .undirected, from: lastVertex, to: closestFinalVertex, weight: 1)
                 
-                print(interesectingLines)
             }
         }
+        print(graph)
     }
 }
 

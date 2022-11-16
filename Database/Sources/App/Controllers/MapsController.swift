@@ -17,6 +17,7 @@ struct MapsController: RouteCollection {
         mapsRoute.post(use: createHandler)
         mapsRoute.get(use: getAllHandler)
         mapsRoute.get(":mapId", use: getHandler)
+        mapsRoute.get(":mapId", "map-trails", use: getMapTrailsHandler)
         mapsRoute.delete(":mapId", use: deleteHandler)
     }
     
@@ -33,9 +34,19 @@ struct MapsController: RouteCollection {
     }
     func getHandler(_ req: Request)
     -> EventLoopFuture<Map> {
-        
         Map.find(req.parameters.get("mapId"), on: req.db)
             .unwrap(or: Abort(.notFound))
+        
+    }
+    func getMapTrailsHandler(_ req: Request)
+      -> EventLoopFuture<[MapTrail]> {
+      // 2
+      Map.find(req.parameters.get("mapId"), on: req.db)
+        .unwrap(or: Abort(.notFound))
+        .flatMap { map in
+          // 3
+          map.$mapTrail.get(on: req.db)
+        }
     }
     func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
         Map.find(req.parameters.get("mapId"), on: req.db)
