@@ -17,7 +17,7 @@ final class MapTrail: Model, Content {
     @Field(key: "name")
     var name: String
     
-    @Parent(key: "mapID")
+    @Parent(key: "mapId")
     var map: Map
     
     @Children(for: \.$mapTrail)

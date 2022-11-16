@@ -20,7 +20,7 @@ final class Point: Model, Content {
     @Field(key: "longitude")
     var longitude: Float
     
-    @Parent(key: "mapTrailID")
+    @Parent(key: "mapTrailId")
     var mapTrail: MapTrail
     
     init() {}
