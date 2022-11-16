@@ -17,7 +17,7 @@ struct MapTrailsController: RouteCollection {
         mapTrailsRoute.post(use: createHandler)
         mapTrailsRoute.get(use: getAllHandler)
         mapTrailsRoute.get(":mtId", use: getHandler)
-        mapTrailsRoute.get("mtId", "points", use: getPointsHandler)
+        mapTrailsRoute.get(":mtId", "points", use: getPointsHandler)
         mapTrailsRoute.delete(":mtId", use: deleteHandler)
     }
     

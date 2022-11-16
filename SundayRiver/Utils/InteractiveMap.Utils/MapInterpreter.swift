@@ -4,7 +4,7 @@ import MapKit
 struct Map : Codable, Equatable
 {
     var id: String?
-    var name: String
+    var name: String?
     var mapTrail: [MapTrail]?
     
     public static func == (lhs: Map, rhs: Map) -> Bool
@@ -15,8 +15,8 @@ struct Map : Codable, Equatable
 
 struct MapTrail: Codable, Equatable {
     var id: String?
-    var name: String
-    var mapId: Map
+    var name: String?
+    var map: Map?
     var points: [Point]?
     
     public static func == (lhs: MapTrail, rhs: MapTrail) -> Bool
@@ -78,8 +78,9 @@ final class MapInterpreter: NSObject {
                 self.map?.mapTrail = try decoder.decode([MapTrail].self, from: data)
                 if self.map?.mapTrail != nil
                 {
-                    for index in 0...self.map!.mapTrail!.count
+                    for index in 0...self.map!.mapTrail!.count - 1
                     {
+                        print(index)
                         self.getPoints(id: self.map!.mapTrail![index].id!, completion: { result in
                             guard let points = try? result.get() else
                             {
@@ -112,7 +113,9 @@ final class MapInterpreter: NSObject {
                 }
             } else {
                 print("Unable to parse JSON response.")
-                completion(.failure(error!))
+                if let error = error{
+                    completion(.failure(error))
+                }
             }
         }.resume()
     }
