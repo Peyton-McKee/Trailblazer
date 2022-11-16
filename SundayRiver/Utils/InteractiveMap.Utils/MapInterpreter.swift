@@ -43,7 +43,7 @@ final class MapInterpreter: NSObject {
             }
         }.resume()
     }
-    func createMap(map: Map)
+    private func createMap(map: Map)
     {
         var annotations : [ImageAnnotation] = []
         var polylines: [CustomPolyline] = []
@@ -67,7 +67,7 @@ final class MapInterpreter: NSObject {
         mapView.addAnnotations(annotations)
         createGraph()
     }
-    func createGraph()
+    private func createGraph()
     {
         for overlay in mapView.overlays
         {
