@@ -10,4 +10,10 @@ func routes(_ app: Application) throws {
     try app.register(collection: userLocationsController)
     let userRoutesController = UserRoutesController()
     try app.register(collection: userRoutesController)
+    let mapsController = MapsController()
+    try app.register(collection: mapsController)
+    let mapTrailsController = MapTrailsController()
+    try app.register(collection: mapTrailsController)
+    let pointsController = PointsController()
+    try app.register(collection: pointsController)
 }

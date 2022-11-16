@@ -205,8 +205,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "668"
-            endingLineNumber = "668"
+            startingLineNumber = "666"
+            endingLineNumber = "666"
             landmarkName = "sampleRoute()"
             landmarkType = "7">
          </BreakpointContent>
@@ -221,8 +221,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "837"
-            endingLineNumber = "837"
+            startingLineNumber = "834"
+            endingLineNumber = "834"
             landmarkName = "presentTrailReportMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -237,8 +237,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "838"
-            endingLineNumber = "838"
+            startingLineNumber = "835"
+            endingLineNumber = "835"
             landmarkName = "presentTrailReportMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -253,8 +253,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "873"
-            endingLineNumber = "873"
+            startingLineNumber = "870"
+            endingLineNumber = "870"
             landmarkName = "presentRouteOverviewMenu()"
             landmarkType = "7">
          </BreakpointContent>

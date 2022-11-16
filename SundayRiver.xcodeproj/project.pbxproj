@@ -34,6 +34,7 @@
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
 		153B2E3C28ED1EDF00A23163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3B28ED1EDF00A23163 /* User.swift */; };
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
+		153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153DAB9729255CFC001ABAAD /* MapInterpreter.swift */; };
 		15489A492922AF2F00898FD0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A482922AF2F00898FD0 /* Connectivity.swift */; };
 		15489A4A2922AFAC00898FD0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A482922AF2F00898FD0 /* Connectivity.swift */; };
 		15489A4C2922BAD100898FD0 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A4B2922BAD100898FD0 /* ConnectivityController.swift */; };
@@ -93,6 +94,7 @@
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
+		153DAB9729255CFC001ABAAD /* MapInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInterpreter.swift; sourceTree = "<group>"; };
 		15489A482922AF2F00898FD0 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		15489A4B2922BAD100898FD0 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		15545AD828DEA598005D0886 /* Web Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web Analysis.swift"; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			children = (
 				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
 				150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */,
+				153DAB9729255CFC001ABAAD /* MapInterpreter.swift */,
 				15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */,
 				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
 				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
@@ -450,6 +453,7 @@
 				150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */,
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,
 				158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */,
+				153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */,
 				15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */,
 				153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */,
 				150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */,

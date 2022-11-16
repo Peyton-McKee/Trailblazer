@@ -641,9 +641,7 @@ class InteractiveMapViewController: UIViewController
     {
         self.searchBar.dismissExtendedView()
         let destinationAnnotation = Self.destination!
-        print("test1")
         if let pathToDestination = createRoute(){
-            print("test2")
             var description = ""
             var trailReports = ""
             var count = 0
@@ -764,7 +762,6 @@ class InteractiveMapViewController: UIViewController
             myMap.addOverlay(myPolyLine, level: .aboveRoads)
             if let trailReport = vertex.value.trailReport
             {
-                print(vertex.value.trailReport?.subtitle)
                 foundAnnotations.append(trailReport)
             }
             if (TrailsDatabase.keyAnnotations.contains(vertex))
