@@ -39,7 +39,7 @@ class WebAnalysis: NSObject, WKNavigationDelegate {
     let southRidgeNames = ["Ridge Run", "Broadway", "Lower Lazy River", "Thataway", "Mixing Bowl", "Lower Chondi Line", "Who-Ville", "Wonderland Park", "Northway", "Spectator", "Double Dipper", "Sundance"]
     let spruceNames = ["Sirius", "Upper Downdraft", "American Express", "Upper Risky Business", "Gnarnia", "Lower Downdraft"]
     let northPeakNames = ["Paradigm", "Second Mile", "Grand Rapids", "Dream Maker", "T72", "Sensation", "Dream Maker", "Escapade", "3D", "Second Thoughts"]
-    let auroraNames = ["Cyclone", "Northern Lights", "Witch Way", "Airglow", "Black Hole", "Firestar", "Lights Out", "Borealis", "Vortex", "Quantum leap"]
+    let auroraNames = ["Cyclone", "Northern Lights", "Witch Way", "Airglow", "Black Hole", "Firestar", "Lights Out", "Borealis", "Vortex", "Quantum Leap"]
     let ozNames = ["Tin Woodsman", "Kansas"]
     
     let jordanNames = ["Lollapalooza", "Excalibur", "Rogue Angel", "Caramba"]
@@ -56,10 +56,10 @@ class WebAnalysis: NSObject, WKNavigationDelegate {
         var status : Status
         for i in 0...item.count-1
         {
+            // print("\(items[i]): \(item[i])")
             if (item[i] == "Closed")
             {
                 status = .closed
-                
             }
             else if(item[i] == "Open")
             {
@@ -77,13 +77,13 @@ class WebAnalysis: NSObject, WKNavigationDelegate {
             {
                 status = .event
             }
-            for trail in items
-            {
-                for annotation in trail
+            
+                for annotation in items[i]
                 {
+                    //print("\(annotation.value.title): \(status)")
                     annotation.value.status = status
                 }
-            }
+            
         }
     }
     
@@ -104,7 +104,8 @@ class WebAnalysis: NSObject, WKNavigationDelegate {
                 self.assignStatus(item: value.jordantrails!, items: TrailsDatabase.jordanTrailsAnnotations)
                 for annotation in TrailsDatabase.annotations
                 {
-                    if annotation.value.status != .closed
+                    // print("\(annotation.value.title): \(annotation.value.status)")
+                    if annotation.value.status == .open
                     {
                         TrailsDatabase.realTimeGraph.addVertex(annotation)
                     }

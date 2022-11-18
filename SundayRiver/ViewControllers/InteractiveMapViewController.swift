@@ -66,7 +66,6 @@ class InteractiveMapViewController: UIViewController
     var trailReportAnnotation = ImageAnnotation()
     
     var originVertex : Vertex<ImageAnnotation>?
-    var closestAnnotation: Vertex<ImageAnnotation>?
     
     var trailSelectorView : TrailSelectorView?
     var trailSelectorMenu : SideMenuFramework?
@@ -173,31 +172,23 @@ class InteractiveMapViewController: UIViewController
 
                 }
             }
-
             if Double(nearestDistance) <= maxMeters {
                 if let line = nearestPoly
                 {
                     let initialAnnotation = line.initialAnnotation!
                     let coordinate = initialAnnotation.coordinate
-                    var closestAnnotation = TrailsDatabase.trails[0][0][0]
-                    var closestTrail = TrailsDatabase.trails[0][0]
-                    for peak in TrailsDatabase.trails
+                    var closestVertex = Self.selectedGraph.vertices[0]
+                    
+                    for vertex in Self.selectedGraph.vertices
                     {
-                        for trail in peak
-                        {
-                            for annotation in trail
-                            {
-                                if(sqrt(pow(annotation.value.coordinate.latitude - coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - coordinate.longitude, 2)) < (sqrt(pow(closestAnnotation.value.coordinate.latitude - coordinate.latitude, 2) + (pow(closestAnnotation.value.coordinate.longitude - coordinate.longitude, 2))))){
-                                    closestAnnotation = annotation
-                                    closestTrail = trail
-                                }
-                            }
+                        if(sqrt(pow(vertex.value.coordinate.latitude - coordinate.latitude, 2) + pow(vertex.value.coordinate.longitude - coordinate.longitude, 2)) < (sqrt(pow(closestVertex.value.coordinate.latitude - coordinate.latitude, 2) + (pow(closestVertex.value.coordinate.longitude - coordinate.longitude, 2))))){
+                            closestVertex = vertex
                         }
                     }
-                    
+                        print(Self.selectedGraph.vertices.contains(closestVertex))
                     Self.origin = nil
                     Self.wasSelectedWithOrigin = false
-                    Self.destination = closestTrail[0].value
+                    Self.destination = closestVertex.value
                     sampleRoute()
                 }
 
@@ -545,29 +536,37 @@ class InteractiveMapViewController: UIViewController
     /// Finds the annotation the least distacne from the passed in origin
     private func getClosestAnnotation(origin: ImageAnnotation) -> Vertex<ImageAnnotation>
     {
-        self.closestAnnotation = TrailsDatabase.annotations[0]
-        for annotation in TrailsDatabase.annotations
+        if Self.selectedGraph.vertices.last == Vertex<ImageAnnotation>(origin)
         {
-            if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(closestAnnotation!.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(closestAnnotation!.value.coordinate.longitude - origin.coordinate.longitude, 2))))){
-                self.closestAnnotation = annotation
+            Self.selectedGraph.removeLastVertex()
+        }
+        var closestAnnotation = Self.selectedGraph.vertices[0]
+        for annotation in Self.selectedGraph.vertices
+        {
+            if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(closestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(closestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2)))))
+            {
+                closestAnnotation = annotation
             }
         }
         
-        return self.closestAnnotation!
+        return closestAnnotation
     }
     
-    /// assignOrigin: void -> void
-    ///  Creates an annotation for the users current location
+    /// assignOrigin: void ->  Bool
+    ///  Creates an annotation for the users current location if the user allows access to its location
     private func assignOrigin() -> Bool
     {
         guard let latitude = locationManager.locationManager.location?.coordinate.latitude, let longitude = locationManager.locationManager.location?.coordinate.longitude, locationManager.locationManager.authorizationStatus == .authorizedWhenInUse else {
             return false
         }
         Self.origin = TrailsDatabase.createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)
+        let closestVertex = getClosestAnnotation(origin: Self.origin!)
         originVertex = Vertex<ImageAnnotation>(Self.origin!)
-        TrailsDatabase.graph.addVertex(originVertex!)
-        TrailsDatabase.graph.addEdge(direction: .directed, from: originVertex!, to: getClosestAnnotation(origin: Self.origin!), weight: 1)
-        if closestAnnotation?.value == Self.destination
+        Self.selectedGraph.addVertex(originVertex!)
+        
+        Self.selectedGraph.addEdge(direction: .directed, from: originVertex!, to: closestVertex, weight: 1)
+        
+        if getClosestAnnotation(origin: Self.origin!).value == Self.destination
         {
             //Then youve completed your journey
             //figure out something to do buckoh
@@ -600,7 +599,7 @@ class InteractiveMapViewController: UIViewController
         }
         originVertex = Vertex<ImageAnnotation>(origin)
         var found = false
-        for annotation in TrailsDatabase.keyAnnotations
+        for annotation in Self.selectedGraph.vertices
         {
             if annotation.value == originVertex!.value{
                 originVertex = annotation
@@ -617,17 +616,17 @@ class InteractiveMapViewController: UIViewController
     private func createRouteHelper() -> [Vertex<ImageAnnotation>]?
     {
         guard let destinationAnnotation = Self.destination else { return nil }
-        var destinationVertex : Vertex<ImageAnnotation> = TrailsDatabase.annotations[0]
-        
-        for vertex in TrailsDatabase.annotations
+        var destinationVertex : Vertex<ImageAnnotation> = Self.selectedGraph.vertices[0]
+        for vertex in Self.selectedGraph.vertices
         {
             if vertex.value.coordinate.latitude == destinationAnnotation.coordinate.latitude && vertex.value.coordinate.longitude == destinationAnnotation.coordinate.longitude
             {
+                print("true")
                 destinationVertex = vertex
                 break
             }
         }
-        
+        print(Self.selectedGraph.vertices.contains(destinationVertex))
         if let pathToDestination = DijkstraShortestPath(Self.selectedGraph, source: originVertex!).pathTo(destinationVertex)
         {
             self.pathCreated = pathToDestination
@@ -810,6 +809,7 @@ class InteractiveMapViewController: UIViewController
         }
         createKeyTrailAnnotations()
         displayCurrentTrailReports(graph: Self.selectedGraph)
+        
     }
     
     /// addTrailReport: UIGestureRecognizer -> void
@@ -849,7 +849,7 @@ class InteractiveMapViewController: UIViewController
     {
         if isRealTimeGraph
         {
-            myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }).filter({ $0.status != .closed }))
+            myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }).filter({ $0.status == .open }))
         }
         else
         {
@@ -1082,6 +1082,13 @@ extension InteractiveMapViewController: MKMapViewDelegate
         return tileRenderer
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if !(cancelTrailReportView.isHidden)
+        {
+            selectedTrailReport = nil
+            selectedTrailReportAnnotation = nil
+            cancelTrailReportView.isHidden = true
+        }
+        
         let currentSpan = mapView.region.span
         let zoomSpan = MKCoordinateSpan(latitudeDelta: currentSpan.latitudeDelta / 2.0, longitudeDelta: currentSpan.longitudeDelta / 2.0)
         let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
@@ -1115,14 +1122,6 @@ extension InteractiveMapViewController: MKMapViewDelegate
             Self.wasSelectedWithOrigin = false
             Self.destination = view.annotation as? ImageAnnotation
             sampleRoute()
-    }
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        if !(cancelTrailReportView.isHidden)
-        {
-            selectedTrailReport = nil
-            selectedTrailReportAnnotation = nil
-            cancelTrailReportView.isHidden = true
-        }
     }
 }
 
@@ -1257,9 +1256,9 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if Self.routeInProgress && canFindPathAgain && !Self.wasSelectedWithOrigin
         {
-            Self.selectedGraph.removeLastVertex()
             Self.origin = nil
             canFindPathAgain = false
+            Self.selectedGraph.removeLastVertex()
             displayRoute()
         }
         

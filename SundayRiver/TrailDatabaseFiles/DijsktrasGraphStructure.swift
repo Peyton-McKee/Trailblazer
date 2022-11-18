@@ -227,6 +227,7 @@ class DijkstraShortestPath<Element: Equatable> {
     }
     
     public func hasPathTo(_ vertex: Vertex<Element>) -> Bool {
+        
         return destination(for: vertex).isReachable
     }
     
@@ -234,7 +235,6 @@ class DijkstraShortestPath<Element: Equatable> {
         guard hasPathTo(vertex) else {
             return nil
         }
-        
         var results: [Vertex<Element>] = [vertex]
         
         var currentDestination = destination(for: vertex)

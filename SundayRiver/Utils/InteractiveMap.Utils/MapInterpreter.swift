@@ -26,7 +26,7 @@ struct MapTrail: Codable, Equatable {
 }
 struct Point: Codable {
     var id: String?
-    var mapTrailId: MapTrail
+    var mapTrailId: MapTrail?
     var latitude: Float
     var longitude: Float
 }
@@ -88,6 +88,10 @@ final class MapInterpreter: NSObject {
                                 return
                             }
                             self.map!.mapTrail![index].points = points
+                            if index == self.map!.mapTrail!.count - 1
+                            {
+                                self.createMap(map: self.map!)
+                            }
                         })
                     }
                 }
@@ -105,18 +109,17 @@ final class MapInterpreter: NSObject {
                 print(error?.localizedDescription ?? "Unknown error")
                 return
             }
-            
-            let decoder = JSONDecoder()
-            if let points = try? decoder.decode([Point].self, from: data) {
+            do {
+                let decoder = JSONDecoder()
+                let points = try decoder.decode([Point].self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(points))
                 }
-            } else {
+            } catch {
                 print("Unable to parse JSON response.")
-                if let error = error{
-                    completion(.failure(error))
-                }
+                completion(.failure(error))
             }
+            
         }.resume()
     }
     private func createMap(map: Map)
@@ -128,10 +131,10 @@ final class MapInterpreter: NSObject {
         {
             var coordinates : [CLLocationCoordinate2D] = []
             guard let points = trail.points else { return }
-            for index in 0...points.count
+            for index in 0...points.count - 1
             {
-                let lat = points[index].latitude
-                let long = points[index].longitude
+                let lat = points[index].longitude
+                let long = points[index].latitude
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)))
             }
             
@@ -141,6 +144,7 @@ final class MapInterpreter: NSObject {
             polylines.append(polyline)
             annotations.append(polyline.initialAnnotation!)
         }
+        print("test")
         mapView.addOverlays(polylines)
         mapView.addAnnotations(annotations)
         createGraph()
@@ -153,7 +157,7 @@ final class MapInterpreter: NSObject {
             {
                 var vertex1 : Vertex<ImageAnnotation>
                 var vertex2 : Vertex<ImageAnnotation>
-                for index in 1...overlay.pointCount
+                for index in 1...overlay.pointCount - 1
                 {
                     vertex1 = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[index - 1].coordinate.latitude, longitude: overlay.points()[index - 1].coordinate.longitude, difficulty: .easy))
                     vertex2 = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: .easy))
@@ -168,18 +172,17 @@ final class MapInterpreter: NSObject {
             if let overlay = overlay as? CustomPolyline
             {
                 let firstCoordinate = overlay.points()[0].coordinate
-                let lastCoordinate = overlay.points()[overlay.pointCount].coordinate
-                
+                let lastCoordinate = overlay.points()[overlay.pointCount - 1].coordinate
                 var interesectingLines : [CustomPolyline?] = []
-                
+                print("tesst")
                 let initialTrail = mapView.overlays.first(where: {$0.isKind(of: CustomPolyline.self) && $0 as! CustomPolyline != overlay}) as! CustomPolyline
                 var closestAnnotation = initialTrail.points()[0].coordinate
-                var lastClosestCoordinate = initialTrail.points()[initialTrail.pointCount].coordinate
+                var lastClosestCoordinate = initialTrail.points()[initialTrail.pointCount - 1].coordinate
                 for overlay2 in mapView.overlays
                 {
                     if let overlay2 = overlay2 as? CustomPolyline, overlay2 != overlay
                     {
-                        for index in 1...overlay2.pointCount
+                        for index in 1...overlay2.pointCount - 1
                         {
                             if(sqrt(pow(overlay2.points()[index].coordinate.latitude - firstCoordinate.latitude, 2) + pow(overlay2.points()[index].coordinate.longitude - firstCoordinate.longitude, 2)) < (sqrt(pow(closestAnnotation.latitude - firstCoordinate.latitude, 2) + (pow(closestAnnotation.longitude - firstCoordinate.longitude, 2))))){
                                 closestAnnotation = overlay2.points()[index].coordinate
@@ -194,17 +197,17 @@ final class MapInterpreter: NSObject {
                         }
                     }
                 }
+                
                 let closestInitialVertex = graph.vertices.first(where: {$0.value.coordinate == closestAnnotation})!
                 let closestFinalVertex = graph.vertices.first(where: {$0.value.coordinate == lastClosestCoordinate})!
                 let initialVertex = graph.vertices.first(where: {$0.value.coordinate == firstCoordinate})!
                 let lastVertex = graph.vertices.first(where: {$0.value.coordinate == lastCoordinate})!
-                
                 graph.addEdge(direction: .undirected, from: closestInitialVertex, to: initialVertex, weight: 1)
                 graph.addEdge(direction: .undirected, from: lastVertex, to: closestFinalVertex, weight: 1)
                 
             }
         }
-        print(graph)
+        
     }
 }
 
