@@ -93,8 +93,8 @@ class InteractiveMapViewController: UIViewController
         locationManager.locationManager.startUpdatingHeading()
         locationManager.locationManager.startUpdatingLocation()
         getTrailReportsFromDB()
-        webAnalysis.makeRequest()
-        MapInterpreter.shared.getMap(id: "807C53E5-81CB-4C65-8E97-3F086288E835")
+        //webAnalysis.makeRequest()
+        MapInterpreter.shared.getMap(id: "0D5ED9D0-CDD6-4BC9-90B6-FB1405CE67EB")
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     
@@ -304,7 +304,7 @@ class InteractiveMapViewController: UIViewController
         }
         if !isRealTimeGraph
         {
-            Self.selectedGraph = TrailsDatabase.realTimeGraph
+            Self.selectedGraph = MapInterpreter.shared.graph
             isRealTimeGraph = true
         }
         else
@@ -540,6 +540,7 @@ class InteractiveMapViewController: UIViewController
         {
             Self.selectedGraph.removeLastVertex()
         }
+        var selectedGraph = Self.selectedGraph
         var closestAnnotation = Self.selectedGraph.vertices[0]
         for annotation in Self.selectedGraph.vertices
         {

@@ -35,6 +35,7 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateUserRoutes())
     app.migrations.add(CreateMaps())
     app.migrations.add(CreateMapTrails())
+    app.migrations.add(CreateMapConnectors())
     app.migrations.add(CreatePoints())
     
     app.logger.logLevel = .debug

@@ -20,6 +20,8 @@ final class Map: Model, Content {
     @Children(for: \.$map)
     var mapTrail: [MapTrail]
     
+    @Children(for: \.$map)
+    var mapConnector: [MapConnector]
     
     init() {}
     

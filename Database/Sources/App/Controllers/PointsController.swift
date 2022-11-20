@@ -23,7 +23,7 @@ struct PointsController: RouteCollection {
     throws -> EventLoopFuture<Point> {
         let data = try req.content.decode(CreatePointData.self)
         
-        let point = Point(latitude: data.latitude, longitude: data.longitude, mapTrailID: data.mapTrailId)
+        let point = Point(latitude: data.latitude, longitude: data.longitude, mapTrailID: data.mapTrailId, mapConnectorID: data.mapConnectorId)
         
         return point.save(on: req.db).map { point }
     }
@@ -48,5 +48,6 @@ struct PointsController: RouteCollection {
 struct CreatePointData: Content{
     let latitude: Float
     let longitude: Float
-    let mapTrailId: UUID
+    let mapTrailId: UUID?
+    let mapConnectorId: UUID?
 }

@@ -137,7 +137,7 @@ final class MapInterpreter: NSObject {
                 let long = points[index].latitude
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)))
             }
-            
+
             let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
             polyline.title = trail.name
             polyline.initialAnnotation = TrailsDatabase.createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
@@ -161,53 +161,58 @@ final class MapInterpreter: NSObject {
                 {
                     vertex1 = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[index - 1].coordinate.latitude, longitude: overlay.points()[index - 1].coordinate.longitude, difficulty: .easy))
                     vertex2 = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: .easy))
+                    
                     graph.addVertex(vertex1)
                     graph.addVertex(vertex2)
                     graph.addEdge(direction: .directed, from: vertex1, to: vertex2, weight: 1)
                 }
             }
         }
-        for overlay in mapView.overlays
+        for vertex in graph.vertices
         {
-            if let overlay = overlay as? CustomPolyline
+            if !getIntersectingPoints(vertex: vertex).isEmpty
             {
-                let firstCoordinate = overlay.points()[0].coordinate
-                let lastCoordinate = overlay.points()[overlay.pointCount - 1].coordinate
-                var interesectingLines : [CustomPolyline?] = []
-                print("tesst")
-                let initialTrail = mapView.overlays.first(where: {$0.isKind(of: CustomPolyline.self) && $0 as! CustomPolyline != overlay}) as! CustomPolyline
-                var closestAnnotation = initialTrail.points()[0].coordinate
-                var lastClosestCoordinate = initialTrail.points()[initialTrail.pointCount - 1].coordinate
-                for overlay2 in mapView.overlays
+                for point in getIntersectingPoints(vertex: vertex)
                 {
-                    if let overlay2 = overlay2 as? CustomPolyline, overlay2 != overlay
-                    {
-                        for index in 1...overlay2.pointCount - 1
-                        {
-                            if(sqrt(pow(overlay2.points()[index].coordinate.latitude - firstCoordinate.latitude, 2) + pow(overlay2.points()[index].coordinate.longitude - firstCoordinate.longitude, 2)) < (sqrt(pow(closestAnnotation.latitude - firstCoordinate.latitude, 2) + (pow(closestAnnotation.longitude - firstCoordinate.longitude, 2))))){
-                                closestAnnotation = overlay2.points()[index].coordinate
-                            }
-                            if(sqrt(pow(overlay2.points()[index].coordinate.latitude - lastCoordinate.latitude, 2) + pow(overlay2.points()[index].coordinate.longitude - lastCoordinate.longitude, 2)) < (sqrt(pow(lastClosestCoordinate.latitude - lastCoordinate.latitude, 2) + (pow(lastClosestCoordinate.longitude - lastCoordinate.longitude, 2))))){
-                                lastClosestCoordinate = overlay2.points()[index].coordinate
-                            }
-                        }
-                        if overlay.intersects(overlay2.boundingMapRect)
-                        {
-                            interesectingLines.append(overlay2)
-                        }
-                    }
+                    graph.addEdge(direction: .undirected, from: vertex, to: point, weight: 1)
                 }
-                
-                let closestInitialVertex = graph.vertices.first(where: {$0.value.coordinate == closestAnnotation})!
-                let closestFinalVertex = graph.vertices.first(where: {$0.value.coordinate == lastClosestCoordinate})!
-                let initialVertex = graph.vertices.first(where: {$0.value.coordinate == firstCoordinate})!
-                let lastVertex = graph.vertices.first(where: {$0.value.coordinate == lastCoordinate})!
-                graph.addEdge(direction: .undirected, from: closestInitialVertex, to: initialVertex, weight: 1)
-                graph.addEdge(direction: .undirected, from: lastVertex, to: closestFinalVertex, weight: 1)
+            }
+            else
+            {
                 
             }
         }
-        
+//        for overlay in mapView.overlays
+//        {
+//            if let overlay = overlay as? CustomPolyline
+//            {
+//                
+//                let closestInitialVertex = graph.vertices.first(where: {$0.value.coordinate == closestAnnotation})!
+//                let closestFinalVertex = graph.vertices.first(where: {$0.value.coordinate == lastClosestCoordinate})!
+//                let initialVertex = graph.vertices.first(where: {$0.value.coordinate == firstCoordinate})!
+//                let lastVertex = graph.vertices.first(where: {$0.value.coordinate == lastCoordinate})!
+//                graph.addEdge(direction: .undirected, from: closestInitialVertex, to: initialVertex, weight: 1)
+//                graph.addEdge(direction: .undirected, from: lastVertex, to: closestFinalVertex, weight: 1)
+//                
+//            }
+//        }
+//        
+    }
+    private func getIntersectingPoints(vertex: Vertex<ImageAnnotation>) -> [Vertex<ImageAnnotation>]
+    {
+        return graph.vertices.filter(({$0.value.coordinate == vertex.value.coordinate}))
+    }
+    private func getClosestPoint(vertex: Vertex<ImageAnnotation>) -> Vertex<ImageAnnotation>
+    {
+        var closestVertex: Vertex<ImageAnnotation> = graph.vertices.filter({$0 != vertex})[0]
+        for point in graph.vertices.filter({$0 != vertex})
+        {
+            if((sqrt(pow(point.value.coordinate.latitude - vertex.value.coordinate.latitude, 2) + pow(point.value.coordinate.longitude - vertex.value.coordinate.longitude, 2))) < (sqrt(pow(closestVertex.value.coordinate.latitude - vertex.value.coordinate.latitude, 2) + (pow(closestVertex.value.coordinate.longitude - vertex.value.coordinate.longitude, 2)))))
+            {
+                closestVertex = point
+            }
+        }
+        return closestVertex
     }
 }
 
@@ -218,3 +223,32 @@ extension CLLocationCoordinate2D: Equatable
         return lhs.longitude == rhs.longitude && lhs.latitude == rhs.latitude
     }
 }
+
+//let firstCoordinate = overlay.points()[0].coordinate
+//                let lastCoordinate = overlay.points()[overlay.pointCount - 1].coordinate
+//                var interesectingLines : [CustomPolyline] = []
+//                let initialTrail = mapView.overlays.first(where: {$0.isKind(of: CustomPolyline.self) && $0 as! CustomPolyline != overlay}) as! CustomPolyline
+//                var closestAnnotation = initialTrail.points()[0].coordinate
+//                var lastClosestCoordinate = initialTrail.points()[initialTrail.pointCount - 1].coordinate
+//                var intersectingVertexes: [Vertex<ImageAnnotation>] = []
+
+//                for overlay2 in mapView.overlays
+//                {
+//                    if let overlay2 = overlay2 as? CustomPolyline, overlay2 != overlay
+//                    {
+//                        for index in 1...overlay2.pointCount - 1
+//                        {
+//                            if(sqrt(pow(overlay2.points()[index].coordinate.latitude - firstCoordinate.latitude, 2) + pow(overlay2.points()[index].coordinate.longitude - firstCoordinate.longitude, 2)) < (sqrt(pow(closestAnnotation.latitude - firstCoordinate.latitude, 2) + (pow(closestAnnotation.longitude - firstCoordinate.longitude, 2))))){
+//                                closestAnnotation = overlay2.points()[index].coordinate
+//                            }
+//                            if(sqrt(pow(overlay2.points()[index].coordinate.latitude - lastCoordinate.latitude, 2) + pow(overlay2.points()[index].coordinate.longitude - lastCoordinate.longitude, 2)) < (sqrt(pow(lastClosestCoordinate.latitude - lastCoordinate.latitude, 2) + (pow(lastClosestCoordinate.longitude - lastCoordinate.longitude, 2))))){
+//                                lastClosestCoordinate = overlay2.points()[index].coordinate
+//                            }
+//                        }
+//                        if overlay.intersects(overlay2.boundingMapRect)
+//                        {
+//                            interesectingLines.append(overlay2)
+//                        }
+//                    }
+//                }
+//

@@ -14,6 +14,8 @@ func routes(_ app: Application) throws {
     try app.register(collection: mapsController)
     let mapTrailsController = MapTrailsController()
     try app.register(collection: mapTrailsController)
+    let mapConnectorsController = MapConnectorsController()
+    try app.register(collection: mapConnectorsController)
     let pointsController = PointsController()
     try app.register(collection: pointsController)
 }
