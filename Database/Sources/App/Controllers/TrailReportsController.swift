@@ -44,6 +44,10 @@ struct TrailReportsController: RouteCollection {
                 trailReport.delete(on: req.db).transform(to: .noContent)
             }
     }
+    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
+        TrailReport.query(on: req.db)
+            .delete(force: true).transform(to: .noContent)
+    }
 }
 
 struct CreateTrailReportData: Content{

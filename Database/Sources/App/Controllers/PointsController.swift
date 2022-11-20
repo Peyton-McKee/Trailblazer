@@ -43,6 +43,10 @@ struct PointsController: RouteCollection {
                 point.delete(on: req.db).transform(to: .noContent)
             }
     }
+    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
+        Point.query(on: req.db)
+            .delete(force: true).transform(to: .noContent)
+    }
 }
 
 struct CreatePointData: Content{

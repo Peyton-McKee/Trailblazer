@@ -21,7 +21,7 @@ struct CreatePoints: Migration {
             
             .field("mapTrailID", .uuid, .references("mapTrails", "id"))
         
-            .field("mapConnectorId", .uuid, .references("mapConnectors", "id"))
+            .field("mapConnectorID", .uuid, .references("mapConnectors", "id"))
         
             .create()
     }

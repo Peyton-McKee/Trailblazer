@@ -19,6 +19,7 @@ struct MapsController: RouteCollection {
         mapsRoute.get(":mapId", use: getHandler)
         mapsRoute.get(":mapId", "map-trails", use: getMapTrailsHandler)
         mapsRoute.delete(":mapId", use: deleteHandler)
+        mapsRoute.delete(use: deleteAllHandler)
     }
     
     func createHandler(_ req: Request)
@@ -54,6 +55,10 @@ struct MapsController: RouteCollection {
             .flatMap { map in
                 map.delete(on: req.db).transform(to: .noContent)
             }
+    }
+    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
+        Map.query(on: req.db)
+            .delete(force: true).transform(to: .noContent)
     }
 }
 

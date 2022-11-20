@@ -37,10 +37,10 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateMapTrails())
     app.migrations.add(CreateMapConnectors())
     app.migrations.add(CreatePoints())
-    
     app.logger.logLevel = .debug
     
-    
+    try app.autoRevert().wait()
+
     try app.autoMigrate().wait()
     
     try routes(app)
