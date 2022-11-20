@@ -17,7 +17,7 @@ final class MapConnector: Model, Content {
     @Field(key: "name")
     var name: String
     
-    @Parent(key: "mapId")
+    @Parent(key: "mapID")
     var map: Map
     
     @Children(for: \.$mapConnector)
