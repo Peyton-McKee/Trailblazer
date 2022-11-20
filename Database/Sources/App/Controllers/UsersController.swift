@@ -21,6 +21,8 @@ struct UsersController: RouteCollection {
         usersRoute.get(":userID", "trail-reports", use: getTrailReportsHandler)
         usersRoute.get(":userID", "user-locations", use: getUserLocationsHandler)
         usersRoute.get(":userID", "user-routes", use: getUserRoutesHandler)
+        usersRoute.delete(use: deleteAllHandler)
+
     }
     
     // 5

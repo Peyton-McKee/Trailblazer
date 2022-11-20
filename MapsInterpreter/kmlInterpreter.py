@@ -17,11 +17,8 @@ for folder in list(document[0].features()):
    for e in list(folder.features()):
       if folder.name.lower() == 'trails' or folder.name.lower() == 'lifts':
          styleURL = e.styleUrl
-         print(styleURL)
          difficulty = "easy"
          for style in list(document[0].styles()):
-            print(style.id)
-            print(styleURL + '-normal')
             if style.id == styleURL + '-normal':
                if style.LineStyle.color == 'ffd18802':
                   difficulty = "intermediate"
@@ -48,9 +45,10 @@ for folder in list(document[0].features()):
                long = float(coordinate.split(',')[1])
                lats.append(lat)
                longs.append(long)
-               mapTrailPoint = {'latitude': lat, 'longitude': long, 'mapTrailId': mapTrail.json().get('id')}
+               mapTrailPoint = {'latitude': lat, 'longitude': long, 'mapTrailID': mapTrail.json().get('id')}
                url = 'http://35.172.135.117/api/points'
-               requests.post(url, json= mapTrailPoint)
+               mt = requests.post(url, json= mapTrailPoint)
+               print(mt.json())
       else :
          mapConnector = {
             'name': e.name,
@@ -64,9 +62,10 @@ for folder in list(document[0].features()):
             if len(coordinate.split(',')) > 1:
                lat = float(coordinate.split(',')[0])
                long = float(coordinate.split(',')[1])
-               mapConnectorPoint = {'latitude': lat, 'longitude': long, 'mapConnectorId': mapConnector.json().get('id')}
+               mapConnectorPoint = {'latitude': lat, 'longitude': long, 'mapConnectorID': mapConnector.json().get('id')}
                url = url = 'http://35.172.135.117/api/points'
-               requests.post(url, json= mapConnectorPoint)
+               mc = requests.post(url, json= mapConnectorPoint)
+               print(mc.json())
    
 
 

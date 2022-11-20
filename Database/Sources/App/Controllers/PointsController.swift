@@ -17,6 +17,8 @@ struct PointsController: RouteCollection {
         pointsRoute.get(use: getAllHandler)
         pointsRoute.get(":pointId", use: getHandler)
         pointsRoute.delete(":pointId", use: deleteHandler)
+        pointsRoute.delete( use: deleteAllHandler)
+
     }
     
     func createHandler(_ req: Request)

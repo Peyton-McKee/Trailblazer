@@ -18,6 +18,8 @@ struct TrailReportsController: RouteCollection {
         trailReportsRoute.get(use: getAllHandler)
         trailReportsRoute.get(":trId", use: getHandler)
         trailReportsRoute.delete(":trId", use: deleteHandler)
+        trailReportsRoute.delete( use: deleteAllHandler)
+
     }
     
     func createHandler(_ req: Request)

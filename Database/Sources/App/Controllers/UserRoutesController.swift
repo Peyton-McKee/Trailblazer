@@ -18,6 +18,8 @@ struct UserRoutesController: RouteCollection {
         userRoutesRoute.get(use: getAllHandler)
         userRoutesRoute.get(":urId", use: getHandler)
         userRoutesRoute.delete(":urId", use: deleteHandler)
+        userRoutesRoute.delete(use: deleteAllHandler)
+
     }
     
     func createHandler(_ req: Request)

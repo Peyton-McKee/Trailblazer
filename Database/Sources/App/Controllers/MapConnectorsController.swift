@@ -19,6 +19,7 @@ struct MapConnectorsController: RouteCollection {
         mapConnectorsRoute.get(":mcId", use: getHandler)
         mapConnectorsRoute.get(":mcId", "points", use: getPointsHandler)
         mapConnectorsRoute.delete(":mcId", use: deleteHandler)
+        mapConnectorsRoute.delete( use: deleteAllHandler)
     }
     
     func createHandler(_ req: Request)
