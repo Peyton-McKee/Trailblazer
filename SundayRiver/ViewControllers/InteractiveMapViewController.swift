@@ -94,7 +94,7 @@ class InteractiveMapViewController: UIViewController
         locationManager.locationManager.startUpdatingLocation()
         getTrailReportsFromDB()
         //webAnalysis.makeRequest()
-        MapInterpreter.shared.getMap(id: "0D5ED9D0-CDD6-4BC9-90B6-FB1405CE67EB")
+        MapInterpreter.shared.getMap(id: "365D4454-3316-46BC-8504-F8643FBD6757")
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     

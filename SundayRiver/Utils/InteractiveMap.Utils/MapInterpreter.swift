@@ -18,6 +18,7 @@ struct MapTrail: Codable, Equatable {
     var name: String?
     var map: Map?
     var points: [Point]?
+    var difficulty: String?
     
     public static func == (lhs: MapTrail, rhs: MapTrail) -> Bool
     {
@@ -27,8 +28,15 @@ struct MapTrail: Codable, Equatable {
 struct Point: Codable {
     var id: String?
     var mapTrailId: MapTrail?
+    var mapConnectorId: MapConnector?
     var latitude: Float
     var longitude: Float
+}
+struct MapConnector: Codable {
+    var id: String?
+    var name: String?
+    var map: Map?
+    var points: [Point?]
 }
 final class MapInterpreter: NSObject {
     static let shared = MapInterpreter()
@@ -99,6 +107,10 @@ final class MapInterpreter: NSObject {
                 print("Error decoding map trails: \(error)")
             }
         }.resume()
+    }
+    private func getMapConnectors(id: String)
+    {
+        
     }
     private func getPoints(id: String, completion: @escaping (Result<[Point], Error>) -> Void)
     {

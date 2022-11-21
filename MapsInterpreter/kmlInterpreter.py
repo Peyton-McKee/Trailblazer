@@ -20,13 +20,13 @@ for folder in list(document[0].features()):
          difficulty = "easy"
          for style in list(document[0].styles()):
             if style.id == styleURL[1:] + '-normal':
-               if list(style.styles())[0].color == 'ff1427a5':
+               if list(style.styles())[0].color == 'ff9b5701':
                   difficulty = "intermediate"
                elif list(style.styles())[0].color == 'ff757575':
                   difficulty = "advanced"
                elif list(style.styles())[0].color == 'ff000000':
                   difficulty = "experts only"
-               elif list(style.styles())[0].color == 'ffd18802':
+               elif list(style.styles())[0].color == 'ff1427a5':
                   difficulty = "lift" 
                break
          mapTrail = {
@@ -38,14 +38,12 @@ for folder in list(document[0].features()):
          longs = []
          url = 'http://35.172.135.117/api/map-trails'
          mapTrail = requests.post(url, json= mapTrail)
-
-         for coordinate in list(e.geometry._coordinates):
-            if len(coordinate.split(',')) > 1:
-               lat = float(coordinate.split(',')[0])
-               long = float(coordinate.split(',')[1])
+         for coordinate in list(e.geometry.coords):
+               lat = coordinate[0]
+               long = coordinate[1]
                lats.append(lat)
                longs.append(long)
-               mapTrailPoint = {'latitude': lat, 'longitude': long, 'mapTrailID': mapTrail.json().get('id')}
+               mapTrailPoint = {'latitude': lat, 'longitude': long, 'mapTrailId': mapTrail.json().get('id')}
                url = 'http://35.172.135.117/api/points'
                mt = requests.post(url, json= mapTrailPoint)
       else :
@@ -57,15 +55,12 @@ for folder in list(document[0].features()):
          mapConnector = requests.post(url, json= mapConnector)
          lats = []
          longs = []
-         for coordinate in e.geometry._coordinates:
-            if len(coordinate.split(',')) > 1:
-               lat = float(coordinate.split(',')[0])
-               long = float(coordinate.split(',')[1])
-               mapConnectorPoint = {'latitude': lat, 'longitude': long, 'mapConnectorID': mapConnector.json().get('id')}
+         for coordinate in e.geometry.coords:
+               lat = coordinate[0]
+               long = coordinate[1]
+               mapConnectorPoint = {'latitude': lat, 'longitude': long, 'mapConnectorId': mapConnector.json().get('id')}
                url = url = 'http://35.172.135.117/api/points'
-               mc = requests.post(url, json= mapConnectorPoint)
-               print(mc.json())
-   
+               mc = requests.post(url, json= mapConnectorPoint)   
 
 
 
