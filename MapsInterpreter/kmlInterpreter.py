@@ -19,14 +19,14 @@ for folder in list(document[0].features()):
          styleURL = e.styleUrl
          difficulty = "easy"
          for style in list(document[0].styles()):
-            if style.id == styleURL + '-normal':
-               if style.LineStyle.color == 'ffd18802':
+            if style.id == styleURL[1:] + '-normal':
+               if list(style.styles())[0].color == 'ff1427a5':
                   difficulty = "intermediate"
-               elif style.LineStyle.color == 'ff000000':
+               elif list(style.styles())[0].color == 'ff757575':
                   difficulty = "advanced"
-               elif style.LineStyle.color == '000000ff':
+               elif list(style.styles())[0].color == 'ff000000':
                   difficulty = "experts only"
-               elif style.LineStyle.color == 'ff00ffff':
+               elif list(style.styles())[0].color == 'ffd18802':
                   difficulty = "lift" 
                break
          mapTrail = {
@@ -48,7 +48,6 @@ for folder in list(document[0].features()):
                mapTrailPoint = {'latitude': lat, 'longitude': long, 'mapTrailID': mapTrail.json().get('id')}
                url = 'http://35.172.135.117/api/points'
                mt = requests.post(url, json= mapTrailPoint)
-               print(mt.json())
       else :
          mapConnector = {
             'name': e.name,
