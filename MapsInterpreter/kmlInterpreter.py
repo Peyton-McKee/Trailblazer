@@ -20,6 +20,7 @@ for folder in list(document[0].features()):
          difficulty = "easy"
          for style in list(document[0].styles()):
             if style.id == styleURL[1:] + '-normal':
+               print(list(style.styles())[0].color)
                if list(style.styles())[0].color == 'ff9b5701':
                   difficulty = "intermediate"
                elif list(style.styles())[0].color == 'ff757575':
@@ -27,7 +28,9 @@ for folder in list(document[0].features()):
                elif list(style.styles())[0].color == 'ff000000':
                   difficulty = "experts only"
                elif list(style.styles())[0].color == 'ff1427a5':
-                  difficulty = "lift" 
+                  difficulty = "lift"
+               elif list(style.styles())[0].color == 'ff25a8f9':
+                  difficulty = "terrain park"
                break
          mapTrail = {
             'name': e.name,

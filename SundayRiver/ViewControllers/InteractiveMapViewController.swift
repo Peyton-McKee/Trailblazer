@@ -34,6 +34,8 @@ class InteractiveMapViewController: UIViewController
     
     var gestureTimer = Date()
     
+    var allTrailMapView = MKMapView()
+    
     var canFindPathAgain = true
     var isRealTimeGraph = false
     var toggleGraphButton = UIButton()
@@ -52,7 +54,7 @@ class InteractiveMapViewController: UIViewController
     var cancelButton = UIButton()
     var cancelButtonYContraint = NSLayoutConstraint()
     var searchBar = SearchBarTableHeaderView()
-    var pathCreated: [Vertex<ImageAnnotation>]?
+    var pathCreated: [Vertex<ImageAnnotation>] = []
     
     var settingArray = ["Moguls", "Icy", "Crowded", "Thin Cover", "Cancel"]
     var trailReportMenu : PopUpMenuFramework?
@@ -69,15 +71,14 @@ class InteractiveMapViewController: UIViewController
     
     var trailSelectorView : TrailSelectorView?
     var trailSelectorMenu : SideMenuFramework?
-    
-    var webAnalysis = WebAnalysis()
-    
+        
     var totalDirections : String?
     
     var recenterButton = UIButton()
     var recenterButtonYConstraint = NSLayoutConstraint()
     
     var previousClosestAnnotation : Vertex<ImageAnnotation>?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -93,8 +94,11 @@ class InteractiveMapViewController: UIViewController
         locationManager.locationManager.startUpdatingHeading()
         locationManager.locationManager.startUpdatingLocation()
         getTrailReportsFromDB()
-        //webAnalysis.makeRequest()
-        MapInterpreter.shared.getMap(id: "365D4454-3316-46BC-8504-F8643FBD6757")
+        
+        WebAnalysis.shared.makeRequest()
+        MapInterpreter.shared.getMap(id: "861C6942-5B8C-4A1A-8573-B919A962DCA4")
+        
+        
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     
@@ -185,7 +189,7 @@ class InteractiveMapViewController: UIViewController
                             closestVertex = vertex
                         }
                     }
-                        print(Self.selectedGraph.vertices.contains(closestVertex))
+                    print(Self.selectedGraph.vertices.contains(closestVertex))
                     Self.origin = nil
                     Self.wasSelectedWithOrigin = false
                     Self.destination = closestVertex.value
@@ -305,6 +309,7 @@ class InteractiveMapViewController: UIViewController
         if !isRealTimeGraph
         {
             Self.selectedGraph = MapInterpreter.shared.graph
+            //Self.selectedGraph = TrailsDatabase.realTimeGraph
             isRealTimeGraph = true
         }
         else
@@ -326,6 +331,7 @@ class InteractiveMapViewController: UIViewController
         Self.routeInProgress = false
         Self.destination = nil
         Self.origin = nil
+        self.pathCreated = []
         self.trailSelectorView?.isPresented = false
         self.cancelButton.isHidden = true
         Self.selectedGraph.removeLastVertex()
@@ -540,7 +546,6 @@ class InteractiveMapViewController: UIViewController
         {
             Self.selectedGraph.removeLastVertex()
         }
-        var selectedGraph = Self.selectedGraph
         var closestAnnotation = Self.selectedGraph.vertices[0]
         for annotation in Self.selectedGraph.vertices
         {
@@ -549,7 +554,11 @@ class InteractiveMapViewController: UIViewController
                 closestAnnotation = annotation
             }
         }
-        
+        if pathCreated.contains(closestAnnotation)
+        {
+            return closestAnnotation
+        }
+        pathCreated = []
         return closestAnnotation
     }
     
@@ -587,55 +596,67 @@ class InteractiveMapViewController: UIViewController
     /// Creates a route for the easiest path from the users location to the selected destination
     func createRoute() -> [Vertex<ImageAnnotation>]?
     {
-        guard let origin = Self.origin else{
-            if assignOrigin()
+            guard let origin = Self.origin else{
+                if assignOrigin()
+                {
+                    return manageRouteInProgress()
+                }
+                else
+                {
+                    return nil
+                    //user isnt allowing location services
+                }
+            }
+            originVertex = Vertex<ImageAnnotation>(origin)
+            var found = false
+            for annotation in Self.selectedGraph.vertices
             {
-                return createRouteHelper()
+                if annotation.value == originVertex!.value{
+                    originVertex = annotation
+                    found = true
+                    break
+                }
             }
-            else
+            if found
             {
-                return nil
-                //user isnt allowing location services
+                return manageRouteInProgress()
             }
-        }
-        originVertex = Vertex<ImageAnnotation>(origin)
-        var found = false
-        for annotation in Self.selectedGraph.vertices
-        {
-            if annotation.value == originVertex!.value{
-                originVertex = annotation
-                found = true
-                break
-            }
-        }
-        if found
-        {
-            return createRouteHelper()
-        }
-        return nil
+            return nil
+        
     }
-    private func createRouteHelper() -> [Vertex<ImageAnnotation>]?
+    private func manageRouteInProgress() -> [Vertex<ImageAnnotation>]?
+    {
+        if Self.routeInProgress && !self.pathCreated.isEmpty && self.pathCreated.contains(self.originVertex!)
+        {
+            let pathGraph = EdgeWeightedDigraph<ImageAnnotation>()
+            pathGraph.addVertex(self.pathCreated[0])
+            for index in 1...self.pathCreated.count - 1
+            {
+                pathGraph.addVertex(self.pathCreated[index])
+                pathGraph.addEdge(direction: .directed, from: self.pathCreated[index - 1], to: self.pathCreated[index], weight: 1)
+            }
+            return createRouteHelper(graph: pathGraph)
+        }
+        else
+        {
+            return createRouteHelper(graph: Self.selectedGraph)
+        }
+    }
+    
+    private func createRouteHelper(graph: EdgeWeightedDigraph<ImageAnnotation>) -> [Vertex<ImageAnnotation>]?
     {
         guard let destinationAnnotation = Self.destination else { return nil }
-        var destinationVertex : Vertex<ImageAnnotation> = Self.selectedGraph.vertices[0]
-        for vertex in Self.selectedGraph.vertices
+        print("test1")
+        let startTime = Date.now
+        let destinationVertex : Vertex<ImageAnnotation> = graph.vertices.first(where: {$0.value == destinationAnnotation})!
+        if let pathToDestination = DijkstraShortestPath(graph, source: originVertex!).pathTo(destinationVertex)
         {
-            if vertex.value.coordinate.latitude == destinationAnnotation.coordinate.latitude && vertex.value.coordinate.longitude == destinationAnnotation.coordinate.longitude
-            {
-                print("true")
-                destinationVertex = vertex
-                break
-            }
-        }
-        print(Self.selectedGraph.vertices.contains(destinationVertex))
-        if let pathToDestination = DijkstraShortestPath(Self.selectedGraph, source: originVertex!).pathTo(destinationVertex)
-        {
+            print("Took \(Date.now.timeIntervalSince(startTime)) seconds to find route")
             self.pathCreated = pathToDestination
             return pathToDestination
         }
         return nil
     }
-    
     /// sampleRoute: void -> void
     ///  Presents a routeOverviewMenu for the selected path
     func sampleRoute()
@@ -647,19 +668,22 @@ class InteractiveMapViewController: UIViewController
             var trailReports = ""
             var count = 0
             var foundAnnotations : [ImageAnnotation] = []
-            for edge in pathToDestination
+            let mapImageAnnotations = myMap.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
+        
+            for vertex in pathToDestination
             {
-                foundAnnotations = TrailsDatabase.keyAnnotations.map({ $0.value }).filter({
-                    if($0 == edge.value && !description.contains($0.title!))
+                foundAnnotations = mapImageAnnotations.filter({
+                    if($0.coordinate == vertex.value.coordinate && !description.contains($0.title!))
                     {
-                        description.append("\(edge.value.title!); ")
+                        description.append("\(vertex.value.title!); ")
                         count += 1
                         return true
                     }
                     return false
                 })
+                myMap.removeAnnotations(myMap.annotations)
                 myMap.addAnnotations(foundAnnotations)
-                if let trailReport = (edge.value.trailReport)
+                if let trailReport = (vertex.value.trailReport)
                 {
                     trailReports.append("\(trailReport.subtitle!) ")
                 }
@@ -724,16 +748,12 @@ class InteractiveMapViewController: UIViewController
     {
         let previousOverlays = myMap.overlays
         let previousAnnotations = myMap.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
-        guard let route = self.pathCreated else
+        
+        if !self.pathCreated.isEmpty
         {
-            if let pathToDestination = createRoute()
-            {
-                displayRouteHelper(route: pathToDestination, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
-            }
-            return
+            displayRouteHelper(route: self.pathCreated, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
         }
-        displayRouteHelper(route: route, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
-        self.pathCreated = nil
+        return
     }
     
     func displayRouteHelper(route: [Vertex<ImageAnnotation>], previousOverlays: [MKOverlay], previousAnnotations: [ImageAnnotation])
@@ -778,8 +798,8 @@ class InteractiveMapViewController: UIViewController
         myMap.removeAnnotations(Array(set2))
         myMap.addAnnotations(foundAnnotations)
         myMap.removeOverlays(previousOverlays)
-        canFindPathAgain = true
         connectivityController.setRoute(route: routes)
+        canFindPathAgain = true
     }
     
     
@@ -789,28 +809,35 @@ class InteractiveMapViewController: UIViewController
     {
         myMap.removeOverlays(myMap.overlays)
         myMap.removeAnnotations(myMap.annotations)
-        for edge in Self.selectedGraph.edges(){
-            myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
-            switch edge.source.value.difficulty{
-            case .easy:
-                myPolyLine.color = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
-            case .intermediate:
-                myPolyLine.color = UIColor(red: 0.03, green: 0, blue: 0.5, alpha: 1)
-            case .advanced:
-                myPolyLine.color = .gray
-            case .lift:
-                myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
-            case .terrainPark:
-                myPolyLine.color = .orange
-            default:
-                myPolyLine.color = .black
+        if Self.selectedGraph.vertices == TrailsDatabase.graph.vertices
+        {
+            for edge in Self.selectedGraph.edges(){
+                myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
+                switch edge.source.value.difficulty{
+                case .easy:
+                    myPolyLine.color = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
+                case .intermediate:
+                    myPolyLine.color = UIColor(red: 0.03, green: 0, blue: 0.5, alpha: 1)
+                case .advanced:
+                    myPolyLine.color = .gray
+                case .lift:
+                    myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+                case .terrainPark:
+                    myPolyLine.color = .orange
+                default:
+                    myPolyLine.color = .black
+                }
+                myPolyLine.initialAnnotation = edge.source.value
+                myMap.addOverlay(myPolyLine, level: .aboveRoads)
             }
-            myPolyLine.initialAnnotation = edge.source.value
-            myMap.addOverlay(myPolyLine, level: .aboveRoads)
+            createKeyTrailAnnotations()
+            displayCurrentTrailReports(graph: Self.selectedGraph)
         }
-        createKeyTrailAnnotations()
-        displayCurrentTrailReports(graph: Self.selectedGraph)
-        
+        else
+        {
+            myMap.addOverlays(MapInterpreter.shared.mapView.overlays)
+            myMap.addAnnotations(MapInterpreter.shared.mapView.annotations)
+        }
     }
     
     /// addTrailReport: UIGestureRecognizer -> void
@@ -1076,7 +1103,7 @@ extension InteractiveMapViewController: MKMapViewDelegate
             let polyLine = overlay as! CustomPolyline
             let polylineRenderer = MKPolylineRenderer(overlay: polyLine)
             polylineRenderer.strokeColor = polyLine.color!
-            polylineRenderer.lineWidth = 2.0
+            polylineRenderer.lineWidth = 3.0
             
             return polylineRenderer
         }

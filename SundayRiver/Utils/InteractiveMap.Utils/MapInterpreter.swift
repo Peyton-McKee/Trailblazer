@@ -6,7 +6,7 @@ struct Map : Codable, Equatable
     var id: String?
     var name: String?
     var mapTrail: [MapTrail]?
-    
+    var mapConnector: [MapConnector]?
     public static func == (lhs: Map, rhs: Map) -> Bool
     {
         return lhs.id == rhs.id
@@ -36,7 +36,7 @@ struct MapConnector: Codable {
     var id: String?
     var name: String?
     var map: Map?
-    var points: [Point?]
+    var points: [Point]?
 }
 final class MapInterpreter: NSObject {
     static let shared = MapInterpreter()
@@ -69,6 +69,7 @@ final class MapInterpreter: NSObject {
             }
         }.resume()
     }
+    
     private func getMapTrails(id: String)
     {
         let url = URL(string: "\(baseURL)/api/maps/\(id)/map-trails")!
@@ -86,19 +87,29 @@ final class MapInterpreter: NSObject {
                 self.map?.mapTrail = try decoder.decode([MapTrail].self, from: data)
                 if self.map?.mapTrail != nil
                 {
+                    var collectedIndex = 0
                     for index in 0...self.map!.mapTrail!.count - 1
                     {
-                        print(index)
-                        self.getPoints(id: self.map!.mapTrail![index].id!, completion: { result in
+                        self.getPoints(id: self.map!.mapTrail![index].id!, isConnector: false, completion: { result in
                             guard let points = try? result.get() else
                             {
                                 print("Error: \(result)")
                                 return
                             }
                             self.map!.mapTrail![index].points = points
-                            if index == self.map!.mapTrail!.count - 1
+                            collectedIndex += 1
+                            if collectedIndex == self.map!.mapTrail!.count
                             {
-                                self.createMap(map: self.map!)
+                                self.getMapConnectors(id: id, completion: {
+                                    result in
+                                    guard (try? result.get()) != nil else
+                                    {
+                                        print("Error: \(result)")
+                                        return
+                                    }
+                                    print("testMap")
+                                    self.createMap(map: self.map!)
+                                })
                             }
                         })
                     }
@@ -108,14 +119,56 @@ final class MapInterpreter: NSObject {
             }
         }.resume()
     }
-    private func getMapConnectors(id: String)
+    
+    private func getMapConnectors(id: String, completion: @escaping (Result<Bool, Error>) -> Void)
     {
-        
+        let url = URL(string: "\(baseURL)/api/maps/\(id)/map-connectors")!
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else {
+                print("No data returned from data task")
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                self.map?.mapConnector = try decoder.decode([MapConnector].self, from: data)
+                if self.map?.mapConnector != nil
+                {
+                    var collectedIndex = 0
+                    for index in 0...self.map!.mapConnector!.count - 1
+                    {
+                        self.getPoints(id: self.map!.mapConnector![index].id!, isConnector: true, completion: { result in
+                            guard let points = try? result.get() else
+                            {
+                                print("Error: \(result)")
+                                return
+                            }
+                            collectedIndex += 1
+                            self.map!.mapConnector![index].points = points
+                            print(collectedIndex)
+                            if collectedIndex == self.map!.mapConnector!.count
+                            {
+                                completion(.success(true))
+                            }
+                        })
+                    }
+                }
+            } catch {
+                print("Error decoding map connectors: \(error)")
+                completion(.failure(error))
+            }
+        }.resume()
     }
-    private func getPoints(id: String, completion: @escaping (Result<[Point], Error>) -> Void)
+    private func getPoints(id: String, isConnector: Bool, completion: @escaping (Result<[Point], Error>) -> Void)
     {
-        let url = URL(string: "\(baseURL)/api/map-trails/\(id)/points")!
-        
+        var url: URL
+        if isConnector
+        {
+            url = URL(string: "\(baseURL)/api/map-connectors/\(id)/points")!
+        }
+        else
+        {
+            url = URL(string: "\(baseURL)/api/map-trails/\(id)/points")!
+        }
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
                 print(error?.localizedDescription ?? "Unknown error")
@@ -138,62 +191,184 @@ final class MapInterpreter: NSObject {
     {
         var annotations : [ImageAnnotation] = []
         var polylines: [CustomPolyline] = []
-        guard let trails = map.mapTrail else { return }
+        guard let trails = map.mapTrail else {
+            print("mapTrails Don't Exist")
+            return
+            
+        }
+        guard let mapConnectors = map.mapConnector else {
+            print("mapConnectors Don't Exist")
+            return
+            
+        }
+        print("test")
         for trail in trails
         {
             var coordinates : [CLLocationCoordinate2D] = []
-            guard let points = trail.points else { return }
+            guard let points = trail.points else {
+                print("Points do not exist")
+                return
+            }
             for index in 0...points.count - 1
             {
                 let lat = points[index].longitude
                 let long = points[index].latitude
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)))
             }
-
+            var difficulty : Difficulty = .easy
+            var color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
+            switch trail.difficulty
+            {
+            case "intermediate":
+                difficulty = .intermediate
+                color = .blue
+            case "advanced" :
+                difficulty = .advanced
+                color = .gray
+            case "experts only":
+                difficulty = .expertsOnly
+                color = .black
+            case "lift":
+                difficulty = .lift
+                color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+            case "terrain park":
+                difficulty = .terrainPark
+                color = .orange
+            default:
+                break
+            }
             let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
             polyline.title = trail.name
-            polyline.initialAnnotation = TrailsDatabase.createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
+            polyline.color = color
+            let initialAnnotation = TrailsDatabase.createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: difficulty)
+            polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
             annotations.append(polyline.initialAnnotation!)
         }
-        print("test")
+        for connector in mapConnectors
+        {
+            var coordinates : [CLLocationCoordinate2D] = []
+            guard let points = connector.points else {
+                print("Map Connector Points Don't Exist")
+                return
+                
+            }
+            for index in 0...points.count - 1
+            {
+                let lat = points[index].longitude
+                let long = points[index].latitude
+                coordinates.append(CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)))
+            }
+            let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
+            polyline.title = connector.name
+            let initialAnnotation = TrailsDatabase.createAnnotation(title: connector.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
+            initialAnnotation.isConnector = true
+            polyline.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
+            polyline.initialAnnotation = initialAnnotation
+            polylines.append(polyline)
+        }
         mapView.addOverlays(polylines)
         mapView.addAnnotations(annotations)
         createGraph()
     }
     private func createGraph()
     {
-        for overlay in mapView.overlays
+        print("test Graph")
+        let polylines = mapView.overlays.filter({$0 as? CustomPolyline != nil}) as! [CustomPolyline]
+        print(polylines.count)
+        for polylineIndex in 0...polylines.count - 1
         {
-            if let overlay = overlay as? CustomPolyline
+            let overlay = polylines[polylineIndex]
+            
+            var prevVertex : Vertex<ImageAnnotation> = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+            var vertex2 : Vertex<ImageAnnotation>
+            graph.addVertex(prevVertex)
+            for index in 1...overlay.pointCount - 1
             {
-                var vertex1 : Vertex<ImageAnnotation>
-                var vertex2 : Vertex<ImageAnnotation>
-                for index in 1...overlay.pointCount - 1
+                vertex2 = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+                graph.addVertex(vertex2)
+                var weight : Int
+                switch overlay.initialAnnotation?.difficulty
                 {
-                    vertex1 = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[index - 1].coordinate.latitude, longitude: overlay.points()[index - 1].coordinate.longitude, difficulty: .easy))
-                    vertex2 = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: .easy))
-                    
-                    graph.addVertex(vertex1)
-                    graph.addVertex(vertex2)
-                    graph.addEdge(direction: .directed, from: vertex1, to: vertex2, weight: 1)
+                case .easy:
+                    weight = 1
+                case .intermediate:
+                    weight = 50
+                case .advanced:
+                    weight = 300
+                case .expertsOnly:
+                    weight = 4000
+                case .terrainPark:
+                    weight = 300
+                default:
+                    weight = 100
                 }
+                if overlay.initialAnnotation!.isConnector
+                {
+                    graph .addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: 1)
+                }
+                else
+                {
+                    graph.addEdge(direction: .directed, from: prevVertex, to: vertex2, weight: Double(weight))
+                }
+                prevVertex = vertex2
             }
+            guard polylineIndex <= mapView.annotations.count - 1, let annotation = mapView.annotations[polylineIndex] as? ImageAnnotation else { continue }
+            let annotationVertex = Vertex<ImageAnnotation>(annotation)
+            graph.addVertex(annotationVertex)
+            graph.addEdge(direction: .undirected, from: annotationVertex, to: prevVertex, weight: 1)
         }
+        var previousIntersectingEdges : [DirectedEdge<ImageAnnotation>] = []
         for vertex in graph.vertices
         {
             if !getIntersectingPoints(vertex: vertex).isEmpty
             {
+                print("From: \(vertex.value.title!) with coordinate: \(vertex.value.coordinate)")
                 for point in getIntersectingPoints(vertex: vertex)
                 {
-                    graph.addEdge(direction: .undirected, from: vertex, to: point, weight: 1)
+                    if previousIntersectingEdges.contains(DirectedEdge(source: point, destination: vertex, weight: 1))
+                    {
+                        print("test")
+                        continue
+                    }
+                    print("To: \(point.value.title!) with coordiante: \(vertex.value.coordinate)")
+                    graph.addEdge(direction: .undirected, from: point, to: vertex, weight: 1)
+                    previousIntersectingEdges.append(DirectedEdge(source: vertex, destination: point, weight: 1))
+                    previousIntersectingEdges.append(DirectedEdge(source: point, destination: vertex, weight: 1))
                 }
             }
-            else
-            {
-                
-            }
         }
+//        for overlay in polylines
+//        {
+//            let vertex = graph.vertices.first(where: {$0.value.coordinate == overlay.points()[0].coordinate})!
+//            let closestVertex = getClosestPoint(vertex: vertex)
+//            graph.addEdge(direction: .undirected, from: vertex, to: closestVertex, weight: 1)
+//        }
+        
+        
+//        mapView.removeOverlays(mapView.overlays)
+//        mapView.removeAnnotations(mapView.annotations)
+//        var myPolyLine = CustomPolyline()
+//        for edge in graph.edges(){
+//            myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
+//            switch edge.source.value.difficulty{
+//            case .easy:
+//                myPolyLine.color = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
+//            case .intermediate:
+//                myPolyLine.color = UIColor(red: 0.03, green: 0, blue: 0.5, alpha: 1)
+//            case .advanced:
+//                myPolyLine.color = .gray
+//            case .lift:
+//                myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+//            case .terrainPark:
+//                myPolyLine.color = .orange
+//            default:
+//                myPolyLine.color = .black
+//            }
+//            myPolyLine.initialAnnotation = edge.source.value
+//            mapView.addOverlay(myPolyLine, level: .aboveRoads)
+//        }
+        print("Finished Graph with \(graph.verticesCount()) Vertices and \(graph.edgesCount()) Edges")
 //        for overlay in mapView.overlays
 //        {
 //            if let overlay = overlay as? CustomPolyline
@@ -212,7 +387,7 @@ final class MapInterpreter: NSObject {
     }
     private func getIntersectingPoints(vertex: Vertex<ImageAnnotation>) -> [Vertex<ImageAnnotation>]
     {
-        return graph.vertices.filter(({$0.value.coordinate == vertex.value.coordinate}))
+        return graph.vertices.filter(({$0.value.title != vertex.value.title && $0.value.coordinate == vertex.value.coordinate}))
     }
     private func getClosestPoint(vertex: Vertex<ImageAnnotation>) -> Vertex<ImageAnnotation>
     {

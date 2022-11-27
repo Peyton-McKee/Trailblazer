@@ -58,34 +58,6 @@
         <styleUrl>#line-01579B-1200-nodesc-highlight</styleUrl>
       </Pair>
     </StyleMap>
-    <Style id="line-0288D1-1200-nodesc-normal">
-      <LineStyle>
-        <color>ffd18802</color>
-        <width>1.2</width>
-      </LineStyle>
-      <BalloonStyle>
-        <text><![CDATA[<h3>$[name]</h3>]]></text>
-      </BalloonStyle>
-    </Style>
-    <Style id="line-0288D1-1200-nodesc-highlight">
-      <LineStyle>
-        <color>ffd18802</color>
-        <width>1.8</width>
-      </LineStyle>
-      <BalloonStyle>
-        <text><![CDATA[<h3>$[name]</h3>]]></text>
-      </BalloonStyle>
-    </Style>
-    <StyleMap id="line-0288D1-1200-nodesc">
-      <Pair>
-        <key>normal</key>
-        <styleUrl>#line-0288D1-1200-nodesc-normal</styleUrl>
-      </Pair>
-      <Pair>
-        <key>highlight</key>
-        <styleUrl>#line-0288D1-1200-nodesc-highlight</styleUrl>
-      </Pair>
-    </StyleMap>
     <Style id="line-097138-1200-nodesc-normal">
       <LineStyle>
         <color>ff387109</color>
@@ -305,7 +277,7 @@
       </Placemark>
       <Placemark>
         <name>Excalibur</name>
-        <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
+        <styleUrl>#line-01579B-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
           <coordinates>
@@ -363,7 +335,7 @@
       </Placemark>
       <Placemark>
         <name>Rogue Angel</name>
-        <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
+        <styleUrl>#line-01579B-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
           <coordinates>

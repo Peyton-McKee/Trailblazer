@@ -35,7 +35,6 @@ class TitleScreen: UIViewController{
         configureText()
         animateText()
         configureButtons()
-        
     }
     
     func animateText()

@@ -75,16 +75,16 @@ class CustomAnnotationView: MKMarkerAnnotationView {
                 else if (annotation.difficulty == .lift)
                 {
                     glyphImage = .init(systemName: "arrow.up")
-                    markerTintColor = .purple
+                    markerTintColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
                 }
                 else if (annotation.difficulty == .expertsOnly)
                 {
-                    markerTintColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+                    markerTintColor = .black
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else if (annotation.difficulty == .advanced)
                 {
-                    markerTintColor = .black
+                    markerTintColor = .gray
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else

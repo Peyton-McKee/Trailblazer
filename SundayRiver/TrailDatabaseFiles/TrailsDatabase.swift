@@ -28,7 +28,7 @@ class ImageAnnotation : NSObject, MKAnnotation{
     var image: UIImage?
     var status: Status?
     var id: String?
-    
+    var isConnector = false
     override init() {
         self.coordinate = CLLocationCoordinate2D()
         self.title = nil

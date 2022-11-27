@@ -141,8 +141,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
             landmarkName = "selectedTrail()"
             landmarkType = "7">
          </BreakpointContent>
@@ -157,8 +157,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "463"
-            endingLineNumber = "463"
+            startingLineNumber = "469"
+            endingLineNumber = "469"
             landmarkName = "selectedTrail()"
             landmarkType = "7">
          </BreakpointContent>
@@ -173,8 +173,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "462"
-            endingLineNumber = "462"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
             landmarkName = "selectedTrail()"
             landmarkType = "7">
          </BreakpointContent>
@@ -189,8 +189,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "641"
-            endingLineNumber = "641"
+            startingLineNumber = "662"
+            endingLineNumber = "662"
             landmarkName = "sampleRoute()"
             landmarkType = "7">
          </BreakpointContent>
@@ -205,8 +205,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "667"
-            endingLineNumber = "667"
+            startingLineNumber = "691"
+            endingLineNumber = "691"
             landmarkName = "sampleRoute()"
             landmarkType = "7">
          </BreakpointContent>
@@ -221,8 +221,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "836"
-            endingLineNumber = "836"
+            startingLineNumber = "863"
+            endingLineNumber = "863"
             landmarkName = "presentTrailReportMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -237,8 +237,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "837"
-            endingLineNumber = "837"
+            startingLineNumber = "864"
+            endingLineNumber = "864"
             landmarkName = "presentTrailReportMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -253,8 +253,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "872"
-            endingLineNumber = "872"
+            startingLineNumber = "899"
+            endingLineNumber = "899"
             landmarkName = "presentRouteOverviewMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -269,24 +269,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "808"
-            endingLineNumber = "808"
-            landmarkName = "showAllTrails()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A2776C5F-03DD-4994-A51A-4C8684E745BF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "791"
-            endingLineNumber = "791"
+            startingLineNumber = "830"
+            endingLineNumber = "830"
             landmarkName = "showAllTrails()"
             landmarkType = "7">
          </BreakpointContent>
@@ -301,8 +285,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "545"
-            endingLineNumber = "545"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
             landmarkName = "getClosestAnnotation(origin:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -317,73 +301,9 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "mapTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "659D62C7-B04E-4B5D-973A-8194F2721E82"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1261"
-            endingLineNumber = "1261"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "47584535-524E-41F2-80E5-F018771D5231"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1263"
-            endingLineNumber = "1263"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3DAC20D2-9498-4086-AAFB-4508BE6B6024"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1262"
-            endingLineNumber = "1262"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A9270403-F6CA-4EA9-969C-16F18793C861"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
-            landmarkName = "toggleGraph()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -397,8 +317,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "565"
-            endingLineNumber = "565"
+            startingLineNumber = "574"
+            endingLineNumber = "574"
             landmarkName = "assignOrigin()"
             landmarkType = "7">
          </BreakpointContent>
@@ -413,9 +333,89 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "537"
-            endingLineNumber = "537"
+            startingLineNumber = "543"
+            endingLineNumber = "543"
             landmarkName = "getClosestAnnotation(origin:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "11BAD41C-FFE7-4ACE-87FC-7351B4882F9E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
+            landmarkName = "sampleRoute()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3F7B2D7-12E0-4DDB-BDFD-822AD94B79BB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "695"
+            endingLineNumber = "695"
+            landmarkName = "sampleRoute()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20BA9E52-7FF8-4397-A4D1-5B1A9D87A9D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/Utils/InteractiveMap.Utils/MapInterpreter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
+            landmarkName = "createGraph()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "60046EC8-B1A4-4907-A892-9E8F378B393E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/Utils/InteractiveMap.Utils/MapInterpreter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
+            landmarkName = "createGraph()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBF88BFE-0E31-4689-930B-109489CB247F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SundayRiver/Utils/InteractiveMap.Utils/MapInterpreter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "createGraph()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
