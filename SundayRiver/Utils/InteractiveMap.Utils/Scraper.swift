@@ -16,7 +16,7 @@ func getMountainReport(webView: WKWebView, queryItems: TrailData, completion: @e
             completion(.failure(error!))
             return
         }
-        let liftStatuses = parseData(queryItems: queryItems.lifts!, queryLocation: html)
+        let liftStatuses = parseData(queryItems: queryItems.lifts, queryLocation: html)
         result.lifts = liftStatuses
     })
     webView.evaluateJavaScript("document.getElementById('conditions_trailstatus_16207d4019cf36fbdb184831e2ae3054').innerHTML", completionHandler: {
@@ -26,31 +26,31 @@ func getMountainReport(webView: WKWebView, queryItems: TrailData, completion: @e
             completion(.failure(error!))
             return
         }
-        let whiteCapTrails = parseData(queryItems: queryItems.whiteCapTrails!, queryLocation: html)
+        let whiteCapTrails = parseData(queryItems: queryItems.whiteCapTrails, queryLocation: html)
         result.whiteCapTrails = whiteCapTrails
         
-        let lockeTrails = parseData(queryItems: queryItems.lockeTrails!, queryLocation: html)
+        let lockeTrails = parseData(queryItems: queryItems.lockeTrails, queryLocation: html)
         result.lockeTrails = lockeTrails
         
-        let barkerTrails = parseData(queryItems: queryItems.barkerTrails!, queryLocation: html)
+        let barkerTrails = parseData(queryItems: queryItems.barkerTrails, queryLocation: html)
         result.barkerTrails = barkerTrails
         
-        let southRidgeTrails = parseData(queryItems: queryItems.southRidgeTrails!, queryLocation: html)
+        let southRidgeTrails = parseData(queryItems: queryItems.southRidgeTrails, queryLocation: html)
         result.southRidgeTrails = southRidgeTrails
         
-        let spruceTrails = parseData(queryItems: queryItems.spruceTrails!, queryLocation: html)
+        let spruceTrails = parseData(queryItems: queryItems.spruceTrails, queryLocation: html)
         result.spruceTrails = spruceTrails
         
-        let northPeakTrails = parseData(queryItems: queryItems.northPeakTrails!, queryLocation: html)
+        let northPeakTrails = parseData(queryItems: queryItems.northPeakTrails, queryLocation: html)
         result.northPeakTrails = northPeakTrails
         
-        let auroraTrails = parseData(queryItems: queryItems.auroraTrails!, queryLocation: html)
+        let auroraTrails = parseData(queryItems: queryItems.auroraTrails, queryLocation: html)
         result.auroraTrails = auroraTrails
         
-        let ozTrails = parseData(queryItems: queryItems.ozTrails!, queryLocation: html)
+        let ozTrails = parseData(queryItems: queryItems.ozTrails, queryLocation: html)
         result.ozTrails = ozTrails
         
-        let jordanTrails = parseData(queryItems: queryItems.jordantrails!, queryLocation: html)
+        let jordanTrails = parseData(queryItems: queryItems.jordantrails, queryLocation: html)
         result.jordantrails = jordanTrails
         
         completion(.success(result))

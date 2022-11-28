@@ -18,16 +18,16 @@ import UIKit
 import UserNotifications
 import WebKit
 struct TrailData{
-    var lifts: [String]?
-    var whiteCapTrails: [String]?
-    var lockeTrails : [String]?
-    var barkerTrails: [String]?
-    var southRidgeTrails : [String]?
-    var spruceTrails : [String]?
-    var northPeakTrails : [String]?
-    var auroraTrails : [String]?
-    var ozTrails: [String]?
-    var jordantrails: [String]?
+    var lifts: [String] = []
+    var whiteCapTrails: [String] = []
+    var lockeTrails : [String] = []
+    var barkerTrails: [String] = []
+    var southRidgeTrails : [String] = []
+    var spruceTrails : [String] = []
+    var northPeakTrails : [String] = []
+    var auroraTrails : [String] = []
+    var ozTrails: [String] = []
+    var jordantrails: [String] = []
 }
 final class WebAnalysis: NSObject, WKNavigationDelegate {
     static let shared = WebAnalysis()
@@ -92,16 +92,16 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
             value in
             switch value{
             case .success(let value):
-                self.assignStatus(item: value.lifts!, items: TrailsDatabase.lifts)
-                self.assignStatus(item: value.whiteCapTrails!, items: TrailsDatabase.whiteCapTrailAnnotations)
-                self.assignStatus(item: value.lockeTrails!, items:  TrailsDatabase.lockeTrailAnnotations)
-                self.assignStatus(item: value.barkerTrails!, items: TrailsDatabase.barkerTrailAnnotations)
-                self.assignStatus(item: value.southRidgeTrails!, items: TrailsDatabase.southRidgeTrailAnnotations)
-                self.assignStatus(item: value.spruceTrails!, items: TrailsDatabase.spruceTrailAnnotations)
-                self.assignStatus(item: value.northPeakTrails!, items: TrailsDatabase.northPeakTrailAnnotations)
-                self.assignStatus(item: value.auroraTrails!, items: TrailsDatabase.auroraTrailAnnotations)
-                self.assignStatus(item: value.ozTrails!, items: TrailsDatabase.ozTrailAnnotations)
-                self.assignStatus(item: value.jordantrails!, items: TrailsDatabase.jordanTrailsAnnotations)
+                self.assignStatus(item: value.lifts, items: TrailsDatabase.lifts)
+                self.assignStatus(item: value.whiteCapTrails, items: TrailsDatabase.whiteCapTrailAnnotations)
+                self.assignStatus(item: value.lockeTrails, items:  TrailsDatabase.lockeTrailAnnotations)
+                self.assignStatus(item: value.barkerTrails, items: TrailsDatabase.barkerTrailAnnotations)
+                self.assignStatus(item: value.southRidgeTrails, items: TrailsDatabase.southRidgeTrailAnnotations)
+                self.assignStatus(item: value.spruceTrails, items: TrailsDatabase.spruceTrailAnnotations)
+                self.assignStatus(item: value.northPeakTrails, items: TrailsDatabase.northPeakTrailAnnotations)
+                self.assignStatus(item: value.auroraTrails, items: TrailsDatabase.auroraTrailAnnotations)
+                self.assignStatus(item: value.ozTrails, items: TrailsDatabase.ozTrailAnnotations)
+                self.assignStatus(item: value.jordantrails, items: TrailsDatabase.jordanTrailsAnnotations)
                 for annotation in TrailsDatabase.annotations
                 {
                     // print("\(annotation.value.title): \(annotation.value.status)")

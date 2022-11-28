@@ -280,7 +280,8 @@ final class MapInterpreter: NSObject {
         {
             let overlay = polylines[polylineIndex]
             
-            var prevVertex : Vertex<ImageAnnotation> = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+            let initialVertex = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+            var prevVertex : Vertex<ImageAnnotation> = initialVertex
             var vertex2 : Vertex<ImageAnnotation>
             graph.addVertex(prevVertex)
             for index in 1...overlay.pointCount - 1
@@ -313,10 +314,13 @@ final class MapInterpreter: NSObject {
                 }
                 prevVertex = vertex2
             }
-            guard polylineIndex <= mapView.annotations.count - 1, let annotation = mapView.annotations[polylineIndex] as? ImageAnnotation else { continue }
-            let annotationVertex = Vertex<ImageAnnotation>(annotation)
-            graph.addVertex(annotationVertex)
-            graph.addEdge(direction: .undirected, from: annotationVertex, to: prevVertex, weight: 1)
+//            let mapImageAnnotations = mapView.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
+//            guard let annotation = mapImageAnnotations.first(where: {$0.title == overlay.title}) else
+//            {
+//                continue
+//            }
+//            graph.addVertex(Vertex<ImageAnnotation>(annotation))
+//            graph.addEdge(direction: .undirected, from: Vertex<ImageAnnotation>(annotation), to: initialVertex, weight: 1)
         }
         var previousIntersectingEdges : [DirectedEdge<ImageAnnotation>] = []
         for vertex in graph.vertices
@@ -326,7 +330,7 @@ final class MapInterpreter: NSObject {
                 print("From: \(vertex.value.title!) with coordinate: \(vertex.value.coordinate)")
                 for point in getIntersectingPoints(vertex: vertex)
                 {
-                    if previousIntersectingEdges.contains(DirectedEdge(source: point, destination: vertex, weight: 1))
+                    if previousIntersectingEdges.contains(DirectedEdge(source: point, destination: vertex, weight: 1)) || previousIntersectingEdges.contains(DirectedEdge(source: vertex, destination: point, weight: 1))
                     {
                         print("test")
                         continue

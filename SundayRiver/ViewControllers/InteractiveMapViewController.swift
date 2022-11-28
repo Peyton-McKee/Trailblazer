@@ -554,11 +554,6 @@ class InteractiveMapViewController: UIViewController
                 closestAnnotation = annotation
             }
         }
-        if pathCreated.contains(closestAnnotation)
-        {
-            return closestAnnotation
-        }
-        pathCreated = []
         return closestAnnotation
     }
     
@@ -572,10 +567,24 @@ class InteractiveMapViewController: UIViewController
         Self.origin = TrailsDatabase.createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)
         let closestVertex = getClosestAnnotation(origin: Self.origin!)
         originVertex = Vertex<ImageAnnotation>(Self.origin!)
-        Self.selectedGraph.addVertex(originVertex!)
-        
-        Self.selectedGraph.addEdge(direction: .directed, from: originVertex!, to: closestVertex, weight: 1)
-        
+        if pathCreated.contains(closestVertex)
+        {
+            for vertex in pathCreated
+            {
+                if vertex == closestVertex
+                {
+                    break
+                }
+                pathCreated.removeFirst()
+            }
+            pathCreated.insert(originVertex!, at: 0)
+        }
+        else
+        {
+            Self.selectedGraph.removeLastVertex()
+            Self.selectedGraph.addVertex(originVertex!)
+            Self.selectedGraph.addEdge(direction: .directed, from: originVertex!, to: closestVertex, weight: 1)
+        }
         if getClosestAnnotation(origin: Self.origin!).value == Self.destination
         {
             //Then youve completed your journey
@@ -635,6 +644,7 @@ class InteractiveMapViewController: UIViewController
                 pathGraph.addVertex(self.pathCreated[index])
                 pathGraph.addEdge(direction: .directed, from: self.pathCreated[index - 1], to: self.pathCreated[index], weight: 1)
             }
+            print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
             return createRouteHelper(graph: pathGraph)
         }
         else
@@ -748,10 +758,11 @@ class InteractiveMapViewController: UIViewController
     {
         let previousOverlays = myMap.overlays
         let previousAnnotations = myMap.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
-        
-        if !self.pathCreated.isEmpty
+        print(pathCreated.count)
+        if let newRoute = createRoute()
         {
-            displayRouteHelper(route: self.pathCreated, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
+            print("test2")
+            displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
         }
         return
     }
@@ -1286,7 +1297,6 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
         {
             Self.origin = nil
             canFindPathAgain = false
-            Self.selectedGraph.removeLastVertex()
             displayRoute()
         }
         
