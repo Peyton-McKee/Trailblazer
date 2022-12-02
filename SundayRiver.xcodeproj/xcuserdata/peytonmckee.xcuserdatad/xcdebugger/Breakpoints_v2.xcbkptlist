@@ -62,8 +62,8 @@
             filePath = "SundayRiver/TrailDatabaseFiles/TrailsDatabase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
             landmarkName = "TrailsDatabase"
             landmarkType = "3">
             <Locations>
@@ -221,8 +221,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "874"
-            endingLineNumber = "874"
+            startingLineNumber = "875"
+            endingLineNumber = "875"
             landmarkName = "presentTrailReportMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -237,8 +237,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "875"
-            endingLineNumber = "875"
+            startingLineNumber = "876"
+            endingLineNumber = "876"
             landmarkName = "presentTrailReportMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -253,8 +253,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "910"
-            endingLineNumber = "910"
+            startingLineNumber = "911"
+            endingLineNumber = "911"
             landmarkName = "presentRouteOverviewMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -269,8 +269,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "841"
-            endingLineNumber = "841"
+            startingLineNumber = "842"
+            endingLineNumber = "842"
             landmarkName = "showAllTrails()"
             landmarkType = "7">
          </BreakpointContent>

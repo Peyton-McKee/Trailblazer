@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import SwiftUI
 
 enum Difficulty
 {
@@ -1550,13 +1551,12 @@ class TrailsDatabase : NSObject {
         graph.addEdge(direction: .directed, from: endStarW, to: bend3SL, weight: 300)
         
     }
-    
-    static func createAnnotation(title: String?, latitude: Double, longitude: Double, difficulty: Difficulty) -> ImageAnnotation
-    {
-        let point = ImageAnnotation()
-        point.title = title
-        point.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        point.difficulty = difficulty
-        return point
-    }
+}
+func createAnnotation(title: String?, latitude: Double, longitude: Double, difficulty: Difficulty) -> ImageAnnotation
+{
+    let point = ImageAnnotation()
+    point.title = title
+    point.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+    point.difficulty = difficulty
+    return point
 }

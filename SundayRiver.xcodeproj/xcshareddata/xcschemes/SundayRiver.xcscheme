@@ -51,7 +51,7 @@
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
-         identifier = "../../SundayRiver/Game Test.gpx"
+         identifier = "../../Shared/Game Test.gpx"
          referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>

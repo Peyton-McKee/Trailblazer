@@ -15,6 +15,7 @@ enum Status{
     case scheduled
     case event
 }
+
 struct Trail {
     let name: String
     let difficulty: Difficulty

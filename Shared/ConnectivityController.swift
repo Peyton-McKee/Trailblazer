@@ -12,7 +12,7 @@ enum ConnectivityTypes: String
 {
     case route = "route"
 }
-struct Route: Identifiable{
+struct Route: Identifiable {
     var id: Int
     var annotationName: String
     var coordinates: [Double]
@@ -20,24 +20,17 @@ struct Route: Identifiable{
 
 final class ConnectivityController: NSObject, ObservableObject {
     static let shared = ConnectivityController()
-    
     @Published var route : [Route] = []
     
     private var cancellable: Set<AnyCancellable> = []
 
     override private init() {
         super.init()
-        Connectivity.shared.$routeIds
-            .dropFirst()
-            .map{ ids in self.route.filter { ids.contains($0.id) } }
-            .receive(on: DispatchQueue.main)
-            .assign(to: \.route, on: self)
-            .store(in: &cancellable)
     }
     
     private func updateCompanion() {
-        let ids = route.map { $0.id }
-        Connectivity.shared.send(routeIds: ids)
+        let names = route.map { $0.annotationName }
+        Connectivity.shared.send(routeName: names)
     }
     
     public func setRoute(route: [Route])

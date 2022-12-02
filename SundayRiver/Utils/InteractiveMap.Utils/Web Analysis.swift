@@ -17,6 +17,7 @@
 import UIKit
 import UserNotifications
 import WebKit
+
 struct TrailData{
     var lifts: [String] = []
     var whiteCapTrails: [String] = []
@@ -48,7 +49,9 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
     func makeRequest()
     {
         webView.navigationDelegate = self
+        
         webView.load(urlRequest)
+        
     }
     
     func assignStatus(item: [String], items: [[Vertex<ImageAnnotation>]])
@@ -88,35 +91,35 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        getMountainReport(webView: webView, queryItems: TrailData(lifts: liftNames, whiteCapTrails: whiteCapTrailNames, lockeTrails: lockeTrailNames, barkerTrails: barkerTrailNames, southRidgeTrails: southRidgeNames, spruceTrails: spruceNames, northPeakTrails: northPeakNames, auroraTrails: auroraNames, ozTrails: ozNames, jordantrails: jordanNames), completion: {
-            value in
-            switch value{
-            case .success(let value):
-                self.assignStatus(item: value.lifts, items: TrailsDatabase.lifts)
-                self.assignStatus(item: value.whiteCapTrails, items: TrailsDatabase.whiteCapTrailAnnotations)
-                self.assignStatus(item: value.lockeTrails, items:  TrailsDatabase.lockeTrailAnnotations)
-                self.assignStatus(item: value.barkerTrails, items: TrailsDatabase.barkerTrailAnnotations)
-                self.assignStatus(item: value.southRidgeTrails, items: TrailsDatabase.southRidgeTrailAnnotations)
-                self.assignStatus(item: value.spruceTrails, items: TrailsDatabase.spruceTrailAnnotations)
-                self.assignStatus(item: value.northPeakTrails, items: TrailsDatabase.northPeakTrailAnnotations)
-                self.assignStatus(item: value.auroraTrails, items: TrailsDatabase.auroraTrailAnnotations)
-                self.assignStatus(item: value.ozTrails, items: TrailsDatabase.ozTrailAnnotations)
-                self.assignStatus(item: value.jordantrails, items: TrailsDatabase.jordanTrailsAnnotations)
-                for annotation in TrailsDatabase.annotations
-                {
-                    // print("\(annotation.value.title): \(annotation.value.status)")
-                    if annotation.value.status == .open
-                    {
-                        TrailsDatabase.realTimeGraph.addVertex(annotation)
-                    }
-                }
-                //InteractiveMapViewController.selectedGraph = TrailsDatabase.realTimeGraph
-                //NotificationCenter.default.post(name: Notification.Name(rawValue: "selectGraph"), object: nil)
-                
-            case .failure(let error):
-                    print("failed to find data - \(error)")
-            }
-        })
+//        getMountainReport(webView: webView, queryItems: TrailData(lifts: liftNames, whiteCapTrails: whiteCapTrailNames, lockeTrails: lockeTrailNames, barkerTrails: barkerTrailNames, southRidgeTrails: southRidgeNames, spruceTrails: spruceNames, northPeakTrails: northPeakNames, auroraTrails: auroraNames, ozTrails: ozNames, jordantrails: jordanNames), completion: {
+//            value in
+//            switch value{
+//            case .success(let value):
+//                self.assignStatus(item: value.lifts, items: TrailsDatabase.lifts)
+//                self.assignStatus(item: value.whiteCapTrails, items: TrailsDatabase.whiteCapTrailAnnotations)
+//                self.assignStatus(item: value.lockeTrails, items:  TrailsDatabase.lockeTrailAnnotations)
+//                self.assignStatus(item: value.barkerTrails, items: TrailsDatabase.barkerTrailAnnotations)
+//                self.assignStatus(item: value.southRidgeTrails, items: TrailsDatabase.southRidgeTrailAnnotations)
+//                self.assignStatus(item: value.spruceTrails, items: TrailsDatabase.spruceTrailAnnotations)
+//                self.assignStatus(item: value.northPeakTrails, items: TrailsDatabase.northPeakTrailAnnotations)
+//                self.assignStatus(item: value.auroraTrails, items: TrailsDatabase.auroraTrailAnnotations)
+//                self.assignStatus(item: value.ozTrails, items: TrailsDatabase.ozTrailAnnotations)
+//                self.assignStatus(item: value.jordantrails, items: TrailsDatabase.jordanTrailsAnnotations)
+//                for annotation in TrailsDatabase.annotations
+//                {
+//                    // print("\(annotation.value.title): \(annotation.value.status)")
+//                    if annotation.value.status == .open
+//                    {
+//                        TrailsDatabase.realTimeGraph.addVertex(annotation)
+//                    }
+//                }
+//                //InteractiveMapViewController.selectedGraph = TrailsDatabase.realTimeGraph
+//                //NotificationCenter.default.post(name: Notification.Name(rawValue: "selectGraph"), object: nil)
+//
+//            case .failure(let error):
+//                    print("failed to find data - \(error)")
+//            }
+//        })
     }
 
 }

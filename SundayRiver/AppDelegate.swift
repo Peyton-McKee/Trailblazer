@@ -62,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) {
       print("Failed to register: \(error)")
     }
-    
+
     private func configureUserNotifications() {
       UNUserNotificationCenter.current().delegate = self
     }

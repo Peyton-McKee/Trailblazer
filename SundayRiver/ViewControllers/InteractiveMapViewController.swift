@@ -502,7 +502,7 @@ class InteractiveMapViewController: UIViewController
             {
                 let latitude = report.latitude
                 let longitude = report.longitude
-                let annotation = TrailsDatabase.createAnnotation(title: nil, latitude: latitude, longitude: longitude, difficulty: .easy)
+                let annotation = createAnnotation(title: nil, latitude: latitude, longitude: longitude, difficulty: .easy)
                 annotation.subtitle = "\(report.type)"
                 annotation.id = report.id
                 let closestTrail = self.getClosestAnnotation(origin: annotation).value
@@ -564,7 +564,7 @@ class InteractiveMapViewController: UIViewController
         guard let latitude = locationManager.locationManager.location?.coordinate.latitude, let longitude = locationManager.locationManager.location?.coordinate.longitude, locationManager.locationManager.authorizationStatus == .authorizedWhenInUse else {
             return false
         }
-        Self.origin = TrailsDatabase.createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)
+        Self.origin = createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)
         let closestVertex = getClosestAnnotation(origin: Self.origin!)
         originVertex = Vertex<ImageAnnotation>(Self.origin!)
         if pathCreated.contains(closestVertex)
@@ -773,6 +773,7 @@ class InteractiveMapViewController: UIViewController
         var foundAnnotations : [ImageAnnotation] = []
         var routes : [Route] = []
         var id = 0
+        var foundTrails : [String] = []
         for vertex in route{
             myPolyLine = CustomPolyline(coordinates: [previousVertex.value.coordinate, vertex.value.coordinate], count: 2)
             switch previousVertex.value.difficulty
@@ -796,11 +797,11 @@ class InteractiveMapViewController: UIViewController
             {
                 foundAnnotations.append(trailReport)
             }
-            if (TrailsDatabase.keyAnnotations.contains(vertex))
+            if (!foundTrails.contains(vertex.value.title!))
             {
-                foundAnnotations.append(vertex.value)
+                foundTrails.append(vertex.value.title!)
+                routes.append(Route(id: id, annotationName: vertex.value.title!, coordinates: [vertex.value.coordinate.latitude, vertex.value.coordinate.longitude]))
             }
-            routes.append(Route(id: id, annotationName: previousVertex.value.title!, coordinates: [previousVertex.value.coordinate.latitude, previousVertex.value.coordinate.longitude]))
             id += 1
             previousVertex = vertex
         }
@@ -947,7 +948,7 @@ class InteractiveMapViewController: UIViewController
     func createTrailReport(type: TrailReportType)
     {
         dismissTrailReportMenu()
-        let originAnnotation = TrailsDatabase.createAnnotation(title: nil, latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
+        let originAnnotation = createAnnotation(title: nil, latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
         let closestTrail = getClosestAnnotation(origin: originAnnotation).value
         switch type
         {

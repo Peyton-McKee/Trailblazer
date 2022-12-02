@@ -11,7 +11,9 @@ import SwiftUI
 struct Trailblazer_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView{
+                HomePageView()
+            }
         }
     }
 }

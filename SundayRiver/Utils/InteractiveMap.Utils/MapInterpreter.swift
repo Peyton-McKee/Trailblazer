@@ -144,7 +144,7 @@ final class MapInterpreter: NSObject {
                             }
                             collectedIndex += 1
                             self.map!.mapConnector![index].points = points
-                            print(collectedIndex)
+                            //print(collectedIndex)
                             if collectedIndex == self.map!.mapConnector!.count
                             {
                                 completion(.success(true))
@@ -201,7 +201,7 @@ final class MapInterpreter: NSObject {
             return
             
         }
-        print("test")
+        //print("test")
         for trail in trails
         {
             var coordinates : [CLLocationCoordinate2D] = []
@@ -240,7 +240,7 @@ final class MapInterpreter: NSObject {
             let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
             polyline.title = trail.name
             polyline.color = color
-            let initialAnnotation = TrailsDatabase.createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: difficulty)
+            let initialAnnotation = createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: difficulty)
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
             annotations.append(polyline.initialAnnotation!)
@@ -261,7 +261,7 @@ final class MapInterpreter: NSObject {
             }
             let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
             polyline.title = connector.name
-            let initialAnnotation = TrailsDatabase.createAnnotation(title: connector.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
+            let initialAnnotation = createAnnotation(title: connector.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
             initialAnnotation.isConnector = true
             polyline.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
             polyline.initialAnnotation = initialAnnotation
@@ -273,20 +273,20 @@ final class MapInterpreter: NSObject {
     }
     private func createGraph()
     {
-        print("test Graph")
+        //print("test Graph")
         let polylines = mapView.overlays.filter({$0 as? CustomPolyline != nil}) as! [CustomPolyline]
-        print(polylines.count)
+        //print(polylines.count)
         for polylineIndex in 0...polylines.count - 1
         {
             let overlay = polylines[polylineIndex]
             
-            let initialVertex = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+            let initialVertex = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
             var prevVertex : Vertex<ImageAnnotation> = initialVertex
             var vertex2 : Vertex<ImageAnnotation>
             graph.addVertex(prevVertex)
             for index in 1...overlay.pointCount - 1
             {
-                vertex2 = Vertex<ImageAnnotation>(TrailsDatabase.createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+                vertex2 = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
                 graph.addVertex(vertex2)
                 var weight : Int
                 switch overlay.initialAnnotation?.difficulty
@@ -327,15 +327,15 @@ final class MapInterpreter: NSObject {
         {
             if !getIntersectingPoints(vertex: vertex).isEmpty
             {
-                print("From: \(vertex.value.title!) with coordinate: \(vertex.value.coordinate)")
+                //print("From: \(vertex.value.title!) with coordinate: \(vertex.value.coordinate)")
                 for point in getIntersectingPoints(vertex: vertex)
                 {
                     if previousIntersectingEdges.contains(DirectedEdge(source: point, destination: vertex, weight: 1)) || previousIntersectingEdges.contains(DirectedEdge(source: vertex, destination: point, weight: 1))
                     {
-                        print("test")
+                        //print("test")
                         continue
                     }
-                    print("To: \(point.value.title!) with coordiante: \(vertex.value.coordinate)")
+                    //print("To: \(point.value.title!) with coordiante: \(vertex.value.coordinate)")
                     graph.addEdge(direction: .undirected, from: point, to: vertex, weight: 1)
                     previousIntersectingEdges.append(DirectedEdge(source: vertex, destination: point, weight: 1))
                     previousIntersectingEdges.append(DirectedEdge(source: point, destination: vertex, weight: 1))
