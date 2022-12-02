@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CancelTrailReportView: UIView{
+final class CancelTrailReportView: UIView{
     
     var backgroundView = UIView()
     var notThereUIButton = UIButton()

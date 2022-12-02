@@ -372,6 +372,7 @@ final class MapInterpreter: NSObject {
 //            myPolyLine.initialAnnotation = edge.source.value
 //            mapView.addOverlay(myPolyLine, level: .aboveRoads)
 //        }
+        NotificationCenter.default.post(name: Notification.Name("configureTrailSelector"), object: nil)
         print("Finished Graph with \(graph.verticesCount()) Vertices and \(graph.edgesCount()) Edges")
 //        for overlay in mapView.overlays
 //        {

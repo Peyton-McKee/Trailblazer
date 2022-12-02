@@ -20,7 +20,7 @@ class TrailSelectorTableViewCell : UITableViewCell
         return view
     }()
     
-    var cellTrail : Trail?
+    var cellTrail : ImageAnnotation?
     
     override func awakeFromNib() {
         super.awakeFromNib()

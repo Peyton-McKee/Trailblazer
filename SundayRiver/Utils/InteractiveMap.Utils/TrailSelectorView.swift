@@ -12,7 +12,7 @@ enum TextFieldType {
     case destination
 }
 
-class SearchBarTableHeaderView: UIView {
+final class SearchBarTableHeaderView: UIView {
     var destinationTextField = UITextField()
     var searchButton = UIButton()
     var directionsButton = UIButton()
@@ -176,26 +176,22 @@ class SearchBarTableHeaderView: UIView {
         }
     }
 }
-class TrailSelectorView : UIView {
-    
+final class TrailSelectorView : UIView {
     static var searchText : String?
     
     var isPresented = false
     var currentTextField: UITextField?
     var currentTextFieldType: TextFieldType = .destination
-    var barkerTrails : [Trail] = []
-    var southridgeTrails : [Trail] = []
-    var lockeTrails : [Trail] = []
-    var northPeakTrails : [Trail] = []
-    var whiteCapTrails : [Trail] = []
-    var spruceTrails : [Trail] = []
-    var auroraTrails : [Trail] = []
-    var ozTrails : [Trail] = []
-    var jordanTrails : [Trail] = []
-    var filteredTrails : [Trail] = []
-    var totalTrails : [Trail]  = []
+    var easyTrails : [ImageAnnotation] = []
+    var intermediateTrails : [ImageAnnotation] = []
+    var advancedTrails : [ImageAnnotation] = []
+    var expertsOnlyTrails : [ImageAnnotation] = []
+    var terrainParks : [ImageAnnotation] = []
+    var filteredTrails : [ImageAnnotation] = []
+    var totalTrails: [ImageAnnotation] = []
     
-    var sections = ["Barker Mountain", "Southridge", "Locke Mountain", "North Peak", "Spruce Peak", "White Cap", "Aurora Peak", "Oz Mountain", "Jordan Bowl"]
+    var sections = ["Easy", "Intermediate", "Advanced", "Expert's Only"]
+    
     var searchBar : UITextField?
     var searchBarHeaderView : SearchBarTableHeaderView?
     var searchBarTableView = UITableView()
@@ -223,50 +219,30 @@ class TrailSelectorView : UIView {
     }
     private func createMyTrails()
     {
-        for trail in TrailsDatabase.barkerTrails
+        var foundTrails : [String] = []
+        for annotation in MapInterpreter.shared.graph.vertices.map({$0.value})
         {
-            barkerTrails.append(trail)
+            if(!foundTrails.contains(annotation.title!))
+            {
+                foundTrails.append(annotation.title!)
+                totalTrails.append(annotation)
+                switch annotation.difficulty
+                {
+                case .easy:
+                    easyTrails.append(annotation)
+                case .intermediate:
+                    intermediateTrails.append(annotation)
+                case .advanced:
+                    advancedTrails.append(annotation)
+                case .expertsOnly:
+                    expertsOnlyTrails.append(annotation)
+                case .terrainPark:
+                    terrainParks.append(annotation)
+                default:
+                    continue
+                }
+            }
         }
-        for trail in TrailsDatabase.southRidgeTrails
-        {
-            southridgeTrails.append(trail)
-        }
-        for trail in TrailsDatabase.NorthPeakTrails
-        {
-            northPeakTrails.append(trail)
-        }
-        for trail in TrailsDatabase.lockeTrails
-        {
-            lockeTrails.append(trail)
-        }
-        for trail in TrailsDatabase.whiteCapTrails
-        {
-            whiteCapTrails.append(trail)
-        }
-        for trail in TrailsDatabase.spruceTrails
-        {
-            spruceTrails.append(trail)
-        }
-        for trail in TrailsDatabase.AuroraTrails
-        {
-            auroraTrails.append(trail)
-        }
-        for trail in TrailsDatabase.OzTrails
-        {
-            ozTrails.append(trail)
-        }
-        for trail in TrailsDatabase.jordanTrails
-        {
-            jordanTrails.append(trail)
-        }
-        totalTrails.append(contentsOf: barkerTrails)
-        totalTrails.append(contentsOf: southridgeTrails)
-        totalTrails.append(contentsOf: northPeakTrails)
-        totalTrails.append(contentsOf: lockeTrails)
-        totalTrails.append(contentsOf: whiteCapTrails)
-        totalTrails.append(contentsOf: auroraTrails)
-        totalTrails.append(contentsOf: ozTrails)
-        totalTrails.append(contentsOf: jordanTrails)
     }
     @objc func filterTrails()
     {
@@ -274,7 +250,7 @@ class TrailSelectorView : UIView {
         if let searchString = TrailSelectorView.searchText{
             for trail in totalTrails
             {
-                if trail.name.lowercased().contains(searchString.lowercased()) && !filteredTrails.contains(where: {$0.name.lowercased() == trail.name.lowercased()})
+                if trail.title!.lowercased().contains(searchString.lowercased()) && !filteredTrails.contains(where: {$0.title!.lowercased() == trail.title!.lowercased()})
                 {
                     filteredTrails.append(trail)
                 }
@@ -284,7 +260,7 @@ class TrailSelectorView : UIView {
                     shouldShowSearchResults = false
                     searchBarTableView.reloadData()
                 }
-                if filteredTrails.contains(where: {!$0.name.lowercased().contains(searchString.lowercased())})
+                if filteredTrails.contains(where: {!$0.title!.lowercased().contains(searchString.lowercased())})
                 {
                     filteredTrails.remove(at: 0)
                 }
@@ -311,7 +287,7 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
         }
         else
         {
-            return 9
+            return sections.count
         }
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -328,49 +304,28 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
         if shouldShowSearchResults{
             return filteredTrails.count
         }
-        else if (section == 8)
+       switch section
         {
-            return jordanTrails.count
-        }
-        else if (section == 0)
-        {
-            return barkerTrails.count
-        }
-        else if (section == 1)
-        {
-            return southridgeTrails.count
-        }
-        else if (section == 2)
-        {
-            return lockeTrails.count
-        }
-        else if (section == 3)
-        {
-            return northPeakTrails.count
-        }
-        else if (section == 4)
-        {
-            return spruceTrails.count
-        }
-        else if (section == 5)
-        {
-            return whiteCapTrails.count
-        }
-        else if (section == 6)
-        {
-            return auroraTrails.count
-        }
-        else
-        {
-            return ozTrails.count
-        }
+       case 0:
+           return easyTrails.count
+       case 1:
+           return intermediateTrails.count
+       case 2:
+           return advancedTrails.count
+       case 3:
+           return expertsOnlyTrails.count
+       case 4:
+           return terrainParks.count
+       default:
+           return 0
+       }
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TrailSelectorCustomCell", for: indexPath) as! TrailSelectorTableViewCell
         if shouldShowSearchResults{
-            cell.label.text = filteredTrails[indexPath.row].name
+            cell.label.text = filteredTrails[indexPath.row].title
             cell.cellTrail = filteredTrails[indexPath.row]
         }
         else
@@ -378,32 +333,22 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             switch indexPath.section
             {
             case 0:
-                cell.label.text = barkerTrails[indexPath.row].name
-                cell.cellTrail = barkerTrails[indexPath.row]
+                cell.label.text = easyTrails[indexPath.row].title
+                cell.cellTrail = easyTrails[indexPath.row]
             case 1:
-                cell.label.text = southridgeTrails[indexPath.row].name
-                cell.cellTrail = southridgeTrails[indexPath.row]
+                cell.label.text = intermediateTrails[indexPath.row].title
+                cell.cellTrail = intermediateTrails[indexPath.row]
             case 2:
-                cell.label.text = lockeTrails[indexPath.row].name
-                cell.cellTrail = lockeTrails[indexPath.row]
+                cell.label.text = advancedTrails[indexPath.row].title
+                cell.cellTrail = advancedTrails[indexPath.row]
             case 3:
-                cell.label.text = northPeakTrails[indexPath.row].name
-                cell.cellTrail = northPeakTrails[indexPath.row]
+                cell.label.text = expertsOnlyTrails[indexPath.row].title
+                cell.cellTrail = expertsOnlyTrails[indexPath.row]
             case 4:
-                cell.label.text = spruceTrails[indexPath.row].name
-                cell.cellTrail = spruceTrails[indexPath.row]
-            case 5:
-                cell.label.text = whiteCapTrails[indexPath.row].name
-                cell.cellTrail = whiteCapTrails[indexPath.row]
-            case 6:
-                cell.label.text = auroraTrails[indexPath.row].name
-                cell.cellTrail = auroraTrails[indexPath.row]
-            case 7:
-                cell.label.text = ozTrails[indexPath.row].name
-                cell.cellTrail = ozTrails[indexPath.row]
+                cell.label.text = terrainParks[indexPath.row].title
+                cell.cellTrail = terrainParks[indexPath.row]
             default:
-                cell.label.text = jordanTrails[indexPath.row].name
-                cell.cellTrail = jordanTrails[indexPath.row]
+                break
             }
         }
         switch cell.cellTrail?.difficulty{
@@ -428,14 +373,14 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             switch currentTextFieldType
             {
             case .destination:
-                InteractiveMapViewController.destination = cell.cellTrail!.annotations[0]
+                InteractiveMapViewController.destination = cell.cellTrail!
                 InteractiveMapViewController.routeInProgress = false
                 InteractiveMapViewController.didChooseDestination = true
                 NotificationCenter.default.post(name: Notification.Name("selectedTrail"), object: nil)
                 self.isPresented = false
             case .origin:
-                currentTextField?.text = cell.cellTrail?.name
-                InteractiveMapViewController.origin = cell.cellTrail!.annotations[0]
+                currentTextField?.text = cell.cellTrail?.title
+                InteractiveMapViewController.origin = cell.cellTrail!
                 InteractiveMapViewController.wasSelectedWithOrigin = true
             }
             

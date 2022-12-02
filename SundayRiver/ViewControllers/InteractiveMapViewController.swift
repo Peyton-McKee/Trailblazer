@@ -87,7 +87,6 @@ class InteractiveMapViewController: UIViewController
         configureMyMap()
         configureSearchBar()
         checkUserDefaults()
-        configureTrailSelectorView()
         configureButtons()
         locationManager.locationManager.delegate = self
         locationManager.locationManager.requestWhenInUseAuthorization()
@@ -105,7 +104,7 @@ class InteractiveMapViewController: UIViewController
     override func viewDidAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(selectGraph), name: Notification.Name(rawValue: "selectGraph"), object: nil)
-        NotificationCenter.default.addObserver(self.trailSelectorView as Any, selector: #selector(trailSelectorView?.filterTrails), name: Notification.Name(rawValue: "searchTrail"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(configureTrailSelectorView), name: Notification.Name("configureTrailSelector"), object: nil)
         if Self.destination != nil {
             sampleRoute()
         }
@@ -118,6 +117,7 @@ class InteractiveMapViewController: UIViewController
         NotificationCenter.default.removeObserver(self.trailSelectorView as Any, name: Notification.Name(rawValue: "searchTrail"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectedTrail"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectGraph"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("configureTrailSelector"), object: nil)
     }
     
     
@@ -440,13 +440,14 @@ class InteractiveMapViewController: UIViewController
             }, completion: nil)
         }
     }
-    private func configureTrailSelectorView()
+    @objc func configureTrailSelectorView()
     {
         self.trailSelectorView = TrailSelectorView(frame: CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 80, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
         trailSelectorView?.configureTableViewAndSearchBar()
         let window = self.view
         trailSelectorMenu = SideMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, width: UIScreen.main.bounds.size.width)
         trailSelectorMenu?.view = trailSelectorView
+        NotificationCenter.default.addObserver(self.trailSelectorView as Any, selector: #selector(trailSelectorView?.filterTrails), name: Notification.Name(rawValue: "searchTrail"), object: nil)
     }
     
     @objc func presentSideMenu()
@@ -1265,9 +1266,9 @@ extension InteractiveMapViewController: UITextFieldDelegate
                 //then there are no trails matching the search text
                 return
             }
-            Self.origin = firstCell.cellTrail!.annotations[0]
+            Self.origin = firstCell.cellTrail!
             Self.wasSelectedWithOrigin = true
-            self.searchBar.originTextField.text = firstCell.cellTrail?.name
+            self.searchBar.originTextField.text = firstCell.cellTrail?.title!
         }
         if textField == searchBar.destinationTextField && !(self.searchBar.destinationTextField.text!.isEmpty) && !Self.didChooseDestination
         {
@@ -1275,8 +1276,8 @@ extension InteractiveMapViewController: UITextFieldDelegate
                 //Then there are not trails matching the search text
                 return
             }
-            self.searchBar.destinationTextField.text = firstCell.cellTrail?.name
-            Self.destination = firstCell.cellTrail?.annotations[0]
+            self.searchBar.destinationTextField.text = firstCell.cellTrail?.title
+            Self.destination = firstCell.cellTrail
             self.trailSelectorMenu?.dismissItems()
             self.trailSelectorView?.isPresented = false
             self.searchBar.destinationTextField.text = nil
