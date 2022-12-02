@@ -4,11 +4,13 @@ The Waze of Skiing
 
 Setup Instructions:
 
+/* No longer necessary, for now you can just start the project by opening SundayRiver.xcodeproj and pressing "command R" */
+
 (Requires Xcode Installation and docker installation)
 
   Clone Repository
 
-  Navigate to /trailblazer/TILApp in terminal
+  Navigate to /trailblazer/Database in terminal
   
   Run command in terminal:
     
