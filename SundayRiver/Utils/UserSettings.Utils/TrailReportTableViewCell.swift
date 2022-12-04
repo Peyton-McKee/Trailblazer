@@ -10,32 +10,66 @@ import UIKit
 
 class TrailReportTableViewCell : UITableViewCell
 {
-    var trailReportTypeLabel = UILabel()
+    lazy var HStack: UIStackView = {
+        var stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        [self.trailReportTypeLabel, self.trailReportTrailMadeOnLabel, self.trailReportDateLabel].forEach({
+            stackView.addArrangedSubview($0)
+        })
+        return stackView
+    }()
     
-    var backView = UIView()
+    var trailReportTypeLabel : UILabel = {
+        var label = UILabel()
+        label.textColor = UIColor(hex: "#de82f2ff")
+        label.font = UIFont(name: "markerfelt-thin", size: 20)
+        return label
+    }()
+    
+    var trailReportDateLabel : UILabel = {
+        var label = UILabel()
+        label.textColor = UIColor(hex: "#de82f2ff")
+        label.font = UIFont(name: "markerfelt-thin", size: 20)
+        return label
+    }()
+    
+    var trailReportTrailMadeOnLabel : UILabel = {
+        var label = UILabel()
+        label.textColor = UIColor(hex: "#de82f2ff")
+        label.font = UIFont(name: "markerfelt-thin", size: 20)
+        return label
+    }()
+    
+    var backView : UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 15
+        view.layer.backgroundColor = CGColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+        return view
+    }()
     
     var cellTrailReport: TrailReport?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
     }
     func configure()
     {
-        backView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         addSubview(backView)
-        backView.layer.cornerRadius = 15
-        backView.backgroundColor = .darkGray
-        backView.addSubview(trailReportTypeLabel)
+        backView.addSubview(HStack)
+        trailReportDateLabel.text = "\(cellTrailReport!.dateMade.prefix(upTo: String.Index.init(utf16Offset: 10, in: cellTrailReport!.dateMade)))"
         trailReportTypeLabel.text = "\(cellTrailReport!.type)"
-        trailReportTypeLabel.textColor = .white
-        trailReportTypeLabel.frame = CGRect(x: backView.frame.minX, y: backView.frame.minY, width: backView.bounds.width, height: backView.bounds.height)
+        trailReportTrailMadeOnLabel.text = "\(cellTrailReport!.trailMadeOn)"
+        
+        HStack.frame = CGRect(x: backView.bounds.minX + 10, y: backView.frame.minY, width: backView.bounds.width - 10, height: backView.bounds.height)
+        
     }
 }

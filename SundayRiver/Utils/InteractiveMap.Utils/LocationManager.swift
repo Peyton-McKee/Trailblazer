@@ -21,7 +21,7 @@ class LocationManager: NSObject, ObservableObject {
         // 2
         let region = CLCircularRegion(
             center: trailReport.coordinate,
-            radius: 75,
+            radius: 500,
             identifier: UUID().uuidString)
         // 3
         region.notifyOnEntry = true
@@ -40,7 +40,6 @@ class LocationManager: NSObject, ObservableObject {
         
         // 3
         let trigger = UNLocationNotificationTrigger(region: trailReportRegion!, repeats: false)
-        
         // 4
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
@@ -54,6 +53,7 @@ class LocationManager: NSObject, ObservableObject {
                     print("Error: \(String(describing: error))")
                 }
             }
+        
     }
     
     // 1
@@ -92,10 +92,8 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         switch response.actionIdentifier {
         case "CONFIRM_ACTION":
             confirmAction()
-            break
         case "NOLONGERTHERE_ACTION":
             noLongerThereAction(trailReportID: trailReport)
-            break
         default:
             break
         }

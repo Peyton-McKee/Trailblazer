@@ -26,7 +26,7 @@ struct MapConnectorsController: RouteCollection {
     throws -> EventLoopFuture<MapConnector> {
         let data = try req.content.decode(CreateMapConnectorData.self)
         
-        let mapConnector = MapConnector(name: data.name, mapID: data.mapId)
+        let mapConnector = MapConnector(name: data.name, mapID: data.mapId, distance: data.distance, time: data.time)
         
         return mapConnector.save(on: req.db).map { mapConnector }
     }
@@ -66,5 +66,7 @@ struct MapConnectorsController: RouteCollection {
 
 struct CreateMapConnectorData: Content{
     let name: String
+    let distance: Float
+    let time: Float
     let mapId: UUID
 }

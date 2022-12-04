@@ -10,15 +10,51 @@ import UIKit
 
 class UserTrailReportsViewController: UIViewController{
     var trailReports : [TrailReport]?
-    var trailReportsTableView = UITableView()
+    var trailReportsTableView : UITableView = {
+        var tableView = UITableView()
+        tableView.layer.cornerRadius = 15
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(TrailReportTableViewCell.self, forCellReuseIdentifier: "trailReportTableViewCell")
+        return tableView
+    }()
+    
+    var myTrailReportLabel : UILabel = {
+        let label = UILabel()
+        label.text = "My Trail Reports"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "markerfelt-wide", size: 25)
+        return label
+    }()
+    lazy var myVstack : UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.spacing = 20
+        stack.alignment = .center
+        stack.distribution = .fill
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        [self.myTrailReportLabel, self.trailReportsTableView].forEach{ stack.addArrangedSubview($0) }
+        return stack
+    }()
     let baseURL = "http://35.172.135.117"
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+        configureView()
     }
     override func viewWillAppear(_ animated: Bool) {
         getUsersTrailReports()
-        
+    }
+    private func configureView()
+    {
+        view.backgroundColor = UIColor(red: 0.6, green: 0, blue: 0, alpha: 0.9)
+        trailReportsTableView.delegate = self
+        trailReportsTableView.dataSource = self
+        view.addSubview(myVstack)
+        NSLayoutConstraint.activate([myTrailReportLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30), trailReportsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor), myVstack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     myVstack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     myVstack.topAnchor.constraint(equalTo: myTrailReportLabel.topAnchor),
+                                     myVstack.bottomAnchor.constraint(equalTo: trailReportsTableView.bottomAnchor),
+                                     trailReportsTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+                                     trailReportsTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)])
     }
     private func getUsersTrailReports()
     {
@@ -37,8 +73,8 @@ class UserTrailReportsViewController: UIViewController{
                 //user has not made any trail reports
             }
             self.trailReports = userTrailReports
-            self.configureTableView()
             self.trailReportsTableView.reloadData()
+            self.trailReportsTableView.backgroundColor = UIColor(hex: "#00000000")
         })
     }
     private func getSingleUserTrailReports(id: String, completion: @escaping (Result<[TrailReport], Error>) -> Void) {
@@ -61,16 +97,6 @@ class UserTrailReportsViewController: UIViewController{
             }
         }.resume()
     }
-    private func configureTableView()
-    {
-        trailReportsTableView.layer.cornerRadius = 15
-        trailReportsTableView.delegate = self
-        trailReportsTableView.dataSource = self
-        trailReportsTableView.backgroundColor = UIColor(hex: "#00000000")
-        trailReportsTableView.frame = CGRect(x: 20, y: view.bounds.height/5, width: view.bounds.width - 40, height: view.bounds.height - view.bounds.height/5)
-        trailReportsTableView.register(TrailReportTableViewCell.self, forCellReuseIdentifier: "trailReportTableViewCell")
-        view.addSubview(trailReportsTableView)
-    }
 }
 extension UserTrailReportsViewController: UITableViewDelegate, UITableViewDataSource
 {
@@ -91,10 +117,11 @@ extension UserTrailReportsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! TrailReportTableViewCell
-        
-        print("hello")
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let cell = tableView.cellForRow(at: indexPath) as! TrailReportTableViewCell
+//
+//    }
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
-    
 }

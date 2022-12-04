@@ -35,7 +35,9 @@ for folder in list(document[0].features()):
          mapTrail = {
             'name': e.name,
             'mapId': map.json().get('id'),
-            'difficulty': difficulty
+            'difficulty': difficulty,
+            'distance': 0,
+            'time': 0
          }
          lats = []
          longs = []
@@ -52,6 +54,8 @@ for folder in list(document[0].features()):
       else :
          mapConnector = {
             'name': e.name,
+            'distance': 0,
+            'time': 0,
             'mapId': map.json().get('id'),
          }
          url = 'http://35.172.135.117/api/map-connectors'

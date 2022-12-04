@@ -19,5 +19,6 @@ struct User : Codable{
     var password : String?
     var role: String?
     var trailReports: [TrailReport]?
+    var settings: UserSetting?
 }
 

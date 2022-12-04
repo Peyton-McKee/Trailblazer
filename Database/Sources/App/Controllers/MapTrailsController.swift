@@ -26,7 +26,7 @@ struct MapTrailsController: RouteCollection {
     throws -> EventLoopFuture<MapTrail> {
         let data = try req.content.decode(CreateMapTrailsData.self)
         
-        let mapTrail = MapTrail(name: data.name, difficulty: data.difficulty, mapID: data.mapId)
+        let mapTrail = MapTrail(name: data.name, difficulty: data.difficulty, mapID: data.mapId, distance: data.distance, time: data.time)
         
         return mapTrail.save(on: req.db).map { mapTrail }
     }
@@ -66,5 +66,7 @@ struct MapTrailsController: RouteCollection {
 struct CreateMapTrailsData: Content{
     let name: String
     let difficulty: String
+    let distance: Float
+    let time: Float
     let mapId: UUID
 }

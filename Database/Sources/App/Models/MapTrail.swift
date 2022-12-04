@@ -20,6 +20,12 @@ final class MapTrail: Model, Content {
     @Field(key: "difficulty")
     var difficulty: String
     
+    @Field(key: "distance")
+    var distance: Float
+    
+    @Field(key: "time")
+    var time: Float
+    
     @Parent(key: "mapID")
     var map: Map
     
@@ -31,9 +37,11 @@ final class MapTrail: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, name: String, difficulty: String, mapID: Map.IDValue) {
+    init(id: UUID? = nil, name: String, difficulty: String, mapID: Map.IDValue, distance: Float, time: Float) {
         self.name = name
         self.difficulty = difficulty
+        self.distance = distance
+        self.time = time
         self.$map.id = mapID
     }
 }

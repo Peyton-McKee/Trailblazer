@@ -20,10 +20,10 @@ class InteractiveMapViewController: UIViewController
     static var configuredClasses = false
     static var wasCancelled = false
     static var origin : ImageAnnotation?
-    static var selectedGraph = TrailsDatabase.graph
+    static var selectedGraph = MapInterpreter.shared.difficultyGraph
     static var wasSelectedWithOrigin = false
     static var didChooseDestination = false
-    
+    static var notiAnnotation : ImageAnnotation?
     let baseURL = "http://35.172.135.117"
     
     var trailReports : [TrailReport]?
@@ -92,10 +92,10 @@ class InteractiveMapViewController: UIViewController
         locationManager.locationManager.requestWhenInUseAuthorization()
         locationManager.locationManager.startUpdatingHeading()
         locationManager.locationManager.startUpdatingLocation()
-        getTrailReportsFromDB()
+//        getTrailReportsFromDB()
         
         WebAnalysis.shared.makeRequest()
-        MapInterpreter.shared.getMap(id: "861C6942-5B8C-4A1A-8573-B919A962DCA4")
+        MapInterpreter.shared.getMap(id: "0A06F5FC-1D94-40A1-BBBC-FF90E8031F5A")
         
         
         self.tabBarController?.tabBar.backgroundColor = .black
@@ -105,6 +105,7 @@ class InteractiveMapViewController: UIViewController
         NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(selectGraph), name: Notification.Name(rawValue: "selectGraph"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(configureTrailSelectorView), name: Notification.Name("configureTrailSelector"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(createNotification), name: Notification.Name("createNotification"), object: nil)
         if Self.destination != nil {
             sampleRoute()
         }
@@ -118,9 +119,19 @@ class InteractiveMapViewController: UIViewController
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectedTrail"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectGraph"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name("configureTrailSelector"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("createNotification"), object: nil)
     }
     
-    
+    @objc private func createNotification()
+    {
+        guard let notiAnnotation = Self.notiAnnotation, let id = Self.notiAnnotation?.id, let title = Self.notiAnnotation?.subtitle else
+        {
+            print("NotiAnnotation configured incorrectly or does not exist")
+            return
+        }
+        locationManager.makeTrailReportRegion(trailReport: notiAnnotation)
+        locationManager.registerNotification(title: "CAUTION: \(title.uppercased()) AHEAD", body: title, trailReportID: id)
+    }
     ///configureMyMap void -> voidj
     ///Configures and formats myMap
     private func configureMyMap()
@@ -189,7 +200,6 @@ class InteractiveMapViewController: UIViewController
                             closestVertex = vertex
                         }
                     }
-                    print(Self.selectedGraph.vertices.contains(closestVertex))
                     Self.origin = nil
                     Self.wasSelectedWithOrigin = false
                     Self.destination = closestVertex.value
@@ -275,7 +285,7 @@ class InteractiveMapViewController: UIViewController
     }
     @objc func removeTrailReport()
     {
-        let annotation = TrailsDatabase.annotations.first(where: {$0.value.trailReport == selectedTrailReportAnnotation})
+        let annotation = Self.selectedGraph.vertices.first(where: {$0.value.trailReport == selectedTrailReportAnnotation})
         guard let selectedTrailReport = self.selectedTrailReport else {
             myMap.removeAnnotation(selectedTrailReportAnnotation!)
             annotation?.value.trailReport = nil
@@ -308,13 +318,13 @@ class InteractiveMapViewController: UIViewController
         }
         if !isRealTimeGraph
         {
-            Self.selectedGraph = MapInterpreter.shared.graph
+            Self.selectedGraph = MapInterpreter.shared.difficultyGraph
             //Self.selectedGraph = TrailsDatabase.realTimeGraph
             isRealTimeGraph = true
         }
         else
         {
-            Self.selectedGraph = TrailsDatabase.graph
+            //Self.selectedGraph = TrailsDatabase.graph
             isRealTimeGraph = false
         }
         showAllTrails()
@@ -335,6 +345,7 @@ class InteractiveMapViewController: UIViewController
         self.trailSelectorView?.isPresented = false
         self.cancelButton.isHidden = true
         Self.selectedGraph.removeLastVertex()
+        connectivityController.setRoute(route: [])
         showAllTrails()
     }
     @objc func recenter()
@@ -368,8 +379,8 @@ class InteractiveMapViewController: UIViewController
     {
         if (!Self.configuredClasses)
         {
-            TrailsDatabase.addVertexes()
-            TrailsDatabase.createEdges(graph: Self.selectedGraph)
+//            TrailsDatabase.addVertexes()
+//            TrailsDatabase.createEdges(graph: Self.selectedGraph)
             Self.configuredClasses = true
         }
     }
@@ -393,7 +404,8 @@ class InteractiveMapViewController: UIViewController
     }
     @objc func dismissSideMenu()
     {
-        if trailSelectorView!.isPresented
+        guard let view = trailSelectorView else { return }
+        if view.isPresented
         {
             self.trailSelectorMenu?.dismissItems()
             self.trailSelectorView?.isPresented = false
@@ -447,6 +459,7 @@ class InteractiveMapViewController: UIViewController
         let window = self.view
         trailSelectorMenu = SideMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, width: UIScreen.main.bounds.size.width)
         trailSelectorMenu?.view = trailSelectorView
+        showAllTrails()
         NotificationCenter.default.addObserver(self.trailSelectorView as Any, selector: #selector(trailSelectorView?.filterTrails), name: Notification.Name(rawValue: "searchTrail"), object: nil)
     }
     
@@ -486,33 +499,6 @@ class InteractiveMapViewController: UIViewController
         trailReportTableView.delegate = self
         trailReportTableView.dataSource = self
         trailReportTableView.register(TrailReportTypeTableViewCell.self, forCellReuseIdentifier: "TrailReportTypeTableViewCell")
-    }
-    
-    ///getTrailReportsFromDB void -> void
-    ///Attempts to connect to database and adds any found trailReports to myMap
-    private func getTrailReportsFromDB()
-    {
-        getTrailReports(completion: { value in
-            guard let trailReports = try? value.get() else
-            {
-                print("Error: \(value)")
-                return
-            }
-            self.trailReports = trailReports
-            for report in trailReports
-            {
-                let latitude = report.latitude
-                let longitude = report.longitude
-                let annotation = createAnnotation(title: nil, latitude: latitude, longitude: longitude, difficulty: .easy)
-                annotation.subtitle = "\(report.type)"
-                annotation.id = report.id
-                let closestTrail = self.getClosestAnnotation(origin: annotation).value
-                closestTrail.trailReport = annotation
-                self.myMap.addAnnotation(annotation)
-                self.locationManager.makeTrailReportRegion(trailReport: annotation)
-                self.locationManager.registerNotification(title: "CAUTION: \(annotation.subtitle!.uppercased()) AHEAD", body: annotation.subtitle!, trailReportID: report.id!)
-            }
-        })
     }
     
     func displayCurrentTrailReports(graph: EdgeWeightedDigraph<ImageAnnotation>)
@@ -822,35 +808,35 @@ class InteractiveMapViewController: UIViewController
     {
         myMap.removeOverlays(myMap.overlays)
         myMap.removeAnnotations(myMap.annotations)
-        if Self.selectedGraph.vertices == TrailsDatabase.graph.vertices
-        {
-            for edge in Self.selectedGraph.edges(){
-                myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
-                switch edge.source.value.difficulty{
-                case .easy:
-                    myPolyLine.color = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
-                case .intermediate:
-                    myPolyLine.color = UIColor(red: 0.03, green: 0, blue: 0.5, alpha: 1)
-                case .advanced:
-                    myPolyLine.color = .gray
-                case .lift:
-                    myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
-                case .terrainPark:
-                    myPolyLine.color = .orange
-                default:
-                    myPolyLine.color = .black
-                }
-                myPolyLine.initialAnnotation = edge.source.value
-                myMap.addOverlay(myPolyLine, level: .aboveRoads)
-            }
-            createKeyTrailAnnotations()
-            displayCurrentTrailReports(graph: Self.selectedGraph)
-        }
-        else
-        {
+//        if Self.selectedGraph.vertices == TrailsDatabase.graph.vertices
+//        {
+//            for edge in Self.selectedGraph.edges(){
+//                myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
+//                switch edge.source.value.difficulty{
+//                case .easy:
+//                    myPolyLine.color = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
+//                case .intermediate:
+//                    myPolyLine.color = UIColor(red: 0.03, green: 0, blue: 0.5, alpha: 1)
+//                case .advanced:
+//                    myPolyLine.color = .gray
+//                case .lift:
+//                    myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+//                case .terrainPark:
+//                    myPolyLine.color = .orange
+//                default:
+//                    myPolyLine.color = .black
+//                }
+//                myPolyLine.initialAnnotation = edge.source.value
+//                myMap.addOverlay(myPolyLine, level: .aboveRoads)
+//            }
+//            createKeyTrailAnnotations()
+//            displayCurrentTrailReports(graph: Self.selectedGraph)
+//        }
+//        else
+//        {
             myMap.addOverlays(MapInterpreter.shared.mapView.overlays)
             myMap.addAnnotations(MapInterpreter.shared.mapView.annotations)
-        }
+//        }
     }
     
     /// addTrailReport: UIGestureRecognizer -> void
@@ -890,11 +876,11 @@ class InteractiveMapViewController: UIViewController
     {
         if isRealTimeGraph
         {
-            myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }).filter({ $0.status == .open }))
+            //myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }).filter({ $0.status == .open }))
         }
         else
         {
-            myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }))
+            //myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }))
         }
     }
     
@@ -1122,6 +1108,12 @@ extension InteractiveMapViewController: MKMapViewDelegate
         }
         return tileRenderer
     }
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        if(view.annotation?.title! == nil)
+        {
+            cancelTrailReportView.isHidden = true
+        }
+    }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if !(cancelTrailReportView.isHidden)
         {
@@ -1301,7 +1293,6 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
             canFindPathAgain = false
             displayRoute()
         }
-        
         guard let currentUserId = Self.currentUser?.id else
         {
             return

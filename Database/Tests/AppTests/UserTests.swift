@@ -4,6 +4,8 @@ import XCTVapor
 final class UserTests: XCTestCase {
     let userUserName = "Alice"
     let userPassword = "kitten12"
+    let userAlertSettings = ["Moguls", "icy"]
+    let userRoutingPreference = "Easiest"
     let usersURI = "/api/users/"
     var app: Application!
     
@@ -24,11 +26,13 @@ final class UserTests: XCTestCase {
             XCTAssertEqual(users.count, 2)
             XCTAssertEqual(users[0].userName, userUserName)
             XCTAssertEqual(users[0].password, userPassword)
+            XCTAssertEqual(users[0].alertSettings, userAlertSettings)
+            XCTAssertEqual(users[0].routingPreference, userRoutingPreference)
             XCTAssertEqual(users[0].id, user.id)
         })
     }
     func testUserCanBeSavedWithAPI() throws {
-        let user = User(userName: userUserName, password: userPassword)
+        let user = User(userName: userUserName, password: userPassword, alertSettings: userAlertSettings, routingPreference: userRoutingPreference)
         
         try app.test(.POST, usersURI, beforeRequest: {
             req in
@@ -38,6 +42,8 @@ final class UserTests: XCTestCase {
             response.content.decode(User.self)
             XCTAssertEqual(receivedUser.userName, userUserName)
             XCTAssertEqual(receivedUser.password, userPassword)
+            XCTAssertEqual(receivedUser.alertSettings, userAlertSettings)
+            XCTAssertEqual(receivedUser.routingPreference, userRoutingPreference)
             XCTAssertNotNil(receivedUser.id)
             
             try app.test(.GET, usersURI, afterResponse: {secondResponse in
@@ -46,6 +52,8 @@ final class UserTests: XCTestCase {
                 XCTAssertEqual(users.count, 1)
                 XCTAssertEqual(users[0].userName, userUserName)
                 XCTAssertEqual(users[0].password, userPassword)
+                XCTAssertEqual(users[0].alertSettings, userAlertSettings)
+                XCTAssertEqual(users[0].routingPreference, userRoutingPreference)
                 XCTAssertEqual(users[0].id, receivedUser.id)
             })
         })
@@ -61,6 +69,8 @@ final class UserTests: XCTestCase {
             // 3
             XCTAssertEqual(receivedUser.userName, userUserName)
             XCTAssertEqual(receivedUser.password, userPassword)
+            XCTAssertEqual(receivedUser.alertSettings, userAlertSettings)
+            XCTAssertEqual(receivedUser.routingPreference, userRoutingPreference)
             XCTAssertEqual(receivedUser.id, user.id)
         })
     }

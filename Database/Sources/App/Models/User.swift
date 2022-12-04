@@ -23,6 +23,12 @@ final class User: Model, Content {
     @Field(key: "role")
     var role: String
     
+    @Field(key: "alertSettings")
+    var alertSettings: [String]
+    
+    @Field(key: "routingPreference")
+    var routingPreference: String
+    
     @Children(for: \.$user)
     var trailReports: [TrailReport]
     
@@ -34,8 +40,10 @@ final class User: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, userName: String, password: String) {
+    init(id: UUID? = nil, userName: String, password: String, alertSettings: [String], routingPreference: String) {
         self.userName = userName
         self.password = password
+        self.alertSettings = alertSettings
+        self.routingPreference = routingPreference
     }
 }

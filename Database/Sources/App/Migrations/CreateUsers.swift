@@ -19,7 +19,8 @@ struct CreateUser: Migration {
             .field("userName", .string, .required)
             .field("password", .string, .required)
             .field("role", .string, .required)
-            
+            .field("alertSettings", .array(of: .string), .required)
+            .field("routingPreference", .string, .required)
             .create()
     }
     

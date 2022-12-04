@@ -220,7 +220,7 @@ final class TrailSelectorView : UIView {
     private func createMyTrails()
     {
         var foundTrails : [String] = []
-        for annotation in MapInterpreter.shared.graph.vertices.map({$0.value})
+        for annotation in MapInterpreter.shared.difficultyGraph.vertices.map({$0.value})
         {
             if(!foundTrails.contains(annotation.title!))
             {
