@@ -15,10 +15,11 @@ enum UserRole
 
 struct User : Codable{
     var id : String?
-    var userName : String?
-    var password : String?
+    var userName : String
+    var password : String
     var role: String?
     var trailReports: [TrailReport]?
-    var settings: UserSetting?
+    var alertSettings: [String]
+    var routingPreference: String
 }
 

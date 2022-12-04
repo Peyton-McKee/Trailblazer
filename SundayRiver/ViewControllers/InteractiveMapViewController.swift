@@ -95,7 +95,7 @@ class InteractiveMapViewController: UIViewController
 //        getTrailReportsFromDB()
         
         WebAnalysis.shared.makeRequest()
-        MapInterpreter.shared.getMap(id: "0A06F5FC-1D94-40A1-BBBC-FF90E8031F5A")
+        MapInterpreter.shared.getMap(id: "A1B6206D-A705-47FF-86A6-C41AA391BE51")
         
         
         self.tabBarController?.tabBar.backgroundColor = .black
@@ -976,7 +976,7 @@ class InteractiveMapViewController: UIViewController
                     print(item.type)
                 } else {
                     print(data)
-                    print("Bad JSON received back.")
+                    print("Bad JSON received back for saving trail report.")
                 }
             }
         }.resume()
@@ -997,7 +997,7 @@ class InteractiveMapViewController: UIViewController
                     completion(.success(user))
                 }
             } else {
-                print("Unable to parse JSON response.")
+                print("Unable to parse JSON response for gettiing single user")
                 completion(.failure(error!))
             }
         }.resume()
@@ -1019,7 +1019,7 @@ class InteractiveMapViewController: UIViewController
                     completion(.success(trailReports))
                 }
             } else {
-                print("Unable to parse JSON response.")
+                print("Unable to parse JSON response for getting trail reports")
                 completion(.failure(error!))
             }
         }.resume()
@@ -1041,7 +1041,7 @@ class InteractiveMapViewController: UIViewController
                     print(item.destinationTrailName)
                 } else {
                     print(data)
-                    print("Bad JSON received back.")
+                    print("Bad JSON received back for saving user route.")
                 }
             }
         }.resume()
@@ -1063,7 +1063,7 @@ class InteractiveMapViewController: UIViewController
                     
                 } else {
                     print(data)
-                    print("Bad JSON received back.")
+                    print("Bad JSON received back for saving user location.")
                 }
             }
         }.resume()
@@ -1085,7 +1085,7 @@ class InteractiveMapViewController: UIViewController
                 print(response.suggestedFilename ?? "ahhh")
             } else
             {
-                print("Bad JSON received back")
+                print("Bad JSON received back for deleting trail report")
             }
         }.resume()
     }

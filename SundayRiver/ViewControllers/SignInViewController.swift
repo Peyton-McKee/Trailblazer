@@ -17,7 +17,7 @@ class SignInViewController: UIViewController
     let baseURL = "http://35.172.135.117"
     var incorrectSignInLabel = UILabel()
     
-    static var currentUser = User(userName: "", password: "")
+    static var currentUser = User(userName: "", password: "", alertSettings: [], routingPreference: "")
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -101,7 +101,7 @@ class SignInViewController: UIViewController
                 print("Error: \(value)")
                 return
             }
-            let myUser = User(userName: usernameText, password: passwordText)
+            let myUser = User(userName: usernameText, password: passwordText, alertSettings: [], routingPreference: "")
             var foundMatch = false
             for user in users
             {
@@ -113,8 +113,10 @@ class SignInViewController: UIViewController
                     self.navigationController?.show(InteractiveMapViewController(), sender: sender)
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                    UserDefaults.standard.set("\(user.userName!)", forKey: "userUsername")
-                    UserDefaults.standard.set("\(user.password!)", forKey: "userPassword")
+                    UserDefaults.standard.set("\(user.userName)", forKey: "userUsername")
+                    UserDefaults.standard.set("\(user.password)", forKey: "userPassword")
+                    UserDefaults.standard.set("\(user.alertSettings)", forKey: "userAlertSettings")
+                    UserDefaults.standard.set("\(user.routingPreference)", forKey: "userRoutingPreference")
                     UserDefaults.standard.set("\(userIdString)", forKey: "userId")
                     // This is to get the SceneDelegate object from your view controller
                     // then call the change root view controller function to change to main tab bar

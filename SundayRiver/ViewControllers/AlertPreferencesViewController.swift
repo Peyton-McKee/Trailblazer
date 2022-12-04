@@ -151,13 +151,13 @@ class AlertPreferencesViewController: UIViewController {
     {
         switch sender{
         case mogulAlertSwitch:
-            InteractiveMapViewController.currentUser?.settings?.preferredAlerts.append("moguls")
+            InteractiveMapViewController.currentUser?.alertSettings.append("moguls")
         case icyAlertSwitch:
-            InteractiveMapViewController.currentUser?.settings?.preferredAlerts.append("icy")
+            InteractiveMapViewController.currentUser?.alertSettings.append("icy")
         case crowdedAlertSwitch:
-            InteractiveMapViewController.currentUser?.settings?.preferredAlerts.append("crowded")
+            InteractiveMapViewController.currentUser?.alertSettings.append("crowded")
         case thinCoverAlertSwitch:
-            InteractiveMapViewController.currentUser?.settings?.preferredAlerts.append("thin cover")
+            InteractiveMapViewController.currentUser?.alertSettings.append("thin cover")
         default:
             break
         }

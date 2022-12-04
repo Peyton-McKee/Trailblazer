@@ -119,7 +119,7 @@ class SignUpViewController : UIViewController {
                 print("Error: \(value)")
                 return
             }
-            let myUser = User(userName: usernameText, password: passwordText, role: "member")
+            let myUser = User(userName: usernameText, password: passwordText, role: "member", alertSettings: [], routingPreference: RoutingType.easiest.rawValue)
             var foundMatch = false
             for user in users
             {
@@ -160,7 +160,7 @@ class SignUpViewController : UIViewController {
             if let data = data {
                 let decoder = JSONDecoder()
                 if let user = try? decoder.decode(User.self, from: data) {
-                    print(user.userName!)
+                    print(user.userName)
                     InteractiveMapViewController.currentUser = user
                     
                     

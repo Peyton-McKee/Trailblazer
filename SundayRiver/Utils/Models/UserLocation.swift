@@ -13,5 +13,4 @@ struct UserLocation: Codable {
     var longitude : Double
     var timeReported: String
     var userID : String?
-    var user : User?
 }
