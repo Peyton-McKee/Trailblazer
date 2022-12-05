@@ -22,7 +22,8 @@ struct UsersController: RouteCollection {
         usersRoute.get(":userID", "user-locations", use: getUserLocationsHandler)
         usersRoute.get(":userID", "user-routes", use: getUserRoutesHandler)
         usersRoute.delete(use: deleteAllHandler)
-
+        usersRoute.put(":userID", use: updateHandler)
+        
     }
     
     // 5
@@ -43,36 +44,46 @@ struct UsersController: RouteCollection {
             .unwrap(or: Abort(.notFound))
     }
     func getTrailReportsHandler(_ req: Request)
-      -> EventLoopFuture<[TrailReport]> {
-      // 2
-      User.find(req.parameters.get("userID"), on: req.db)
-        .unwrap(or: Abort(.notFound))
-        .flatMap { user in
-          // 3
-          user.$trailReports.get(on: req.db)
-        }
+    -> EventLoopFuture<[TrailReport]> {
+        // 2
+        User.find(req.parameters.get("userID"), on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { user in
+                // 3
+                user.$trailReports.get(on: req.db)
+            }
     }
     func getUserLocationsHandler(_ req: Request)
-      -> EventLoopFuture<[UserLocation]> {
-      // 2
-      User.find(req.parameters.get("userID"), on: req.db)
-        .unwrap(or: Abort(.notFound))
-        .flatMap { user in
-          // 3
-          user.$userLocations.get(on: req.db)
-        }
+    -> EventLoopFuture<[UserLocation]> {
+        // 2
+        User.find(req.parameters.get("userID"), on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { user in
+                // 3
+                user.$userLocations.get(on: req.db)
+            }
     }
-    
+    func updateHandler(_ req: Request) throws -> EventLoopFuture<User> {
+        let updatedUser = try req.content.decode(User.self)
+        return User.find(req.parameters.get("userID"), on: req.db)
+            .unwrap(or: Abort(.notFound)).flatMap { user in
+                user.alertSettings = updatedUser.alertSettings
+                user.routingPreference = updatedUser.routingPreference
+                return user.save(on: req.db).map{
+                    user
+                }
+            }
+    }
     func getUserRoutesHandler(_ req: Request)
     -> EventLoopFuture<[UserRoute]> {
-    // 2
-    User.find(req.parameters.get("userID"), on: req.db)
-      .unwrap(or: Abort(.notFound))
-      .flatMap { user in
-        // 3
-          user.$userRoutes.get(on: req.db)
-      }
-   }
+        // 2
+        User.find(req.parameters.get("userID"), on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { user in
+                // 3
+                user.$userRoutes.get(on: req.db)
+            }
+    }
     
     func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
         User.find(req.parameters.get("userID"), on: req.db)

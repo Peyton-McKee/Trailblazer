@@ -73,7 +73,7 @@ class LocationManager: NSObject, ObservableObject {
     }
     func noLongerThereAction(trailReportID: String)
     {
-        InteractiveMapViewController().deleteTrailReport(id: trailReportID)
+       deleteTrailReport(id: trailReportID)
     }
 }
 extension LocationManager: UNUserNotificationCenterDelegate {

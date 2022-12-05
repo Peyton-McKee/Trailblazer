@@ -35,6 +35,10 @@ class RoutingPreferencesViewController: UIViewController {
         stackView.layer.cornerRadius = 15
         stackView.backgroundColor = UIColor(hex: "#ae82f2a7")
         [self.routingLabel, self.routingPickerView].forEach{ stackView.addArrangedSubview($0)}
+        stackView.layer.shadowRadius = 10
+        stackView.layer.shadowOffset = .zero
+        stackView.layer.shadowOpacity = 0.5
+        stackView.layer.shadowColor = UIColor(hex: "#ffffffff")?.cgColor
         return stackView
     }()
     lazy var routingPickerView : UIPickerView = {
@@ -87,5 +91,7 @@ extension RoutingPreferencesViewController: UIPickerViewDelegate, UIPickerViewDa
 //    }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         InteractiveMapViewController.currentUser?.routingPreference = options[row].rawValue
+        UserDefaults.standard.set(InteractiveMapViewController.currentUser?.routingPreference, forKey: "routingPreference")
+        updateUser(InteractiveMapViewController.currentUser!)
     }
 }

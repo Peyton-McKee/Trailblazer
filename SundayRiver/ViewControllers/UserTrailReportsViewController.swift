@@ -48,6 +48,7 @@ class UserTrailReportsViewController: UIViewController{
         view.backgroundColor = UIColor(red: 0.6, green: 0, blue: 0, alpha: 0.9)
         trailReportsTableView.delegate = self
         trailReportsTableView.dataSource = self
+        trailReportsTableView.backgroundColor = UIColor(hex: "#00000000")
         view.addSubview(myVstack)
         NSLayoutConstraint.activate([myTrailReportLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30), trailReportsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor), myVstack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      myVstack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -74,7 +75,7 @@ class UserTrailReportsViewController: UIViewController{
             }
             self.trailReports = userTrailReports
             self.trailReportsTableView.reloadData()
-            self.trailReportsTableView.backgroundColor = UIColor(hex: "#00000000")
+            
         })
     }
     private func getSingleUserTrailReports(id: String, completion: @escaping (Result<[TrailReport], Error>) -> Void) {

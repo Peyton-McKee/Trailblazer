@@ -132,7 +132,7 @@ class SignUpViewController : UIViewController {
                 }
             }
             if !foundMatch {
-                self.saveUser(myUser)
+                saveUser(myUser)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
@@ -146,53 +146,6 @@ class SignUpViewController : UIViewController {
         self.navigationController?.show(SignInViewController(), sender: sender)
     }
     
-    func saveUser(_ user: User) {
-        let url = URL(string: "\(baseURL)/api/users")!
-        
-        let encoder = JSONEncoder()
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? encoder.encode(user)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                let decoder = JSONDecoder()
-                if let user = try? decoder.decode(User.self, from: data) {
-                    print(user.userName)
-                    InteractiveMapViewController.currentUser = user
-                    
-                    
-                } else {
-                    print("Bad JSON received back.")
-                    print(data)
-                }
-            }
-        }.resume()
-    }
-    
-    
-    func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
-        let url = URL(string: "\(baseURL)/api/users")!
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "Unknown error")
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            if let users = try? decoder.decode([User].self, from: data) {
-                DispatchQueue.main.async {
-                    completion(.success(users))
-                }
-            } else {
-                print("Unable to parse JSON response.")
-                completion(.failure(error!))
-            }
-        }.resume()
-    }
 }
 
 extension SignUpViewController: UITextFieldDelegate{

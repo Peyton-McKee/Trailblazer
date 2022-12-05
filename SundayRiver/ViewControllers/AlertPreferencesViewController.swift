@@ -37,8 +37,11 @@ class AlertPreferencesViewController: UIViewController {
         stack.alignment = .center
         stack.distribution = .fill
         stack.spacing = 10
-        stack.layer.cornerRadius = 15
-        
+        stack.layer.cornerRadius = 8
+        stack.layer.shadowRadius = 8
+        stack.layer.shadowOffset = .zero
+        stack.layer.shadowOpacity = 0.5
+        stack.layer.shadowColor = UIColor(hex: "#ffffffff")?.cgColor
         stack.layer.backgroundColor = UIColor(hex: "#ae82f2a7")?.cgColor
         [self.mogulAlertSwitch, self.mogulAlertLabel].forEach{
             stack.addArrangedSubview($0)
@@ -62,11 +65,15 @@ class AlertPreferencesViewController: UIViewController {
         stack.alignment = .center
         stack.distribution = .fill
         stack.spacing = 10
-        stack.layer.cornerRadius = 15
+        stack.layer.cornerRadius = 8
         stack.layer.backgroundColor = UIColor(hex: "#ae82f2a7")?.cgColor
         [self.icyAlertSwitch, self.icyAlertLabel].forEach{
             stack.addArrangedSubview($0)
         }
+        stack.layer.shadowRadius = 8
+        stack.layer.shadowOffset = .zero
+        stack.layer.shadowOpacity = 0.5
+        stack.layer.shadowColor = UIColor(hex: "#ffffffff")?.cgColor
         return stack
     }()
     var icyAlertLabel : UILabel = {
@@ -86,11 +93,15 @@ class AlertPreferencesViewController: UIViewController {
         stack.alignment = .center
         stack.distribution = .fill
         stack.spacing = 10
-        stack.layer.cornerRadius = 15
+        stack.layer.cornerRadius = 8
         stack.layer.backgroundColor = UIColor(hex: "#ae82f2a7")?.cgColor
         [self.crowdedAlertSwitch, self.crowdedAlertLabel].forEach{
             stack.addArrangedSubview($0)
         }
+        stack.layer.shadowRadius = 8
+        stack.layer.shadowOffset = .zero
+        stack.layer.shadowOpacity = 0.5
+        stack.layer.shadowColor = UIColor(hex: "#ffffffff")?.cgColor
         return stack
     }()
     var crowdedAlertLabel : UILabel = {
@@ -112,11 +123,15 @@ class AlertPreferencesViewController: UIViewController {
         stack.alignment = .center
         stack.distribution = .fill
         stack.spacing = 10
-        stack.layer.cornerRadius = 15
+        stack.layer.cornerRadius = 8
         stack.layer.backgroundColor = UIColor(hex: "#ae82f2a7")?.cgColor
         [self.thinCoverAlertSwitch, self.thinCoverAlertLabel].forEach{
             stack.addArrangedSubview($0)
         }
+        stack.layer.shadowRadius = 8
+        stack.layer.shadowOffset = .zero
+        stack.layer.shadowOpacity = 0.5
+        stack.layer.shadowColor = UIColor(hex: "#ffffffff")?.cgColor
         return stack
     }()
     var thinCoverAlertLabel : UILabel = {
@@ -149,17 +164,37 @@ class AlertPreferencesViewController: UIViewController {
     }
     @objc func toggleSwitch(sender: UISwitch)
     {
-        switch sender{
-        case mogulAlertSwitch:
-            InteractiveMapViewController.currentUser?.alertSettings.append("moguls")
-        case icyAlertSwitch:
-            InteractiveMapViewController.currentUser?.alertSettings.append("icy")
-        case crowdedAlertSwitch:
-            InteractiveMapViewController.currentUser?.alertSettings.append("crowded")
-        case thinCoverAlertSwitch:
-            InteractiveMapViewController.currentUser?.alertSettings.append("thin cover")
-        default:
-            break
+        if sender.isOn
+        {
+            switch sender{
+            case mogulAlertSwitch:
+                InteractiveMapViewController.currentUser?.alertSettings.append("moguls")
+            case icyAlertSwitch:
+                InteractiveMapViewController.currentUser?.alertSettings.append("icy")
+            case crowdedAlertSwitch:
+                InteractiveMapViewController.currentUser?.alertSettings.append("crowded")
+            case thinCoverAlertSwitch:
+                InteractiveMapViewController.currentUser?.alertSettings.append("thin cover")
+            default:
+                break
+            }
         }
+        else
+        {
+            switch sender{
+            case mogulAlertSwitch:
+                InteractiveMapViewController.currentUser?.alertSettings.removeAll(where: { $0 == "moguls"})
+            case icyAlertSwitch:
+                InteractiveMapViewController.currentUser?.alertSettings.removeAll(where: {$0 == "icy"})
+            case crowdedAlertSwitch:
+                InteractiveMapViewController.currentUser?.alertSettings.removeAll(where: {$0 == "crowded"})
+            case thinCoverAlertSwitch:
+                InteractiveMapViewController.currentUser?.alertSettings.removeAll(where: {$0 == "thin cover"})
+            default:
+                break
+            }
+        }
+        UserDefaults.standard.set(InteractiveMapViewController.currentUser?.alertSettings, forKey: "alertSettings")
+        updateUser(InteractiveMapViewController.currentUser!)
     }
 }

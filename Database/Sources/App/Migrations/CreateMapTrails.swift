@@ -19,10 +19,7 @@ struct CreateMapTrails: Migration {
             
             .field("difficulty", .string, .required)
             
-            .field("distance", .float, .required)
-        
-            .field("time", .float, .required)
-        
+            
             .field("mapID", .uuid, .required)
         
             .create()

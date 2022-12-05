@@ -70,6 +70,7 @@
 		15F92C56293AC9C300792054 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C55293AC9C300792054 /* UserSetting.swift */; };
 		15F92C58293BD5A200792054 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */; };
 		15F92C5A293BD5B000792054 /* RoutingPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */; };
+		15F92C5C293E824100792054 /* DatabaseAccessors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C5B293E824100792054 /* DatabaseAccessors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +159,7 @@
 		15F92C55293AC9C300792054 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewController.swift; sourceTree = "<group>"; };
 		15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingPreferencesViewController.swift; sourceTree = "<group>"; };
+		15F92C5B293E824100792054 /* DatabaseAccessors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseAccessors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
 				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
 				1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */,
+				15F92C5B293E824100792054 /* DatabaseAccessors.swift */,
 				15545AD828DEA598005D0886 /* Web Analysis.swift */,
 				15874A0D27D82AFA001B9025 /* Scraper.swift */,
 				152C69B9291B50120092E537 /* LocationManager.swift */,
@@ -495,6 +498,7 @@
 				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,
 				150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */,
 				1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */,
+				15F92C5C293E824100792054 /* DatabaseAccessors.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
 				150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */,
 				15489A4D2922C0A900898FD0 /* ConnectivityController.swift in Sources */,

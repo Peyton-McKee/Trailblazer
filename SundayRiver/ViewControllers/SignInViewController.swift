@@ -136,27 +136,7 @@ class SignInViewController: UIViewController
     {
         self.navigationController?.pushViewController(SignUpViewController(), animated: true)
     }
-    func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
-        let url = URL(string: "\(baseURL)/api/users")!
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "Unknown error")
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            if let users = try? decoder.decode([User].self, from: data) {
-                DispatchQueue.main.async {
-                    completion(.success(users))
-                }
-            } else {
-                print("Unable to parse JSON response.")
-                completion(.failure(error!))
-            }
-        }.resume()
-        
-    }
+    
 }
 
 extension SignInViewController: UITextFieldDelegate{
