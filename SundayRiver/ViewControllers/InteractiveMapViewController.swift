@@ -744,10 +744,14 @@ class InteractiveMapViewController: UIViewController
         let previousOverlays = myMap.overlays
         let previousAnnotations = myMap.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
         print(pathCreated.count)
+        print(Thread.current)
         if let newRoute = createRoute()
         {
             print("test2")
-            displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
+            DispatchQueue.main.async {
+                self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
+            }
+            
         }
         return
     }
@@ -1155,7 +1159,9 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
         {
             Self.origin = nil
             canFindPathAgain = false
-            displayRoute()
+            DispatchQueue.global().async {
+                self.displayRoute()
+            }
         }
         guard let currentUserId = Self.currentUser?.id else
         {

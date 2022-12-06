@@ -221,10 +221,10 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "860"
-            endingLineNumber = "860"
-            landmarkName = "presentTrailReportMenu()"
-            landmarkType = "7">
+            startingLineNumber = "864"
+            endingLineNumber = "864"
+            landmarkName = "InteractiveMapViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -237,8 +237,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "861"
-            endingLineNumber = "861"
+            startingLineNumber = "865"
+            endingLineNumber = "865"
             landmarkName = "presentTrailReportMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -253,8 +253,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "896"
-            endingLineNumber = "896"
+            startingLineNumber = "900"
+            endingLineNumber = "900"
             landmarkName = "presentRouteOverviewMenu()"
             landmarkType = "7">
          </BreakpointContent>
@@ -269,8 +269,8 @@
             filePath = "SundayRiver/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "827"
-            endingLineNumber = "827"
+            startingLineNumber = "831"
+            endingLineNumber = "831"
             landmarkName = "showAllTrails()"
             landmarkType = "7">
          </BreakpointContent>

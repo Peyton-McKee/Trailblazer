@@ -199,35 +199,21 @@ func updateUser(_ user: User) {
     let url = URL(string: "\(getBaseUrl())/api/users/\(id)")!
     
     let encoder = JSONEncoder()
-    guard let body = try? encoder.encode(user) else{
-        print("Could not encode user")
-        return
-    }
+    
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.httpBody = body
-    print("Attempting to update user")
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = try? encoder.encode(user)
+    
     URLSession.shared.dataTask(with: request) { data, response, error in
-        guard error == nil else {
-            print("Error: error calling PUT")
-            print(error!)
-            return
+        if let data = data {
+            let decoder = JSONDecoder()
+            if let user = try? decoder.decode(User.self, from: data) {
+                print(user.userName)
+                
+            } else {
+                print("Could not update user")
+            }
         }
-        guard let data = data else {
-            print("Error: Did not receive data")
-            return
-        }
-        guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
-            print("Error: HTTP request failed")
-            return
-        }
-        let decoder = JSONDecoder()
-        if let user = try? decoder.decode(User.self, from: data){
-            print(user)
-        }
-        else {
-            print("could not update user")
-        }
-    }
+    }.resume()
 }

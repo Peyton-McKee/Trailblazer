@@ -57,6 +57,10 @@ class AlertPreferencesViewController: UIViewController {
     lazy var mogulAlertSwitch : UISwitch = {
         var mySwitch = UISwitch()
         mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
+        if UserDefaults.standard.stringArray(forKey: "alertSettings")!.contains("moguls")
+        {
+            mySwitch.isOn = true
+        }
         return mySwitch
     }()
     lazy var icyHStack : UIStackView  = {
@@ -85,6 +89,10 @@ class AlertPreferencesViewController: UIViewController {
     lazy var icyAlertSwitch : UISwitch = {
         var mySwitch = UISwitch()
         mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
+        if UserDefaults.standard.stringArray(forKey: "alertSettings")!.contains("icy")
+        {
+            mySwitch.isOn = true
+        }
         return mySwitch
     }()
     lazy var crowdedHStack : UIStackView  = {
@@ -113,6 +121,10 @@ class AlertPreferencesViewController: UIViewController {
     }()
     lazy var crowdedAlertSwitch : UISwitch = {
         var mySwitch = UISwitch()
+        if UserDefaults.standard.stringArray(forKey: "alertSettings")!.contains("crowded")
+        {
+            mySwitch.isOn = true
+        }
         mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
         return mySwitch
     }()
@@ -144,6 +156,10 @@ class AlertPreferencesViewController: UIViewController {
     lazy var thinCoverAlertSwitch : UISwitch = {
         var mySwitch = UISwitch()
         mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
+        if UserDefaults.standard.stringArray(forKey: "alertSettings")!.contains("thin cover")
+        {
+            mySwitch.isOn = true
+        }
         return mySwitch
     }()
     

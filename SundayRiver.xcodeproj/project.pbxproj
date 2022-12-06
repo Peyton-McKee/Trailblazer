@@ -299,8 +299,8 @@
 				153B2E3928ED135D00A23163 /* SignUpViewController.swift */,
 				15545B0228E02268005D0886 /* InteractiveMapViewController.swift */,
 				150D062728F529260051F160 /* UserSettingsViewController.swift */,
-				1524945629084F89009E7059 /* UserTrailReportsViewController.swift */,
 				15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */,
+				1524945629084F89009E7059 /* UserTrailReportsViewController.swift */,
 				15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */,
 			);
 			path = ViewControllers;

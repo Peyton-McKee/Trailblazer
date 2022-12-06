@@ -45,6 +45,17 @@ class RoutingPreferencesViewController: UIViewController {
         var pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
+        switch UserDefaults.standard.string(forKey: "routingPreference"){
+        case RoutingType.easiest.rawValue:
+            pickerView.selectRow(0, inComponent: 0, animated: false)
+        case RoutingType.quickest.rawValue:
+            pickerView.selectRow(1, inComponent: 0, animated: false)
+        case RoutingType.leastDistance.rawValue:
+            pickerView.selectRow(2, inComponent: 0, animated: false)
+        default:
+            break
+        }
+    
         return pickerView
     }()
     var routingLabel : UILabel = {
