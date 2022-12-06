@@ -14,7 +14,7 @@ class UserSettingsViewController : UIViewController {
     var backgroundImageView = UIImageView()
     var dimmedBackground = UIView()
     var settingsTableView = UITableView()
-    var options: [Setting] = [Setting(name: "Trail Reports Made", image: UIImage(systemName: "snowflake")!, textColor: .green, viewController: UserTrailReportsViewController()),  Setting(name: "Alert Preferences", image: UIImage(systemName: "bell.badge")!, textColor: .blue, viewController: AlertPreferencesViewController()), Setting(name: "Preferred Routing", image: UIImage(systemName: "figure.hiking")!, textColor: .blue, viewController: RoutingPreferencesViewController()), Setting(name: "More Settings", image: UIImage(systemName: "circle")!, textColor: .red, viewController: UserTrailReportsViewController())]
+    var options: [Setting] = [Setting(name: "Trail Reports Made", image: UIImage(systemName: "snowflake")!, textColor: .green, viewController: UserTrailReportsViewController()),  Setting(name: "Alert Preferences", image: UIImage(systemName: "bell.badge")!, textColor: .blue, viewController: AlertPreferencesViewController()), Setting(name: "Preferred Routing", image: UIImage(systemName: "location.circle.fill")!, textColor: .blue, viewController: RoutingPreferencesViewController()), Setting(name: "More Settings", image: UIImage(systemName: "circle")!, textColor: .red, viewController: UserTrailReportsViewController())]
     
     override func viewDidLoad() {
         super.viewDidLoad()

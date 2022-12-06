@@ -94,9 +94,10 @@ class InteractiveMapViewController: UIViewController
 //        getTrailReportsFromDB()
         
         WebAnalysis.shared.makeRequest()
-        MapInterpreter.shared.getMap(id: "A1B6206D-A705-47FF-86A6-C41AA391BE51")
-        
-        
+        if (MapInterpreter.shared.mapView.annotations.isEmpty)
+        {
+            MapInterpreter.shared.getMap(id: "24FFAF6E-CEB4-4E81-AFBC-584AA349D40D")
+        }
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     

@@ -10,7 +10,7 @@ import Foundation
 func getBaseUrl() -> String
 {
     return "http://35.172.135.117"
-
+    
 }
 /// saveTrailReport: TrailReport -> void
 /// parameters:
@@ -54,9 +54,10 @@ func getSingleUser(id: String, completion: @escaping (Result<User, Error>) -> Vo
                 completion(.success(user))
             }
         } else {
-            print("Unable to parse JSON response for gettiing single user")
-            completion(.failure(error!))
+            print("Unable to decode user")
+            return
         }
+        
     }.resume()
 }
 /// getTrailReports: void -> [TrailReport] || Error
@@ -133,7 +134,7 @@ public func deleteTrailReport(id: String?)
         return
     }
     let url = URL(string: "\(getBaseUrl())/api/trail-reports/\(id)")!
-            
+    
     var request = URLRequest(url: url)
     request.httpMethod = "DELETE"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -198,24 +199,35 @@ func updateUser(_ user: User) {
     let url = URL(string: "\(getBaseUrl())/api/users/\(id)")!
     
     let encoder = JSONEncoder()
+    guard let body = try? encoder.encode(user) else{
+        print("Could not encode user")
+        return
+    }
     var request = URLRequest(url: url)
     request.httpMethod = "PUT"
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.httpBody = try? encoder.encode(user)
-    
-    URLSession.shared.dataTask(with: request) {data, response, error in
-        if let data = data {
-            let decoder = JSONDecoder()
-            if let user = try? decoder.decode(User.self, from: data){
-                print(user)
-            }
-            else {
-                print("could not update user")
-            }
+    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = body
+    print("Attempting to update user")
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        guard error == nil else {
+            print("Error: error calling PUT")
+            print(error!)
+            return
         }
-        else if let error = error
-        {
-            print(error)
+        guard let data = data else {
+            print("Error: Did not receive data")
+            return
+        }
+        guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+            print("Error: HTTP request failed")
+            return
+        }
+        let decoder = JSONDecoder()
+        if let user = try? decoder.decode(User.self, from: data){
+            print(user)
+        }
+        else {
+            print("could not update user")
         }
     }
 }
