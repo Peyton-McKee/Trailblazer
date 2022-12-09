@@ -221,9 +221,9 @@ final class MapInterpreter: NSObject {
                 let long = points[index].latitude
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)))
             }
-            var difficulty : Difficulty = .easy
-            var color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
-            switch trail.difficulty
+            var difficulty : Difficulty = .expertsOnly
+            var color = UIColor(hex: "#000000ff")
+            switch trail.difficulty?.lowercased()
             {
             case "intermediate":
                 difficulty = .intermediate
@@ -231,13 +231,13 @@ final class MapInterpreter: NSObject {
             case "advanced" :
                 difficulty = .advanced
                 color = .gray
-            case "experts only":
-                difficulty = .expertsOnly
-                color = .black
-            case "lift":
+            case "easy":
+                difficulty = .easy
+                color = .green
+            case "lifts":
                 difficulty = .lift
                 color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
-            case "terrain park":
+            case "terrain parks":
                 difficulty = .terrainPark
                 color = .orange
             default:
@@ -273,8 +273,10 @@ final class MapInterpreter: NSObject {
             polylines.append(polyline)
         }
         mapView.addOverlays(polylines)
-        createDifficultyGraph()
-        createDistanceGraph()
+        DispatchQueue.global().async{
+            self.createDifficultyGraph()
+            self.createDistanceGraph()
+        }
     }
     private func createDifficultyGraph()
     {
@@ -364,7 +366,6 @@ final class MapInterpreter: NSObject {
 //            myPolyLine.initialAnnotation = edge.source.value
 //            mapView.addOverlay(myPolyLine, level: .aboveRoads)
 //        }
-        getTrailReportsFromDB(graph: difficultyGraph)
         print("Finished Difficulty Graph with \(difficultyGraph.verticesCount()) Vertices and \(difficultyGraph.edgesCount()) Edges")
 //        for overlay in mapView.overlays
 //        {
@@ -401,17 +402,17 @@ final class MapInterpreter: NSObject {
                 
                 if overlay.initialAnnotation!.isConnector
                 {
-                    difficultyGraph .addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: weight)
+                    distanceGraph.addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: weight)
                 }
                 else
                 {
-                    difficultyGraph.addEdge(direction: .directed, from: prevVertex, to: vertex2, weight: weight)
+                    distanceGraph.addEdge(direction: .directed, from: prevVertex, to: vertex2, weight: weight)
                 }
                 prevVertex = vertex2
             }
         }
         addIntersectingPointsTo(graph: distanceGraph)
-        getTrailReportsFromDB(graph: distanceGraph)
+        getTrailReportsFromDB()
         print("Completed Distance Graph with \(distanceGraph.verticesCount()) vertices and  \(distanceGraph.edgesCount()) edges!")
     }
     private func addIntersectingPointsTo(graph: EdgeWeightedDigraph<ImageAnnotation>)
@@ -439,14 +440,15 @@ final class MapInterpreter: NSObject {
     }
     ///getTrailReportsFromDB void -> void
     ///Attempts to connect to database and adds any found trailReports to myMap
-    private func getTrailReportsFromDB(graph: EdgeWeightedDigraph<ImageAnnotation>)
+    private func getTrailReportsFromDB()
     {
-        getTrailReports(completion: { value in
+        getTrailReports(completion: { [self] value in
             guard let trailReports = try? value.get() else
             {
                 print("Error: \(value)")
                 return
             }
+            InteractiveMapViewController.trailReports = trailReports
             for report in trailReports
             {
                 let latitude = report.latitude
@@ -454,10 +456,13 @@ final class MapInterpreter: NSObject {
                 let annotation = createAnnotation(title: nil, latitude: latitude, longitude: longitude, difficulty: .easy)
                 annotation.subtitle = "\(report.type)"
                 annotation.id = report.id
-                let closestTrail = self.getClosestAnnotation(graph: graph, origin: annotation).value
+                var closestTrail = getClosestAnnotation(graph: distanceGraph, origin: annotation).value
                 closestTrail.trailReport = annotation
-                self.mapView.addAnnotation(annotation)
-                InteractiveMapViewController.notiAnnotation = annotation
+                closestTrail = getClosestAnnotation(graph: difficultyGraph, origin: annotation).value
+                closestTrail.trailReport = annotation
+                mapView.addAnnotation(annotation)
+                guard InteractiveMapViewController.currentUser.alertSettings.contains(report.type) else { continue }
+                InteractiveMapViewController.notiAnnotation = report
                 NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
             }
             NotificationCenter.default.post(name: Notification.Name("configureTrailSelector"), object: nil)

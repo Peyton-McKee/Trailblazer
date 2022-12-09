@@ -17,16 +17,28 @@ class LocationManager: NSObject, ObservableObject {
     var locationManager = CLLocationManager()
     
     // 1
-    func makeTrailReportRegion(trailReport: ImageAnnotation) {
+    func makeTrailReportRegion(trailReport: TrailReport) {
         // 2
         let region = CLCircularRegion(
-            center: trailReport.coordinate,
+            center: CLLocationCoordinate2D(latitude: trailReport.latitude, longitude: trailReport.longitude),
             radius: 500,
             identifier: UUID().uuidString)
         // 3
         region.notifyOnEntry = true
         // 4
         trailReportRegion = region
+    }
+    func unregesterNotification(for categoryIdentifier: String)
+    {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
+           var identifiers: [String] = []
+           for notification:UNNotificationRequest in notificationRequests {
+               if notification.content.categoryIdentifier == categoryIdentifier {
+                  identifiers.append(notification.identifier)
+               }
+           }
+           UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
+        }
     }
     // 1
     func registerNotification(title: String, body: String, trailReportID: String) {
@@ -36,7 +48,7 @@ class LocationManager: NSObject, ObservableObject {
         notificationContent.body = body
         notificationContent.sound = .default
         notificationContent.userInfo = ["TRAIL_REPORT": trailReportID]
-        notificationContent.categoryIdentifier = "TRAILREPORT_CATEGORY"
+        notificationContent.categoryIdentifier = body
         
         // 3
         let trigger = UNLocationNotificationTrigger(region: trailReportRegion!, repeats: false)

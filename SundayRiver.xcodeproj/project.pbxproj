@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150828D62943AF320060B341 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150828D52943AF320060B341 /* LoadingView.swift */; };
 		150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */; };
 		150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C6EB029035BE10055AD59 /* HextoColor.swift */; };
 		150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062328F4DEB90051F160 /* TrailSelectorView.swift */; };
@@ -98,6 +99,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		150828D52943AF320060B341 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuFramework.swift; sourceTree = "<group>"; };
 		150C6EB029035BE10055AD59 /* HextoColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HextoColor.swift; sourceTree = "<group>"; };
 		150D062328F4DEB90051F160 /* TrailSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorView.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */,
 				15F92C5B293E824100792054 /* APIHandlers.swift */,
 				15545AD828DEA598005D0886 /* Web Analysis.swift */,
+				150828D52943AF320060B341 /* LoadingView.swift */,
 				15874A0D27D82AFA001B9025 /* Scraper.swift */,
 				152C69B9291B50120092E537 /* LocationManager.swift */,
 				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
@@ -506,6 +509,7 @@
 				1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */,
 				15F92C58293BD5A200792054 /* AlertPreferencesViewController.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
+				150828D62943AF320060B341 /* LoadingView.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
 				15F92C56293AC9C300792054 /* UserSetting.swift in Sources */,
 				152C69BA291B50120092E537 /* LocationManager.swift in Sources */,

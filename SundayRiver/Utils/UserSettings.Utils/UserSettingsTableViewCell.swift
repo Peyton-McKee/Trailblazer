@@ -10,33 +10,47 @@ import UIKit
 
 class UserSettingsTableViewCell : UITableViewCell
 {
-    var label = UILabel()
-    var myImageView = UIImageView()
+    lazy var label : UILabel = {
+        var label = UILabel()
+        label.font = UIFont(name: "markerfelt-wide", size: 15)
+        guard let setting = self.setting else {return label}
+        label.text = setting.name
+        label.textColor = setting.textColor
+        return label
+    }()
+    lazy var myImageView : UIImageView  = {
+        var imageView = UIImageView()
+        guard let setting = self.setting else {return imageView}
+        imageView.image = setting.image
+        return imageView
+    }()
     
-    var backView = UIView()
+    lazy var HStack : UIStackView = {
+        var stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        stackView.alignment = .leading
+        stackView.spacing = 10
+        [myImageView.self, label.self].forEach{ stackView.addArrangedSubview($0)}
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     var setting : Setting?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        addSubview(backView)
     }
     func configure()
     {
-        guard let setting = self.setting else {return}
-        self.label.frame = CGRect(x: 30, y: 0, width: self.bounds.width, height: self.bounds.height)
-        self.label.text = setting.name
-        self.label.textColor = setting.textColor
-        self.label.font = UIFont(name: "markerfelt-wide", size: 15)
-        self.myImageView.frame = CGRect(x: 5, y: 5, width: 20, height: 20)
-        self.myImageView.image = setting.image
-        backView.addSubview(myImageView)
-        backView.addSubview(label)
+        addSubview(HStack)
+        NSLayoutConstraint.activate([HStack.leadingAnchor.constraint(equalTo: self.leadingAnchor), HStack.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height/2 - 7.5)])
+
     }
 }

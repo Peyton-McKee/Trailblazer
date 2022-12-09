@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-enum TrailReportType: Codable {
-    case moguls
-    case ice
-    case crowded
-    case thinCover
+enum TrailReportType: String {
+    case moguls = "Moguls"
+    case ice = "Icy"
+    case crowded = "Crowded"
+    case thinCover = "Thin Cover"
 }
 
 struct TrailReport: Codable {

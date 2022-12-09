@@ -115,8 +115,8 @@ class SignInViewController: UIViewController
                     let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
                     UserDefaults.standard.set("\(user.userName)", forKey: "userUsername")
                     UserDefaults.standard.set("\(user.password)", forKey: "userPassword")
-                    UserDefaults.standard.set("\(user.alertSettings)", forKey: "userAlertSettings")
-                    UserDefaults.standard.set("\(user.routingPreference)", forKey: "userRoutingPreference")
+                    UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
+                    UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
                     UserDefaults.standard.set("\(userIdString)", forKey: "userId")
                     // This is to get the SceneDelegate object from your view controller
                     // then call the change root view controller function to change to main tab bar

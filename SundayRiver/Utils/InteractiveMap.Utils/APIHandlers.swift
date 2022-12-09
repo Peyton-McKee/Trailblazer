@@ -169,7 +169,7 @@ func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
     }.resume()
 }
 
-func saveUser(_ user: User) {
+func saveUser(_ user: User, completion: @escaping (Result<User, Error>) -> Void) {
     let url = URL(string: "\(getBaseUrl())/api/users")!
     
     let encoder = JSONEncoder()
@@ -184,8 +184,7 @@ func saveUser(_ user: User) {
             let decoder = JSONDecoder()
             if let user = try? decoder.decode(User.self, from: data) {
                 print(user.userName)
-                InteractiveMapViewController.currentUser = user
-                
+                completion(.success(user))
                 
             } else {
                 print("Could not save user")

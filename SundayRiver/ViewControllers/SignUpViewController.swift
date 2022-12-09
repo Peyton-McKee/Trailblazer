@@ -132,12 +132,25 @@ class SignUpViewController : UIViewController {
                 }
             }
             if !foundMatch {
-                saveUser(myUser)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-                
-                //say user successfully created
+                saveUser(myUser, completion: {
+                    value in
+                    guard let user = try? value.get() else
+                    {
+                        print("Error: Couldnt save user")
+                        return
+                    }
+                    DispatchQueue.main.async{
+                        InteractiveMapViewController.currentUser = user
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                        UserDefaults.standard.set("\(user.userName)", forKey: "userUsername")
+                        UserDefaults.standard.set("\(user.password)", forKey: "userPassword")
+                        UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
+                        UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
+                        UserDefaults.standard.set("\(user.id!)", forKey: "userId")
+                    }
+                })
             }
         })
     }

@@ -57,7 +57,7 @@ class AlertPreferencesViewController: UIViewController {
     lazy var mogulAlertSwitch : UISwitch = {
         var mySwitch = UISwitch()
         mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
-        if UserDefaults.standard.stringArray(forKey: "alertSettings")!.contains("moguls")
+        if UserDefaults.standard.array(forKey: "alertSettings")!.contains(where: { $0 as! String == TrailReportType.moguls.rawValue})
         {
             mySwitch.isOn = true
         }
@@ -89,7 +89,7 @@ class AlertPreferencesViewController: UIViewController {
     lazy var icyAlertSwitch : UISwitch = {
         var mySwitch = UISwitch()
         mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
-        if UserDefaults.standard.stringArray(forKey: "alertSettings")!.contains("icy")
+        if UserDefaults.standard.array(forKey: "alertSettings")!.contains(where: { $0 as! String == TrailReportType.ice.rawValue})
         {
             mySwitch.isOn = true
         }
@@ -121,7 +121,7 @@ class AlertPreferencesViewController: UIViewController {
     }()
     lazy var crowdedAlertSwitch : UISwitch = {
         var mySwitch = UISwitch()
-        if UserDefaults.standard.stringArray(forKey: "alertSettings")!.contains("crowded")
+        if UserDefaults.standard.array(forKey: "alertSettings")!.contains(where: { $0 as! String == TrailReportType.crowded.rawValue})
         {
             mySwitch.isOn = true
         }
@@ -156,7 +156,7 @@ class AlertPreferencesViewController: UIViewController {
     lazy var thinCoverAlertSwitch : UISwitch = {
         var mySwitch = UISwitch()
         mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
-        if UserDefaults.standard.stringArray(forKey: "alertSettings")!.contains("thin cover")
+        if UserDefaults.standard.array(forKey: "alertSettings")!.contains(where: { $0 as! String == TrailReportType.thinCover.rawValue})
         {
             mySwitch.isOn = true
         }
@@ -184,33 +184,62 @@ class AlertPreferencesViewController: UIViewController {
         {
             switch sender{
             case mogulAlertSwitch:
-                InteractiveMapViewController.currentUser?.alertSettings.append("moguls")
+                InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.moguls.rawValue)
+                for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.moguls.rawValue}){
+                    InteractiveMapViewController.notiAnnotation = trailReport
+                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
+                    
+                }
             case icyAlertSwitch:
-                InteractiveMapViewController.currentUser?.alertSettings.append("icy")
+                InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.ice.rawValue)
+                for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.ice.rawValue}){
+                    InteractiveMapViewController.notiAnnotation = trailReport
+                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
+                    
+                }
             case crowdedAlertSwitch:
-                InteractiveMapViewController.currentUser?.alertSettings.append("crowded")
+                InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.crowded.rawValue)
+                for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.crowded.rawValue}){
+                    InteractiveMapViewController.notiAnnotation = trailReport
+                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
+                    
+                }
             case thinCoverAlertSwitch:
-                InteractiveMapViewController.currentUser?.alertSettings.append("thin cover")
+                InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.thinCover.rawValue)
+                for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.thinCover.rawValue}){
+                    InteractiveMapViewController.notiAnnotation = trailReport
+                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
+                    
+                }
             default:
                 break
             }
+            
         }
         else
         {
             switch sender{
             case mogulAlertSwitch:
-                InteractiveMapViewController.currentUser?.alertSettings.removeAll(where: { $0 == "moguls"})
+                InteractiveMapViewController.currentUser.alertSettings.removeAll(where: { $0 == TrailReportType.moguls.rawValue})
+                LocationManager().unregesterNotification(for: TrailReportType.moguls.rawValue)
             case icyAlertSwitch:
-                InteractiveMapViewController.currentUser?.alertSettings.removeAll(where: {$0 == "icy"})
+                InteractiveMapViewController.currentUser.alertSettings.removeAll(where: {$0 == TrailReportType.ice.rawValue})
+                LocationManager().unregesterNotification(for: TrailReportType.ice.rawValue)
+
             case crowdedAlertSwitch:
-                InteractiveMapViewController.currentUser?.alertSettings.removeAll(where: {$0 == "crowded"})
+                InteractiveMapViewController.currentUser.alertSettings.removeAll(where: {$0 == TrailReportType.crowded.rawValue})
+                LocationManager().unregesterNotification(for: TrailReportType.crowded.rawValue)
+
             case thinCoverAlertSwitch:
-                InteractiveMapViewController.currentUser?.alertSettings.removeAll(where: {$0 == "thin cover"})
+                InteractiveMapViewController.currentUser.alertSettings.removeAll(where: {$0 == TrailReportType.thinCover.rawValue})
+                LocationManager().unregesterNotification(for: TrailReportType.thinCover.rawValue)
+
             default:
                 break
             }
         }
-        UserDefaults.standard.set(InteractiveMapViewController.currentUser?.alertSettings, forKey: "alertSettings")
-        updateUser(InteractiveMapViewController.currentUser!)
+        
+        UserDefaults.standard.set(InteractiveMapViewController.currentUser.alertSettings, forKey: "alertSettings")
+        updateUser(InteractiveMapViewController.currentUser)
     }
 }

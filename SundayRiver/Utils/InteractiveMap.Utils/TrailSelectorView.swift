@@ -187,10 +187,11 @@ final class TrailSelectorView : UIView {
     var advancedTrails : [ImageAnnotation] = []
     var expertsOnlyTrails : [ImageAnnotation] = []
     var terrainParks : [ImageAnnotation] = []
+    var lifts: [ImageAnnotation] = []
     var filteredTrails : [ImageAnnotation] = []
     var totalTrails: [ImageAnnotation] = []
     
-    var sections = ["Easy", "Intermediate", "Advanced", "Expert's Only"]
+    var sections = ["Easy", "Intermediate", "Advanced", "Experts Only", "Terrain Parks", "Lifts"]
     
     var searchBar : UITextField?
     var searchBarHeaderView : SearchBarTableHeaderView?
@@ -239,7 +240,7 @@ final class TrailSelectorView : UIView {
                 case .terrainPark:
                     terrainParks.append(annotation)
                 default:
-                    continue
+                    lifts.append(annotation)
                 }
             }
         }
@@ -316,6 +317,8 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
            return expertsOnlyTrails.count
        case 4:
            return terrainParks.count
+       case 5:
+           return lifts.count
        default:
            return 0
        }
@@ -347,6 +350,9 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             case 4:
                 cell.label.text = terrainParks[indexPath.row].title
                 cell.cellTrail = terrainParks[indexPath.row]
+            case 5:
+                cell.label.text = lifts[indexPath.row].title
+                cell.cellTrail = lifts[indexPath.row]
             default:
                 break
             }
@@ -357,11 +363,13 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
         case .intermediate:
             cell.label.textColor = .blue
         case .advanced:
-            cell.label.textColor = .black
+            cell.label.textColor = .darkGray
         case .expertsOnly:
-            cell.label.textColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
-        default:
+            cell.label.textColor = .black
+        case .terrainPark:
             cell.label.textColor = .orange
+        default:
+            cell.label.textColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
         }
         cell.label.font = UIFont(name: "markerfelt-wide", size: 15)
         cell.backgroundColor = .gray

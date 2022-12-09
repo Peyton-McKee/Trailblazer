@@ -14,7 +14,7 @@ class InteractiveMapViewController: UIViewController
 {
     @ObservedObject private var connectivityController = ConnectivityController.shared
     
-    static var currentUser : User?
+    static var currentUser : User = User(userName: "", password: "", alertSettings: [], routingPreference: "")
     static var routeInProgress = false
     static var destination : ImageAnnotation?
     static var configuredClasses = false
@@ -23,9 +23,14 @@ class InteractiveMapViewController: UIViewController
     static var selectedGraph = MapInterpreter.shared.difficultyGraph
     static var wasSelectedWithOrigin = false
     static var didChooseDestination = false
-    static var notiAnnotation : ImageAnnotation?
+    static var notiAnnotation : TrailReport?
+    static var trailReports : [TrailReport] = []
     
-    var trailReports : [TrailReport]?
+    lazy var loadingScreen : LoadingView = {
+        var view = LoadingView(frame: self.view.frame)
+        view.isHidden = true
+        return view
+    }()
     var selectedTrailReport : TrailReport?
     var selectedTrailReportAnnotation : ImageAnnotation?
     
@@ -92,11 +97,11 @@ class InteractiveMapViewController: UIViewController
         locationManager.locationManager.startUpdatingHeading()
         locationManager.locationManager.startUpdatingLocation()
 //        getTrailReportsFromDB()
-        
+        self.view.addSubview(loadingScreen)
         WebAnalysis.shared.makeRequest()
         if (MapInterpreter.shared.mapView.annotations.isEmpty)
         {
-            MapInterpreter.shared.getMap(id: "24FFAF6E-CEB4-4E81-AFBC-584AA349D40D")
+            MapInterpreter.shared.getMap(id: "23AFB7CA-A4FD-4F2D-8ABB-014A4E62401E")
         }
         self.tabBarController?.tabBar.backgroundColor = .black
     }
@@ -124,7 +129,7 @@ class InteractiveMapViewController: UIViewController
     
     @objc private func createNotification()
     {
-        guard let notiAnnotation = Self.notiAnnotation, let id = Self.notiAnnotation?.id, let title = Self.notiAnnotation?.subtitle else
+        guard let notiAnnotation = Self.notiAnnotation, let id = Self.notiAnnotation?.id, let title = Self.notiAnnotation?.type else
         {
             print("NotiAnnotation configured incorrectly or does not exist")
             return
@@ -137,7 +142,7 @@ class InteractiveMapViewController: UIViewController
     private func configureMyMap()
     {
         //        setupTileRenderer()
-        myMap.mapType = MKMapType.hybridFlyover
+        myMap.mapType = MKMapType.satellite
         //        myMap.mapType = MKMapType.satellite
         //        myMap.mapType = MKMapType.satelliteFlyover
         myMap.isRotateEnabled = true
@@ -574,7 +579,7 @@ class InteractiveMapViewController: UIViewController
         {
             //Then youve completed your journey
             //figure out something to do buckoh
-            guard let currentUserId = Self.currentUser?.id else
+            guard let currentUserId = Self.currentUser.id else
             {
                 cancelRoute()
                 return true
@@ -658,75 +663,80 @@ class InteractiveMapViewController: UIViewController
     {
         self.searchBar.dismissExtendedView()
         let destinationAnnotation = Self.destination!
-        if let pathToDestination = createRoute(){
-            var description = ""
-            var trailReports = ""
-            var count = 0
-            var foundAnnotations : [ImageAnnotation] = []
-            let mapImageAnnotations = myMap.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
-        
-            for vertex in pathToDestination
-            {
-                foundAnnotations = mapImageAnnotations.filter({
-                    if($0.coordinate == vertex.value.coordinate && !description.contains($0.title!))
+        self.loadingScreen.isHidden = false
+        DispatchQueue.global().async {
+            if let pathToDestination = self.createRoute(){
+                DispatchQueue.main.async { [self] in
+                    var description = ""
+                    var trailReports = ""
+                    var count = 0
+                    var foundAnnotations : [ImageAnnotation] = []
+                    let mapImageAnnotations = myMap.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
+                    for vertex in pathToDestination
                     {
-                        description.append("\(vertex.value.title!); ")
-                        count += 1
-                        return true
+                        foundAnnotations = mapImageAnnotations.filter({
+                            if($0.coordinate == vertex.value.coordinate && !description.contains($0.title!))
+                            {
+                                description.append("\(vertex.value.title!); ")
+                                count += 1
+                                return true
+                            }
+                            return false
+                        })
+                        myMap.removeAnnotations(myMap.annotations)
+                        myMap.addAnnotations(foundAnnotations)
+                        if let trailReport = (vertex.value.trailReport)
+                        {
+                            trailReports.append("\(trailReport.subtitle!) ")
+                        }
                     }
-                    return false
-                })
-                myMap.removeAnnotations(myMap.annotations)
-                myMap.addAnnotations(foundAnnotations)
-                if let trailReport = (vertex.value.trailReport)
-                {
-                    trailReports.append("\(trailReport.subtitle!) ")
+                    if(!Self.routeInProgress)
+                    {
+                        routeOverviewView = RouteOverviewView(frame: self.view.frame)
+                        self.totalDirections = description
+                        if description.isEmpty
+                        {
+                            routeOverviewView!.directionsLabel.text = "Could not find Route"
+                            routeOverviewView?.viewFullDirectionsButton.isHidden = true
+                        }
+                        else if count <= 2
+                        {
+                            let index = description.index(description.startIndex, offsetBy: description.count - 2)
+                            description = String(description.prefix(upTo: index))
+                            routeOverviewView!.directionsLabel.text = "\(description)"
+                            routeOverviewView?.viewFullDirectionsButton.isHidden = false
+                            
+                        }
+                        else
+                        {
+                            var searchRange = description.startIndex..<description.endIndex
+                            var indices: [String.Index] = []
+                            while let range = description.range(of: ";", options: .caseInsensitive, range: searchRange)
+                            {
+                                searchRange = range.upperBound..<searchRange.upperBound
+                                indices.append(range.lowerBound)
+                            }
+                            routeOverviewView!.directionsLabel.text = "\(description.prefix(upTo: indices[1]))"
+                            routeOverviewView?.viewFullDirectionsButton.isHidden = false
+                            
+                        }
+                        initialLocation = getClosestAnnotation(origin: Self.origin!).value.title
+                        routeOverviewView!.tripLbl.text = "\(Self.origin!.title!) -> \(destinationAnnotation.title!)"
+                        routeOverviewView!.trailReportLabel.text = trailReports
+                        routeOverviewView!.viewFullDirectionsButton.addTarget(self, action: #selector(presentFullDirections), for: .touchUpInside)
+                        routeOverviewView!.configureItems()
+                        presentRouteOverviewMenu()
+                        Self.routeInProgress = true
+                        
+                        let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
+                        let zoomCoordinate = Self.destination?.coordinate ?? myMap.region.center
+                        let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
+                        myMap.setRegion(zoomed, animated: true)
+                        loadingScreen.isHidden = true
+                    }
+                    return
                 }
             }
-            if(!Self.routeInProgress)
-            {
-                routeOverviewView = RouteOverviewView(frame: self.view.frame)
-                self.totalDirections = description
-                if description.isEmpty
-                {
-                    routeOverviewView!.directionsLabel.text = "Could not find Route"
-                    routeOverviewView?.viewFullDirectionsButton.isHidden = true
-                }
-                else if count <= 2
-                {
-                    let index = description.index(description.startIndex, offsetBy: description.count - 2)
-                    description = String(description.prefix(upTo: index))
-                    routeOverviewView!.directionsLabel.text = "\(description)"
-                    routeOverviewView?.viewFullDirectionsButton.isHidden = false
-                    
-                }
-                else
-                {
-                    var searchRange = description.startIndex..<description.endIndex
-                    var indices: [String.Index] = []
-                    while let range = description.range(of: ";", options: .caseInsensitive, range: searchRange)
-                    {
-                        searchRange = range.upperBound..<searchRange.upperBound
-                        indices.append(range.lowerBound)
-                    }
-                    routeOverviewView!.directionsLabel.text = "\(description.prefix(upTo: indices[1]))"
-                    routeOverviewView?.viewFullDirectionsButton.isHidden = false
-                    
-                }
-                initialLocation = getClosestAnnotation(origin: Self.origin!).value.title
-                routeOverviewView!.tripLbl.text = "\(Self.origin!.title!) -> \(destinationAnnotation.title!)"
-                routeOverviewView!.trailReportLabel.text = trailReports
-                routeOverviewView!.viewFullDirectionsButton.addTarget(self, action: #selector(presentFullDirections), for: .touchUpInside)
-                routeOverviewView!.configureItems()
-                presentRouteOverviewMenu()
-                Self.routeInProgress = true
-                
-                let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
-                let zoomCoordinate = Self.destination?.coordinate ?? myMap.region.center
-                let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
-                myMap.setRegion(zoomed, animated: true)
-            }
-            return
         }
     }
     
@@ -744,16 +754,16 @@ class InteractiveMapViewController: UIViewController
         let previousOverlays = myMap.overlays
         let previousAnnotations = myMap.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
         print(pathCreated.count)
-        print(Thread.current)
-        if let newRoute = createRoute()
-        {
-            print("test2")
-            DispatchQueue.main.async {
-                self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
+        DispatchQueue.global().async {
+            if let newRoute = self.createRoute()
+            {
+                DispatchQueue.main.async {
+                    self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
+                }
+                
             }
-            
+            return
         }
-        return
     }
     
     func displayRouteHelper(route: [Vertex<ImageAnnotation>], previousOverlays: [MKOverlay], previousAnnotations: [ImageAnnotation])
@@ -926,7 +936,7 @@ class InteractiveMapViewController: UIViewController
         recenter()
         
         Self.origin = nil
-        guard (Self.currentUser?.id) != nil else{return}
+        guard (Self.currentUser.id) != nil else{return}
         self.timer = Date.now
     }
     
@@ -942,15 +952,15 @@ class InteractiveMapViewController: UIViewController
         switch type
         {
         case .moguls:
-            originAnnotation.subtitle = "Moguls"
+            originAnnotation.subtitle = TrailReportType.moguls.rawValue
         case .ice:
-            originAnnotation.subtitle = "Icy"
+            originAnnotation.subtitle = TrailReportType.ice.rawValue
         case .crowded:
-            originAnnotation.subtitle = "Crowded"
+            originAnnotation.subtitle = TrailReportType.crowded.rawValue
         case .thinCover:
-            originAnnotation.subtitle = "Thin Cover"
+            originAnnotation.subtitle = TrailReportType.crowded.rawValue
         }
-        guard let currentUserId = Self.currentUser?.id else { return }
+        guard let currentUserId = Self.currentUser.id else { return }
         saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
         closestTrail.trailReport = originAnnotation
         myMap.addAnnotation(originAnnotation)
@@ -1009,7 +1019,7 @@ extension InteractiveMapViewController: MKMapViewDelegate
         }
         if (view.annotation?.title! == nil)
         {
-            selectedTrailReport = trailReports?.first(where: {$0.id == annotation.id})
+            selectedTrailReport = Self.trailReports.first(where: {$0.id == annotation.id})
             selectedTrailReportAnnotation = annotation
             cancelTrailReportView.isHidden = false
             return
@@ -1159,15 +1169,13 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
         {
             Self.origin = nil
             canFindPathAgain = false
-            DispatchQueue.global().async {
-                self.displayRoute()
-            }
+            self.displayRoute()
+            
         }
-        guard let currentUserId = Self.currentUser?.id else
+        guard let currentUserId = Self.currentUser.id else
         {
             return
         }
         saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
     }
 }
-

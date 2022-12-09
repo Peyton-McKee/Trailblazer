@@ -101,8 +101,8 @@ extension RoutingPreferencesViewController: UIPickerViewDelegate, UIPickerViewDa
 //        return NSAttributedString(string: options[row].rawValue, attributes: [NSAttributedString.Key.foregroundColor: UIColor.yellow])
 //    }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        InteractiveMapViewController.currentUser?.routingPreference = options[row].rawValue
-        UserDefaults.standard.set(InteractiveMapViewController.currentUser?.routingPreference, forKey: "routingPreference")
-        updateUser(InteractiveMapViewController.currentUser!)
+        InteractiveMapViewController.currentUser.routingPreference = options[row].rawValue
+        UserDefaults.standard.set(InteractiveMapViewController.currentUser.routingPreference, forKey: "routingPreference")
+        updateUser(InteractiveMapViewController.currentUser)
     }
 }

@@ -60,12 +60,7 @@ class UserSettingsViewController : UIViewController {
         view.addSubview(userNameLabel)
         createConstraints(item: userNameLabel, distFromLeft: 0, distFromTop: Double(view.bounds.height)/10)
         userNameLabel.font = UIFont(name: "markerfelt-wide", size: 20)
-        guard let currentUserUserName = InteractiveMapViewController.currentUser?.userName else {
-            userNameLabel.text = "User not found"
-            return
-            
-        }
-        userNameLabel.text = "Username: \(currentUserUserName)"
+        userNameLabel.text = "Username: \(InteractiveMapViewController.currentUser.userName)"
         
         
     }
@@ -74,7 +69,9 @@ class UserSettingsViewController : UIViewController {
         UserDefaults.standard.removeObject(forKey: "userUsername")
         UserDefaults.standard.removeObject(forKey: "userPassword")
         UserDefaults.standard.removeObject(forKey: "userId")
-        InteractiveMapViewController.currentUser = nil
+        UserDefaults.standard.removeObject(forKey: "alertSettings")
+        UserDefaults.standard.removeObject(forKey: "routingPreference")
+        InteractiveMapViewController.currentUser = User(userName: "", password: "", alertSettings: [], routingPreference: "")
         InteractiveMapViewController.destination = nil
         InteractiveMapViewController.routeInProgress = false
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -104,13 +101,12 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "userSettingsCell", for: indexPath) as! UserSettingsTableViewCell
         cell.layer.cornerRadius = 15
         cell.backgroundColor = .black
-        cell.backView.frame = CGRect(x: 0, y: 0, width: cell.bounds.width, height: cell.bounds.height)
         cell.setting = options[indexPath.row]
         cell.configure()
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 30
+        return 80
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

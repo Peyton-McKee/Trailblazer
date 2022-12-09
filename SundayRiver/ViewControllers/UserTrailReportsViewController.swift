@@ -59,7 +59,7 @@ class UserTrailReportsViewController: UIViewController{
     }
     private func getUsersTrailReports()
     {
-        guard let currentUserId = InteractiveMapViewController.currentUser?.id else {
+        guard let currentUserId = InteractiveMapViewController.currentUser.id else {
             //user is a guest
             return
         }
