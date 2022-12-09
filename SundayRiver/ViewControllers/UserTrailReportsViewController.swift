@@ -94,7 +94,6 @@ class UserTrailReportsViewController: UIViewController{
                 }
             } else {
                 print("Unable to parse JSON response.")
-                completion(.failure(error!))
             }
         }.resume()
     }

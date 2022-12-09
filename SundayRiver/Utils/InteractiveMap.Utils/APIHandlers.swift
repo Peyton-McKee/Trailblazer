@@ -188,6 +188,7 @@ func saveUser(_ user: User, completion: @escaping (Result<User, Error>) -> Void)
                 
             } else {
                 print("Could not save user")
+                
             }
         }
     }.resume()
