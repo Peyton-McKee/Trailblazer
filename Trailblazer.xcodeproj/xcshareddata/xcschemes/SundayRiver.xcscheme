@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "158749F327D82635001B9025"
-               BuildableName = "SundayRiver.app"
-               BlueprintName = "SundayRiver"
-               ReferencedContainer = "container:SundayRiver.xcodeproj">
+               BuildableName = "TrailblazerIOS.app"
+               BlueprintName = "TrailblazerIOS"
+               ReferencedContainer = "container:Trailblazer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "158749F327D82635001B9025"
-            BuildableName = "SundayRiver.app"
-            BlueprintName = "SundayRiver"
-            ReferencedContainer = "container:SundayRiver.xcodeproj">
+            BuildableName = "TrailblazerIOS.app"
+            BlueprintName = "TrailblazerIOS"
+            ReferencedContainer = "container:Trailblazer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "158749F327D82635001B9025"
-            BuildableName = "SundayRiver.app"
-            BlueprintName = "SundayRiver"
-            ReferencedContainer = "container:SundayRiver.xcodeproj">
+            BuildableName = "TrailblazerIOS.app"
+            BlueprintName = "TrailblazerIOS"
+            ReferencedContainer = "container:Trailblazer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

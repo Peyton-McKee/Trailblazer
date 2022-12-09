@@ -17,7 +17,7 @@
                BlueprintIdentifier = "1591DBB5291AE7B800978FD8"
                BuildableName = "Trailblazer Watch App.app"
                BlueprintName = "Trailblazer Watch App"
-               ReferencedContainer = "container:SundayRiver.xcodeproj">
+               ReferencedContainer = "container:Trailblazer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "1591DBB5291AE7B800978FD8"
             BuildableName = "Trailblazer Watch App.app"
             BlueprintName = "Trailblazer Watch App"
-            ReferencedContainer = "container:SundayRiver.xcodeproj">
+            ReferencedContainer = "container:Trailblazer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
@@ -68,7 +68,7 @@
             BlueprintIdentifier = "1591DBB5291AE7B800978FD8"
             BuildableName = "Trailblazer Watch App.app"
             BlueprintName = "Trailblazer Watch App"
-            ReferencedContainer = "container:SundayRiver.xcodeproj">
+            ReferencedContainer = "container:Trailblazer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

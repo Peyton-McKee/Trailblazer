@@ -121,7 +121,7 @@
 		1524945429082897009E7059 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		1524945629084F89009E7059 /* UserTrailReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTrailReportsViewController.swift; sourceTree = "<group>"; };
 		1524945829085D88009E7059 /* TrailReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportTableViewCell.swift; sourceTree = "<group>"; };
-		152C69B7291B39530092E537 /* SundayRiver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SundayRiver.entitlements; sourceTree = "<group>"; };
+		152C69B7291B39530092E537 /* Trailblazer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Trailblazer.entitlements; sourceTree = "<group>"; };
 		152C69B8291B3A750092E537 /* Trailblazer Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Trailblazer Watch App.entitlements"; sourceTree = "<group>"; };
 		152C69B9291B50120092E537 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		15316620290AE86100206E7E /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
@@ -142,7 +142,7 @@
 		15545B1728E297CA005D0886 /* Game Test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Game Test.gpx"; sourceTree = "<group>"; };
 		15545B1928E4ABD1005D0886 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Tiles; sourceTree = "<group>"; };
 		15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorTableViewCell.swift; sourceTree = "<group>"; };
-		158749F427D82635001B9025 /* SundayRiver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SundayRiver.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		158749F427D82635001B9025 /* TrailblazerIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrailblazerIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158749F727D82635001B9025 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		158749F927D82635001B9025 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		158749FB27D82635001B9025 /* TitleScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScreen.swift; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 		158749EB27D82635001B9025 = {
 			isa = PBXGroup;
 			children = (
-				158749F627D82635001B9025 /* SundayRiver */,
+				158749F627D82635001B9025 /* TrailblazerIOS */,
 				153DABAB2936B9C8001ABAAD /* Shared */,
 				1591DBB7291AE7B800978FD8 /* Trailblazer Watch App */,
 				158749F527D82635001B9025 /* Products */,
@@ -323,16 +323,16 @@
 		158749F527D82635001B9025 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				158749F427D82635001B9025 /* SundayRiver.app */,
+				158749F427D82635001B9025 /* TrailblazerIOS.app */,
 				1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		158749F627D82635001B9025 /* SundayRiver */ = {
+		158749F627D82635001B9025 /* TrailblazerIOS */ = {
 			isa = PBXGroup;
 			children = (
-				152C69B7291B39530092E537 /* SundayRiver.entitlements */,
+				152C69B7291B39530092E537 /* Trailblazer.entitlements */,
 				158749F727D82635001B9025 /* AppDelegate.swift */,
 				158749F927D82635001B9025 /* SceneDelegate.swift */,
 				158749FD27D82635001B9025 /* Main.storyboard */,
@@ -345,7 +345,7 @@
 				15545B1928E4ABD1005D0886 /* Tiles */,
 				15874A0527D82636001B9025 /* Info.plist */,
 			);
-			path = SundayRiver;
+			path = TrailblazerIOS;
 			sourceTree = "<group>";
 		};
 		1591DBB7291AE7B800978FD8 /* Trailblazer Watch App */ = {
@@ -382,9 +382,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		158749F327D82635001B9025 /* SundayRiver */ = {
+		158749F327D82635001B9025 /* TrailblazerIOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 15874A0827D82636001B9025 /* Build configuration list for PBXNativeTarget "SundayRiver" */;
+			buildConfigurationList = 15874A0827D82636001B9025 /* Build configuration list for PBXNativeTarget "TrailblazerIOS" */;
 			buildPhases = (
 				158749F027D82635001B9025 /* Sources */,
 				158749F127D82635001B9025 /* Frameworks */,
@@ -396,9 +396,9 @@
 			dependencies = (
 				153DABAF2936C44A001ABAAD /* PBXTargetDependency */,
 			);
-			name = SundayRiver;
+			name = TrailblazerIOS;
 			productName = SundayRiver;
-			productReference = 158749F427D82635001B9025 /* SundayRiver.app */;
+			productReference = 158749F427D82635001B9025 /* TrailblazerIOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1591DBB5291AE7B800978FD8 /* Trailblazer Watch App */ = {
@@ -436,7 +436,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 158749EF27D82635001B9025 /* Build configuration list for PBXProject "SundayRiver" */;
+			buildConfigurationList = 158749EF27D82635001B9025 /* Build configuration list for PBXProject "Trailblazer" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -449,7 +449,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				158749F327D82635001B9025 /* SundayRiver */,
+				158749F327D82635001B9025 /* TrailblazerIOS */,
 				1591DBB5291AE7B800978FD8 /* Trailblazer Watch App */,
 			);
 		};
@@ -709,7 +709,7 @@
 				DEVELOPMENT_TEAM = K728A8S3D6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SundayRiver/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Sunday River TB";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sunday River";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses your location to personalize your experience";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -744,7 +744,7 @@
 				DEVELOPMENT_TEAM = K728A8S3D6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SundayRiver/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Sunday River TB";
+				INFOPLIST_KEY_CFBundleDisplayName = "Sunday River";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses your location to personalize your experience";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -840,7 +840,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		158749EF27D82635001B9025 /* Build configuration list for PBXProject "SundayRiver" */ = {
+		158749EF27D82635001B9025 /* Build configuration list for PBXProject "Trailblazer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15874A0627D82636001B9025 /* Debug */,
@@ -849,7 +849,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		15874A0827D82636001B9025 /* Build configuration list for PBXNativeTarget "SundayRiver" */ = {
+		15874A0827D82636001B9025 /* Build configuration list for PBXNativeTarget "TrailblazerIOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				15874A0927D82636001B9025 /* Debug */,
