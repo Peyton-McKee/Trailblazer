@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1320"
+   LastUpgradeVersion = "1410"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "158749F327D82635001B9025"
-               BuildableName = "SundayRiver.app"
-               BlueprintName = "SundayRiver"
-               ReferencedContainer = "container:SundayRiver.xcodeproj">
+               BlueprintIdentifier = "1591DBB5291AE7B800978FD8"
+               BuildableName = "Trailblazer Watch App.app"
+               BlueprintName = "Trailblazer Watch App"
+               ReferencedContainer = "container:Trailblazer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,15 +44,15 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "158749F327D82635001B9025"
-            BuildableName = "SundayRiver.app"
-            BlueprintName = "SundayRiver"
-            ReferencedContainer = "container:SundayRiver.xcodeproj">
+            BlueprintIdentifier = "1591DBB5291AE7B800978FD8"
+            BuildableName = "Trailblazer Watch App.app"
+            BlueprintName = "Trailblazer Watch App"
+            ReferencedContainer = "container:Trailblazer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
-         identifier = "../../Shared/Game Test.gpx"
-         referenceType = "0">
+         identifier = "com.apple.dt.IDEFoundation.CurrentLocationScenarioIdentifier"
+         referenceType = "1">
       </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction
@@ -65,10 +65,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "158749F327D82635001B9025"
-            BuildableName = "SundayRiver.app"
-            BlueprintName = "SundayRiver"
-            ReferencedContainer = "container:SundayRiver.xcodeproj">
+            BlueprintIdentifier = "1591DBB5291AE7B800978FD8"
+            BuildableName = "Trailblazer Watch App.app"
+            BlueprintName = "Trailblazer Watch App"
+            ReferencedContainer = "container:Trailblazer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
