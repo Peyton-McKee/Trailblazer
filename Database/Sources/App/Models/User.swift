@@ -14,7 +14,7 @@ final class User: Model, Content {
     @ID
     var id: UUID?
     
-    @Field(key: "userName")
+    @Field(key: "username")
     var username: String
     
     @Field(key: "password")
