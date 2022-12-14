@@ -56,6 +56,16 @@ final class MapInterpreter: NSObject {
     }
     func getMap(id: String)
     {
+//        if let map = UserDefaults.standard.array(forKey: id) as? [CustomPolyline], let distanceGraph = UserDefaults.standard.value(forKey: "\(id)/distanceGraph") as? EdgeWeightedDigraph<ImageAnnotation>, let difficultyGraph = UserDefaults.standard.value(forKey: "\(id)/difficultyGraph") as? EdgeWeightedDigraph<ImageAnnotation>
+//        {
+//            self.mapView.addOverlays(map)
+//            self.distanceGraph = distanceGraph
+//            self.difficultyGraph = difficultyGraph
+//            DispatchQueue.global().async{
+//                self.getTrailReportsFromDB()
+//            }
+//            return
+//        }
         let url = URL(string: "\(baseURL)/api/maps/\(id)")!
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -195,7 +205,6 @@ final class MapInterpreter: NSObject {
     }
     private func createMap(map: Map)
     {
-        var annotations : [ImageAnnotation] = []
         var polylines: [CustomPolyline] = []
         guard let trails = map.mapTrail else {
             print("mapTrails Don't Exist")
@@ -276,6 +285,9 @@ final class MapInterpreter: NSObject {
         DispatchQueue.global().async{
             self.createDifficultyGraph()
             self.createDistanceGraph()
+            self.getTrailReportsFromDB()
+//            UserDefaults.standard.set(self.difficultyGraph, forKey: "\(self.map?.id)/difficultyGraph")
+//            UserDefaults.standard.set(self.distanceGraph, forKey: "\(self.map?.id)/distanceGraph")
         }
     }
     private func createDifficultyGraph()
@@ -412,7 +424,6 @@ final class MapInterpreter: NSObject {
             }
         }
         addIntersectingPointsTo(graph: distanceGraph)
-        getTrailReportsFromDB()
         print("Completed Distance Graph with \(distanceGraph.verticesCount()) vertices and  \(distanceGraph.edgesCount()) edges!")
     }
     private func addIntersectingPointsTo(graph: EdgeWeightedDigraph<ImageAnnotation>)

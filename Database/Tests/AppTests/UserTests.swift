@@ -2,7 +2,7 @@
 import XCTVapor
 
 final class UserTests: XCTestCase {
-    let userUserName = "Alice"
+    let userUsername = "Alice"
     let userPassword = "kitten12"
     let userAlertSettings = ["Moguls", "icy"]
     let userRoutingPreference = "Easiest"
@@ -16,7 +16,7 @@ final class UserTests: XCTestCase {
         app.shutdown()
     }
     func testUsersCanBeRetrievedFromAPI() throws {
-        let user = try User.create(userName: userUserName, password: userPassword, on: app.db)
+        let user = try User.create(from: UserSignUp(username: userUsername, password: userPassword, alertSettings: userAlertSettings, routingPreference: userRoutingPreference))
         _ = try User.create(on: app.db)
         try app.test(.GET, usersURI, afterResponse: {
             response in
@@ -24,7 +24,7 @@ final class UserTests: XCTestCase {
             let users = try response.content.decode([User].self)
             
             XCTAssertEqual(users.count, 2)
-            XCTAssertEqual(users[0].userName, userUserName)
+            XCTAssertEqual(users[0].username, userUsername)
             XCTAssertEqual(users[0].password, userPassword)
             XCTAssertEqual(users[0].alertSettings, userAlertSettings)
             XCTAssertEqual(users[0].routingPreference, userRoutingPreference)
@@ -32,7 +32,7 @@ final class UserTests: XCTestCase {
         })
     }
     func testUserCanBeSavedWithAPI() throws {
-        let user = User(userName: userUserName, password: userPassword, alertSettings: userAlertSettings, routingPreference: userRoutingPreference)
+        let user = User(username: userUsername, password: userPassword, alertSettings: userAlertSettings, routingPreference: userRoutingPreference)
         
         try app.test(.POST, usersURI, beforeRequest: {
             req in
@@ -40,7 +40,7 @@ final class UserTests: XCTestCase {
         }, afterResponse: { response in
             let receivedUser = try
             response.content.decode(User.self)
-            XCTAssertEqual(receivedUser.userName, userUserName)
+            XCTAssertEqual(receivedUser.username, userUsername)
             XCTAssertEqual(receivedUser.password, userPassword)
             XCTAssertEqual(receivedUser.alertSettings, userAlertSettings)
             XCTAssertEqual(receivedUser.routingPreference, userRoutingPreference)
@@ -50,7 +50,7 @@ final class UserTests: XCTestCase {
                 let users =
                 try secondResponse.content.decode([User].self)
                 XCTAssertEqual(users.count, 1)
-                XCTAssertEqual(users[0].userName, userUserName)
+                XCTAssertEqual(users[0].username, userUsername)
                 XCTAssertEqual(users[0].password, userPassword)
                 XCTAssertEqual(users[0].alertSettings, userAlertSettings)
                 XCTAssertEqual(users[0].routingPreference, userRoutingPreference)
@@ -60,14 +60,14 @@ final class UserTests: XCTestCase {
     }
     func testGettingASingleUserFromTheAPI() throws {
         // 1
-        let user = try User.create(userName: userUserName, password: userPassword, on: app.db)
+        let user = try User.create(userName: userUsername, password: userPassword, on: app.db)
         
         // 2
         try app.test(.GET, "\(usersURI)\(user.id!)",
                      afterResponse: { response in
             let receivedUser = try response.content.decode(User.self)
             // 3
-            XCTAssertEqual(receivedUser.userName, userUserName)
+            XCTAssertEqual(receivedUser.username, userUsername)
             XCTAssertEqual(receivedUser.password, userPassword)
             XCTAssertEqual(receivedUser.alertSettings, userAlertSettings)
             XCTAssertEqual(receivedUser.routingPreference, userRoutingPreference)
@@ -75,7 +75,7 @@ final class UserTests: XCTestCase {
         })
     }
     func testDeletingASingleUserFromTheAPI() throws {
-        let user = try User.create(userName: userUserName, password: userPassword, on: app.db)
+        let user = try User.create(userName: userUsername, password: userPassword, on: app.db)
         try app.test(.DELETE, "\(usersURI)\(user.id!)", afterResponse: {
             response in
             XCTAssertEqual(response.status, .noContent)

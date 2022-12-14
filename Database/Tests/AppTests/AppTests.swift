@@ -7,7 +7,7 @@ extension User {
         password: String = "test1Password",
         on database: Database
     ) throws -> User {
-        let user = User(userName: userName, password: password, alertSettings: ["moguls", "icy"], routingPreference: "easiest")
+        let user = User(username: userName, password: password, alertSettings: ["moguls", "icy"], routingPreference: "easiest")
         try user.save(on: database).wait()
         return user
     }

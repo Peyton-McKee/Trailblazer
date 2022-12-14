@@ -15,7 +15,7 @@ final class User: Model, Content {
     var id: UUID?
     
     @Field(key: "userName")
-    var userName: String
+    var username: String
     
     @Field(key: "password")
     var password: String
@@ -40,10 +40,23 @@ final class User: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, userName: String, password: String, alertSettings: [String], routingPreference: String) {
-        self.userName = userName
+    init(id: UUID? = nil, username: String, password: String, alertSettings: [String], routingPreference: String) {
+        self.username = username
         self.password = password
         self.alertSettings = alertSettings
         self.routingPreference = routingPreference
     }
+}
+extension User {
+    static func create(from userSignup: UserSignUp) throws -> User {
+        User(username: userSignup.username, password: try Bcrypt.hash(userSignup.password), alertSettings: [], routingPreference: "Easiest")
+    }
+}
+extension User: ModelAuthenticatable {
+  static let usernameKey = \User.$username
+  static let passwordHashKey = \User.$password
+  
+  func verify(password: String) throws -> Bool {
+    try Bcrypt.verify(password, created: self.password)
+  }
 }

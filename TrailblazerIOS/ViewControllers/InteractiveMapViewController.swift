@@ -14,7 +14,7 @@ class InteractiveMapViewController: UIViewController
 {
     @ObservedObject private var connectivityController = ConnectivityController.shared
     
-    static var currentUser : User = User(userName: "", password: "", alertSettings: [], routingPreference: "")
+    static var currentUser : User = User(userName: "Guest", password: "", alertSettings: [], routingPreference: "")
     static var routeInProgress = false
     static var destination : ImageAnnotation?
     static var configuredClasses = false
@@ -101,7 +101,7 @@ class InteractiveMapViewController: UIViewController
         WebAnalysis.shared.makeRequest()
         if (MapInterpreter.shared.mapView.annotations.isEmpty)
         {
-            MapInterpreter.shared.getMap(id: "23AFB7CA-A4FD-4F2D-8ABB-014A4E62401E")
+            MapInterpreter.shared.getMap(id: "24A06060-FB01-487C-8936-4DE6F7205A66")
         }
         self.tabBarController?.tabBar.backgroundColor = .black
     }

@@ -9,17 +9,17 @@ import UIKit
 
 class TitleScreen: UIViewController{
     
-    var sLabel = UILabel()
-    var uLabel = UILabel()
-    var nLabel = UILabel()
-    var dLabel = UILabel()
-    var aLabel = UILabel()
-    var yLabel = UILabel()
-    var rLabel = UILabel()
-    var iLabel = UILabel()
-    var vLabel = UILabel()
-    var eLabel = UILabel()
-    var r1Label = UILabel()
+//    var sLabel = UILabel()
+//    var uLabel = UILabel()
+//    var nLabel = UILabel()
+//    var dLabel = UILabel()
+//    var aLabel = UILabel()
+//    var yLabel = UILabel()
+//    var rLabel = UILabel()
+//    var iLabel = UILabel()
+//    var vLabel = UILabel()
+//    var eLabel = UILabel()
+//    var r1Label = UILabel()
     var preferredFont = UIFont(name: "markerfelt-wide", size: 40)
     var trailblazerLabel = UILabel()
     var signInButton = UIButton()
@@ -39,108 +39,108 @@ class TitleScreen: UIViewController{
     
     func animateText()
     {
-        animateLabels(label: sLabel, delay: 0.1)
-        animateLabels(label: uLabel, delay: 0.15)
-        animateLabels(label: nLabel, delay: 0.2)
-        animateLabels(label: dLabel, delay: 0.25)
-        animateLabels(label: aLabel, delay: 0.3)
-        animateLabels(label: yLabel, delay: 0.35)
-        animateLabels(label: rLabel, delay: 0.1)
-        animateLabels(label: iLabel, delay: 0.15)
-        animateLabels(label: vLabel, delay: 0.2)
-        animateLabels(label: eLabel, delay: 0.25)
-        animateLabels(label: r1Label, delay: 0.3)
+//        animateLabels(label: sLabel, delay: 0.1)
+//        animateLabels(label: uLabel, delay: 0.15)
+//        animateLabels(label: nLabel, delay: 0.2)
+//        animateLabels(label: dLabel, delay: 0.25)
+//        animateLabels(label: aLabel, delay: 0.3)
+//        animateLabels(label: yLabel, delay: 0.35)
+//        animateLabels(label: rLabel, delay: 0.1)
+//        animateLabels(label: iLabel, delay: 0.15)
+//        animateLabels(label: vLabel, delay: 0.2)
+//        animateLabels(label: eLabel, delay: 0.25)
+//        animateLabels(label: r1Label, delay: 0.3)
         animateTrailBlazer()
     }
     
     func configureText()
     {
-        sLabel.text = "S"
-        sLabel.translatesAutoresizingMaskIntoConstraints = false
-        sLabel.font = preferredFont
-        sLabel.textColor = .red//UIColor(red: 0.27, green: 0.23, blue: 0.42, alpha: 1)
-        
-        uLabel.text = "u"
-        uLabel.translatesAutoresizingMaskIntoConstraints = false
-        uLabel.font = preferredFont
-        uLabel.textColor = .red
-        
-        nLabel.text = "n"
-        nLabel.translatesAutoresizingMaskIntoConstraints = false
-        nLabel.font = preferredFont
-        nLabel.textColor = .red
-        
-        dLabel.text = "d"
-        dLabel.translatesAutoresizingMaskIntoConstraints = false
-        dLabel.font = preferredFont
-        dLabel.textColor = .red
-        
-        aLabel.text = "a"
-        aLabel.translatesAutoresizingMaskIntoConstraints = false
-        aLabel.font = preferredFont
-        aLabel.textColor = .red
-        
-        yLabel.text = "y"
-        yLabel.translatesAutoresizingMaskIntoConstraints = false
-        yLabel.font = preferredFont
-        yLabel.textColor = .red
-        
-        rLabel.text = "R"
-        rLabel.translatesAutoresizingMaskIntoConstraints = false
-        rLabel.font = preferredFont
-        rLabel.textColor = .red
-        
-        iLabel.text = "i"
-        iLabel.translatesAutoresizingMaskIntoConstraints = false
-        iLabel.font = preferredFont
-        iLabel.textColor = .red
-        
-        vLabel.text = "v"
-        vLabel.translatesAutoresizingMaskIntoConstraints = false
-        vLabel.font = preferredFont
-        vLabel.textColor = .red
-        
-        eLabel.text = "e"
-        eLabel.translatesAutoresizingMaskIntoConstraints = false
-        eLabel.font = preferredFont
-        eLabel.textColor = .red
-        
-        r1Label.text = "r"
-        r1Label.translatesAutoresizingMaskIntoConstraints = false
-        r1Label.font = preferredFont
-        r1Label.textColor = .red
+//        sLabel.text = "S"
+//        sLabel.translatesAutoresizingMaskIntoConstraints = false
+//        sLabel.font = preferredFont
+//        sLabel.textColor = .red//UIColor(red: 0.27, green: 0.23, blue: 0.42, alpha: 1)
+//
+//        uLabel.text = "u"
+//        uLabel.translatesAutoresizingMaskIntoConstraints = false
+//        uLabel.font = preferredFont
+//        uLabel.textColor = .red
+//
+//        nLabel.text = "n"
+//        nLabel.translatesAutoresizingMaskIntoConstraints = false
+//        nLabel.font = preferredFont
+//        nLabel.textColor = .red
+//
+//        dLabel.text = "d"
+//        dLabel.translatesAutoresizingMaskIntoConstraints = false
+//        dLabel.font = preferredFont
+//        dLabel.textColor = .red
+//
+//        aLabel.text = "a"
+//        aLabel.translatesAutoresizingMaskIntoConstraints = false
+//        aLabel.font = preferredFont
+//        aLabel.textColor = .red
+//
+//        yLabel.text = "y"
+//        yLabel.translatesAutoresizingMaskIntoConstraints = false
+//        yLabel.font = preferredFont
+//        yLabel.textColor = .red
+//
+//        rLabel.text = "R"
+//        rLabel.translatesAutoresizingMaskIntoConstraints = false
+//        rLabel.font = preferredFont
+//        rLabel.textColor = .red
+//
+//        iLabel.text = "i"
+//        iLabel.translatesAutoresizingMaskIntoConstraints = false
+//        iLabel.font = preferredFont
+//        iLabel.textColor = .red
+//
+//        vLabel.text = "v"
+//        vLabel.translatesAutoresizingMaskIntoConstraints = false
+//        vLabel.font = preferredFont
+//        vLabel.textColor = .red
+//
+//        eLabel.text = "e"
+//        eLabel.translatesAutoresizingMaskIntoConstraints = false
+//        eLabel.font = preferredFont
+//        eLabel.textColor = .red
+//
+//        r1Label.text = "r"
+//        r1Label.translatesAutoresizingMaskIntoConstraints = false
+//        r1Label.font = preferredFont
+//        r1Label.textColor = .red
         
         trailblazerLabel.text = "Trailblazer"
         trailblazerLabel.translatesAutoresizingMaskIntoConstraints = false
         trailblazerLabel.font = preferredFont
         trailblazerLabel.alpha = 0
-        trailblazerLabel.textColor = .black
+        trailblazerLabel.textColor = .red
         
         
-        self.view.addSubview(sLabel)
-        self.view.addSubview(uLabel)
-        self.view.addSubview(nLabel)
-        self.view.addSubview(dLabel)
-        self.view.addSubview(aLabel)
-        self.view.addSubview(yLabel)
-        self.view.addSubview(rLabel)
-        self.view.addSubview(iLabel)
-        self.view.addSubview(vLabel)
-        self.view.addSubview(eLabel)
-        self.view.addSubview(r1Label)
+//        self.view.addSubview(sLabel)
+//        self.view.addSubview(uLabel)
+//        self.view.addSubview(nLabel)
+//        self.view.addSubview(dLabel)
+//        self.view.addSubview(aLabel)
+//        self.view.addSubview(yLabel)
+//        self.view.addSubview(rLabel)
+//        self.view.addSubview(iLabel)
+//        self.view.addSubview(vLabel)
+//        self.view.addSubview(eLabel)
+//        self.view.addSubview(r1Label)
         self.view.addSubview(trailblazerLabel)
         
-        createConstraints(item: sLabel, distFromLeft: Double(view.bounds.width)/2 - 123, distFromTop: 80)
-        createConstraints(item: uLabel, distFromLeft: Double(view.bounds.width)/2 - 100, distFromTop: 80)
-        createConstraints(item: nLabel, distFromLeft: Double(view.bounds.width)/2 - 80, distFromTop: 80)
-        createConstraints(item: dLabel, distFromLeft: Double(view.bounds.width)/2 - 60, distFromTop: 80)
-        createConstraints(item: aLabel, distFromLeft: Double(view.bounds.width)/2 - 40, distFromTop: 80)
-        createConstraints(item: yLabel, distFromLeft: Double(view.bounds.width)/2 - 20, distFromTop: 80)
-        createConstraints(item: rLabel, distFromLeft: Double(view.bounds.width)/2 - 50, distFromTop: 120)
-        createConstraints(item: iLabel, distFromLeft: Double(view.bounds.width)/2 - 26, distFromTop: 120)
-        createConstraints(item: vLabel, distFromLeft: Double(view.bounds.width)/2 - 18, distFromTop: 120)
-        createConstraints(item: eLabel, distFromLeft: Double(view.bounds.width)/2 + 2, distFromTop: 120)
-        createConstraints(item: r1Label, distFromLeft: Double(view.bounds.width)/2 + 22, distFromTop: 120)
+//        createConstraints(item: sLabel, distFromLeft: Double(view.bounds.width)/2 - 123, distFromTop: 80)
+//        createConstraints(item: uLabel, distFromLeft: Double(view.bounds.width)/2 - 100, distFromTop: 80)
+//        createConstraints(item: nLabel, distFromLeft: Double(view.bounds.width)/2 - 80, distFromTop: 80)
+//        createConstraints(item: dLabel, distFromLeft: Double(view.bounds.width)/2 - 60, distFromTop: 80)
+//        createConstraints(item: aLabel, distFromLeft: Double(view.bounds.width)/2 - 40, distFromTop: 80)
+//        createConstraints(item: yLabel, distFromLeft: Double(view.bounds.width)/2 - 20, distFromTop: 80)
+//        createConstraints(item: rLabel, distFromLeft: Double(view.bounds.width)/2 - 50, distFromTop: 120)
+//        createConstraints(item: iLabel, distFromLeft: Double(view.bounds.width)/2 - 26, distFromTop: 120)
+//        createConstraints(item: vLabel, distFromLeft: Double(view.bounds.width)/2 - 18, distFromTop: 120)
+//        createConstraints(item: eLabel, distFromLeft: Double(view.bounds.width)/2 + 2, distFromTop: 120)
+//        createConstraints(item: r1Label, distFromLeft: Double(view.bounds.width)/2 + 22, distFromTop: 120)
         createConstraints(item: trailblazerLabel, distFromLeft: Double(view.bounds.width)/2 - 100, distFromTop: 160)
         
     }
@@ -197,7 +197,7 @@ class TitleScreen: UIViewController{
     }
     func animateTrailBlazer()
     {
-        UIView.animate(withDuration: 2, delay: 1.5, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .allowAnimatedContent, animations: {
+        UIView.animate(withDuration: 2, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .allowAnimatedContent, animations: {
             
             self.trailblazerLabel.alpha = 1
             
