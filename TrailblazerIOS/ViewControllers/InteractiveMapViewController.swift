@@ -14,7 +14,7 @@ class InteractiveMapViewController: UIViewController
 {
     @ObservedObject private var connectivityController = ConnectivityController.shared
     
-    static var currentUser : User = User(userName: "Guest", password: "", alertSettings: [], routingPreference: "")
+    static var currentUser : User = User(username: "Guest", passwordHash: "", alertSettings: [], routingPreference: "")
     static var routeInProgress = false
     static var destination : ImageAnnotation?
     static var configuredClasses = false

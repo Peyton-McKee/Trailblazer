@@ -6,6 +6,7 @@ final class UserTests: XCTestCase {
     let userPassword = "kitten12"
     let userAlertSettings = ["Moguls", "icy"]
     let userRoutingPreference = "Easiest"
+    let userRole = "member"
     let usersURI = "/api/users/"
     var app: Application!
     
@@ -25,14 +26,14 @@ final class UserTests: XCTestCase {
             
             XCTAssertEqual(users.count, 2)
             XCTAssertEqual(users[0].username, userUsername)
-            XCTAssertEqual(users[0].password, userPassword)
+            XCTAssertEqual(users[0].passwordHash, userPassword)
             XCTAssertEqual(users[0].alertSettings, userAlertSettings)
             XCTAssertEqual(users[0].routingPreference, userRoutingPreference)
             XCTAssertEqual(users[0].id, user.id)
         })
     }
     func testUserCanBeSavedWithAPI() throws {
-        let user = User(username: userUsername, password: userPassword, alertSettings: userAlertSettings, routingPreference: userRoutingPreference)
+        let user = User(username: userUsername, passwordHash: userPassword, alertSettings: userAlertSettings, routingPreference: userRoutingPreference)
         
         try app.test(.POST, usersURI, beforeRequest: {
             req in
@@ -41,7 +42,7 @@ final class UserTests: XCTestCase {
             let receivedUser = try
             response.content.decode(User.self)
             XCTAssertEqual(receivedUser.username, userUsername)
-            XCTAssertEqual(receivedUser.password, userPassword)
+            XCTAssertEqual(receivedUser.passwordHash, userPassword)
             XCTAssertEqual(receivedUser.alertSettings, userAlertSettings)
             XCTAssertEqual(receivedUser.routingPreference, userRoutingPreference)
             XCTAssertNotNil(receivedUser.id)
@@ -51,7 +52,7 @@ final class UserTests: XCTestCase {
                 try secondResponse.content.decode([User].self)
                 XCTAssertEqual(users.count, 1)
                 XCTAssertEqual(users[0].username, userUsername)
-                XCTAssertEqual(users[0].password, userPassword)
+                XCTAssertEqual(users[0].passwordHash, userPassword)
                 XCTAssertEqual(users[0].alertSettings, userAlertSettings)
                 XCTAssertEqual(users[0].routingPreference, userRoutingPreference)
                 XCTAssertEqual(users[0].id, receivedUser.id)
@@ -68,7 +69,7 @@ final class UserTests: XCTestCase {
             let receivedUser = try response.content.decode(User.self)
             // 3
             XCTAssertEqual(receivedUser.username, userUsername)
-            XCTAssertEqual(receivedUser.password, userPassword)
+            XCTAssertEqual(receivedUser.passwordHash, userPassword)
             XCTAssertEqual(receivedUser.alertSettings, userAlertSettings)
             XCTAssertEqual(receivedUser.routingPreference, userRoutingPreference)
             XCTAssertEqual(receivedUser.id, user.id)

@@ -38,7 +38,9 @@ struct UsersController: RouteCollection
         usersRoute.put(":userID", use: updateHandler)
         
         let passwordProtected = usersRoute.grouped(User.authenticator())
-        passwordProtected.post("login", use: login)
+        passwordProtected.post("login") { req -> User in
+            try req.auth.require(User.self)
+        }
         
     }
     // 5
@@ -121,9 +123,10 @@ struct UsersController: RouteCollection
             .delete(force: true).transform(to: .noContent)
     }
     
-    func login(req: Request) throws -> User {
-        return try req.auth.require(User.self)
-    }
+//    func login(req: Request) throws -> User {
+//        print(req)
+//        return try req.auth.require(User.self)
+//    }
     func checkIfUserExists(_ username: String, req: Request) -> EventLoopFuture<Bool> {
         User.query(on: req.db).filter(\.$username == username).first().map({ $0 != nil })
     }

@@ -33,7 +33,7 @@ class SignUpViewController : UIViewController {
         incorrectSignUpLabel.textColor = .red
         view.addSubview(incorrectSignUpLabel)
         createConstraints(item: incorrectSignUpLabel, distFromLeft: 0, distFromTop:   Double(view.bounds.height)/2 - Double(view.bounds.height) *  9 / 20)
-
+        
     }
     func configureTextFields()
     {
@@ -113,44 +113,28 @@ class SignUpViewController : UIViewController {
             self.incorrectSignUpLabel.isHidden = false
             return //display text saying passwords do not match
         }
-        getUsers(completion: { value in
-            guard let users = try? value.get() else
+        
+        saveUser(User(username: usernameText, passwordHash: passwordText, alertSettings: [], routingPreference: RoutingType.easiest.rawValue), completion: {
+            value in
+            guard let user = try? value.get() else
             {
-                print("Error: \(value)")
-                return
-            }
-            let myUser = User(userName: usernameText, password: passwordText, role: "member", alertSettings: [], routingPreference: RoutingType.easiest.rawValue)
-            var foundMatch = false
-            for user in users
-            {
-                if user.userName == myUser.userName
-                {
-                    foundMatch = true
+                DispatchQueue.main.async{
                     self.incorrectSignUpLabel.text = "Username Already Taken"
                     self.incorrectSignUpLabel.isHidden = false
-                    break
+                    print("Error: Couldnt save user")
+                    return
                 }
+                return
             }
-            if !foundMatch {
-                saveUser(myUser, completion: {
-                    value in
-                    guard let user = try? value.get() else
-                    {
-                        print("Error: Couldnt save user")
-                        return
-                    }
-                    DispatchQueue.main.async{
-                        InteractiveMapViewController.currentUser = user
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-                        UserDefaults.standard.set("\(user.userName)", forKey: "userUsername")
-                        UserDefaults.standard.set("\(user.password)", forKey: "userPassword")
-                        UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
-                        UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
-                        UserDefaults.standard.set("\(user.id!)", forKey: "userId")
-                    }
-                })
+            DispatchQueue.main.async{
+                InteractiveMapViewController.currentUser = user
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                UserDefaults.standard.set("\(user.username)", forKey: "userUsername")
+                UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
+                UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
+                UserDefaults.standard.set("\(user.id!)", forKey: "userId")
             }
         })
     }

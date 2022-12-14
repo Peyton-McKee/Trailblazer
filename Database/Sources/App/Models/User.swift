@@ -17,12 +17,9 @@ final class User: Model, Content {
     @Field(key: "username")
     var username: String
     
-    @Field(key: "password")
-    var password: String
-    
-    @Field(key: "role")
-    var role: String
-    
+    @Field(key: "password_hash")
+    var passwordHash: String
+        
     @Field(key: "alertSettings")
     var alertSettings: [String]
     
@@ -40,23 +37,23 @@ final class User: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, username: String, password: String, alertSettings: [String], routingPreference: String) {
+    init(id: UUID? = nil, username: String, passwordHash: String, alertSettings: [String], routingPreference: String) {
         self.username = username
-        self.password = password
+        self.passwordHash = passwordHash
         self.alertSettings = alertSettings
         self.routingPreference = routingPreference
     }
 }
 extension User {
     static func create(from userSignup: UserSignUp) throws -> User {
-        User(username: userSignup.username, password: try Bcrypt.hash(userSignup.password), alertSettings: [], routingPreference: "Easiest")
+        User(username: userSignup.username, passwordHash: try Bcrypt.hash(userSignup.password), alertSettings: userSignup.alertSettings, routingPreference: userSignup.routingPreference)
     }
 }
 extension User: ModelAuthenticatable {
-  static let usernameKey = \User.$username
-  static let passwordHashKey = \User.$password
-  
-  func verify(password: String) throws -> Bool {
-    try Bcrypt.verify(password, created: self.password)
-  }
+    static let usernameKey = \User.$username
+        static let passwordHashKey = \User.$passwordHash
+
+        func verify(password: String) throws -> Bool {
+            try Bcrypt.verify(password, created: self.passwordHash)
+        }
 }

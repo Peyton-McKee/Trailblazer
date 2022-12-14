@@ -180,16 +180,19 @@ func saveUser(_ user: User, completion: @escaping (Result<User, Error>) -> Void)
     request.httpBody = try? encoder.encode(user)
     
     URLSession.shared.dataTask(with: request) { data, response, error in
-        if let data = data {
-            let decoder = JSONDecoder()
-            if let user = try? decoder.decode(User.self, from: data) {
-                print(user.userName)
-                completion(.success(user))
-                
-            } else {
-                print("Could not save user")
-                
-            }
+        guard let data = data, error == nil else {            
+            print("Could not save user")
+
+            completion(.failure(error!))
+            return
+        }
+        let decoder = JSONDecoder()
+        if let user = try? decoder.decode(User.self, from: data) {
+            completion(.success(user))
+        }
+        else {
+            print("Error Decoding user")
+            completion(.failure(DecodingErrors.userDecodingError))
         }
     }.resume()
 }
@@ -209,11 +212,36 @@ func updateUser(_ user: User) {
         if let data = data {
             let decoder = JSONDecoder()
             if let user = try? decoder.decode(User.self, from: data) {
-                print(user.userName)
+                print(user.username)
                 
             } else {
                 print("Could not update user")
             }
         }
     }.resume()
+}
+
+func loginHandler(username: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
+{
+    let loginString = String(format: "%@:%@", username, password)
+    let loginData = loginString.data(using: String.Encoding.utf8)!
+    let base64LoginString = loginData.base64EncodedString()
+    
+    // create the request
+    let url = URL(string: "\(getBaseUrl())/users/login")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+    
+    URLSession.shared.dataTask(with: request, completionHandler: {
+        data, response, error in
+        guard let data = data, error != nil else {
+            completion(.failure(error!))
+            return
+        }
+        let decoder = JSONDecoder()
+        if let user = try? decoder.decode(User.self, from: data){
+            completion(.success(user))
+        }
+    })
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		150828D62943AF320060B341 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150828D52943AF320060B341 /* LoadingView.swift */; };
+		150828D9294A89640060B341 /* DecodingErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150828D8294A89640060B341 /* DecodingErrors.swift */; };
 		150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */; };
 		150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C6EB029035BE10055AD59 /* HextoColor.swift */; };
 		150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150D062328F4DEB90051F160 /* TrailSelectorView.swift */; };
@@ -100,6 +101,7 @@
 
 /* Begin PBXFileReference section */
 		150828D52943AF320060B341 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		150828D8294A89640060B341 /* DecodingErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingErrors.swift; sourceTree = "<group>"; };
 		150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuFramework.swift; sourceTree = "<group>"; };
 		150C6EB029035BE10055AD59 /* HextoColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HextoColor.swift; sourceTree = "<group>"; };
 		150D062328F4DEB90051F160 /* TrailSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelectorView.swift; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		150828D7294A89560060B341 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				150828D8294A89640060B341 /* DecodingErrors.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		150C6EAD29031B0C0055AD59 /* Unused.Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,6 +207,7 @@
 			children = (
 				15316626290B174C00206E7E /* UserSettings.Utils */,
 				15316627290B177000206E7E /* InteractiveMap.Utils */,
+				150828D7294A89560060B341 /* Errors */,
 				15316624290B170300206E7E /* Models */,
 				15316625290B172200206E7E /* Miscellaneous.Utils */,
 				150C6EAD29031B0C0055AD59 /* Unused.Utils */,
@@ -527,6 +538,7 @@
 				153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */,
 				150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */,
 				15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */,
+				150828D9294A89640060B341 /* DecodingErrors.swift in Sources */,
 				153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */,
 				15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */,
 				15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */,

@@ -60,7 +60,7 @@ class UserSettingsViewController : UIViewController {
         view.addSubview(userNameLabel)
         createConstraints(item: userNameLabel, distFromLeft: 0, distFromTop: Double(view.bounds.height)/10)
         userNameLabel.font = UIFont(name: "markerfelt-wide", size: 20)
-        userNameLabel.text = "Username: \(InteractiveMapViewController.currentUser.userName)"
+        userNameLabel.text = "Username: \(InteractiveMapViewController.currentUser.username)"
         
         
     }
@@ -71,7 +71,7 @@ class UserSettingsViewController : UIViewController {
         UserDefaults.standard.removeObject(forKey: "userId")
         UserDefaults.standard.removeObject(forKey: "alertSettings")
         UserDefaults.standard.removeObject(forKey: "routingPreference")
-        InteractiveMapViewController.currentUser = User(userName: "", password: "", alertSettings: [], routingPreference: "")
+        InteractiveMapViewController.currentUser = User(username: "", passwordHash: "", alertSettings: [], routingPreference: "")
         InteractiveMapViewController.destination = nil
         InteractiveMapViewController.routeInProgress = false
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

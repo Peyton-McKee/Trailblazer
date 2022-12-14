@@ -17,7 +17,6 @@ class SignInViewController: UIViewController
     let baseURL = "http://35.172.135.117"
     var incorrectSignInLabel = UILabel()
     
-    static var currentUser = User(userName: "", password: "", alertSettings: [], routingPreference: "")
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
@@ -95,41 +94,21 @@ class SignInViewController: UIViewController
             //say please fill out username and password information
             return
         }
-        getUsers(completion: { value in
-            guard let users = try? value.get() else
+        loginHandler(username: usernameText, password: passwordText, completion: {
+            result in
+            guard let user = try? result.get() else
             {
-                print("Error: \(value)")
+                print(result)
                 return
             }
-            let myUser = User(userName: usernameText, password: passwordText, alertSettings: [], routingPreference: "")
-            var foundMatch = false
-            for user in users
-            {
-                if user.userName == myUser.userName && user.password == myUser.password
-                {
-                    let userIdString = user.id!
-                    foundMatch = true
-                    InteractiveMapViewController.currentUser = user
-                    self.navigationController?.show(InteractiveMapViewController(), sender: sender)
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                    UserDefaults.standard.set("\(user.userName)", forKey: "userUsername")
-                    UserDefaults.standard.set("\(user.password)", forKey: "userPassword")
-                    UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
-                    UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
-                    UserDefaults.standard.set("\(userIdString)", forKey: "userId")
-                    // This is to get the SceneDelegate object from your view controller
-                    // then call the change root view controller function to change to main tab bar
-                    (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-                    //you have successfully logged in
-                    break
-                }
-            }
-            if !foundMatch
-            {
-                self.incorrectSignInLabel.text = "Incorrect Username or Password"
-                self.incorrectSignInLabel.isHidden = false
-            }
+            InteractiveMapViewController.currentUser = user
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+            UserDefaults.standard.set("\(user.username)", forKey: "userUsername")
+            UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
+            UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
+            UserDefaults.standard.set("\(user.id!)", forKey: "userId")
         })
     }
     @objc func signUpButtonPressed(sender: UIButton)
