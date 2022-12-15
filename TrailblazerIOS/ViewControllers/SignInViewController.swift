@@ -101,14 +101,16 @@ class SignInViewController: UIViewController
                 print(result)
                 return
             }
-            InteractiveMapViewController.currentUser = user
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-            (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
-            UserDefaults.standard.set("\(user.username)", forKey: "userUsername")
-            UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
-            UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
-            UserDefaults.standard.set("\(user.id!)", forKey: "userId")
+            DispatchQueue.main.async{
+                InteractiveMapViewController.currentUser = user
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                UserDefaults.standard.set("\(user.username)", forKey: "userUsername")
+                UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
+                UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
+                UserDefaults.standard.set("\(user.id!)", forKey: "userId")
+            }
         })
     }
     @objc func signUpButtonPressed(sender: UIButton)

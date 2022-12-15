@@ -71,7 +71,7 @@ class UserSettingsViewController : UIViewController {
         UserDefaults.standard.removeObject(forKey: "userId")
         UserDefaults.standard.removeObject(forKey: "alertSettings")
         UserDefaults.standard.removeObject(forKey: "routingPreference")
-        InteractiveMapViewController.currentUser = User(username: "", passwordHash: "", alertSettings: [], routingPreference: "")
+        InteractiveMapViewController.currentUser = User(username: "", password: "", alertSettings: [], routingPreference: "")
         InteractiveMapViewController.destination = nil
         InteractiveMapViewController.routeInProgress = false
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -113,8 +113,8 @@ class SignUpViewController : UIViewController {
             self.incorrectSignUpLabel.isHidden = false
             return //display text saying passwords do not match
         }
-        
-        saveUser(User(username: usernameText, passwordHash: passwordText, alertSettings: [], routingPreference: RoutingType.easiest.rawValue), completion: {
+        print(passwordText)
+        saveUser(User(username: usernameText, password: passwordText, alertSettings: [], routingPreference: RoutingType.easiest.rawValue), completion: {
             value in
             guard let user = try? value.get() else
             {

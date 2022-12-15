@@ -173,16 +173,14 @@ func saveUser(_ user: User, completion: @escaping (Result<User, Error>) -> Void)
     let url = URL(string: "\(getBaseUrl())/api/users")!
     
     let encoder = JSONEncoder()
-    
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     request.httpBody = try? encoder.encode(user)
     
     URLSession.shared.dataTask(with: request) { data, response, error in
-        guard let data = data, error == nil else {            
+        guard let data = data, error == nil else {
             print("Could not save user")
-
             completion(.failure(error!))
             return
         }
@@ -223,19 +221,18 @@ func updateUser(_ user: User) {
 
 func loginHandler(username: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
 {
-    let loginString = String(format: "%@:%@", username, password)
-    let loginData = loginString.data(using: String.Encoding.utf8)!
-    let base64LoginString = loginData.base64EncodedString()
+    let url = URL(string: "\(getBaseUrl())/api/users/login")!
+
+    let authData = (username + ":" + password).data(using: .utf8)!.base64EncodedString()
     
-    // create the request
-    let url = URL(string: "\(getBaseUrl())/users/login")!
     var request = URLRequest(url: url)
     request.httpMethod = "POST"
-    request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+    request.addValue("Basic \(authData)", forHTTPHeaderField: "Authorization")
     
-    URLSession.shared.dataTask(with: request, completionHandler: {
+    URLSession.shared.dataTask(with: request) {
         data, response, error in
-        guard let data = data, error != nil else {
+        guard let data = data, error == nil else {
+            print("Error: \(error!.localizedDescription)")
             completion(.failure(error!))
             return
         }
@@ -243,5 +240,9 @@ func loginHandler(username: String, password: String, completion: @escaping (Res
         if let user = try? decoder.decode(User.self, from: data){
             completion(.success(user))
         }
-    })
+        else{
+            print("Unable to decode user")
+            completion(.failure(DecodingErrors.userDecodingError))
+        }
+    }.resume()
 }
