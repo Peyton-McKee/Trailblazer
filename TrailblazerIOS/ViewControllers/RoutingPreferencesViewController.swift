@@ -104,5 +104,14 @@ extension RoutingPreferencesViewController: UIPickerViewDelegate, UIPickerViewDa
         InteractiveMapViewController.currentUser.routingPreference = options[row].rawValue
         UserDefaults.standard.set(InteractiveMapViewController.currentUser.routingPreference, forKey: "routingPreference")
         updateUser(InteractiveMapViewController.currentUser)
+        switch options[row].rawValue{
+        case RoutingType.easiest.rawValue:
+            InteractiveMapViewController.preferredRoutingGraph = MapInterpreter.shared.difficultyGraph
+        case RoutingType.quickest.rawValue:
+            InteractiveMapViewController.preferredRoutingGraph = MapInterpreter.shared.timeGraph
+        default:
+            InteractiveMapViewController.preferredRoutingGraph = MapInterpreter.shared.distanceGraph
+        
+        }
     }
 }

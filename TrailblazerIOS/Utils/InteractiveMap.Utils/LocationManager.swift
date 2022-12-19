@@ -21,7 +21,7 @@ class LocationManager: NSObject, ObservableObject {
         // 2
         let region = CLCircularRegion(
             center: CLLocationCoordinate2D(latitude: trailReport.latitude, longitude: trailReport.longitude),
-            radius: 500,
+            radius: 75,
             identifier: UUID().uuidString)
         // 3
         region.notifyOnEntry = true

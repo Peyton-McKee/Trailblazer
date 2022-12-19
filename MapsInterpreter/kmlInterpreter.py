@@ -17,37 +17,31 @@ for folder in list(document[0].features()):
    index = 0
    for e in list(folder.features()):
       index += 1
-      if folder.name.lower() == 'connectors':
+      if folder.name.lower() == 'connector':
          mapConnector = {
             'name': e.name,
             'mapId': map.json().get('id'),
          }
          url = 'http://35.172.135.117/api/map-connectors'
          mapConnector = requests.post(url, json= mapConnector)
-         lats = []
-         longs = []
          for coordinate in e.geometry.coords:
-            lat = coordinate[0]
-            long = coordinate[1]
+            lat = coordinate[1]
+            long = coordinate[0]
             mapConnectorPoint = {'latitude': lat, 'longitude': long, 'time': 0, 'mapConnectorId': mapConnector.json().get('id')}
             url = url = 'http://35.172.135.117/api/points'
             mc = requests.post(url, json= mapConnectorPoint) 
       else :
-         difficulty = folder.name.lower()
+         difficulty = folder.name
          mapTrail = {
             'name': e.name,
             'mapId': map.json().get('id'),
             'difficulty': difficulty
          }
-         lats = []
-         longs = []
          url = 'http://35.172.135.117/api/map-trails'
          mapTrail = requests.post(url, json= mapTrail)
          for coordinate in list(e.geometry.coords):
-            lat = coordinate[0]
-            long = coordinate[1]
-            lats.append(lat)
-            longs.append(long)
+            lat = coordinate[1]
+            long = coordinate[0]
             mapTrailPoint = {'latitude': lat, 'longitude': long, 'time': 0, 'mapTrailId': mapTrail.json().get('id')}
             url = 'http://35.172.135.117/api/points'
             mt = requests.post(url, json= mapTrailPoint)

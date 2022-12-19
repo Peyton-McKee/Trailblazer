@@ -16,7 +16,8 @@ func getMountainReport(webView: WKWebView, queryItems: TrailData, completion: @e
             completion(.failure(error!))
             return
         }
-        let liftStatuses = parseData(queryItems: queryItems.lifts, queryLocation: html)
+        //print(queryItems.lifts)
+        let liftStatuses = parseData(queryItems: queryItems.lifts.map({$0.lowercased()}), queryLocation: html.lowercased())
         result.lifts = liftStatuses
     })
     webView.evaluateJavaScript("document.getElementById('conditions_trailstatus_16207d4019cf36fbdb184831e2ae3054').innerHTML", completionHandler: {
@@ -26,33 +27,8 @@ func getMountainReport(webView: WKWebView, queryItems: TrailData, completion: @e
             completion(.failure(error!))
             return
         }
-        let whiteCapTrails = parseData(queryItems: queryItems.whiteCapTrails, queryLocation: html)
-        result.whiteCapTrails = whiteCapTrails
-        
-        let lockeTrails = parseData(queryItems: queryItems.lockeTrails, queryLocation: html)
-        result.lockeTrails = lockeTrails
-        
-        let barkerTrails = parseData(queryItems: queryItems.barkerTrails, queryLocation: html)
-        result.barkerTrails = barkerTrails
-        
-        let southRidgeTrails = parseData(queryItems: queryItems.southRidgeTrails, queryLocation: html)
-        result.southRidgeTrails = southRidgeTrails
-        
-        let spruceTrails = parseData(queryItems: queryItems.spruceTrails, queryLocation: html)
-        result.spruceTrails = spruceTrails
-        
-        let northPeakTrails = parseData(queryItems: queryItems.northPeakTrails, queryLocation: html)
-        result.northPeakTrails = northPeakTrails
-        
-        let auroraTrails = parseData(queryItems: queryItems.auroraTrails, queryLocation: html)
-        result.auroraTrails = auroraTrails
-        
-        let ozTrails = parseData(queryItems: queryItems.ozTrails, queryLocation: html)
-        result.ozTrails = ozTrails
-        
-        let jordanTrails = parseData(queryItems: queryItems.jordantrails, queryLocation: html)
-        result.jordantrails = jordanTrails
-        
+        let trailStatuses = parseData(queryItems: queryItems.trails.map({$0.lowercased()}), queryLocation: html.lowercased())
+        result.trails = trailStatuses
         completion(.success(result))
     })
 }
@@ -78,10 +54,23 @@ func parseData(queryItems: [String], queryLocation: String) -> [String]
                     substring = string[..<getStatus2]
                     string = String(substring)
                     result.append(string)
+                    //print("Trail: \(item) Status: \(string)")
+                }
+                else {
+                    result.append("closed")
                 }
             }
+            else
+            {
+                result.append("closed")
+            }
+        }
+        else
+        {
+            result.append("closed")
         }
     }
+    
     return result
 }
 //conditions_lifts_e75ceb523c30353d18fb54207af864f9 : Lift Status Id

@@ -91,14 +91,18 @@ class SignInViewController: UIViewController
     @objc func signInButtonPressed(sender: UIButton)
     {
         guard let usernameText = userNameTextField.text, let passwordText = passwordTextField.text else {
-            //say please fill out username and password information
+            incorrectSignInLabel.text = "Please fill out username and password fields."
+            incorrectSignInLabel.isHidden = false
             return
         }
         loginHandler(username: usernameText, password: passwordText, completion: {
             result in
             guard let user = try? result.get() else
             {
-                print(result)
+                DispatchQueue.main.async{
+                    self.incorrectSignInLabel.text = "Incorrect username or password"
+                    self.incorrectSignInLabel.isHidden = false
+                }
                 return
             }
             DispatchQueue.main.async{

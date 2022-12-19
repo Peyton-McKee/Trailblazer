@@ -13,6 +13,8 @@ enum TrailReportType: String {
     case ice = "Icy"
     case crowded = "Crowded"
     case thinCover = "Thin Cover"
+    case longLiftLine = "Long Lift Line"
+    case snowmaking = "Snowmaking"
 }
 
 struct TrailReport: Codable {

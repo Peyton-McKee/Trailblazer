@@ -1,91 +1,109 @@
 {
   "images" : [
     {
+      "filename" : "2xIphoneNotificationIcon.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "3xIphoneNotiIcon.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
+      "filename" : "2xIphoneSettings.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "3xiPhoneSettingIcon.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
+      "filename" : "2xiPhoneSpotlightIcon.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "3xiPhoneSpotlightIcon.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
+      "filename" : "2xiPhoneAppIcon.jpeg",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
+      "filename" : "3xiPhoneAppIcon.jpeg",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
+      "filename" : "1xiPadNotificationIcon.jpeg",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
+      "filename" : "2xiPadNotificationIcon.jpeg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "1xiPadSettingsIcon.jpeg",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
+      "filename" : "2xiPadSettingsIcon.jpeg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
+      "filename" : "2xiPadNotificationIcon 1.jpeg",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
+      "filename" : "2xiPadSpotlightIcon.jpeg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "1xiPadAppIcon.jpeg",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
+      "filename" : "2xiPadAppIcon.jpeg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "2xiPadProAppIcon.jpeg",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
+      "filename" : "AppstoreIcon.jpeg",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

@@ -38,7 +38,6 @@ struct MapConnector: Codable {
     var id: String?
     var name: String?
     var distance: Float?
-    var time: Float?
     var map: Map?
     var points: [Point]?
 }
@@ -224,29 +223,29 @@ final class MapInterpreter: NSObject {
                 print("Points do not exist")
                 return
             }
-            for index in 0...points.count - 1
+            var times : [Double] = []
+            for point in points
             {
-                let lat = points[index].longitude
-                let long = points[index].latitude
-                coordinates.append(CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)))
+                times.append(Double(point.time!))
+                coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
             }
             var difficulty : Difficulty = .expertsOnly
             var color = UIColor(hex: "#000000ff")
-            switch trail.difficulty?.lowercased()
+            switch trail.difficulty
             {
-            case "intermediate":
-                difficulty = .intermediate
-                color = .blue
-            case "advanced" :
-                difficulty = .advanced
-                color = .gray
-            case "easy":
+            case Difficulty.easy.rawValue:
                 difficulty = .easy
                 color = .green
-            case "lifts":
+            case Difficulty.intermediate.rawValue:
+                difficulty = .intermediate
+                color = .blue
+            case Difficulty.advanced.rawValue:
+                difficulty = .advanced
+                color = .gray
+            case Difficulty.lift.rawValue:
                 difficulty = .lift
                 color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
-            case "terrain parks":
+            case Difficulty.terrainPark.rawValue:
                 difficulty = .terrainPark
                 color = .orange
             default:
@@ -256,6 +255,7 @@ final class MapInterpreter: NSObject {
             polyline.title = trail.name
             polyline.color = color
             let initialAnnotation = createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: difficulty)
+            initialAnnotation.times = times
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
         }
@@ -265,18 +265,18 @@ final class MapInterpreter: NSObject {
             guard let points = connector.points else {
                 print("Map Connector Points Don't Exist")
                 return
-                
             }
-            for index in 0...points.count - 1
+            var times : [Double] = []
+            for point in points
             {
-                let lat = points[index].longitude
-                let long = points[index].latitude
-                coordinates.append(CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long)))
+                times.append(Double(point.time!))
+                coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
             }
             let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
             polyline.title = connector.name
             let initialAnnotation = createAnnotation(title: connector.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
             initialAnnotation.isConnector = true
+            initialAnnotation.times = times
             polyline.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
@@ -285,7 +285,11 @@ final class MapInterpreter: NSObject {
         DispatchQueue.global().async{
             self.createDifficultyGraph()
             self.createDistanceGraph()
+            self.createTimeGraph()
             self.getTrailReportsFromDB()
+            DispatchQueue.main.async{
+                WebAnalysis.shared.makeRequest()
+            }
 //            UserDefaults.standard.set(self.difficultyGraph, forKey: "\(self.map?.id)/difficultyGraph")
 //            UserDefaults.standard.set(self.distanceGraph, forKey: "\(self.map?.id)/distanceGraph")
         }
@@ -330,6 +334,8 @@ final class MapInterpreter: NSObject {
                 }
                 if overlay.initialAnnotation!.isConnector
                 {
+                    prevVertex.value.isConnector = true
+                    vertex2.value.isConnector = true
                     difficultyGraph .addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: 1)
                 }
                 else
@@ -414,6 +420,8 @@ final class MapInterpreter: NSObject {
                 
                 if overlay.initialAnnotation!.isConnector
                 {
+                    prevVertex.value.isConnector = true
+                    vertex2.value.isConnector = true
                     distanceGraph.addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: weight)
                 }
                 else
@@ -426,6 +434,42 @@ final class MapInterpreter: NSObject {
         addIntersectingPointsTo(graph: distanceGraph)
         print("Completed Distance Graph with \(distanceGraph.verticesCount()) vertices and  \(distanceGraph.edgesCount()) edges!")
     }
+    
+    private func createTimeGraph()
+    {
+        let polylines = mapView.overlays.filter({$0 as? CustomPolyline != nil}) as! [CustomPolyline]
+        //print(polylines.count)
+        for polylineIndex in 0...polylines.count - 1
+        {
+            let overlay = polylines[polylineIndex]
+            let initialVertex = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+            var prevVertex : Vertex<ImageAnnotation> = initialVertex
+            var vertex2 : Vertex<ImageAnnotation>
+            timeGraph.addVertex(prevVertex)
+            for index in 1...overlay.pointCount - 1
+            {
+                vertex2 = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+                timeGraph.addVertex(vertex2)
+                
+                let weight = overlay.initialAnnotation!.times![index]
+                
+                if overlay.initialAnnotation!.isConnector
+                {
+                    prevVertex.value.isConnector = true
+                    vertex2.value.isConnector = true
+                    timeGraph.addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: weight)
+                }
+                else
+                {
+                    timeGraph.addEdge(direction: .directed, from: prevVertex, to: vertex2, weight: weight)
+                }
+                prevVertex = vertex2
+            }
+        }
+        addIntersectingPointsTo(graph: timeGraph)
+        print("Completed Distance Graph with \(timeGraph.verticesCount()) vertices and  \(timeGraph.edgesCount()) edges!")
+    }
+    
     private func addIntersectingPointsTo(graph: EdgeWeightedDigraph<ImageAnnotation>)
     {
         var previousIntersectingEdges : [DirectedEdge<ImageAnnotation>] = []
@@ -449,6 +493,7 @@ final class MapInterpreter: NSObject {
             }
         }
     }
+    
     ///getTrailReportsFromDB void -> void
     ///Attempts to connect to database and adds any found trailReports to myMap
     private func getTrailReportsFromDB()
@@ -471,6 +516,8 @@ final class MapInterpreter: NSObject {
                 closestTrail.trailReport = annotation
                 closestTrail = getClosestAnnotation(graph: difficultyGraph, origin: annotation).value
                 closestTrail.trailReport = annotation
+                closestTrail = getClosestAnnotation(graph: timeGraph, origin: annotation).value
+                closestTrail.trailReport = annotation
                 mapView.addAnnotation(annotation)
                 guard InteractiveMapViewController.currentUser.alertSettings.contains(report.type) else { continue }
                 InteractiveMapViewController.notiAnnotation = report
@@ -479,6 +526,7 @@ final class MapInterpreter: NSObject {
             NotificationCenter.default.post(name: Notification.Name("configureTrailSelector"), object: nil)
         })
     }
+    
     /// getClosestAnnotation: ImageAnnotation -> Vertex<ImageAnnotation>
     /// paramaters:
     ///     - origin: The annotation you want to find the nearest annotation for
@@ -495,10 +543,12 @@ final class MapInterpreter: NSObject {
         }
         return closestAnnotation
     }
+    
     private func getIntersectingPoints(graph: EdgeWeightedDigraph<ImageAnnotation>, vertex: Vertex<ImageAnnotation>) -> [Vertex<ImageAnnotation>]
     {
         return graph.vertices.filter(({$0.value.title != vertex.value.title && $0.value.coordinate == vertex.value.coordinate}))
     }
+    
     private func getClosestPoint(graph: EdgeWeightedDigraph<ImageAnnotation>, vertex: Vertex<ImageAnnotation>) -> Vertex<ImageAnnotation>
     {
         var closestVertex: Vertex<ImageAnnotation> = graph.vertices.filter({$0 != vertex})[0]

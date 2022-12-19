@@ -20,7 +20,25 @@ class InteractiveMapViewController: UIViewController
     static var configuredClasses = false
     static var wasCancelled = false
     static var origin : ImageAnnotation?
-    static var selectedGraph = MapInterpreter.shared.difficultyGraph
+    static var selectedGraph = InteractiveMapViewController.preferredRoutingGraph
+    
+    static var preferredRoutingGraph : EdgeWeightedDigraph<ImageAnnotation> = {
+        guard let defaultGraph = UserDefaults.standard.string(forKey: "routingPreference") else
+        {
+            return MapInterpreter.shared.difficultyGraph
+        }
+        switch defaultGraph{
+        case RoutingType.easiest.rawValue:
+                return MapInterpreter.shared.difficultyGraph
+        case RoutingType.leastDistance.rawValue:
+            return MapInterpreter.shared.distanceGraph
+        case RoutingType.quickest.rawValue:
+            return MapInterpreter.shared.timeGraph
+        default:
+            return MapInterpreter.shared.difficultyGraph
+        }
+    }()
+    
     static var wasSelectedWithOrigin = false
     static var didChooseDestination = false
     static var notiAnnotation : TrailReport?
@@ -60,7 +78,7 @@ class InteractiveMapViewController: UIViewController
     var searchBar = SearchBarTableHeaderView()
     var pathCreated: [Vertex<ImageAnnotation>] = []
     
-    var settingArray = ["Moguls", "Icy", "Crowded", "Thin Cover", "Cancel"]
+    var settingArray = [TrailReportType.moguls.rawValue, TrailReportType.ice.rawValue, TrailReportType.crowded.rawValue, TrailReportType.thinCover.rawValue, TrailReportType.longLiftLine.rawValue, TrailReportType.snowmaking.rawValue, "Cancel"]
     var trailReportMenu : PopUpMenuFramework?
     var trailReportTableView = UITableView()
     
@@ -75,7 +93,7 @@ class InteractiveMapViewController: UIViewController
     
     var trailSelectorView : TrailSelectorView?
     var trailSelectorMenu : SideMenuFramework?
-        
+    
     var totalDirections : String?
     
     var recenterButton = UIButton()
@@ -96,12 +114,11 @@ class InteractiveMapViewController: UIViewController
         locationManager.locationManager.requestWhenInUseAuthorization()
         locationManager.locationManager.startUpdatingHeading()
         locationManager.locationManager.startUpdatingLocation()
-//        getTrailReportsFromDB()
+        //        getTrailReportsFromDB()
         self.view.addSubview(loadingScreen)
-        WebAnalysis.shared.makeRequest()
         if (MapInterpreter.shared.mapView.annotations.isEmpty)
         {
-            MapInterpreter.shared.getMap(id: "D6DB0FCB-AC17-483A-9DDF-4FF1877DDFC0")
+            MapInterpreter.shared.getMap(id: "39A49913-8572-429A-817E-4972B1379B33")
         }
         self.tabBarController?.tabBar.backgroundColor = .black
     }
@@ -189,7 +206,7 @@ class InteractiveMapViewController: UIViewController
                         nearestDistance = distance
                         nearestPoly = overlay as? CustomPolyline
                     }
-
+                    
                 }
             }
             if Double(nearestDistance) <= maxMeters {
@@ -208,11 +225,11 @@ class InteractiveMapViewController: UIViewController
                     Self.destination = closestVertex.value
                     sampleRoute()
                 }
-
+                
             }
         }
     }
-
+    
     private func distanceOf(pt: MKMapPoint, toPoly poly: MKPolyline) -> Double {
         var distance: Double = Double(MAXFLOAT)
         for n in 0..<poly.pointCount - 1 {
@@ -235,12 +252,12 @@ class InteractiveMapViewController: UIViewController
             else {
                 ptClosest = MKMapPoint(x: ptA.x + u * xDelta, y: ptA.y + u * yDelta)
             }
-
+            
             distance = min(distance, ptClosest.distance(to: pt))
         }
         return distance
     }
-
+    
     private func meters(fromPixel px: Int, at pt: CGPoint) -> Double {
         let ptB = CGPoint(x: pt.x + CGFloat(px), y: pt.y)
         let coordA: CLLocationCoordinate2D = myMap.convert(pt, toCoordinateFrom: myMap)
@@ -284,7 +301,7 @@ class InteractiveMapViewController: UIViewController
             cancelTrailReportView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             cancelTrailReportView.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height - 150),
             cancelTrailReportView.bottomAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height - 110)
-            ])
+        ])
     }
     @objc func removeTrailReport()
     {
@@ -319,17 +336,14 @@ class InteractiveMapViewController: UIViewController
         {
             cancelRoute()
         }
-        if !isRealTimeGraph
-        {
-            Self.selectedGraph = MapInterpreter.shared.distanceGraph
-            //Self.selectedGraph = TrailsDatabase.realTimeGraph
-            isRealTimeGraph = true
+        if isRealTimeGraph {
+            Self.selectedGraph = Self.preferredRoutingGraph
         }
         else
         {
-            Self.selectedGraph = MapInterpreter.shared.difficultyGraph
-            isRealTimeGraph = false
+            Self.selectedGraph = WebAnalysis.shared.realTimeGraph
         }
+        isRealTimeGraph.toggle()
         showAllTrails()
     }
     
@@ -347,7 +361,10 @@ class InteractiveMapViewController: UIViewController
         self.pathCreated = []
         self.trailSelectorView?.isPresented = false
         self.cancelButton.isHidden = true
-        Self.selectedGraph.removeLastVertex()
+        if Self.selectedGraph.vertices.last?.value.title! == "Your Location"{
+            print("test")
+            Self.selectedGraph.removeLastVertex()
+        }
         connectivityController.setRoute(route: [])
         showAllTrails()
     }
@@ -382,8 +399,8 @@ class InteractiveMapViewController: UIViewController
     {
         if (!Self.configuredClasses)
         {
-//            TrailsDatabase.addVertexes()
-//            TrailsDatabase.createEdges(graph: Self.selectedGraph)
+            //            TrailsDatabase.addVertexes()
+            //            TrailsDatabase.createEdges(graph: Self.selectedGraph)
             Self.configuredClasses = true
         }
     }
@@ -442,13 +459,16 @@ class InteractiveMapViewController: UIViewController
     
     @objc func moveTrailSelectorView()
     {
-        if(searchBar.isDroppedDown && trailSelectorView!.isPresented)
+        guard let trailSelectorView = self.trailSelectorView else {
+            return
+        }
+        if(searchBar.isDroppedDown && trailSelectorView.isPresented)
         {
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
                 self.trailSelectorView?.frame = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
             }, completion: nil)
         }
-        else if(trailSelectorView!.isPresented)
+        else if(trailSelectorView.isPresented)
         {
             UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
                 self.trailSelectorView?.frame = CGRect(x: 0, y: 80, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height)
@@ -511,7 +531,7 @@ class InteractiveMapViewController: UIViewController
     
     
     /// createConstraints: UIView, Double, Double -> void
-    ///paramters:
+    ///@param::
     /// - item: The view that you want to create constraints for
     /// - distanceFromLeft: The amount of distance you want from the left side of the screens view
     /// - distanceFromTop: the amount of distance you want from the top of the screens view
@@ -551,6 +571,7 @@ class InteractiveMapViewController: UIViewController
     ///  Creates an annotation for the users current location if the user allows access to its location
     private func assignOrigin() -> Bool
     {
+        print(Self.selectedGraph.vertices[Self.selectedGraph.verticesCount()-1].value.title)
         guard let latitude = locationManager.locationManager.location?.coordinate.latitude, let longitude = locationManager.locationManager.location?.coordinate.longitude, locationManager.locationManager.authorizationStatus == .authorizedWhenInUse else {
             return false
         }
@@ -571,7 +592,6 @@ class InteractiveMapViewController: UIViewController
         }
         else
         {
-            Self.selectedGraph.removeLastVertex()
             Self.selectedGraph.addVertex(originVertex!)
             Self.selectedGraph.addEdge(direction: .directed, from: originVertex!, to: closestVertex, weight: 1)
         }
@@ -595,32 +615,32 @@ class InteractiveMapViewController: UIViewController
     /// Creates a route for the easiest path from the users location to the selected destination
     func createRoute() -> [Vertex<ImageAnnotation>]?
     {
-            guard let origin = Self.origin else{
-                if assignOrigin()
-                {
-                    return manageRouteInProgress()
-                }
-                else
-                {
-                    return nil
-                    //user isnt allowing location services
-                }
-            }
-            originVertex = Vertex<ImageAnnotation>(origin)
-            var found = false
-            for annotation in Self.selectedGraph.vertices
-            {
-                if annotation.value == originVertex!.value{
-                    originVertex = annotation
-                    found = true
-                    break
-                }
-            }
-            if found
+        guard let origin = Self.origin else{
+            if assignOrigin()
             {
                 return manageRouteInProgress()
             }
-            return nil
+            else
+            {
+                return nil
+                //user isnt allowing location services
+            }
+        }
+        originVertex = Vertex<ImageAnnotation>(origin)
+        var found = false
+        for annotation in Self.selectedGraph.vertices
+        {
+            if annotation.value == originVertex!.value{
+                originVertex = annotation
+                found = true
+                break
+            }
+        }
+        if found
+        {
+            return manageRouteInProgress()
+        }
+        return nil
         
     }
     private func manageRouteInProgress() -> [Vertex<ImageAnnotation>]?
@@ -632,7 +652,6 @@ class InteractiveMapViewController: UIViewController
             for index in 1...self.pathCreated.count - 1
             {
                 pathGraph.addVertex(self.pathCreated[index])
-                pathGraph.addEdge(direction: .directed, from: self.pathCreated[index - 1], to: self.pathCreated[index], weight: 1)
             }
             print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
             return createRouteHelper(graph: pathGraph)
@@ -648,8 +667,12 @@ class InteractiveMapViewController: UIViewController
         guard let destinationAnnotation = Self.destination else { return nil }
         print("test1")
         let startTime = Date.now
-        let destinationVertex : Vertex<ImageAnnotation> = graph.vertices.first(where: {$0.value == destinationAnnotation})!
-        if let pathToDestination = DijkstraShortestPath(graph, source: originVertex!).pathTo(destinationVertex)
+        var destinationVertex = graph.vertices.first(where: {$0.value == destinationAnnotation})
+        if destinationVertex == nil
+        {
+            destinationVertex = graph.vertices.first(where: {$0.value.title == destinationAnnotation.title})
+        }
+        if let pathToDestination = DijkstraShortestPath(graph, source: originVertex!).pathTo(destinationVertex!)
         {
             print("Took \(Date.now.timeIntervalSince(startTime)) seconds to find route")
             self.pathCreated = pathToDestination
@@ -662,10 +685,24 @@ class InteractiveMapViewController: UIViewController
     func sampleRoute()
     {
         self.searchBar.dismissExtendedView()
+        guard !Self.routeInProgress else
+        {
+            return
+        }
         let destinationAnnotation = Self.destination!
         self.loadingScreen.isHidden = false
+        
         DispatchQueue.global().async {
-            if let pathToDestination = self.createRoute(){
+            guard let pathToDestination = self.createRoute() else {
+                DispatchQueue.main.async{
+                    if Self.selectedGraph.vertices.last?.value.title! == "Your Location"
+                    {
+                        Self.selectedGraph.removeLastVertex()
+                    }
+                    self.loadingScreen.isHidden = true
+                }
+                return
+            }
                 DispatchQueue.main.async { [self] in
                     var description = ""
                     var trailReports = ""
@@ -690,6 +727,7 @@ class InteractiveMapViewController: UIViewController
                             trailReports.append("\(trailReport.subtitle!) ")
                         }
                     }
+                    loadingScreen.isHidden = true
                     if(!Self.routeInProgress)
                     {
                         routeOverviewView = RouteOverviewView(frame: self.view.frame)
@@ -732,450 +770,459 @@ class InteractiveMapViewController: UIViewController
                         let zoomCoordinate = Self.destination?.coordinate ?? myMap.region.center
                         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
                         myMap.setRegion(zoomed, animated: true)
-                        loadingScreen.isHidden = true
                     }
                     return
                 }
-            }
-        }
-    }
-    
-    @objc func presentFullDirections()
-    {
-        guard let fullDirections = self.totalDirections else { return }
-        //show some sort of direction pop up
-        print(fullDirections)
-    }
-    
-    /// displayRoute: void -> void
-    /// Shows the selected route on the map
-    func displayRoute()
-    {
-        let previousOverlays = myMap.overlays
-        let previousAnnotations = myMap.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
-        print(pathCreated.count)
-        DispatchQueue.global().async {
-            if let newRoute = self.createRoute()
-            {
-                DispatchQueue.main.async {
-                    self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
-                }
                 
             }
-            return
         }
-    }
-    
-    func displayRouteHelper(route: [Vertex<ImageAnnotation>], previousOverlays: [MKOverlay], previousAnnotations: [ImageAnnotation])
-    {
-        var previousVertex = route[0]
-        var foundAnnotations : [ImageAnnotation] = []
-        var routes : [Route] = []
-        var id = 0
-        var foundTrails : [String] = []
-        for vertex in route{
-            myPolyLine = CustomPolyline(coordinates: [previousVertex.value.coordinate, vertex.value.coordinate], count: 2)
-            switch previousVertex.value.difficulty
-            {
-            case .easy:
-                myPolyLine.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
-            case .intermediate:
-                myPolyLine.color = .blue
-            case .advanced:
-                myPolyLine.color = .gray
-            case .lift:
-                myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
-            case .terrainPark:
-                myPolyLine.color = .orange
-            default:
-                myPolyLine.color = .black
-            }
-            myPolyLine.initialAnnotation = previousVertex.value
-            myMap.addOverlay(myPolyLine, level: .aboveRoads)
-            if let trailReport = vertex.value.trailReport
-            {
-                foundAnnotations.append(trailReport)
-            }
-            if (!foundTrails.contains(vertex.value.title!))
-            {
-                foundTrails.append(vertex.value.title!)
-                routes.append(Route(id: id, annotationName: vertex.value.title!, coordinates: [vertex.value.coordinate.latitude, vertex.value.coordinate.longitude]))
-            }
-            id += 1
-            previousVertex = vertex
-        }
-        let set1 = Set(previousAnnotations)
-        let set2 = set1.subtracting(foundAnnotations)
-        myMap.removeAnnotations(Array(set2))
-        myMap.addAnnotations(foundAnnotations)
-        myMap.removeOverlays(previousOverlays)
-        connectivityController.setRoute(route: routes)
-        canFindPathAgain = true
-    }
-    
-    
-    /// showAllTrails: void -> void
-    /// Shows all the trails on the map
-    private func showAllTrails()
-    {
-        myMap.removeOverlays(myMap.overlays)
-        myMap.removeAnnotations(myMap.annotations)
-//        if Self.selectedGraph.vertices == TrailsDatabase.graph.vertices
-//        {
-//            for edge in Self.selectedGraph.edges(){
-//                myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
-//                switch edge.source.value.difficulty{
-//                case .easy:
-//                    myPolyLine.color = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
-//                case .intermediate:
-//                    myPolyLine.color = UIColor(red: 0.03, green: 0, blue: 0.5, alpha: 1)
-//                case .advanced:
-//                    myPolyLine.color = .gray
-//                case .lift:
-//                    myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
-//                case .terrainPark:
-//                    myPolyLine.color = .orange
-//                default:
-//                    myPolyLine.color = .black
-//                }
-//                myPolyLine.initialAnnotation = edge.source.value
-//                myMap.addOverlay(myPolyLine, level: .aboveRoads)
-//            }
-//            createKeyTrailAnnotations()
-//            displayCurrentTrailReports(graph: Self.selectedGraph)
-//        }
-//        else
-//        {
-            myMap.addOverlays(MapInterpreter.shared.mapView.overlays)
-            myMap.addAnnotations(MapInterpreter.shared.mapView.annotations)
-//        }
-    }
-    
-    /// addTrailReport: UIGestureRecognizer -> void
-    /// paramaters:
-    /// - gesture: The tap gesture that calls this function
-    ///  When the user holds a point on the map, present the Trail Report Menu
-    @objc func addTrailReport(gesture: UIGestureRecognizer) {
         
-        if gesture.state == .ended {
+        @objc func presentFullDirections()
+        {
+            guard let fullDirections = self.totalDirections else { return }
+            //show some sort of direction pop up
+            print(fullDirections)
+        }
+        
+        /// displayRoute: void -> void
+        /// Shows the selected route on the map
+        func displayRoute()
+        {
+            let previousOverlays = myMap.overlays
+            let previousAnnotations = myMap.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
+            print(pathCreated.count)
+            DispatchQueue.global().async {
+                if let newRoute = self.createRoute()
+                {
+                    DispatchQueue.main.async {
+                        self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
+                    }
+                    
+                }
+                return
+            }
+        }
+        
+        func displayRouteHelper(route: [Vertex<ImageAnnotation>], previousOverlays: [MKOverlay], previousAnnotations: [ImageAnnotation])
+        {
+            var previousVertex = route[0]
+            var foundAnnotations : [ImageAnnotation] = []
+            var routes : [Route] = []
+            var id = 0
+            var foundTrails : [String] = []
+            for vertex in route{
+                myPolyLine = CustomPolyline(coordinates: [previousVertex.value.coordinate, vertex.value.coordinate], count: 2)
+                switch previousVertex.value.difficulty
+                {
+                case .easy:
+                    myPolyLine.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
+                case .intermediate:
+                    myPolyLine.color = .blue
+                case .advanced:
+                    myPolyLine.color = .gray
+                case .lift:
+                    myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+                case .terrainPark:
+                    myPolyLine.color = .orange
+                default:
+                    myPolyLine.color = .black
+                }
+                myPolyLine.initialAnnotation = previousVertex.value
+                myMap.addOverlay(myPolyLine, level: .aboveRoads)
+                if let trailReport = vertex.value.trailReport
+                {
+                    foundAnnotations.append(trailReport)
+                }
+                if (!foundTrails.contains(vertex.value.title!))
+                {
+                    foundTrails.append(vertex.value.title!)
+                    foundAnnotations.append(vertex.value)
+                    routes.append(Route(id: id, annotationName: vertex.value.title!, coordinates: [vertex.value.coordinate.latitude, vertex.value.coordinate.longitude]))
+                }
+                id += 1
+                previousVertex = vertex
+            }
+            let set1 = Set(previousAnnotations)
+            let set2 = set1.subtracting(foundAnnotations)
+            myMap.removeAnnotations(Array(set2))
+            myMap.addAnnotations(foundAnnotations)
+            myMap.removeOverlays(previousOverlays)
+            connectivityController.setRoute(route: routes)
+            canFindPathAgain = true
+            Self.routeInProgress = true
+        }
+        
+        
+        /// showAllTrails: void -> void
+        /// Shows all the trails on the map
+        private func showAllTrails()
+        {
+            myMap.removeOverlays(myMap.overlays)
+            myMap.removeAnnotations(myMap.annotations)
+            //        if Self.selectedGraph.vertices == TrailsDatabase.graph.vertices
+            //        {
+            //            for edge in Self.selectedGraph.edges(){
+            //                myPolyLine = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
+            //                switch edge.source.value.difficulty{
+            //                case .easy:
+            //                    myPolyLine.color = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
+            //                case .intermediate:
+            //                    myPolyLine.color = UIColor(red: 0.03, green: 0, blue: 0.5, alpha: 1)
+            //                case .advanced:
+            //                    myPolyLine.color = .gray
+            //                case .lift:
+            //                    myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+            //                case .terrainPark:
+            //                    myPolyLine.color = .orange
+            //                default:
+            //                    myPolyLine.color = .black
+            //                }
+            //                myPolyLine.initialAnnotation = edge.source.value
+            //                myMap.addOverlay(myPolyLine, level: .aboveRoads)
+            //            }
+            //            createKeyTrailAnnotations()
+            //            displayCurrentTrailReports(graph: Self.selectedGraph)
+            //        }
+            //        else
+            //        {
+            if self.isRealTimeGraph{
+                myMap.addOverlays(WebAnalysis.shared.mapView.overlays)
+                myMap.addAnnotations(WebAnalysis.shared.mapView.annotations)
+            }
+            else{
+                myMap.addOverlays(MapInterpreter.shared.mapView.overlays)
+                myMap.addAnnotations(MapInterpreter.shared.mapView.annotations)
+            }
+            //        }
+        }
+        
+        /// addTrailReport: UIGestureRecognizer -> void
+        /// paramaters:
+        /// - gesture: The tap gesture that calls this function
+        ///  When the user holds a point on the map, present the Trail Report Menu
+        @objc func addTrailReport(gesture: UIGestureRecognizer) {
             
-            if let mapView = gesture.view as? MKMapView {
-                let point = gesture.location(in: mapView)
-                let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
-                self.trailReportAnnotation = ImageAnnotation()
-                self.trailReportAnnotation.coordinate = coordinate
-                presentTrailReportMenu()
+            if gesture.state == .ended {
+                
+                if let mapView = gesture.view as? MKMapView {
+                    let point = gesture.location(in: mapView)
+                    let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+                    self.trailReportAnnotation = ImageAnnotation()
+                    self.trailReportAnnotation.coordinate = coordinate
+                    presentTrailReportMenu()
+                }
             }
         }
-    }
-    
-    /// presentTrailReportMenu: void -> void
-    /// Configures and presents the Trail Report Menu
-    private func presentTrailReportMenu()
-    {
-        trailReportTableView.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 250)
-        let window = self.view
-        trailReportMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 300)
-        trailReportMenu?.view = trailReportTableView
-        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissTrailReportMenu))
-        trailReportMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
-        trailReportMenu?.presentItems()
-    }
-    
-    /// createKeyTrailAnnotations: void -> void
-    ///  Presents all the key annotations to the map
-    func createKeyTrailAnnotations()
-    {
-        if isRealTimeGraph
-        {
-            //myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }).filter({ $0.status == .open }))
-        }
-        else
-        {
-            //myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }))
-        }
-    }
-    
-    /// dismissMenu: void -> void
-    /// dismisses the Trail Report Menu
-    @objc func dismissTrailReportMenu() {
-        trailReportMenu!.dismissItems()
-    }
-    
-    /// presentRouteOverviewMenu: void -> void
-    /// configures the Route Overview View, presents the associated menu on the screen and displays the route on the menu
-    private func presentRouteOverviewMenu()
-    {
-        routeOverviewView!.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 200)
-        let window = self.view
-        routeOverviewMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 300)
-        routeOverviewMenu?.view = routeOverviewView
-        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissRouteOverviewMenu))
-        routeOverviewMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
-        routeOverviewView?.letsGoButton.addTarget(self, action: #selector(letsGoButtonPressed), for: .touchUpInside)
-        routeOverviewMenu?.presentItems()
-        displayRoute()
-    }
-    
-    /// dismissRouteOverviewMenu: void -> void
-    /// dismisses the route overview menu and cancels any on going routes
-    @objc func dismissRouteOverviewMenu()
-    {
-        cancelRoute()
-        viewDidAppear(true)
-        self.routeOverviewMenu?.dismissItems()
-    }
-    
-    /// letsGoButtonPressed: void -> void
-    /// dismisses the route overview menu
-    @objc func letsGoButtonPressed()
-    {
-        self.routeOverviewMenu?.dismissItems()
-        self.cancelButton.isHidden = false
         
-        recenter()
-        
-        Self.origin = nil
-        guard (Self.currentUser.id) != nil else{return}
-        self.timer = Date.now
-    }
-    
-    /// createTrailReport: TrailReportType -> void
-    /// parameters:
-    /// - type: The Trail Report Type for the Trail Report
-    /// Creates a Trail Report of the specified type on the map and sends itself to the database
-    func createTrailReport(type: TrailReportType)
-    {
-        dismissTrailReportMenu()
-        let originAnnotation = createAnnotation(title: nil, latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
-        let closestTrail = getClosestAnnotation(origin: originAnnotation).value
-        switch type
+        /// presentTrailReportMenu: void -> void
+        /// Configures and presents the Trail Report Menu
+        private func presentTrailReportMenu()
         {
-        case .moguls:
-            originAnnotation.subtitle = TrailReportType.moguls.rawValue
-        case .ice:
-            originAnnotation.subtitle = TrailReportType.ice.rawValue
-        case .crowded:
-            originAnnotation.subtitle = TrailReportType.crowded.rawValue
-        case .thinCover:
-            originAnnotation.subtitle = TrailReportType.crowded.rawValue
+            trailReportTableView.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 250)
+            let window = self.view
+            trailReportMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 300)
+            trailReportMenu?.view = trailReportTableView
+            let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissTrailReportMenu))
+            trailReportMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
+            trailReportMenu?.presentItems()
         }
-        guard let currentUserId = Self.currentUser.id else { return }
-        saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
-        closestTrail.trailReport = originAnnotation
-        myMap.addAnnotation(originAnnotation)
         
-    }
-    
-}
-
-extension InteractiveMapViewController: MKMapViewDelegate
-{
-    func mapView(
-        _ mapView: MKMapView,
-        rendererFor overlay: MKOverlay
-    ) -> MKOverlayRenderer {
-        if overlay.isKind(of: CustomPolyline.self)
+        /// createKeyTrailAnnotations: void -> void
+        ///  Presents all the key annotations to the map
+        func createKeyTrailAnnotations()
         {
-            let polyLine = overlay as! CustomPolyline
-            let polylineRenderer = MKPolylineRenderer(overlay: polyLine)
-            polylineRenderer.strokeColor = polyLine.color!
-            polylineRenderer.lineWidth = 3.0
+            if isRealTimeGraph
+            {
+                //myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }).filter({ $0.status == .open }))
+            }
+            else
+            {
+                //myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }))
+            }
+        }
+        
+        /// dismissMenu: void -> void
+        /// dismisses the Trail Report Menu
+        @objc func dismissTrailReportMenu() {
+            trailReportMenu!.dismissItems()
+        }
+        
+        /// presentRouteOverviewMenu: void -> void
+        /// configures the Route Overview View, presents the associated menu on the screen and displays the route on the menu
+        private func presentRouteOverviewMenu()
+        {
+            routeOverviewView!.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 200)
+            let window = self.view
+            routeOverviewMenu = PopUpMenuFramework(viewController: self, window: window!, screenSize: UIScreen.main.bounds.size, transparentView: UIView(frame: self.view.frame), height: 300)
+            routeOverviewMenu?.view = routeOverviewView
+            let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissRouteOverviewMenu))
+            routeOverviewMenu?.transparentView.addGestureRecognizer(dismissTapGesture)
+            routeOverviewView?.letsGoButton.addTarget(self, action: #selector(letsGoButtonPressed), for: .touchUpInside)
+            routeOverviewMenu?.presentItems()
+            displayRoute()
+        }
+        
+        /// dismissRouteOverviewMenu: void -> void
+        /// dismisses the route overview menu and cancels any on going routes
+        @objc func dismissRouteOverviewMenu()
+        {
+            cancelRoute()
+            viewDidAppear(true)
+            self.routeOverviewMenu?.dismissItems()
+        }
+        
+        /// letsGoButtonPressed: void -> void
+        /// dismisses the route overview menu
+        @objc func letsGoButtonPressed()
+        {
+            self.routeOverviewMenu?.dismissItems()
+            self.cancelButton.isHidden = false
             
-            return polylineRenderer
-        }
-        return tileRenderer
-    }
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        if(view.annotation?.title! == nil)
-        {
-            cancelTrailReportView.isHidden = true
-        }
-    }
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if !(cancelTrailReportView.isHidden)
-        {
-            selectedTrailReport = nil
-            selectedTrailReportAnnotation = nil
-            cancelTrailReportView.isHidden = true
+            recenter()
+            
+            Self.origin = nil
+            guard (Self.currentUser.id) != nil else{return}
+            self.timer = Date.now
         }
         
-        let currentSpan = mapView.region.span
-        let zoomSpan = MKCoordinateSpan(latitudeDelta: currentSpan.latitudeDelta / 2.0, longitudeDelta: currentSpan.longitudeDelta / 2.0)
-        let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
-        let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
-        mapView.setRegion(zoomed, animated: true)
-        guard let annotation = view.annotation as? ImageAnnotation else {
-            return
-        }
-        if let status = annotation.status
+        /// createTrailReport: TrailReportType -> void
+        /// parameters:
+        /// - type: The Trail Report Type for the Trail Report
+        /// Creates a Trail Report of the specified type on the map and sends itself to the database
+        func createTrailReport(type: TrailReportType)
         {
-            print(status)
+            dismissTrailReportMenu()
+            let originAnnotation = createAnnotation(title: nil, latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
+            let closestTrail = getClosestAnnotation(origin: originAnnotation).value
+            switch type
+            {
+            case .moguls:
+                originAnnotation.subtitle = TrailReportType.moguls.rawValue
+            case .ice:
+                originAnnotation.subtitle = TrailReportType.ice.rawValue
+            case .crowded:
+                originAnnotation.subtitle = TrailReportType.crowded.rawValue
+            case .thinCover:
+                originAnnotation.subtitle = TrailReportType.crowded.rawValue
+            case .longLiftLine:
+                originAnnotation.subtitle = TrailReportType.longLiftLine.rawValue
+            case .snowmaking:
+                originAnnotation.subtitle = TrailReportType.snowmaking.rawValue
+            }
+            guard let currentUserId = Self.currentUser.id else { return }
+            saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
+            closestTrail.trailReport = originAnnotation
+            myMap.addAnnotation(originAnnotation)
+            
         }
-        if view.annotation is MKUserLocation
-        {
-            return
-            //then you selected the user location
+        
+    }
+    
+    extension InteractiveMapViewController: MKMapViewDelegate
+    {
+        func mapView(
+            _ mapView: MKMapView,
+            rendererFor overlay: MKOverlay
+        ) -> MKOverlayRenderer {
+            if overlay.isKind(of: CustomPolyline.self)
+            {
+                let polyLine = overlay as! CustomPolyline
+                let polylineRenderer = MKPolylineRenderer(overlay: polyLine)
+                polylineRenderer.strokeColor = polyLine.color!
+                polylineRenderer.lineWidth = 3.0
+                
+                return polylineRenderer
+            }
+            return tileRenderer
         }
-        if (view.annotation?.title! == nil)
-        {
-            selectedTrailReport = Self.trailReports.first(where: {$0.id == annotation.id})
-            selectedTrailReportAnnotation = annotation
-            cancelTrailReportView.isHidden = false
-            return
+        func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+            if(view.annotation?.title! == nil)
+            {
+                cancelTrailReportView.isHidden = true
+            }
         }
-        if Self.routeInProgress
-        {
-            //then there is already a route in progress and they must cancel the route before selecting another destination
-            return
-        }
+        func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+            if !(cancelTrailReportView.isHidden)
+            {
+                selectedTrailReport = nil
+                selectedTrailReportAnnotation = nil
+                cancelTrailReportView.isHidden = true
+            }
+            
+            let currentSpan = mapView.region.span
+            let zoomSpan = MKCoordinateSpan(latitudeDelta: currentSpan.latitudeDelta / 2.0, longitudeDelta: currentSpan.longitudeDelta / 2.0)
+            let zoomCoordinate = view.annotation?.coordinate ?? mapView.region.center
+            let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
+            mapView.setRegion(zoomed, animated: true)
+            guard let annotation = view.annotation as? ImageAnnotation else {
+                return
+            }
+            if let status = annotation.status
+            {
+                print(status)
+            }
+            if view.annotation is MKUserLocation
+            {
+                return
+                //then you selected the user location
+            }
+            if (view.annotation?.title! == nil)
+            {
+                selectedTrailReport = Self.trailReports.first(where: {$0.id == annotation.id})
+                selectedTrailReportAnnotation = annotation
+                cancelTrailReportView.isHidden = false
+                return
+            }
+            if Self.routeInProgress
+            {
+                //then there is already a route in progress and they must cancel the route before selecting another destination
+                return
+            }
             Self.origin = nil
             Self.wasSelectedWithOrigin = false
             Self.destination = view.annotation as? ImageAnnotation
             sampleRoute()
+        }
     }
-}
-
-extension InteractiveMapViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return settingArray.count
+    extension InteractiveMapViewController: UITableViewDataSource, UITableViewDelegate {
+        
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return settingArray.count
+        }
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrailReportTypeTableViewCell", for: indexPath) as? TrailReportTypeTableViewCell else {fatalError("Unable to deque cell")}
+            cell.lbl.text = settingArray[indexPath.row]
+            if(settingArray[indexPath.row] == TrailReportType.moguls.rawValue)
+            {
+                cell.settingImage.image = UIImage(named: "MogulSquare.png")!
+            }
+            else if (settingArray[indexPath.row] == TrailReportType.ice.rawValue)
+            {
+                cell.settingImage.image = UIImage(named: "IcySquare.png")!
+            }
+            return cell
+        }
+        func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+            return "Select A Trail Report"
+        }
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 50
+        }
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let cell = tableView.cellForRow(at: indexPath) as! TrailReportTypeTableViewCell
+            switch cell.lbl.text{
+            case TrailReportType.moguls.rawValue:
+                createTrailReport(type: .moguls)
+            case TrailReportType.ice.rawValue:
+                createTrailReport(type: .ice)
+            case TrailReportType.crowded.rawValue:
+                createTrailReport(type: .crowded)
+            case TrailReportType.thinCover.rawValue:
+                createTrailReport(type: .thinCover)
+            case TrailReportType.longLiftLine.rawValue:
+                createTrailReport(type: .longLiftLine)
+            case TrailReportType.snowmaking.rawValue:
+                createTrailReport(type: .snowmaking)
+            default:
+                dismissTrailReportMenu()
+            }
+        }
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TrailReportTypeTableViewCell", for: indexPath) as? TrailReportTypeTableViewCell else {fatalError("Unable to deque cell")}
-        cell.lbl.text = settingArray[indexPath.row]
-        if(settingArray[indexPath.row] == "Moguls")
-        {
-            cell.settingImage.image = UIImage(named: "MogulSquare.png")!
-        }
-        else if (settingArray[indexPath.row] == "Icy")
-        {
-            cell.settingImage.image = UIImage(named: "IcySquare.png")!
-        }
-        return cell
-    }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Select A Trail Report"
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! TrailReportTypeTableViewCell
-        if (cell.lbl.text == "Moguls")
-        {
-            createTrailReport(type: .moguls)
-        }
-        else if(cell.lbl.text == "Icy")
-        {
-            createTrailReport(type: .ice)
-        }
-        else if (cell.lbl.text == "Crowded")
-        {
-            createTrailReport(type: .crowded)
-        }
-        else if (cell.lbl.text == "Thin Cover")
-        {
-            createTrailReport(type: .thinCover)
-        }
-        else if(cell.lbl.text == "Cancel")
-        {
-            dismissTrailReportMenu()
-        }
-    }
-}
-
-extension InteractiveMapViewController: UITextFieldDelegate
-{
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        trailSelectorView?.currentTextField = textField
-        if textField.placeholder == "Origin: Your Location..."
-        {
-            trailSelectorView?.currentTextFieldType = .origin
-        }
-        else {
-            trailSelectorView?.currentTextFieldType = .destination
-        }
-        if(trailSelectorView!.isPresented)
-        {
+    
+    extension InteractiveMapViewController: UITextFieldDelegate
+    {
+        func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+            guard let trailSelectorView = self.trailSelectorView else {
+                return false
+            }
+            trailSelectorView.currentTextField = textField
+            if textField.placeholder == "Origin: Your Location..."
+            {
+                trailSelectorView.currentTextFieldType = .origin
+            }
+            else {
+                trailSelectorView.currentTextFieldType = .destination
+            }
+            if(trailSelectorView.isPresented)
+            {
+                return true
+            }
+            else
+            {
+                presentSideMenu()
+            }
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
             return true
         }
-        else
-        {
-            presentSideMenu()
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            TrailSelectorView.searchText = textField.text!
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
         }
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
-        return true
-    }
-    func textFieldDidChangeSelection(_ textField: UITextField) {
-        TrailSelectorView.searchText = textField.text!
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "searchTrail"), object: nil)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.endEditing(true)
-        if textField == searchBar.destinationTextField
-        {
-            Self.didChooseDestination = false
-        }
-        return true
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if Self.wasCancelled
-        {
-            dismissSideMenu()
-            return
-        }
-        if self.searchBar.originTextField.text!.isEmpty && textField == searchBar.originTextField
-        {
-            Self.origin = nil
-        }
-        else if (textField == searchBar.originTextField)
-        {
-            guard let firstCell = self.trailSelectorView!.searchBarTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TrailSelectorTableViewCell else
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            textField.endEditing(true)
+            if textField == searchBar.destinationTextField
             {
-                //then there are no trails matching the search text
+                Self.didChooseDestination = false
+            }
+            return true
+        }
+        func textFieldDidEndEditing(_ textField: UITextField) {
+            if Self.wasCancelled
+            {
+                dismissSideMenu()
                 return
             }
-            Self.origin = firstCell.cellTrail!
-            Self.wasSelectedWithOrigin = true
-            self.searchBar.originTextField.text = firstCell.cellTrail?.title!
+            if self.searchBar.originTextField.text!.isEmpty && textField == searchBar.originTextField
+            {
+                Self.origin = nil
+            }
+            else if (textField == searchBar.originTextField)
+            {
+                guard let firstCell = self.trailSelectorView!.searchBarTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TrailSelectorTableViewCell else
+                {
+                    //then there are no trails matching the search text
+                    return
+                }
+                Self.origin = firstCell.cellTrail!
+                Self.wasSelectedWithOrigin = true
+                self.searchBar.originTextField.text = firstCell.cellTrail?.title!
+            }
+            if textField == searchBar.destinationTextField && !(self.searchBar.destinationTextField.text!.isEmpty) && !Self.didChooseDestination
+            {
+                guard let firstCell = self.trailSelectorView!.searchBarTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TrailSelectorTableViewCell else {
+                    //Then there are not trails matching the search text
+                    return
+                }
+                self.searchBar.destinationTextField.text = firstCell.cellTrail?.title
+                Self.destination = firstCell.cellTrail
+                self.trailSelectorMenu?.dismissItems()
+                self.trailSelectorView?.isPresented = false
+                self.searchBar.destinationTextField.text = nil
+                self.reloadButtons()
+                self.sampleRoute()
+                self.searchBar.originTextField.text = nil
+            }
+            else if (textField == searchBar.destinationTextField && !Self.didChooseDestination)
+            {
+                Self.destination = nil
+            }
         }
-        if textField == searchBar.destinationTextField && !(self.searchBar.destinationTextField.text!.isEmpty) && !Self.didChooseDestination
-        {
-            guard let firstCell = self.trailSelectorView!.searchBarTableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? TrailSelectorTableViewCell else {
-                //Then there are not trails matching the search text
+    }
+    
+    extension InteractiveMapViewController: CLLocationManagerDelegate
+    {
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            if Self.routeInProgress && canFindPathAgain && !Self.wasSelectedWithOrigin
+            {
+                Self.origin = nil
+                canFindPathAgain = false
+                self.displayRoute()
+            }
+            guard let currentUserId = Self.currentUser.id else
+            {
                 return
             }
-            self.searchBar.destinationTextField.text = firstCell.cellTrail?.title
-            Self.destination = firstCell.cellTrail
-            self.trailSelectorMenu?.dismissItems()
-            self.trailSelectorView?.isPresented = false
-            self.searchBar.destinationTextField.text = nil
-            self.reloadButtons()
-            self.sampleRoute()
-            self.searchBar.originTextField.text = nil
-        }
-        else if (textField == searchBar.destinationTextField && !Self.didChooseDestination)
-        {
-            Self.destination = nil
+            saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
         }
     }
-}
-
-extension InteractiveMapViewController: CLLocationManagerDelegate
-{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if Self.routeInProgress && canFindPathAgain && !Self.wasSelectedWithOrigin
-        {
-            Self.origin = nil
-            canFindPathAgain = false
-            self.displayRoute()
-            
-        }
-        guard let currentUserId = Self.currentUser.id else
-        {
-            return
-        }
-        saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
-    }
-}

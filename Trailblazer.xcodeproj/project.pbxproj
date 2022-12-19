@@ -22,7 +22,6 @@
 		150D0642290066C00051F160 /* MogulSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D0641290066C00051F160 /* MogulSquare.png */; };
 		150D06442900682F0051F160 /* IcySquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D06432900682F0051F160 /* IcySquare.png */; };
 		150D064629006C190051F160 /* SRSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D064529006C190051F160 /* SRSun.png */; };
-		150D064C2900AC780051F160 /* MilkyNice.otf in Resources */ = {isa = PBXBuildFile; fileRef = 150D064B2900AC780051F160 /* MilkyNice.otf */; };
 		15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15213F022904800D0027749B /* BellmanFordGraphStructure.swift */; };
 		1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524944E29074F7E009E7059 /* NotificationUtils.swift */; };
 		15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249450290754DA009E7059 /* UnusedFunctions.swift */; };
@@ -115,7 +114,6 @@
 		150D0641290066C00051F160 /* MogulSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MogulSquare.png; sourceTree = "<group>"; };
 		150D06432900682F0051F160 /* IcySquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IcySquare.png; sourceTree = "<group>"; };
 		150D064529006C190051F160 /* SRSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRSun.png; sourceTree = "<group>"; };
-		150D064B2900AC780051F160 /* MilkyNice.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MilkyNice.otf; sourceTree = "<group>"; };
 		15213F022904800D0027749B /* BellmanFordGraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellmanFordGraphStructure.swift; sourceTree = "<group>"; };
 		1524944E29074F7E009E7059 /* NotificationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtils.swift; sourceTree = "<group>"; };
 		15249450290754DA009E7059 /* UnusedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnusedFunctions.swift; sourceTree = "<group>"; };
@@ -211,7 +209,6 @@
 				15316624290B170300206E7E /* Models */,
 				15316625290B172200206E7E /* Miscellaneous.Utils */,
 				150C6EAD29031B0C0055AD59 /* Unused.Utils */,
-				150D06472900A8CD0051F160 /* Fonts */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -225,14 +222,6 @@
 				150D063F290063AB0051F160 /* SRMoon.png */,
 			);
 			path = Images;
-			sourceTree = "<group>";
-		};
-		150D06472900A8CD0051F160 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				150D064B2900AC780051F160 /* MilkyNice.otf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		15316624290B170300206E7E /* Models */ = {
@@ -475,7 +464,6 @@
 				150D06442900682F0051F160 /* IcySquare.png in Resources */,
 				15874A0427D82636001B9025 /* LaunchScreen.storyboard in Resources */,
 				150D064629006C190051F160 /* SRSun.png in Resources */,
-				150D064C2900AC780051F160 /* MilkyNice.otf in Resources */,
 				150D0640290063AB0051F160 /* SRMoon.png in Resources */,
 				15874A0127D82636001B9025 /* Assets.xcassets in Resources */,
 				158749FF27D82635001B9025 /* Main.storyboard in Resources */,

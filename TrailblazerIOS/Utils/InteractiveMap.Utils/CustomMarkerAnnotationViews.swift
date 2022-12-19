@@ -10,13 +10,18 @@ import MapKit
 import UIKit
 
 class CustomAnnotationView: MKMarkerAnnotationView {
-    let mogulGlyphImage: UIImage = .init(systemName: "exclamationmark.triangle")!
+    let mogulGlyphImage: UIImage = .init(systemName: "exclamationmark.triangle.fill")!
     
     let icyGlyphImage: UIImage = .init(systemName: "snowflake")!
     
     let crowdedGlyphImage: UIImage = .init(systemName: "figure.walk")!
     
     let thinCoverGlyphImage : UIImage = .init(systemName: "leaf.fill")!
+    
+    let longLiftLineGlyphImage : UIImage = .init(systemName: "person.3.sequence.fill")!
+    
+    let snowmakingGlyphImage : UIImage = .init(systemName: "cloud.snow.fill")!
+    
     override var annotation: MKAnnotation? {
         didSet { configure(for: annotation) }
     }
@@ -38,25 +43,27 @@ class CustomAnnotationView: MKMarkerAnnotationView {
         
         if let subtitle = annotation.subtitle
         {
-            if subtitle == "Moguls"
-            {
+            switch subtitle{
+            case TrailReportType.moguls.rawValue:
                 markerTintColor = .black
                 glyphImage = mogulGlyphImage
-            }
-            else if subtitle == "Icy"
-            {
+            case TrailReportType.ice.rawValue:
                 markerTintColor = .blue
                 glyphImage = icyGlyphImage
-            }
-            else if subtitle == "Crowded"
-            {
+            case TrailReportType.crowded.rawValue:
                 markerTintColor = .yellow
                 glyphImage = crowdedGlyphImage
-            }
-            else if subtitle == "Thin Cover"
-            {
+            case TrailReportType.thinCover.rawValue:
                 markerTintColor = .brown
                 glyphImage = thinCoverGlyphImage
+            case TrailReportType.longLiftLine.rawValue:
+                markerTintColor = .systemRed
+                glyphImage = longLiftLineGlyphImage
+            case TrailReportType.snowmaking.rawValue:
+                markerTintColor = .white
+                glyphImage = snowmakingGlyphImage
+            default:
+                break
             }
             clusteringIdentifier = "trailReport"
         }

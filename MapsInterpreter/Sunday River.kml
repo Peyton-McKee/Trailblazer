@@ -754,7 +754,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Road Runner</name>
+        <name>Roadrunner</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1209,7 +1209,7 @@
         <LineString>
           <tessellate>1</tessellate>
           <coordinates>
-            -70.8691211,44.471539,0
+            -70.8692957,44.4715838,0
             -70.8688368,44.4716423,0
             -70.8684184,44.4716997,0
             -70.8676352,44.4717801,0
@@ -1268,6 +1268,22 @@
             -70.8591157,44.4724135,0
             -70.8590352,44.4726183,0
             -70.8588322,44.4729323,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Cutback</name>
+        <styleUrl>#line-000000-1200-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -70.8592877,44.4680792,0
+            -70.8594604,44.4682201,0
+            -70.8598094,44.4684358,0
+            -70.8602087,44.4686641,0
+            -70.8605413,44.4688134,0
+            -70.8608256,44.4689168,0
+            -70.8611222,44.4690697,0
           </coordinates>
         </LineString>
       </Placemark>
@@ -1385,7 +1401,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Cut Off</name>
+        <name>Cutoff</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1427,22 +1443,6 @@
             -70.8555169,44.4664132,0
             -70.8553533,44.4663003,0
             -70.8551709,44.4661548,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Cut Back</name>
-        <styleUrl>#line-000000-1200-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            -70.8592877,44.4680792,0
-            -70.8594604,44.4682201,0
-            -70.8598094,44.4684358,0
-            -70.8602087,44.4686641,0
-            -70.8605413,44.4688134,0
-            -70.8608256,44.4689168,0
-            -70.8611222,44.4690697,0
           </coordinates>
         </LineString>
       </Placemark>
@@ -1676,12 +1676,12 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Lower Uppercut</name>
+        <name>Lower Upper Cut</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
           <coordinates>
-            -70.8664388,44.4612926,0
+            -70.8664178,44.461216,0
             -70.8664522,44.4614649,0
             -70.8664844,44.4616123,0
             -70.8665031,44.4617176,0
@@ -1734,7 +1734,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Lower Sunday Punch</name>
+        <name>Sunday Punch</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2267,7 +2267,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Heat’s On</name>
+        <name><![CDATA[Heat's On]]></name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2297,7 +2297,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Heat’s Off</name>
+        <name><![CDATA[Heat's Off ]]></name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2537,7 +2537,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Bim’s Whim</name>
+        <name><![CDATA[Bim's Whim]]></name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2596,7 +2596,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Jim’s Whim</name>
+        <name><![CDATA[Jim's Whim]]></name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2632,7 +2632,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Upper Downdraft</name>
+        <name>Downdraft</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3072,7 +3072,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Wizards Gultch</name>
+        <name><![CDATA[Wizard's Gulch]]></name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3095,7 +3095,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>iCaramba</name>
+        <name>Caramba</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3122,7 +3122,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Agony </name>
+        <name>Agony</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3143,7 +3143,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Shock Waze</name>
+        <name>Shock Wave</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3186,7 +3186,7 @@
       </Placemark>
     </Folder>
     <Folder>
-      <name>Terrain Parks</name>
+      <name>Terrain Park</name>
       <Placemark>
         <name>T72</name>
         <styleUrl>#line-F9A825-1200-nodesc</styleUrl>
@@ -3236,7 +3236,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>WhoVille</name>
+        <name>Who-Ville</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3285,7 +3285,7 @@
       </Placemark>
     </Folder>
     <Folder>
-      <name>Connectors</name>
+      <name>Connector</name>
       <Placemark>
         <name>TopNPConnector</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
@@ -3433,9 +3433,9 @@
       </Placemark>
     </Folder>
     <Folder>
-      <name>Lifts</name>
+      <name>Lift</name>
       <Placemark>
-        <name>Jordan Express</name>
+        <name>Jordan 8 Lift</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3446,7 +3446,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Oz Quad</name>
+        <name>OZ Quad</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3457,7 +3457,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Jordan Double</name>
+        <name>Jordan Mountain Double</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3468,7 +3468,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Aurora Quad</name>
+        <name>Aurora Peak Quad</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3501,7 +3501,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Southridge Express</name>
+        <name>South Ridge Express</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3523,7 +3523,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Spruce Triple</name>
+        <name>Spruce Peak Triple</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3534,7 +3534,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Barker Express</name>
+        <name>Barker Mountain Express</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3545,7 +3545,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Locke Triple</name>
+        <name>Locke Mountain Triple</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3556,7 +3556,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Tempest Quad</name>
+        <name>White Cap Quad</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>

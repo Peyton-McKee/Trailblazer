@@ -19,6 +19,8 @@ struct MapsController: RouteCollection {
         mapsRoute.get(":mapId", use: getHandler)
         mapsRoute.get(":mapId", "map-trails", use: getMapTrailsHandler)
         mapsRoute.get(":mapId", "map-connectors", use: getMapConnectorsHandler)
+//        mapsRoute.delete(":mapId", "map-connectors", use: deleteMapConnectorsHandler)
+//        mapsRoute.delete(":mapId", "map-trails", use: deleteMapTrailsHandler)
         mapsRoute.delete(":mapId", use: deleteHandler)
         mapsRoute.delete(use: deleteAllHandler)
     }
@@ -50,6 +52,18 @@ struct MapsController: RouteCollection {
           map.$mapTrail.get(on: req.db)
         }
     }
+//    func deleteMapTrailsHandler(_ req: Request)
+//      -> EventLoopFuture<HTTPStatus> {
+//      // 2
+//      Map.find(req.parameters.get("mapId"), on: req.db)
+//        .unwrap(or: Abort(.notFound))
+//        .flatMap { map in
+//          // 3
+//            map.$mapTrail.query(on: req.db).
+//
+//        }
+//    }
+
     func getMapConnectorsHandler(_ req: Request) -> EventLoopFuture<[MapConnector]> {
         Map.find(req.parameters.get("mapId"), on: req.db)
             .unwrap(or: Abort(.notFound))
@@ -57,12 +71,18 @@ struct MapsController: RouteCollection {
                 map.$mapConnector.get(on: req.db)
             }
     }
-    
+    func deleteMapConnectorsHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
+        Map.find(req.parameters.get("mapId"), on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap{ map in
+                map.mapConnector.delete(on: req.db).transform(to: .noContent)
+            }
+    }
     func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
         Map.find(req.parameters.get("mapId"), on: req.db)
             .unwrap(or: Abort(.notFound))
             .flatMap { map in
-                map.delete(on: req.db).transform(to: .noContent)
+                map.delete(on: req.db).transform(to: HTTPStatus.noContent)
             }
     }
     func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {

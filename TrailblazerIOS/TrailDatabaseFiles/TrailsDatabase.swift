@@ -9,14 +9,14 @@ import Foundation
 import MapKit
 import SwiftUI
 
-enum Difficulty
+enum Difficulty: String
 {
-    case easy
-    case intermediate
-    case advanced
-    case expertsOnly
-    case lift
-    case terrainPark
+    case easy = "Easy"
+    case intermediate = "Intermediate"
+    case advanced = "Advanced"
+    case expertsOnly = "Experts Only"
+    case lift = "Lift"
+    case terrainPark = "Terrain Park"
 }
 
 class ImageAnnotation : NSObject, MKAnnotation{
@@ -30,6 +30,7 @@ class ImageAnnotation : NSObject, MKAnnotation{
     var status: Status?
     var id: String?
     var isConnector = false
+    var times: [Double]?
     override init() {
         self.coordinate = CLLocationCoordinate2D()
         self.title = nil
