@@ -169,6 +169,27 @@ func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
     }.resume()
 }
 
+func getUserLocationsWith(_ id: String, completion: @escaping (Result<[UserLocation], Error>) -> Void) {
+    let url = URL(string: "\(getBaseUrl())/api/users/\(id)/user-locations")!
+    
+    URLSession.shared.dataTask(with: url) { data, response, error in
+        guard let data = data, error == nil else {
+            print(error!.localizedDescription)
+            completion(.failure(error!))
+            return
+        }
+        let decoder = JSONDecoder()
+        if let userLocations = try? decoder.decode([UserLocation].self, from: data) {
+            DispatchQueue.main.async {
+                completion(.success(userLocations))
+            }
+        } else {
+            print("Could not decode user locations")
+            completion(.failure(DecodingErrors.userLocationDecodingError))
+        }
+    }
+}
+
 func saveUser(_ user: User, completion: @escaping (Result<User, Error>) -> Void) {
     let url = URL(string: "\(getBaseUrl())/api/users")!
     
@@ -243,6 +264,33 @@ func loginHandler(username: String, password: String, completion: @escaping (Res
         else{
             print("Unable to decode user")
             completion(.failure(DecodingErrors.userDecodingError))
+        }
+    }.resume()
+}
+
+func saveMapFile(mapFile: MapFile, completion: @escaping (Result<MapFile, Error>) -> Void)
+{
+    let url = URL(string: "\(getBaseUrl())/api/map-files")!
+    
+    var request = URLRequest(url: url)
+    let encoder = JSONEncoder()
+    request.httpMethod = "POST"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = try? encoder.encode(mapFile)
+    
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        guard let data = data, error == nil else {
+            print("Could not save mapFile")
+            completion(.failure(error!))
+            return
+        }
+        let decoder = JSONDecoder()
+        if let mapFile = try? decoder.decode(MapFile.self, from: data) {
+            completion(.success(mapFile))
+        }
+        else {
+            print("Error Decoding Map File")
+            completion(.failure(DecodingErrors.mapFileDecodingError))
         }
     }.resume()
 }

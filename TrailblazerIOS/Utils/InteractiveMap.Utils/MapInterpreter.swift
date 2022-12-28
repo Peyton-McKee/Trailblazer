@@ -25,6 +25,7 @@ struct MapTrail: Codable, Equatable {
         return lhs.id == rhs.id
     }
 }
+
 struct Point: Codable {
     var id: String?
     var mapTrailId: MapTrail?
@@ -230,24 +231,24 @@ final class MapInterpreter: NSObject {
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
             }
             var difficulty : Difficulty = .expertsOnly
-            var color = UIColor(hex: "#000000ff")
+            var color = UIColor.myTheme.expertsOnlyColor
             switch trail.difficulty
             {
             case Difficulty.easy.rawValue:
                 difficulty = .easy
-                color = .green
+                color = .myTheme.easyColor
             case Difficulty.intermediate.rawValue:
                 difficulty = .intermediate
-                color = .blue
+                color = .myTheme.intermediateColor
             case Difficulty.advanced.rawValue:
                 difficulty = .advanced
-                color = .gray
+                color = .myTheme.advancedColor
             case Difficulty.lift.rawValue:
                 difficulty = .lift
-                color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+                color = .myTheme.liftsColor
             case Difficulty.terrainPark.rawValue:
                 difficulty = .terrainPark
-                color = .orange
+                color = .myTheme.terrainParksColor
             default:
                 break
             }
@@ -277,7 +278,7 @@ final class MapInterpreter: NSObject {
             let initialAnnotation = createAnnotation(title: connector.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
             initialAnnotation.isConnector = true
             initialAnnotation.times = times
-            polyline.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
+            polyline.color = UIColor(hex: "#00be00ff")
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
         }

@@ -24,10 +24,9 @@ class UserSettingsViewController : UIViewController {
         label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .title1), size: 20)
         label.textColor = .red
         label.font = UIFont(name: "markerfelt-wide", size: 20)
-        label.text = "Username: \(InteractiveMapViewController.currentUser.username)"
         return label
     }()
-    let options: [Setting] = [Setting(name: "Trail Reports Made", image: UIImage(systemName: "snowflake")!, textColor: .green, viewController: UserTrailReportsViewController()),  Setting(name: "Alert Preferences", image: UIImage(systemName: "bell.badge")!, textColor: .blue, viewController: AlertPreferencesViewController()), Setting(name: "Preferred Routing", image: UIImage(systemName: "location.circle.fill")!, textColor: .blue, viewController: RoutingPreferencesViewController()), Setting(name: "More Settings", image: UIImage(systemName: "circle")!, textColor: .red, viewController: UserTrailReportsViewController())]
+    let options: [Setting] = [Setting(name: "Trail Reports Made", image: UIImage(systemName: "snowflake")!, textColor: .green, viewController: UserTrailReportsViewController()),  Setting(name: "Alert Preferences", image: UIImage(systemName: "bell.badge")!, textColor: .blue, viewController: AlertPreferencesViewController()), Setting(name: "Preferred Routing", image: UIImage(systemName: "location.circle.fill")!, textColor: .blue, viewController: RoutingPreferencesViewController()), Setting(name: "More Settings", image: UIImage(systemName: "circle")!, textColor: .red, viewController: MoreSettingViewController())]
     
     var backgroundImageView = UIImageView()
     
@@ -68,7 +67,10 @@ class UserSettingsViewController : UIViewController {
         settingsTableView.dataSource = self
         NSLayoutConstraint.activate([userNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height/10), logOutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.bounds.height/5), VStack.topAnchor.constraint(equalTo: userNameLabel.topAnchor), VStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16), VStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16), VStack.bottomAnchor.constraint(equalTo: logOutButton.bottomAnchor)])
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        userNameLabel.text = "Hello \(InteractiveMapViewController.currentUser.username)!"
+    }
     @objc func logOutPressed(sender: UIButton)
     {
         UserDefaults.standard.removeObject(forKey: "userUsername")
@@ -109,6 +111,6 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.cellForRow(at: indexPath) as! UserSettingsTableViewCell
         print("test")
         
-        self.tabBarController?.present(cell.setting!.viewController, animated: true)
+        self.navigationController?.show(cell.setting!.viewController, sender: self)
     }
 }

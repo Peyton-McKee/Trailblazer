@@ -40,6 +40,8 @@
 		153DABB12937CF61001ABAAD /* TrailsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */; };
 		153DABB22937D17E001ABAAD /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0D28E224C8005D0886 /* Trail.swift */; };
 		153DABB32937D188001ABAAD /* DijsktrasGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */; };
+		1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */; };
+		1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE4295BF07200AC8E0A /* MapFile.swift */; };
 		15489A492922AF2F00898FD0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A482922AF2F00898FD0 /* Connectivity.swift */; };
 		15489A4A2922AFAC00898FD0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A482922AF2F00898FD0 /* Connectivity.swift */; };
 		15489A4C2922BAD100898FD0 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A4B2922BAD100898FD0 /* ConnectivityController.swift */; };
@@ -66,6 +68,7 @@
 		1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */; };
 		1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBC291AE7B900978FD8 /* Assets.xcassets */; };
 		1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */; };
+		15A1C8212950F967007598D8 /* ToolTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1C8202950F967007598D8 /* ToolTipView.swift */; };
 		15F92C522939A7B000792054 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C512939A7B000792054 /* HomePageView.swift */; };
 		15F92C542939A97D00792054 /* DirectionsDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C532939A97D00792054 /* DirectionsDisplayView.swift */; };
 		15F92C56293AC9C300792054 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C55293AC9C300792054 /* UserSetting.swift */; };
@@ -130,6 +133,8 @@
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
 		153DAB9729255CFC001ABAAD /* MapInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInterpreter.swift; sourceTree = "<group>"; };
+		1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSettingsViewController.swift; sourceTree = "<group>"; };
+		1544ACE4295BF07200AC8E0A /* MapFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFile.swift; sourceTree = "<group>"; };
 		15489A482922AF2F00898FD0 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		15489A4B2922BAD100898FD0 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		15545AD828DEA598005D0886 /* Web Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web Analysis.swift"; sourceTree = "<group>"; };
@@ -156,6 +161,7 @@
 		1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailblazerApp.swift; sourceTree = "<group>"; };
 		1591DBBC291AE7B900978FD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		15A1C8202950F967007598D8 /* ToolTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipView.swift; sourceTree = "<group>"; };
 		15F92C512939A7B000792054 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		15F92C532939A97D00792054 /* DirectionsDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsDisplayView.swift; sourceTree = "<group>"; };
 		15F92C55293AC9C300792054 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 				15316622290AE86800206E7E /* UserRoute.swift */,
 				15316620290AE86100206E7E /* UserLocation.swift */,
 				153B2E3B28ED1EDF00A23163 /* User.swift */,
+				1544ACE4295BF07200AC8E0A /* MapFile.swift */,
 				15F92C55293AC9C300792054 /* UserSetting.swift */,
 			);
 			path = Models;
@@ -272,6 +279,7 @@
 				15874A0D27D82AFA001B9025 /* Scraper.swift */,
 				152C69B9291B50120092E537 /* LocationManager.swift */,
 				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
+				15A1C8202950F967007598D8 /* ToolTipView.swift */,
 				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
 			);
 			path = InteractiveMap.Utils;
@@ -305,6 +313,7 @@
 				15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */,
 				1524945629084F89009E7059 /* UserTrailReportsViewController.swift */,
 				15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */,
+				1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -497,6 +506,7 @@
 				15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */,
 				15316621290AE86100206E7E /* UserLocation.swift in Sources */,
 				150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */,
+				1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */,
 				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,
 				150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */,
 				1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */,
@@ -504,6 +514,7 @@
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
 				150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */,
 				15489A4D2922C0A900898FD0 /* ConnectivityController.swift in Sources */,
+				1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
 				1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */,
 				15F92C58293BD5A200792054 /* AlertPreferencesViewController.swift in Sources */,
@@ -531,6 +542,7 @@
 				15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */,
 				15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */,
 				150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */,
+				15A1C8212950F967007598D8 /* ToolTipView.swift in Sources */,
 				15545B0C28E224A2005D0886 /* DijsktrasGraphStructure.swift in Sources */,
 				15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */,
 			);
@@ -722,7 +734,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -757,7 +769,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

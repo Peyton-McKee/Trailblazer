@@ -78,7 +78,8 @@ class InteractiveMapViewController: UIViewController
     var searchBar = SearchBarTableHeaderView()
     var pathCreated: [Vertex<ImageAnnotation>] = []
     
-    var settingArray = [TrailReportType.moguls.rawValue, TrailReportType.ice.rawValue, TrailReportType.crowded.rawValue, TrailReportType.thinCover.rawValue, TrailReportType.longLiftLine.rawValue, TrailReportType.snowmaking.rawValue, "Cancel"]
+    let settingArray = [TrailReportType.moguls.rawValue, TrailReportType.ice.rawValue, TrailReportType.crowded.rawValue, TrailReportType.thinCover.rawValue, TrailReportType.longLiftLine.rawValue, TrailReportType.snowmaking.rawValue, "Cancel"]
+    
     var trailReportMenu : PopUpMenuFramework?
     var trailReportTableView = UITableView()
     
@@ -105,7 +106,6 @@ class InteractiveMapViewController: UIViewController
         super.viewDidLoad()
         view.backgroundColor = .white
         configureTrailReportView()
-        configureClasses()
         configureMyMap()
         configureSearchBar()
         checkUserDefaults()
@@ -118,7 +118,7 @@ class InteractiveMapViewController: UIViewController
         self.view.addSubview(loadingScreen)
         if (MapInterpreter.shared.mapView.annotations.isEmpty)
         {
-            MapInterpreter.shared.getMap(id: "39A49913-8572-429A-817E-4972B1379B33")
+            MapInterpreter.shared.getMap(id: "693D4C9F-8487-4BB3-86D3-F128EC55CE8B")
         }
         self.tabBarController?.tabBar.backgroundColor = .black
     }
@@ -133,6 +133,10 @@ class InteractiveMapViewController: UIViewController
         }
         else {
             showAllTrails()
+        }
+        if !isRealTimeGraph
+        {
+            Self.selectedGraph = Self.preferredRoutingGraph
         }
     }
     
@@ -187,6 +191,7 @@ class InteractiveMapViewController: UIViewController
         myMap.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         view.addSubview(myMap)
     }
+    
     @objc func mapTapped(_ tap: UITapGestureRecognizer) {
         if tap.state == .recognized {
             // Get map coordinate from touch point
@@ -265,10 +270,48 @@ class InteractiveMapViewController: UIViewController
         return MKMapPoint(coordA).distance(to: MKMapPoint(coordB))
     }
     
+    @objc func showToolTip(sender: UIButton) {
+       let p = sender.center
+       let tipWidth: CGFloat = 80
+       let tipHeight: CGFloat = 40
+       let tipX = p.x - tipWidth / 2
+       let tipY: CGFloat = p.y - tipHeight
+        var text = ""
+        switch sender{
+        case toggleGraphButton:
+            switch isRealTimeGraph{
+            case true:
+                text = "View All Trails"
+            case false:
+                text = "View Open Trails"
+            }
+        default:
+            text = "Recenter"
+        }
+       let tipView = ToolTipView(frame: CGRect(x: tipX, y: tipY, width: tipWidth, height: tipHeight), text: text, tipPos: .right)
+       view.addSubview(tipView)
+       performShow(tipView)
+    }
+    func performShow(_ v: UIView?) {
+       v?.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
+       UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseOut, animations: {
+         v?.transform = .identity
+       }) { finished in
+           if finished
+           {
+               UIView.animate(withDuration: 0.3, delay: 3, options: .curveEaseOut, animations: {
+                   v?.transform = .init(scaleX: 0.01, y: 0.01)
+               })
+           }
+       }
+    }
+    
     private func configureButtons()
     {
         configureIndividualButton(button: recenterButton, backgroundColor: .gray, image: UIImage(systemName: "location.circle")!)
         recenterButton.addTarget(self, action: #selector(recenter), for: .touchUpInside)
+        recenterButton.addTarget(self, action: #selector(showToolTip), for: .touchDragExit)
+
         
         configureIndividualButton(button: cancelButton, backgroundColor: .cyan, image: UIImage(systemName: "xmark.circle.fill")!)
         cancelButton.isHidden = true
@@ -276,6 +319,7 @@ class InteractiveMapViewController: UIViewController
         
         configureIndividualButton(button: toggleGraphButton, backgroundColor: .lightText, image: UIImage(systemName: "perspective")!)
         toggleGraphButton.addTarget(self, action: #selector(toggleGraph), for: .touchUpInside)
+        toggleGraphButton.addTarget(self, action: #selector(showToolTip), for: .touchDragExit)
         
         recenterButtonYConstraint = recenterButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
         cancelButtonYContraint = cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
@@ -343,6 +387,7 @@ class InteractiveMapViewController: UIViewController
         {
             Self.selectedGraph = WebAnalysis.shared.realTimeGraph
         }
+        trailSelectorView?.reloadMyTrails()
         isRealTimeGraph.toggle()
         showAllTrails()
     }
@@ -385,26 +430,18 @@ class InteractiveMapViewController: UIViewController
         guard let userId = UserDefaults.standard.string(forKey: "userId") else {
             return
         }
+        print("test userId")
         getSingleUser(id: userId, completion: { result in
             guard let user = try? result.get() else
             {
                 print("Error: \(result)")
                 return
             }
+            print("user: \(user)")
             Self.currentUser = user
         })
         
     }
-    private func configureClasses()
-    {
-        if (!Self.configuredClasses)
-        {
-            //            TrailsDatabase.addVertexes()
-            //            TrailsDatabase.createEdges(graph: Self.selectedGraph)
-            Self.configuredClasses = true
-        }
-    }
-    
     private func configureSearchBar()
     {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
@@ -571,7 +608,6 @@ class InteractiveMapViewController: UIViewController
     ///  Creates an annotation for the users current location if the user allows access to its location
     private func assignOrigin() -> Bool
     {
-        print(Self.selectedGraph.vertices[Self.selectedGraph.verticesCount()-1].value.title)
         guard let latitude = locationManager.locationManager.location?.coordinate.latitude, let longitude = locationManager.locationManager.location?.coordinate.longitude, locationManager.locationManager.authorizationStatus == .authorizedWhenInUse else {
             return false
         }
@@ -1003,7 +1039,7 @@ class InteractiveMapViewController: UIViewController
             case .crowded:
                 originAnnotation.subtitle = TrailReportType.crowded.rawValue
             case .thinCover:
-                originAnnotation.subtitle = TrailReportType.crowded.rawValue
+                originAnnotation.subtitle = TrailReportType.thinCover.rawValue
             case .longLiftLine:
                 originAnnotation.subtitle = TrailReportType.longLiftLine.rawValue
             case .snowmaking:

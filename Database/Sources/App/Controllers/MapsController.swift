@@ -19,8 +19,6 @@ struct MapsController: RouteCollection {
         mapsRoute.get(":mapId", use: getHandler)
         mapsRoute.get(":mapId", "map-trails", use: getMapTrailsHandler)
         mapsRoute.get(":mapId", "map-connectors", use: getMapConnectorsHandler)
-//        mapsRoute.delete(":mapId", "map-connectors", use: deleteMapConnectorsHandler)
-//        mapsRoute.delete(":mapId", "map-trails", use: deleteMapTrailsHandler)
         mapsRoute.delete(":mapId", use: deleteHandler)
         mapsRoute.delete(use: deleteAllHandler)
     }

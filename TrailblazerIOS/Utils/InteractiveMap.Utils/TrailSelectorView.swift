@@ -218,10 +218,23 @@ final class TrailSelectorView : UIView {
         //        searchBar.frame = CGRect(x: 10, y: 10, width: searchBarTableView.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height / 20)
         self.addSubview(searchBarTableView)
     }
+    func reloadMyTrails()
+    {
+        easyTrails = []
+        intermediateTrails = []
+        advancedTrails = []
+        expertsOnlyTrails = []
+        terrainParks = []
+        lifts = []
+        filteredTrails = []
+        totalTrails = []
+        createMyTrails()
+        searchBarTableView.reloadData()
+    }
     private func createMyTrails()
     {
         var foundTrails : [String] = []
-        for annotation in MapInterpreter.shared.difficultyGraph.vertices.map({$0.value})
+        for annotation in InteractiveMapViewController.selectedGraph.vertices.map({ $0.value })
         {
             if(!foundTrails.contains(annotation.title!))
             {

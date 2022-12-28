@@ -50,7 +50,7 @@ class UserTrailReportsViewController: UIViewController{
         trailReportsTableView.dataSource = self
         trailReportsTableView.backgroundColor = UIColor(hex: "#00000000")
         view.addSubview(myVstack)
-        NSLayoutConstraint.activate([myTrailReportLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30), trailReportsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor), myVstack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        NSLayoutConstraint.activate([myTrailReportLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height/10), trailReportsTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor), myVstack.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                                      myVstack.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                                      myVstack.topAnchor.constraint(equalTo: myTrailReportLabel.topAnchor),
                                      myVstack.bottomAnchor.constraint(equalTo: trailReportsTableView.bottomAnchor),

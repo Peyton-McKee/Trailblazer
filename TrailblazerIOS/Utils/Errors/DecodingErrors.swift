@@ -9,12 +9,18 @@ import Foundation
 
 enum DecodingErrors: Error {
     case userDecodingError
+    case userLocationDecodingError
+    case mapFileDecodingError
 }
 extension DecodingErrors: CustomStringConvertible{
     public var description: String {
         switch self {
         case .userDecodingError:
             return "Error Decoding User"
+        case .userLocationDecodingError:
+            return "Error Decoding User Locations"
+        case .mapFileDecodingError:
+            return "Error Decoding Map File"
         }
     }
 }

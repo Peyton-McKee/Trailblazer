@@ -35,11 +35,11 @@
                         <viewLayoutGuide key="safeArea" id="HBk-pg-jl6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="gear" catalog="system" id="TKX-FI-ccD"/>
+                    <navigationItem key="navigationItem" id="La1-cO-lUR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LJb-j3-C25" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2938" y="1499"/>
+            <point key="canvasLocation" x="4618.840579710145" y="1498.6607142857142"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="MVH-BW-6gd">
@@ -52,7 +52,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="FMY-e1-cEd" kind="relationship" relationship="viewControllers" id="jQC-tQ-XTU"/>
-                        <segue destination="apt-Zv-aya" kind="relationship" relationship="viewControllers" id="S14-dd-ldO"/>
+                        <segue destination="Ehi-23-f8k" kind="relationship" relationship="viewControllers" id="S14-dd-ldO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5o-44-eYU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -124,20 +124,24 @@
             </objects>
             <point key="canvasLocation" x="1580" y="806"/>
         </scene>
-        <!--User Trail Reports View Controller-->
-        <scene sceneID="AC0-UW-k5O">
+        <!--Navigation Controller-->
+        <scene sceneID="hzI-A0-hQt">
             <objects>
-                <viewController id="hHb-mV-1cj" customClass="UserTrailReportsViewController" customModule="Trailblazer" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sHY-de-E5i">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="O7d-ha-IV9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bpe-te-OOV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ehi-23-f8k" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="gear" catalog="system" id="TKX-FI-ccD"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="M4K-Zs-ldc">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="apt-Zv-aya" kind="relationship" relationship="rootViewController" id="XuH-tK-xYN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vhh-Rz-Jrl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3338" y="2215"/>
+            <point key="canvasLocation" x="3708.6956521739135" y="1498.6607142857142"/>
         </scene>
     </scenes>
     <resources>

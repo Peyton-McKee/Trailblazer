@@ -9,6 +9,16 @@ import Foundation
 import MapKit
 import UIKit
 
+extension UIColor {
+    struct myTheme {
+        static var easyColor : UIColor { return UIColor(hex: "#00be00ff")!}
+        static var intermediateColor: UIColor { return UIColor(hex: "#0000beff")!}
+        static var advancedColor : UIColor { return UIColor.gray }
+        static var expertsOnlyColor: UIColor { return UIColor.black }
+        static var liftsColor : UIColor { return UIColor(hex: "#720000FF")! }
+        static var terrainParksColor: UIColor { return UIColor(hex: "#F28C28ff")!}
+    }
+}
 class CustomAnnotationView: MKMarkerAnnotationView {
     let mogulGlyphImage: UIImage = .init(systemName: "exclamationmark.triangle.fill")!
     
@@ -71,32 +81,32 @@ class CustomAnnotationView: MKMarkerAnnotationView {
         {
                 if(annotation.difficulty == .easy)
                 {
-                    markerTintColor = UIColor(red: 0.03, green: 0.25, blue: 0, alpha: 1)
+                    markerTintColor = .myTheme.easyColor
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else if(annotation.difficulty == .intermediate)
                 {
-                    markerTintColor = .blue
+                    markerTintColor = .myTheme.intermediateColor
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else if (annotation.difficulty == .lift)
                 {
                     glyphImage = .init(systemName: "arrow.up")
-                    markerTintColor = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+                    markerTintColor = .myTheme.liftsColor
                 }
                 else if (annotation.difficulty == .expertsOnly)
                 {
-                    markerTintColor = .black
+                    markerTintColor = .myTheme.advancedColor
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else if (annotation.difficulty == .advanced)
                 {
-                    markerTintColor = .gray
+                    markerTintColor = .myTheme.advancedColor
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else
                 {
-                    markerTintColor = .orange
+                    markerTintColor = .myTheme.terrainParksColor
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
             clusteringIdentifier = "cluster"

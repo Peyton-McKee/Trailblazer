@@ -78,7 +78,7 @@ class RoutingPreferencesViewController: UIViewController {
         view.backgroundColor = UIColor(hex: "#101010ff")
         view.addSubview(VStack)
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30),
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height/10),
             VStack.topAnchor.constraint(equalTo: titleLabel.topAnchor),
             VStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             VStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15)])
@@ -111,7 +111,6 @@ extension RoutingPreferencesViewController: UIPickerViewDelegate, UIPickerViewDa
             InteractiveMapViewController.preferredRoutingGraph = MapInterpreter.shared.timeGraph
         default:
             InteractiveMapViewController.preferredRoutingGraph = MapInterpreter.shared.distanceGraph
-        
         }
     }
 }

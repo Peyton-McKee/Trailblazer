@@ -18,7 +18,7 @@ class AlertPreferencesViewController: UIViewController {
         stack.alignment = .fill
         stack.distribution = .fillEqually
         stack.spacing = 20
-        [self.alertPreferencesLabel, self.mogulHStack, self.icyHStack, self.crowdedHStack, self.thinCoverHStack].forEach({
+        [self.alertPreferencesLabel, self.mogulHStack, self.icyHStack, self.crowdedHStack, self.thinCoverHStack, self.longLiftLineHStack, self.snowmakingHStack].forEach({
             stack.addArrangedSubview($0)
         })
         return stack
@@ -162,7 +162,74 @@ class AlertPreferencesViewController: UIViewController {
         }
         return mySwitch
     }()
-    
+    lazy var longLiftLineHStack : UIStackView  = {
+        var stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fill
+        stack.spacing = 10
+        stack.layer.cornerRadius = 8
+        stack.layer.backgroundColor = UIColor(hex: "#ae82f2a7")?.cgColor
+        [self.longLiftLineAlertSwitch, self.longLiftLineAlertLabel].forEach{
+            stack.addArrangedSubview($0)
+        }
+        stack.layer.shadowRadius = 8
+        stack.layer.shadowOffset = .zero
+        stack.layer.shadowOpacity = 0.5
+        stack.layer.shadowColor = UIColor(hex: "#ffffffff")?.cgColor
+        return stack
+    }()
+    var longLiftLineAlertLabel : UILabel = {
+        var label = UILabel()
+        label.text =  "Receive Alerts For Long Lift Lines"
+        label.textColor = .white
+        label.numberOfLines = 0
+        return label
+    }()
+    lazy var longLiftLineAlertSwitch : UISwitch = {
+        var mySwitch = UISwitch()
+        mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
+        if UserDefaults.standard.array(forKey: "alertSettings")!.contains(where: { $0 as! String == TrailReportType.longLiftLine.rawValue})
+        {
+            mySwitch.isOn = true
+        }
+        return mySwitch
+    }()
+    lazy var snowmakingHStack : UIStackView  = {
+        var stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.axis = .horizontal
+        stack.alignment = .center
+        stack.distribution = .fill
+        stack.spacing = 10
+        stack.layer.cornerRadius = 8
+        stack.layer.backgroundColor = UIColor(hex: "#ae82f2a7")?.cgColor
+        [self.snowmakingAlertSwitch, self.snowmakingAlertLabel].forEach{
+            stack.addArrangedSubview($0)
+        }
+        stack.layer.shadowRadius = 8
+        stack.layer.shadowOffset = .zero
+        stack.layer.shadowOpacity = 0.5
+        stack.layer.shadowColor = UIColor(hex: "#ffffffff")?.cgColor
+        return stack
+    }()
+    var snowmakingAlertLabel : UILabel = {
+        var label = UILabel()
+        label.text =  "Receive Alerts For Snowmaking"
+        label.textColor = .white
+        label.numberOfLines = 0
+        return label
+    }()
+    lazy var snowmakingAlertSwitch : UISwitch = {
+        var mySwitch = UISwitch()
+        mySwitch.addTarget(self, action: #selector(toggleSwitch), for: .touchUpInside)
+        if UserDefaults.standard.array(forKey: "alertSettings")!.contains(where: { $0 as! String == TrailReportType.snowmaking.rawValue})
+        {
+            mySwitch.isOn = true
+        }
+        return mySwitch
+    }()
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -173,10 +240,11 @@ class AlertPreferencesViewController: UIViewController {
         view.addSubview(VStack)
         view.backgroundColor = UIColor(hex: "#101010ff")
         NSLayoutConstraint.activate([
-            alertPreferencesLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+            alertPreferencesLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height/10),
             VStack.topAnchor.constraint(equalTo: alertPreferencesLabel.topAnchor),
-            VStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            VStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)])
+            VStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            VStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            VStack.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)])
     }
     @objc func toggleSwitch(sender: UISwitch)
     {
@@ -188,33 +256,42 @@ class AlertPreferencesViewController: UIViewController {
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.moguls.rawValue}){
                     InteractiveMapViewController.notiAnnotation = trailReport
                     NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
-                    
                 }
             case icyAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.ice.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.ice.rawValue}){
                     InteractiveMapViewController.notiAnnotation = trailReport
                     NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
-                    
                 }
             case crowdedAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.crowded.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.crowded.rawValue}){
                     InteractiveMapViewController.notiAnnotation = trailReport
                     NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
-                    
                 }
             case thinCoverAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.thinCover.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.thinCover.rawValue}){
                     InteractiveMapViewController.notiAnnotation = trailReport
                     NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
-                    
+                }
+            case longLiftLineAlertSwitch:
+                InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.longLiftLine.rawValue)
+                for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.longLiftLine.rawValue})
+                {
+                    InteractiveMapViewController.notiAnnotation = trailReport
+                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
+                }
+            case snowmakingAlertSwitch:
+                InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.snowmaking.rawValue)
+                for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.snowmaking.rawValue})
+                {
+                    InteractiveMapViewController.notiAnnotation = trailReport
+                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
                 }
             default:
                 break
             }
-            
         }
         else
         {
@@ -225,20 +302,22 @@ class AlertPreferencesViewController: UIViewController {
             case icyAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.removeAll(where: {$0 == TrailReportType.ice.rawValue})
                 LocationManager().unregesterNotification(for: TrailReportType.ice.rawValue)
-
             case crowdedAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.removeAll(where: {$0 == TrailReportType.crowded.rawValue})
                 LocationManager().unregesterNotification(for: TrailReportType.crowded.rawValue)
-
             case thinCoverAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.removeAll(where: {$0 == TrailReportType.thinCover.rawValue})
                 LocationManager().unregesterNotification(for: TrailReportType.thinCover.rawValue)
-
+            case longLiftLineAlertSwitch:
+                InteractiveMapViewController.currentUser.alertSettings.removeAll(where: {$0 == TrailReportType.longLiftLine.rawValue})
+                LocationManager().unregesterNotification(for: TrailReportType.longLiftLine.rawValue)
+            case longLiftLineAlertSwitch:
+                InteractiveMapViewController.currentUser.alertSettings.removeAll(where: {$0 == TrailReportType.snowmaking.rawValue})
+                LocationManager().unregesterNotification(for: TrailReportType.snowmaking.rawValue)
             default:
                 break
             }
         }
-        
         UserDefaults.standard.set(InteractiveMapViewController.currentUser.alertSettings, forKey: "alertSettings")
         updateUser(InteractiveMapViewController.currentUser)
     }
