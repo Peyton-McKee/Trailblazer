@@ -37,6 +37,8 @@ public func configure(_ app: Application) throws {
     app.migrations.add(CreateMapTrails())
     app.migrations.add(CreateMapConnectors())
     app.migrations.add(CreatePoints())
+    app.migrations.add(CreateMapFiles())
+    
     app.logger.logLevel = .debug
         
     try app.autoMigrate().wait()

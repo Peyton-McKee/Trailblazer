@@ -18,4 +18,6 @@ func routes(_ app: Application) throws {
     try app.register(collection: mapConnectorsController)
     let pointsController = PointsController()
     try app.register(collection: pointsController)
+    let mapFilesController = MapFilesController()
+    try app.register(collection: mapFilesController)
 }
