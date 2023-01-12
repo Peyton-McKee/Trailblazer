@@ -54,8 +54,8 @@ func getSingleUser(id: String, completion: @escaping (Result<User, Error>) -> Vo
                 completion(.success(user))
             }
         } else {
+            completion(.failure(DecodingErrors.userDecodingError))
             print("Unable to decode user")
-            return
         }
         
     }.resume()
@@ -98,7 +98,6 @@ func saveUserRoute(_ userRoute: UserRoute) {
             if let item = try? decoder.decode(UserRoute.self, from: data) {
                 print(item.destinationTrailName)
             } else {
-                print(data)
                 print("Bad JSON received back for saving user route.")
             }
         }
@@ -120,7 +119,6 @@ func saveUserLocation(_ userLocation: UserLocation) {
             if (try? decoder.decode(UserLocation.self, from: data)) != nil {
                 
             } else {
-                print(data)
                 print("Bad JSON received back for saving user location.")
             }
         }
@@ -164,7 +162,7 @@ func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
             }
         } else {
             print("could not get all users")
-            completion(.failure(error!))
+            completion(.failure(DecodingErrors.userDecodingError))
         }
     }.resume()
 }
@@ -291,6 +289,29 @@ func saveMapFile(mapFile: MapFile, completion: @escaping (Result<MapFile, Error>
         else {
             print("Error Decoding Map File")
             completion(.failure(DecodingErrors.mapFileDecodingError))
+        }
+    }.resume()
+}
+func updatePointTime(point: PointTimeUpdateData, completion: @escaping (Result<Point, Error>) -> Void)
+{
+    let url = URL(string: "\(getBaseUrl())/api/users/\(point.id)")!
+    
+    let encoder = JSONEncoder()
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "PUT"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.httpBody = try? encoder.encode(point)
+    
+    URLSession.shared.dataTask(with: request) { data, response, error in
+        if let data = data {
+            let decoder = JSONDecoder()
+            if let point = try? decoder.decode(Point.self, from: data) {
+                completion(.success(point))
+            } else {
+                completion(.failure(DecodingErrors.pointDecodingError))
+                print("Could not update user")
+            }
         }
     }.resume()
 }

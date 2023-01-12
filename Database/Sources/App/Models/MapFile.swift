@@ -21,10 +21,14 @@ final class MapFile: Model, Content {
     @Field(key: "file")
     var file: String
     
+    @Field(key: "link")
+    var link: String
+    
     init() {}
     
-    init(id: UUID? = nil, title: String, file: String) {
+    init(id: UUID? = nil, title: String, file: String, link: String) {
         self.title = title
         self.file = file
+        self.link = link
     }
 }

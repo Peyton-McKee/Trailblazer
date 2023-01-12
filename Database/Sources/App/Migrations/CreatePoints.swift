@@ -19,7 +19,7 @@ struct CreatePoints: Migration {
             
             .field("longitude", .float, .required)
         
-            .field("time", .float, .required)
+            .field("time", .array(of: .float), .required)
         
             .field("mapTrailID", .uuid, .references("mapTrails", "id"))
         

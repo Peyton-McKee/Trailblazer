@@ -42,6 +42,7 @@
 		153DABB32937D188001ABAAD /* DijsktrasGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */; };
 		1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */; };
 		1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE4295BF07200AC8E0A /* MapFile.swift */; };
+		1544ACE72963D99300AC8E0A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE62963D99300AC8E0A /* Point.swift */; };
 		15489A492922AF2F00898FD0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A482922AF2F00898FD0 /* Connectivity.swift */; };
 		15489A4A2922AFAC00898FD0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A482922AF2F00898FD0 /* Connectivity.swift */; };
 		15489A4C2922BAD100898FD0 /* ConnectivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15489A4B2922BAD100898FD0 /* ConnectivityController.swift */; };
@@ -135,6 +136,7 @@
 		153DAB9729255CFC001ABAAD /* MapInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInterpreter.swift; sourceTree = "<group>"; };
 		1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSettingsViewController.swift; sourceTree = "<group>"; };
 		1544ACE4295BF07200AC8E0A /* MapFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFile.swift; sourceTree = "<group>"; };
+		1544ACE62963D99300AC8E0A /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		15489A482922AF2F00898FD0 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		15489A4B2922BAD100898FD0 /* ConnectivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityController.swift; sourceTree = "<group>"; };
 		15545AD828DEA598005D0886 /* Web Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web Analysis.swift"; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 				15316620290AE86100206E7E /* UserLocation.swift */,
 				153B2E3B28ED1EDF00A23163 /* User.swift */,
 				1544ACE4295BF07200AC8E0A /* MapFile.swift */,
+				1544ACE62963D99300AC8E0A /* Point.swift */,
 				15F92C55293AC9C300792054 /* UserSetting.swift */,
 			);
 			path = Models;
@@ -530,6 +533,7 @@
 				150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */,
 				150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */,
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,
+				1544ACE72963D99300AC8E0A /* Point.swift in Sources */,
 				15F92C5A293BD5B000792054 /* RoutingPreferencesViewController.swift in Sources */,
 				158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */,
 				153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */,

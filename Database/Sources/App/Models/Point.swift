@@ -21,7 +21,7 @@ final class Point: Model, Content {
     var longitude: Float
     
     @Field(key: "time")
-    var time: Float
+    var time: [Float]
     
     @OptionalParent(key: "mapTrailID")
     var mapTrail: MapTrail?
@@ -31,7 +31,7 @@ final class Point: Model, Content {
     
     init() {}
     
-    init(id: UUID? = nil, latitude: Float, longitude: Float, mapTrailID: MapTrail.IDValue?, mapConnectorID: MapConnector.IDValue?, time: Float) {
+    init(id: UUID? = nil, latitude: Float, longitude: Float, mapTrailID: MapTrail.IDValue?, mapConnectorID: MapConnector.IDValue?, time: [Float]) {
         self.latitude = latitude
         self.longitude = longitude
         self.$mapTrail.id = mapTrailID

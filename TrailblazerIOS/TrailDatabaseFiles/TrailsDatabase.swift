@@ -23,14 +23,17 @@ class ImageAnnotation : NSObject, MKAnnotation{
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
-    var colour: UIColor?
+    var colour: UIColor
     var difficulty: Difficulty?
     var trailReport : ImageAnnotation?
     var image: UIImage?
     var status: Status?
     var id: String?
     var isConnector = false
+    var trailTimes: [[Double]]?
+    var ids: [String]?
     var times: [Double]?
+    
     override init() {
         self.coordinate = CLLocationCoordinate2D()
         self.title = nil

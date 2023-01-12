@@ -114,17 +114,17 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
                                 let poly = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
                                 switch edge.source.value.difficulty{
                                 case .easy:
-                                    poly.color = .green
+                                    poly.color = .myTheme.easyColor
                                 case .intermediate:
-                                    poly.color = .blue
+                                    poly.color = .myTheme.intermediateColor
                                 case .advanced:
-                                    poly.color = .darkGray
+                                    poly.color = .myTheme.advancedColor
                                 case .expertsOnly:
-                                    poly.color = .black
+                                    poly.color = .myTheme.expertsOnlyColor
                                 case .lift:
-                                    poly.color = .red
+                                    poly.color = .myTheme.liftsColor
                                 default:
-                                    poly.color = .orange
+                                    poly.color = .myTheme.terrainParksColor
                                 }
                                 overlays.append(poly)
                                 if edge.destination.value.isConnector {

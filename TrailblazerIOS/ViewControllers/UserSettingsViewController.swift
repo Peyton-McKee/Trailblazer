@@ -9,15 +9,7 @@ import Foundation
 import UIKit
 
 class UserSettingsViewController : UIViewController {
-    lazy var logOutButton : UIButton = {
-        var button = UIButton()
-        button.setTitle("Log Out", for: .normal)
-        button.titleLabel?.font = UIFont(name: "markerfelt-wide", size: 20)
-        button.setTitleColor(.white, for: .normal)
-        button.addTarget(self, action: #selector(logOutPressed), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    
     var userNameLabel : UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +40,7 @@ class UserSettingsViewController : UIViewController {
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 20
-        [userNameLabel.self, settingsTableView.self, logOutButton.self].forEach({ stackView.addArrangedSubview($0)})
+        [userNameLabel.self, settingsTableView.self].forEach({ stackView.addArrangedSubview($0)})
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -65,28 +57,11 @@ class UserSettingsViewController : UIViewController {
         view.addSubview(VStack)
         settingsTableView.delegate = self
         settingsTableView.dataSource = self
-        NSLayoutConstraint.activate([userNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height/10), logOutButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -view.bounds.height/5), VStack.topAnchor.constraint(equalTo: userNameLabel.topAnchor), VStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16), VStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16), VStack.bottomAnchor.constraint(equalTo: logOutButton.bottomAnchor)])
+        NSLayoutConstraint.activate([userNameLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: view.bounds.height/10), VStack.topAnchor.constraint(equalTo: userNameLabel.topAnchor), VStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16), VStack.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16), VStack.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         userNameLabel.text = "Hello \(InteractiveMapViewController.currentUser.username)!"
-    }
-    @objc func logOutPressed(sender: UIButton)
-    {
-        UserDefaults.standard.removeObject(forKey: "userUsername")
-        UserDefaults.standard.removeObject(forKey: "userPassword")
-        UserDefaults.standard.removeObject(forKey: "userId")
-        UserDefaults.standard.removeObject(forKey: "alertSettings")
-        UserDefaults.standard.removeObject(forKey: "routingPreference")
-        InteractiveMapViewController.currentUser = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
-        InteractiveMapViewController.destination = nil
-        InteractiveMapViewController.routeInProgress = false
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
-        
-        // This is to get the SceneDelegate object from your view controller
-        // then call the change root view controller function to change to main tab bar
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
     }
 }
 extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource

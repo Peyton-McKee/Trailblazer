@@ -26,7 +26,7 @@ struct MapFilesController: RouteCollection {
     throws -> EventLoopFuture<MapFile> {
         let data = try req.content.decode(CreateMapFileData.self)
         
-        let mapFile = MapFile(title: data.title, file: data.file)
+        let mapFile = MapFile(title: data.title, file: data.file, link: data.link)
         
         return mapFile.save(on: req.db).map { mapFile }
     }
@@ -55,4 +55,5 @@ struct MapFilesController: RouteCollection {
 struct CreateMapFileData: Content{
     let title: String
     let file: String
+    let link: String
 }

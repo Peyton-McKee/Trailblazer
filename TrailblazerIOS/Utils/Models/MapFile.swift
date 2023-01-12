@@ -10,4 +10,5 @@ import Foundation
 struct MapFile : Codable{
     var title: String
     var file: String
+    var link: String
 }

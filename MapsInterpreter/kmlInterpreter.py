@@ -27,7 +27,7 @@ for folder in list(document[0].features()):
          for coordinate in e.geometry.coords:
             lat = coordinate[1]
             long = coordinate[0]
-            mapConnectorPoint = {'latitude': lat, 'longitude': long, 'time': 0, 'mapConnectorId': mapConnector.json().get('id')}
+            mapConnectorPoint = {'latitude': lat, 'longitude': long, 'time': [0], 'mapConnectorId': mapConnector.json().get('id')}
             url = url = 'http://35.172.135.117/api/points'
             mc = requests.post(url, json= mapConnectorPoint) 
       else :
@@ -42,7 +42,7 @@ for folder in list(document[0].features()):
          for coordinate in list(e.geometry.coords):
             lat = coordinate[1]
             long = coordinate[0]
-            mapTrailPoint = {'latitude': lat, 'longitude': long, 'time': 0, 'mapTrailId': mapTrail.json().get('id')}
+            mapTrailPoint = {'latitude': lat, 'longitude': long, 'time': [0], 'mapTrailId': mapTrail.json().get('id')}
             url = 'http://35.172.135.117/api/points'
             mt = requests.post(url, json= mapTrailPoint)
       print("Completed " + str(index) + " out of " + str(len(list(folder.features()))) + " " + folder.name + " trails")

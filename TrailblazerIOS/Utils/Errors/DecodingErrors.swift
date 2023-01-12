@@ -11,6 +11,7 @@ enum DecodingErrors: Error {
     case userDecodingError
     case userLocationDecodingError
     case mapFileDecodingError
+    case pointDecodingError
 }
 extension DecodingErrors: CustomStringConvertible{
     public var description: String {
@@ -21,6 +22,8 @@ extension DecodingErrors: CustomStringConvertible{
             return "Error Decoding User Locations"
         case .mapFileDecodingError:
             return "Error Decoding Map File"
+        case .pointDecodingError:
+            return "Error Decoding Point"
         }
     }
 }

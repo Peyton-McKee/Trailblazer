@@ -18,6 +18,7 @@ struct PointsController: RouteCollection {
         pointsRoute.get(":pointId", use: getHandler)
         pointsRoute.delete(":pointId", use: deleteHandler)
         pointsRoute.delete( use: deleteAllHandler)
+        pointsRoute.put(":pointId", use: updateHandler)
 
     }
     
@@ -45,6 +46,16 @@ struct PointsController: RouteCollection {
                 point.delete(on: req.db).transform(to: .noContent)
             }
     }
+    func updateHandler(_ req: Request) throws -> EventLoopFuture<Point> {
+        let updatedPoint = try req.content.decode(updatePointTimeData.self)
+        return Point.find(req.parameters.get("pointId"), on: req.db)
+            .unwrap(or: Abort(.notFound)).flatMap { point in
+                point.time = updatedPoint.time
+                return point.save(on: req.db).map{
+                    point
+                }
+            }
+    }
     func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
         Point.query(on: req.db)
             .delete(force: true).transform(to: .noContent)
@@ -55,6 +66,10 @@ struct CreatePointData: Content{
     let latitude: Float
     let longitude: Float
     let mapTrailId: UUID?
-    let time: Float
+    let time: [Float]
     let mapConnectorId: UUID?
+}
+
+struct updatePointTimeData: Content {
+    let time: [Float]
 }

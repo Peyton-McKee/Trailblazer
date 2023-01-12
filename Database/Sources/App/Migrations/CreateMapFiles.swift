@@ -17,6 +17,7 @@ struct CreateMapFiles: Migration {
     
             .field("title", .string, .required)
             .field("file", .string, .required)
+            .field("link", .string, .required)
         
             .create()
     }
