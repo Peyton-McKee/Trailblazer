@@ -15,9 +15,9 @@ Setup Instructions:
   Run command in terminal:
     
       docker run --name trailblazer -e POSTGRES_DB=VaporTrailblazer \
-  -e POSTGRES_USER=mckee_p \
-  -e POSTGRES_PASSWORD=trailblazer \
-  -p 5432:5432 -d postgres
+        -e POSTGRES_USER=mckee_p \
+        -e POSTGRES_PASSWORD=trailblazer \
+        -p 5432:5432 -d postgres
 
 
   Reveal TrailBlazer Folder in Finder
