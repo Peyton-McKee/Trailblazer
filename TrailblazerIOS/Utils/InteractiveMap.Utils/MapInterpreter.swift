@@ -36,7 +36,7 @@ struct MapConnector: Codable {
 final class MapInterpreter: NSObject {
     static let shared = MapInterpreter()
     var mapView = MKMapView()
-    let baseURL = "http://35.172.135.117"
+    let baseURL = getBaseUrl()
     var map : Map?
     var difficultyGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
@@ -47,16 +47,16 @@ final class MapInterpreter: NSObject {
     }
     func getMap(id: String)
     {
-//        if let map = UserDefaults.standard.array(forKey: id) as? [CustomPolyline], let distanceGraph = UserDefaults.standard.value(forKey: "\(id)/distanceGraph") as? EdgeWeightedDigraph<ImageAnnotation>, let difficultyGraph = UserDefaults.standard.value(forKey: "\(id)/difficultyGraph") as? EdgeWeightedDigraph<ImageAnnotation>
-//        {
-//            self.mapView.addOverlays(map)
-//            self.distanceGraph = distanceGraph
-//            self.difficultyGraph = difficultyGraph
-//            DispatchQueue.global().async{
-//                self.getTrailReportsFromDB()
-//            }
-//            return
-//        }
+        //        if let map = UserDefaults.standard.array(forKey: id) as? [CustomPolyline], let distanceGraph = UserDefaults.standard.value(forKey: "\(id)/distanceGraph") as? EdgeWeightedDigraph<ImageAnnotation>, let difficultyGraph = UserDefaults.standard.value(forKey: "\(id)/difficultyGraph") as? EdgeWeightedDigraph<ImageAnnotation>
+        //        {
+        //            self.mapView.addOverlays(map)
+        //            self.distanceGraph = distanceGraph
+        //            self.difficultyGraph = difficultyGraph
+        //            DispatchQueue.global().async{
+        //                self.getTrailReportsFromDB()
+        //            }
+        //            return
+        //        }
         let url = URL(string: "\(baseURL)/api/maps/\(id)")!
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -141,7 +141,7 @@ final class MapInterpreter: NSObject {
                 if self.map?.mapConnector != nil
                 {
                     var collectedIndex = 0
-                    for index in 0...self.map!.mapConnector!.count - 1
+                    for index in 0..<self.map!.mapConnector!.count
                     {
                         self.getPoints(id: self.map!.mapConnector![index].id!, isConnector: true, completion: { result in
                             guard let points = try? result.get() else
@@ -185,7 +185,7 @@ final class MapInterpreter: NSObject {
                 let decoder = JSONDecoder()
                 let points = try decoder.decode([Point].self, from: data)
                 DispatchQueue.main.async {
-                    completion(.success(points))
+                    completion(.success(points.sorted(by: { $0.order < $1.order })))
                 }
             } catch {
                 print("Unable to parse JSON response.")
@@ -232,22 +232,22 @@ final class MapInterpreter: NSObject {
                 color = .myTheme.advancedColor
             case Difficulty.lift.rawValue:
                 difficulty = .lift
+                color = .myTheme.liftsColor
             case Difficulty.terrainPark.rawValue:
                 difficulty = .terrainPark
                 color = .myTheme.terrainParksColor
             default:
                 break
             }
-            
+            print("New Trail")
             for point in points
             {
-                trailTimes.append(point.time as! [Double])
-                pointIds.append(point.id!)
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
+                pointIds.append(point.id!)
+                trailTimes.append(point.time as! [Double])
+                print("\(point.longitude), \(point.latitude)")
             }
-            
-            
-            let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
+            let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
             polyline.title = trail.name
             polyline.color = color
             let initialAnnotation = createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: difficulty)
@@ -264,18 +264,21 @@ final class MapInterpreter: NSObject {
                 return
             }
             var trailTimes : [[Double]] = []
+            var pointIds: [String] = []
             for point in points
             {
-                trailTimes.append(point.time as! [Double])
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
+                pointIds.append(point.id!)
+                trailTimes.append(point.time as! [Double])
             }
-            let polyline = CustomPolyline(coordinates: coordinates, count: points.count)
+            let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
             polyline.title = connector.name
             let initialAnnotation = createAnnotation(title: connector.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
             initialAnnotation.isConnector = true
             initialAnnotation.trailTimes = trailTimes
             polyline.color = UIColor(hex: "#00be00ff")
             polyline.initialAnnotation = initialAnnotation
+            initialAnnotation.ids = pointIds
             polylines.append(polyline)
         }
         mapView.addOverlays(polylines)
@@ -287,8 +290,8 @@ final class MapInterpreter: NSObject {
             DispatchQueue.main.async{
                 WebAnalysis.shared.makeRequest()
             }
-//            UserDefaults.standard.set(self.difficultyGraph, forKey: "\(self.map?.id)/difficultyGraph")
-//            UserDefaults.standard.set(self.distanceGraph, forKey: "\(self.map?.id)/distanceGraph")
+            //            UserDefaults.standard.set(self.difficultyGraph, forKey: "\(self.map?.id)/difficultyGraph")
+            //            UserDefaults.standard.set(self.distanceGraph, forKey: "\(self.map?.id)/distanceGraph")
         }
     }
     private func createDifficultyGraph()
@@ -522,7 +525,7 @@ final class MapInterpreter: NSObject {
         }
         return closestVertex
     }
-     
+    
 }
 
 extension CLLocationCoordinate2D: Equatable

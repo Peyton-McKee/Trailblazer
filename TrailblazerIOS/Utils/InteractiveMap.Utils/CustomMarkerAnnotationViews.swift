@@ -96,7 +96,7 @@ class CustomAnnotationView: MKMarkerAnnotationView {
                 }
                 else if (annotation.difficulty == .expertsOnly)
                 {
-                    markerTintColor = .myTheme.advancedColor
+                    markerTintColor = .myTheme.expertsOnlyColor
                     glyphImage = .init(systemName: "figure.skiing.downhill")
                 }
                 else if (annotation.difficulty == .advanced)

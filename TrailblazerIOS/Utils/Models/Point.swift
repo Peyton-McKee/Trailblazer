@@ -15,6 +15,7 @@ struct Point: Codable {
     var longitude: Float
     var distance: Float?
     var time: [Float]?
+    var order: Int
 }
 
 struct PointTimeUpdateData: Codable{

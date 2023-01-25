@@ -25,9 +25,7 @@ struct PointsController: RouteCollection {
     func createHandler(_ req: Request)
     throws -> EventLoopFuture<Point> {
         let data = try req.content.decode(CreatePointData.self)
-        
-        let point = Point(latitude: data.latitude, longitude: data.longitude, mapTrailID: data.mapTrailId, mapConnectorID: data.mapConnectorId, time: data.time)
-        
+        let point = Point(latitude: data.latitude, longitude: data.longitude, mapTrailID: data.mapTrailId, mapConnectorID: data.mapConnectorId, time: data.time, order: data.order)
         return point.save(on: req.db).map { point }
     }
     func getAllHandler(_ req: Request) -> EventLoopFuture<[Point]> {
@@ -68,6 +66,7 @@ struct CreatePointData: Content{
     let mapTrailId: UUID?
     let time: [Float]
     let mapConnectorId: UUID?
+    let order: Int
 }
 
 struct updatePointTimeData: Content {

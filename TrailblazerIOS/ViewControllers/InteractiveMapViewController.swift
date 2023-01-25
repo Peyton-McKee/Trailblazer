@@ -120,7 +120,7 @@ class InteractiveMapViewController: UIViewController
         self.view.addSubview(loadingScreen)
         if (MapInterpreter.shared.mapView.annotations.isEmpty)
         {
-            MapInterpreter.shared.getMap(id: "693D4C9F-8487-4BB3-86D3-F128EC55CE8B")
+            MapInterpreter.shared.getMap(id: "159975D0-082F-46B2-A2A3-2F6DA1758F5C")
         }
         self.tabBarController?.tabBar.backgroundColor = .black
     }
@@ -1256,7 +1256,6 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
             canFindPathAgain = false
             self.displayRoute()
         }
-        print(getClosestAnnotation(origin: createAnnotation(title: "self", latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, difficulty: .easy)))
         
         guard let currentUserId = Self.currentUser.id else
         {

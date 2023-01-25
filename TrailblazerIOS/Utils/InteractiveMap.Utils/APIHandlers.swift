@@ -9,7 +9,7 @@ import Foundation
 
 func getBaseUrl() -> String
 {
-    return "http://35.172.135.117"
+    return "http://127.0.0.1:8080"
     
 }
 /// saveTrailReport: TrailReport -> void

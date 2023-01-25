@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/peytonmckee/Documents/GitHub/Trailblazer/Trailblazer.xcodeproj">
+      location = "self:">
    </FileRef>
 </Workspace>
