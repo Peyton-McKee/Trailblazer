@@ -690,6 +690,7 @@ class InteractiveMapViewController: UIViewController
             {
                 pathGraph.addVertex(self.pathCreated[index])
             }
+            pathGraph.addEdge(direction: .undirected, from: originVertex!, to: pathGraph.vertices[1], weight: 1)
             print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
             return createRouteHelper(graph: pathGraph)
         }
@@ -836,6 +837,7 @@ class InteractiveMapViewController: UIViewController
                 }
                 
             }
+            self.canFindPathAgain = true
             return
         }
     }
