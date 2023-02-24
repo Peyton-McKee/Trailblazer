@@ -215,17 +215,12 @@ class TitleScreen: UIViewController{
         UserDefaults.standard.set("", forKey: "userPassword")
         UserDefaults.standard.set([], forKey: "alertSettings")
         UserDefaults.standard.set(RoutingType.easiest.rawValue, forKey: "routingPreference")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-        
-        // This is to get the SceneDelegate object from your view controller
-        // then call the change root view controller function to change to main tab bar
-        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+        self.navigationController?.show(MapSelectorViewController(), sender: self)
         InteractiveMapViewController.currentUser = User(username: "Guest", password: "", alertSettings: [], routingPreference: RoutingType.easiest.rawValue)
     }
     @objc func toSignUp(sender: UIButton!)
     {
-        self.navigationController?.pushViewController(SignUpViewController(), animated: true)
+        self.navigationController?.show(SignUpViewController(), sender: self)
     }
 }
 

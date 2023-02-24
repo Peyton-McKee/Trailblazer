@@ -23,6 +23,9 @@
 		150D06442900682F0051F160 /* IcySquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D06432900682F0051F160 /* IcySquare.png */; };
 		150D064629006C190051F160 /* SRSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 150D064529006C190051F160 /* SRSun.png */; };
 		15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15213F022904800D0027749B /* BellmanFordGraphStructure.swift */; };
+		1521C49F2984B82B0085F868 /* RetrievingMapLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C49E2984B82B0085F868 /* RetrievingMapLoadingView.swift */; };
+		1521C4A12984C1260085F868 /* MapSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C4A02984C1260085F868 /* MapSelectorViewController.swift */; };
+		1521C4A3298648DD0085F868 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C4A2298648DD0085F868 /* CollectionViewCell.swift */; };
 		1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524944E29074F7E009E7059 /* NotificationUtils.swift */; };
 		15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249450290754DA009E7059 /* UnusedFunctions.swift */; };
 		15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */; };
@@ -37,9 +40,6 @@
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
 		153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153DAB9729255CFC001ABAAD /* MapInterpreter.swift */; };
 		153DABAD2936C44A001ABAAD /* Trailblazer Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		153DABB12937CF61001ABAAD /* TrailsDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */; };
-		153DABB22937D17E001ABAAD /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0D28E224C8005D0886 /* Trail.swift */; };
-		153DABB32937D188001ABAAD /* DijsktrasGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */; };
 		1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */; };
 		1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE4295BF07200AC8E0A /* MapFile.swift */; };
 		1544ACE72963D99300AC8E0A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE62963D99300AC8E0A /* Point.swift */; };
@@ -70,12 +70,20 @@
 		1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBC291AE7B900978FD8 /* Assets.xcassets */; };
 		1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */; };
 		15A1C8212950F967007598D8 /* ToolTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1C8202950F967007598D8 /* ToolTipView.swift */; };
+		15E644A129A92BBC0048DAEB /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644A029A92BBC0048DAEB /* Map.swift */; };
+		15E644A929A947C50048DAEB /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644A829A947C50048DAEB /* UserAPI.swift */; };
+		15E644AB29A947FF0048DAEB /* MapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644AA29A947FF0048DAEB /* MapAPI.swift */; };
+		15E644AD29A9483E0048DAEB /* TrailReportAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644AC29A9483E0048DAEB /* TrailReportAPI.swift */; };
+		15E644AF29A949720048DAEB /* UserRouteAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644AE29A949720048DAEB /* UserRouteAPI.swift */; };
+		15E644B129A949900048DAEB /* UserLocationAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644B029A949900048DAEB /* UserLocationAPI.swift */; };
+		15E644B329A949DF0048DAEB /* PointAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644B229A949DF0048DAEB /* PointAPI.swift */; };
+		15E644B529A94A0A0048DAEB /* MapFileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644B429A94A0A0048DAEB /* MapFileAPI.swift */; };
 		15F92C522939A7B000792054 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C512939A7B000792054 /* HomePageView.swift */; };
 		15F92C542939A97D00792054 /* DirectionsDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C532939A97D00792054 /* DirectionsDisplayView.swift */; };
 		15F92C56293AC9C300792054 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C55293AC9C300792054 /* UserSetting.swift */; };
 		15F92C58293BD5A200792054 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */; };
 		15F92C5A293BD5B000792054 /* RoutingPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */; };
-		15F92C5C293E824100792054 /* APIHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C5B293E824100792054 /* APIHandlers.swift */; };
+		15F92C5C293E824100792054 /* BaseUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C5B293E824100792054 /* BaseUrl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +127,9 @@
 		150D06432900682F0051F160 /* IcySquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IcySquare.png; sourceTree = "<group>"; };
 		150D064529006C190051F160 /* SRSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRSun.png; sourceTree = "<group>"; };
 		15213F022904800D0027749B /* BellmanFordGraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellmanFordGraphStructure.swift; sourceTree = "<group>"; };
+		1521C49E2984B82B0085F868 /* RetrievingMapLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingMapLoadingView.swift; sourceTree = "<group>"; };
+		1521C4A02984C1260085F868 /* MapSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorViewController.swift; sourceTree = "<group>"; };
+		1521C4A2298648DD0085F868 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		1524944E29074F7E009E7059 /* NotificationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtils.swift; sourceTree = "<group>"; };
 		15249450290754DA009E7059 /* UnusedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnusedFunctions.swift; sourceTree = "<group>"; };
 		15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTableViewCell.swift; sourceTree = "<group>"; };
@@ -164,12 +175,20 @@
 		1591DBBC291AE7B900978FD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15A1C8202950F967007598D8 /* ToolTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipView.swift; sourceTree = "<group>"; };
+		15E644A029A92BBC0048DAEB /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		15E644A829A947C50048DAEB /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
+		15E644AA29A947FF0048DAEB /* MapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPI.swift; sourceTree = "<group>"; };
+		15E644AC29A9483E0048DAEB /* TrailReportAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportAPI.swift; sourceTree = "<group>"; };
+		15E644AE29A949720048DAEB /* UserRouteAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRouteAPI.swift; sourceTree = "<group>"; };
+		15E644B029A949900048DAEB /* UserLocationAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationAPI.swift; sourceTree = "<group>"; };
+		15E644B229A949DF0048DAEB /* PointAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointAPI.swift; sourceTree = "<group>"; };
+		15E644B429A94A0A0048DAEB /* MapFileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFileAPI.swift; sourceTree = "<group>"; };
 		15F92C512939A7B000792054 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		15F92C532939A97D00792054 /* DirectionsDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsDisplayView.swift; sourceTree = "<group>"; };
 		15F92C55293AC9C300792054 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewController.swift; sourceTree = "<group>"; };
 		15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingPreferencesViewController.swift; sourceTree = "<group>"; };
-		15F92C5B293E824100792054 /* APIHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandlers.swift; sourceTree = "<group>"; };
+		15F92C5B293E824100792054 /* BaseUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUrl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +220,7 @@
 		150C6EAD29031B0C0055AD59 /* Unused.Utils */ = {
 			isa = PBXGroup;
 			children = (
+				15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */,
 				15213F022904800D0027749B /* BellmanFordGraphStructure.swift */,
 				15545B0728E148A9005D0886 /* MapOverlay.swift */,
 				15249450290754DA009E7059 /* UnusedFunctions.swift */,
@@ -211,7 +231,12 @@
 		150D063728FB020B0051F160 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				15316626290B174C00206E7E /* UserSettings.Utils */,
+				15E644A329A945E00048DAEB /* Web Scraper */,
+				15E644A229A92C480048DAEB /* TableViewCells */,
+				15E644A529A9464B0048DAEB /* Frameworks */,
+				15E644A429A946200048DAEB /* Views */,
+				15E644A629A9476C0048DAEB /* Graphing */,
+				15E644A729A9478D0048DAEB /* API */,
 				15316627290B177000206E7E /* InteractiveMap.Utils */,
 				150828D7294A89560060B341 /* Errors */,
 				15316624290B170300206E7E /* Models */,
@@ -235,6 +260,9 @@
 		15316624290B170300206E7E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				15545B0D28E224C8005D0886 /* Trail.swift */,
+				1524945429082897009E7059 /* Settings.swift */,
+				15E644A029A92BBC0048DAEB /* Map.swift */,
 				150D062B28F5D6C00051F160 /* TrailReports.swift */,
 				15316622290AE86800206E7E /* UserRoute.swift */,
 				15316620290AE86100206E7E /* UserLocation.swift */,
@@ -251,39 +279,16 @@
 			children = (
 				153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */,
 				150C6EB029035BE10055AD59 /* HextoColor.swift */,
+				1521C4A2298648DD0085F868 /* CollectionViewCell.swift */,
 				1524944E29074F7E009E7059 /* NotificationUtils.swift */,
 			);
 			path = Miscellaneous.Utils;
 			sourceTree = "<group>";
 		};
-		15316626290B174C00206E7E /* UserSettings.Utils */ = {
-			isa = PBXGroup;
-			children = (
-				1524945429082897009E7059 /* Settings.swift */,
-				1524945829085D88009E7059 /* TrailReportTableViewCell.swift */,
-				15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */,
-			);
-			path = UserSettings.Utils;
-			sourceTree = "<group>";
-		};
 		15316627290B177000206E7E /* InteractiveMap.Utils */ = {
 			isa = PBXGroup;
 			children = (
-				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
-				150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */,
-				153DAB9729255CFC001ABAAD /* MapInterpreter.swift */,
-				15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */,
-				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
-				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
-				1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */,
-				15F92C5B293E824100792054 /* APIHandlers.swift */,
-				15545AD828DEA598005D0886 /* Web Analysis.swift */,
-				150828D52943AF320060B341 /* LoadingView.swift */,
-				15874A0D27D82AFA001B9025 /* Scraper.swift */,
 				152C69B9291B50120092E537 /* LocationManager.swift */,
-				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
-				15A1C8202950F967007598D8 /* ToolTipView.swift */,
-				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
 			);
 			path = InteractiveMap.Utils;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				153B2E3928ED135D00A23163 /* SignUpViewController.swift */,
 				15545B0228E02268005D0886 /* InteractiveMapViewController.swift */,
 				150D062728F529260051F160 /* UserSettingsViewController.swift */,
+				1521C4A02984C1260085F868 /* MapSelectorViewController.swift */,
 				15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */,
 				1524945629084F89009E7059 /* UserTrailReportsViewController.swift */,
 				15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */,
@@ -349,7 +355,6 @@
 				158749F927D82635001B9025 /* SceneDelegate.swift */,
 				158749FD27D82635001B9025 /* Main.storyboard */,
 				15545B0428E022A5005D0886 /* ViewControllers */,
-				159B0EC628E68DDC00DAFEAA /* TrailDatabaseFiles */,
 				150D063728FB020B0051F160 /* Utils */,
 				15874A0027D82636001B9025 /* Assets.xcassets */,
 				150D063E290063900051F160 /* Images */,
@@ -381,14 +386,71 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		159B0EC628E68DDC00DAFEAA /* TrailDatabaseFiles */ = {
+		15E644A229A92C480048DAEB /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				15545B0D28E224C8005D0886 /* Trail.swift */,
-				15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */,
-				15545B0F28E22CCC005D0886 /* TrailsDatabase.swift */,
+				1524945829085D88009E7059 /* TrailReportTableViewCell.swift */,
+				15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */,
+				15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */,
+				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
 			);
-			path = TrailDatabaseFiles;
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		15E644A329A945E00048DAEB /* Web Scraper */ = {
+			isa = PBXGroup;
+			children = (
+				15545AD828DEA598005D0886 /* Web Analysis.swift */,
+				15874A0D27D82AFA001B9025 /* Scraper.swift */,
+			);
+			path = "Web Scraper";
+			sourceTree = "<group>";
+		};
+		15E644A429A946200048DAEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
+				150828D52943AF320060B341 /* LoadingView.swift */,
+				1521C49E2984B82B0085F868 /* RetrievingMapLoadingView.swift */,
+				1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */,
+				150D062328F4DEB90051F160 /* TrailSelectorView.swift */,
+				15A1C8202950F967007598D8 /* ToolTipView.swift */,
+				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		15E644A529A9464B0048DAEB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */,
+				150D063328F8BCE00051F160 /* PopUpMenuFramework.swift */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		15E644A629A9476C0048DAEB /* Graphing */ = {
+			isa = PBXGroup;
+			children = (
+				153DAB9729255CFC001ABAAD /* MapInterpreter.swift */,
+				15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */,
+			);
+			path = Graphing;
+			sourceTree = "<group>";
+		};
+		15E644A729A9478D0048DAEB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				15F92C5B293E824100792054 /* BaseUrl.swift */,
+				15E644B429A94A0A0048DAEB /* MapFileAPI.swift */,
+				15E644A829A947C50048DAEB /* UserAPI.swift */,
+				15E644AA29A947FF0048DAEB /* MapAPI.swift */,
+				15E644AC29A9483E0048DAEB /* TrailReportAPI.swift */,
+				15E644AE29A949720048DAEB /* UserRouteAPI.swift */,
+				15E644B029A949900048DAEB /* UserLocationAPI.swift */,
+				15E644B229A949DF0048DAEB /* PointAPI.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -503,23 +565,30 @@
 			files = (
 				1524945529082897009E7059 /* Settings.swift in Sources */,
 				15545B0E28E224C8005D0886 /* Trail.swift in Sources */,
+				15E644A129A92BBC0048DAEB /* Map.swift in Sources */,
+				1521C4A3298648DD0085F868 /* CollectionViewCell.swift in Sources */,
 				15545B1C28E4CD42005D0886 /* TrailSelectorTableViewCell.swift in Sources */,
+				15E644A929A947C50048DAEB /* UserAPI.swift in Sources */,
 				15316623290AE86800206E7E /* UserRoute.swift in Sources */,
 				150D063228F7D96A0051F160 /* TrailReportTypeTableViewCell.swift in Sources */,
 				15545B0328E02268005D0886 /* InteractiveMapViewController.swift in Sources */,
 				15316621290AE86100206E7E /* UserLocation.swift in Sources */,
+				1521C4A12984C1260085F868 /* MapSelectorViewController.swift in Sources */,
 				150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */,
 				1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */,
 				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,
 				150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */,
+				15E644AB29A947FF0048DAEB /* MapAPI.swift in Sources */,
 				1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */,
-				15F92C5C293E824100792054 /* APIHandlers.swift in Sources */,
+				15F92C5C293E824100792054 /* BaseUrl.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
+				15E644B129A949900048DAEB /* UserLocationAPI.swift in Sources */,
 				150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */,
 				15489A4D2922C0A900898FD0 /* ConnectivityController.swift in Sources */,
 				1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
 				1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */,
+				1521C49F2984B82B0085F868 /* RetrievingMapLoadingView.swift in Sources */,
 				15F92C58293BD5A200792054 /* AlertPreferencesViewController.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
 				150828D62943AF320060B341 /* LoadingView.swift in Sources */,
@@ -532,6 +601,7 @@
 				1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */,
 				150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */,
 				150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */,
+				15E644AF29A949720048DAEB /* UserRouteAPI.swift in Sources */,
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,
 				1544ACE72963D99300AC8E0A /* Point.swift in Sources */,
 				15F92C5A293BD5B000792054 /* RoutingPreferencesViewController.swift in Sources */,
@@ -543,6 +613,9 @@
 				15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */,
 				150828D9294A89640060B341 /* DecodingErrors.swift in Sources */,
 				153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */,
+				15E644AD29A9483E0048DAEB /* TrailReportAPI.swift in Sources */,
+				15E644B329A949DF0048DAEB /* PointAPI.swift in Sources */,
+				15E644B529A94A0A0048DAEB /* MapFileAPI.swift in Sources */,
 				15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */,
 				15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */,
 				150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */,
@@ -559,9 +632,6 @@
 				15F92C542939A97D00792054 /* DirectionsDisplayView.swift in Sources */,
 				1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */,
 				15489A4C2922BAD100898FD0 /* ConnectivityController.swift in Sources */,
-				153DABB12937CF61001ABAAD /* TrailsDatabase.swift in Sources */,
-				153DABB22937D17E001ABAAD /* Trail.swift in Sources */,
-				153DABB32937D188001ABAAD /* DijsktrasGraphStructure.swift in Sources */,
 				15F92C522939A7B000792054 /* HomePageView.swift in Sources */,
 				15489A492922AF2F00898FD0 /* Connectivity.swift in Sources */,
 			);

@@ -14,7 +14,7 @@ class SignInViewController: UIViewController
     var passwordTextField = UITextField()
     var signInButton = UIButton()
     var signUpButton = UIButton()
-    let baseURL = "http://35.172.135.117"
+    let baseURL = getBaseUrl()
     var incorrectSignInLabel = UILabel()
     
     override func viewDidLoad() {
@@ -107,9 +107,7 @@ class SignInViewController: UIViewController
             }
             DispatchQueue.main.async{
                 InteractiveMapViewController.currentUser = user
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
-                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(mainTabBarController)
+                self.navigationController?.show(MapSelectorViewController(), sender: self)
                 UserDefaults.standard.set("\(user.username)", forKey: "userUsername")
                 UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
                 UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
@@ -119,7 +117,7 @@ class SignInViewController: UIViewController
     }
     @objc func signUpButtonPressed(sender: UIButton)
     {
-        self.navigationController?.pushViewController(SignUpViewController(), animated: true)
+        self.navigationController?.show(SignUpViewController(), sender: self)
     }
     
 }

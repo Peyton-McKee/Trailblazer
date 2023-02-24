@@ -124,6 +124,21 @@
             </objects>
             <point key="canvasLocation" x="1580" y="806"/>
         </scene>
+        <!--Map Selector View Controller-->
+        <scene sceneID="yh2-HI-9kI">
+            <objects>
+                <viewController id="Wjg-iL-xnf" customClass="MapSelectorViewController" customModule="Trailblazer" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Ri-D5-Oxw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5Jz-f1-GTD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5CD-re-Hw0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2516" y="806"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="hzI-A0-hQt">
             <objects>

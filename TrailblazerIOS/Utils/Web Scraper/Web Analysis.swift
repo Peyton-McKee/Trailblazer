@@ -7,13 +7,6 @@
 //
 //import Foundation
 
-//
-//  ViewController.swift
-//  SundayRiver
-//
-//  Created by Peyton McKee on 3/8/22.
-//
-
 import UIKit
 import UserNotifications
 import WebKit
@@ -23,40 +16,21 @@ struct TrailData{
     var trails: [String] = []
     var lifts: [String] = []
 }
+
 final class WebAnalysis: NSObject, WKNavigationDelegate {
     var mapView = MKMapView()
     static let shared = WebAnalysis()
     var realTimeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     let webView = WKWebView(frame: .zero)
-    let trailNames : [String] = InteractiveMapViewController.selectedGraph.vertices.filter({$0.value.difficulty != .lift}).map({$0.value.title!})
-    let liftNames : [String] = InteractiveMapViewController.selectedGraph.vertices.filter({$0.value.difficulty == .lift}).map({$0.value.title!})
-    lazy var individualTrailNames : [String] = {
-        var found : [String] = []
-        for trail in self.trailNames
-        {
-            if !found.contains(trail)
-            {
-                found.append(trail)
-            }
-        }
-        return found
-    }()
-    lazy var individualLiftNames : [String] = {
-        var found : [String] = []
-        for trail in self.liftNames
-        {
-            if !found.contains(trail)
-            {
-                found.append(trail)
-            }
-        }
-        return found
-    }()
-    let urlRequest = URLRequest(url: URL(string: "https://www.sundayriver.com/mountain-report")!)
+    
     func makeRequest()
     {
         webView.navigationDelegate = self
-        
+        guard let mountainReportUrl = InteractiveMapViewController.selectedMap?.mountainReportUrl else {
+            print("Error: Map has no mountain report URL!")
+            return
+        }
+        let urlRequest = URLRequest(url: URL(string: mountainReportUrl)!)
         webView.load(urlRequest)
         
     }
@@ -82,7 +56,35 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        getMountainReport(webView: webView, queryItems: TrailData(trails: individualTrailNames, lifts: individualLiftNames), completion: { [self]
+        guard let trailStatusElementId = InteractiveMapViewController.selectedMap?.trailStatusElementId, let liftStatusElementId = InteractiveMapViewController.selectedMap?.liftStatusElementId else {
+            print("Error: Map Does Not Have Trail Elment Id or Lift Element Id!")
+            return
+        }
+        let trailNames : [String] = InteractiveMapViewController.selectedGraph.vertices.filter({$0.value.difficulty != .lift}).map({$0.value.title!})
+        let liftNames : [String] = InteractiveMapViewController.selectedGraph.vertices.filter({$0.value.difficulty == .lift}).map({$0.value.title!})
+        let individualTrailNames : [String] = {
+            var found : [String] = []
+            for trail in trailNames
+            {
+                if !found.contains(trail)
+                {
+                    found.append(trail)
+                }
+            }
+            return found
+        }()
+        let individualLiftNames : [String] = {
+            var found : [String] = []
+            for trail in liftNames
+            {
+                if !found.contains(trail)
+                {
+                    found.append(trail)
+                }
+            }
+            return found
+        }()
+        getMountainReport(webView: webView, queryItems: TrailData(trails: individualTrailNames, lifts: individualLiftNames), liftStatusId: liftStatusElementId, trailStatusId: trailStatusElementId, completion: { [self]
             value in
             switch value{
             case .success(let value):

@@ -8,19 +8,19 @@
 import Foundation
 import WebKit
 
-func getMountainReport(webView: WKWebView, queryItems: TrailData, completion: @escaping (Result<TrailData, Error>) -> Void){
+func getMountainReport(webView: WKWebView, queryItems: TrailData, liftStatusId: String, trailStatusId: String, completion: @escaping (Result<TrailData, Error>) -> Void){
     var result = TrailData()
-    webView.evaluateJavaScript("document.getElementById('conditions_lifts_e75ceb523c30353d18fb54207af864f9').innerHTML", completionHandler: { (value, error) in
+    webView.evaluateJavaScript("document.getElementById('\(liftStatusId)').innerHTML", completionHandler: { (value, error) in
         guard let html = value as? String, error == nil else{
             print("ERROR: \(error!)")
             completion(.failure(error!))
             return
         }
-        //print(queryItems.lifts)
+        print(queryItems.lifts)
         let liftStatuses = parseData(queryItems: queryItems.lifts.map({$0.lowercased()}), queryLocation: html.lowercased())
         result.lifts = liftStatuses
     })
-    webView.evaluateJavaScript("document.getElementById('conditions_trailstatus_16207d4019cf36fbdb184831e2ae3054').innerHTML", completionHandler: {
+    webView.evaluateJavaScript("document.getElementById('\(trailStatusId)').innerHTML", completionHandler: {
         (value, error) in
         guard let html = value as? String, error == nil else{
             print("ERROR: \(error!)")
@@ -73,8 +73,11 @@ func parseData(queryItems: [String], queryLocation: String) -> [String]
     
     return result
 }
-//conditions_lifts_e75ceb523c30353d18fb54207af864f9 : Lift Status Id
-//conditions_trailstatus_16207d4019cf36fbdb184831e2ae3054 : Trail Status Id
+
+//conditions_lifts_e75ceb523c30353d18fb54207af864f9 : Lift Status Id Sunday River
+//conditions_trailstatus_16207d4019cf36fbdb184831e2ae3054 : Trail Status Id Sunday River
+//conditions_lifts_dee2e4a816064ad8b3df04324de73500 : Lift Status Id Sugarloaf
+//conditions_trailstatus_fd4ed0a91d27736243553866f5ab6f8e : Trail Status Id Sugarloaf
 
 extension StringProtocol {
     func index<S: StringProtocol>(of string: S, options: String.CompareOptions = []) -> Index? {

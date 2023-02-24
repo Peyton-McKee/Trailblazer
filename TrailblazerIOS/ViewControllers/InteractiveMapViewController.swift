@@ -22,6 +22,7 @@ class InteractiveMapViewController: UIViewController
     static var origin : ImageAnnotation?
     static var selectedGraph = InteractiveMapViewController.preferredRoutingGraph
     static var baseLiftVertexes: [Vertex<ImageAnnotation>] = []
+    static var selectedMap: Map?
     static var preferredRoutingGraph : EdgeWeightedDigraph<ImageAnnotation> =
     {
         guard let defaultGraph = UserDefaults.standard.string(forKey: "routingPreference") else
@@ -39,11 +40,19 @@ class InteractiveMapViewController: UIViewController
             return MapInterpreter.shared.difficultyGraph
         }
     }()
-    
+    static var isMapLoaded = false
     static var wasSelectedWithOrigin = false
     static var didChooseDestination = false
     static var notiAnnotation : TrailReport?
     static var trailReports : [TrailReport] = []
+    static var initialRegion : MKCoordinateRegion?
+    static var mapId: String = {
+        if let str = UserDefaults.standard.value(forKey: "mapId") as? String {
+            return str
+        }
+       return ""
+    }()
+    static var changedMap = true
     
     lazy var loadingScreen : LoadingView = {
         var view = LoadingView(frame: self.view.frame)
@@ -64,11 +73,7 @@ class InteractiveMapViewController: UIViewController
     var isRealTimeGraph = false
     var toggleGraphButton = UIButton()
     var followingRoute = false
-    
-    let initialRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 44.46806937533083, longitude: -70.87985973100996),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
-    
+        
     var initialLocation : String?
     var timer = Date()
     var myMap = MKMapView()
@@ -91,6 +96,8 @@ class InteractiveMapViewController: UIViewController
     var routeOverviewView : RouteOverviewView?
     
     var trailReportAnnotation = ImageAnnotation()
+    
+    lazy var mapLoadingView = RetrievingMapLoadingView(frame: self.view.frame)
     
     var originVertex : Vertex<ImageAnnotation>?
     
@@ -116,20 +123,30 @@ class InteractiveMapViewController: UIViewController
         locationManager.locationManager.requestWhenInUseAuthorization()
         locationManager.locationManager.startUpdatingHeading()
         locationManager.locationManager.startUpdatingLocation()
-        //        getTrailReportsFromDB()
+        self.view.addSubview(mapLoadingView)
         self.view.addSubview(loadingScreen)
-        if (MapInterpreter.shared.mapView.annotations.isEmpty)
+        if Self.isMapLoaded
         {
-            MapInterpreter.shared.getMap(id: "159975D0-082F-46B2-A2A3-2F6DA1758F5C")
+            mapLoadingView.isHidden = true
+        }
+        if (Self.changedMap)
+        {
+            MapInterpreter.shared.getMap(id: Self.mapId)
+            mapLoadingView.isHidden = false
+            Self.changedMap = false
         }
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("cancelRoute"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(selectedTrail), name: Notification.Name(rawValue: "selectedTrail"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(selectGraph), name: Notification.Name(rawValue: "selectGraph"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(configureTrailSelectorView), name: Notification.Name("configureTrailSelector"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(createNotification), name: Notification.Name("createNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateInitialRegion(_:)), name: Notification.Name("updateInitialRegion"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelRoute), name: Notification.Name("cancelRoute"), object: nil)
+
         if Self.destination != nil {
             sampleRoute()
         }
@@ -148,6 +165,7 @@ class InteractiveMapViewController: UIViewController
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "selectGraph"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name("configureTrailSelector"), object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name("createNotification"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("updateInitialRegion"), object: nil)
     }
     
     @objc private func createNotification()
@@ -160,6 +178,35 @@ class InteractiveMapViewController: UIViewController
         locationManager.makeTrailReportRegion(trailReport: notiAnnotation)
         locationManager.registerNotification(title: "CAUTION: \(title.uppercased()) AHEAD", body: title, trailReportID: id)
     }
+    
+    func updatePreferredGraph() -> EdgeWeightedDigraph<ImageAnnotation>
+    {
+        guard let defaultGraph = UserDefaults.standard.string(forKey: "routingPreference") else
+        {
+            return MapInterpreter.shared.difficultyGraph
+        }
+        switch defaultGraph{
+        case RoutingType.easiest.rawValue:
+            return MapInterpreter.shared.difficultyGraph
+        case RoutingType.leastDistance.rawValue:
+            return MapInterpreter.shared.distanceGraph
+        case RoutingType.quickest.rawValue:
+            return MapInterpreter.shared.timeGraph
+        default:
+            return MapInterpreter.shared.difficultyGraph
+        }
+    }
+    @objc func updateInitialRegion(_ sender: Notification)
+    {
+        guard let latitude = sender.userInfo?["initialRegionLatitude"] as? Double, let longitude = sender.userInfo?["initialRegionLongitude"] as? Double else { return }
+        Self.initialRegion =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
+        myMap.region = Self.initialRegion!
+        myMap.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: Self.initialRegion!)
+        myMap.setCamera(MKMapCamera(lookingAtCenter: Self.initialRegion!.center, fromDistance: CLLocationDistance(10000), pitch: 0, heading: CLLocationDirection(360)), animated: true)
+        mapLoadingView.isHidden = true
+        Self.isMapLoaded = true
+    }
+    
     ///configureMyMap void -> voidj
     ///Configures and formats myMap
     private func configureMyMap()
@@ -177,15 +224,17 @@ class InteractiveMapViewController: UIViewController
         myMap.cameraZoomRange = MKMapView.CameraZoomRange(
             minCenterCoordinateDistance: 400,
             maxCenterCoordinateDistance: 12500)
-        myMap.cameraBoundary = MKMapView.CameraBoundary(
-            coordinateRegion: initialRegion)
         let selectTrailGesture = UITapGestureRecognizer(target: self, action: #selector(mapTapped))
         let trailReportGesture = UILongPressGestureRecognizer(target: self, action: #selector(addTrailReport))
         trailReportGesture.minimumPressDuration = 0.3
+        if let initialRegion = Self.initialRegion {
+            myMap.region = initialRegion
+            myMap.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: initialRegion)
+            myMap.setCamera(MKMapCamera(lookingAtCenter: myMap.centerCoordinate, fromDistance: CLLocationDistance(10000), pitch: 0, heading: CLLocationDirection(360)), animated: true)
+        }
         myMap.addGestureRecognizer(trailReportGesture)
         myMap.addGestureRecognizer(selectTrailGesture)
         myMap.userTrackingMode = .followWithHeading
-        myMap.region = initialRegion
         myMap.showsUserLocation = true
         myMap.setUserTrackingMode(.followWithHeading, animated: true)
         myMap.delegate = self
@@ -400,6 +449,7 @@ class InteractiveMapViewController: UIViewController
     
     @objc func cancelRoute()
     {
+        print("cancelling route")
         self.initialLocation = nil
         Self.routeInProgress = false
         Self.destination = nil
@@ -414,6 +464,7 @@ class InteractiveMapViewController: UIViewController
         connectivityController.setRoute(route: [])
         showAllTrails()
     }
+
     @objc func recenter()
     {
         let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
@@ -515,6 +566,8 @@ class InteractiveMapViewController: UIViewController
     }
     @objc func configureTrailSelectorView()
     {
+        Self.preferredRoutingGraph = updatePreferredGraph()
+        Self.selectedGraph = Self.preferredRoutingGraph
         self.trailSelectorView = TrailSelectorView(frame: CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 80, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height))
         trailSelectorView?.configureTableViewAndSearchBar()
         let window = self.view
@@ -690,6 +743,7 @@ class InteractiveMapViewController: UIViewController
             {
                 pathGraph.addVertex(self.pathCreated[index])
             }
+            
             pathGraph.addEdge(direction: .undirected, from: originVertex!, to: pathGraph.vertices[1], weight: 1)
             print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
             return createRouteHelper(graph: pathGraph)
@@ -1275,6 +1329,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
                     isWaitingInLine = true
                     liftWaiting = vertex
                     timeBegan = Date.now
+                    print("isWaiting in line for lift \(liftWaiting?.value.title)")
                     break
                 }
             }
@@ -1285,6 +1340,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
             }
             if userLocation.distance(from: CLLocation(latitude: lift.value.coordinate.latitude, longitude: lift.value.coordinate.longitude)) > radius
             {
+                print("no longer waiting in line")
                 isWaitingInLine = false
                 lift.value.times?.append(Date.now.timeIntervalSince(startTime))
                 liftWaiting = nil
@@ -1293,13 +1349,14 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
                 updatePointTime(point: PointTimeUpdateData(id: id, time: times as! [Float]), completion: {
                     result in
                     guard let point = try? result.get() else {
-                        print(result)
+                        print("test point update Success \(result)")
                         return
                     }
                     print(point)
                 })
             }
         }
+        guard let initialRegion = Self.initialRegion else { return }
         if locations[0].distance(from: CLLocation(latitude: initialRegion.center.latitude, longitude: initialRegion.center.longitude)) <= 7000
         {
             saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))

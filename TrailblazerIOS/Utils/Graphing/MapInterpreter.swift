@@ -1,50 +1,14 @@
 import Foundation
 import MapKit
 
-struct Map : Codable, Equatable
-{
-    var id: String?
-    var name: String?
-    var mapTrail: [MapTrail]?
-    var mapConnector: [MapConnector]?
-    public static func == (lhs: Map, rhs: Map) -> Bool
-    {
-        return lhs.id == rhs.id
-    }
-}
-
-struct MapTrail: Codable, Equatable {
-    var id: String?
-    var name: String?
-    var map: Map?
-    var points: [Point]?
-    var difficulty: String?
-    
-    public static func == (lhs: MapTrail, rhs: MapTrail) -> Bool
-    {
-        return lhs.id == rhs.id
-    }
-}
-
-struct MapConnector: Codable {
-    var id: String?
-    var name: String?
-    var distance: Float?
-    var map: Map?
-    var points: [Point]?
-}
 final class MapInterpreter: NSObject {
     static let shared = MapInterpreter()
     var mapView = MKMapView()
     let baseURL = getBaseUrl()
-    var map : Map?
+    static var map : Map?
     var difficultyGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
-    override init() {
-        super.init()
-        
-    }
     func getMap(id: String)
     {
         //        if let map = UserDefaults.standard.array(forKey: id) as? [CustomPolyline], let distanceGraph = UserDefaults.standard.value(forKey: "\(id)/distanceGraph") as? EdgeWeightedDigraph<ImageAnnotation>, let difficultyGraph = UserDefaults.standard.value(forKey: "\(id)/difficultyGraph") as? EdgeWeightedDigraph<ImageAnnotation>
@@ -69,7 +33,8 @@ final class MapInterpreter: NSObject {
             }
             do {
                 let decoder = JSONDecoder()
-                self.map = try decoder.decode(Map.self, from: data)
+                Self.map = try decoder.decode(Map.self, from: data)
+                print("test map")
                 self.getMapTrails(id: id)
             } catch {
                 print("Error decoding Map: \(error)")
@@ -91,21 +56,21 @@ final class MapInterpreter: NSObject {
             }
             do {
                 let decoder = JSONDecoder()
-                self.map?.mapTrail = try decoder.decode([MapTrail].self, from: data)
-                if self.map?.mapTrail != nil
+                Self.map?.mapTrail = try decoder.decode([MapTrail].self, from: data)
+                if Self.map?.mapTrail != nil
                 {
                     var collectedIndex = 0
-                    for index in 0...self.map!.mapTrail!.count - 1
+                    for index in 0...Self.map!.mapTrail!.count - 1
                     {
-                        self.getPoints(id: self.map!.mapTrail![index].id!, isConnector: false, completion: { result in
+                        self.getPoints(id: Self.map!.mapTrail![index].id!, isConnector: false, completion: { result in
                             guard let points = try? result.get() else
                             {
                                 print("Error: \(result)")
                                 return
                             }
-                            self.map!.mapTrail![index].points = points
+                            Self.map!.mapTrail![index].points = points
                             collectedIndex += 1
-                            if collectedIndex == self.map!.mapTrail!.count
+                            if collectedIndex == Self.map!.mapTrail!.count
                             {
                                 self.getMapConnectors(id: id, completion: {
                                     result in
@@ -115,7 +80,7 @@ final class MapInterpreter: NSObject {
                                         return
                                     }
                                     print("testMap")
-                                    self.createMap(map: self.map!)
+                                    self.createMap(map: Self.map!)
                                 })
                             }
                         })
@@ -137,22 +102,22 @@ final class MapInterpreter: NSObject {
             }
             do {
                 let decoder = JSONDecoder()
-                self.map?.mapConnector = try decoder.decode([MapConnector].self, from: data)
-                if self.map?.mapConnector != nil
+                Self.map?.mapConnector = try decoder.decode([MapConnector].self, from: data)
+                if Self.map?.mapConnector != nil
                 {
                     var collectedIndex = 0
-                    for index in 0..<self.map!.mapConnector!.count
+                    for index in 0..<Self.map!.mapConnector!.count
                     {
-                        self.getPoints(id: self.map!.mapConnector![index].id!, isConnector: true, completion: { result in
+                        self.getPoints(id: Self.map!.mapConnector![index].id!, isConnector: true, completion: { result in
                             guard let points = try? result.get() else
                             {
                                 print("Error: \(result)")
                                 return
                             }
                             collectedIndex += 1
-                            self.map!.mapConnector![index].points = points
+                            Self.map!.mapConnector![index].points = points
                             //print(collectedIndex)
-                            if collectedIndex == self.map!.mapConnector!.count
+                            if collectedIndex == Self.map!.mapConnector!.count
                             {
                                 completion(.success(true))
                             }
@@ -197,17 +162,7 @@ final class MapInterpreter: NSObject {
     private func createMap(map: Map)
     {
         var polylines: [CustomPolyline] = []
-        guard let trails = map.mapTrail else {
-            print("mapTrails Don't Exist")
-            return
-            
-        }
-        guard let mapConnectors = map.mapConnector else {
-            print("mapConnectors Don't Exist")
-            return
-            
-        }
-        for trail in trails
+        for trail in map.mapTrail!
         {
             var coordinates : [CLLocationCoordinate2D] = []
             guard let points = trail.points else {
@@ -239,13 +194,11 @@ final class MapInterpreter: NSObject {
             default:
                 break
             }
-            print("New Trail")
             for point in points
             {
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
                 pointIds.append(point.id!)
                 trailTimes.append(point.time as! [Double])
-                print("\(point.longitude), \(point.latitude)")
             }
             let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
             polyline.title = trail.name
@@ -256,7 +209,7 @@ final class MapInterpreter: NSObject {
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
         }
-        for connector in mapConnectors
+        for connector in map.mapConnector!
         {
             var coordinates : [CLLocationCoordinate2D] = []
             guard let points = connector.points else {
@@ -281,6 +234,10 @@ final class MapInterpreter: NSObject {
             initialAnnotation.ids = pointIds
             polylines.append(polyline)
         }
+        mapView.removeOverlays(mapView.overlays)
+        self.difficultyGraph = EdgeWeightedDigraph<ImageAnnotation>()
+        self.timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
+        self.distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
         mapView.addOverlays(polylines)
         DispatchQueue.global().async{
             self.createDifficultyGraph()
@@ -288,6 +245,7 @@ final class MapInterpreter: NSObject {
             self.createTimeGraph()
             self.getTrailReportsFromDB()
             DispatchQueue.main.async{
+                InteractiveMapViewController.selectedMap = Self.map
                 WebAnalysis.shared.makeRequest()
             }
             //            UserDefaults.standard.set(self.difficultyGraph, forKey: "\(self.map?.id)/difficultyGraph")
@@ -488,6 +446,8 @@ final class MapInterpreter: NSObject {
                 NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
             }
             NotificationCenter.default.post(name: Notification.Name("configureTrailSelector"), object: nil)
+            NotificationCenter.default.post(Notification(name: Notification.Name("updateInitialRegion"), userInfo: ["initialRegionLatitude": Double(Self.map!.initialLocationLatitude!), "initialRegionLongitude": Double(Self.map!.initialLocationLongitude!)]))
+
         })
     }
     

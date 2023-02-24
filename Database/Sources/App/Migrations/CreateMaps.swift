@@ -17,6 +17,16 @@ struct CreateMaps: Migration {
     
             .field("name", .string, .required)
         
+            .field("initialLocationLongitude", .float, .required)
+        
+            .field("initialLocationLatitude", .float, .required)
+        
+            .field("mountainReportUrl", .string)
+        
+            .field("trailStatusElementId", .string)
+        
+            .field("liftStatusElementId", .string)
+        
             .create()
     }
     

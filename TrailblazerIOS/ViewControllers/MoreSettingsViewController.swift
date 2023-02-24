@@ -163,11 +163,9 @@ class MoreSettingViewController: UIViewController
         UserDefaults.standard.removeObject(forKey: "alertSettings")
         UserDefaults.standard.removeObject(forKey: "routingPreference")
         InteractiveMapViewController.currentUser = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
-        InteractiveMapViewController.destination = nil
-        InteractiveMapViewController.routeInProgress = false
+        NotificationCenter.default.post(Notification(name: Notification.Name("cancelRoute")))
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
-        
         // This is to get the SceneDelegate object from your view controller
         // then call the change root view controller function to change to main tab bar
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)

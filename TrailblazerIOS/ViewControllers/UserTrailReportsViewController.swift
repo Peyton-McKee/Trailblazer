@@ -25,6 +25,7 @@ class UserTrailReportsViewController: UIViewController{
         label.font = UIFont(name: "markerfelt-wide", size: 25)
         return label
     }()
+    
     lazy var myVstack : UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -35,7 +36,8 @@ class UserTrailReportsViewController: UIViewController{
         [self.myTrailReportLabel, self.trailReportsTableView].forEach{ stack.addArrangedSubview($0) }
         return stack
     }()
-    let baseURL = "http://35.172.135.117"
+    
+    let baseURL = getBaseUrl()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()

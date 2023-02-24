@@ -27,7 +27,7 @@ struct MapsController: RouteCollection {
     throws -> EventLoopFuture<Map> {
         let data = try req.content.decode(CreateMapData.self)
         
-        let map = Map(name: data.name)
+        let map = Map(name: data.name, initialLocationLatitude: data.initialLocationLatitude, initialLocationLongitude: data.initialLocationLongitude, mountainReportUrl: data.mountainReportUrl, liftStatusElementId: data.liftStatusElementId, trailStatusElementId: data.trailStatusElementId)
         
         return map.save(on: req.db).map { map }
     }
@@ -91,4 +91,9 @@ struct MapsController: RouteCollection {
 
 struct CreateMapData: Content{
     let name: String
+    let initialLocationLatitude: Float
+    let initialLocationLongitude: Float
+    let mountainReportUrl: String?
+    let trailStatusElementId: String?
+    let liftStatusElementId: String?
 }
