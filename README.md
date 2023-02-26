@@ -32,4 +32,6 @@ Setup Instructions:
   
   Run the program (Command R)
 
+## Link To Testflight 
 
+https://testflight.apple.com/join/qY7GGL3a
