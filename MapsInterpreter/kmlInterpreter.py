@@ -5,7 +5,7 @@ import requests
 with open(path.join('Sunday-River.kml')) as f:
       doc = kml.KML()
       doc.from_string(f.read())
-
+print ("test")
 mountainReportUrl = "https://www.sundayriver.com/mountain-report"
 trailStatusElementId = "conditions_trailstatus_16207d4019cf36fbdb184831e2ae3054"
 liftStatusElementId = "conditions_lifts_e75ceb523c30353d18fb54207af864f9"
