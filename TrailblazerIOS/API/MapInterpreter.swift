@@ -9,6 +9,8 @@ final class MapInterpreter: NSObject {
     var difficultyGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
+    
+    var baseLiftVertexes = [Vertex<ImageAnnotation>]()
     func getMap(id: String)
     {
         //        if let map = UserDefaults.standard.array(forKey: id) as? [CustomPolyline], let distanceGraph = UserDefaults.standard.value(forKey: "\(id)/distanceGraph") as? EdgeWeightedDigraph<ImageAnnotation>, let difficultyGraph = UserDefaults.standard.value(forKey: "\(id)/difficultyGraph") as? EdgeWeightedDigraph<ImageAnnotation>
@@ -244,10 +246,6 @@ final class MapInterpreter: NSObject {
             self.createDistanceGraph()
             self.createTimeGraph()
             self.getTrailReportsFromDB()
-            DispatchQueue.main.async{
-                InteractiveMapViewController.selectedMap = Self.map
-                WebAnalysis.shared.makeRequest()
-            }
             //            UserDefaults.standard.set(self.difficultyGraph, forKey: "\(self.map?.id)/difficultyGraph")
             //            UserDefaults.standard.set(self.distanceGraph, forKey: "\(self.map?.id)/distanceGraph")
         }
@@ -269,7 +267,7 @@ final class MapInterpreter: NSObject {
             }
             if initialVertex.value.difficulty == Difficulty.lift
             {
-                InteractiveMapViewController.baseLiftVertexes.append(initialVertex)
+                self.baseLiftVertexes.append(initialVertex)
             }
             var prevVertex : Vertex<ImageAnnotation> = initialVertex
             prevVertex.value.id = overlay.initialAnnotation?.ids![0]
@@ -426,7 +424,6 @@ final class MapInterpreter: NSObject {
                 print("Error: \(value)")
                 return
             }
-            InteractiveMapViewController.trailReports = trailReports
             for report in trailReports
             {
                 let latitude = report.latitude
@@ -442,12 +439,11 @@ final class MapInterpreter: NSObject {
                 closestTrail.trailReport = annotation
                 mapView.addAnnotation(annotation)
                 guard InteractiveMapViewController.currentUser.alertSettings.contains(report.type) else { continue }
-                InteractiveMapViewController.notiAnnotation = report
-                NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil, userInfo: ["report": report])
             }
             NotificationCenter.default.post(name: Notification.Name("configureTrailSelector"), object: nil)
-            NotificationCenter.default.post(Notification(name: Notification.Name("updateInitialRegion"), userInfo: ["initialRegionLatitude": Double(Self.map!.initialLocationLatitude!), "initialRegionLongitude": Double(Self.map!.initialLocationLongitude!)]))
-
+            NotificationCenter.default.post(Notification(name: Notification.Name("updateInitialRegion"), userInfo: ["initialRegionLatitude": Double(Self.map!.initialLocationLatitude!), "initialRegionLongitude": Double(Self.map!.initialLocationLongitude!), "trailReports": trailReports]))
+            
         })
     }
     

@@ -14,13 +14,11 @@ class SideMenuFramework
     var view :  UIView?
     var window : UIView
     var width : CGFloat
-    var screenSize: CGSize
     
-    init(viewController : UIViewController, window: UIView, screenSize : CGSize, width: CGFloat) {
-        self.viewController = viewController
-        self.window = window
-        self.screenSize = screenSize
-        self.width = width
+    init(vc : UIViewController) {
+        self.viewController = vc
+        self.window = vc.view
+        self.width = vc.view.bounds.width
     }
     
     func presentItems()

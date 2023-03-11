@@ -22,17 +22,29 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
     static let shared = WebAnalysis()
     var realTimeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     let webView = WKWebView(frame: .zero)
+    var trailStatusElementId: String?
+    var liftStatusElementId: String?
+    var graph: EdgeWeightedDigraph<ImageAnnotation>?
     
-    func makeRequest()
+    func makeRequest(graph: EdgeWeightedDigraph<ImageAnnotation>)
     {
-        webView.navigationDelegate = self
-        guard let mountainReportUrl = InteractiveMapViewController.selectedMap?.mountainReportUrl else {
-            print("Error: Map has no mountain report URL!")
-            return
-        }
-        let urlRequest = URLRequest(url: URL(string: mountainReportUrl)!)
-        webView.load(urlRequest)
-        
+        getMap(id: InteractiveMapViewController.mapId, completion: {
+            result in
+            guard let map = try? result.get() else {
+                print("Failed to get map: \(result)")
+                return
+            }
+            guard let mountainReportUrl = map.mountainReportUrl else {
+                print("Error: Map has no mountain report URL!")
+                return
+            }
+            self.trailStatusElementId = map.trailStatusElementId
+            self.liftStatusElementId = map.liftStatusElementId
+            self.graph = graph
+            self.webView.navigationDelegate = self
+            let urlRequest = URLRequest(url: URL(string: mountainReportUrl)!)
+            self.webView.load(urlRequest)
+        })
     }
     
     func assignStatus(status: String, trail: [Vertex<ImageAnnotation>])
@@ -56,12 +68,12 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        guard let trailStatusElementId = InteractiveMapViewController.selectedMap?.trailStatusElementId, let liftStatusElementId = InteractiveMapViewController.selectedMap?.liftStatusElementId else {
+        guard let trailStatusElementId = self.trailStatusElementId, let liftStatusElementId = self.liftStatusElementId, let graph = self.graph else {
             print("Error: Map Does Not Have Trail Elment Id or Lift Element Id!")
             return
         }
-        let trailNames : [String] = InteractiveMapViewController.selectedGraph.vertices.filter({$0.value.difficulty != .lift}).map({$0.value.title!})
-        let liftNames : [String] = InteractiveMapViewController.selectedGraph.vertices.filter({$0.value.difficulty == .lift}).map({$0.value.title!})
+        let trailNames : [String] = graph.vertices.filter({$0.value.difficulty != .lift}).map({$0.value.title!})
+        let liftNames : [String] = graph.vertices.filter({$0.value.difficulty == .lift}).map({$0.value.title!})
         let individualTrailNames : [String] = {
             var found : [String] = []
             for trail in trailNames
@@ -91,16 +103,16 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
                 DispatchQueue.global().async { [self] in
                     for index in 0..<value.lifts.count
                     {
-                        assignStatus(status: value.lifts[index], trail: InteractiveMapViewController.selectedGraph.vertices.filter({$0.value.title == individualLiftNames[index]}))
+                        assignStatus(status: value.lifts[index], trail: graph.vertices.filter({$0.value.title == individualLiftNames[index]}))
                     }
                     for index in 0..<value.trails.count
                     {
-                        assignStatus(status: value.trails[index], trail: InteractiveMapViewController.selectedGraph.vertices.filter({$0.value.title == individualTrailNames[index]}))
+                        assignStatus(status: value.trails[index], trail: graph.vertices.filter({$0.value.title == individualTrailNames[index]}))
                     }
                     var overlays : [CustomPolyline] = []
                     var annotations : [ImageAnnotation] = []
                     var foundTrails : [String] = []
-                    for annotation in InteractiveMapViewController.selectedGraph.vertices
+                    for annotation in graph.vertices
                     {
                         //print("\(annotation.value.title): \(annotation.value.status)")
                         if annotation.value.status == .open || annotation.value.status == .scheduled

@@ -189,8 +189,8 @@
             filePath = "TrailblazerIOS/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "643"
-            endingLineNumber = "643"
+            startingLineNumber = "396"
+            endingLineNumber = "396"
             landmarkName = "InteractiveMapViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -205,25 +205,9 @@
             filePath = "TrailblazerIOS/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "646"
-            endingLineNumber = "646"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
             landmarkName = "getClosestAnnotation(origin:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8C8CB1BE-9295-48BB-A8EB-094755BE8B12"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TrailblazerIOS/ViewControllers/InteractiveMapViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "767"
-            endingLineNumber = "767"
-            landmarkName = "createRouteHelper(graph:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -336,6 +320,22 @@
                   offsetFromSymbolStart = "396">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "216718F3-256D-4F34-A2F0-7B02DA9B7BBE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TrailblazerIOS/ViewControllers/InteractiveMapViewController.swift"
+            startingColumnNumber = "16"
+            endingColumnNumber = "16"
+            startingLineNumber = "972"
+            endingLineNumber = "972"
+            landmarkName = "textFieldShouldBeginEditing(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

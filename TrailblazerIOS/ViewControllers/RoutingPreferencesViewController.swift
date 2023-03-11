@@ -19,6 +19,7 @@ class RoutingPreferencesViewController: UIViewController {
         [self.titleLabel, self.HStack].forEach{ stackView.addArrangedSubview($0)}
         return stackView
     }()
+    
     var titleLabel : UILabel = {
         var label = UILabel()
         label.text = "Routing Settings"
@@ -26,6 +27,7 @@ class RoutingPreferencesViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
     lazy var HStack : UIStackView = {
         var stackView = UIStackView()
         stackView.axis = .horizontal
@@ -41,6 +43,7 @@ class RoutingPreferencesViewController: UIViewController {
         stackView.layer.shadowColor = UIColor(hex: "#ffffffff")?.cgColor
         return stackView
     }()
+    
     lazy var routingPickerView : UIPickerView = {
         var pickerView = UIPickerView()
         pickerView.delegate = self
@@ -57,6 +60,7 @@ class RoutingPreferencesViewController: UIViewController {
         }
         return pickerView
     }()
+    
     var routingLabel : UILabel = {
         var label = UILabel()
         label.text = "Select Your Preferred Routing Type:"
@@ -103,13 +107,15 @@ extension RoutingPreferencesViewController: UIPickerViewDelegate, UIPickerViewDa
         InteractiveMapViewController.currentUser.routingPreference = options[row].rawValue
         UserDefaults.standard.set(InteractiveMapViewController.currentUser.routingPreference, forKey: "routingPreference")
         updateUser(InteractiveMapViewController.currentUser)
+        var preference = MapInterpreter.shared.distanceGraph
         switch options[row].rawValue{
         case RoutingType.easiest.rawValue:
-            InteractiveMapViewController.preferredRoutingGraph = MapInterpreter.shared.difficultyGraph
+            preference = MapInterpreter.shared.difficultyGraph
         case RoutingType.quickest.rawValue:
-            InteractiveMapViewController.preferredRoutingGraph = MapInterpreter.shared.timeGraph
+            preference = MapInterpreter.shared.timeGraph
         default:
-            InteractiveMapViewController.preferredRoutingGraph = MapInterpreter.shared.distanceGraph
+            preference = MapInterpreter.shared.distanceGraph
         }
+        NotificationCenter.default.post(name: Notification.Name("updateRoutingPreference"), object: nil, userInfo: ["preference": preference])
     }
 }

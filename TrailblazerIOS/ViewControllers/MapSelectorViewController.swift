@@ -62,7 +62,6 @@ class MapSelectorViewController : UIViewController, UICollectionViewDelegateFlow
         if let id = maps[indexPath.row].id {
             if(!(id == InteractiveMapViewController.mapId)){
                 InteractiveMapViewController.mapId = id
-                InteractiveMapViewController.changedMap = true
                 UserDefaults.standard.set(id, forKey: "mapId")
             }
         }

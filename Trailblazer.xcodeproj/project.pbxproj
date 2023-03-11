@@ -32,7 +32,7 @@
 		1524945529082897009E7059 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945429082897009E7059 /* Settings.swift */; };
 		1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945629084F89009E7059 /* UserTrailReportsViewController.swift */; };
 		1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945829085D88009E7059 /* TrailReportTableViewCell.swift */; };
-		152C69BA291B50120092E537 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C69B9291B50120092E537 /* LocationManager.swift */; };
+		152C69BA291B50120092E537 /* LocationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C69B9291B50120092E537 /* LocationManagement.swift */; };
 		15316621290AE86100206E7E /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15316620290AE86100206E7E /* UserLocation.swift */; };
 		15316623290AE86800206E7E /* UserRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15316622290AE86800206E7E /* UserRoute.swift */; };
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
@@ -70,6 +70,12 @@
 		1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBC291AE7B900978FD8 /* Assets.xcassets */; };
 		1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */; };
 		15A1C8212950F967007598D8 /* ToolTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1C8202950F967007598D8 /* ToolTipView.swift */; };
+		15B703EF29BC1C5E00F634FD /* MapTapping.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703EE29BC1C5E00F634FD /* MapTapping.Util.swift */; };
+		15B703F129BC1D4C00F634FD /* Configuration.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F029BC1D4C00F634FD /* Configuration.Util.swift */; };
+		15B703F329BC1E4500F634FD /* TrailSelector.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F229BC1E4500F634FD /* TrailSelector.Util.swift */; };
+		15B703F529BCFBF400F634FD /* Routing.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F429BCFBF400F634FD /* Routing.Util.swift */; };
+		15B703F729BD177300F634FD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F629BD177300F634FD /* LocationManager.swift */; };
+		15B703F929BD1D5000F634FD /* ToolTip.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F829BD1D5000F634FD /* ToolTip.Util.swift */; };
 		15E644A129A92BBC0048DAEB /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644A029A92BBC0048DAEB /* Map.swift */; };
 		15E644A929A947C50048DAEB /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644A829A947C50048DAEB /* UserAPI.swift */; };
 		15E644AB29A947FF0048DAEB /* MapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644AA29A947FF0048DAEB /* MapAPI.swift */; };
@@ -87,7 +93,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		153DABAE2936C44A001ABAAD /* PBXContainerItemProxy */ = {
+		153F2DB329BD332700CCD553 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 158749EC27D82635001B9025 /* Project object */;
 			proxyType = 1;
@@ -138,7 +144,7 @@
 		1524945829085D88009E7059 /* TrailReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportTableViewCell.swift; sourceTree = "<group>"; };
 		152C69B7291B39530092E537 /* TrailblazerIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrailblazerIOS.entitlements; sourceTree = "<group>"; };
 		152C69B8291B3A750092E537 /* Trailblazer Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Trailblazer Watch App.entitlements"; sourceTree = "<group>"; };
-		152C69B9291B50120092E537 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		152C69B9291B50120092E537 /* LocationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagement.swift; sourceTree = "<group>"; };
 		15316620290AE86100206E7E /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		15316622290AE86800206E7E /* UserRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRoute.swift; sourceTree = "<group>"; };
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +181,12 @@
 		1591DBBC291AE7B900978FD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15A1C8202950F967007598D8 /* ToolTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipView.swift; sourceTree = "<group>"; };
+		15B703EE29BC1C5E00F634FD /* MapTapping.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTapping.Util.swift; sourceTree = "<group>"; };
+		15B703F029BC1D4C00F634FD /* Configuration.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.Util.swift; sourceTree = "<group>"; };
+		15B703F229BC1E4500F634FD /* TrailSelector.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelector.Util.swift; sourceTree = "<group>"; };
+		15B703F429BCFBF400F634FD /* Routing.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.Util.swift; sourceTree = "<group>"; };
+		15B703F629BD177300F634FD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		15B703F829BD1D5000F634FD /* ToolTip.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTip.Util.swift; sourceTree = "<group>"; };
 		15E644A029A92BBC0048DAEB /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		15E644A829A947C50048DAEB /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		15E644AA29A947FF0048DAEB /* MapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPI.swift; sourceTree = "<group>"; };
@@ -231,15 +243,7 @@
 		150D063728FB020B0051F160 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				15E644A329A945E00048DAEB /* Web Scraper */,
-				15E644A229A92C480048DAEB /* TableViewCells */,
-				15E644A529A9464B0048DAEB /* Frameworks */,
-				15E644A429A946200048DAEB /* Views */,
-				15E644A629A9476C0048DAEB /* Graphing */,
-				15E644A729A9478D0048DAEB /* API */,
 				15316627290B177000206E7E /* InteractiveMap.Utils */,
-				150828D7294A89560060B341 /* Errors */,
-				15316624290B170300206E7E /* Models */,
 				15316625290B172200206E7E /* Miscellaneous.Utils */,
 				150C6EAD29031B0C0055AD59 /* Unused.Utils */,
 			);
@@ -288,7 +292,12 @@
 		15316627290B177000206E7E /* InteractiveMap.Utils */ = {
 			isa = PBXGroup;
 			children = (
-				152C69B9291B50120092E537 /* LocationManager.swift */,
+				152C69B9291B50120092E537 /* LocationManagement.swift */,
+				15B703EE29BC1C5E00F634FD /* MapTapping.Util.swift */,
+				15B703F029BC1D4C00F634FD /* Configuration.Util.swift */,
+				15B703F229BC1E4500F634FD /* TrailSelector.Util.swift */,
+				15B703F429BCFBF400F634FD /* Routing.Util.swift */,
+				15B703F829BD1D5000F634FD /* ToolTip.Util.swift */,
 			);
 			path = InteractiveMap.Utils;
 			sourceTree = "<group>";
@@ -355,6 +364,15 @@
 				158749F927D82635001B9025 /* SceneDelegate.swift */,
 				158749FD27D82635001B9025 /* Main.storyboard */,
 				15545B0428E022A5005D0886 /* ViewControllers */,
+				15B703F629BD177300F634FD /* LocationManager.swift */,
+				15E644A429A946200048DAEB /* Views */,
+				15E644A729A9478D0048DAEB /* API */,
+				15E644A329A945E00048DAEB /* Web Scraper */,
+				15E644A229A92C480048DAEB /* TableViewCells */,
+				15E644A629A9476C0048DAEB /* Graphing */,
+				15316624290B170300206E7E /* Models */,
+				15E644A529A9464B0048DAEB /* Frameworks */,
+				150828D7294A89560060B341 /* Errors */,
 				150D063728FB020B0051F160 /* Utils */,
 				15874A0027D82636001B9025 /* Assets.xcassets */,
 				150D063E290063900051F160 /* Images */,
@@ -432,7 +450,6 @@
 		15E644A629A9476C0048DAEB /* Graphing */ = {
 			isa = PBXGroup;
 			children = (
-				153DAB9729255CFC001ABAAD /* MapInterpreter.swift */,
 				15545B0B28E224A2005D0886 /* DijsktrasGraphStructure.swift */,
 			);
 			path = Graphing;
@@ -441,6 +458,7 @@
 		15E644A729A9478D0048DAEB /* API */ = {
 			isa = PBXGroup;
 			children = (
+				153DAB9729255CFC001ABAAD /* MapInterpreter.swift */,
 				15F92C5B293E824100792054 /* BaseUrl.swift */,
 				15E644B429A94A0A0048DAEB /* MapFileAPI.swift */,
 				15E644A829A947C50048DAEB /* UserAPI.swift */,
@@ -468,7 +486,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				153DABAF2936C44A001ABAAD /* PBXTargetDependency */,
+				153F2DB429BD332700CCD553 /* PBXTargetDependency */,
 			);
 			name = Trailblazer;
 			productName = SundayRiver;
@@ -564,6 +582,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1524945529082897009E7059 /* Settings.swift in Sources */,
+				15B703EF29BC1C5E00F634FD /* MapTapping.Util.swift in Sources */,
 				15545B0E28E224C8005D0886 /* Trail.swift in Sources */,
 				15E644A129A92BBC0048DAEB /* Map.swift in Sources */,
 				1521C4A3298648DD0085F868 /* CollectionViewCell.swift in Sources */,
@@ -582,6 +601,7 @@
 				1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */,
 				15F92C5C293E824100792054 /* BaseUrl.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
+				15B703F129BC1D4C00F634FD /* Configuration.Util.swift in Sources */,
 				15E644B129A949900048DAEB /* UserLocationAPI.swift in Sources */,
 				150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */,
 				15489A4D2922C0A900898FD0 /* ConnectivityController.swift in Sources */,
@@ -594,9 +614,10 @@
 				150828D62943AF320060B341 /* LoadingView.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
 				15F92C56293AC9C300792054 /* UserSetting.swift in Sources */,
-				152C69BA291B50120092E537 /* LocationManager.swift in Sources */,
+				152C69BA291B50120092E537 /* LocationManagement.swift in Sources */,
 				15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */,
 				1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */,
+				15B703F729BD177300F634FD /* LocationManager.swift in Sources */,
 				15489A4A2922AFAC00898FD0 /* Connectivity.swift in Sources */,
 				1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */,
 				150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */,
@@ -610,6 +631,7 @@
 				15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */,
 				153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */,
 				150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */,
+				15B703F929BD1D5000F634FD /* ToolTip.Util.swift in Sources */,
 				15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */,
 				150828D9294A89640060B341 /* DecodingErrors.swift in Sources */,
 				153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */,
@@ -621,6 +643,8 @@
 				150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */,
 				15A1C8212950F967007598D8 /* ToolTipView.swift in Sources */,
 				15545B0C28E224A2005D0886 /* DijsktrasGraphStructure.swift in Sources */,
+				15B703F529BCFBF400F634FD /* Routing.Util.swift in Sources */,
+				15B703F329BC1E4500F634FD /* TrailSelector.Util.swift in Sources */,
 				15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,10 +664,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		153DABAF2936C44A001ABAAD /* PBXTargetDependency */ = {
+		153F2DB429BD332700CCD553 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1591DBB5291AE7B800978FD8 /* Trailblazer Watch App */;
-			targetProxy = 153DABAE2936C44A001ABAAD /* PBXContainerItemProxy */;
+			targetProxy = 153F2DB329BD332700CCD553 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

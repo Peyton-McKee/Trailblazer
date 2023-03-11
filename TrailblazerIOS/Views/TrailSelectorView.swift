@@ -13,69 +13,96 @@ enum TextFieldType {
 }
 
 final class SearchBarTableHeaderView: UIView {
-    var destinationTextField = UITextField()
-    var searchButton = UIButton()
-    var directionsButton = UIButton()
-    var searchImageView = UIImageView()
-    var directionsImageView = UIImageView()
-    var leftBackgroundView = UIView()
-    var rightBackgroundView = UIView()
-    var extendedFrame: CGRect?
-    var initialFrame: CGRect?
-    var droppedDownFrame : CGRect?
-    var isExtended = false
-    var isDroppedDown = false
-    var originTextField = UITextField()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-    func setInitialFrame()
-    {
-        self.frame = initialFrame!
-        leftBackgroundView.layer.cornerRadius = 10
-        directionsButton.isHidden = true
-        
-        searchImageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
-        searchImageView.image = UIImage(systemName: "magnifyingglass")!
-        
-        directionsImageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
-        directionsImageView.image = UIImage(systemName: "eye.circle")!
-        searchButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
-        searchButton.tintColor = .white
-        searchButton.setImage(searchImageView.image, for: .normal)
-        searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
-        
-        directionsButton.tintColor = .white
-        directionsButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
-        directionsButton.setImage(directionsImageView.image, for: .normal)
-        directionsButton.addTarget(self, action: #selector(directionsButtonPressed), for: .touchUpInside)
-        
+    let destinationTextField : UITextField = {
+        let destinationTextField = UITextField()
         destinationTextField.placeholderRect(forBounds: destinationTextField.bounds)
         destinationTextField.placeholder = "Enter Destination"
         destinationTextField.backgroundColor = UIColor(hex: "#dddddd70")
         destinationTextField.layer.cornerRadius = 10
-        
+        return destinationTextField
+    }()
+    
+    let originTextField : UITextField = {
+        let originTextField = UITextField()
         originTextField.placeholderRect(forBounds: originTextField.bounds)
         originTextField.placeholder = "Origin: Your Location..."
         originTextField.backgroundColor = UIColor(hex: "#dddddd70")
         originTextField.layer.cornerRadius = 10
         originTextField.isHidden = true
-        
+        return originTextField
+    }()
+    
+    lazy var searchButton : UIButton = {
+        let searchButton = UIButton(frame: CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40))
+        searchButton.tintColor = .white
+        searchButton.setImage(searchImageView.image, for: .normal)
+        searchButton.addTarget(self, action: #selector(searchButtonPressed), for: .touchUpInside)
+        return searchButton
+    }()
+    
+    lazy var directionsButton : UIButton = {
+        let directionsButton = UIButton(frame: CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40))
+        directionsButton.isHidden = true
+        directionsButton.tintColor = .white
+        directionsButton.setImage(directionsImageView.image, for: .normal)
+        directionsButton.addTarget(self, action: #selector(directionsButtonPressed), for: .touchUpInside)
+        return directionsButton
+    }()
+    
+    let searchImageView : UIImageView = {
+        let searchImageView = UIImageView()
+        searchImageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        searchImageView.image = UIImage(systemName: "magnifyingglass")!
+        return searchImageView
+    }()
+    
+    let directionsImageView : UIImageView = {
+        let directionsImageView = UIImageView()
+        directionsImageView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        directionsImageView.image = UIImage(systemName: "eye.circle")!
+        return directionsImageView
+    }()
+    
+    lazy var leftBackgroundView : UIView = {
+        let leftBackgroundView = UIView(frame: CGRect(x: self.bounds.width - 40, y: 0, width: 30, height: self.bounds.height))
+        leftBackgroundView.layer.cornerRadius = 10
         leftBackgroundView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
+        return leftBackgroundView
+    }()
+    
+    let rightBackgroundView : UIView = {
+        let rightBackgroundView = UIView()
         rightBackgroundView.backgroundColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
         rightBackgroundView.layer.cornerRadius = 10
-        
-        leftBackgroundView.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 30, height: self.bounds.height)
-        
+        return rightBackgroundView
+    }()
+    
+    var initialFrame: CGRect
+    var extendedFrame: CGRect
+    var droppedDownFrame : CGRect
+    var isExtended = false
+    var isDroppedDown = false
+    
+    
+    init(frame: CGRect, extendedFrame: CGRect, droppedDownFrame: CGRect) {
+        self.initialFrame = frame
+        self.extendedFrame = extendedFrame
+        self.droppedDownFrame = droppedDownFrame
+        super.init(frame: frame)
+        self.setInitialFrame()
+        self.reloadView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setInitialFrame()
+    {
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 1
         self.layer.borderColor = .init(red: 0.8, green: 0, blue: 0.03, alpha: 1)
         
-    
         self.addSubview(destinationTextField)
         self.addSubview(originTextField)
         self.addSubview(rightBackgroundView)
@@ -83,10 +110,11 @@ final class SearchBarTableHeaderView: UIView {
         self.addSubview(searchButton)
         self.addSubview(directionsButton)
     }
+    
     func reloadView() {
         
         originTextField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 40, height: self.bounds.height/2)
-
+        
         rightBackgroundView.frame = CGRect(x: self.bounds.width - 20, y: 0, width: 20, height: self.bounds.height)
     }
     
@@ -94,7 +122,7 @@ final class SearchBarTableHeaderView: UIView {
         self.isExtended = true
         self.leftBackgroundView.layer.cornerRadius = 0
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.frame = self.extendedFrame!
+            self.frame = self.extendedFrame
             self.reloadView()
             self.searchButton.frame = CGRect(x: self.bounds.width-80, y: 0, width: 40, height: 40)
             self.directionsButton.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 40, height: 40)
@@ -103,6 +131,7 @@ final class SearchBarTableHeaderView: UIView {
             self.directionsButton.isHidden = false
         }, completion: nil)
     }
+    
     func dismissExtendedView()
     {
         self.destinationTextField.endEditing(true)
@@ -113,7 +142,7 @@ final class SearchBarTableHeaderView: UIView {
         self.isDroppedDown = false
         self.originTextField.isHidden = true
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.frame = self.initialFrame!
+            self.frame = self.initialFrame
             self.reloadView()
             self.searchButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
             self.directionsButton.frame = CGRect(x: self.bounds.width-40, y: 0, width: 40, height: 40)
@@ -127,7 +156,7 @@ final class SearchBarTableHeaderView: UIView {
         self.originTextField.isHidden = false
         self.isDroppedDown = true
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.frame = self.droppedDownFrame!
+            self.frame = self.droppedDownFrame
             self.reloadView()
             self.searchButton.frame = CGRect(x: self.bounds.width-80, y: self.bounds.height/4, width: 40, height: 40)
             self.directionsButton.frame = CGRect(x: self.bounds.width - 40, y: self.bounds.height/4, width: 40, height: 40)
@@ -135,22 +164,23 @@ final class SearchBarTableHeaderView: UIView {
             self.destinationTextField.frame = CGRect(x: 0, y: self.bounds.height/2, width: self.bounds.width - 40, height: self.bounds.height/2)
         }, completion: nil)
     }
+    
     func dismissDropDownView()
     {
         self.originTextField.endEditing(true)
         self.originTextField.isHidden = true
         self.isDroppedDown = false
-        InteractiveMapViewController.origin = nil
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.frame = self.extendedFrame!
+            self.frame = self.extendedFrame
             self.reloadView()
             self.searchButton.frame = CGRect(x: self.bounds.width-80, y: 0, width: 40, height: 40)
             self.directionsButton.frame = CGRect(x: self.bounds.width - 40, y: 0, width: 40, height: 40)
             self.leftBackgroundView.frame = CGRect(x: self.bounds.width - 80, y: 0, width: 70, height: self.bounds.height)
             self.destinationTextField.frame = CGRect(x: 0, y: 0, width: self.bounds.width - 40, height: self.bounds.height)
-
+            
         }, completion: nil)
     }
+    
     @objc func searchButtonPressed()
     {
         if !isExtended
@@ -159,11 +189,10 @@ final class SearchBarTableHeaderView: UIView {
         }
         else
         {
-            InteractiveMapViewController.wasCancelled = true
             self.dismissExtendedView()
         }
-        
     }
+    
     @objc func directionsButtonPressed()
     {
         if !isDroppedDown
@@ -176,9 +205,11 @@ final class SearchBarTableHeaderView: UIView {
         }
     }
 }
+
 final class TrailSelectorView : UIView {
     static var searchText : String?
     
+    var viewController : InteractiveMapViewController
     var isPresented = false
     var currentTextField: UITextField?
     var currentTextFieldType: TextFieldType = .destination
@@ -197,15 +228,19 @@ final class TrailSelectorView : UIView {
     var searchBarHeaderView : SearchBarTableHeaderView?
     var searchBarTableView = UITableView()
     var shouldShowSearchResults = false
+    var selectedOrigin : ImageAnnotation? = nil
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(vc: InteractiveMapViewController) {
+        self.viewController = vc
+        super.init(frame: vc.view.frame)
+        self.configureSearchBarTableView()
     }
+    
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
     
-    func configureTableViewAndSearchBar()
+    func configureSearchBarTableView()
     {
         createMyTrails()
         searchBarTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 8.5 / 10)
@@ -214,11 +249,10 @@ final class TrailSelectorView : UIView {
         searchBarTableView.backgroundColor = .black
         searchBarTableView.dataSource = self
         searchBarTableView.delegate = self
-        
-        //        searchBar.frame = CGRect(x: 10, y: 10, width: searchBarTableView.layoutMarginsGuide.widthAnchor.accessibilityFrame.width, height: self.bounds.height / 20)
         self.addSubview(searchBarTableView)
     }
-    func reloadMyTrails()
+    
+    @objc func reloadMyTrails()
     {
         easyTrails = []
         intermediateTrails = []
@@ -231,10 +265,11 @@ final class TrailSelectorView : UIView {
         createMyTrails()
         searchBarTableView.reloadData()
     }
+    
     private func createMyTrails()
     {
         var foundTrails : [String] = []
-        for annotation in InteractiveMapViewController.selectedGraph.vertices.map({ $0.value })
+        for annotation in self.viewController.selectedGraph.vertices.map({ $0.value })
         {
             if(!foundTrails.contains(annotation.title!))
             {
@@ -318,23 +353,23 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
         if shouldShowSearchResults{
             return filteredTrails.count
         }
-       switch section
+        switch section
         {
-       case 0:
-           return easyTrails.count
-       case 1:
-           return intermediateTrails.count
-       case 2:
-           return advancedTrails.count
-       case 3:
-           return expertsOnlyTrails.count
-       case 4:
-           return terrainParks.count
-       case 5:
-           return lifts.count
-       default:
-           return 0
-       }
+        case 0:
+            return easyTrails.count
+        case 1:
+            return intermediateTrails.count
+        case 2:
+            return advancedTrails.count
+        case 3:
+            return expertsOnlyTrails.count
+        case 4:
+            return terrainParks.count
+        case 5:
+            return lifts.count
+        default:
+            return 0
+        }
         
     }
     
@@ -394,17 +429,12 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             switch currentTextFieldType
             {
             case .destination:
-                InteractiveMapViewController.destination = cell.cellTrail!
-                InteractiveMapViewController.routeInProgress = false
-                InteractiveMapViewController.didChooseDestination = true
-                NotificationCenter.default.post(name: Notification.Name("selectedTrail"), object: nil)
+                viewController.selectedTrail(origin: self.selectedOrigin, destination: cell.cellTrail!)
                 self.isPresented = false
             case .origin:
                 currentTextField?.text = cell.cellTrail?.title
-                InteractiveMapViewController.origin = cell.cellTrail!
-                InteractiveMapViewController.wasSelectedWithOrigin = true
+                self.selectedOrigin = cell.cellTrail!
             }
-            
         }
     }
     

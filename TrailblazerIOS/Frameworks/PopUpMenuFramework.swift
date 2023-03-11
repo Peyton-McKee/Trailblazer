@@ -17,18 +17,17 @@ class PopUpMenuFramework
     var height : CGFloat
     var screenSize: CGSize
     
-    init(viewController : UIViewController, window: UIView, screenSize : CGSize, transparentView: UIView, height: CGFloat) {
-        self.viewController = viewController
-        self.window = window
-        self.screenSize = screenSize
-        self.transparentView = transparentView
+    init(vc : UIViewController, height: CGFloat) {
+        self.viewController = vc
+        self.window = vc.view
+        self.screenSize = UIScreen.main.bounds.size
+        self.transparentView = UIView(frame: vc.view.bounds)
         self.height = height
     }
     
     func presentItems()
     {
         transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
-        
         guard let view = view else{ return }
         window.addSubview(transparentView)
         window.addSubview(view)

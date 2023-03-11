@@ -28,3 +28,25 @@ func getMaps(completion: @escaping (Result<[Map], Error>) -> Void)
         }
     }.resume()
 }
+
+func getMap(id: String, completion: @escaping (Result<Map, Error>) -> Void)
+{
+    let url = URL(string: "\(getBaseUrl())/api/maps/\(id)")!
+    
+    URLSession.shared.dataTask(with: url) { data, response, error in
+        guard let data = data else {
+            print(error?.localizedDescription ?? "Unknown error")
+            return
+        }
+        
+        let decoder = JSONDecoder()
+        if let map = try? decoder.decode(Map.self, from: data) {
+            DispatchQueue.main.async {
+                completion(.success(map))
+            }
+        } else {
+            print("could not get all maps")
+            completion(.failure(DecodingErrors.mapDecodingError))
+        }
+    }.resume()
+}

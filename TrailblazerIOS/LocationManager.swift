@@ -1,8 +1,8 @@
 //
 //  LocationManager.swift
-//  SundayRiver
+//  Trailblazer
 //
-//  Created by Peyton McKee on 11/8/22.
+//  Created by Peyton McKee on 3/11/23.
 //
 
 import Foundation
@@ -125,4 +125,3 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         completionHandler(.sound)
     }
 }
-
