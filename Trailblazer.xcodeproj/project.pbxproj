@@ -25,8 +25,7 @@
 		15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15213F022904800D0027749B /* BellmanFordGraphStructure.swift */; };
 		1521C49F2984B82B0085F868 /* RetrievingMapLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C49E2984B82B0085F868 /* RetrievingMapLoadingView.swift */; };
 		1521C4A12984C1260085F868 /* MapSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C4A02984C1260085F868 /* MapSelectorViewController.swift */; };
-		1521C4A3298648DD0085F868 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C4A2298648DD0085F868 /* CollectionViewCell.swift */; };
-		1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524944E29074F7E009E7059 /* NotificationUtils.swift */; };
+		1521C4A3298648DD0085F868 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C4A2298648DD0085F868 /* CustomCollectionViewCell.swift */; };
 		15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249450290754DA009E7059 /* UnusedFunctions.swift */; };
 		15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */; };
 		1524945529082897009E7059 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945429082897009E7059 /* Settings.swift */; };
@@ -49,6 +48,7 @@
 		153F2DC229BD745300CCD553 /* ButtonActions.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DC129BD745300CCD553 /* ButtonActions.Utils.swift */; };
 		153F2DC429BD755500CCD553 /* GraphUpdates.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DC329BD755500CCD553 /* GraphUpdates.Utils.swift */; };
 		153F2DC629BD75C500CCD553 /* Notification.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DC529BD75C500CCD553 /* Notification.Utils.swift */; };
+		153F2DC929BD7C2400CCD553 /* NotificationNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DC829BD7C2400CCD553 /* NotificationNames.swift */; };
 		1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */; };
 		1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE4295BF07200AC8E0A /* MapFile.swift */; };
 		1544ACE72963D99300AC8E0A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE62963D99300AC8E0A /* Point.swift */; };
@@ -144,8 +144,7 @@
 		15213F022904800D0027749B /* BellmanFordGraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellmanFordGraphStructure.swift; sourceTree = "<group>"; };
 		1521C49E2984B82B0085F868 /* RetrievingMapLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingMapLoadingView.swift; sourceTree = "<group>"; };
 		1521C4A02984C1260085F868 /* MapSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorViewController.swift; sourceTree = "<group>"; };
-		1521C4A2298648DD0085F868 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		1524944E29074F7E009E7059 /* NotificationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationUtils.swift; sourceTree = "<group>"; };
+		1521C4A2298648DD0085F868 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		15249450290754DA009E7059 /* UnusedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnusedFunctions.swift; sourceTree = "<group>"; };
 		15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		1524945429082897009E7059 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -169,6 +168,7 @@
 		153F2DC129BD745300CCD553 /* ButtonActions.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonActions.Utils.swift; sourceTree = "<group>"; };
 		153F2DC329BD755500CCD553 /* GraphUpdates.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphUpdates.Utils.swift; sourceTree = "<group>"; };
 		153F2DC529BD75C500CCD553 /* Notification.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Utils.swift; sourceTree = "<group>"; };
+		153F2DC829BD7C2400CCD553 /* NotificationNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNames.swift; sourceTree = "<group>"; };
 		1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSettingsViewController.swift; sourceTree = "<group>"; };
 		1544ACE4295BF07200AC8E0A /* MapFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFile.swift; sourceTree = "<group>"; };
 		1544ACE62963D99300AC8E0A /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -301,8 +301,8 @@
 			children = (
 				153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */,
 				150C6EB029035BE10055AD59 /* HextoColor.swift */,
-				1521C4A2298648DD0085F868 /* CollectionViewCell.swift */,
-				1524944E29074F7E009E7059 /* NotificationUtils.swift */,
+				1521C4A2298648DD0085F868 /* CustomCollectionViewCell.swift */,
+				153F2DC829BD7C2400CCD553 /* NotificationNames.swift */,
 			);
 			path = Miscellaneous.Utils;
 			sourceTree = "<group>";
@@ -614,7 +614,7 @@
 				15B703EF29BC1C5E00F634FD /* MapTapping.Utils.swift in Sources */,
 				15545B0E28E224C8005D0886 /* Trail.swift in Sources */,
 				15E644A129A92BBC0048DAEB /* Map.swift in Sources */,
-				1521C4A3298648DD0085F868 /* CollectionViewCell.swift in Sources */,
+				1521C4A3298648DD0085F868 /* CustomCollectionViewCell.swift in Sources */,
 				15545B1C28E4CD42005D0886 /* TrailSelectorTableViewCell.swift in Sources */,
 				15E644A929A947C50048DAEB /* UserAPI.swift in Sources */,
 				15316623290AE86800206E7E /* UserRoute.swift in Sources */,
@@ -638,10 +638,10 @@
 				15489A4D2922C0A900898FD0 /* ConnectivityController.swift in Sources */,
 				1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
-				1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */,
 				1521C49F2984B82B0085F868 /* RetrievingMapLoadingView.swift in Sources */,
 				153F2DBA29BD705F00CCD553 /* TableViewDelegate.Utils.swift in Sources */,
 				15F92C58293BD5A200792054 /* AlertPreferencesViewController.swift in Sources */,
+				153F2DC929BD7C2400CCD553 /* NotificationNames.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
 				150828D62943AF320060B341 /* LoadingView.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,

@@ -439,10 +439,10 @@ final class MapInterpreter: NSObject {
                 closestTrail.trailReport = annotation
                 mapView.addAnnotation(annotation)
                 guard InteractiveMapViewController.currentUser.alertSettings.contains(report.type) else { continue }
-                NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil, userInfo: ["report": report])
+                NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": report])
             }
-            NotificationCenter.default.post(name: Notification.Name("configureTrailSelector"), object: nil)
-            NotificationCenter.default.post(Notification(name: Notification.Name("updateInitialRegion"), userInfo: ["initialRegionLatitude": Double(Self.map!.initialLocationLatitude!), "initialRegionLongitude": Double(Self.map!.initialLocationLongitude!), "trailReports": trailReports]))
+            NotificationCenter.default.post(name: Notification.Name.Names.configureTrailSelector, object: nil)
+            NotificationCenter.default.post(Notification(name: Notification.Name.Names.updateInitialRegion, userInfo: ["initialRegionLatitude": Double(Self.map!.initialLocationLatitude!), "initialRegionLongitude": Double(Self.map!.initialLocationLongitude!), "trailReports": trailReports]))
             
         })
     }

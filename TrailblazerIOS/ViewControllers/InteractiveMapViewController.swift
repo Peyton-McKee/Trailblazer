@@ -119,7 +119,11 @@ class InteractiveMapViewController: UIViewController
     lazy var mapLoadingView = RetrievingMapLoadingView(frame: self.view.frame)
     
     lazy var trailSelectorView = TrailSelectorView(vc: self)
-    lazy var trailSelectorMenu = SideMenuFramework(vc: self)
+    lazy var trailSelectorMenu : SideMenuFramework = {
+        let trailSelectorMenu = SideMenuFramework(vc: self)
+        trailSelectorMenu.view = trailSelectorView
+        return trailSelectorMenu
+    }()
     
     var recenterButton = UIButton()
     var recenterButtonYConstraint = NSLayoutConstraint()
@@ -148,19 +152,17 @@ class InteractiveMapViewController: UIViewController
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("cancelRoute"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("updateRoutingPreference"), object: nil)
-        NotificationCenter.default.addObserver(self.trailSelectorView, selector: #selector(trailSelectorView.reloadMyTrails), name: Notification.Name("configureTrailSelector"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(createNotification), name: Notification.Name("createNotification"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(receiveDataFromMapInterpreter), name: Notification.Name("updateInitialRegion"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelRoute), name: Notification.Name("cancelRoute"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updatePreferredGraph), name: Notification.Name("updateRoutingPreference"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.cancelRoute, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.updateRoutingPreference, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(createNotification), name: Notification.Name.Names.createNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(receiveDataFromMapInterpreter), name: Notification.Name.Names.updateInitialRegion, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelRoute), name: Notification.Name.Names.cancelRoute, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updatePreferredGraph), name: Notification.Name.Names.updateRoutingPreference, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("configureTrailSelector"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("createNotification"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("updateInitialRegion"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.createNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.updateInitialRegion, object: nil)
     }
     
     private func checkUserDefaults()
@@ -201,6 +203,7 @@ class InteractiveMapViewController: UIViewController
         self.searchBar.originTextField.text = nil
         self.searchBar.isDroppedDown = false
         self.trailSelectorView.isPresented = false
+        self.routeInProgress = false
         self.trailSelectorMenu.dismissItems()
         self.reloadButtons()
         self.sampleRoute(origin: origin, destination: destination)

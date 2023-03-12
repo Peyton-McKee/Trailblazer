@@ -207,8 +207,6 @@ final class SearchBarTableHeaderView: UIView {
 }
 
 final class TrailSelectorView : UIView {
-    static var searchText : String?
-    
     var viewController : InteractiveMapViewController
     var isPresented = false
     var currentTextField: UITextField?
@@ -234,6 +232,8 @@ final class TrailSelectorView : UIView {
         self.viewController = vc
         super.init(frame: vc.view.frame)
         self.configureSearchBarTableView()
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadMyTrails), name: Notification.Name.Names.configureTrailSelector, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(filterTrails), name: Notification.Name.Names.filterTrails, object: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -242,28 +242,28 @@ final class TrailSelectorView : UIView {
     
     func configureSearchBarTableView()
     {
-        createMyTrails()
-        searchBarTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 8.5 / 10)
-        searchBarTableView.layer.cornerRadius = 15
-        searchBarTableView.register(TrailSelectorTableViewCell.self, forCellReuseIdentifier: "TrailSelectorCustomCell")
-        searchBarTableView.backgroundColor = .black
-        searchBarTableView.dataSource = self
-        searchBarTableView.delegate = self
-        self.addSubview(searchBarTableView)
+        self.createMyTrails()
+        self.searchBarTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 8.5 / 10)
+        self.searchBarTableView.layer.cornerRadius = 15
+        self.searchBarTableView.register(TrailSelectorTableViewCell.self, forCellReuseIdentifier: "TrailSelectorCustomCell")
+        self.searchBarTableView.backgroundColor = .black
+        self.searchBarTableView.dataSource = self
+        self.searchBarTableView.delegate = self
+        self.addSubview(self.searchBarTableView)
     }
     
     @objc func reloadMyTrails()
     {
-        easyTrails = []
-        intermediateTrails = []
-        advancedTrails = []
-        expertsOnlyTrails = []
-        terrainParks = []
-        lifts = []
-        filteredTrails = []
-        totalTrails = []
-        createMyTrails()
-        searchBarTableView.reloadData()
+        self.easyTrails = []
+        self.intermediateTrails = []
+        self.advancedTrails = []
+        self.expertsOnlyTrails = []
+        self.terrainParks = []
+        self.lifts = []
+        self.filteredTrails = []
+        self.totalTrails = []
+        self.createMyTrails()
+        self.searchBarTableView.reloadData()
     }
     
     private func createMyTrails()
@@ -293,10 +293,10 @@ final class TrailSelectorView : UIView {
             }
         }
     }
-    @objc func filterTrails()
+    
+    @objc func filterTrails(sender: NSNotification)
     {
-        print("test")
-        if let searchString = TrailSelectorView.searchText{
+        if let searchString = sender.userInfo?["searchText"] as? String {
             for trail in totalTrails
             {
                 if trail.title!.lowercased().contains(searchString.lowercased()) && !filteredTrails.contains(where: {$0.title!.lowercased() == trail.title!.lowercased()})

@@ -163,7 +163,7 @@ class MoreSettingViewController: UIViewController
         UserDefaults.standard.removeObject(forKey: "alertSettings")
         UserDefaults.standard.removeObject(forKey: "routingPreference")
         InteractiveMapViewController.currentUser = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
-        NotificationCenter.default.post(Notification(name: Notification.Name("cancelRoute")))
+        NotificationCenter.default.post(Notification(name: Notification.Name.Names.cancelRoute))
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
         // This is to get the SceneDelegate object from your view controller

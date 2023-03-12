@@ -125,24 +125,20 @@ extension InteractiveMapViewController {
             return nil
         }
         
-        guard self.routeInProgress && self.pathCreated.contains(originVertex) else {
+        guard self.routeInProgress && self.pathCreated.contains(closestVertex) else {
             self.selectedGraph.addVertex(originVertex)
             self.selectedGraph.addEdge(direction: .directed, from: originVertex, to: closestVertex, weight: 1)
             return createRouteHelper(graph: self.selectedGraph, originVertex: originVertex, destination: destination)
         }
         
-        for vertex in pathCreated
-        {
-            if vertex == closestVertex
-            {
-                break
-            }
-            pathCreated.removeFirst()
+        while self.pathCreated[0].value.title == "Your Location" {
+            self.pathCreated.removeFirst()
         }
-        pathCreated.insert(originVertex, at: 0)
+        
+        self.pathCreated.insert(originVertex, at: 0)
         
         let pathGraph = EdgeWeightedDigraph<ImageAnnotation>()
-        for index in 0...self.pathCreated.count - 1
+        for index in 1...self.pathCreated.count - 1
         {
             pathGraph.addVertex(self.pathCreated[index])
         }
@@ -254,10 +250,11 @@ extension InteractiveMapViewController {
         let set1 = Set(previousAnnotations)
         let set2 = set1.subtracting(foundAnnotations)
         myMap.removeAnnotations(Array(set2))
-        myMap.addAnnotations(foundAnnotations)
         myMap.removeOverlays(previousOverlays)
-        connectivityController.setRoute(route: routes)
-        canFindPathAgain = true
-        self.routeInProgress = true
+        if self.routeInProgress {
+            myMap.addAnnotations(foundAnnotations)
+            connectivityController.setRoute(route: routes)
+            self.canFindPathAgain = true
+        }
     }
 }

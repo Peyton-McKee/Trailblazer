@@ -254,34 +254,34 @@ class AlertPreferencesViewController: UIViewController {
             case mogulAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.moguls.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.moguls.rawValue}){
-                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil, userInfo: ["report": trailReport])
+                    NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": trailReport])
                 }
             case icyAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.ice.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.ice.rawValue}){
-                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil, userInfo: ["report": trailReport])
+                    NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": trailReport])
                 }
             case crowdedAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.crowded.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.crowded.rawValue}){
-                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil, userInfo: ["report": trailReport])
+                    NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": trailReport])
                 }
             case thinCoverAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.thinCover.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.thinCover.rawValue}){
-                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil, userInfo: ["report": trailReport])
+                    NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": trailReport])
                 }
             case longLiftLineAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.longLiftLine.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.longLiftLine.rawValue})
                 {
-                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil, userInfo: ["report": trailReport])
+                    NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": trailReport])
                 }
             case snowmakingAlertSwitch:
                 InteractiveMapViewController.currentUser.alertSettings.append(TrailReportType.snowmaking.rawValue)
                 for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == TrailReportType.snowmaking.rawValue})
                 {
-                    NotificationCenter.default.post(name: Notification.Name("createNotification"), object: nil, userInfo: ["report": trailReport])
+                    NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": trailReport])
                 }
             default:
                 break

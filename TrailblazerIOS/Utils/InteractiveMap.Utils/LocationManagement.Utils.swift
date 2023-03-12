@@ -11,11 +11,11 @@ import CoreLocation
 extension InteractiveMapViewController: CLLocationManagerDelegate
 {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if self.routeInProgress && self.canFindPathAgain
+        if self.routeInProgress && self.canFindPathAgain && self.pathCreated[0].value.title == "Your Location"
         {
             self.canFindPathAgain = false
             //the last element of path created is our destination
-            self.displayRoute(origin: self.pathCreated[0].value, destination: self.pathCreated[self.pathCreated.count - 1].value)
+            self.displayRoute(origin: nil, destination: self.pathCreated[self.pathCreated.count - 1].value)
         }
         
         guard let currentUserId = Self.currentUser.id else
