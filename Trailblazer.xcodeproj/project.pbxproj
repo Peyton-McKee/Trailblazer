@@ -32,7 +32,7 @@
 		1524945529082897009E7059 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945429082897009E7059 /* Settings.swift */; };
 		1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945629084F89009E7059 /* UserTrailReportsViewController.swift */; };
 		1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945829085D88009E7059 /* TrailReportTableViewCell.swift */; };
-		152C69BA291B50120092E537 /* LocationManagement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C69B9291B50120092E537 /* LocationManagement.swift */; };
+		152C69BA291B50120092E537 /* LocationManagement.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152C69B9291B50120092E537 /* LocationManagement.Utils.swift */; };
 		15316621290AE86100206E7E /* UserLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15316620290AE86100206E7E /* UserLocation.swift */; };
 		15316623290AE86800206E7E /* UserRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15316622290AE86800206E7E /* UserRoute.swift */; };
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
@@ -40,6 +40,15 @@
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
 		153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153DAB9729255CFC001ABAAD /* MapInterpreter.swift */; };
 		153DABAD2936C44A001ABAAD /* Trailblazer Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		153F2DB629BD700000CCD553 /* MapDelegate.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DB529BD700000CCD553 /* MapDelegate.Utils.swift */; };
+		153F2DB829BD701500CCD553 /* TextFieldDelegate.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DB729BD701500CCD553 /* TextFieldDelegate.Utils.swift */; };
+		153F2DBA29BD705F00CCD553 /* TableViewDelegate.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DB929BD705F00CCD553 /* TableViewDelegate.Utils.swift */; };
+		153F2DBC29BD71C500CCD553 /* Presentation.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DBB29BD71C500CCD553 /* Presentation.Utils.swift */; };
+		153F2DBE29BD724F00CCD553 /* TrailReport.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DBD29BD724F00CCD553 /* TrailReport.Utils.swift */; };
+		153F2DC029BD731500CCD553 /* Dismissal.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DBF29BD731500CCD553 /* Dismissal.Utils.swift */; };
+		153F2DC229BD745300CCD553 /* ButtonActions.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DC129BD745300CCD553 /* ButtonActions.Utils.swift */; };
+		153F2DC429BD755500CCD553 /* GraphUpdates.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DC329BD755500CCD553 /* GraphUpdates.Utils.swift */; };
+		153F2DC629BD75C500CCD553 /* Notification.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DC529BD75C500CCD553 /* Notification.Utils.swift */; };
 		1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */; };
 		1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE4295BF07200AC8E0A /* MapFile.swift */; };
 		1544ACE72963D99300AC8E0A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1544ACE62963D99300AC8E0A /* Point.swift */; };
@@ -70,12 +79,12 @@
 		1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBC291AE7B900978FD8 /* Assets.xcassets */; };
 		1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */; };
 		15A1C8212950F967007598D8 /* ToolTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1C8202950F967007598D8 /* ToolTipView.swift */; };
-		15B703EF29BC1C5E00F634FD /* MapTapping.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703EE29BC1C5E00F634FD /* MapTapping.Util.swift */; };
-		15B703F129BC1D4C00F634FD /* Configuration.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F029BC1D4C00F634FD /* Configuration.Util.swift */; };
-		15B703F329BC1E4500F634FD /* TrailSelector.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F229BC1E4500F634FD /* TrailSelector.Util.swift */; };
-		15B703F529BCFBF400F634FD /* Routing.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F429BCFBF400F634FD /* Routing.Util.swift */; };
+		15B703EF29BC1C5E00F634FD /* MapTapping.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703EE29BC1C5E00F634FD /* MapTapping.Utils.swift */; };
+		15B703F129BC1D4C00F634FD /* Configuration.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F029BC1D4C00F634FD /* Configuration.Utils.swift */; };
+		15B703F329BC1E4500F634FD /* TrailSelector.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F229BC1E4500F634FD /* TrailSelector.Utils.swift */; };
+		15B703F529BCFBF400F634FD /* Routing.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F429BCFBF400F634FD /* Routing.Utils.swift */; };
 		15B703F729BD177300F634FD /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F629BD177300F634FD /* LocationManager.swift */; };
-		15B703F929BD1D5000F634FD /* ToolTip.Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F829BD1D5000F634FD /* ToolTip.Util.swift */; };
+		15B703F929BD1D5000F634FD /* ToolTip.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F829BD1D5000F634FD /* ToolTip.Utils.swift */; };
 		15E644A129A92BBC0048DAEB /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644A029A92BBC0048DAEB /* Map.swift */; };
 		15E644A929A947C50048DAEB /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644A829A947C50048DAEB /* UserAPI.swift */; };
 		15E644AB29A947FF0048DAEB /* MapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644AA29A947FF0048DAEB /* MapAPI.swift */; };
@@ -144,13 +153,22 @@
 		1524945829085D88009E7059 /* TrailReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReportTableViewCell.swift; sourceTree = "<group>"; };
 		152C69B7291B39530092E537 /* TrailblazerIOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrailblazerIOS.entitlements; sourceTree = "<group>"; };
 		152C69B8291B3A750092E537 /* Trailblazer Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Trailblazer Watch App.entitlements"; sourceTree = "<group>"; };
-		152C69B9291B50120092E537 /* LocationManagement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagement.swift; sourceTree = "<group>"; };
+		152C69B9291B50120092E537 /* LocationManagement.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagement.Utils.swift; sourceTree = "<group>"; };
 		15316620290AE86100206E7E /* UserLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocation.swift; sourceTree = "<group>"; };
 		15316622290AE86800206E7E /* UserRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRoute.swift; sourceTree = "<group>"; };
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
 		153DAB9729255CFC001ABAAD /* MapInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInterpreter.swift; sourceTree = "<group>"; };
+		153F2DB529BD700000CCD553 /* MapDelegate.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDelegate.Utils.swift; sourceTree = "<group>"; };
+		153F2DB729BD701500CCD553 /* TextFieldDelegate.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.Utils.swift; sourceTree = "<group>"; };
+		153F2DB929BD705F00CCD553 /* TableViewDelegate.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.Utils.swift; sourceTree = "<group>"; };
+		153F2DBB29BD71C500CCD553 /* Presentation.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentation.Utils.swift; sourceTree = "<group>"; };
+		153F2DBD29BD724F00CCD553 /* TrailReport.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailReport.Utils.swift; sourceTree = "<group>"; };
+		153F2DBF29BD731500CCD553 /* Dismissal.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dismissal.Utils.swift; sourceTree = "<group>"; };
+		153F2DC129BD745300CCD553 /* ButtonActions.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonActions.Utils.swift; sourceTree = "<group>"; };
+		153F2DC329BD755500CCD553 /* GraphUpdates.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphUpdates.Utils.swift; sourceTree = "<group>"; };
+		153F2DC529BD75C500CCD553 /* Notification.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Utils.swift; sourceTree = "<group>"; };
 		1544ACE22957CC3C00AC8E0A /* MoreSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreSettingsViewController.swift; sourceTree = "<group>"; };
 		1544ACE4295BF07200AC8E0A /* MapFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFile.swift; sourceTree = "<group>"; };
 		1544ACE62963D99300AC8E0A /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
@@ -181,12 +199,12 @@
 		1591DBBC291AE7B900978FD8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		15A1C8202950F967007598D8 /* ToolTipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTipView.swift; sourceTree = "<group>"; };
-		15B703EE29BC1C5E00F634FD /* MapTapping.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTapping.Util.swift; sourceTree = "<group>"; };
-		15B703F029BC1D4C00F634FD /* Configuration.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.Util.swift; sourceTree = "<group>"; };
-		15B703F229BC1E4500F634FD /* TrailSelector.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelector.Util.swift; sourceTree = "<group>"; };
-		15B703F429BCFBF400F634FD /* Routing.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.Util.swift; sourceTree = "<group>"; };
+		15B703EE29BC1C5E00F634FD /* MapTapping.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTapping.Utils.swift; sourceTree = "<group>"; };
+		15B703F029BC1D4C00F634FD /* Configuration.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.Utils.swift; sourceTree = "<group>"; };
+		15B703F229BC1E4500F634FD /* TrailSelector.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailSelector.Utils.swift; sourceTree = "<group>"; };
+		15B703F429BCFBF400F634FD /* Routing.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.Utils.swift; sourceTree = "<group>"; };
 		15B703F629BD177300F634FD /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		15B703F829BD1D5000F634FD /* ToolTip.Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTip.Util.swift; sourceTree = "<group>"; };
+		15B703F829BD1D5000F634FD /* ToolTip.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolTip.Utils.swift; sourceTree = "<group>"; };
 		15E644A029A92BBC0048DAEB /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		15E644A829A947C50048DAEB /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		15E644AA29A947FF0048DAEB /* MapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPI.swift; sourceTree = "<group>"; };
@@ -292,12 +310,21 @@
 		15316627290B177000206E7E /* InteractiveMap.Utils */ = {
 			isa = PBXGroup;
 			children = (
-				152C69B9291B50120092E537 /* LocationManagement.swift */,
-				15B703EE29BC1C5E00F634FD /* MapTapping.Util.swift */,
-				15B703F029BC1D4C00F634FD /* Configuration.Util.swift */,
-				15B703F229BC1E4500F634FD /* TrailSelector.Util.swift */,
-				15B703F429BCFBF400F634FD /* Routing.Util.swift */,
-				15B703F829BD1D5000F634FD /* ToolTip.Util.swift */,
+				152C69B9291B50120092E537 /* LocationManagement.Utils.swift */,
+				15B703EE29BC1C5E00F634FD /* MapTapping.Utils.swift */,
+				15B703F029BC1D4C00F634FD /* Configuration.Utils.swift */,
+				15B703F229BC1E4500F634FD /* TrailSelector.Utils.swift */,
+				15B703F429BCFBF400F634FD /* Routing.Utils.swift */,
+				15B703F829BD1D5000F634FD /* ToolTip.Utils.swift */,
+				153F2DB529BD700000CCD553 /* MapDelegate.Utils.swift */,
+				153F2DB729BD701500CCD553 /* TextFieldDelegate.Utils.swift */,
+				153F2DB929BD705F00CCD553 /* TableViewDelegate.Utils.swift */,
+				153F2DBB29BD71C500CCD553 /* Presentation.Utils.swift */,
+				153F2DBD29BD724F00CCD553 /* TrailReport.Utils.swift */,
+				153F2DBF29BD731500CCD553 /* Dismissal.Utils.swift */,
+				153F2DC129BD745300CCD553 /* ButtonActions.Utils.swift */,
+				153F2DC329BD755500CCD553 /* GraphUpdates.Utils.swift */,
+				153F2DC529BD75C500CCD553 /* Notification.Utils.swift */,
 			);
 			path = InteractiveMap.Utils;
 			sourceTree = "<group>";
@@ -582,7 +609,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1524945529082897009E7059 /* Settings.swift in Sources */,
-				15B703EF29BC1C5E00F634FD /* MapTapping.Util.swift in Sources */,
+				153F2DC629BD75C500CCD553 /* Notification.Utils.swift in Sources */,
+				153F2DBC29BD71C500CCD553 /* Presentation.Utils.swift in Sources */,
+				15B703EF29BC1C5E00F634FD /* MapTapping.Utils.swift in Sources */,
 				15545B0E28E224C8005D0886 /* Trail.swift in Sources */,
 				15E644A129A92BBC0048DAEB /* Map.swift in Sources */,
 				1521C4A3298648DD0085F868 /* CollectionViewCell.swift in Sources */,
@@ -595,13 +624,15 @@
 				1521C4A12984C1260085F868 /* MapSelectorViewController.swift in Sources */,
 				150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */,
 				1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */,
+				153F2DB629BD700000CCD553 /* MapDelegate.Utils.swift in Sources */,
+				153F2DC229BD745300CCD553 /* ButtonActions.Utils.swift in Sources */,
 				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,
 				150D063428F8BCE00051F160 /* PopUpMenuFramework.swift in Sources */,
 				15E644AB29A947FF0048DAEB /* MapAPI.swift in Sources */,
 				1524945729084F89009E7059 /* UserTrailReportsViewController.swift in Sources */,
 				15F92C5C293E824100792054 /* BaseUrl.swift in Sources */,
 				15874A0E27D82AFA001B9025 /* Scraper.swift in Sources */,
-				15B703F129BC1D4C00F634FD /* Configuration.Util.swift in Sources */,
+				15B703F129BC1D4C00F634FD /* Configuration.Utils.swift in Sources */,
 				15E644B129A949900048DAEB /* UserLocationAPI.swift in Sources */,
 				150C6EAF29031BD70055AD59 /* SideMenuFramework.swift in Sources */,
 				15489A4D2922C0A900898FD0 /* ConnectivityController.swift in Sources */,
@@ -609,13 +640,15 @@
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
 				1524944F29074F7E009E7059 /* NotificationUtils.swift in Sources */,
 				1521C49F2984B82B0085F868 /* RetrievingMapLoadingView.swift in Sources */,
+				153F2DBA29BD705F00CCD553 /* TableViewDelegate.Utils.swift in Sources */,
 				15F92C58293BD5A200792054 /* AlertPreferencesViewController.swift in Sources */,
 				15545B1028E22CCC005D0886 /* TrailsDatabase.swift in Sources */,
 				150828D62943AF320060B341 /* LoadingView.swift in Sources */,
 				158749FC27D82635001B9025 /* TitleScreen.swift in Sources */,
 				15F92C56293AC9C300792054 /* UserSetting.swift in Sources */,
-				152C69BA291B50120092E537 /* LocationManagement.swift in Sources */,
+				152C69BA291B50120092E537 /* LocationManagement.Utils.swift in Sources */,
 				15545AFF28E01813005D0886 /* SignInViewController.swift in Sources */,
+				153F2DB829BD701500CCD553 /* TextFieldDelegate.Utils.swift in Sources */,
 				1524945929085D88009E7059 /* TrailReportTableViewCell.swift in Sources */,
 				15B703F729BD177300F634FD /* LocationManager.swift in Sources */,
 				15489A4A2922AFAC00898FD0 /* Connectivity.swift in Sources */,
@@ -631,20 +664,23 @@
 				15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */,
 				153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */,
 				150C6EB129035BE10055AD59 /* HextoColor.swift in Sources */,
-				15B703F929BD1D5000F634FD /* ToolTip.Util.swift in Sources */,
+				15B703F929BD1D5000F634FD /* ToolTip.Utils.swift in Sources */,
+				153F2DC029BD731500CCD553 /* Dismissal.Utils.swift in Sources */,
 				15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */,
 				150828D9294A89640060B341 /* DecodingErrors.swift in Sources */,
 				153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */,
 				15E644AD29A9483E0048DAEB /* TrailReportAPI.swift in Sources */,
 				15E644B329A949DF0048DAEB /* PointAPI.swift in Sources */,
 				15E644B529A94A0A0048DAEB /* MapFileAPI.swift in Sources */,
+				153F2DBE29BD724F00CCD553 /* TrailReport.Utils.swift in Sources */,
 				15545AD928DEA598005D0886 /* Web Analysis.swift in Sources */,
 				15545B0828E148A9005D0886 /* MapOverlay.swift in Sources */,
 				150D062428F4DEB90051F160 /* TrailSelectorView.swift in Sources */,
+				153F2DC429BD755500CCD553 /* GraphUpdates.Utils.swift in Sources */,
 				15A1C8212950F967007598D8 /* ToolTipView.swift in Sources */,
 				15545B0C28E224A2005D0886 /* DijsktrasGraphStructure.swift in Sources */,
-				15B703F529BCFBF400F634FD /* Routing.Util.swift in Sources */,
-				15B703F329BC1E4500F634FD /* TrailSelector.Util.swift in Sources */,
+				15B703F529BCFBF400F634FD /* Routing.Utils.swift in Sources */,
+				15B703F329BC1E4500F634FD /* TrailSelector.Utils.swift in Sources */,
 				15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

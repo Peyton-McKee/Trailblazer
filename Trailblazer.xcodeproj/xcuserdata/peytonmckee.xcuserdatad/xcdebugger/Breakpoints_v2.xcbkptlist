@@ -189,8 +189,8 @@
             filePath = "TrailblazerIOS/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "396"
-            endingLineNumber = "396"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "InteractiveMapViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -205,8 +205,8 @@
             filePath = "TrailblazerIOS/ViewControllers/InteractiveMapViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
             landmarkName = "getClosestAnnotation(origin:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -15,7 +15,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
         {
             self.canFindPathAgain = false
             //the last element of path created is our destination
-            self.displayRoute(origin: self.pathCreated[0].value, destination: self.pathCreated[self.pathCreated.count].value)
+            self.displayRoute(origin: self.pathCreated[0].value, destination: self.pathCreated[self.pathCreated.count - 1].value)
         }
         
         guard let currentUserId = Self.currentUser.id else

@@ -116,7 +116,7 @@ extension InteractiveMapViewController {
         guard !userDidCompleteRoute(closestVertex: closestVertex, destination: destination) else {
             //Then youve completed your journey
             //figure out something to do buckoh
-            cancelRoute()
+            self.cancelRoute()
             guard let currentUserId = Self.currentUser.id else
             {
                 return nil
@@ -126,26 +126,20 @@ extension InteractiveMapViewController {
         }
         
         guard self.routeInProgress && self.pathCreated.contains(originVertex) else {
+            self.selectedGraph.addVertex(originVertex)
+            self.selectedGraph.addEdge(direction: .directed, from: originVertex, to: closestVertex, weight: 1)
             return createRouteHelper(graph: self.selectedGraph, originVertex: originVertex, destination: destination)
         }
         
-        if pathCreated.contains(closestVertex)
+        for vertex in pathCreated
         {
-            for vertex in pathCreated
+            if vertex == closestVertex
             {
-                if vertex == closestVertex
-                {
-                    break
-                }
-                pathCreated.removeFirst()
+                break
             }
-            pathCreated.insert(originVertex, at: 0)
+            pathCreated.removeFirst()
         }
-        else
-        {
-            self.selectedGraph.addVertex(originVertex)
-            self.selectedGraph.addEdge(direction: .directed, from: originVertex, to: closestVertex, weight: 1)
-        }
+        pathCreated.insert(originVertex, at: 0)
         
         let pathGraph = EdgeWeightedDigraph<ImageAnnotation>()
         for index in 0...self.pathCreated.count - 1
@@ -187,9 +181,7 @@ extension InteractiveMapViewController {
             return nil
         }
         let origin = createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)
-        let closestVertex = getClosestAnnotation(origin: origin)
-        let originVertex = Vertex<ImageAnnotation>(origin)
-        return originVertex
+        return Vertex<ImageAnnotation>(origin)
     }
     
     

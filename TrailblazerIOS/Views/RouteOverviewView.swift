@@ -118,5 +118,7 @@ class RouteOverviewView : UIView {
             self.directionsLabel.text = "\(directions.prefix(upTo: indices[1]))"
             self.viewFullDirectionsButton.isHidden = false
         }
+        self.tripLbl.text = trip
+        self.trailReportLabel.text = trailReports
     }
 }
