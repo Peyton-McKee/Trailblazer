@@ -9,118 +9,41 @@ import Foundation
 import UIKit
 
 class SignUpViewController : UIViewController {
-    var userNameTextField = UITextField()
-    var passwordTextField = UITextField()
-    var confirmPasswordTextField = UITextField()
-    let baseURL = getBaseUrl()
-    var incorrectSignUpLabel = UILabel()
     
-    var signInButton = UIButton()
-    var signUpButton = UIButton()
+    lazy var signUpView : SignUpView = {
+       let signUpView = SignUpView(vc: self)
+        
+        return signUpView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
-        configureTextFields()
-        configureButtons()
-        configureLabels()
+        self.view.backgroundColor = .black
+        self.view.addSubview(self.signUpView)
     }
     
-    func configureLabels()
-    {
-        incorrectSignUpLabel.translatesAutoresizingMaskIntoConstraints = false
-        incorrectSignUpLabel.isHidden = true
-        incorrectSignUpLabel.textColor = .red
-        view.addSubview(incorrectSignUpLabel)
-        createConstraints(item: incorrectSignUpLabel, distFromLeft: 0, distFromTop:   Double(view.bounds.height)/2 - Double(view.bounds.height) *  9 / 20)
-        
-    }
-    func configureTextFields()
-    {
-        userNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        userNameTextField.placeholder = "Enter Username..."
-        userNameTextField.delegate = self
-        userNameTextField.backgroundColor = .lightGray
-        userNameTextField.autocapitalizationType = .none
-        userNameTextField.borderStyle = .roundedRect
-        userNameTextField.autocorrectionType = .no
-        userNameTextField.tag = 1
-        
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.placeholder = "Enter Password..."
-        passwordTextField.delegate = self
-        passwordTextField.backgroundColor = .lightGray
-        passwordTextField.autocapitalizationType = .none
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.borderStyle = .roundedRect
-        passwordTextField.autocorrectionType = .no
-        passwordTextField.tag = 2
-        
-        confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        confirmPasswordTextField.placeholder = "Confirm Password..."
-        confirmPasswordTextField.delegate = self
-        confirmPasswordTextField.backgroundColor = .lightGray
-        confirmPasswordTextField.autocapitalizationType = .none
-        confirmPasswordTextField.isSecureTextEntry = true
-        confirmPasswordTextField.borderStyle = .roundedRect
-        confirmPasswordTextField.autocorrectionType = .no
-        confirmPasswordTextField.tag = 3
-        
-        view.addSubview(userNameTextField)
-        view.addSubview(passwordTextField)
-        view.addSubview(confirmPasswordTextField)
-        
-        createConstraints(item: userNameTextField, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 - Double(view.bounds.height) * 2 / 5)
-        createConstraints(item: passwordTextField, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 - Double(view.bounds.height) * 3 / 10)
-        createConstraints(item: confirmPasswordTextField, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 - Double(view.bounds.height) / 5)
-    }
-    func configureButtons()
-    {
-        signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        signUpButton.setTitle("Continue", for: .normal)
-        signUpButton.setTitleColor(.black, for: .normal)
-        signUpButton.backgroundColor = .cyan
-        signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
-        
-        signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.setTitle("Already have an account? Sign In...", for: .normal)
-        signInButton.setTitleColor(.lightGray, for: .normal)
-        signInButton.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
-        
-        view.addSubview(signInButton)
-        view.addSubview(signUpButton)
-        
-        createConstraints(item: signUpButton, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 + Double(view.bounds.height) / 10)
-        createConstraints(item: signInButton, distFromLeft: 0, distFromTop: Double(view.bounds.height)/2 +  Double(view.bounds.height) * 3 / 20)
-    }
-    func createConstraints(item: UIView, distFromLeft: Double, distFromTop: Double)
-    {
-        NSLayoutConstraint.activate([
-            item.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: distFromTop),
-            item.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: distFromLeft),
-            item.heightAnchor.constraint(equalToConstant: 40),
-            item.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
-        ])
-    }
+    
     @objc func signUpButtonPressed(sender: UIButton)
     {
-        guard let usernameText = userNameTextField.text, let passwordText = passwordTextField.text, let confirmPasswordText = confirmPasswordTextField.text else {
-            return //display text saying fill out all forms
+        guard let usernameText = sender.userActivity?.userInfo?["username"] as? String, let passwordText = sender.userActivity?.userInfo?["password"] as? String, let confirmPasswordText = sender.userActivity?.userInfo?["confirmPassword"] as? String else {
+            self.signUpView.displayEmptyUsernameOrPasswordError()
+            return
         }
-        if passwordText != confirmPasswordText
+        guard passwordText == confirmPasswordText else
         {
-            self.incorrectSignUpLabel.text = "Passwords Do Not Match"
-            self.incorrectSignUpLabel.isHidden = false
+            self.signUpView.displayNonMatchingPasswordsError()
             return //display text saying passwords do not match
         }
-        print(passwordText)
+        guard !(passwordText.isEmpty && confirmPasswordText.isEmpty && usernameText.isEmpty) else {
+            self.signUpView.displayEmptyUsernameOrPasswordError()
+            return
+        }
         saveUser(User(username: usernameText, password: passwordText, alertSettings: [], routingPreference: RoutingType.easiest.rawValue), completion: {
             value in
             guard let user = try? value.get() else
             {
                 DispatchQueue.main.async{
-                    self.incorrectSignUpLabel.text = "Username Already Taken"
-                    self.incorrectSignUpLabel.isHidden = false
+                    self.signUpView.displayUsernameAlreadyTakenError()
                     print("Error: Couldnt save user")
                     return
                 }
@@ -139,21 +62,6 @@ class SignUpViewController : UIViewController {
     @objc func signInButtonPressed(sender: UIButton)
     {
         self.navigationController?.show(SignInViewController(), sender: self)
-    }
-    
-}
-
-extension SignUpViewController: UITextFieldDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let nextField = self.view.viewWithTag(textField.tag + 1) as? UITextField {
-            nextField.becomeFirstResponder()
-        }
-        else
-        {
-            textField.resignFirstResponder()
-            signUpButtonPressed(sender: signUpButton)
-        }
-        return false
     }
     
 }

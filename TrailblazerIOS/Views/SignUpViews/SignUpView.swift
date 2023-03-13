@@ -1,14 +1,14 @@
 //
-//  SignInView.swift
+//  SignUpView.swift
 //  Trailblazer
 //
-//  Created by Peyton McKee on 3/12/23.
+//  Created by Peyton McKee on 3/13/23.
 //
 
 import Foundation
 import UIKit
 
-final class SignInView: UIView {
+class SignUpView: UIView {
     lazy var usernameTextField : UITextField = {
         let usernameTextField = UITextField()
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -36,53 +36,71 @@ final class SignInView: UIView {
         return passwordTextField
     }()
     
+    lazy var confirmPasswordTextField : UITextField = {
+        let confirmPasswordTextField = UITextField()
+        confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        confirmPasswordTextField.placeholder = "Confirm Password..."
+        confirmPasswordTextField.delegate = self
+        confirmPasswordTextField.backgroundColor = .lightGray
+        confirmPasswordTextField.autocapitalizationType = .none
+        confirmPasswordTextField.isSecureTextEntry = true
+        confirmPasswordTextField.borderStyle = .roundedRect
+        confirmPasswordTextField.autocorrectionType = .no
+        confirmPasswordTextField.tag = 3
+        return confirmPasswordTextField
+    }()
+    
+    let baseURL = getBaseUrl()
+    
+    let incorrectSignUpLabel : UILabel = {
+        let incorrectSignUpLabel = UILabel()
+        incorrectSignUpLabel.translatesAutoresizingMaskIntoConstraints = false
+        incorrectSignUpLabel.isHidden = true
+        incorrectSignUpLabel.textColor = .red
+        return incorrectSignUpLabel
+    }()
+    
     lazy var signInButton : UIButton = {
         let signInButton = UIButton()
         signInButton.translatesAutoresizingMaskIntoConstraints = false
-        signInButton.setTitle("Continue", for: .normal)
-        signInButton.setTitleColor(.black, for: .normal)
-        signInButton.backgroundColor = .cyan
+        signInButton.setTitle("Already have an account? Sign In...", for: .normal)
+        signInButton.setTitleColor(.lightGray, for: .normal)
         signInButton.addTarget(self.vc, action: #selector(self.vc?.signInButtonPressed), for: .touchUpInside)
-        let activity = NSUserActivity(activityType: "signIn")
-        activity.userInfo = ["password": "", "username": ""]
-        signInButton.userActivity = activity
         return signInButton
     }()
     
     lazy var signUpButton : UIButton = {
         let signUpButton = UIButton()
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        signUpButton.setTitle("or create an account", for: .normal)
-        signUpButton.setTitleColor(.lightGray, for: .normal)
+        signUpButton.setTitle("Continue", for: .normal)
+        signUpButton.setTitleColor(.black, for: .normal)
+        signUpButton.backgroundColor = .cyan
         signUpButton.addTarget(self.vc, action: #selector(self.vc?.signUpButtonPressed), for: .touchUpInside)
+        let activity = NSUserActivity(activityType: "signIn")
+        activity.userInfo = ["password": "", "confirmPassword": "", "username": ""]
+        signUpButton.userActivity = activity
         return signUpButton
     }()
     
-    let incorrectSignInLabel : UILabel = {
-        let incorrectSignInLabel = UILabel()
-        incorrectSignInLabel.textColor = .red
-        incorrectSignInLabel.translatesAutoresizingMaskIntoConstraints = false
-        incorrectSignInLabel.isHidden = true
-        return incorrectSignInLabel
-    }()
+    weak var vc : SignUpViewController?
     
-    weak var vc: SignInViewController?
-
-    init(vc: SignInViewController) {
+    init(vc: SignUpViewController) {
         self.vc = vc
         super.init(frame: vc.view.frame)
         
-        self.addSubview(self.incorrectSignInLabel)
         self.addSubview(self.usernameTextField)
         self.addSubview(self.passwordTextField)
+        self.addSubview(self.confirmPasswordTextField)
+        self.addSubview(self.incorrectSignUpLabel)
         self.addSubview(self.signInButton)
         self.addSubview(self.signUpButton)
         
-        self.createConstraints(item: self.incorrectSignInLabel, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 - Double(self.bounds.height) * 9 / 20)
         self.createConstraints(item: self.usernameTextField, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 - Double(self.bounds.height) * 2 / 5)
         self.createConstraints(item: self.passwordTextField, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 - Double(self.bounds.height) * 3 / 10)
-        self.createConstraints(item: self.signInButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height) / 10)
-        self.createConstraints(item: self.signUpButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 +  Double(self.bounds.height) * 3 / 20)
+        self.createConstraints(item: self.confirmPasswordTextField, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 - Double(self.bounds.height) / 5)
+        self.createConstraints(item: self.incorrectSignUpLabel, distFromLeft: 0, distFromTop:   Double(self.bounds.height)/2 - Double(self.bounds.height) *  9 / 20)
+        self.createConstraints(item: self.signUpButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height) / 10)
+        self.createConstraints(item: self.signInButton, distFromLeft: 0, distFromTop:          Double(self.bounds.height)/2 +  Double(self.bounds.height) * 3 / 20)
     }
     
     required init?(coder: NSCoder) {
@@ -90,13 +108,18 @@ final class SignInView: UIView {
     }
     
     func displayEmptyUsernameOrPasswordError() {
-        self.incorrectSignInLabel.text = "Please fill out username and password fields."
-        self.incorrectSignInLabel.isHidden = false
+        self.incorrectSignUpLabel.text = "Please fill out username and password fields."
+        self.incorrectSignUpLabel.isHidden = false
     }
     
-    func displayIncorrectUsernameOrPasswordError() {
-        self.incorrectSignInLabel.text = "Incorrect username or password"
-        self.incorrectSignInLabel.isHidden = false
+    func displayNonMatchingPasswordsError() {
+        self.incorrectSignUpLabel.text = "Passwords Do Not Match"
+        self.incorrectSignUpLabel.isHidden = false
+    }
+    
+    func displayUsernameAlreadyTakenError() {
+        self.incorrectSignUpLabel.text = "Username Already Taken"
+        self.incorrectSignUpLabel.isHidden = false
     }
 
     private func createConstraints(item: UIView, distFromLeft: Double, distFromTop: Double)
@@ -109,4 +132,3 @@ final class SignInView: UIView {
         ])
     }
 }
-

@@ -26,7 +26,7 @@ class SignInViewController: UIViewController
     @objc func signInButtonPressed(sender: UIButton)
     {
         guard let usernameText = (sender.userActivity?.userInfo?["username"] as? String), let passwordText = (sender.userActivity?.userInfo?["password"] as? String) else {
-            print("Could not get username or password from userInfo: \(sender.userActivity?.userInfo)")
+            self.signInView.displayEmptyUsernameOrPasswordError()
             return
         }
         guard !(usernameText.isEmpty || passwordText.isEmpty) else {
