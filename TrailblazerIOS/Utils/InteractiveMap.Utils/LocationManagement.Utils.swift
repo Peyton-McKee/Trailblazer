@@ -34,7 +34,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
                     isWaitingInLine = true
                     liftWaiting = vertex
                     timeBegan = Date.now
-                    print("isWaiting in line for lift \(liftWaiting?.value.title)")
+                    print("isWaiting in line for lift \(String(describing: liftWaiting?.value.title))")
                     break
                 }
             }
@@ -61,7 +61,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
                 })
             }
         }
-        guard let initialRegion = Self.initialRegion else { return }
+        guard let initialRegion = self.initialRegion else { return }
         if locations[0].distance(from: CLLocation(latitude: initialRegion.center.latitude, longitude: initialRegion.center.longitude)) <= 7000
         {
             saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))

@@ -18,8 +18,8 @@ struct TrailData{
 }
 
 final class WebAnalysis: NSObject, WKNavigationDelegate {
-    var mapView = MKMapView()
     static let shared = WebAnalysis()
+    var mapView = MKMapView()
     var realTimeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     let webView = WKWebView(frame: .zero)
     var trailStatusElementId: String?

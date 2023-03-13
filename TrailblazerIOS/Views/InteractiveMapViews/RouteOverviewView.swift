@@ -121,4 +121,8 @@ class RouteOverviewView : UIView {
         self.tripLbl.text = trip
         self.trailReportLabel.text = trailReports
     }
+    
+    deinit {
+        print("Deallocating Route Overview View")
+    }
 }

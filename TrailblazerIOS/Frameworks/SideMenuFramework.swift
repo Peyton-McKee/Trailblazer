@@ -10,10 +10,10 @@ import UIKit
 
 class SideMenuFramework
 {
-    var viewController: UIViewController
-    var view :  UIView?
-    var window : UIView
-    var width : CGFloat
+    unowned let viewController: UIViewController
+    let window : UIView
+    let width : CGFloat
+    weak var view :  UIView?
     
     init(vc : UIViewController) {
         self.viewController = vc
@@ -41,9 +41,14 @@ class SideMenuFramework
     
     func dismissItems()
     {
+        guard let view = view else { return }
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.view!.frame = CGRect(x: 0 - self.width, y: 80, width: self.width, height: self.window.bounds.height)
+            view.frame = CGRect(x: 0 - self.width, y: 80, width: self.width, height: self.window.bounds.height)
         }, completion: nil)
+    }
+    
+    deinit {
+        print("Deallocating Side menu framework")
     }
 }
 

@@ -15,16 +15,16 @@ class InteractiveMapViewController: UIViewController
     @ObservedObject var connectivityController = ConnectivityController.shared
     
     static var currentUser : User = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
-    static var initialRegion : MKCoordinateRegion?
     static var mapId: String = {
         if let str = UserDefaults.standard.value(forKey: "mapId") as? String {
             return str
         }
         return ""
     }()
-    
     static var trailReports : [TrailReport] = []
     
+    var initialRegion : MKCoordinateRegion?
+
     var routeInProgress = false
     
     var configuredClasses = false
@@ -39,7 +39,6 @@ class InteractiveMapViewController: UIViewController
     
     var wasSelectedWithOrigin = false
     var didChooseDestination = false
-    
     
     lazy var loadingScreen : LoadingView = {
         var view = LoadingView(frame: self.view.frame)
@@ -71,20 +70,10 @@ class InteractiveMapViewController: UIViewController
     var cancelButton = UIButton()
     var cancelButtonYContraint = NSLayoutConstraint()
     
-    lazy var searchBar : SearchBarTableHeaderView = {
-        let searchBar = SearchBarTableHeaderView(frame: CGRect(x: 20, y: 40, width: 40, height: 40), extendedFrame: CGRect(x: 20, y: 40, width: view.bounds.width - 36, height: 40), droppedDownFrame: CGRect(x: 20, y: 40, width: view.bounds.width - 36, height: 80))
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.destinationTextField.delegate = self
-        searchBar.originTextField.delegate = self
-        searchBar.directionsButton.addTarget(self, action: #selector(reloadButtons), for: .touchUpInside)
-        searchBar.directionsButton.addTarget(self, action: #selector(moveTrailSelectorView), for: .touchUpInside)
-        searchBar.searchButton.addTarget(self, action: #selector(reloadButtons), for: .touchUpInside)
-        searchBar.searchButton.addTarget(self, action: #selector(dismissSideMenu), for: .touchUpInside)
-        return searchBar
-    }()
-    
     var pathCreated: [Vertex<ImageAnnotation>] = []
     
+    let locationManager = LocationManager()
+
     let settingArray = [TrailReportType.moguls.rawValue, TrailReportType.ice.rawValue, TrailReportType.crowded.rawValue, TrailReportType.thinCover.rawValue, TrailReportType.longLiftLine.rawValue, TrailReportType.snowmaking.rawValue, "Cancel"]
     
     lazy var trailReportMenu : PopUpMenuFramework = {
@@ -95,10 +84,20 @@ class InteractiveMapViewController: UIViewController
         return trailReportMenu
     }()
     
+    lazy var searchBar : SearchBarTableHeaderView = {
+        let searchBar = SearchBarTableHeaderView(frame: CGRect(x: 20, y: 40, width: 40, height: 40), extendedFrame: CGRect(x: 20, y: 40, width: self.view.bounds.width - 36, height: 40), droppedDownFrame: CGRect(x: 20, y: 40, width: view.bounds.width - 36, height: 80))
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.destinationTextField.delegate = self
+        searchBar.originTextField.delegate = self
+        searchBar.directionsButton.addTarget(self, action: #selector(reloadButtons), for: .touchUpInside)
+        searchBar.directionsButton.addTarget(self, action: #selector(moveTrailSelectorView), for: .touchUpInside)
+        searchBar.searchButton.addTarget(self, action: #selector(reloadButtons), for: .touchUpInside)
+        searchBar.searchButton.addTarget(self, action: #selector(dismissSideMenu), for: .touchUpInside)
+        return searchBar
+    }()
+    
     var trailReportTableView = UITableView()
-    
-    let locationManager = LocationManager()
-    
+
     lazy var routeOverviewMenu : PopUpMenuFramework = {
         let routeOverviewMenu = PopUpMenuFramework(vc: self, height: 300)
         routeOverviewMenu.view = self.routeOverviewView
@@ -114,17 +113,19 @@ class InteractiveMapViewController: UIViewController
         return routeOverviewView
     }()
     
-    var trailReportAnnotation = ImageAnnotation()
     
     lazy var mapLoadingView = RetrievingMapLoadingView(frame: self.view.frame)
     
     lazy var trailSelectorView = TrailSelectorView(vc: self)
+
     lazy var trailSelectorMenu : SideMenuFramework = {
         let trailSelectorMenu = SideMenuFramework(vc: self)
         trailSelectorMenu.view = trailSelectorView
         return trailSelectorMenu
     }()
     
+    var trailReportAnnotation = ImageAnnotation()
+
     var recenterButton = UIButton()
     var recenterButtonYConstraint = NSLayoutConstraint()
     
@@ -137,21 +138,23 @@ class InteractiveMapViewController: UIViewController
         self.view.backgroundColor = .white
         self.configureTrailReportView()
         self.configureMyMap()
-        self.view.addSubview(searchBar)
         self.checkUserDefaults()
         self.configureButtons()
         self.locationManager.locationManager.delegate = self
         self.locationManager.locationManager.requestWhenInUseAuthorization()
         self.locationManager.locationManager.startUpdatingHeading()
         self.locationManager.locationManager.startUpdatingLocation()
-        self.view.addSubview(mapLoadingView)
+        self.view.addSubview(searchBar)
         self.view.addSubview(loadingScreen)
+        self.view.addSubview(mapLoadingView)
         self.mapLoadingView.isHidden = false
         MapInterpreter.shared.getMap(id: Self.mapId)
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.createNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.updateInitialRegion, object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.cancelRoute, object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.updateRoutingPreference, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(createNotification), name: Notification.Name.Names.createNotification, object: nil)
@@ -160,9 +163,8 @@ class InteractiveMapViewController: UIViewController
         NotificationCenter.default.addObserver(self, selector: #selector(updatePreferredGraph), name: Notification.Name.Names.updateRoutingPreference, object: nil)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.createNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.updateInitialRegion, object: nil)
+    deinit {
+        print("deallocating interactive map view controller")
     }
     
     private func checkUserDefaults()
@@ -184,13 +186,13 @@ class InteractiveMapViewController: UIViewController
     @objc func receiveDataFromMapInterpreter(_ sender: NSNotification)
     {
         guard let latitude = sender.userInfo?["initialRegionLatitude"] as? Double, let longitude = sender.userInfo?["initialRegionLongitude"] as? Double, let trailReports = sender.userInfo?["trailReports"] as? [TrailReport] else { return }
-        Self.initialRegion =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
+        self.initialRegion =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
         Self.trailReports = trailReports
-        self.myMap.region = Self.initialRegion!
-        self.myMap.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: Self.initialRegion!)
-        self.myMap.setCamera(MKMapCamera(lookingAtCenter: Self.initialRegion!.center, fromDistance: CLLocationDistance(10000), pitch: 0, heading: CLLocationDirection(360)), animated: true)
-        self.mapLoadingView.isHidden = true
+        self.myMap.region = self.initialRegion!
+        self.myMap.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: self.initialRegion!)
+        self.myMap.setCamera(MKMapCamera(lookingAtCenter: self.initialRegion!.center, fromDistance: CLLocationDistance(10000), pitch: 0, heading: CLLocationDirection(360)), animated: true)
         self.updateSelectedGraphAndShowAllTrails()
+        self.mapLoadingView.isHidden = true
         DispatchQueue.main.async{
             self.showAllTrails()
             WebAnalysis.shared.makeRequest(graph: self.selectedGraph)

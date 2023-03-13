@@ -3,14 +3,14 @@ import MapKit
 
 final class MapInterpreter: NSObject {
     static let shared = MapInterpreter()
-    var mapView = MKMapView()
+    let mapView = MKMapView()
     let baseURL = getBaseUrl()
-    static var map : Map?
+    var map : Map?
     var difficultyGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
-    
     var baseLiftVertexes = [Vertex<ImageAnnotation>]()
+
     func getMap(id: String)
     {
         //        if let map = UserDefaults.standard.array(forKey: id) as? [CustomPolyline], let distanceGraph = UserDefaults.standard.value(forKey: "\(id)/distanceGraph") as? EdgeWeightedDigraph<ImageAnnotation>, let difficultyGraph = UserDefaults.standard.value(forKey: "\(id)/difficultyGraph") as? EdgeWeightedDigraph<ImageAnnotation>
@@ -35,7 +35,7 @@ final class MapInterpreter: NSObject {
             }
             do {
                 let decoder = JSONDecoder()
-                Self.map = try decoder.decode(Map.self, from: data)
+                self.map = try decoder.decode(Map.self, from: data)
                 print("test map")
                 self.getMapTrails(id: id)
             } catch {
@@ -58,21 +58,21 @@ final class MapInterpreter: NSObject {
             }
             do {
                 let decoder = JSONDecoder()
-                Self.map?.mapTrail = try decoder.decode([MapTrail].self, from: data)
-                if Self.map?.mapTrail != nil
+                self.map?.mapTrail = try decoder.decode([MapTrail].self, from: data)
+                if self.map?.mapTrail != nil
                 {
                     var collectedIndex = 0
-                    for index in 0...Self.map!.mapTrail!.count - 1
+                    for index in 0...self.map!.mapTrail!.count - 1
                     {
-                        self.getPoints(id: Self.map!.mapTrail![index].id!, isConnector: false, completion: { result in
+                        self.getPoints(id: self.map!.mapTrail![index].id!, isConnector: false, completion: { result in
                             guard let points = try? result.get() else
                             {
                                 print("Error: \(result)")
                                 return
                             }
-                            Self.map!.mapTrail![index].points = points
+                            self.map!.mapTrail![index].points = points
                             collectedIndex += 1
-                            if collectedIndex == Self.map!.mapTrail!.count
+                            if collectedIndex == self.map!.mapTrail!.count
                             {
                                 self.getMapConnectors(id: id, completion: {
                                     result in
@@ -82,7 +82,7 @@ final class MapInterpreter: NSObject {
                                         return
                                     }
                                     print("testMap")
-                                    self.createMap(map: Self.map!)
+                                    self.createMap(map: self.map!)
                                 })
                             }
                         })
@@ -104,22 +104,22 @@ final class MapInterpreter: NSObject {
             }
             do {
                 let decoder = JSONDecoder()
-                Self.map?.mapConnector = try decoder.decode([MapConnector].self, from: data)
-                if Self.map?.mapConnector != nil
+                self.map?.mapConnector = try decoder.decode([MapConnector].self, from: data)
+                if self.map?.mapConnector != nil
                 {
                     var collectedIndex = 0
-                    for index in 0..<Self.map!.mapConnector!.count
+                    for index in 0..<self.map!.mapConnector!.count
                     {
-                        self.getPoints(id: Self.map!.mapConnector![index].id!, isConnector: true, completion: { result in
+                        self.getPoints(id: self.map!.mapConnector![index].id!, isConnector: true, completion: { result in
                             guard let points = try? result.get() else
                             {
                                 print("Error: \(result)")
                                 return
                             }
                             collectedIndex += 1
-                            Self.map!.mapConnector![index].points = points
+                            self.map!.mapConnector![index].points = points
                             //print(collectedIndex)
-                            if collectedIndex == Self.map!.mapConnector!.count
+                            if collectedIndex == self.map!.mapConnector!.count
                             {
                                 completion(.success(true))
                             }
@@ -132,6 +132,7 @@ final class MapInterpreter: NSObject {
             }
         }.resume()
     }
+
     private func getPoints(id: String, isConnector: Bool, completion: @escaping (Result<[Point], Error>) -> Void)
     {
         var url: URL
@@ -442,7 +443,7 @@ final class MapInterpreter: NSObject {
                 NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": report])
             }
             NotificationCenter.default.post(name: Notification.Name.Names.configureTrailSelector, object: nil)
-            NotificationCenter.default.post(Notification(name: Notification.Name.Names.updateInitialRegion, userInfo: ["initialRegionLatitude": Double(Self.map!.initialLocationLatitude!), "initialRegionLongitude": Double(Self.map!.initialLocationLongitude!), "trailReports": trailReports]))
+            NotificationCenter.default.post(Notification(name: Notification.Name.Names.updateInitialRegion, userInfo: ["initialRegionLatitude": Double(self.map!.initialLocationLatitude!), "initialRegionLongitude": Double(self.map!.initialLocationLongitude!), "trailReports": trailReports]))
             
         })
     }

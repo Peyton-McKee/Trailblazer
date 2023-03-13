@@ -207,7 +207,7 @@ final class SearchBarTableHeaderView: UIView {
 }
 
 final class TrailSelectorView : UIView {
-    var viewController : InteractiveMapViewController
+    unowned let viewController : InteractiveMapViewController
     var isPresented = false
     var currentTextField: UITextField?
     var currentTextFieldType: TextFieldType = .destination

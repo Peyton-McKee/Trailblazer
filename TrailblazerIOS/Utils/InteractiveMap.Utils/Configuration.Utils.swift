@@ -28,7 +28,7 @@ extension InteractiveMapViewController {
         let selectTrailGesture = UITapGestureRecognizer(target: self, action: #selector(mapTapped))
         let trailReportGesture = UILongPressGestureRecognizer(target: self, action: #selector(addTrailReport))
         trailReportGesture.minimumPressDuration = 0.3
-        if let initialRegion = Self.initialRegion {
+        if let initialRegion = self.initialRegion {
             myMap.region = initialRegion
             myMap.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: initialRegion)
             myMap.setCamera(MKMapCamera(lookingAtCenter: myMap.centerCoordinate, fromDistance: CLLocationDistance(10000), pitch: 0, heading: CLLocationDirection(360)), animated: true)

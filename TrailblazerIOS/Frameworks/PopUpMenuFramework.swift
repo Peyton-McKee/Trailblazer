@@ -10,12 +10,12 @@ import UIKit
 
 class PopUpMenuFramework
 {
-    var viewController: UIViewController
-    var transparentView : UIView
-    var view :  UIView?
-    var window : UIView
-    var height : CGFloat
-    var screenSize: CGSize
+    unowned let viewController: UIViewController
+    let transparentView : UIView
+    let window : UIView
+    let height : CGFloat
+    let screenSize: CGSize
+    weak var view :  UIView?
     
     init(vc : UIViewController, height: CGFloat) {
         self.viewController = vc
@@ -44,6 +44,10 @@ class PopUpMenuFramework
             self.transparentView.alpha = 0
             self.view!.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.height)
         }, completion: nil)
+    }
+    
+    deinit {
+        print("deallocating pop up menu framework with view: \(self.view?.description)")
     }
 }
 

@@ -10,6 +10,7 @@ import CoreLocation
 import UserNotifications
 
 class LocationManager: NSObject, ObservableObject {
+    static let shared = LocationManager()
     let notificationCenter = UNUserNotificationCenter.current()
     var trailReportRegion : CLCircularRegion?
     

@@ -27,11 +27,11 @@ extension InteractiveMapViewController: UITextFieldDelegate
         {
             presentSideMenu()
         }
-        NotificationCenter.default.post(name: Notification.Name.Names.filterTrails, object: nil, userInfo: ["searchText": textField.text])
+        NotificationCenter.default.post(name: Notification.Name.Names.filterTrails, object: nil, userInfo: ["searchText": textField.text as Any])
         return true
     }
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        NotificationCenter.default.post(name: Notification.Name.Names.filterTrails, object: nil, userInfo: ["searchText": textField.text])
+        NotificationCenter.default.post(name: Notification.Name.Names.filterTrails, object: nil, userInfo: ["searchText": textField.text as Any])
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.endEditing(true)
