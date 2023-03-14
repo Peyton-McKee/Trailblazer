@@ -10,8 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class InteractiveMapViewController: UIViewController
-{
+class InteractiveMapViewController: UIViewController, ErrorHandler {
     @ObservedObject var connectivityController = ConnectivityController.shared
     
     static var currentUser : User = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
@@ -170,14 +169,17 @@ class InteractiveMapViewController: UIViewController
         guard let userId = UserDefaults.standard.string(forKey: "userId") else {
             return
         }
+
         APIHandler.shared.getSingleUser(id: userId, completion: { result in
-            guard let user = try? result.get() else
-            {
-                print("Error: \(result)")
+            do {
+                let user = try result.get()
+                Self.currentUser = user
+            } catch {
+                DispatchQueue.main.async {
+                    self.handle(error: error)
+                }
                 return
             }
-            print("user: \(user)")
-            Self.currentUser = user
         })
     }
 

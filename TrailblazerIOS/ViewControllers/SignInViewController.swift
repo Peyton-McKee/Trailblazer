@@ -38,21 +38,20 @@ class SignInViewController: UIViewController
         }
         APIHandler.shared.loginHandler(username: usernameText, password: passwordText, completion: {
             result in
-            guard let user = try? result.get() else
-            {
+            do {
+                let user = try result.get()
+                DispatchQueue.main.async{
+                    InteractiveMapViewController.currentUser = user
+                    self.navigationController?.show(MapSelectorViewController(), sender: self)
+                    UserDefaults.standard.set("\(user.username)", forKey: "userUsername")
+                    UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
+                    UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
+                    UserDefaults.standard.set("\(user.id!)", forKey: "userId")
+                }
+            } catch {
                 DispatchQueue.main.async{
                     self.signInView.displayIncorrectUsernameOrPasswordError()
                 }
-                return
-            }
-
-            DispatchQueue.main.async{
-                InteractiveMapViewController.currentUser = user
-                self.navigationController?.show(MapSelectorViewController(), sender: self)
-                UserDefaults.standard.set("\(user.username)", forKey: "userUsername")
-                UserDefaults.standard.set(user.alertSettings, forKey: "alertSettings")
-                UserDefaults.standard.set("\(user.routingPreference)", forKey: "routingPreference")
-                UserDefaults.standard.set("\(user.id!)", forKey: "userId")
             }
         })
     }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MapSelectorViewController : UIViewController {
+class MapSelectorViewController : UIViewController, ErrorHandler {
     
     lazy var mapSelectorView = MapSelectorView(vc: self)
 
@@ -18,14 +18,20 @@ class MapSelectorViewController : UIViewController {
         
         APIHandler.shared.getMaps(completion: {
             result in
-            guard let maps = try? result.get() else {
-                print("error: \(result)")
+            do {
+                let maps = try result.get()
+                self.mapSelectorView.displayOptions(maps: maps)
+            } catch {
+                DispatchQueue.main.async {
+                    self.handle(error: error)
+                }
                 return
             }
-            print("received maps: \(maps)")
-            self.mapSelectorView.displayOptions(maps: maps)
         })
-        
+    }
+    
+    deinit {
+        print("deinitialized map selector view")
     }
     
     func switchRootViewController(id: String) {

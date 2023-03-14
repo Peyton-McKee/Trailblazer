@@ -14,8 +14,8 @@ enum DecodingErrors: Error {
     case pointDecodingError
     case mapDecodingError
 }
-extension DecodingErrors: CustomStringConvertible{
-    public var description: String {
+extension DecodingErrors: LocalizedError{
+    public var errorDescription: String? {
         switch self {
         case .userDecodingError:
             return "Error Decoding User"
