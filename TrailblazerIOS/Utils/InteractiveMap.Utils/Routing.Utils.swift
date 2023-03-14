@@ -173,7 +173,7 @@ extension InteractiveMapViewController {
     ///  Creates an annotation for the users current location if the user allows access to its location
     private func assignOrigin() -> Vertex<ImageAnnotation>?
     {
-        guard let latitude = locationManager.locationManager.location?.coordinate.latitude, let longitude = locationManager.locationManager.location?.coordinate.longitude, locationManager.locationManager.authorizationStatus == .authorizedWhenInUse else {
+        guard let latitude = LocationManager.shared.location?.coordinate.latitude, let longitude = LocationManager.shared.location?.coordinate.longitude, LocationManager.shared.authorizationStatus == .authorizedWhenInUse else {
             return nil
         }
         let origin = createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)

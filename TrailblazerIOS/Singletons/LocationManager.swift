@@ -9,14 +9,11 @@ import Foundation
 import CoreLocation
 import UserNotifications
 
-class LocationManager: NSObject, ObservableObject {
+class LocationManager: CLLocationManager, ObservableObject {
     static let shared = LocationManager()
     let notificationCenter = UNUserNotificationCenter.current()
     var trailReportRegion : CLCircularRegion?
-    
-    // 1
-    var locationManager = CLLocationManager()
-    
+
     // 1
     func makeTrailReportRegion(trailReport: TrailReport) {
         // 2

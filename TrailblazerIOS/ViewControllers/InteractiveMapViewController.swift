@@ -72,8 +72,6 @@ class InteractiveMapViewController: UIViewController
     
     var pathCreated: [Vertex<ImageAnnotation>] = []
     
-    let locationManager = LocationManager()
-
     let settingArray = [TrailReportType.moguls.rawValue, TrailReportType.ice.rawValue, TrailReportType.crowded.rawValue, TrailReportType.thinCover.rawValue, TrailReportType.longLiftLine.rawValue, TrailReportType.snowmaking.rawValue, "Cancel"]
     
     lazy var trailReportMenu : PopUpMenuFramework = {
@@ -140,10 +138,10 @@ class InteractiveMapViewController: UIViewController
         self.configureMyMap()
         self.checkUserDefaults()
         self.configureButtons()
-        self.locationManager.locationManager.delegate = self
-        self.locationManager.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.locationManager.startUpdatingHeading()
-        self.locationManager.locationManager.startUpdatingLocation()
+        LocationManager.shared.delegate = self
+        LocationManager.shared.requestWhenInUseAuthorization()
+        LocationManager.shared.startUpdatingHeading()
+        LocationManager.shared.startUpdatingLocation()
         self.view.addSubview(searchBar)
         self.view.addSubview(loadingScreen)
         self.view.addSubview(mapLoadingView)

@@ -26,7 +26,7 @@ extension InteractiveMapViewController {
     @objc func recenter()
     {
         let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
-        let myLocation = CLLocationCoordinate2D(latitude: locationManager.locationManager.location!.coordinate.latitude, longitude: locationManager.locationManager.location!.coordinate.longitude)
+        let myLocation = CLLocationCoordinate2D(latitude: LocationManager.shared.location!.coordinate.latitude, longitude: LocationManager.shared.location!.coordinate.longitude)
         let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
         myMap.setRegion(region, animated: false)
         let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 1000, pitch: 60, heading: 50)

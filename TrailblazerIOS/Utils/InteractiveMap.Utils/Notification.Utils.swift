@@ -15,7 +15,7 @@ extension InteractiveMapViewController {
             print("NotiAnnotation configured incorrectly or does not exist")
             return
         }
-        self.locationManager.makeTrailReportRegion(trailReport: trailReport)
-        self.locationManager.registerNotification(title: "CAUTION: \(trailReport.type.uppercased()) AHEAD", body: trailReport.type, trailReportID: trailReport.id!)
+        LocationManager.shared.makeTrailReportRegion(trailReport: trailReport)
+        LocationManager.shared.registerNotification(title: "CAUTION: \(trailReport.type.uppercased()) AHEAD", body: trailReport.type, trailReportID: trailReport.id!)
     }
 }

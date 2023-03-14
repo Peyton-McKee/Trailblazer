@@ -12,11 +12,10 @@ final class MapSelectorView : UIView {
     var maps: [Map] = []
     
     lazy var collectionView : UICollectionView = {
-        let collectionView = UICollectionView(frame: self.bounds)
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
-        collectionView.collectionViewLayout = flowLayout
+        let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: flowLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .black

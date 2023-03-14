@@ -30,5 +30,6 @@ extension UserSettingsView: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! UserSettingsTableViewCell
         self.vc?.cellSelected(cell: cell)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
