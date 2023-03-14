@@ -121,7 +121,7 @@ extension InteractiveMapViewController {
             {
                 return nil
             }
-            saveUserRoute(UserRoute(destinationTrailName: destination.title!, originTrailName: initialLocation!, dateMade: "\(Date.now)", timeTook: Int(Date.now.timeIntervalSince(timer)), userID: currentUserId))
+            APIHandler.shared.saveUserRoute(UserRoute(destinationTrailName: destination.title!, originTrailName: initialLocation!, dateMade: "\(Date.now)", timeTook: Int(Date.now.timeIntervalSince(timer)), userID: currentUserId))
             return nil
         }
         

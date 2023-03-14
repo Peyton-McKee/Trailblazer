@@ -85,6 +85,9 @@ final class TitleView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        print("title view deinitialized")
+    }
     
     func createConstraints(item: UIView, distFromLeft: Double, distFromTop: Double)
     {

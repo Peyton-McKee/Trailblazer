@@ -85,6 +85,10 @@ final class SignInView: UIView {
         self.createConstraints(item: self.signUpButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 +  Double(self.bounds.height) * 3 / 20)
     }
     
+    deinit {
+        print("Sign in view deinitialized")
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

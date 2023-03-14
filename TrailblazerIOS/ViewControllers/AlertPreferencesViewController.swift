@@ -313,6 +313,6 @@ class AlertPreferencesViewController: UIViewController {
             }
         }
         UserDefaults.standard.set(InteractiveMapViewController.currentUser.alertSettings, forKey: "alertSettings")
-        updateUser(InteractiveMapViewController.currentUser)
+        APIHandler.shared.updateUser(InteractiveMapViewController.currentUser)
     }
 }

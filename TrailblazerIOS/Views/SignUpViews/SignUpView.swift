@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class SignUpView: UIView {
+final class SignUpView: UIView {
     lazy var usernameTextField : UITextField = {
         let usernameTextField = UITextField()
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -49,9 +49,7 @@ class SignUpView: UIView {
         confirmPasswordTextField.tag = 3
         return confirmPasswordTextField
     }()
-    
-    let baseURL = getBaseUrl()
-    
+        
     let incorrectSignUpLabel : UILabel = {
         let incorrectSignUpLabel = UILabel()
         incorrectSignUpLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -101,6 +99,10 @@ class SignUpView: UIView {
         self.createConstraints(item: self.incorrectSignUpLabel, distFromLeft: 0, distFromTop:   Double(self.bounds.height)/2 - Double(self.bounds.height) *  9 / 20)
         self.createConstraints(item: self.signUpButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height) / 10)
         self.createConstraints(item: self.signInButton, distFromLeft: 0, distFromTop:          Double(self.bounds.height)/2 +  Double(self.bounds.height) * 3 / 20)
+    }
+    
+    deinit {
+        print("Sign Up View Deinitialized")
     }
     
     required init?(coder: NSCoder) {

@@ -22,23 +22,29 @@ class SignUpViewController : UIViewController {
         self.view.addSubview(self.signUpView)
     }
     
-    
+    deinit {
+        print("sign up view controller deinitialized")
+    }
+
     @objc func signUpButtonPressed(sender: UIButton)
     {
         guard let usernameText = sender.userActivity?.userInfo?["username"] as? String, let passwordText = sender.userActivity?.userInfo?["password"] as? String, let confirmPasswordText = sender.userActivity?.userInfo?["confirmPassword"] as? String else {
             self.signUpView.displayEmptyUsernameOrPasswordError()
             return
         }
+
         guard passwordText == confirmPasswordText else
         {
             self.signUpView.displayNonMatchingPasswordsError()
             return //display text saying passwords do not match
         }
+
         guard !(passwordText.isEmpty && confirmPasswordText.isEmpty && usernameText.isEmpty) else {
             self.signUpView.displayEmptyUsernameOrPasswordError()
             return
         }
-        saveUser(User(username: usernameText, password: passwordText, alertSettings: [], routingPreference: RoutingType.easiest.rawValue), completion: {
+
+        APIHandler.shared.saveUser(User(username: usernameText, password: passwordText, alertSettings: [], routingPreference: RoutingType.easiest.rawValue), completion: {
             value in
             guard let user = try? value.get() else
             {
@@ -49,6 +55,7 @@ class SignUpViewController : UIViewController {
                 }
                 return
             }
+
             DispatchQueue.main.async{
                 InteractiveMapViewController.currentUser = user
                 self.navigationController?.show(MapSelectorViewController(), sender: self)
@@ -59,6 +66,7 @@ class SignUpViewController : UIViewController {
             }
         })
     }
+
     @objc func signInButtonPressed(sender: UIButton)
     {
         self.navigationController?.show(SignInViewController(), sender: self)

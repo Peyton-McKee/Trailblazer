@@ -7,46 +7,48 @@
 
 import Foundation
 
-func getMaps(completion: @escaping (Result<[Map], Error>) -> Void)
-{
-    let url = URL(string: "\(getBaseUrl())/api/maps")!
-    
-    URLSession.shared.dataTask(with: url) { data, response, error in
-        guard let data = data else {
-            print(error?.localizedDescription ?? "Unknown error")
-            return
-        }
+extension APIHandler {
+    func getMaps(completion: @escaping (Result<[Map], Error>) -> Void)
+    {
+        let url = URL(string: "\(Self.baseURL)/api/maps")!
         
-        let decoder = JSONDecoder()
-        if let maps = try? decoder.decode([Map].self, from: data) {
-            DispatchQueue.main.async {
-                completion(.success(maps))
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "Unknown error")
+                return
             }
-        } else {
-            print("could not get all maps")
-            completion(.failure(DecodingErrors.mapDecodingError))
-        }
-    }.resume()
-}
-
-func getMap(id: String, completion: @escaping (Result<Map, Error>) -> Void)
-{
-    let url = URL(string: "\(getBaseUrl())/api/maps/\(id)")!
+            
+            let decoder = JSONDecoder()
+            if let maps = try? decoder.decode([Map].self, from: data) {
+                DispatchQueue.main.async {
+                    completion(.success(maps))
+                }
+            } else {
+                print("could not get all maps")
+                completion(.failure(DecodingErrors.mapDecodingError))
+            }
+        }.resume()
+    }
     
-    URLSession.shared.dataTask(with: url) { data, response, error in
-        guard let data = data else {
-            print(error?.localizedDescription ?? "Unknown error")
-            return
-        }
+    func getMap(id: String, completion: @escaping (Result<Map, Error>) -> Void)
+    {
+        let url = URL(string: "\(Self.baseURL)/api/maps/\(id)")!
         
-        let decoder = JSONDecoder()
-        if let map = try? decoder.decode(Map.self, from: data) {
-            DispatchQueue.main.async {
-                completion(.success(map))
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else {
+                print(error?.localizedDescription ?? "Unknown error")
+                return
             }
-        } else {
-            print("could not get all maps")
-            completion(.failure(DecodingErrors.mapDecodingError))
-        }
-    }.resume()
+            
+            let decoder = JSONDecoder()
+            if let map = try? decoder.decode(Map.self, from: data) {
+                DispatchQueue.main.async {
+                    completion(.success(map))
+                }
+            } else {
+                print("could not get all maps")
+                completion(.failure(DecodingErrors.mapDecodingError))
+            }
+        }.resume()
+    }
 }

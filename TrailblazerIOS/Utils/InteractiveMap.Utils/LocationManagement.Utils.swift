@@ -51,7 +51,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
                 liftWaiting = nil
                 timeBegan = nil
                 guard let id = lift.value.id, let times = lift.value.times else { print("lift does not have id or times"); return }
-                updatePointTime(point: PointTimeUpdateData(id: id, time: times as! [Float]), completion: {
+                APIHandler.shared.updatePointTime(point: PointTimeUpdateData(id: id, time: times as! [Float]), completion: {
                     result in
                     guard let point = try? result.get() else {
                         print("test point update Success \(result)")
@@ -64,7 +64,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
         guard let initialRegion = self.initialRegion else { return }
         if locations[0].distance(from: CLLocation(latitude: initialRegion.center.latitude, longitude: initialRegion.center.longitude)) <= 7000
         {
-            saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
+            APIHandler.shared.saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
         }
         
     }

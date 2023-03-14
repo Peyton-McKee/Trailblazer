@@ -28,7 +28,7 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
     
     func makeRequest(graph: EdgeWeightedDigraph<ImageAnnotation>)
     {
-        getMap(id: InteractiveMapViewController.mapId, completion: {
+        APIHandler.shared.getMap(id: InteractiveMapViewController.mapId, completion: {
             result in
             guard let map = try? result.get() else {
                 print("Failed to get map: \(result)")

@@ -4,12 +4,12 @@ import MapKit
 final class MapInterpreter: NSObject {
     static let shared = MapInterpreter()
     let mapView = MKMapView()
-    let baseURL = getBaseUrl()
     var map : Map?
     var difficultyGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var baseLiftVertexes = [Vertex<ImageAnnotation>]()
+    let baseURL = APIHandler.baseURL
 
     func getMap(id: String)
     {
@@ -419,7 +419,7 @@ final class MapInterpreter: NSObject {
     ///Attempts to connect to database and adds any found trailReports to myMap
     private func getTrailReportsFromDB()
     {
-        getTrailReports(completion: { [self] value in
+        APIHandler.shared.getTrailReports(completion: { [self] value in
             guard let trailReports = try? value.get() else
             {
                 print("Error: \(value)")

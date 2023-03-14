@@ -172,7 +172,7 @@ class InteractiveMapViewController: UIViewController
         guard let userId = UserDefaults.standard.string(forKey: "userId") else {
             return
         }
-        getSingleUser(id: userId, completion: { result in
+        APIHandler.shared.getSingleUser(id: userId, completion: { result in
             guard let user = try? result.get() else
             {
                 print("Error: \(result)")

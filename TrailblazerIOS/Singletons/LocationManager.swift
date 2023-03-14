@@ -86,7 +86,7 @@ class LocationManager: NSObject, ObservableObject {
     }
     func noLongerThereAction(trailReportID: String)
     {
-       deleteTrailReport(id: trailReportID)
+        APIHandler.shared.deleteTrailReport(id: trailReportID)
     }
 }
 extension LocationManager: UNUserNotificationCenterDelegate {

@@ -37,7 +37,6 @@ class UserTrailReportsViewController: UIViewController{
         return stack
     }()
     
-    let baseURL = getBaseUrl()
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -65,7 +64,7 @@ class UserTrailReportsViewController: UIViewController{
             //user is a guest
             return
         }
-        getSingleUserTrailReports(id: currentUserId, completion: { result in
+        APIHandler.shared.getSingleUserTrailReports(id: currentUserId, completion: { result in
             guard let userTrailReports = try? result.get() else {
                 print("Error: \(result)")
                 return
@@ -79,25 +78,6 @@ class UserTrailReportsViewController: UIViewController{
             self.trailReportsTableView.reloadData()
             
         })
-    }
-    private func getSingleUserTrailReports(id: String, completion: @escaping (Result<[TrailReport], Error>) -> Void) {
-        let url = URL(string: "\(baseURL)/api/users/\(id)/trail-reports")!
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "Unknown error")
-                return
-            }
-            
-            let decoder = JSONDecoder()
-            if let user = try? decoder.decode([TrailReport].self, from: data) {
-                DispatchQueue.main.async {
-                    completion(.success(user))
-                }
-            } else {
-                print("Unable to parse JSON response.")
-            }
-        }.resume()
     }
 }
 extension UserTrailReportsViewController: UITableViewDelegate, UITableViewDataSource

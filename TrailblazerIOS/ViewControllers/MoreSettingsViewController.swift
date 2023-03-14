@@ -147,7 +147,7 @@ class MoreSettingViewController: UIViewController
         }
         let end = mapFile.suffix(from: start).index(of: "<name>")
         let title = String(mapFile.suffix(from: start).prefix(upTo: end!))
-        saveMapFile(mapFile: MapFile(title: title, file: mapFile, link: link), completion: {
+        APIHandler.shared.saveMapFile(mapFile: MapFile(title: title, file: mapFile, link: link), completion: {
             result in
             guard let mapFile = try? result.get() else {
                 return

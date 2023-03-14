@@ -36,7 +36,7 @@ extension InteractiveMapViewController {
             originAnnotation.subtitle = TrailReportType.snowmaking.rawValue
         }
         guard let currentUserId = Self.currentUser.id else { return }
-        saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
+        APIHandler.shared.saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
         closestTrail.trailReport = originAnnotation
         self.myMap.addAnnotation(originAnnotation)
     }
@@ -69,7 +69,7 @@ extension InteractiveMapViewController {
             //Then the trail report hasnt been stored on the database yet
             return
         }
-        deleteTrailReport(id: selectedTrailReport.id)
+        APIHandler.shared.deleteTrailReport(id: selectedTrailReport.id)
         self.selectedTrailReport = nil
         myMap.removeAnnotation(selectedTrailReportAnnotation!)
         annotation?.value.trailReport = nil

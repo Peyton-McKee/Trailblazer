@@ -10,7 +10,6 @@ import UIKit
 
 class SignInViewController: UIViewController
 {
-    
     lazy var signInView : SignInView = {
         let signInView = SignInView(vc: self)
         return signInView
@@ -23,6 +22,10 @@ class SignInViewController: UIViewController
         self.view.addSubview(self.signInView)
     }
     
+    deinit {
+        print("Sign in view controller deinitialized")
+    }
+    
     @objc func signInButtonPressed(sender: UIButton)
     {
         guard let usernameText = (sender.userActivity?.userInfo?["username"] as? String), let passwordText = (sender.userActivity?.userInfo?["password"] as? String) else {
@@ -33,7 +36,7 @@ class SignInViewController: UIViewController
             self.signInView.displayEmptyUsernameOrPasswordError()
             return
         }
-        loginHandler(username: usernameText, password: passwordText, completion: {
+        APIHandler.shared.loginHandler(username: usernameText, password: passwordText, completion: {
             result in
             guard let user = try? result.get() else
             {
@@ -42,6 +45,7 @@ class SignInViewController: UIViewController
                 }
                 return
             }
+
             DispatchQueue.main.async{
                 InteractiveMapViewController.currentUser = user
                 self.navigationController?.show(MapSelectorViewController(), sender: self)
