@@ -10,11 +10,11 @@ import Foundation
 struct Map : Codable, Equatable
 {
     var id: String?
-    var name: String?
-    var initialLocationLatitude: Float?
-    var initialLocationLongitude: Float?
-    var mapTrail: [MapTrail]?
-    var mapConnector: [MapConnector]?
+    var name: String
+    var initialLocationLatitude: Float
+    var initialLocationLongitude: Float
+    var mapTrails: [MapTrail]
+    var mapConnectors: [MapConnector]
     var mountainReportUrl: String?
     var trailStatusElementId: String?
     var liftStatusElementId: String?

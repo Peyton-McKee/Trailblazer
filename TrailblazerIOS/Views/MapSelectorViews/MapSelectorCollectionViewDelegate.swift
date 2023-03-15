@@ -17,9 +17,7 @@ extension MapSelectorView: UICollectionViewDelegateFlowLayout, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! CustomCollectionViewCell
         cell.backgroundColor = .blue
-        if let name = maps[indexPath.row].name{
-            cell.label.text = name
-        }
+        cell.label.text = maps[indexPath.row].name
         return cell
     }
     

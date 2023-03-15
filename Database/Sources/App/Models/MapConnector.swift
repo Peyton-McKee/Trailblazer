@@ -37,7 +37,9 @@ extension MapConnector {
     func transform(req: Request) -> EventLoopFuture<PublicMapConnector> {
         return self.$points.get(on: req.db).map({
             points in
-            return PublicMapConnector(id: self.id!, name: self.name, points: points)
+            return PublicMapConnector(id: self.id!, name: self.name, points: points.sorted(by: {
+                $0.order < $1.order
+            }))
         })
     }
 }

@@ -38,10 +38,8 @@ extension APIHandler {
                 completion(.failure(error!))
                 return
             }
-            
             let decoder = JSONDecoder()
-            if var map = try? decoder.decode(Map.self, from: data) {
-                print(map)
+            if let map = try? decoder.decode(Map.self, from: data) {
                 completion(.success(map))
             } else {
                 completion(.failure(DecodingErrors.mapDecodingError))
@@ -62,24 +60,7 @@ extension APIHandler {
             let decoder = JSONDecoder()
 
             if let mapTrails = try? decoder.decode([MapTrail].self, from: data) {
-                
-                let trailsWithPoints : [MapTrail] = mapTrails.map({
-                    var trail = $0
-                    
-                    self.getPoints(id: trail.id!, isConnector: true, completion: {
-                        result in
-                        do {
-                            let points = try result.get()
-                            trail.points = points
-                        } catch {
-                            completion(.failure(error))
-                            return
-                        }
-                    })
-
-                    return trail
-                })
-                completion(.success(trailsWithPoints))
+                completion(.success(mapTrails))
             } else {
                 completion(.failure(DecodingErrors.mapTrailDecdingError))
                 return
@@ -99,23 +80,7 @@ extension APIHandler {
             let decoder = JSONDecoder()
 
             if let mapConnectors = try? decoder.decode([MapConnector].self, from: data) {
-                let connectorsWithPoints : [MapConnector] = mapConnectors.map({
-                    var connector = $0
-                    
-                    self.getPoints(id: connector.id!, isConnector: true, completion: {
-                        result in
-                        do {
-                            let points = try result.get()
-                            connector.points = points
-                        } catch {
-                            completion(.failure(error))
-                            return
-                        }
-                    })
-
-                    return connector
-                })
-                completion(.success(connectorsWithPoints))
+                completion(.success(mapConnectors))
             } else {
                 completion(.failure(DecodingErrors.mapConnectorDecodingError))
                 return

@@ -4,7 +4,6 @@ import MapKit
 final class MapInterpreter: NSObject {
     static let shared = MapInterpreter()
     let mapView = MKMapView()
-    var map : Map?
     var difficultyGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
@@ -14,7 +13,7 @@ final class MapInterpreter: NSObject {
     func createMap(map: Map)
     {
         var polylines: [CustomPolyline] = []
-        for trail in map.mapTrail!
+        for trail in map.mapTrails
         {
             var coordinates : [CLLocationCoordinate2D] = []
             guard let points = trail.points else {
@@ -61,7 +60,7 @@ final class MapInterpreter: NSObject {
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
         }
-        for connector in map.mapConnector!
+        for connector in map.mapConnectors
         {
             var coordinates : [CLLocationCoordinate2D] = []
             guard let points = connector.points else {
@@ -95,7 +94,7 @@ final class MapInterpreter: NSObject {
             self.createDifficultyGraph()
             self.createDistanceGraph()
             self.createTimeGraph()
-            self.getTrailReportsFromDB()
+            self.getTrailReportsFromDB(map: map)
             //            UserDefaults.standard.set(self.difficultyGraph, forKey: "\(self.map?.id)/difficultyGraph")
             //            UserDefaults.standard.set(self.distanceGraph, forKey: "\(self.map?.id)/distanceGraph")
         }
@@ -266,7 +265,7 @@ final class MapInterpreter: NSObject {
     
     ///getTrailReportsFromDB void -> void
     ///Attempts to connect to database and adds any found trailReports to myMap
-    private func getTrailReportsFromDB()
+    private func getTrailReportsFromDB(map: Map)
     {
         APIHandler.shared.getTrailReports(completion: { [self] value in
             guard let trailReports = try? value.get() else
@@ -292,7 +291,7 @@ final class MapInterpreter: NSObject {
                 NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": report])
             }
             NotificationCenter.default.post(name: Notification.Name.Names.configureTrailSelector, object: nil)
-            NotificationCenter.default.post(Notification(name: Notification.Name.Names.updateInitialRegion, userInfo: ["initialRegionLatitude": Double(self.map!.initialLocationLatitude!), "initialRegionLongitude": Double(self.map!.initialLocationLongitude!), "trailReports": trailReports]))
+            NotificationCenter.default.post(Notification(name: Notification.Name.Names.updateInitialRegion, userInfo: ["initialRegionLatitude": Double(map.initialLocationLatitude), "initialRegionLongitude": Double(map.initialLocationLongitude), "trailReports": trailReports]))
             
         })
     }
