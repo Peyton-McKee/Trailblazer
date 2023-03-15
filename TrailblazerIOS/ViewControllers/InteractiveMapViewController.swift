@@ -145,7 +145,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         self.view.addSubview(loadingScreen)
         self.view.addSubview(mapLoadingView)
         self.mapLoadingView.isHidden = false
-        MapInterpreter.shared.getMap(id: Self.mapId)
+        self.getMap(id: Self.mapId)
         self.tabBarController?.tabBar.backgroundColor = .black
     }
     
@@ -269,5 +269,22 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    func getMap(id: String)
+    {
+        APIHandler.shared.getMap(id: id, completion: {
+            result in
+            do {
+                let map = try result.get()
+                DispatchQueue.main.async {
+                    MapInterpreter.shared.createMap(map: map)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.handle(error: error)
+                }
+            }
+        })
     }
 }

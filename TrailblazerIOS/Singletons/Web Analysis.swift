@@ -12,7 +12,7 @@ import UserNotifications
 import WebKit
 import MapKit
 
-struct TrailData{
+struct TrailData {
     var trails: [String] = []
     var lifts: [String] = []
 }
@@ -96,6 +96,7 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
             }
             return found
         }()
+        
         getMountainReport(webView: webView, queryItems: TrailData(trails: individualTrailNames, lifts: individualLiftNames), liftStatusId: liftStatusElementId, trailStatusId: trailStatusElementId, completion: { [self]
             value in
             switch value{
@@ -162,6 +163,71 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
         })
     }
 
+    func getMountainReport(webView: WKWebView, queryItems: TrailData, liftStatusId: String, trailStatusId: String, completion: @escaping (Result<TrailData, Error>) -> Void){
+        var result = TrailData()
+        webView.evaluateJavaScript("document.getElementById('\(liftStatusId)').innerHTML", completionHandler: { (value, error) in
+            guard let html = value as? String, error == nil else{
+                print("ERROR: \(error!)")
+                completion(.failure(error!))
+                return
+            }
+            print(queryItems.lifts)
+            let liftStatuses = self.parseData(queryItems: queryItems.lifts.map({$0.lowercased()}), queryLocation: html.lowercased())
+            result.lifts = liftStatuses
+        })
+        webView.evaluateJavaScript("document.getElementById('\(trailStatusId)').innerHTML", completionHandler: {
+            (value, error) in
+            guard let html = value as? String, error == nil else{
+                print("ERROR: \(error!)")
+                completion(.failure(error!))
+                return
+            }
+            let trailStatuses = self.parseData(queryItems: queryItems.trails.map({$0.lowercased()}), queryLocation: html.lowercased())
+            result.trails = trailStatuses
+            completion(.success(result))
+        })
+    }
+
+    func parseData(queryItems: [String], queryLocation: String) -> [String]
+    {
+        var result : [String] = []
+        var string : String
+        var substring: Substring
+        for item in queryItems
+        {
+            //print("\(item), \(queryLocation.contains(item))")
+            if let trail = queryLocation.index(of: item)
+            {
+                substring = queryLocation[..<trail]
+                string = String(substring.reversed())
+                if let getStatus1 = string.index(of: "\"=tla")
+                {
+                    substring = string[..<getStatus1]
+                    string = String(substring.reversed())
+                    if let getStatus2 = string.index(of: "\"")
+                    {
+                        substring = string[..<getStatus2]
+                        string = String(substring)
+                        result.append(string)
+                        //print("Trail: \(item) Status: \(string)")
+                    }
+                    else {
+                        result.append("closed")
+                    }
+                }
+                else
+                {
+                    result.append("closed")
+                }
+            }
+            else
+            {
+                result.append("closed")
+            }
+        }
+        
+        return result
+    }
 }
 
 

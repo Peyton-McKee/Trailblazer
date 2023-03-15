@@ -32,3 +32,12 @@ final class MapConnector: Model, Content {
         self.$map.id = mapID
     }
 }
+
+extension MapConnector {
+    func transform(req: Request) -> EventLoopFuture<PublicMapConnector> {
+        return self.$points.get(on: req.db).map({
+            points in
+            return PublicMapConnector(id: self.id!, name: self.name, points: points)
+        })
+    }
+}

@@ -38,3 +38,11 @@ final class MapTrail: Model, Content {
         self.$map.id = mapID
     }
 }
+extension MapTrail {
+    func transform(req: Request) -> EventLoopFuture<PublicMapTrail> {
+        return self.$points.get(on: req.db).map({
+            points in
+            return PublicMapTrail(id: self.id!, name: self.name, difficulty: self.difficulty, points: points)
+        })
+    }
+}

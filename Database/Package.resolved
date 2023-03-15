@@ -19,6 +19,15 @@
       }
     },
     {
+      "identity" : "bridges",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwifQL/Bridges.git",
+      "state" : {
+        "revision" : "7ae80c06ccce9dd12f394a41c8e9b4c6f72065e6",
+        "version" : "1.0.0-rc.4.13.6"
+      }
+    },
+    {
       "identity" : "console-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/console-kit.git",
@@ -82,6 +91,15 @@
       }
     },
     {
+      "identity" : "postgresbridge",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwifQL/PostgresBridge.git",
+      "state" : {
+        "revision" : "4fc11593700c4893c993323e719665929fcfc16c",
+        "version" : "1.0.0-rc.4.6.0"
+      }
+    },
+    {
       "identity" : "routing-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/routing-kit.git",
@@ -97,6 +115,15 @@
       "state" : {
         "revision" : "3c5413a229bc2abc962dab17ea66d25e448ad344",
         "version" : "3.21.0"
+      }
+    },
+    {
+      "identity" : "swifql",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwifQL/SwifQL.git",
+      "state" : {
+        "revision" : "e398112f94e6d85a971fc5d6af3da3fc06bd047f",
+        "version" : "2.0.0-beta.3.20.1"
       }
     },
     {
@@ -223,6 +250,15 @@
       "state" : {
         "revision" : "dda0de537e7906414dccd551e77095be1e34e3da",
         "version" : "4.65.2"
+      }
+    },
+    {
+      "identity" : "vaporbridges",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwifQL/VaporBridges.git",
+      "state" : {
+        "revision" : "3dab7b04cb5a1dac0bd9ab6a00b72014e8888cb0",
+        "version" : "1.0.0-rc.1.4.0"
       }
     },
     {

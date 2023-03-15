@@ -6,7 +6,7 @@
 //
 
 import Vapor
-
+import Fluent
 
 struct MapsController: RouteCollection {
     
@@ -35,33 +35,67 @@ struct MapsController: RouteCollection {
         Map.query(on: req.db).all()
     }
     func getHandler(_ req: Request)
-    -> EventLoopFuture<Map> {
-        Map.find(req.parameters.get("mapId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-        
+    -> EventLoopFuture<PublicMap> {
+        let map = Map.find(req.parameters.get("mapId"), on: req.db).unwrap(or: Abort(.notFound))
+        return map.flatMap({
+            map in
+            return map.$mapTrail.get(on: req.db).flatMap({
+                mts in
+                var mapTrails : [PublicMapTrail] = []
+                mts.map({
+                    mt in
+                    mt.transform(req: req)
+                }).map({
+                    mt in
+                    mt.map({
+                        mt in
+                        mapTrails.append(mt)
+                    })
+                })
+                
+                return map.$mapConnector.get(on: req.db).map({
+                    mcs in
+                    var mapConnectors : [PublicMapConnector] = []
+                    mcs.map({
+                        mc in
+                        mc.transform(req: req)
+                    }).map({
+                        mc in
+                        mc.map({
+                            mc in
+                            mapConnectors.append(mc)
+                        })
+                    })
+                    
+                    return PublicMap(id: map.id!, name: map.name, initialLocationLatitude: map.initialLocationLatitude, initialLocationLongitude: map.initialLocationLongitude, mountainReportUrl: map.mountainReportUrl, trailStatusElementId: map.trailStatusElementId, liftStatusElementId: map.liftStatusElementId, mapTrails: mapTrails, mapConnectors: mapConnectors)
+                })
+                
+            })
+            
+        })
     }
     func getMapTrailsHandler(_ req: Request)
-      -> EventLoopFuture<[MapTrail]> {
-      // 2
-      Map.find(req.parameters.get("mapId"), on: req.db)
-        .unwrap(or: Abort(.notFound))
-        .flatMap { map in
-          // 3
-          map.$mapTrail.get(on: req.db)
-        }
+    -> EventLoopFuture<[MapTrail]> {
+        // 2
+        Map.find(req.parameters.get("mapId"), on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .flatMap { map in
+                // 3
+                map.$mapTrail.get(on: req.db)
+            }
     }
-//    func deleteMapTrailsHandler(_ req: Request)
-//      -> EventLoopFuture<HTTPStatus> {
-//      // 2
-//      Map.find(req.parameters.get("mapId"), on: req.db)
-//        .unwrap(or: Abort(.notFound))
-//        .flatMap { map in
-//          // 3
-//            map.$mapTrail.query(on: req.db).
-//
-//        }
-//    }
-
+    //    func deleteMapTrailsHandler(_ req: Request)
+    //      -> EventLoopFuture<HTTPStatus> {
+    //      // 2
+    //      Map.find(req.parameters.get("mapId"), on: req.db)
+    //        .unwrap(or: Abort(.notFound))
+    //        .flatMap { map in
+    //          // 3
+    //            map.$mapTrail.query(on: req.db).
+    //
+    //        }
+    //    }
+    
     func getMapConnectorsHandler(_ req: Request) -> EventLoopFuture<[MapConnector]> {
         Map.find(req.parameters.get("mapId"), on: req.db)
             .unwrap(or: Abort(.notFound))
@@ -96,4 +130,16 @@ struct CreateMapData: Content{
     let mountainReportUrl: String?
     let trailStatusElementId: String?
     let liftStatusElementId: String?
+}
+
+struct PublicMap: Content {
+    let id: UUID
+    let name: String
+    let initialLocationLatitude: Float
+    let initialLocationLongitude: Float
+    let mountainReportUrl: String?
+    let trailStatusElementId: String?
+    let liftStatusElementId: String?
+    let mapTrails: [PublicMapTrail]
+    let mapConnectors: [PublicMapConnector]
 }

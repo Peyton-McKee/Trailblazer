@@ -13,6 +13,8 @@ enum DecodingErrors: Error {
     case mapFileDecodingError
     case pointDecodingError
     case mapDecodingError
+    case mapTrailDecdingError
+    case mapConnectorDecodingError
 }
 extension DecodingErrors: LocalizedError{
     public var errorDescription: String? {
@@ -27,6 +29,10 @@ extension DecodingErrors: LocalizedError{
             return "Error Decoding Point"
         case .mapDecodingError:
             return "Error Decoding Maps"
+        case .mapTrailDecdingError:
+            return "Error Decoding Map Trails"
+        case .mapConnectorDecodingError:
+            return "Error Decoding Map Connectors"
         }
     }
 }

@@ -47,12 +47,11 @@ class MoreSettingViewController: UIViewController, ErrorHandler {
         APIHandler.shared.saveMapFile(mapFile: MapFile(title: title, file: mapFile, link: link), completion: {
             result in
             do {
-                let mapFile = try result.get()
+                _ = try result.get()
             } catch {
                 DispatchQueue.main.async {
                     self.handle(error: error)
                 }
-                return
             }
         })
     }
