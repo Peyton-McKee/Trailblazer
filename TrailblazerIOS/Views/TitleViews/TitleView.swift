@@ -9,13 +9,12 @@ import Foundation
 import UIKit
 
 final class TitleView : UIView {
-    let preferredFont = UIFont(name: "markerfelt-wide", size: 40)
 
     lazy var trailblazerLabel : UILabel = {
         let trailblazerLabel = UILabel()
         trailblazerLabel.text = "Trailblazer"
         trailblazerLabel.translatesAutoresizingMaskIntoConstraints = false
-        trailblazerLabel.font = self.preferredFont
+        trailblazerLabel.font = .Theme.markerFelt
         trailblazerLabel.alpha = 0
         trailblazerLabel.textColor = .white
         return trailblazerLabel
@@ -25,7 +24,7 @@ final class TitleView : UIView {
         let signInButton = UIButton()
         signInButton.setTitle("Sign In", for: .normal)
         signInButton.setTitleColor(.black, for: .normal)
-        signInButton.titleLabel?.font = UIFont(name: "markerfelt-wide", size: 20)
+        signInButton.titleLabel?.font = .Theme.markerFelt
         signInButton.backgroundColor = .cyan
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.addTarget(self.vc, action: #selector(self.vc?.signInOrSignUp), for: .touchUpInside)
@@ -39,7 +38,7 @@ final class TitleView : UIView {
         continueAsGuestButton.addTarget(self.vc, action: #selector(self.vc?.toInteractiveMap), for: .touchUpInside)
         continueAsGuestButton.translatesAutoresizingMaskIntoConstraints = false
         continueAsGuestButton.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
-        continueAsGuestButton.titleLabel!.font = UIFont(name: "markerfelt-wide", size: 20)
+        continueAsGuestButton.titleLabel!.font = .Theme.markerFelt
         return continueAsGuestButton
     }()
 
@@ -49,7 +48,7 @@ final class TitleView : UIView {
         signUpButton.setTitleColor(.black, for: .normal)
         signUpButton.backgroundColor = .lightGray
         signUpButton.translatesAutoresizingMaskIntoConstraints = false
-        signUpButton.titleLabel!.font = UIFont(name: "markerfelt-wide", size: 20)
+        signUpButton.titleLabel!.font = .Theme.markerFelt
         signUpButton.addTarget(self.vc, action: #selector(self.vc?.signInOrSignUp), for: .touchUpInside)
         return signUpButton
     }()

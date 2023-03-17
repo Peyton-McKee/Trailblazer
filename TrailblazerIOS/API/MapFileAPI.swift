@@ -25,12 +25,11 @@ extension APIHandler {
                 return
             }
             let decoder = JSONDecoder()
-            if let mapFile = try? decoder.decode(MapFile.self, from: data) {
-                completion(.success(mapFile))
-            }
-            else {
-                print("Error Decoding Map File")
-                completion(.failure(DecodingErrors.mapFileDecodingError))
+            do {
+                let mapFile = try decoder.decode(MapFile.self, from: data)
+                    completion(.success(mapFile))
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }

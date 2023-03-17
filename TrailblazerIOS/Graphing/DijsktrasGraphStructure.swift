@@ -79,21 +79,22 @@ class EdgeWeightedDigraph<Element: Equatable> {
     
     // This function assumes that the source and destination vertices are in the vertices array.
     func addEdge(direction: EdgeType, from: Vertex<Element>, to: Vertex<Element>, weight: Double) {
-
-        switch direction{
-        case .undirected:
+        // If we find an existing edge, just update the weight.
+        if let existingEdge = from.edgeForDestination(to) {
+            existingEdge.weight = weight
+        }
+        else {
+            switch direction{
+            case .undirected:
                 let newEdge = DirectedEdge<Element>(source: from, destination: to, weight: weight)
                 from.addEdge(newEdge)
                 let otherEdge = DirectedEdge<Element>(source: to, destination: from, weight: weight)
                 to.addEdge(otherEdge)
-            
-        case .directed :
+            case .directed :
                 let newEdge = DirectedEdge<Element>(source: from, destination: to, weight: weight)
                 from.addEdge(newEdge)
-            
+            }
         }
-        // If we find an existing edge, just update the weight.
-
     }
 
     func adjacentEdges(forVertex vertex: Vertex<Element>) -> [DirectedEdge<Element>] {

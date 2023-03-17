@@ -34,45 +34,29 @@ struct MapsController: RouteCollection {
     func getAllHandler(_ req: Request) -> EventLoopFuture<[Map]> {
         Map.query(on: req.db).all()
     }
-    func getHandler(_ req: Request)
-    -> EventLoopFuture<PublicMap> {
-        let map = Map.find(req.parameters.get("mapId"), on: req.db).unwrap(or: Abort(.notFound))
-        return map.flatMap({
-            map in
-            return map.$mapTrail.get(on: req.db).flatMap({
-                mts in
-                var mapTrails : [PublicMapTrail] = []
-                mts.map({
-                    mt in
-                    mt.transform(req: req)
-                }).map({
-                    mt in
-                    mt.map({
-                        mt in
-                        mapTrails.append(mt)
-                    })
-                })
-                
-                return map.$mapConnector.get(on: req.db).map({
-                    mcs in
-                    var mapConnectors : [PublicMapConnector] = []
-                    mcs.map({
-                        mc in
-                        mc.transform(req: req)
-                    }).map({
-                        mc in
-                        mc.map({
-                            mc in
-                            mapConnectors.append(mc)
-                        })
-                    })
-                    
-                    return PublicMap(id: map.id!, name: map.name, initialLocationLatitude: map.initialLocationLatitude, initialLocationLongitude: map.initialLocationLongitude, mountainReportUrl: map.mountainReportUrl, trailStatusElementId: map.trailStatusElementId, liftStatusElementId: map.liftStatusElementId, mapTrails: mapTrails, mapConnectors: mapConnectors)
-                })
-                
-            })
-            
-        })
+    
+    func getHandler(_ req: Request) async throws -> PublicMap {
+        guard let map = try await Map.find(req.parameters.get("mapId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        
+        let mapConnectors = try await map.$mapConnector.get(on: req.db)
+        
+        var publicMapConnectors : [PublicMapConnector] = []
+
+        for mapConnector in mapConnectors {
+            try await publicMapConnectors.append(mapConnector.transform(req: req))
+        }
+        
+        let mapTrails = try await map.$mapTrail.get(on: req.db)
+        
+        var publicMapTrails : [PublicMapTrail] = []
+        
+        for mapTrail in mapTrails {
+            try await publicMapTrails.append(mapTrail.transform(req: req))
+        }
+        
+        return PublicMap(id: map.id!, name: map.name, initialLocationLatitude: map.initialLocationLatitude, initialLocationLongitude: map.initialLocationLongitude, mountainReportUrl: map.mountainReportUrl, trailStatusElementId: map.trailStatusElementId, liftStatusElementId: map.liftStatusElementId, mapTrail: publicMapTrails, mapConnector: publicMapConnectors)
     }
     func getMapTrailsHandler(_ req: Request)
     -> EventLoopFuture<[MapTrail]> {
@@ -140,6 +124,6 @@ struct PublicMap: Content {
     let mountainReportUrl: String?
     let trailStatusElementId: String?
     let liftStatusElementId: String?
-    let mapTrails: [PublicMapTrail]
-    let mapConnectors: [PublicMapConnector]
+    let mapTrail: [PublicMapTrail]
+    let mapConnector: [PublicMapConnector]
 }

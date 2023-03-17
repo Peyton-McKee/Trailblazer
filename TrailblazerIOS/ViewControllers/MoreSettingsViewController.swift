@@ -63,6 +63,7 @@ class MoreSettingViewController: UIViewController, ErrorHandler {
         UserDefaults.standard.removeObject(forKey: "userId")
         UserDefaults.standard.removeObject(forKey: "alertSettings")
         UserDefaults.standard.removeObject(forKey: "routingPreference")
+        UserDefaults.standard.removeObject(forKey: "mapId")
         InteractiveMapViewController.currentUser = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
         NotificationCenter.default.post(Notification(name: Notification.Name.Names.cancelRoute))
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

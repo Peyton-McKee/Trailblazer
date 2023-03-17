@@ -39,13 +39,9 @@ final class MapTrail: Model, Content {
     }
 }
 extension MapTrail {
-    func transform(req: Request) -> EventLoopFuture<PublicMapTrail> {
-        return self.$points.get(on: req.db).map({
-            points in
-            
-            return PublicMapTrail(id: self.id!, name: self.name, difficulty: self.difficulty, points: points.sorted(by: {
-                $0.order < $1.order
-            }))
-        })
+    func transform(req: Request) async throws -> PublicMapTrail {
+        let points = try await self.$points.get(on: req.db)
+        return PublicMapTrail(id: self.id!, name: self.name, difficulty: self.difficulty, points: points.sorted(by: {
+                $0.order < $1.order }))
     }
 }

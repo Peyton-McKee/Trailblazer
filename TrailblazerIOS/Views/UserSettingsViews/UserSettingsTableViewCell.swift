@@ -12,12 +12,13 @@ class UserSettingsTableViewCell : UITableViewCell
 {
     lazy var label : UILabel = {
         var label = UILabel()
-        label.font = UIFont(name: "markerfelt-wide", size: 15)
+        label.font = .Theme.markerFelt
         guard let setting = self.setting else {return label}
         label.text = setting.name
         label.textColor = setting.textColor
         return label
     }()
+
     lazy var myImageView : UIImageView  = {
         var imageView = UIImageView()
         guard let setting = self.setting else {return imageView}
@@ -40,9 +41,7 @@ class UserSettingsTableViewCell : UITableViewCell
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
-    
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

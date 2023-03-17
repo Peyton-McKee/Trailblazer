@@ -15,7 +15,7 @@ class TitleViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.addSubview(titleView)
+        self.view.addSubview(self.titleView)
     }
 
     deinit {

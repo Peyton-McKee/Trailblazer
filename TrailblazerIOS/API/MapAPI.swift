@@ -8,7 +8,7 @@
 import Foundation
 
 extension APIHandler {
-    func getMaps(completion: @escaping (Result<[Map], Error>) -> Void)
+    func getMaps(completion: @escaping (Result<[MapPreview], Error>) -> Void)
     {
         let url = URL(string: "\(Self.baseURL)/api/maps")!
         
@@ -19,13 +19,13 @@ extension APIHandler {
             }
             
             let decoder = JSONDecoder()
-            if let maps = try? decoder.decode([Map].self, from: data) {
+            do {
+                let maps = try decoder.decode([MapPreview].self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(maps))
                 }
-            } else {
-                completion(.failure(DecodingErrors.mapDecodingError))
-                return
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
@@ -39,11 +39,11 @@ extension APIHandler {
                 return
             }
             let decoder = JSONDecoder()
-            if let map = try? decoder.decode(Map.self, from: data) {
+            do {
+                let map = try decoder.decode(Map.self, from: data)
                 completion(.success(map))
-            } else {
-                completion(.failure(DecodingErrors.mapDecodingError))
-                return
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
@@ -59,11 +59,11 @@ extension APIHandler {
             
             let decoder = JSONDecoder()
 
-            if let mapTrails = try? decoder.decode([MapTrail].self, from: data) {
+            do {
+                let mapTrails = try decoder.decode([MapTrail].self, from: data)
                 completion(.success(mapTrails))
-            } else {
-                completion(.failure(DecodingErrors.mapTrailDecdingError))
-                return
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
@@ -79,11 +79,11 @@ extension APIHandler {
 
             let decoder = JSONDecoder()
 
-            if let mapConnectors = try? decoder.decode([MapConnector].self, from: data) {
+            do {
+                let mapConnectors = try decoder.decode([MapConnector].self, from: data)
                 completion(.success(mapConnectors))
-            } else {
-                completion(.failure(DecodingErrors.mapConnectorDecodingError))
-                return
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
@@ -104,11 +104,11 @@ extension APIHandler {
             }
 
             let decoder = JSONDecoder()
-            if let points = try? decoder.decode([Point].self, from: data) {
+            do {
+                let points = try decoder.decode([Point].self, from: data)
                 completion(.success(points.sorted(by: { $0.order < $1.order })))
-            } else {
-                completion(.failure(DecodingErrors.pointDecodingError))
-                return
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }

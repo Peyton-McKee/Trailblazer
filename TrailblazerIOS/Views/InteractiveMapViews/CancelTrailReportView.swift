@@ -29,7 +29,7 @@ final class CancelTrailReportView: UIView{
         
         notThereUIButton.translatesAutoresizingMaskIntoConstraints = false
         notThereUIButton.setTitle("No longer There?", for: .normal)
-        notThereUIButton.titleLabel!.font = UIFont(name: "markerfelt.wide", size: 20)
+        notThereUIButton.titleLabel!.font = .Theme.markerFelt
         backgroundView.backgroundColor = UIColor(hex: "#E6B400D0")
         
         self.addSubview(backgroundView)

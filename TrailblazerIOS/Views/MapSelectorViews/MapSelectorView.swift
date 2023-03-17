@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class MapSelectorView : UIView {
-    var maps: [Map] = []
+    var maps: [MapPreview] = []
     
     lazy var collectionView : UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -35,7 +35,7 @@ final class MapSelectorView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func displayOptions(maps: [Map]) {
+    func displayOptions(maps: [MapPreview]) {
         self.maps = maps
         self.collectionView.reloadData()
     }

@@ -12,10 +12,10 @@ final class MoreSettingsView: UIView {
     lazy var logOutButton : UIButton = {
         var button = UIButton()
         button.setTitle("Log Out", for: .normal)
-        button.titleLabel?.font = UIFont(name: "markerfelt-wide", size: 20)
+        button.titleLabel?.font = .Theme.markerFelt
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
-        button.backgroundColor = .myTheme.intermediateColor
+        button.backgroundColor = .Theme.intermediateColor
         button.addTarget(self.vc, action: #selector(self.vc?.logOutPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -106,7 +106,7 @@ final class MoreSettingsView: UIView {
         var button = UIButton()
         button.setTitle("Submit", for: .normal)
         button.layer.cornerRadius = 15
-        button.backgroundColor = .myTheme.easyColor
+        button.backgroundColor = .Theme.easyColor
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self.vc, action: #selector(self.vc?.submitFiles), for: .touchUpInside)
         let activity = NSUserActivity(activityType: "makeMapFile")
@@ -121,7 +121,7 @@ final class MoreSettingsView: UIView {
         self.vc = vc
         super.init(frame: vc.view.frame)
         
-        self.addSubview(pageVStack)
+        self.addSubview(self.pageVStack)
         
         NSLayoutConstraint.activate([
             self.moreSettingsLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height * (3/20)),

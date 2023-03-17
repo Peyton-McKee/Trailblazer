@@ -12,231 +12,167 @@ final class MapInterpreter: NSObject {
     
     func createMap(map: Map)
     {
-        var polylines: [CustomPolyline] = []
-        for trail in map.mapTrails
+        self.mapView.removeOverlays(self.mapView.overlays)
+        var polylines = [CustomPolyline]()
+        for trail in map.mapTrail
         {
             var coordinates : [CLLocationCoordinate2D] = []
-            guard let points = trail.points else {
-                print("Points do not exist")
-                return
-            }
             var trailTimes : [[Double]] = []
             var pointIds: [String] = []
-            
             var difficulty : Difficulty = .expertsOnly
-            var color = UIColor.myTheme.expertsOnlyColor
+            var color = UIColor.Theme.expertsOnlyColor
+            
             switch trail.difficulty
             {
             case Difficulty.easy.rawValue:
                 difficulty = .easy
-                color = .myTheme.easyColor
+                color = .Theme.easyColor
             case Difficulty.intermediate.rawValue:
                 difficulty = .intermediate
-                color = .myTheme.intermediateColor
+                color = .Theme.intermediateColor
             case Difficulty.advanced.rawValue:
                 difficulty = .advanced
-                color = .myTheme.advancedColor
+                color = .Theme.advancedColor
             case Difficulty.lift.rawValue:
                 difficulty = .lift
-                color = .myTheme.liftsColor
+                color = .Theme.liftsColor
             case Difficulty.terrainPark.rawValue:
                 difficulty = .terrainPark
-                color = .myTheme.terrainParksColor
+                color = .Theme.terrainParksColor
             default:
                 break
             }
-            for point in points
+            
+            for point in trail.points
             {
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
                 pointIds.append(point.id!)
                 trailTimes.append(point.time as! [Double])
             }
+            
             let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
             polyline.title = trail.name
             polyline.color = color
+            
             let initialAnnotation = createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: difficulty)
             initialAnnotation.trailTimes = trailTimes
             initialAnnotation.ids = pointIds
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
         }
-        for connector in map.mapConnectors
+        
+        for connector in map.mapConnector
         {
             var coordinates : [CLLocationCoordinate2D] = []
-            guard let points = connector.points else {
-                print("Map Connector Points Don't Exist")
-                return
-            }
             var trailTimes : [[Double]] = []
             var pointIds: [String] = []
-            for point in points
+            for point in connector.points
             {
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
                 pointIds.append(point.id!)
                 trailTimes.append(point.time as! [Double])
             }
-            let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
-            polyline.title = connector.name
+            
             let initialAnnotation = createAnnotation(title: connector.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
             initialAnnotation.isConnector = true
             initialAnnotation.trailTimes = trailTimes
+            initialAnnotation.ids = pointIds
+            
+            let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
+            polyline.title = connector.name
             polyline.color = UIColor(hex: "#00be00ff")
             polyline.initialAnnotation = initialAnnotation
-            initialAnnotation.ids = pointIds
             polylines.append(polyline)
         }
-        mapView.removeOverlays(mapView.overlays)
-        self.difficultyGraph = EdgeWeightedDigraph<ImageAnnotation>()
-        self.timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
-        self.distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
-        mapView.addOverlays(polylines)
+
+        self.mapView.addOverlays(polylines)
         DispatchQueue.global().async{
-            self.createDifficultyGraph()
-            self.createDistanceGraph()
-            self.createTimeGraph()
-            self.getTrailReportsFromDB(map: map)
-            //            UserDefaults.standard.set(self.difficultyGraph, forKey: "\(self.map?.id)/difficultyGraph")
-            //            UserDefaults.standard.set(self.distanceGraph, forKey: "\(self.map?.id)/distanceGraph")
+            let vertices = self.createVertices(polylines: polylines)
+            self.difficultyGraph = self.createGraph(vertices: vertices, weightCaclulation: self.difficultyWeightCalculation)
+            self.timeGraph = self.createGraph(vertices: vertices, weightCaclulation: self.timeWeightCalculation)
+            self.distanceGraph = self.createGraph(vertices: vertices, weightCaclulation: self.distanceWeightCalculation)
+            self.assignTrailReportsFromDB(map: map)
         }
     }
-    private func createDifficultyGraph()
-    {
-        //print("test Graph")
-        let polylines = mapView.overlays.filter({$0 as? CustomPolyline != nil}) as! [CustomPolyline]
+    
+    private func createVertices(polylines: [CustomPolyline]) -> [Vertex<ImageAnnotation>] {
         var foundTrails : [String] = []
-        //print(polylines.count)
+        var vertices = [Vertex<ImageAnnotation>]()
+        
         for polylineIndex in 0...polylines.count - 1
         {
+            guard let initialAnnotation = polylines[polylineIndex].initialAnnotation else {
+                print("Polyline Configured Incorrectly")
+                continue
+            }
             let overlay = polylines[polylineIndex]
-            let initialVertex = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
             if !foundTrails.contains(overlay.title!)
             {
-                mapView.addAnnotation(initialVertex.value)
+                self.mapView.addAnnotation(initialAnnotation)
                 foundTrails.append(overlay.title!)
             }
-            if initialVertex.value.difficulty == Difficulty.lift
+            if initialAnnotation.difficulty == .lift
             {
-                self.baseLiftVertexes.append(initialVertex)
+                self.baseLiftVertexes.append(Vertex(initialAnnotation))
             }
-            var prevVertex : Vertex<ImageAnnotation> = initialVertex
-            prevVertex.value.id = overlay.initialAnnotation?.ids![0]
-            prevVertex.value.times = overlay.initialAnnotation?.trailTimes![0]
-            var vertex2 : Vertex<ImageAnnotation>
-            difficultyGraph.addVertex(prevVertex)
-            for index in 1...overlay.pointCount - 1
+            var vertex : Vertex<ImageAnnotation>
+            for index in 0..<overlay.pointCount
             {
-                vertex2 = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
-                difficultyGraph.addVertex(vertex2)
-                var weight : Int
-                switch overlay.initialAnnotation?.difficulty
-                {
-                case .easy:
-                    weight = 1
-                case .intermediate:
-                    weight = 50
-                case .advanced:
-                    weight = 300
-                case .expertsOnly:
-                    weight = 4000
-                case .terrainPark:
-                    weight = 300
-                default:
-                    weight = 100
-                }
-                vertex2.value.id = overlay.initialAnnotation?.ids![index]
-                vertex2.value.times = overlay.initialAnnotation?.trailTimes![index]
-                if overlay.initialAnnotation!.isConnector
-                {
-                    prevVertex.value.isConnector = true
-                    vertex2.value.isConnector = true
-                    difficultyGraph .addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: 1)
-                }
-                else
-                {
-                    difficultyGraph.addEdge(direction: .directed, from: prevVertex, to: vertex2, weight: Double(weight))
-                }
-                prevVertex = vertex2
+                vertex = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
+                vertex.value.id = overlay.initialAnnotation?.ids![index]
+                vertex.value.times = overlay.initialAnnotation?.trailTimes![index]
+                vertices.append(vertex)
             }
         }
-        addIntersectingPointsTo(graph: difficultyGraph)
-        print("Finished Difficulty Graph with \(difficultyGraph.verticesCount()) Vertices and \(difficultyGraph.edgesCount()) Edges")
+        return vertices
     }
     
-    private func createDistanceGraph()
-    {
-        let polylines = mapView.overlays.filter({$0 as? CustomPolyline != nil}) as! [CustomPolyline]
-        //print(polylines.count)
-        for polylineIndex in 0...polylines.count - 1
-        {
-            let overlay = polylines[polylineIndex]
-            let initialVertex = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
-            var prevVertex : Vertex<ImageAnnotation> = initialVertex
-            prevVertex.value.id = overlay.initialAnnotation?.ids![0]
-            prevVertex.value.times = overlay.initialAnnotation?.trailTimes![0]
-            var vertex2 : Vertex<ImageAnnotation>
-            distanceGraph.addVertex(prevVertex)
-            for index in 1...overlay.pointCount - 1
-            {
-                vertex2 = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
-                distanceGraph.addVertex(vertex2)
-                let weight = CLLocation(latitude: prevVertex.value.coordinate.latitude, longitude: prevVertex.value.coordinate.longitude).distance(from: CLLocation(latitude: vertex2.value.coordinate.latitude, longitude: vertex2.value.coordinate.longitude))
-                vertex2.value.id = overlay.initialAnnotation?.ids![index]
-                vertex2.value.times = overlay.initialAnnotation?.trailTimes![index]
-                if overlay.initialAnnotation!.isConnector
-                {
-                    prevVertex.value.isConnector = true
-                    vertex2.value.isConnector = true
-                    distanceGraph.addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: weight)
-                }
-                else
-                {
-                    distanceGraph.addEdge(direction: .directed, from: prevVertex, to: vertex2, weight: weight)
-                }
-                prevVertex = vertex2
+    private func createGraph(vertices: [Vertex<ImageAnnotation>], weightCaclulation: (_ vertex1: Vertex<ImageAnnotation>, _ vertex2: Vertex<ImageAnnotation>) -> Double) -> EdgeWeightedDigraph<ImageAnnotation> {
+        let graph = EdgeWeightedDigraph<ImageAnnotation>()
+        var prevVertex = vertices[0]
+        graph.addVertex(prevVertex)
+        for index in 1..<vertices.count {
+            let weight = weightCaclulation(prevVertex, vertices[index])
+
+            if vertices[index].value.title == prevVertex.value.title {
+                vertices[index].value.isConnector ? graph.addEdge(direction: .undirected, from: prevVertex, to: vertices[index], weight: weight) : graph.addEdge(direction: .directed, from: prevVertex, to: vertices[index], weight: weight)
             }
+            
+            graph.addVertex(vertices[index])
+            prevVertex = vertices[index]
         }
-        addIntersectingPointsTo(graph: distanceGraph)
-        print("Completed Distance Graph with \(distanceGraph.verticesCount()) vertices and  \(distanceGraph.edgesCount()) edges!")
+
+        self.addIntersectingPointsTo(graph: graph)
+        print("Finished Graph with \(graph.verticesCount()) Vertices and \(graph.edgesCount()) Edges")
+        return graph
     }
     
-    private func createTimeGraph()
-    {
-        let polylines = mapView.overlays.filter({$0 as? CustomPolyline != nil}) as! [CustomPolyline]
-        //print(polylines.count)
-        for polylineIndex in 0...polylines.count - 1
-        {
-            let overlay = polylines[polylineIndex]
-            let initialVertex = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[0].coordinate.latitude, longitude: overlay.points()[0].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
-            var prevVertex : Vertex<ImageAnnotation> = initialVertex
-            prevVertex.value.id = overlay.initialAnnotation?.ids![0]
-            prevVertex.value.times = overlay.initialAnnotation?.trailTimes![0]
-            var vertex2 : Vertex<ImageAnnotation>
-            timeGraph.addVertex(prevVertex)
-            for index in 1...overlay.pointCount - 1
-            {
-                vertex2 = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
-                timeGraph.addVertex(vertex2)
-                
-                let weightArray = overlay.initialAnnotation!.trailTimes![index]
-                let weight = weightArray.reduce(0.0, +) / Double(weightArray.count)
-                
-                vertex2.value.id = overlay.initialAnnotation?.ids![index]
-                vertex2.value.times = overlay.initialAnnotation?.trailTimes![index]
-                if overlay.initialAnnotation!.isConnector
-                {
-                    prevVertex.value.isConnector = true
-                    vertex2.value.isConnector = true
-                    timeGraph.addEdge(direction: .undirected, from: prevVertex, to: vertex2, weight: weight)
-                }
-                else
-                {
-                    timeGraph.addEdge(direction: .directed, from: prevVertex, to: vertex2, weight: weight)
-                }
-                prevVertex = vertex2
-            }
+    private func distanceWeightCalculation(_ vertex1: Vertex<ImageAnnotation>, _ vertex2: Vertex<ImageAnnotation>) -> Double {
+        return CLLocation(latitude: vertex1.value.coordinate.latitude, longitude: vertex1.value.coordinate.longitude).distance(from: CLLocation(latitude: vertex2.value.coordinate.latitude, longitude: vertex2.value.coordinate.longitude))
+    }
+    
+    private func difficultyWeightCalculation(_ vertex1: Vertex<ImageAnnotation>, _ vertex2: Vertex<ImageAnnotation>) -> Double {
+        var weight : Double
+        switch vertex2.value.difficulty! {
+        case Difficulty.easy:
+            weight = 1
+        case Difficulty.intermediate:
+            weight = 50
+        case Difficulty.advanced:
+            weight = 300
+        case Difficulty.lift:
+            weight = 100
+        case Difficulty.terrainPark:
+            weight = 50
+        case Difficulty.expertsOnly:
+            weight = 1000
         }
-        addIntersectingPointsTo(graph: timeGraph)
-        print("Completed Distance Graph with \(timeGraph.verticesCount()) vertices and  \(timeGraph.edgesCount()) edges!")
+        return weight
+    }
+    
+    private func timeWeightCalculation(_ vertex1: Vertex<ImageAnnotation>, _ vertex2: Vertex<ImageAnnotation>) -> Double {
+        let weightArray = vertex2.value.times!
+        return weightArray.reduce(0.0, +) / Double(weightArray.count)
     }
     
     private func addIntersectingPointsTo(graph: EdgeWeightedDigraph<ImageAnnotation>)
@@ -244,10 +180,10 @@ final class MapInterpreter: NSObject {
         var previousIntersectingEdges : [DirectedEdge<ImageAnnotation>] = []
         for vertex in graph.vertices
         {
-            if !getIntersectingPoints(graph: graph, vertex: vertex).isEmpty
+            if !self.getIntersectingPoints(graph: graph, vertex: vertex).isEmpty
             {
                 //print("From: \(vertex.value.title!) with coordinate: \(vertex.value.coordinate)")
-                for point in getIntersectingPoints(graph: graph, vertex: vertex)
+                for point in self.getIntersectingPoints(graph: graph, vertex: vertex)
                 {
                     if previousIntersectingEdges.contains(DirectedEdge(source: point, destination: vertex, weight: 0)) || previousIntersectingEdges.contains(DirectedEdge(source: vertex, destination: point, weight: 0))
                     {
@@ -265,7 +201,7 @@ final class MapInterpreter: NSObject {
     
     ///getTrailReportsFromDB void -> void
     ///Attempts to connect to database and adds any found trailReports to myMap
-    private func getTrailReportsFromDB(map: Map)
+    private func assignTrailReportsFromDB(map: Map)
     {
         APIHandler.shared.getTrailReports(completion: { [self] value in
             guard let trailReports = try? value.get() else
@@ -280,13 +216,17 @@ final class MapInterpreter: NSObject {
                 let annotation = createAnnotation(title: nil, latitude: latitude, longitude: longitude, difficulty: .easy)
                 annotation.subtitle = "\(report.type)"
                 annotation.id = report.id
-                var closestTrail = getClosestAnnotation(graph: distanceGraph, origin: annotation).value
+    
+                var closestTrail = self.getClosestAnnotation(graph: distanceGraph, origin: annotation).value
                 closestTrail.trailReport = annotation
-                closestTrail = getClosestAnnotation(graph: difficultyGraph, origin: annotation).value
+                
+                closestTrail = self.getClosestAnnotation(graph: difficultyGraph, origin: annotation).value
                 closestTrail.trailReport = annotation
-                closestTrail = getClosestAnnotation(graph: timeGraph, origin: annotation).value
+                
+                closestTrail = self.getClosestAnnotation(graph: timeGraph, origin: annotation).value
                 closestTrail.trailReport = annotation
-                mapView.addAnnotation(annotation)
+                
+                self.mapView.addAnnotation(annotation)
                 guard InteractiveMapViewController.currentUser.alertSettings.contains(report.type) else { continue }
                 NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": report])
             }
@@ -340,32 +280,3 @@ extension CLLocationCoordinate2D: Equatable
         return lhs.longitude == rhs.longitude && lhs.latitude == rhs.latitude
     }
 }
-
-//let firstCoordinate = overlay.points()[0].coordinate
-//                let lastCoordinate = overlay.points()[overlay.pointCount - 1].coordinate
-//                var interesectingLines : [CustomPolyline] = []
-//                let initialTrail = mapView.overlays.first(where: {$0.isKind(of: CustomPolyline.self) && $0 as! CustomPolyline != overlay}) as! CustomPolyline
-//                var closestAnnotation = initialTrail.points()[0].coordinate
-//                var lastClosestCoordinate = initialTrail.points()[initialTrail.pointCount - 1].coordinate
-//                var intersectingVertexes: [Vertex<ImageAnnotation>] = []
-
-//                for overlay2 in mapView.overlays
-//                {
-//                    if let overlay2 = overlay2 as? CustomPolyline, overlay2 != overlay
-//                    {
-//                        for index in 1...overlay2.pointCount - 1
-//                        {
-//                            if(sqrt(pow(overlay2.points()[index].coordinate.latitude - firstCoordinate.latitude, 2) + pow(overlay2.points()[index].coordinate.longitude - firstCoordinate.longitude, 2)) < (sqrt(pow(closestAnnotation.latitude - firstCoordinate.latitude, 2) + (pow(closestAnnotation.longitude - firstCoordinate.longitude, 2))))){
-//                                closestAnnotation = overlay2.points()[index].coordinate
-//                            }
-//                            if(sqrt(pow(overlay2.points()[index].coordinate.latitude - lastCoordinate.latitude, 2) + pow(overlay2.points()[index].coordinate.longitude - lastCoordinate.longitude, 2)) < (sqrt(pow(lastClosestCoordinate.latitude - lastCoordinate.latitude, 2) + (pow(lastClosestCoordinate.longitude - lastCoordinate.longitude, 2))))){
-//                                lastClosestCoordinate = overlay2.points()[index].coordinate
-//                            }
-//                        }
-//                        if overlay.intersects(overlay2.boundingMapRect)
-//                        {
-//                            interesectingLines.append(overlay2)
-//                        }
-//                    }
-//                }
-//

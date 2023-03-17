@@ -111,9 +111,9 @@ extension InteractiveMapViewController {
     }
     private func manageRouteInProgress(originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) -> [Vertex<ImageAnnotation>]?
     {
-        let closestVertex = getClosestAnnotation(origin: originVertex.value)
+        let closestVertex = self.getClosestAnnotation(origin: originVertex.value)
         
-        guard !userDidCompleteRoute(closestVertex: closestVertex, destination: destination) else {
+        guard !self.userDidCompleteRoute(closestVertex: closestVertex, destination: destination) else {
             //Then youve completed your journey
             //figure out something to do buckoh
             self.cancelRoute()
@@ -134,15 +134,24 @@ extension InteractiveMapViewController {
         while self.pathCreated[0].value.title == "Your Location" {
             self.pathCreated.removeFirst()
         }
+                
+        for vertex in self.pathCreated {
+            if vertex == closestVertex {
+                break
+            }
+            self.pathCreated.removeFirst()
+        }
         
         self.pathCreated.insert(originVertex, at: 0)
         
         let pathGraph = EdgeWeightedDigraph<ImageAnnotation>()
-        for index in 1...self.pathCreated.count - 1
+        for index in 0...self.pathCreated.count - 1
         {
             pathGraph.addVertex(self.pathCreated[index])
         }
-        
+
+        pathGraph.addEdge(direction: .undirected, from: originVertex, to: pathGraph.vertices[1], weight: 1)
+
         print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
         return createRouteHelper(graph: pathGraph, originVertex: originVertex, destination: destination)
         
@@ -165,7 +174,7 @@ extension InteractiveMapViewController {
         return nil
     }
     
-    fileprivate func userDidCompleteRoute(closestVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) -> Bool {
+    private func userDidCompleteRoute(closestVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) -> Bool {
         return closestVertex.value == destination
     }
     
@@ -201,9 +210,7 @@ extension InteractiveMapViewController {
                 DispatchQueue.main.async {
                     self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
                 }
-                
             }
-            self.canFindPathAgain = true
             return
         }
     }

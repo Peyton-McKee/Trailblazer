@@ -26,7 +26,7 @@ final class UserTrailReportsView : UIView {
         let label = UILabel()
         label.text = "My Trail Reports"
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "markerfelt-wide", size: 25)
+        label.font = .Theme.markerFelt
         return label
     }()
     

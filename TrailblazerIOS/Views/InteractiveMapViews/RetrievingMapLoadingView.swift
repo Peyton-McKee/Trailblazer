@@ -36,7 +36,7 @@ class RetrievingMapLoadingView: UIView {
         var label = UILabel()
         label.text = "Retrieving Map Data"
         label.textColor = .white
-        label.font = UIFont(name: "markerfelt-wide", size: 30)
+        label.font = .Theme.markerFelt
         return label
     }()
     override init(frame: CGRect)

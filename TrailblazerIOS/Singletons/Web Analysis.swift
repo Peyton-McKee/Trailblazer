@@ -38,12 +38,14 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
                 print("Error: Map has no mountain report URL!")
                 return
             }
-            self.trailStatusElementId = map.trailStatusElementId
-            self.liftStatusElementId = map.liftStatusElementId
-            self.graph = graph
-            self.webView.navigationDelegate = self
-            let urlRequest = URLRequest(url: URL(string: mountainReportUrl)!)
-            self.webView.load(urlRequest)
+            DispatchQueue.main.async {
+                self.trailStatusElementId = map.trailStatusElementId
+                self.liftStatusElementId = map.liftStatusElementId
+                self.graph = graph
+                self.webView.navigationDelegate = self
+                let urlRequest = URLRequest(url: URL(string: mountainReportUrl)!)
+                self.webView.load(urlRequest)
+            }
         })
     }
     
@@ -97,7 +99,7 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
             return found
         }()
         
-        getMountainReport(webView: webView, queryItems: TrailData(trails: individualTrailNames, lifts: individualLiftNames), liftStatusId: liftStatusElementId, trailStatusId: trailStatusElementId, completion: { [self]
+        self.getMountainReport(webView: webView, queryItems: TrailData(trails: individualTrailNames, lifts: individualLiftNames), liftStatusId: liftStatusElementId, trailStatusId: trailStatusElementId, completion: { [self]
             value in
             switch value{
             case .success(let value):
@@ -129,17 +131,17 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
                                 let poly = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
                                 switch edge.source.value.difficulty{
                                 case .easy:
-                                    poly.color = .myTheme.easyColor
+                                    poly.color = .Theme.easyColor
                                 case .intermediate:
-                                    poly.color = .myTheme.intermediateColor
+                                    poly.color = .Theme.intermediateColor
                                 case .advanced:
-                                    poly.color = .myTheme.advancedColor
+                                    poly.color = .Theme.advancedColor
                                 case .expertsOnly:
-                                    poly.color = .myTheme.expertsOnlyColor
+                                    poly.color = .Theme.expertsOnlyColor
                                 case .lift:
-                                    poly.color = .myTheme.liftsColor
+                                    poly.color = .Theme.liftsColor
                                 default:
-                                    poly.color = .myTheme.terrainParksColor
+                                    poly.color = .Theme.terrainParksColor
                                 }
                                 overlays.append(poly)
                                 if edge.destination.value.isConnector {

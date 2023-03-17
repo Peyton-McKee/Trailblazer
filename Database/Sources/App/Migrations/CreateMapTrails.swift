@@ -19,7 +19,6 @@ struct CreateMapTrails: Migration {
             
             .field("difficulty", .string, .required)
             
-            
             .field("mapID", .uuid, .required)
         
             .create()

@@ -25,21 +25,21 @@ class TrailReportTableViewCell : UITableViewCell
     var trailReportTypeLabel : UILabel = {
         var label = UILabel()
         label.textColor = UIColor(hex: "#de82f2ff")
-        label.font = UIFont(name: "markerfelt-thin", size: 20)
+        label.font = .Theme.markerFelt
         return label
     }()
     
     var trailReportDateLabel : UILabel = {
         var label = UILabel()
         label.textColor = UIColor(hex: "#de82f2ff")
-        label.font = UIFont(name: "markerfelt-thin", size: 20)
+        label.font = .Theme.markerFelt
         return label
     }()
     
     var trailReportTrailMadeOnLabel : UILabel = {
         var label = UILabel()
         label.textColor = UIColor(hex: "#de82f2ff")
-        label.font = UIFont(name: "markerfelt-thin", size: 20)
+        label.font = .Theme.markerFelt
         return label
     }()
     

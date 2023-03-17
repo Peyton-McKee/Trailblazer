@@ -14,7 +14,7 @@ final class UserSettingsView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont(descriptor: .preferredFontDescriptor(withTextStyle: .title1), size: 20)
         label.textColor = .red
-        label.font = UIFont(name: "markerfelt-wide", size: 20)
+        label.font = .Theme.markerFelt
         label.text = "Hello \(InteractiveMapViewController.currentUser.username)!"
         return label
     }()
@@ -63,7 +63,7 @@ final class UserSettingsView: UIView {
         self.backgroundImageView.addSubview(self.dimmedBackground)
         self.addSubview(self.VStack)
         
-        NSLayoutConstraint.activate([self.usernameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height/10), VStack.topAnchor.constraint(equalTo: usernameLabel.topAnchor), VStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16), VStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16), VStack.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
+        NSLayoutConstraint.activate([self.usernameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height/10), self.VStack.topAnchor.constraint(equalTo: self.usernameLabel.topAnchor), self.VStack.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16), self.VStack.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16), self.VStack.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
     }
     
     required init?(coder: NSCoder) {
