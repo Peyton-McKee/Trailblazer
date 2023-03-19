@@ -77,6 +77,10 @@ class EdgeWeightedDigraph<Element: Equatable> {
         vertices.removeLast()
     }
     
+    func removeVertices(_ where: (Vertex<Element>) -> Bool) {
+        vertices.removeAll(where: `where`)
+    }
+    
     // This function assumes that the source and destination vertices are in the vertices array.
     func addEdge(direction: EdgeType, from: Vertex<Element>, to: Vertex<Element>, weight: Double) {
         // If we find an existing edge, just update the weight.

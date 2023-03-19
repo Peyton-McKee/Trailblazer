@@ -19,7 +19,7 @@ extension InteractiveMapViewController {
     {
         self.dismissTrailReportMenu()
         let originAnnotation = createAnnotation(title: nil, latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
-        let closestTrail = getClosestAnnotation(origin: originAnnotation).value
+        guard let closestTrail = try? getClosestAnnotation(origin: originAnnotation).value else { return }
         switch type
         {
         case .moguls:

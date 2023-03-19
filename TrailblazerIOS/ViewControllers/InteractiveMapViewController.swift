@@ -231,17 +231,15 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     /// paramaters:
     ///     - origin: The annotation you want to find the nearest annotation for
     /// Finds the annotation the least distacne from the passed in origin
-    func getClosestAnnotation(origin: ImageAnnotation) -> Vertex<ImageAnnotation>
+    func getClosestAnnotation(origin: ImageAnnotation) throws -> Vertex<ImageAnnotation>
     {
-        if self.selectedGraph.vertices.last == Vertex<ImageAnnotation>(origin)
-        {
-            self.selectedGraph.removeLastVertex()
+        self.selectedGraph.removeVertices({$0.value.title == "Your Location"})
+        guard var closestAnnotation = self.selectedGraph.vertices.first else {
+            throw GraphErrors.selectedGraphHasNoVertices
         }
-        var closestAnnotation = self.selectedGraph.vertices[0]
         for annotation in self.selectedGraph.vertices
         {
-            if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(closestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(closestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2)))))
-            {
+            if(sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < (sqrt(pow(closestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + (pow(closestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2))))) {
                 closestAnnotation = annotation
             }
         }

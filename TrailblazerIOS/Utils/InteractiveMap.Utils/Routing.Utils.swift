@@ -52,7 +52,11 @@ extension InteractiveMapViewController {
                     self.loadingScreen.isHidden = true
                     if(!self.routeInProgress)
                     {
-                        self.initialLocation = self.getClosestAnnotation(origin: origin ?? self.assignOrigin()!.value).value.title
+                        do {
+                            self.initialLocation = try self.getClosestAnnotation(origin: origin ?? self.assignOrigin()!.value).value.title
+                        } catch {
+                            self.handle(error: error)
+                        }
                         self.routeOverviewView.configureOverview(trip: "\(origin?.title ?? "Your Location") -> \(destination.title!)", trailReports: trailReports, totalDirections: directions, count: count)
                         self.routeOverviewMenu.presentItems()
                         self.displayRoute(origin: origin, destination: destination)
@@ -86,7 +90,7 @@ extension InteractiveMapViewController {
         guard let origin = origin else {
             if let origin = assignOrigin() {
                 do {
-                    return try manageRouteInProgress(originVertex: origin, destination: destination)
+                    return try self.manageRouteInProgress(originVertex: origin, destination: destination)
                 } catch {
                     throw error
                 }
@@ -110,7 +114,7 @@ extension InteractiveMapViewController {
         if found
         {
             do {
-                return try manageRouteInProgress(originVertex: originVertex, destination: destination)
+                return try self.manageRouteInProgress(originVertex: originVertex, destination: destination)
             } catch {
                 throw error
             }
@@ -121,64 +125,58 @@ extension InteractiveMapViewController {
     }
     private func manageRouteInProgress(originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) throws -> [Vertex<ImageAnnotation>]
     {
-        let closestVertex = self.getClosestAnnotation(origin: originVertex.value)
-        
-        guard !self.userDidCompleteRoute(closestVertex: closestVertex, destination: destination) else {
-            //Then youve completed your journey
-            //figure out something to do buckoh
-            DispatchQueue.main.async {
-                self.cancelRoute()
-            }
+        do {
+            let closestVertex = try self.getClosestAnnotation(origin: originVertex.value)
             
-            guard let currentUserId = Self.currentUser.id else
-            {
+            guard !self.userDidCompleteRoute(closestVertex: closestVertex, destination: destination) else {
+                //Then youve completed your journey
+                //figure out something to do buckoh
+                DispatchQueue.main.async {
+                    self.cancelRoute()
+                }
+                
+                guard let currentUserId = Self.currentUser.id else  {
+                    return []
+                }
+                
+                APIHandler.shared.saveUserRoute(UserRoute(destinationTrailName: destination.title!, originTrailName: initialLocation!, dateMade: "\(Date.now)", timeTook: Int(Date.now.timeIntervalSince(timer)), userID: currentUserId))
+                
                 return []
             }
             
-            APIHandler.shared.saveUserRoute(UserRoute(destinationTrailName: destination.title!, originTrailName: initialLocation!, dateMade: "\(Date.now)", timeTook: Int(Date.now.timeIntervalSince(timer)), userID: currentUserId))
-            
-            return []
-        }
-        
-        guard self.routeInProgress && self.pathCreated.contains(closestVertex) else {
-            self.selectedGraph.addVertex(originVertex)
-            self.selectedGraph.addEdge(direction: .directed, from: originVertex, to: closestVertex, weight: 1)
-            do {
+            guard self.routeInProgress && self.pathCreated.contains(closestVertex) else {
+                self.selectedGraph.addVertex(originVertex)
+                self.selectedGraph.addEdge(direction: .directed, from: originVertex, to: closestVertex, weight: 1)
                 return try createRouteHelper(graph: self.selectedGraph, originVertex: originVertex, destination: destination)
-            } catch {
-                throw error
             }
-        }
-        
-        while self.pathCreated[0].value.title == "Your Location" {
-            self.pathCreated.removeFirst()
-        }
-        
-        for vertex in self.pathCreated {
-            if vertex == closestVertex {
-                break
+            
+            self.pathCreated.removeAll(where: {$0.value.title == "Your Location"})
+            
+            for vertex in self.pathCreated {
+                if vertex == closestVertex {
+                    break
+                }
+                self.pathCreated.removeFirst()
             }
-            print("test")
-            self.pathCreated.removeFirst()
-        }
-        
-        self.pathCreated.insert(originVertex, at: 0)
-        
-        let pathGraph = EdgeWeightedDigraph<ImageAnnotation>()
-        
-        for index in 0...self.pathCreated.count - 1
-        {
-            pathGraph.addVertex(self.pathCreated[index])
-        }
-        
-        pathGraph.addEdge(direction: .undirected, from: originVertex, to: closestVertex, weight: 1)
-        
-        print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
-        do {
+            
+            self.pathCreated.insert(originVertex, at: 0)
+            
+            let pathGraph = EdgeWeightedDigraph<ImageAnnotation>()
+            
+            for index in 0...self.pathCreated.count - 1
+            {
+                pathGraph.addVertex(self.pathCreated[index])
+            }
+            
+            pathGraph.addEdge(direction: .undirected, from: originVertex, to: closestVertex, weight: 1)
+            
+            print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
             return try createRouteHelper(graph: pathGraph, originVertex: originVertex, destination: destination)
+            
         } catch {
             throw error
         }
+        
     }
     
     private func createRouteHelper(graph: EdgeWeightedDigraph<ImageAnnotation>, originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) throws ->  [Vertex<ImageAnnotation>]
