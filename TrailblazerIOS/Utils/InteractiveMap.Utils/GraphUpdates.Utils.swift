@@ -11,9 +11,13 @@ import UIKit
 extension InteractiveMapViewController {
     @objc func updatePreferredGraph(sender: NSNotification) {
         guard let preference = sender.userInfo?["preference"] as? EdgeWeightedDigraph<ImageAnnotation> else {
+            DispatchQueue.main.async {
+                self.handle(error:  NotificationErrors.routingPreferenceSentIncorrectlyError)
+            }
             return
         }
         self.preferredRoutingGraph = preference
+        self.selectedGraph = self.preferredRoutingGraph
     }
     
     func getDefaultPreferredGraph() -> EdgeWeightedDigraph<ImageAnnotation>

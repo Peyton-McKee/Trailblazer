@@ -63,8 +63,6 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     var initialLocation : String?
     var timer = Date()
     var myMap = MKMapView()
-    var tileRenderer: MKTileOverlayRenderer!
-    var myPolyLine = CustomPolyline()
     
     var cancelButton = UIButton()
     var cancelButtonYContraint = NSLayoutConstraint()
@@ -215,15 +213,15 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     /// Shows all the trails on the map
     func showAllTrails()
     {
-        myMap.removeOverlays(myMap.overlays)
-        myMap.removeAnnotations(myMap.annotations)
+        self.myMap.removeOverlays(self.myMap.overlays)
+        self.myMap.removeAnnotations(self.myMap.annotations)
         if self.isRealTimeGraph{
-            myMap.addOverlays(WebAnalysis.shared.mapView.overlays)
-            myMap.addAnnotations(WebAnalysis.shared.mapView.annotations)
+            self.myMap.addOverlays(WebAnalysis.shared.mapView.overlays)
+            self.myMap.addAnnotations(WebAnalysis.shared.mapView.annotations)
         }
         else{
-            myMap.addOverlays(MapInterpreter.shared.mapView.overlays)
-            myMap.addAnnotations(MapInterpreter.shared.mapView.annotations)
+            self.myMap.addOverlays(MapInterpreter.shared.mapView.overlays)
+            self.myMap.addAnnotations(MapInterpreter.shared.mapView.annotations)
         }
     }
     
@@ -235,7 +233,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     {
         self.selectedGraph.removeVertices({$0.value.title == "Your Location"})
         guard var closestAnnotation = self.selectedGraph.vertices.first else {
-            throw GraphErrors.selectedGraphHasNoVertices
+            throw GraphErrors.selectedGraphHasNoVerticesError
         }
         for annotation in self.selectedGraph.vertices
         {
@@ -248,18 +246,17 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     
     @objc func reloadButtons()
     {
-        if(searchBar.isDroppedDown)
+        if(self.searchBar.isDroppedDown)
         {
-            recenterButtonYConstraint.constant = 120
-            cancelButtonYContraint.constant = 120
-            animateLayoutChange()
+            self.recenterButtonYConstraint.constant = 120
+            self.cancelButtonYContraint.constant = 120
         }
         else
         {
-            recenterButtonYConstraint.constant = 80
-            cancelButtonYContraint.constant = 80
-            animateLayoutChange()
+            self.recenterButtonYConstraint.constant = 80
+            self.cancelButtonYContraint.constant = 80
         }
+        self.animateLayoutChange()
     }
     
     private func animateLayoutChange()

@@ -8,13 +8,13 @@
 import Foundation
 
 enum GraphErrors: Error {
-    case selectedGraphHasNoVertices
+    case selectedGraphHasNoVerticesError
 }
 
 extension GraphErrors: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .selectedGraphHasNoVertices:
+        case .selectedGraphHasNoVerticesError:
             return "Error: Map was not properly loaded."
         }
     }

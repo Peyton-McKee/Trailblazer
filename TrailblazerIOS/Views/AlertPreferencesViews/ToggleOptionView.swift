@@ -21,7 +21,6 @@ final class ToggleOptionView: UIView {
         stack.layer.shadowOpacity = 0.5
         stack.layer.shadowOffset = .zero
         stack.layer.shadowColor = UIColor(hex: "#00000000")?.cgColor
-        stack.layer.backgroundColor = UIColor(hex: "#ae82f2a7")?.cgColor
         [self.alertSwitch, self.alertLabel].forEach{
             stack.addArrangedSubview($0)
         }

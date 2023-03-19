@@ -50,7 +50,7 @@ final class TrailSelectorView : UIView {
     func configureSearchBarTableView()
     {
         self.createMyTrails()
-        self.searchBarTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 8.5 / 10)
+        self.searchBarTableView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height * 8 / 10)
         self.searchBarTableView.layer.cornerRadius = 15
         self.searchBarTableView.register(TrailSelectorTableViewCell.self, forCellReuseIdentifier: "TrailSelectorCustomCell")
         self.searchBarTableView.backgroundColor = .black

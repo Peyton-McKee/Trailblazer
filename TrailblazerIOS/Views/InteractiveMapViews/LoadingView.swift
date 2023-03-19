@@ -19,6 +19,7 @@ class LoadingView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
+
     var activityIndicator: UIActivityIndicatorView = {
         var indicator = UIActivityIndicatorView()
         indicator.startAnimating()
@@ -27,19 +28,21 @@ class LoadingView: UIView {
 
         return indicator
     }()
+
     var calculatingRouteLabel : UILabel = {
         var label = UILabel()
         label.text = "Calculating Route"
         label.textColor = .white
-        label.font = .Theme.markerFelt
+        label.font = .Theme.markerFelt?.withSize(25)
         return label
     }()
+
     override init(frame: CGRect)
     {
         super.init(frame: frame)
         self.backgroundColor = UIColor(hex: "#232323a2")
-        self.addSubview(loadingHStack)
-        NSLayoutConstraint.activate([loadingHStack.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height/2), loadingHStack.leadingAnchor.constraint(equalTo: self.leadingAnchor), loadingHStack.trailingAnchor.constraint(equalTo: self.trailingAnchor)])
+        self.addSubview(self.loadingHStack)
+        NSLayoutConstraint.activate([self.loadingHStack.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height/2), self.loadingHStack.leadingAnchor.constraint(equalTo: self.leadingAnchor), self.loadingHStack.trailingAnchor.constraint(equalTo: self.trailingAnchor)])
         print(self.frame)
     }
     

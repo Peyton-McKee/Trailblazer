@@ -251,24 +251,24 @@ extension InteractiveMapViewController {
         var id = 0
         var foundTrails : [String] = []
         for vertex in route{
-            myPolyLine = CustomPolyline(coordinates: [previousVertex.value.coordinate, vertex.value.coordinate], count: 2)
+            let polyLine = CustomPolyline(coordinates: [previousVertex.value.coordinate, vertex.value.coordinate], count: 2)
             switch previousVertex.value.difficulty
             {
             case .easy:
-                myPolyLine.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
+                polyLine.color = UIColor(red: 0, green: 200, blue: 0, alpha: 1)
             case .intermediate:
-                myPolyLine.color = .blue
+                polyLine.color = .blue
             case .advanced:
-                myPolyLine.color = .gray
+                polyLine.color = .gray
             case .lift:
-                myPolyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
+                polyLine.color = UIColor(red: 0.8, green: 0, blue: 0, alpha: 1)
             case .terrainPark:
-                myPolyLine.color = .orange
+                polyLine.color = .orange
             default:
-                myPolyLine.color = .black
+                polyLine.color = .black
             }
-            myPolyLine.initialAnnotation = previousVertex.value
-            myMap.addOverlay(myPolyLine, level: .aboveRoads)
+            polyLine.initialAnnotation = previousVertex.value
+            self.myMap.addOverlay(polyLine, level: .aboveRoads)
             if let trailReport = vertex.value.trailReport
             {
                 foundAnnotations.append(trailReport)

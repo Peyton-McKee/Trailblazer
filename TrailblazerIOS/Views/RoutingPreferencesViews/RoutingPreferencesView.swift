@@ -35,7 +35,6 @@ final class RoutingPreferencesView: UIView {
         stackView.alignment = .fill
         stackView.spacing = 10
         stackView.layer.cornerRadius = 15
-        stackView.backgroundColor = UIColor(hex: "#ae82f2a7")
         [self.routingLabel, self.routingPickerView].forEach{ stackView.addArrangedSubview($0)}
         stackView.layer.shadowRadius = 10
         stackView.layer.shadowOffset = .zero

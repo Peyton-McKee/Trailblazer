@@ -19,7 +19,7 @@ extension InteractiveMapViewController {
         var text = ""
         switch sender{
         case toggleGraphButton:
-            switch isRealTimeGraph{
+            switch self.isRealTimeGraph{
             case true:
                 text = "View All Trails"
             case false:
@@ -30,7 +30,7 @@ extension InteractiveMapViewController {
         }
         let tipView = ToolTipView(frame: CGRect(x: tipX, y: tipY, width: tipWidth, height: tipHeight), text: text, tipPos: .right)
         view.addSubview(tipView)
-        performShow(tipView)
+        self.performShow(tipView)
     }
     
     func performShow(_ v: UIView?) {

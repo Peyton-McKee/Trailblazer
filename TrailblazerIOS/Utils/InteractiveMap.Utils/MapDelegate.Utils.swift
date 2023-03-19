@@ -24,20 +24,22 @@ extension InteractiveMapViewController: MKMapViewDelegate
             
             return polylineRenderer
         }
-        return tileRenderer
+        return MKOverlayRenderer()
     }
+    
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if(view.annotation?.title! == nil)
         {
-            cancelTrailReportView.isHidden = true
+            self.cancelTrailReportView.isHidden = true
         }
     }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if !(cancelTrailReportView.isHidden)
+        if !(self.cancelTrailReportView.isHidden)
         {
-            selectedTrailReport = nil
-            selectedTrailReportAnnotation = nil
-            cancelTrailReportView.isHidden = true
+            self.selectedTrailReport = nil
+            self.selectedTrailReportAnnotation = nil
+            self.cancelTrailReportView.isHidden = true
         }
         
         let currentSpan = mapView.region.span
@@ -59,9 +61,9 @@ extension InteractiveMapViewController: MKMapViewDelegate
         }
         if (view.annotation?.title! == nil)
         {
-            selectedTrailReport = Self.trailReports.first(where: {$0.id == annotation.id})
-            selectedTrailReportAnnotation = annotation
-            cancelTrailReportView.isHidden = false
+            self.selectedTrailReport = Self.trailReports.first(where: {$0.id == annotation.id})
+            self.selectedTrailReportAnnotation = annotation
+            self.cancelTrailReportView.isHidden = false
             return
         }
         if self.routeInProgress
@@ -69,6 +71,6 @@ extension InteractiveMapViewController: MKMapViewDelegate
             //then there is already a route in progress and they must cancel the route before selecting another destination
             return
         }
-        sampleRoute(origin: nil, destination: view.annotation as! ImageAnnotation)
+        self.sampleRoute(origin: nil, destination: view.annotation as! ImageAnnotation)
     }
 }

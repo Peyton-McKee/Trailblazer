@@ -87,10 +87,9 @@ final class MapInterpreter: NSObject {
 
         self.mapView.addOverlays(polylines)
         DispatchQueue.global().async{
-            let vertices = self.createVertices(polylines: polylines)
-            self.difficultyGraph = self.createGraph(vertices: vertices, weightCaclulation: self.difficultyWeightCalculation)
-            self.timeGraph = self.createGraph(vertices: vertices, weightCaclulation: self.timeWeightCalculation)
-            self.distanceGraph = self.createGraph(vertices: vertices, weightCaclulation: self.distanceWeightCalculation)
+            self.difficultyGraph = self.createGraph(vertices: self.createVertices(polylines: polylines), weightCaclulation: self.difficultyWeightCalculation)
+            self.timeGraph = self.createGraph(vertices: self.createVertices(polylines: polylines), weightCaclulation: self.timeWeightCalculation)
+            self.distanceGraph = self.createGraph(vertices: self.createVertices(polylines: polylines), weightCaclulation: self.distanceWeightCalculation)
             self.assignTrailReportsFromDB(map: map)
         }
     }
