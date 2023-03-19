@@ -48,8 +48,8 @@ class UserSettingsTableViewCell : UITableViewCell
     }
     func configure()
     {
-        addSubview(HStack)
-        NSLayoutConstraint.activate([HStack.leadingAnchor.constraint(equalTo: self.leadingAnchor), HStack.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height/2 - 7.5)])
+        self.addSubview(self.HStack)
+        NSLayoutConstraint.activate([self.HStack.leadingAnchor.constraint(equalTo: self.leadingAnchor), self.HStack.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height/2 - 7.5)])
 
     }
 }

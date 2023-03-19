@@ -14,7 +14,7 @@ final class TitleView : UIView {
         let trailblazerLabel = UILabel()
         trailblazerLabel.text = "Trailblazer"
         trailblazerLabel.translatesAutoresizingMaskIntoConstraints = false
-        trailblazerLabel.font = .Theme.markerFelt
+        trailblazerLabel.font = .Theme.markerFelt?.withSize(40)
         trailblazerLabel.alpha = 0
         trailblazerLabel.textColor = .white
         return trailblazerLabel
@@ -66,16 +66,16 @@ final class TitleView : UIView {
         super.init(frame: vc.view.frame)
         self.backgroundColor = .white
 
-        self.addSubview(backgroundImageView)
-        self.addSubview(trailblazerLabel)
-        self.addSubview(signInButton)
-        self.addSubview(continueAsGuestButton)
-        self.addSubview(signUpButton)
+        self.addSubview(self.backgroundImageView)
+        self.addSubview(self.trailblazerLabel)
+        self.addSubview(self.signInButton)
+        self.addSubview(self.continueAsGuestButton)
+        self.addSubview(self.signUpButton)
         
-        self.createConstraints(item: trailblazerLabel, distFromLeft: Double(self.bounds.width)/2 - 100, distFromTop: 160)
-        self.createConstraints(item: signInButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height)/5)
-        self.createConstraints(item: signUpButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height) * 5/20)
-        self.createConstraints(item: continueAsGuestButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height) * 6/20)
+        self.createConstraints(item: self.trailblazerLabel, distFromLeft: Double(self.bounds.width)/2 - 100, distFromTop: 160)
+        self.createConstraints(item: self.signInButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height)/5)
+        self.createConstraints(item: self.signUpButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height) * 5/20)
+        self.createConstraints(item: self.continueAsGuestButton, distFromLeft: 0, distFromTop: Double(self.bounds.height)/2 + Double(self.bounds.height) * 6/20)
         
         self.animateTrailBlazer()
     }

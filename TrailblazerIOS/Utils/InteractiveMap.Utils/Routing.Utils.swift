@@ -23,72 +23,78 @@ extension InteractiveMapViewController {
         self.loadingScreen.isHidden = false
         
         DispatchQueue.global().async {
-            guard let pathToDestination = self.createRoute(origin: origin, destination: destination) else {
+            do {
+                let pathToDestination = try self.createRoute(origin: origin, destination: destination)
+                DispatchQueue.main.async { [self] in
+                    var directions = ""
+                    var trailReports = ""
+                    var count = 0
+                    var foundAnnotations : [ImageAnnotation] = []
+                    let mapImageAnnotations = myMap.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
+                    for vertex in pathToDestination
+                    {
+                        foundAnnotations = mapImageAnnotations.filter({
+                            if($0.coordinate == vertex.value.coordinate && !directions.contains($0.title!))
+                            {
+                                directions.append("\(vertex.value.title!); ")
+                                count += 1
+                                return true
+                            }
+                            return false
+                        })
+                        self.myMap.removeAnnotations(self.myMap.annotations)
+                        self.myMap.addAnnotations(foundAnnotations)
+                        if let trailReport = (vertex.value.trailReport)
+                        {
+                            trailReports.append("\(trailReport.subtitle!) ")
+                        }
+                    }
+                    self.loadingScreen.isHidden = true
+                    if(!self.routeInProgress)
+                    {
+                        self.initialLocation = self.getClosestAnnotation(origin: origin ?? self.assignOrigin()!.value).value.title
+                        self.routeOverviewView.configureOverview(trip: "\(origin?.title ?? "Your Location") -> \(destination.title!)", trailReports: trailReports, totalDirections: directions, count: count)
+                        self.routeOverviewMenu.presentItems()
+                        self.displayRoute(origin: origin, destination: destination)
+                        self.routeInProgress = true
+                        
+                        let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
+                        let zoomCoordinate = destination.coordinate
+                        let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
+                        self.myMap.setRegion(zoomed, animated: true)
+                    }
+                    return
+                }
+            } catch {
                 DispatchQueue.main.async{
                     if self.selectedGraph.vertices.last?.value.title! == "Your Location"
                     {
                         self.selectedGraph.removeLastVertex()
                     }
                     self.loadingScreen.isHidden = true
+                    self.handle(error: error)
                 }
                 return
             }
-            DispatchQueue.main.async { [self] in
-                var directions = ""
-                var trailReports = ""
-                var count = 0
-                var foundAnnotations : [ImageAnnotation] = []
-                let mapImageAnnotations = myMap.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
-                for vertex in pathToDestination
-                {
-                    foundAnnotations = mapImageAnnotations.filter({
-                        if($0.coordinate == vertex.value.coordinate && !directions.contains($0.title!))
-                        {
-                            directions.append("\(vertex.value.title!); ")
-                            count += 1
-                            return true
-                        }
-                        return false
-                    })
-                    self.myMap.removeAnnotations(self.myMap.annotations)
-                    self.myMap.addAnnotations(foundAnnotations)
-                    if let trailReport = (vertex.value.trailReport)
-                    {
-                        trailReports.append("\(trailReport.subtitle!) ")
-                    }
-                }
-                self.loadingScreen.isHidden = true
-                if(!self.routeInProgress)
-                {
-                    self.initialLocation = self.getClosestAnnotation(origin: origin ?? self.assignOrigin()!.value).value.title
-                    self.routeOverviewView.configureOverview(trip: "\(origin?.title ?? "Your Location") -> \(destination.title!)", trailReports: trailReports, totalDirections: directions, count: count)
-                    self.routeOverviewMenu.presentItems()
-                    self.displayRoute(origin: origin, destination: destination)
-                    self.routeInProgress = true
-                    
-                    let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
-                    let zoomCoordinate = destination.coordinate
-                    let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
-                    myMap.setRegion(zoomed, animated: true)
-                }
-                return
-            }
-            
         }
     }
     
     /// createRoute: void -> [Vertex<ImageAnnotatioin>] || null
     /// Creates a route for the easiest path from the users location to the selected destination
-    func createRoute(origin: ImageAnnotation?, destination: ImageAnnotation) -> [Vertex<ImageAnnotation>]?
+    func createRoute(origin: ImageAnnotation?, destination: ImageAnnotation) throws -> [Vertex<ImageAnnotation>]
     {
         guard let origin = origin else {
             if let origin = assignOrigin() {
-                return manageRouteInProgress(originVertex: origin, destination: destination)
+                do {
+                    return try manageRouteInProgress(originVertex: origin, destination: destination)
+                } catch {
+                    throw error
+                }
             }
             else {
                 // The user does not have location services on
                 print("User does not have location services on")
-                return nil
+                throw RoutingErrors.userDoesNotHaveLocationServicesEnabledError
             }
         }
         var originVertex = Vertex<ImageAnnotation>(origin)
@@ -103,61 +109,79 @@ extension InteractiveMapViewController {
         }
         if found
         {
-            return manageRouteInProgress(originVertex: originVertex, destination: destination)
+            do {
+                return try manageRouteInProgress(originVertex: originVertex, destination: destination)
+            } catch {
+                throw error
+            }
         }
         //something went wrong and couldnt find vertex that matches the selected origin (this should never happen)
-        return nil
+        throw RoutingErrors.originNotFoundError
         
     }
-    private func manageRouteInProgress(originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) -> [Vertex<ImageAnnotation>]?
+    private func manageRouteInProgress(originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) throws -> [Vertex<ImageAnnotation>]
     {
         let closestVertex = self.getClosestAnnotation(origin: originVertex.value)
         
         guard !self.userDidCompleteRoute(closestVertex: closestVertex, destination: destination) else {
             //Then youve completed your journey
             //figure out something to do buckoh
-            self.cancelRoute()
+            DispatchQueue.main.async {
+                self.cancelRoute()
+            }
+            
             guard let currentUserId = Self.currentUser.id else
             {
-                return nil
+                return []
             }
+            
             APIHandler.shared.saveUserRoute(UserRoute(destinationTrailName: destination.title!, originTrailName: initialLocation!, dateMade: "\(Date.now)", timeTook: Int(Date.now.timeIntervalSince(timer)), userID: currentUserId))
-            return nil
+            
+            return []
         }
         
         guard self.routeInProgress && self.pathCreated.contains(closestVertex) else {
             self.selectedGraph.addVertex(originVertex)
             self.selectedGraph.addEdge(direction: .directed, from: originVertex, to: closestVertex, weight: 1)
-            return createRouteHelper(graph: self.selectedGraph, originVertex: originVertex, destination: destination)
+            do {
+                return try createRouteHelper(graph: self.selectedGraph, originVertex: originVertex, destination: destination)
+            } catch {
+                throw error
+            }
         }
         
         while self.pathCreated[0].value.title == "Your Location" {
             self.pathCreated.removeFirst()
         }
-                
+        
         for vertex in self.pathCreated {
             if vertex == closestVertex {
                 break
             }
+            print("test")
             self.pathCreated.removeFirst()
         }
         
         self.pathCreated.insert(originVertex, at: 0)
         
         let pathGraph = EdgeWeightedDigraph<ImageAnnotation>()
+        
         for index in 0...self.pathCreated.count - 1
         {
             pathGraph.addVertex(self.pathCreated[index])
         }
-
-        pathGraph.addEdge(direction: .undirected, from: originVertex, to: pathGraph.vertices[1], weight: 1)
-
-        print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
-        return createRouteHelper(graph: pathGraph, originVertex: originVertex, destination: destination)
         
+        pathGraph.addEdge(direction: .undirected, from: originVertex, to: closestVertex, weight: 1)
+        
+        print("path graph with \(pathGraph.verticesCount()) vertices and \(pathGraph.edgesCount()) edges")
+        do {
+            return try createRouteHelper(graph: pathGraph, originVertex: originVertex, destination: destination)
+        } catch {
+            throw error
+        }
     }
     
-    private func createRouteHelper(graph: EdgeWeightedDigraph<ImageAnnotation>, originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) -> [Vertex<ImageAnnotation>]?
+    private func createRouteHelper(graph: EdgeWeightedDigraph<ImageAnnotation>, originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) throws ->  [Vertex<ImageAnnotation>]
     {
         let startTime = Date.now
         var destinationVertex = graph.vertices.first(where: {$0.value == destination})
@@ -165,13 +189,16 @@ extension InteractiveMapViewController {
         {
             destinationVertex = graph.vertices.first(where: {$0.value.title == destination.title})
         }
-        if let pathToDestination = DijkstraShortestPath(graph, source: originVertex).pathTo(destinationVertex!)
+        guard let destination = destinationVertex else {
+            throw RoutingErrors.destinationNotFoundError
+        }
+        if let pathToDestination = DijkstraShortestPath(graph, source: originVertex).pathTo(destination)
         {
             print("Took \(Date.now.timeIntervalSince(startTime)) seconds to find route")
             self.pathCreated = pathToDestination
             return pathToDestination
         }
-        return nil
+        throw RoutingErrors.routeNotFoundError
     }
     
     private func userDidCompleteRoute(closestVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) -> Bool {
@@ -205,13 +232,16 @@ extension InteractiveMapViewController {
         let previousAnnotations = myMap.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
         print(pathCreated.count)
         DispatchQueue.global().async {
-            if let newRoute = self.createRoute(origin: origin, destination: destination)
-            {
+            do {
+                let newRoute = try self.createRoute(origin: origin, destination: destination)
                 DispatchQueue.main.async {
                     self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
                 }
+            } catch {
+                DispatchQueue.main.async {
+                    self.handle(error: error)
+                }
             }
-            return
         }
     }
     

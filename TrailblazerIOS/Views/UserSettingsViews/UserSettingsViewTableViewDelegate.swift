@@ -19,6 +19,7 @@ extension UserSettingsView: UITableViewDelegate, UITableViewDataSource
         cell.layer.cornerRadius = 15
         cell.backgroundColor = .black
         cell.setting = options[indexPath.row]
+        cell.configure()
         return cell
     }
 
