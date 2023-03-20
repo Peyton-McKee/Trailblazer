@@ -13,18 +13,19 @@ extension APIHandler {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
-                print(error?.localizedDescription ?? "Unknown error")
+                completion(.failure(error!))
                 return
             }
             
             let decoder = JSONDecoder()
-            if let user = try? decoder.decode(User.self, from: data) {
+            
+            do {
+                let user = try decoder.decode(User.self, from: data)
                 DispatchQueue.main.async {
                     completion(.success(user))
                 }
-            } else {
-                completion(.failure(DecodingErrors.userDecodingError))
-                print("Unable to decode user")
+            } catch {
+                completion(.failure(error))
             }
             
         }.resume()
@@ -35,18 +36,19 @@ extension APIHandler {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
-                print(error?.localizedDescription ?? "Unknown error")
+                completion(.failure(error!))
                 return
             }
             
             let decoder = JSONDecoder()
-            if let users = try? decoder.decode([User].self, from: data) {
-                DispatchQueue.main.async {
-                    completion(.success(users))
-                }
-            } else {
+            
+            do {
+                let users = try decoder.decode([User].self, from: data)
+                    DispatchQueue.main.async {
+                        completion(.success(users))
+                    }
+            } catch {
                 print("could not get all users")
-                completion(.failure(DecodingErrors.userDecodingError))
             }
         }.resume()
     }
@@ -62,23 +64,22 @@ extension APIHandler {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
-                print("Could not save user")
                 completion(.failure(error!))
                 return
             }
             let decoder = JSONDecoder()
-            if let user = try? decoder.decode(User.self, from: data) {
+            
+            do {
+                let user = try decoder.decode(User.self, from: data)
                 completion(.success(user))
-            }
-            else {
-                print("Error Decoding user")
-                completion(.failure(DecodingErrors.userDecodingError))
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
-    
-    func updateUser(_ user: User) {
-        guard let id = user.id else { print("User does not have Id"); return }
+  
+
+    func updateUser(_ user: User, id: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: "\(Self.baseURL)/api/users/\(id)")!
         
         let encoder = JSONEncoder()
@@ -89,14 +90,20 @@ extension APIHandler {
         request.httpBody = try? encoder.encode(user)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                let decoder = JSONDecoder()
-                if let user = try? decoder.decode(User.self, from: data) {
-                    print(user.username)
-                    
-                } else {
-                    print("Could not update user")
+            guard let data = data else {
+                completion(.failure(error!))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                let user = try decoder.decode(User.self, from: data)
+                DispatchQueue.main.async {
+                    completion(.success(user))
                 }
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
@@ -114,17 +121,15 @@ extension APIHandler {
         URLSession.shared.dataTask(with: request) {
             data, response, error in
             guard let data = data, error == nil else {
-                print("Error: \(error!.localizedDescription)")
                 completion(.failure(error!))
                 return
             }
             let decoder = JSONDecoder()
-            if let user = try? decoder.decode(User.self, from: data){
+            do {
+                let user = try decoder.decode(User.self, from: data)
                 completion(.success(user))
-            }
-            else{
-                print("Unable to decode user")
-                completion(.failure(DecodingErrors.userDecodingError))
+            } catch{
+                completion(.failure(error))
             }
         }.resume()
     }
