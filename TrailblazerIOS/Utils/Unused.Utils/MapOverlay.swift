@@ -10,9 +10,7 @@ import MapKit
 
 class MapOverlay: MKTileOverlay
 {
-    static var count = 1
     override func url(forTilePath path: MKTileOverlayPath) -> URL {
-        MapOverlay.count += 1
         let tileUrl =
         "https://tile.mapzen.com/mapzen/terrain/v1/terrarium/\(path.z)/\(path.x)/\(path.y).png"
         return URL(string: tileUrl)!

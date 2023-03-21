@@ -20,21 +20,24 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         }
         return ""
     }()
+    
     static var trailReports : [TrailReport] = []
     
     var initialRegion : MKCoordinateRegion?
 
     var routeInProgress = false
     
-    var configuredClasses = false
     var wasCancelled = false
     
-    lazy var selectedGraph = self.preferredRoutingGraph
+    var selectedGraph: EdgeWeightedDigraph<ImageAnnotation> {
+        return self.isRealTimeGraph ? WebAnalysis.shared.realTimeGraph : self.preferredRoutingGraph
+    }
+    
     var baseLiftVertexes: [Vertex<ImageAnnotation>] = []
     
-    lazy var preferredRoutingGraph : EdgeWeightedDigraph<ImageAnnotation> = {
-        return self.getDefaultPreferredGraph()
-    }()
+    var preferredRoutingGraph : EdgeWeightedDigraph<ImageAnnotation> {
+        return self.getPreferredGraph()
+    }
     
     var wasSelectedWithOrigin = false
     var didChooseDestination = false
@@ -57,7 +60,9 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     
     var canFindPathAgain = true
     var isRealTimeGraph = false
+    
     var toggleGraphButton = UIButton()
+    
     var followingRoute = false
     
     var initialLocation : String?
@@ -155,7 +160,6 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         NotificationCenter.default.addObserver(self, selector: #selector(createNotification), name: Notification.Name.Names.createNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(receiveDataFromMapInterpreter), name: Notification.Name.Names.updateInitialRegion, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(cancelRoute), name: Notification.Name.Names.cancelRoute, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updatePreferredGraph), name: Notification.Name.Names.updateRoutingPreference, object: nil)
     }
     
     deinit {

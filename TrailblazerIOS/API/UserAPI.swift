@@ -9,7 +9,7 @@ import Foundation
 
 extension APIHandler {
     func getSingleUser(id: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/users/\(id)")!
+        let url = URL(string: "\(self.baseURL)/api/users/\(id)")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -31,7 +31,7 @@ extension APIHandler {
     }
     
     func getUsers(completion: @escaping (Result<[User], Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/users")!
+        let url = URL(string: "\(self.baseURL)/api/users")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -52,7 +52,7 @@ extension APIHandler {
     }
     
     func saveUser(_ user: User, completion: @escaping (Result<User, Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/users")!
+        let url = URL(string: "\(self.baseURL)/api/users")!
         
         let encoder = JSONEncoder()
         var request = URLRequest(url: url)
@@ -79,7 +79,7 @@ extension APIHandler {
     
     func updateUser(_ user: User) {
         guard let id = user.id else { print("User does not have Id"); return }
-        let url = URL(string: "\(Self.baseURL)/api/users/\(id)")!
+        let url = URL(string: "\(self.baseURL)/api/users/\(id)")!
         
         let encoder = JSONEncoder()
         
@@ -103,7 +103,7 @@ extension APIHandler {
     
     func loginHandler(username: String, password: String, completion: @escaping (Result<User, Error>) -> Void)
     {
-        let url = URL(string: "\(Self.baseURL)/api/users/login")!
+        let url = URL(string: "\(self.baseURL)/api/users/login")!
         
         let authData = (username + ":" + password).data(using: .utf8)!.base64EncodedString()
         

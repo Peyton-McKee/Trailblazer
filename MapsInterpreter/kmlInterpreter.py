@@ -3,18 +3,20 @@ from os import path
 import requests
 
 
+# https://www.sundayriver.com/mountain-report : Sunday River Mountain Report
 # conditions_lifts_e75ceb523c30353d18fb54207af864f9 : Lift Status Id Sunday River
 # conditions_trailstatus_16207d4019cf36fbdb184831e2ae3054 : Trail Status Id Sunday River
+# https://www.sugarloaf.com/mountain-report : Sugarloaf Mountain Report
 # conditions_lifts_dee2e4a816064ad8b3df04324de73500 : Lift Status Id Sugarloaf
 # conditions_trailstatus_fd4ed0a91d27736243553866f5ab6f8e : Trail Status Id Sugarloaf
 
-with open(path.join('Sunday-River.kml')) as f:
+with open(path.join('Sugarloaf.kml')) as f:
       doc = kml.KML()
       doc.from_string(f.read())
 
-mountainReportUrl = "https://www.sundayriver.com/mountain-report"
-trailStatusElementId = "conditions_trailstatus_16207d4019cf36fbdb184831e2ae3054"
-liftStatusElementId = "conditions_lifts_e75ceb523c30353d18fb54207af864f9"
+mountainReportUrl = "https://www.sugarloaf.com/mountain-report"
+trailStatusElementId = "conditions_trailstatus_fd4ed0a91d27736243553866f5ab6f8e"
+liftStatusElementId = "conditions_lifts_dee2e4a816064ad8b3df04324de73500"
 
 document = list(doc.features())
 name = document[0].name

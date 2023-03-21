@@ -11,7 +11,7 @@ extension APIHandler {
     /// getTrailReports: void -> [TrailReport] || Error
     /// gets all the trail reports being stored on the database
     func getTrailReports(completion: @escaping (Result<[TrailReport], Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/trail-reports")!
+        let url = URL(string: "\(self.baseURL)/api/trail-reports")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -38,7 +38,7 @@ extension APIHandler {
             //its a local trail report
             return
         }
-        let url = URL(string: "\(Self.baseURL)/api/trail-reports/\(id)")!
+        let url = URL(string: "\(self.baseURL)/api/trail-reports/\(id)")!
         
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
@@ -58,7 +58,7 @@ extension APIHandler {
     /// - trailReport: the trail report to be sent to the database
     /// sends the given trail report to the database
     func saveTrailReporrt(_ trailReport: TrailReport) {
-        let url = URL(string: "\(Self.baseURL)/api/trail-reports")!
+        let url = URL(string: "\(self.baseURL)/api/trail-reports")!
         
         let encoder = JSONEncoder()
         
@@ -81,7 +81,7 @@ extension APIHandler {
     }
     
     func getSingleUserTrailReports(id: String, completion: @escaping (Result<[TrailReport], Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/users/\(id)/trail-reports")!
+        let url = URL(string: "\(self.baseURL)/api/users/\(id)/trail-reports")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {

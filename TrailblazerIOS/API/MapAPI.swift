@@ -10,7 +10,7 @@ import Foundation
 extension APIHandler {
     func getMaps(completion: @escaping (Result<[MapPreview], Error>) -> Void)
     {
-        let url = URL(string: "\(Self.baseURL)/api/maps")!
+        let url = URL(string: "\(self.baseURL)/api/maps")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -31,7 +31,7 @@ extension APIHandler {
     }
     
     func getMap(id: String, completion: @escaping (Result<Map, Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/maps/\(id)")!
+        let url = URL(string: "\(self.baseURL)/api/maps/\(id)")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -49,7 +49,7 @@ extension APIHandler {
     }
     
     private func getMapTrails(mapId: String, completion: @escaping (Result<[MapTrail], Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/maps/\(mapId)/map-trails")!
+        let url = URL(string: "\(self.baseURL)/api/maps/\(mapId)/map-trails")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -69,7 +69,7 @@ extension APIHandler {
     }
     
     private func getMapConnectors(mapId: String, completion: @escaping (Result<[MapConnector], Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/maps\(mapId)/map-connectors")!
+        let url = URL(string: "\(self.baseURL)/api/maps\(mapId)/map-connectors")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
@@ -92,9 +92,9 @@ extension APIHandler {
         var url: URL
         switch isConnector {
         case true:
-            url = URL(string: "\(Self.baseURL)/api/map-connectors/\(id)/points")!
+            url = URL(string: "\(self.baseURL)/api/map-connectors/\(id)/points")!
         case false:
-            url = URL(string: "\(Self.baseURL)/api/map-trails/\(id)/points")!
+            url = URL(string: "\(self.baseURL)/api/map-trails/\(id)/points")!
         }
 
         URLSession.shared.dataTask(with: url) { data, response, error in

@@ -28,6 +28,8 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
     
     func makeRequest(graph: EdgeWeightedDigraph<ImageAnnotation>)
     {
+        self.realTimeGraph = EdgeWeightedDigraph<ImageAnnotation>()
+        
         APIHandler.shared.getMap(id: InteractiveMapViewController.mapId, completion: {
             result in
             guard let map = try? result.get() else {

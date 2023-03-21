@@ -10,7 +10,7 @@ import Foundation
 extension APIHandler {
     func updatePointTime(point: PointTimeUpdateData, completion: @escaping (Result<Point, Error>) -> Void)
     {
-        let url = URL(string: "\(Self.baseURL)/api/users/\(point.id)")!
+        let url = URL(string: "\(self.baseURL)/api/users/\(point.id)")!
         
         let encoder = JSONEncoder()
         

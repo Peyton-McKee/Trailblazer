@@ -38,7 +38,6 @@ extension InteractiveMapViewController {
     @objc func cancelRoute()
     {
         print("cancelling route")
-        self.initialLocation = nil
         self.routeInProgress = false
         self.pathCreated = []
         self.trailSelectorView.isPresented = false
@@ -57,15 +56,8 @@ extension InteractiveMapViewController {
         {
             self.cancelRoute()
         }
-        if self.isRealTimeGraph {
-            self.selectedGraph = self.preferredRoutingGraph
-        }
-        else
-        {
-            self.selectedGraph = WebAnalysis.shared.realTimeGraph
-        }
-        self.trailSelectorView.reloadMyTrails()
         self.isRealTimeGraph.toggle()
+        self.trailSelectorView.reloadMyTrails()
         self.showAllTrails()
     }
 }

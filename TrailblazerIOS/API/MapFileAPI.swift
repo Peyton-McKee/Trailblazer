@@ -10,7 +10,7 @@ import Foundation
 extension APIHandler {
     func saveMapFile(mapFile: MapFile, completion: @escaping (Result<MapFile, Error>) -> Void)
     {
-        let url = URL(string: "\(Self.baseURL)/api/map-files")!
+        let url = URL(string: "\(self.baseURL)/api/map-files")!
         
         var request = URLRequest(url: url)
         let encoder = JSONEncoder()

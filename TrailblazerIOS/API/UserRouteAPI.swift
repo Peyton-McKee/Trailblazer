@@ -9,7 +9,7 @@ import Foundation
 
 extension APIHandler {
     func saveUserRoute(_ userRoute: UserRoute) {
-        let url = URL(string: "\(Self.baseURL)/api/user-routes/")!
+        let url = URL(string: "\(self.baseURL)/api/user-routes/")!
         
         let encoder = JSONEncoder()
         

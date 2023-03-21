@@ -9,7 +9,7 @@ import Foundation
 
 extension APIHandler {
     func saveUserLocation(_ userLocation: UserLocation) {
-        let url = URL(string: "\(Self.baseURL)/api/user-locations")!
+        let url = URL(string: "\(self.baseURL)/api/user-locations")!
         
         let encoder = JSONEncoder()
         
@@ -31,7 +31,7 @@ extension APIHandler {
     }
     
     func getUserLocationsWith(_ id: String, completion: @escaping (Result<[UserLocation], Error>) -> Void) {
-        let url = URL(string: "\(Self.baseURL)/api/users/\(id)/user-locations")!
+        let url = URL(string: "\(self.baseURL)/api/users/\(id)/user-locations")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data, error == nil else {

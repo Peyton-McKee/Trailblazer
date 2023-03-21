@@ -53,7 +53,7 @@ extension InteractiveMapViewController {
                     if(!self.routeInProgress)
                     {
                         do {
-                            self.initialLocation = try self.getClosestAnnotation(origin: origin ?? self.assignOrigin()!.value).value.title
+                            self.initialLocation = try self.getClosestAnnotation(origin: origin ?? self.assignOrigin().value).value.title
                         } catch {
                             self.handle(error: error)
                         }
@@ -71,10 +71,7 @@ extension InteractiveMapViewController {
                 }
             } catch {
                 DispatchQueue.main.async{
-                    if self.selectedGraph.vertices.last?.value.title! == "Your Location"
-                    {
-                        self.selectedGraph.removeLastVertex()
-                    }
+                    self.selectedGraph.removeVertices({$0.value.title == "Your Location"})
                     self.loadingScreen.isHidden = true
                     self.handle(error: error)
                 }
@@ -88,25 +85,18 @@ extension InteractiveMapViewController {
     func createRoute(origin: ImageAnnotation?, destination: ImageAnnotation) throws -> [Vertex<ImageAnnotation>]
     {
         guard let origin = origin else {
-            if let origin = assignOrigin() {
-                do {
-                    return try self.manageRouteInProgress(originVertex: origin, destination: destination)
-                } catch {
-                    throw error
-                }
-            }
-            else {
-                // The user does not have location services on
-                print("User does not have location services on")
-                throw RoutingErrors.userDoesNotHaveLocationServicesEnabledError
+            do {
+                return try self.manageRouteInProgress(originVertex: assignOrigin(), destination: destination)
+            } catch {
+                throw error
             }
         }
         var originVertex = Vertex<ImageAnnotation>(origin)
         var found = false
-        for annotation in self.selectedGraph.vertices
+        for vertex in self.selectedGraph.vertices
         {
-            if annotation.value == originVertex.value{
-                originVertex = annotation
+            if vertex.value == originVertex.value{
+                originVertex = vertex
                 found = true
                 break
             }
@@ -121,8 +111,8 @@ extension InteractiveMapViewController {
         }
         //something went wrong and couldnt find vertex that matches the selected origin (this should never happen)
         throw RoutingErrors.originNotFoundError
-        
     }
+
     private func manageRouteInProgress(originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) throws -> [Vertex<ImageAnnotation>]
     {
         do {
@@ -139,14 +129,14 @@ extension InteractiveMapViewController {
                     return []
                 }
                 
-                APIHandler.shared.saveUserRoute(UserRoute(destinationTrailName: destination.title!, originTrailName: initialLocation!, dateMade: "\(Date.now)", timeTook: Int(Date.now.timeIntervalSince(timer)), userID: currentUserId))
+                APIHandler.shared.saveUserRoute(UserRoute(destinationTrailName: destination.title!, originTrailName: self.initialLocation!, dateMade: "\(Date.now)", timeTook: Int(Date.now.timeIntervalSince(timer)), userID: currentUserId))
                 
                 return []
             }
             
             guard self.routeInProgress && self.pathCreated.contains(closestVertex) else {
                 self.selectedGraph.addVertex(originVertex)
-                self.selectedGraph.addEdge(direction: .directed, from: originVertex, to: closestVertex, weight: 1)
+                self.selectedGraph.addEdge(direction: .undirected, from: originVertex, to: closestVertex, weight: 1)
                 return try createRouteHelper(graph: self.selectedGraph, originVertex: originVertex, destination: destination)
             }
             
@@ -205,10 +195,10 @@ extension InteractiveMapViewController {
     
     /// assignOrigin: void ->  Bool
     ///  Creates an annotation for the users current location if the user allows access to its location
-    private func assignOrigin() -> Vertex<ImageAnnotation>?
+    private func assignOrigin() throws -> Vertex<ImageAnnotation>
     {
         guard let latitude = LocationManager.shared.location?.coordinate.latitude, let longitude = LocationManager.shared.location?.coordinate.longitude, LocationManager.shared.authorizationStatus == .authorizedWhenInUse else {
-            return nil
+            throw RoutingErrors.userDoesNotHaveLocationServicesEnabledError
         }
         let origin = createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)
         return Vertex<ImageAnnotation>(origin)

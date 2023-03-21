@@ -35,10 +35,8 @@ class MapSelectorViewController : UIViewController, ErrorHandler {
     }
     
     func switchRootViewController(id: String) {
-        if(!(id == InteractiveMapViewController.mapId)){
-            InteractiveMapViewController.mapId = id
-            UserDefaults.standard.set(id, forKey: "mapId")
-        }
+        InteractiveMapViewController.mapId = id
+        UserDefaults.standard.set(id, forKey: "mapId")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
         // This is to get the SceneDelegate object from your view controller

@@ -8,7 +8,7 @@ final class MapInterpreter: NSObject {
     var timeGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var baseLiftVertexes = [Vertex<ImageAnnotation>]()
-    let baseURL = APIHandler.baseURL
+    let baseURL = APIHandler.shared.baseURL
     
     func createMap(map: Map)
     {
@@ -120,6 +120,7 @@ final class MapInterpreter: NSObject {
                 vertex = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
                 vertex.value.id = overlay.initialAnnotation?.ids![index]
                 vertex.value.times = overlay.initialAnnotation?.trailTimes![index]
+                vertex.value.isConnector = overlay.initialAnnotation!.isConnector
                 vertices.append(vertex)
             }
         }
@@ -171,7 +172,7 @@ final class MapInterpreter: NSObject {
     
     private func timeWeightCalculation(_ vertex1: Vertex<ImageAnnotation>, _ vertex2: Vertex<ImageAnnotation>) -> Double {
         let weightArray = vertex2.value.times!
-        return weightArray.reduce(0.0, +) / Double(weightArray.count)
+        return weightArray.reduce(0.0, +) / Double(weightArray.count + 1)
     }
     
     private func addIntersectingPointsTo(graph: EdgeWeightedDigraph<ImageAnnotation>)
