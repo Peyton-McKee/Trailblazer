@@ -410,8 +410,8 @@
 			children = (
 				15B703F629BD177300F634FD /* LocationManager.swift */,
 				153F2DE329C039F100CCD553 /* APIHandler.swift */,
-				15545AD828DEA598005D0886 /* Web Analysis.swift */,
 				153DAB9729255CFC001ABAAD /* MapInterpreter.swift */,
+				15545AD828DEA598005D0886 /* Web Analysis.swift */,
 			);
 			path = Singletons;
 			sourceTree = "<group>";

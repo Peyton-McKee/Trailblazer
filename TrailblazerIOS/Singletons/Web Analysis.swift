@@ -117,18 +117,21 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
                     var overlays : [CustomPolyline] = []
                     var annotations : [ImageAnnotation] = []
                     var foundTrails : [String] = []
-                    for annotation in graph.vertices
+                    for vertex in graph.vertices
                     {
                         //print("\(annotation.value.title): \(annotation.value.status)")
-                        if annotation.value.status == .open || annotation.value.status == .scheduled
+                        if vertex.value.status == .open || vertex.value.status == .scheduled
                         {
-                            realTimeGraph.addVertex(annotation)
-                            if !foundTrails.contains(annotation.value.title!)
+                            realTimeGraph.addVertex(vertex)
+                            if !foundTrails.contains(vertex.value.title!)
                             {
-                                foundTrails.append(annotation.value.title!)
-                                annotations.append(annotation.value)
+                                foundTrails.append(vertex.value.title!)
+                                annotations.append(vertex.value)
                             }
-                            for edge in annotation.adjacentEdges
+                            if let trailReport = vertex.value.trailReport {
+                                annotations.append(trailReport)
+                            }
+                            for edge in vertex.adjacentEdges
                             {
                                 let poly = CustomPolyline(coordinates: [edge.source.value.coordinate, edge.destination.value.coordinate], count: 2)
                                 switch edge.source.value.difficulty{

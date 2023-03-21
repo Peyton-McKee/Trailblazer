@@ -53,10 +53,11 @@ final class MapInterpreter: NSObject {
             let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
             polyline.title = trail.name
             polyline.color = color
-            
+
             let initialAnnotation = createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: difficulty)
             initialAnnotation.trailTimes = trailTimes
             initialAnnotation.ids = pointIds
+            self.mapView.addAnnotation(initialAnnotation)
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
         }

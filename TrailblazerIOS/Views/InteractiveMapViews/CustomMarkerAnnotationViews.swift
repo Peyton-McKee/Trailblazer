@@ -69,51 +69,31 @@ class CustomAnnotationView: MKMarkerAnnotationView {
         }
         else
         {
-                if(annotation.difficulty == .easy)
-                {
-                    markerTintColor = .Theme.easyColor
-                    glyphImage = .init(systemName: "figure.skiing.downhill")
-                }
-                else if(annotation.difficulty == .intermediate)
-                {
-                    markerTintColor = .Theme.intermediateColor
-                    glyphImage = .init(systemName: "figure.skiing.downhill")
-                }
-                else if (annotation.difficulty == .lift)
-                {
-                    glyphImage = .init(systemName: "arrow.up")
-                    markerTintColor = .Theme.liftsColor
-                }
-                else if (annotation.difficulty == .expertsOnly)
-                {
-                    markerTintColor = .Theme.expertsOnlyColor
-                    glyphImage = .init(systemName: "figure.skiing.downhill")
-                }
-                else if (annotation.difficulty == .advanced)
-                {
-                    markerTintColor = .Theme.advancedColor
-                    glyphImage = .init(systemName: "figure.skiing.downhill")
-                }
-                else
-                {
-                    markerTintColor = .Theme.terrainParksColor
-                    glyphImage = .init(systemName: "figure.skiing.downhill")
-                }
+            switch annotation.difficulty {
+            case .easy:
+                markerTintColor = .Theme.easyColor
+                glyphImage = .init(systemName: "figure.skiing.downhill")
+            case .intermediate:
+                markerTintColor = .Theme.intermediateColor
+                glyphImage = .init(systemName: "figure.skiing.downhill")
+            case .advanced:
+                markerTintColor = .Theme.advancedColor
+                glyphImage = .init(systemName: "figure.skiing.downhill")
+            case .expertsOnly:
+                markerTintColor = .Theme.expertsOnlyColor
+                glyphImage = .init(systemName: "figure.skiing.downhill")
+            case .lift:
+                glyphImage = .init(systemName: "arrow.up")
+                markerTintColor = .Theme.liftsColor
+            case .terrainPark:
+                markerTintColor = .Theme.terrainParksColor
+                glyphImage = .init(systemName: "figure.skiing.downhill")
+            case .none:
+                markerTintColor = .Theme.easyColor
+                glyphImage = .init(systemName: "figure.skiing.downhill")
+            }
             clusteringIdentifier = "cluster"
         }
-    }
-    func checkClusteringIdentifier(trailList : [[Vertex<ImageAnnotation>]], identifier: String, annotation: ImageAnnotation) -> Bool
-    {
-        
-        for trail in trailList
-        {
-            if trail.contains(Vertex<ImageAnnotation>(annotation))
-            {
-                clusteringIdentifier = identifier
-                return true
-            }
-        }
-        return false
     }
 }
 

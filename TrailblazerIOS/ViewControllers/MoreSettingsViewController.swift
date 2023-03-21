@@ -58,6 +58,7 @@ class MoreSettingViewController: UIViewController, ErrorHandler {
 
     @objc func logOutPressed(sender: UIButton)
     {
+        NotificationCenter.default.post(Notification(name: Notification.Name.Names.cancelRoute))
         UserDefaults.standard.removeObject(forKey: "userUsername")
         UserDefaults.standard.removeObject(forKey: "userPassword")
         UserDefaults.standard.removeObject(forKey: "userId")
@@ -65,7 +66,6 @@ class MoreSettingViewController: UIViewController, ErrorHandler {
         UserDefaults.standard.removeObject(forKey: "routingPreference")
         UserDefaults.standard.removeObject(forKey: "mapId")
         InteractiveMapViewController.currentUser = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
-        NotificationCenter.default.post(Notification(name: Notification.Name.Names.cancelRoute))
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let loginNavController = storyboard.instantiateViewController(identifier: "LoginNavigationController")
         // This is to get the SceneDelegate object from your view controller
