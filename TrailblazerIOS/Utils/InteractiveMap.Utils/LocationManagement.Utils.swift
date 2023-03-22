@@ -18,8 +18,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
             self.displayRoute(origin: nil, destination: self.pathCreated[self.pathCreated.count - 1].value)
         }
         
-        guard let currentUserId = Self.currentUser.id else
-        {
+        guard let currentUserId = Self.currentUser.id else {
             return
         }
         let radius = 30.0
@@ -61,8 +60,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
                 })
             }
         }
-        guard let initialRegion = self.initialRegion else { return }
-        if locations[0].distance(from: CLLocation(latitude: initialRegion.center.latitude, longitude: initialRegion.center.longitude)) <= 7000
+        if locations[0].distance(from: CLLocation(latitude: self.interactiveMapView.center.x, longitude: self.interactiveMapView.center.y)) <= 7000
         {
             APIHandler.shared.saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
         }

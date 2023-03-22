@@ -38,7 +38,7 @@ extension InteractiveMapViewController {
         guard let currentUserId = Self.currentUser.id else { return }
         APIHandler.shared.saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
         closestTrail.trailReport = originAnnotation
-        self.myMap.addAnnotation(originAnnotation)
+        self.interactiveMapView.addAnnotation(originAnnotation)
     }
     
     /// addTrailReport: Presents the trail report menu when the user holds down on a spot on the map
@@ -63,7 +63,7 @@ extension InteractiveMapViewController {
     {
         let annotation = self.selectedGraph.vertices.first(where: {$0.value.trailReport == selectedTrailReportAnnotation})
         guard let selectedTrailReport = self.selectedTrailReport else {
-            myMap.removeAnnotation(selectedTrailReportAnnotation!)
+            self.interactiveMapView.removeAnnotation(selectedTrailReportAnnotation!)
             annotation?.value.trailReport = nil
             selectedTrailReportAnnotation = nil
             //Then the trail report hasnt been stored on the database yet
@@ -71,14 +71,14 @@ extension InteractiveMapViewController {
         }
         APIHandler.shared.deleteTrailReport(id: selectedTrailReport.id)
         self.selectedTrailReport = nil
-        myMap.removeAnnotation(selectedTrailReportAnnotation!)
+        self.interactiveMapView.removeAnnotation(selectedTrailReportAnnotation!)
         annotation?.value.trailReport = nil
         selectedTrailReportAnnotation = nil
     }
     
     func displayCurrentTrailReports(graph: EdgeWeightedDigraph<ImageAnnotation>)
     {
-        myMap.addAnnotations(graph.vertices.map({ $0.value }).filter({ $0.trailReport != nil }).map({ $0.trailReport! }))
+        self.interactiveMapView.addAnnotations(graph.vertices.map({ $0.value }).filter({ $0.trailReport != nil }).map({ $0.trailReport! }))
     }
     
 }

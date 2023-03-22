@@ -23,8 +23,6 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     
     static var trailReports : [TrailReport] = []
     
-    var initialRegion : MKCoordinateRegion?
-
     var routeInProgress = false
     
     var wasCancelled = false
@@ -67,7 +65,6 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     
     var initialLocation : String?
     var timer = Date()
-    var myMap = MKMapView()
     
     var cancelButton = UIButton()
     var cancelButtonYContraint = NSLayoutConstraint()
@@ -79,7 +76,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     lazy var trailReportMenu : PopUpMenuFramework = {
         let trailReportMenu = PopUpMenuFramework(vc: self, height: 300)
         trailReportMenu.view = trailReportTableView
-        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissTrailReportMenu))
+        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissTrailReportMenu))
         trailReportMenu.transparentView.addGestureRecognizer(dismissTapGesture)
         return trailReportMenu
     }()
@@ -96,7 +93,15 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         return searchBar
     }()
     
-    var trailReportTableView = UITableView()
+    lazy var trailReportTableView : UITableView = {
+        let trailReportTableView = UITableView()
+        trailReportTableView.isScrollEnabled = true
+        trailReportTableView.layer.cornerRadius = 15
+        trailReportTableView.delegate = self
+        trailReportTableView.dataSource = self
+        trailReportTableView.register(TrailReportTypeTableViewCell.self, forCellReuseIdentifier: "TrailReportTypeTableViewCell")
+        return trailReportTableView
+    }()
 
     lazy var routeOverviewMenu : PopUpMenuFramework = {
         let routeOverviewMenu = PopUpMenuFramework(vc: self, height: 300)
@@ -124,6 +129,8 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         return trailSelectorMenu
     }()
     
+    lazy var interactiveMapView = InteractiveMapView(vc: self)
+    
     var trailReportAnnotation = ImageAnnotation()
 
     var recenterButton = UIButton()
@@ -136,17 +143,16 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.configureTrailReportView()
-        self.configureMyMap()
         self.checkUserDefaults()
-        self.configureButtons()
         LocationManager.shared.delegate = self
         LocationManager.shared.requestWhenInUseAuthorization()
         LocationManager.shared.startUpdatingHeading()
         LocationManager.shared.startUpdatingLocation()
-        self.view.addSubview(searchBar)
-        self.view.addSubview(loadingScreen)
-        self.view.addSubview(mapLoadingView)
+        self.view.addSubview(self.interactiveMapView)
+        self.view.addSubview(self.searchBar)
+        self.configureButtons()
+        self.view.addSubview(self.loadingScreen)
+        self.view.addSubview(self.mapLoadingView)
         self.mapLoadingView.isHidden = false
         self.getMap(id: Self.mapId)
         self.tabBarController?.tabBar.backgroundColor = .black
@@ -166,8 +172,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         print("deallocating interactive map view controller")
     }
     
-    private func checkUserDefaults()
-    {
+    private func checkUserDefaults() {
         guard let userId = UserDefaults.standard.string(forKey: "userId") else {
             return
         }
@@ -185,14 +190,11 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         })
     }
 
-    @objc func receiveDataFromMapInterpreter(_ sender: NSNotification)
-    {
+    @objc func receiveDataFromMapInterpreter(_ sender: NSNotification) {
         guard let latitude = sender.userInfo?["initialRegionLatitude"] as? Double, let longitude = sender.userInfo?["initialRegionLongitude"] as? Double, let trailReports = sender.userInfo?["trailReports"] as? [TrailReport] else { return }
-        self.initialRegion =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
+        let initialRegion =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
         Self.trailReports = trailReports
-        self.myMap.region = self.initialRegion!
-        self.myMap.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: self.initialRegion!)
-        self.myMap.setCamera(MKMapCamera(lookingAtCenter: self.initialRegion!.center, fromDistance: CLLocationDistance(10000), pitch: 0, heading: CLLocationDirection(360)), animated: true)
+        self.interactiveMapView.setBoundaryAround(region: initialRegion)
         self.updateSelectedGraphAndShowAllTrails()
         self.mapLoadingView.isHidden = true
         DispatchQueue.main.async{
@@ -217,15 +219,15 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     /// Shows all the trails on the map
     func showAllTrails()
     {
-        self.myMap.removeOverlays(self.myMap.overlays)
-        self.myMap.removeAnnotations(self.myMap.annotations)
+        self.interactiveMapView.removeOverlays(self.interactiveMapView.overlays)
+        self.interactiveMapView.removeAnnotations(self.interactiveMapView.annotations)
         if self.isRealTimeGraph{
-            self.myMap.addOverlays(WebAnalysis.shared.mapView.overlays)
-            self.myMap.addAnnotations(WebAnalysis.shared.mapView.annotations)
+            self.interactiveMapView.addOverlays(WebAnalysis.shared.mapView.overlays)
+            self.interactiveMapView.addAnnotations(WebAnalysis.shared.mapView.annotations)
         }
         else{
-            self.myMap.addOverlays(MapInterpreter.shared.mapView.overlays)
-            self.myMap.addAnnotations(MapInterpreter.shared.mapView.annotations)
+            self.interactiveMapView.addOverlays(MapInterpreter.shared.mapView.overlays)
+            self.interactiveMapView.addAnnotations(MapInterpreter.shared.mapView.annotations)
         }
     }
     
@@ -270,7 +272,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         }, completion: nil)
     }
     
-    func getMap(id: String)
+    private func getMap(id: String)
     {
         APIHandler.shared.getMap(id: id, completion: {
             result in

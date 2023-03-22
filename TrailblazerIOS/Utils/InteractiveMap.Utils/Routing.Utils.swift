@@ -30,7 +30,7 @@ extension InteractiveMapViewController {
                     var trailReports = ""
                     var count = 0
                     var foundAnnotations : [ImageAnnotation] = []
-                    let mapImageAnnotations = myMap.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
+                    let mapImageAnnotations = self.interactiveMapView.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
                     for vertex in pathToDestination
                     {
                         foundAnnotations = mapImageAnnotations.filter({
@@ -42,8 +42,8 @@ extension InteractiveMapViewController {
                             }
                             return false
                         })
-                        self.myMap.removeAnnotations(self.myMap.annotations)
-                        self.myMap.addAnnotations(foundAnnotations)
+                        self.interactiveMapView.removeAnnotations(self.interactiveMapView.annotations)
+                        self.interactiveMapView.addAnnotations(foundAnnotations)
                         if let trailReport = (vertex.value.trailReport)
                         {
                             trailReports.append("\(trailReport.subtitle!) ")
@@ -65,7 +65,7 @@ extension InteractiveMapViewController {
                         let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
                         let zoomCoordinate = destination.coordinate
                         let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
-                        self.myMap.setRegion(zoomed, animated: true)
+                        self.interactiveMapView.setRegion(zoomed, animated: true)
                     }
                     return
                 }
@@ -216,8 +216,8 @@ extension InteractiveMapViewController {
     /// Shows the selected route on the map
     func displayRoute(origin: ImageAnnotation?, destination: ImageAnnotation)
     {
-        let previousOverlays = myMap.overlays
-        let previousAnnotations = myMap.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
+        let previousOverlays = self.interactiveMapView.overlays
+        let previousAnnotations = self.interactiveMapView.annotations.filter({$0.isKind(of: ImageAnnotation.self)}) as! [ImageAnnotation]
         print(pathCreated.count)
         DispatchQueue.global().async {
             do {
@@ -258,7 +258,7 @@ extension InteractiveMapViewController {
                 polyLine.color = .black
             }
             polyLine.initialAnnotation = previousVertex.value
-            self.myMap.addOverlay(polyLine, level: .aboveRoads)
+            self.interactiveMapView.addOverlay(polyLine, level: .aboveRoads)
             if let trailReport = vertex.value.trailReport
             {
                 foundAnnotations.append(trailReport)
@@ -274,10 +274,10 @@ extension InteractiveMapViewController {
         }
         let set1 = Set(previousAnnotations)
         let set2 = set1.subtracting(foundAnnotations)
-        myMap.removeAnnotations(Array(set2))
-        myMap.removeOverlays(previousOverlays)
+        self.interactiveMapView.removeAnnotations(Array(set2))
+        self.interactiveMapView.removeOverlays(previousOverlays)
         if self.routeInProgress {
-            myMap.addAnnotations(foundAnnotations)
+            self.interactiveMapView.addAnnotations(foundAnnotations)
             connectivityController.setRoute(route: routes)
             self.canFindPathAgain = true
         }

@@ -25,14 +25,7 @@ extension InteractiveMapViewController {
     
     @objc func recenter()
     {
-        let span:MKCoordinateSpan = MKCoordinateSpan.init(latitudeDelta: 0.01,longitudeDelta: 0.01)
-        let myLocation = CLLocationCoordinate2D(latitude: LocationManager.shared.location!.coordinate.latitude, longitude: LocationManager.shared.location!.coordinate.longitude)
-        let region:MKCoordinateRegion = MKCoordinateRegion.init(center: myLocation, span: span)
-        myMap.setRegion(region, animated: false)
-        let mapCamera = MKMapCamera(lookingAtCenter: myLocation, fromDistance: 1000, pitch: 60, heading: 50)
-        myMap.setCamera(mapCamera, animated: false)
-        
-        myMap.setUserTrackingMode(.follow, animated: true)
+        self.interactiveMapView.setUserTrackingMode(.follow, animated: true)
     }
     
     @objc func cancelRoute()
@@ -46,8 +39,8 @@ extension InteractiveMapViewController {
             print("test")
             self.selectedGraph.removeLastVertex()
         }
-        connectivityController.setRoute(route: [])
-        showAllTrails()
+        self.connectivityController.setRoute(route: [])
+        self.showAllTrails()
     }
     
     @objc func toggleGraph()

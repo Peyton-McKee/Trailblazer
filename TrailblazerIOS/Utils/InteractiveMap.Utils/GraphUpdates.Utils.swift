@@ -27,7 +27,6 @@ extension InteractiveMapViewController {
     
     func updateSelectedGraphAndShowAllTrails()
     {
-        self.configureTrailReportView()
         self.showAllTrails()
     }
 }

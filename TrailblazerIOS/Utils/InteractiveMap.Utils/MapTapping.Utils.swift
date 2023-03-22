@@ -14,13 +14,13 @@ extension InteractiveMapViewController {
     @objc func mapTapped(_ tap: UITapGestureRecognizer) {
         if tap.state == .recognized {
             // Get map coordinate from touch point
-            let touchPt: CGPoint = tap.location(in: myMap)
-            let coord: CLLocationCoordinate2D = myMap.convert(touchPt, toCoordinateFrom: myMap)
+            let touchPt: CGPoint = tap.location(in: self.interactiveMapView)
+            let coord: CLLocationCoordinate2D = self.interactiveMapView.convert(touchPt, toCoordinateFrom: self.interactiveMapView)
             let maxMeters: Double = meters(fromPixel: 22, at: touchPt)
             var nearestDistance: Float = MAXFLOAT
             var nearestPoly: CustomPolyline? = nil
             // for every overlay ...
-            for overlay: MKOverlay in myMap.overlays {
+            for overlay: MKOverlay in self.interactiveMapView.overlays {
                 // .. if MKPolyline ...
                 if (overlay is MKPolyline) {
                     // ... get the distance ...
@@ -44,7 +44,7 @@ extension InteractiveMapViewController {
                             closestVertex = vertex
                         }
                     }
-                    sampleRoute(origin: nil, destination: closestVertex.value)
+                    self.sampleRoute(origin: nil, destination: closestVertex.value)
                 }
             }
         }
@@ -80,8 +80,8 @@ extension InteractiveMapViewController {
     
     private func meters(fromPixel px: Int, at pt: CGPoint) -> Double {
         let ptB = CGPoint(x: pt.x + CGFloat(px), y: pt.y)
-        let coordA: CLLocationCoordinate2D = myMap.convert(pt, toCoordinateFrom: myMap)
-        let coordB: CLLocationCoordinate2D = myMap.convert(ptB, toCoordinateFrom: myMap)
+        let coordA: CLLocationCoordinate2D = self.interactiveMapView.convert(pt, toCoordinateFrom: self.interactiveMapView)
+        let coordB: CLLocationCoordinate2D = self.interactiveMapView.convert(ptB, toCoordinateFrom: self.interactiveMapView)
         return MKMapPoint(coordA).distance(to: MKMapPoint(coordB))
     }
 }

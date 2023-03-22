@@ -10,40 +10,6 @@ import UIKit
 import MapKit
 
 extension InteractiveMapViewController {
-    
-    ///configureMyMap void -> void
-    ///Configures and formats myMap
-    func configureMyMap()
-    {
-        myMap.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height)
-        myMap.mapType = MKMapType.satellite
-        myMap.isRotateEnabled = true
-        myMap.showsCompass = false
-        myMap.setCamera(MKMapCamera(lookingAtCenter: myMap.centerCoordinate, fromDistance: CLLocationDistance(1200), pitch: 90, heading: CLLocationDirection(360)), animated: true)
-        myMap.isZoomEnabled = true
-        myMap.isScrollEnabled = true
-        myMap.cameraZoomRange = MKMapView.CameraZoomRange(
-            minCenterCoordinateDistance: 400,
-            maxCenterCoordinateDistance: 12500)
-        let selectTrailGesture = UITapGestureRecognizer(target: self, action: #selector(mapTapped))
-        let trailReportGesture = UILongPressGestureRecognizer(target: self, action: #selector(addTrailReport))
-        trailReportGesture.minimumPressDuration = 0.3
-        if let initialRegion = self.initialRegion {
-            myMap.region = initialRegion
-            myMap.cameraBoundary = MKMapView.CameraBoundary(coordinateRegion: initialRegion)
-            myMap.setCamera(MKMapCamera(lookingAtCenter: myMap.centerCoordinate, fromDistance: CLLocationDistance(10000), pitch: 0, heading: CLLocationDirection(360)), animated: true)
-        }
-        myMap.addGestureRecognizer(trailReportGesture)
-        myMap.addGestureRecognizer(selectTrailGesture)
-        myMap.userTrackingMode = .followWithHeading
-        myMap.showsUserLocation = true
-        myMap.setUserTrackingMode(.followWithHeading, animated: true)
-        myMap.delegate = self
-        myMap.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        myMap.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
-        view.addSubview(myMap)
-    }
-    
     func configureButtons()
     {
         configureIndividualButton(button: recenterButton, backgroundColor: .gray, image: UIImage(systemName: "location.circle")!)
@@ -94,16 +60,5 @@ extension InteractiveMapViewController {
         button.backgroundColor = backgroundColor
         button.layer.cornerRadius = 10
         view.addSubview(button)
-    }
-    
-    ///configureTrailReportVieiw: void -> void
-    ///Configures and formats the trailReportTableView
-    func configureTrailReportView()
-    {
-        trailReportTableView.isScrollEnabled = true
-        trailReportTableView.layer.cornerRadius = 15
-        trailReportTableView.delegate = self
-        trailReportTableView.dataSource = self
-        trailReportTableView.register(TrailReportTypeTableViewCell.self, forCellReuseIdentifier: "TrailReportTypeTableViewCell")
     }
 }

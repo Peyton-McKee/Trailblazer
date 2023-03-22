@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class LoadingView: UIView {
+final class LoadingView: UIView {
     lazy var loadingHStack: UIStackView = {
         var stackView = UIStackView()
         stackView.axis = .horizontal

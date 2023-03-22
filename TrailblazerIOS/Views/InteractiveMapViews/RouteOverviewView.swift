@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-class RouteOverviewView : UIView {
+final class RouteOverviewView : UIView {
     let tripLbl : UILabel = {
         let tripLbl = UILabel()
         tripLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -61,32 +61,32 @@ class RouteOverviewView : UIView {
         self.backgroundColor = .white
         self.layer.cornerRadius = 15
         
-        self.addSubview(viewFullDirectionsButton)
-        self.addSubview(tripLbl)
-        self.addSubview(directionsLabel)
-        self.addSubview(letsGoButton)
-        self.addSubview(trailReportLabel)
+        self.addSubview(self.viewFullDirectionsButton)
+        self.addSubview(self.tripLbl)
+        self.addSubview(self.directionsLabel)
+        self.addSubview(self.letsGoButton)
+        self.addSubview(self.trailReportLabel)
         NSLayoutConstraint.activate([
-            tripLbl.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            tripLbl.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            tripLbl.heightAnchor.constraint(equalToConstant: 40),
-            tripLbl.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
-            directionsLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            directionsLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            directionsLabel.heightAnchor.constraint(equalToConstant: 20),
-            directionsLabel.topAnchor.constraint(equalTo: self.tripLbl.bottomAnchor),
-            viewFullDirectionsButton.topAnchor.constraint(equalTo: directionsLabel.bottomAnchor),
-            viewFullDirectionsButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            viewFullDirectionsButton.widthAnchor.constraint(equalToConstant: self.bounds.width),
-            viewFullDirectionsButton.heightAnchor.constraint(equalToConstant: 40),
-            trailReportLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            trailReportLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            trailReportLabel.heightAnchor.constraint(equalToConstant: 50),
-            trailReportLabel.topAnchor.constraint(equalTo: self.viewFullDirectionsButton.bottomAnchor),
-            letsGoButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
-            letsGoButton.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
-            letsGoButton.heightAnchor.constraint(equalToConstant: 40),
-            letsGoButton.topAnchor.constraint(equalTo: self.trailReportLabel.bottomAnchor)])
+            self.tripLbl.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            self.tripLbl.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            self.tripLbl.heightAnchor.constraint(equalToConstant: 40),
+            self.tripLbl.topAnchor.constraint(equalTo: self.layoutMarginsGuide.topAnchor),
+            self.directionsLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            self.directionsLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            self.directionsLabel.heightAnchor.constraint(equalToConstant: 20),
+            self.directionsLabel.topAnchor.constraint(equalTo: self.tripLbl.bottomAnchor),
+            self.viewFullDirectionsButton.topAnchor.constraint(equalTo: directionsLabel.bottomAnchor),
+            self.viewFullDirectionsButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            self.viewFullDirectionsButton.widthAnchor.constraint(equalToConstant: self.bounds.width),
+            self.viewFullDirectionsButton.heightAnchor.constraint(equalToConstant: 40),
+            self.trailReportLabel.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            self.trailReportLabel.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            self.trailReportLabel.heightAnchor.constraint(equalToConstant: 50),
+            self.trailReportLabel.topAnchor.constraint(equalTo: self.viewFullDirectionsButton.bottomAnchor),
+            self.letsGoButton.leadingAnchor.constraint(equalTo: self.layoutMarginsGuide.leadingAnchor),
+            self.letsGoButton.trailingAnchor.constraint(equalTo: self.layoutMarginsGuide.trailingAnchor),
+            self.letsGoButton.heightAnchor.constraint(equalToConstant: 40),
+            self.letsGoButton.topAnchor.constraint(equalTo: self.trailReportLabel.bottomAnchor)])
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)

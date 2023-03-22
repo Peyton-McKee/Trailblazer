@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class RetrievingMapLoadingView: UIView {
+final class RetrievingMapLoadingView: UIView {
     lazy var loadingHStack: UIStackView = {
         var stackView = UIStackView()
         stackView.axis = .horizontal

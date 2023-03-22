@@ -112,6 +112,7 @@
 		15D2F82829C64330000AE5B5 /* RoutingErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2F82729C64330000AE5B5 /* RoutingErrors.swift */; };
 		15D2F82A29C6B15D000AE5B5 /* GraphErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2F82929C6B15D000AE5B5 /* GraphErrors.swift */; };
 		15D2F82C29C6BC5C000AE5B5 /* NotificationErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2F82B29C6BC5C000AE5B5 /* NotificationErrors.swift */; };
+		15D2F83029CA83F6000AE5B5 /* InteractiveMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D2F82F29CA83F6000AE5B5 /* InteractiveMapView.swift */; };
 		15E644A129A92BBC0048DAEB /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644A029A92BBC0048DAEB /* Map.swift */; };
 		15E644A929A947C50048DAEB /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644A829A947C50048DAEB /* UserAPI.swift */; };
 		15E644AB29A947FF0048DAEB /* MapAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E644AA29A947FF0048DAEB /* MapAPI.swift */; };
@@ -258,6 +259,7 @@
 		15D2F82729C64330000AE5B5 /* RoutingErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingErrors.swift; sourceTree = "<group>"; };
 		15D2F82929C6B15D000AE5B5 /* GraphErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphErrors.swift; sourceTree = "<group>"; };
 		15D2F82B29C6BC5C000AE5B5 /* NotificationErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationErrors.swift; sourceTree = "<group>"; };
+		15D2F82F29CA83F6000AE5B5 /* InteractiveMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveMapView.swift; sourceTree = "<group>"; };
 		15E644A029A92BBC0048DAEB /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
 		15E644A829A947C50048DAEB /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		15E644AA29A947FF0048DAEB /* MapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAPI.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 			isa = PBXGroup;
 			children = (
 				150D063528F8E0C00051F160 /* RouteOverviewView.swift */,
+				15D2F82F29CA83F6000AE5B5 /* InteractiveMapView.swift */,
 				150828D52943AF320060B341 /* LoadingView.swift */,
 				1591DBB02916D9BE00978FD8 /* CancelTrailReportView.swift */,
 				1521C49E2984B82B0085F868 /* RetrievingMapLoadingView.swift */,
@@ -836,6 +839,7 @@
 				15CA7EE329C0EA7800388CFD /* RoutingPreferencesView.swift in Sources */,
 				1591DBB12916D9BE00978FD8 /* CancelTrailReportView.swift in Sources */,
 				150D062828F529260051F160 /* UserSettingsViewController.swift in Sources */,
+				15D2F83029CA83F6000AE5B5 /* InteractiveMapView.swift in Sources */,
 				150D062C28F5D6C00051F160 /* TrailReports.swift in Sources */,
 				15E644AF29A949720048DAEB /* UserRouteAPI.swift in Sources */,
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,
