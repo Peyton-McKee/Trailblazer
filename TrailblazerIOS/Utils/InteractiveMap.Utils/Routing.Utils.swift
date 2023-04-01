@@ -173,15 +173,13 @@ extension InteractiveMapViewController {
     {
         let startTime = Date.now
         var destinationVertex = graph.vertices.first(where: {$0.value == destination})
-        if destinationVertex == nil
-        {
+        if destinationVertex == nil {
             destinationVertex = graph.vertices.first(where: {$0.value.title == destination.title})
         }
         guard let destination = destinationVertex else {
             throw RoutingErrors.destinationNotFoundError
         }
-        if let pathToDestination = DijkstraShortestPath(graph, source: originVertex).pathTo(destination)
-        {
+        if let pathToDestination = DijkstraShortestPath(graph, source: originVertex).pathTo(destination) {
             print("Took \(Date.now.timeIntervalSince(startTime)) seconds to find route")
             self.pathCreated = pathToDestination
             return pathToDestination
@@ -278,7 +276,7 @@ extension InteractiveMapViewController {
         self.interactiveMapView.removeOverlays(previousOverlays)
         if self.routeInProgress {
             self.interactiveMapView.addAnnotations(foundAnnotations)
-            connectivityController.setRoute(route: routes)
+            self.connectivityController.setRoute(route: routes)
             self.canFindPathAgain = true
         }
     }

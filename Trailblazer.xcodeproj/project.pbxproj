@@ -509,8 +509,8 @@
 			isa = PBXGroup;
 			children = (
 				158749F627D82635001B9025 /* TrailblazerIOS */,
-				153DABAB2936B9C8001ABAAD /* Shared */,
 				1591DBB7291AE7B800978FD8 /* Trailblazer Watch App */,
+				153DABAB2936B9C8001ABAAD /* Shared */,
 				158749F527D82635001B9025 /* Products */,
 				153DABAC2936C44A001ABAAD /* Frameworks */,
 			);
@@ -622,12 +622,12 @@
 		15E644A429A946200048DAEB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				153F2DCD29BEBEAE00CCD553 /* TitleViews */,
 				15CA7EE629C0ED8D00388CFD /* MoreSettingsViews */,
 				15CA7EE129C0EA3100388CFD /* RoutingPreferencesViews */,
 				153F2DE529C03D0400CCD553 /* AlertPreferencesViews */,
 				153F2DD229BEDD0F00CCD553 /* SignUpViews */,
 				153F2DCF29BEC61200CCD553 /* SignInViews */,
-				153F2DCD29BEBEAE00CCD553 /* TitleViews */,
 				153F2DDE29BFA84500CCD553 /* MapSelectorViews */,
 				15CA7EDC29C063C200388CFD /* UserTrailReportsViews */,
 				153F2DD929BF8DB000CCD553 /* UserSettingsViews */,

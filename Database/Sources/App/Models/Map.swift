@@ -39,6 +39,9 @@ final class Map: Model, Content {
     @Children(for: \.$map)
     var mapConnector: [MapConnector]
     
+    @Children(for: \.$map)
+    var trailReports: [TrailReport]
+    
     init() {}
     
     init(id: UUID? = nil, name: String, initialLocationLatitude: Float, initialLocationLongitude: Float, mountainReportUrl: String?, liftStatusElementId: String?, trailStatusElementId: String?){

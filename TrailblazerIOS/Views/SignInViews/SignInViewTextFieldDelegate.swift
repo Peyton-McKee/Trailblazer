@@ -17,8 +17,8 @@ extension SignInView: UITextFieldDelegate{
         {
             textField.resignFirstResponder()
             
-            self.signInButton.userActivity?.userInfo?["password"] =  self.passwordTextField.text
-            self.signInButton.userActivity?.userInfo?["username"] =  self.usernameTextField.text
+            self.signInButton.userActivity?.userInfo?["password"] = self.passwordTextField.text
+            self.signInButton.userActivity?.userInfo?["username"] = self.usernameTextField.text
             
             self.vc?.signInButtonPressed(sender: signInButton)
         }

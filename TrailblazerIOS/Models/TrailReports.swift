@@ -25,4 +25,5 @@ struct TrailReport: Codable {
     var dateMade: String
     var trailMadeOn: String
     var userID : String?
+    var mapID: String?
 }

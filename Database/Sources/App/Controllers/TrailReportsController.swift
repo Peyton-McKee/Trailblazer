@@ -26,7 +26,7 @@ struct TrailReportsController: RouteCollection {
     throws -> EventLoopFuture<TrailReport> {
         let data = try req.content.decode(CreateTrailReportData.self)
         
-        let trailReport = TrailReport(type: data.type, latitude: data.latitude, longitude: data.longitude, dateMade: data.dateMade, trailMadeOn: data.trailMadeOn, userID: data.userID)
+        let trailReport = TrailReport(type: data.type, latitude: data.latitude, longitude: data.longitude, dateMade: data.dateMade, trailMadeOn: data.trailMadeOn, userID: data.userID, mapID: data.mapID)
         
         return trailReport.save(on: req.db).map { trailReport }
     }
@@ -59,4 +59,5 @@ struct CreateTrailReportData: Content{
     let dateMade: String
     let trailMadeOn: String
     let userID: UUID
+    let mapID: UUID
 }

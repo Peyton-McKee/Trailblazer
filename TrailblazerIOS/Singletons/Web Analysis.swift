@@ -236,17 +236,3 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
         return result
     }
 }
-
-
-//    let liftNames = ["Barker Mountain Express #1", "South Ridge Express #2", "Quantum Leap Triple #3", "Locke Mountain Triple #4", /*"Alera Group Competition Lift #5",*/ "North Peak Express #6", "Chondola #7", "Spruce Peak Triple #8", "White Cap Quad #9", "White Heat Quad #10", "Little White Cap Quad #11", "Aurora Peak Quad #12", "Jordan Mountain Double #13", "Jordan Bowl Express #14", /*"OZ Quad #15"*/]
-//    let whiteCapTrailNames = ["Salvation", "Heat's Off", "Obsession", "Chutzpah", "White Heat", "Shock Wave", "Upper Tempest", "Jibe", "Heat's On", "Green Cheese", "Upper Moonstruck", "Assumption", "Starlight", "Starstruck", "Starwood", "Starburst", "Bear Paw", "Wildfire", "Cutoff", "Snowbound"]
-//    let lockeTrailNames = ["Goat Path", "Upper Cut", "Upper Sunday Punch", "Locke Line", "Jim's Whim", "T2", "Bim's Whim", "Cascades", "Road Runner", "Lower Upper Cut", "Sunday Punch", "Tightwire"]
-//    let barkerTrailNames = ["Three Mile Trail", "Lazy River", "Sluice", "Right Stuff", "Agony", "Top Gun", "Ecstasy", "Jungle Road", "South Paw", "Rocking Chair", "Tourist Trap"]
-//    let southRidgeNames = ["Ridge Run", "Broadway", "Lower Lazy River", "Thataway", "Mixing Bowl", "Lower Chondi Line", "Who-Ville", "Wonderland Park", "Northway", "Spectator", "Double Dipper", "Sundance"]
-//    let spruceNames = ["Sirius", "Upper Downdraft", "American Express", "Upper Risky Business", "Gnarnia", "Lower Downdraft"]
-//    let northPeakNames = ["Paradigm", "Second Mile", "Grand Rapids", "Dream Maker", "T72", "Sensation", "Dream Maker", "Escapade", "3D", "Second Thoughts"]
-//    let auroraNames = ["Cyclone", "Northern Lights", "Witch Way", "Airglow", "Black Hole", "Firestar", "Lights Out", "Borealis", "Vortex", "Quantum Leap"]
-//    let ozNames = ["Tin Woodsman", "Kansas"]
-//
-//    let jordanNames = ["Lollapalooza", "Excalibur", "Rogue Angel", "Caramba", "Blind Ambition"]
-    

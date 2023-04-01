@@ -33,11 +33,14 @@ final class TrailSelectorView : UIView {
     var shouldShowSearchResults = false
     var selectedOrigin : ImageAnnotation? = nil
     
-    weak var viewController : InteractiveMapViewController?
+    let vertices : [Vertex<ImageAnnotation>]
     
-    init(vc: InteractiveMapViewController) {
-        self.viewController = vc
-        super.init(frame: vc.view.frame)
+    let selectedTrail: (_ origin: ImageAnnotation?, _ destination: ImageAnnotation) -> Void
+    
+    init(frame: CGRect, vertices: [Vertex<ImageAnnotation>], selectedTrail: @escaping (_ origin: ImageAnnotation?, _ destination: ImageAnnotation) -> Void) {
+        self.vertices = vertices
+        self.selectedTrail = selectedTrail
+        super.init(frame: frame)
         self.configureSearchBarTableView()
         NotificationCenter.default.addObserver(self, selector: #selector(reloadMyTrails), name: Notification.Name.Names.configureTrailSelector, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(filterTrails), name: Notification.Name.Names.filterTrails, object: nil)
@@ -76,7 +79,7 @@ final class TrailSelectorView : UIView {
     private func createMyTrails()
     {
         var foundTrails : [String] = []
-        for annotation in self.viewController!.selectedGraph.vertices.map({ $0.value })
+        for annotation in self.vertices.map({ $0.value })
         {
             if(!foundTrails.contains(annotation.title!))
             {
@@ -236,7 +239,7 @@ extension TrailSelectorView: UITableViewDelegate, UITableViewDataSource
             switch currentTextFieldType
             {
             case .destination:
-                viewController?.selectedTrail(origin: self.selectedOrigin, destination: cell.cellTrail!)
+                self.selectedTrail(self.selectedOrigin, cell.cellTrail!)
                 self.isPresented = false
             case .origin:
                 currentTextField?.text = cell.cellTrail?.title

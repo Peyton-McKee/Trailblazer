@@ -14,6 +14,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     @ObservedObject var connectivityController = ConnectivityController.shared
     
     static var currentUser : User = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
+    
     static var mapId: String = {
         if let str = UserDefaults.standard.value(forKey: "mapId") as? String {
             return str
@@ -38,6 +39,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     }
     
     var wasSelectedWithOrigin = false
+    
     var didChooseDestination = false
     
     lazy var loadingScreen : LoadingView = {
@@ -121,7 +123,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     
     lazy var mapLoadingView = RetrievingMapLoadingView(frame: self.view.frame)
     
-    lazy var trailSelectorView = TrailSelectorView(vc: self)
+    lazy var trailSelectorView = TrailSelectorView(frame: self.view.frame, vertices: self.selectedGraph.vertices, selectedTrail: self.selectedTrail)
 
     lazy var trailSelectorMenu : SideMenuFramework = {
         let trailSelectorMenu = SideMenuFramework(vc: self)
@@ -161,14 +163,12 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     override func viewDidAppear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.createNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.updateInitialRegion, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.cancelRoute, object: nil)
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.Names.updateRoutingPreference, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(createNotification), name: Notification.Name.Names.createNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(receiveDataFromMapInterpreter), name: Notification.Name.Names.updateInitialRegion, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelRoute), name: Notification.Name.Names.cancelRoute, object: nil)
     }
     
     deinit {
+        self.cancelRoute()
         print("deallocating interactive map view controller")
     }
     
@@ -221,11 +221,11 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     {
         self.interactiveMapView.removeOverlays(self.interactiveMapView.overlays)
         self.interactiveMapView.removeAnnotations(self.interactiveMapView.annotations)
-        if self.isRealTimeGraph{
+        if self.isRealTimeGraph {
             self.interactiveMapView.addOverlays(WebAnalysis.shared.mapView.overlays)
             self.interactiveMapView.addAnnotations(WebAnalysis.shared.mapView.annotations)
         }
-        else{
+        else {
             self.interactiveMapView.addOverlays(MapInterpreter.shared.mapView.overlays)
             self.interactiveMapView.addAnnotations(MapInterpreter.shared.mapView.annotations)
         }
@@ -235,8 +235,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     /// paramaters:
     ///     - origin: The annotation you want to find the nearest annotation for
     /// Finds the annotation the least distacne from the passed in origin
-    func getClosestAnnotation(origin: ImageAnnotation) throws -> Vertex<ImageAnnotation>
-    {
+    func getClosestAnnotation(origin: ImageAnnotation) throws -> Vertex<ImageAnnotation> {
         self.selectedGraph.removeVertices({$0.value.title == "Your Location"})
         guard var closestAnnotation = self.selectedGraph.vertices.first else {
             throw GraphErrors.selectedGraphHasNoVerticesError

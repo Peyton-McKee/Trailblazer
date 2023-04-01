@@ -54,12 +54,12 @@
          <EnvironmentVariable
             key = "OS_ACTIVITY_MODE"
             value = "disable"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </EnvironmentVariable>
       </EnvironmentVariables>
       <LocationScenarioReference
-         identifier = "New York, NY, USA"
-         referenceType = "1">
+         identifier = "../../Shared/Game Test.gpx"
+         referenceType = "0">
       </LocationScenarioReference>
    </LaunchAction>
    <ProfileAction

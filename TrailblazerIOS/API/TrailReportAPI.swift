@@ -11,22 +11,22 @@ extension APIHandler {
     /// getTrailReports: void -> [TrailReport] || Error
     /// gets all the trail reports being stored on the database
     func getTrailReports(completion: @escaping (Result<[TrailReport], Error>) -> Void) {
-        let url = URL(string: "\(self.baseURL)/api/trail-reports")!
+        let url = URL(string: "\(self.baseURL)/api/maps/\(InteractiveMapViewController.mapId)/trail-reports")!
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else {
-                print(error?.localizedDescription ?? "Unknown error")
+                completion(.failure(error!))
                 return
             }
             
             let decoder = JSONDecoder()
-            if let trailReports = try? decoder.decode([TrailReport].self, from: data) {
-                DispatchQueue.main.async {
-                    completion(.success(trailReports))
-                }
-            } else {
-                print("Unable to parse JSON response for getting trail reports")
-                completion(.failure(error!))
+            do {
+                let trailReports = try decoder.decode([TrailReport].self, from: data)
+                    DispatchQueue.main.async {
+                        completion(.success(trailReports))
+                    }
+            } catch {
+                completion(.failure(error))
             }
         }.resume()
     }
@@ -70,11 +70,11 @@ extension APIHandler {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 let decoder = JSONDecoder()
-                if let item = try? decoder.decode(TrailReport.self, from: data) {
-                    print(item.type)
-                } else {
-                    print(data)
-                    print("Bad JSON received back for saving trail report.")
+                do {
+                    let item = try decoder.decode(TrailReport.self, from: data)
+                    print(item)
+                } catch {
+                    print(error)
                 }
             }
         }.resume()

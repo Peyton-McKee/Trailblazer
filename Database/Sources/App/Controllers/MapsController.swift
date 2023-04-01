@@ -19,6 +19,7 @@ struct MapsController: RouteCollection {
         mapsRoute.get(":mapId", use: getHandler)
         mapsRoute.get(":mapId", "map-trails", use: getMapTrailsHandler)
         mapsRoute.get(":mapId", "map-connectors", use: getMapConnectorsHandler)
+        mapsRoute.get(":mapId", "trail-reports", use: getTrailReportsHandler)
         mapsRoute.delete(":mapId", use: deleteHandler)
         mapsRoute.delete(use: deleteAllHandler)
     }
@@ -43,7 +44,7 @@ struct MapsController: RouteCollection {
         let mapConnectors = try await map.$mapConnector.get(on: req.db)
         
         var publicMapConnectors : [PublicMapConnector] = []
-
+        
         for mapConnector in mapConnectors {
             try await publicMapConnectors.append(mapConnector.transform(req: req))
         }
@@ -68,17 +69,7 @@ struct MapsController: RouteCollection {
                 map.$mapTrail.get(on: req.db)
             }
     }
-    //    func deleteMapTrailsHandler(_ req: Request)
-    //      -> EventLoopFuture<HTTPStatus> {
-    //      // 2
-    //      Map.find(req.parameters.get("mapId"), on: req.db)
-    //        .unwrap(or: Abort(.notFound))
-    //        .flatMap { map in
-    //          // 3
-    //            map.$mapTrail.query(on: req.db).
-    //
-    //        }
-    //    }
+    
     
     func getMapConnectorsHandler(_ req: Request) -> EventLoopFuture<[MapConnector]> {
         Map.find(req.parameters.get("mapId"), on: req.db)
@@ -87,23 +78,66 @@ struct MapsController: RouteCollection {
                 map.$mapConnector.get(on: req.db)
             }
     }
-    func deleteMapConnectorsHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        Map.find(req.parameters.get("mapId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap{ map in
-                map.mapConnector.delete(on: req.db).transform(to: .noContent)
-            }
+    
+    func getTrailReportsHandler(_ req: Request) async throws -> [TrailReport] {
+        guard let map = try await Map.find(req.parameters.get("mapId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        return try await map.$trailReports.get(on: req.db)
     }
-    func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        Map.find(req.parameters.get("mapId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { map in
-                map.delete(on: req.db).transform(to: HTTPStatus.noContent)
-            }
+    
+    func deleteHandler(_ req: Request) async throws -> HTTPStatus {
+        guard let map = try await Map.find(req.parameters.get("mapId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        let mapConnectors = try await map.$mapConnector.get(on: req.db)
+        
+        for mapConnector in mapConnectors {
+            let points = try await mapConnector.$points.get(on: req.db)
+            try await points.delete(on: req.db)
+        }
+        
+        try await mapConnectors.delete(on: req.db)
+        
+        let mapTrails = try await map.$mapTrail.get(on: req.db)
+        
+        for mapTrail in mapTrails {
+            let points = try await mapTrail.$points.get(on: req.db)
+            try await points.delete(on: req.db)
+        }
+        
+        try await mapTrails.delete(on: req.db)
+        
+        try await map.delete(on: req.db)
+        
+        return .noContent
     }
-    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
-        Map.query(on: req.db)
-            .delete(force: true).transform(to: .noContent)
+    func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
+        let maps = try await Map.query(on: req.db).all()
+        
+        for map in maps {
+            let mapConnectors = try await map.$mapConnector.get(on: req.db)
+            
+            for mapConnector in mapConnectors {
+                let points = try await mapConnector.$points.get(on: req.db)
+                try await points.delete(on: req.db)
+            }
+            
+            try await mapConnectors.delete(on: req.db)
+            
+            let mapTrails = try await map.$mapTrail.get(on: req.db)
+            
+            for mapTrail in mapTrails {
+                let points = try await mapTrail.$points.get(on: req.db)
+                try await points.delete(on: req.db)
+            }
+            
+            try await mapTrails.delete(on: req.db)
+            
+            try await map.delete(on: req.db)
+        }
+        
+        return .noContent
     }
 }
 

@@ -36,7 +36,7 @@ extension InteractiveMapViewController {
             originAnnotation.subtitle = TrailReportType.snowmaking.rawValue
         }
         guard let currentUserId = Self.currentUser.id else { return }
-        APIHandler.shared.saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)"))
+        APIHandler.shared.saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)", mapID: "\(Self.mapId)"))
         closestTrail.trailReport = originAnnotation
         self.interactiveMapView.addAnnotation(originAnnotation)
     }
@@ -54,7 +54,7 @@ extension InteractiveMapViewController {
                 let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
                 self.trailReportAnnotation = ImageAnnotation()
                 self.trailReportAnnotation.coordinate = coordinate
-                presentTrailReportMenu()
+                self.presentTrailReportMenu()
             }
         }
     }

@@ -58,7 +58,6 @@ class MoreSettingViewController: UIViewController, ErrorHandler {
 
     @objc func logOutPressed(sender: UIButton)
     {
-        NotificationCenter.default.post(Notification(name: Notification.Name.Names.cancelRoute))
         UserDefaults.standard.removeObject(forKey: "userUsername")
         UserDefaults.standard.removeObject(forKey: "userPassword")
         UserDefaults.standard.removeObject(forKey: "userId")

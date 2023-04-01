@@ -35,10 +35,6 @@ extension InteractiveMapViewController {
         self.pathCreated = []
         self.trailSelectorView.isPresented = false
         self.cancelButton.isHidden = true
-        while self.selectedGraph.vertices.last?.value.title! == "Your Location"{
-            print("test")
-            self.selectedGraph.removeLastVertex()
-        }
         self.connectivityController.setRoute(route: [])
         self.showAllTrails()
     }
