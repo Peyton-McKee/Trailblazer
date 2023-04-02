@@ -66,6 +66,12 @@ struct MapTrailsController: RouteCollection {
 struct CreateMapTrailsData: Content{
     let name: String
     let difficulty: String
-   
     let mapId: UUID
+}
+
+struct PublicMapTrail: Content {
+    let id: UUID
+    let name: String
+    let difficulty: String
+    let points: [Point]
 }

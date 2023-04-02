@@ -68,3 +68,9 @@ struct CreateMapConnectorData: Content{
     let name: String
     let mapId: UUID
 }
+
+struct PublicMapConnector: Content {
+    let id: UUID
+    let name: String
+    let points: [Point]
+}

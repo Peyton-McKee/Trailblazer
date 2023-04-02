@@ -32,3 +32,10 @@ final class MapConnector: Model, Content {
         self.$map.id = mapID
     }
 }
+
+extension MapConnector {
+    func transform(req: Request) async throws -> PublicMapConnector {
+        let points = try await self.$points.get(on: req.db)
+        return PublicMapConnector(id: self.id!, name: self.name, points: points.sorted(by: { $0.order < $1.order }))
+    }
+}

@@ -78,3 +78,17 @@ import Foundation
     //     }
     
 //}
+
+///// createKeyTrailAnnotations: void -> void
+/////  Presents all the key annotations to the map
+//func createKeyTrailAnnotations()
+//{
+//    if isRealTimeGraph
+//    {
+//        //myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }).filter({ $0.status == .open }))
+//    }
+//    else
+//    {
+//        //myMap.addAnnotations(TrailsDatabase.keyAnnotations.map({ $0.value }))
+//    }
+//}

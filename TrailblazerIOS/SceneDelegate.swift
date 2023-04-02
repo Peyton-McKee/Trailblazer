@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            // if user is logged in before
-        if UserDefaults.standard.string(forKey: "userUsername") != nil {
+            // if user has selected a map
+        if UserDefaults.standard.string(forKey: "mapId") != nil {
                 // instantiate the main tab bar controller and set it as root view controller
                 // using the storyboard identifier we set earlier
                 let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
