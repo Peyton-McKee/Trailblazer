@@ -196,7 +196,7 @@ extension InteractiveMapViewController {
     private func assignOrigin() throws -> Vertex<ImageAnnotation>
     {
         guard let latitude = LocationManager.shared.location?.coordinate.latitude, let longitude = LocationManager.shared.location?.coordinate.longitude, LocationManager.shared.authorizationStatus == .authorizedWhenInUse else {
-            throw RoutingErrors.userDoesNotHaveLocationServicesEnabledError
+            throw UserErrors.userDoesNotHaveLocationServicesEnabledError
         }
         let origin = createAnnotation(title: "Your Location", latitude: latitude, longitude: longitude, difficulty: .easy)
         return Vertex<ImageAnnotation>(origin)
