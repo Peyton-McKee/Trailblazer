@@ -25,7 +25,7 @@
 		15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15213F022904800D0027749B /* BellmanFordGraphStructure.swift */; };
 		1521C49F2984B82B0085F868 /* RetrievingMapLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C49E2984B82B0085F868 /* RetrievingMapLoadingView.swift */; };
 		1521C4A12984C1260085F868 /* MapSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C4A02984C1260085F868 /* MapSelectorViewController.swift */; };
-		1521C4A3298648DD0085F868 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C4A2298648DD0085F868 /* CustomCollectionViewCell.swift */; };
+		1521C4A3298648DD0085F868 /* MapSelectorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1521C4A2298648DD0085F868 /* MapSelectorTableViewCell.swift */; };
 		15249451290754DA009E7059 /* UnusedFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249450290754DA009E7059 /* UnusedFunctions.swift */; };
 		15249453290823CC009E7059 /* UserSettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */; };
 		1524945529082897009E7059 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1524945429082897009E7059 /* Settings.swift */; };
@@ -57,7 +57,7 @@
 		153F2DDB29BF8DD800CCD553 /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DDA29BF8DD800CCD553 /* UserSettingsView.swift */; };
 		153F2DDD29BF903900CCD553 /* UserSettingsViewTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DDC29BF903900CCD553 /* UserSettingsViewTableViewDelegate.swift */; };
 		153F2DE029BFA86C00CCD553 /* MapSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DDF29BFA86C00CCD553 /* MapSelectorView.swift */; };
-		153F2DE229BFA8AC00CCD553 /* MapSelectorCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DE129BFA8AC00CCD553 /* MapSelectorCollectionViewDelegate.swift */; };
+		153F2DE229BFA8AC00CCD553 /* MapSelectorTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DE129BFA8AC00CCD553 /* MapSelectorTableViewDelegate.swift */; };
 		153F2DE429C039F100CCD553 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DE329C039F100CCD553 /* APIHandler.swift */; };
 		153F2DE729C03D1D00CCD553 /* AlertPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DE629C03D1D00CCD553 /* AlertPreferencesView.swift */; };
 		153F2DE929C03FB800CCD553 /* ToggleOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DE829C03FB800CCD553 /* ToggleOptionView.swift */; };
@@ -171,7 +171,7 @@
 		15213F022904800D0027749B /* BellmanFordGraphStructure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BellmanFordGraphStructure.swift; sourceTree = "<group>"; };
 		1521C49E2984B82B0085F868 /* RetrievingMapLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievingMapLoadingView.swift; sourceTree = "<group>"; };
 		1521C4A02984C1260085F868 /* MapSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorViewController.swift; sourceTree = "<group>"; };
-		1521C4A2298648DD0085F868 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		1521C4A2298648DD0085F868 /* MapSelectorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorTableViewCell.swift; sourceTree = "<group>"; };
 		15249450290754DA009E7059 /* UnusedFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnusedFunctions.swift; sourceTree = "<group>"; };
 		15249452290823CC009E7059 /* UserSettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsTableViewCell.swift; sourceTree = "<group>"; };
 		1524945429082897009E7059 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		153F2DDA29BF8DD800CCD553 /* UserSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		153F2DDC29BF903900CCD553 /* UserSettingsViewTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsViewTableViewDelegate.swift; sourceTree = "<group>"; };
 		153F2DDF29BFA86C00CCD553 /* MapSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorView.swift; sourceTree = "<group>"; };
-		153F2DE129BFA8AC00CCD553 /* MapSelectorCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		153F2DE129BFA8AC00CCD553 /* MapSelectorTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorTableViewDelegate.swift; sourceTree = "<group>"; };
 		153F2DE329C039F100CCD553 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		153F2DE629C03D1D00CCD553 /* AlertPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesView.swift; sourceTree = "<group>"; };
 		153F2DE829C03FB800CCD553 /* ToggleOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleOptionView.swift; sourceTree = "<group>"; };
@@ -362,7 +362,6 @@
 				153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */,
 				150C6EB029035BE10055AD59 /* Colors.Utils.swift */,
 				15D2F82329C40680000AE5B5 /* Theme.Utils.swift */,
-				1521C4A2298648DD0085F868 /* CustomCollectionViewCell.swift */,
 				153F2DC829BD7C2400CCD553 /* NotificationNames.swift */,
 			);
 			path = Miscellaneous.Utils;
@@ -473,8 +472,9 @@
 		153F2DDE29BFA84500CCD553 /* MapSelectorViews */ = {
 			isa = PBXGroup;
 			children = (
+				1521C4A2298648DD0085F868 /* MapSelectorTableViewCell.swift */,
 				153F2DDF29BFA86C00CCD553 /* MapSelectorView.swift */,
-				153F2DE129BFA8AC00CCD553 /* MapSelectorCollectionViewDelegate.swift */,
+				153F2DE129BFA8AC00CCD553 /* MapSelectorTableViewDelegate.swift */,
 			);
 			path = MapSelectorViews;
 			sourceTree = "<group>";
@@ -785,7 +785,7 @@
 				15B703EF29BC1C5E00F634FD /* MapTapping.Utils.swift in Sources */,
 				15545B0E28E224C8005D0886 /* Trail.swift in Sources */,
 				15E644A129A92BBC0048DAEB /* Map.swift in Sources */,
-				1521C4A3298648DD0085F868 /* CustomCollectionViewCell.swift in Sources */,
+				1521C4A3298648DD0085F868 /* MapSelectorTableViewCell.swift in Sources */,
 				15CA7EE529C0EB0E00388CFD /* RoutingPreferencesPickerViewDelegate.swift in Sources */,
 				15545B1C28E4CD42005D0886 /* TrailSelectorTableViewCell.swift in Sources */,
 				15D2F82C29C6BC5C000AE5B5 /* NotificationErrors.swift in Sources */,
@@ -846,7 +846,7 @@
 				1544ACE72963D99300AC8E0A /* Point.swift in Sources */,
 				15F92C5A293BD5B000792054 /* RoutingPreferencesViewController.swift in Sources */,
 				158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */,
-				153F2DE229BFA8AC00CCD553 /* MapSelectorCollectionViewDelegate.swift in Sources */,
+				153F2DE229BFA8AC00CCD553 /* MapSelectorTableViewDelegate.swift in Sources */,
 				153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */,
 				15CA7EE829C0ED9C00388CFD /* MoreSettingsView.swift in Sources */,
 				15CA7EDE29C063D400388CFD /* UserTrailReportsView.swift in Sources */,
@@ -1064,7 +1064,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1099,7 +1099,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = .trailblazerIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

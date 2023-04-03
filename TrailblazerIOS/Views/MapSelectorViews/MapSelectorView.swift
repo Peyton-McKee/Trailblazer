@@ -11,16 +11,12 @@ import UIKit
 final class MapSelectorView : UIView {
     var maps: [MapPreview] = []
     
-    lazy var collectionView : UICollectionView = {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.minimumLineSpacing = 0
-        flowLayout.minimumInteritemSpacing = 0
-        let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: flowLayout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .black
-        collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
-        return collectionView
+    lazy var tableView : UITableView = {
+        let tableView = UITableView(frame: CGRect(x: self.frame.minX + 16, y: self.frame.minY + 16, width: self.frame.width - 32, height: self.frame.height - 16))
+        tableView.register(MapSelectorTableViewCell.self, forCellReuseIdentifier: "mapSelectorTableViewCell")
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
     }()
     
     weak var vc: MapSelectorViewController?
@@ -28,7 +24,8 @@ final class MapSelectorView : UIView {
     init(vc: MapSelectorViewController) {
         self.vc = vc
         super.init(frame: vc.view.frame)
-        self.addSubview(collectionView)
+        self.addSubview(self.tableView)
+        self.tableView.backgroundColor = .black
     }
     
     required init?(coder: NSCoder) {
@@ -37,6 +34,6 @@ final class MapSelectorView : UIView {
     
     func displayOptions(maps: [MapPreview]) {
         self.maps = maps
-        self.collectionView.reloadData()
+        self.tableView.reloadData()
     }
 }

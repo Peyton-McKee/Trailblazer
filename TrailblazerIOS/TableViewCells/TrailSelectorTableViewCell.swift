@@ -30,8 +30,8 @@ class TrailSelectorTableViewCell : UITableViewCell
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        addSubview(backView)
-        backView.addSubview(label)
+        self.addSubview(self.backView)
+        self.backView.addSubview(self.label)
         // Configure the view for the selected state
     }
 }

@@ -34,8 +34,8 @@ class TrailReportTypeTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         addSubview(backView)
-        backView.addSubview(settingImage)
-        backView.addSubview(lbl)
+        self.backView.addSubview(self.settingImage)
+        self.backView.addSubview(self.lbl)
         // Configure the view for the selected state
     }
 

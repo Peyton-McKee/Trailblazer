@@ -29,7 +29,7 @@ def save_mountain_to_database(mapInfo: MapInfo):
     initialLocationLongitude = initialLocation[0]
     jsonMap = {'name': name, 'initialLocationLatitude': iniitalLocationLatitude, 'initialLocationLongitude': initialLocationLongitude, 'mountainReportUrl': mountainReportUrl,
 'trailStatusElementId': trailStatusElementId, 'liftStatusElementId': liftStatusElementId}
-    baseURL = "http://localhost:8080/api"
+    baseURL = "http://35.172.135.117/api"
     mapUrl = baseURL + '/maps'
     mapConnectorURL = baseURL + '/map-connectors'
     mapTrailURL = baseURL + '/map-trails'

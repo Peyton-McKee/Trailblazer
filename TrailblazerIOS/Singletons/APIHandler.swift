@@ -9,5 +9,5 @@ import Foundation
 
 final class APIHandler : NSObject {
     static let shared = APIHandler()
-    let baseURL = "http://127.0.0.1:8080"
+    let baseURL = "http://35.172.135.117"
 }
