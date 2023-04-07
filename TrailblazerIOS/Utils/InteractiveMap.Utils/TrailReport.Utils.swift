@@ -18,6 +18,10 @@ extension InteractiveMapViewController {
     func createTrailReport(type: TrailReportType)
     {
         self.dismissTrailReportMenu()
+        guard let currentUserId = Self.currentUser.id else {
+            self.handle(error: UserErrors.userNotLoggedInError)
+            return
+        }
         let originAnnotation = createAnnotation(title: nil, latitude: self.trailReportAnnotation.coordinate.latitude, longitude: self.trailReportAnnotation.coordinate.longitude, difficulty: .easy)
         guard let closestTrail = try? getClosestAnnotation(origin: originAnnotation).value else { return }
         switch type
@@ -35,7 +39,6 @@ extension InteractiveMapViewController {
         case .snowmaking:
             originAnnotation.subtitle = TrailReportType.snowmaking.rawValue
         }
-        guard let currentUserId = Self.currentUser.id else { return }
         APIHandler.shared.saveTrailReporrt(TrailReport(type: originAnnotation.subtitle!, latitude: originAnnotation.coordinate.latitude, longitude: originAnnotation.coordinate.longitude, dateMade: "\(Date.now)", trailMadeOn: closestTrail.title!, userID: "\(currentUserId)", mapID: "\(Self.mapId)"))
         closestTrail.trailReport = originAnnotation
         self.interactiveMapView.addAnnotation(originAnnotation)

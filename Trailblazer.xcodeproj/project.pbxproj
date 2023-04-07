@@ -37,6 +37,7 @@
 		153B2E3A28ED135D00A23163 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3928ED135D00A23163 /* SignUpViewController.swift */; };
 		153B2E3C28ED1EDF00A23163 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3B28ED1EDF00A23163 /* User.swift */; };
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
+		153BDE2929DB33E40066E5AA /* UserErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BDE2829DB33E40066E5AA /* UserErrors.swift */; };
 		153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153DAB9729255CFC001ABAAD /* MapInterpreter.swift */; };
 		153DABAD2936C44A001ABAAD /* Trailblazer Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		153F2DB629BD700000CCD553 /* MapDelegate.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DB529BD700000CCD553 /* MapDelegate.Utils.swift */; };
@@ -185,6 +186,7 @@
 		153B2E3928ED135D00A23163 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		153B2E3B28ED1EDF00A23163 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
+		153BDE2829DB33E40066E5AA /* UserErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserErrors.swift; sourceTree = "<group>"; };
 		153DAB9729255CFC001ABAAD /* MapInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInterpreter.swift; sourceTree = "<group>"; };
 		153F2DB529BD700000CCD553 /* MapDelegate.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDelegate.Utils.swift; sourceTree = "<group>"; };
 		153F2DB729BD701500CCD553 /* TextFieldDelegate.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.Utils.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			children = (
 				150828D8294A89640060B341 /* DecodingErrors.swift */,
 				15D2F82729C64330000AE5B5 /* RoutingErrors.swift */,
+				153BDE2829DB33E40066E5AA /* UserErrors.swift */,
 				15D2F82929C6B15D000AE5B5 /* GraphErrors.swift */,
 				15D2F82B29C6BC5C000AE5B5 /* NotificationErrors.swift */,
 			);
@@ -802,6 +805,7 @@
 				150D063628F8E0C00051F160 /* RouteOverviewView.swift in Sources */,
 				1544ACE32957CC3C00AC8E0A /* MoreSettingsViewController.swift in Sources */,
 				153F2DB629BD700000CCD553 /* MapDelegate.Utils.swift in Sources */,
+				153BDE2929DB33E40066E5AA /* UserErrors.swift in Sources */,
 				153F2DC229BD745300CCD553 /* ButtonActions.Utils.swift in Sources */,
 				153F2DE729C03D1D00CCD553 /* AlertPreferencesView.swift in Sources */,
 				150D063028F7797B0051F160 /* CustomMarkerAnnotationViews.swift in Sources */,

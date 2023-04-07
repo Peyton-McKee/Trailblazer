@@ -11,7 +11,6 @@ enum RoutingErrors: Error {
     case destinationNotFoundError
     case routeNotFoundError
     case originNotFoundError
-    case userDoesNotHaveLocationServicesEnabledError
 }
 
 extension RoutingErrors: LocalizedError {
@@ -23,9 +22,6 @@ extension RoutingErrors: LocalizedError {
             return "Could not find route to destination"
         case .originNotFoundError:
             return "Could not find origin to match selected trail"
-        case .userDoesNotHaveLocationServicesEnabledError:
-            return "You do not have location services activated. Please activate to use this feature."
         }
-        
     }
 }
