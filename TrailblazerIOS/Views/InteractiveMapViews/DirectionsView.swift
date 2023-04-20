@@ -96,12 +96,21 @@ final class DirectionsView : UIView {
         }
         
         let last = route[lastIndex - 2]
-        
         let upcomingPoint = CLLocation(latitude: upcomingKeyAnnotation.value.coordinate.latitude, longitude: upcomingKeyAnnotation.value.coordinate.longitude)
         let lastPoint = CLLocation(latitude: last.value.coordinate.latitude, longitude: last.value.coordinate.longitude)
+
+        let orientation: Orientation;
+
+        if (lastIndex > 2) {
+            let secondToLast = route[lastIndex - 3]
+            let secondToLastPoint = CLLocation(latitude: secondToLast.value.coordinate.latitude, longitude: secondToLast.value.coordinate.longitude)
+            orientation = self.determineOrientation(p1: secondToLastPoint, p2: lastPoint, p3: upcomingPoint)
+        } else {
+            orientation = self.determineOrientation(p1: firstPoint, p2: lastPoint, p3: upcomingPoint)
+        }
+        
         
         let distanceToUpcomingKeyAnnotation = upcomingPoint.distance(from: firstPoint)
-        let orientation = orientation(p1: firstPoint, p2: lastPoint, p3: upcomingPoint)
         self.distanceLabel.text = "\(String(format:"%.0f", distanceToUpcomingKeyAnnotation * 3.28084)) feet"
         self.trailLabel.text = upcomingKeyAnnotation.value.title!
         switch orientation {
@@ -115,7 +124,7 @@ final class DirectionsView : UIView {
     }
     
     // Function to determine the orientation of three points
-    func orientation(p1: CLLocation, p2: CLLocation, p3: CLLocation) -> Orientation {
+    func determineOrientation(p1: CLLocation, p2: CLLocation, p3: CLLocation) -> Orientation {
         let val = (p2.coordinate.longitude - p1.coordinate.longitude) * (p3.coordinate.latitude - p2.coordinate.latitude) - (p2.coordinate.latitude - p1.coordinate.latitude) * (p3.coordinate.longitude - p2.coordinate.longitude)
         if val == 0 {
             return .straight // Points are collinear
