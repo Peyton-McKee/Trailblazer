@@ -16,7 +16,10 @@ extension InteractiveMapViewController {
     {
         self.routeOverviewMenu.dismissItems()
         self.cancelButton.isHidden = false
-        
+        self.directionsView.isHidden = false
+        self.searchBar.isHidden = true
+        self.reloadButtons()
+
         self.recenter()
         
         guard (Self.currentUser.id) != nil else{return}
@@ -35,6 +38,9 @@ extension InteractiveMapViewController {
         self.pathCreated = []
         self.trailSelectorView.isPresented = false
         self.cancelButton.isHidden = true
+        self.directionsView.isHidden = true
+        self.searchBar.isHidden = false
+        self.reloadButtons()
         self.connectivityController.setRoute(route: [])
         self.showAllTrails()
     }

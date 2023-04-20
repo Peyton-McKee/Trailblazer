@@ -114,10 +114,16 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     }()
     
     lazy var routeOverviewView : RouteOverviewView = {
-        let routeOverviewView = RouteOverviewView(frame: CGRect(x: 0, y: UIScreen.main.bounds.size.height, width: UIScreen.main.bounds.size.width, height: 200))
+        let routeOverviewView = RouteOverviewView(frame: CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: 200))
         routeOverviewView.viewFullDirectionsButton.addTarget(self, action: #selector(presentFullDirections), for: .touchUpInside)
         routeOverviewView.letsGoButton.addTarget(self, action: #selector(letsGoButtonPressed), for: .touchUpInside)
         return routeOverviewView
+    }()
+    
+    lazy var directionsView : DirectionsView = {
+        let directionsView = DirectionsView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 100))
+        directionsView.isHidden = true
+        return directionsView
     }()
     
     
@@ -155,6 +161,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         self.configureButtons()
         self.view.addSubview(self.loadingScreen)
         self.view.addSubview(self.mapLoadingView)
+        self.view.addSubview(self.directionsView)
         self.mapLoadingView.isHidden = false
         self.getMap(id: Self.mapId)
         self.tabBarController?.tabBar.backgroundColor = .black
@@ -251,7 +258,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     
     @objc func reloadButtons()
     {
-        if(self.searchBar.isDroppedDown)
+        if(self.searchBar.isDroppedDown || self.routeInProgress)
         {
             self.recenterButtonYConstraint.constant = 120
             self.cancelButtonYContraint.constant = 120

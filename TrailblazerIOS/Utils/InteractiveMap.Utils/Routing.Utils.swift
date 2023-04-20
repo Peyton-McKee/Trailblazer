@@ -222,6 +222,7 @@ extension InteractiveMapViewController {
                 let newRoute = try self.createRoute(origin: origin, destination: destination)
                 DispatchQueue.main.async {
                     self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
+                    self.directionsView.displayUpcomingDirectionFor(route: newRoute)
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -233,7 +234,9 @@ extension InteractiveMapViewController {
     
     func displayRouteHelper(route: [Vertex<ImageAnnotation>], previousOverlays: [MKOverlay], previousAnnotations: [ImageAnnotation])
     {
-        var previousVertex = route[0]
+        guard var previousVertex = route.first else {
+            return
+        }
         var foundAnnotations : [ImageAnnotation] = []
         var routes : [Route] = []
         var id = 0

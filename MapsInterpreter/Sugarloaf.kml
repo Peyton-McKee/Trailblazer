@@ -305,7 +305,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Upper Stub’s Trail</name>
+        <name>Upper Stubs</name>
         <styleUrl>#line-558B2F-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -459,7 +459,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Condo X Cut</name>
+        <name>Condo X-Cut</name>
         <styleUrl>#line-558B2F-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -565,7 +565,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Lower Winter’s Way</name>
+        <name>Lower Winters Way</name>
         <styleUrl>#line-558B2F-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -673,7 +673,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Lower Poleline</name>
+        <name>Lower Pole Line</name>
         <styleUrl>#line-558B2F-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -743,7 +743,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Lower Stub’s</name>
+        <name>Lower Stubs</name>
         <styleUrl>#line-558B2F-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1174,7 +1174,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>The Landing</name>
+        <name>TheLanding</name>
         <styleUrl>#line-558B2F-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1197,7 +1197,7 @@
     <Folder>
       <name>Intermediate</name>
       <Placemark>
-        <name>Bucksin</name>
+        <name>Buckskin</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1312,7 +1312,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Tote Road Ext.</name>
+        <name>Tote Road Ext</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1351,7 +1351,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>King’s Landing</name>
+        <name>Kings Landing</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1688,7 +1688,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Upper Poleline</name>
+        <name>Upper Pole Line</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1734,7 +1734,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Upper Crusher</name>
+        <name>Upper Cruiser</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -1807,7 +1807,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Lower Crusher</name>
+        <name>Lower Cruiser</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2059,7 +2059,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Lower Haywire</name>
+        <name>Haywire</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2150,7 +2150,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Mid Station X-Cut</name>
+        <name>Midstation X-Cut</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2206,7 +2206,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Cinder Hoe</name>
+        <name>Cinderhoe</name>
         <styleUrl>#line-0288D1-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2230,7 +2230,7 @@
     <Folder>
       <name>Advanced</name>
       <Placemark>
-        <name>Binder Ext.</name>
+        <name>Binder Ext</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2257,7 +2257,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Spillway X Cut</name>
+        <name>Spillway X-Cut</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2293,7 +2293,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Haul Back</name>
+        <name>Haulback</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2452,7 +2452,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Narrow Gauge Ext.</name>
+        <name>Narrow Gauge Ext</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2526,37 +2526,6 @@
             -70.3102486,45.0400903,0
             -70.3104364,45.0402912,0
             -70.3106169,45.0404149,0
-          </coordinates>
-        </LineString>
-      </Placemark>
-      <Placemark>
-        <name>Upper Winter’s Way</name>
-        <styleUrl>#line-757575-1200-nodesc</styleUrl>
-        <LineString>
-          <tessellate>1</tessellate>
-          <coordinates>
-            -70.3150981,45.0349478,0
-            -70.314723,45.0352444,0
-            -70.314487,45.0354112,0
-            -70.3143153,45.0356007,0
-            -70.3143046,45.0358964,0
-            -70.3144012,45.0361997,0
-            -70.3142832,45.0365332,0
-            -70.3141115,45.036791,0
-            -70.3139398,45.037026,0
-            -70.3137574,45.0372383,0
-            -70.3138004,45.0374051,0
-            -70.3136823,45.0375492,0
-            -70.3133927,45.037769,0
-            -70.3132103,45.0380723,0
-            -70.313103,45.038368,0
-            -70.3130493,45.0385651,0
-            -70.3128991,45.0387698,0
-            -70.3127919,45.038982,0
-            -70.3126524,45.0392701,0
-            -70.3126095,45.0395052,0
-            -70.3125236,45.0396947,0
-            -70.3123412,45.039907,0
           </coordinates>
         </LineString>
       </Placemark>
@@ -2735,7 +2704,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Sheer Boom</name>
+        <name>Sheerboom</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2754,7 +2723,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Lower Sheer Boom</name>
+        <name>Lower Sheerboom</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2862,7 +2831,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Upper Bucksin</name>
+        <name>Upper Buckskin</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2885,7 +2854,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Bucksin</name>
+        <name>Buckskin</name>
         <styleUrl>#line-757575-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2920,7 +2889,7 @@
     <Folder>
       <name>Experts Only</name>
       <Placemark>
-        <name>Gondi Line Ext.</name>
+        <name>Gondi Line Ext</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -2974,7 +2943,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>White Nitro Ext.</name>
+        <name>White Nitro Ext</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3043,7 +3012,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Bubblecuffer Ext.</name>
+        <name>Bubblecuffer Ext</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3184,7 +3153,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Winter’s Way Ext.</name>
+        <name>Winters Way Ext</name>
         <styleUrl>#line-000000-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3271,6 +3240,37 @@
             -70.302213,45.0386916,0
             -70.302213,45.0388508,0
             -70.3022515,45.0393045,0
+          </coordinates>
+        </LineString>
+      </Placemark>
+      <Placemark>
+        <name>Upper Winters Way</name>
+        <styleUrl>#line-000000-1200-nodesc</styleUrl>
+        <LineString>
+          <tessellate>1</tessellate>
+          <coordinates>
+            -70.3150981,45.0349478,0
+            -70.314723,45.0352444,0
+            -70.314487,45.0354112,0
+            -70.3143153,45.0356007,0
+            -70.3143046,45.0358964,0
+            -70.3144012,45.0361997,0
+            -70.3142832,45.0365332,0
+            -70.3141115,45.036791,0
+            -70.3139398,45.037026,0
+            -70.3137574,45.0372383,0
+            -70.3138004,45.0374051,0
+            -70.3136823,45.0375492,0
+            -70.3133927,45.037769,0
+            -70.3132103,45.0380723,0
+            -70.313103,45.038368,0
+            -70.3130493,45.0385651,0
+            -70.3128991,45.0387698,0
+            -70.3127919,45.038982,0
+            -70.3126524,45.0392701,0
+            -70.3126095,45.0395052,0
+            -70.3125236,45.0396947,0
+            -70.3123412,45.039907,0
           </coordinates>
         </LineString>
       </Placemark>
@@ -3570,7 +3570,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Sugarloaf Superquad</name>
+        <name>SuperQuad</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3647,7 +3647,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Moosecalator</name>
+        <name>Moose-calator</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
@@ -3658,7 +3658,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Bateau T-bar</name>
+        <name>T-Bar/Bateau</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
