@@ -92,34 +92,28 @@ final class RouteOverviewView : UIView {
         super.init(coder: coder)
     }
     
-    func configureOverview(trip: String, trailReports: String, totalDirections: String, count: Int) {
-        var directions = totalDirections
-        if directions.isEmpty
+    func configureOverview(trip: String, trailReports: String, totalDirections: [DirectionsView]) {
+        if totalDirections.isEmpty
         {
             self.directionsLabel.text = "Could not find Route"
             self.viewFullDirectionsButton.isHidden = true
         }
-        else if count <= 2
+        else if totalDirections.count <= 2
         {
-            let index = directions.index(directions.startIndex, offsetBy: directions.count - 2)
-            directions = String(directions.prefix(upTo: index))
-            self.directionsLabel.text = "\(directions)"
+            self.directionsLabel.text = "\(totalDirections[0].trailLabel.text ?? "")"
             self.viewFullDirectionsButton.isHidden = true
         }
         else
         {
-            var searchRange = directions.startIndex..<directions.endIndex
-            var indices: [String.Index] = []
-            while let range = directions.range(of: ";", options: .caseInsensitive, range: searchRange)
-            {
-                searchRange = range.upperBound..<searchRange.upperBound
-                indices.append(range.lowerBound)
-            }
-            self.directionsLabel.text = "\(directions.prefix(upTo: indices[1]))"
+            self.directionsLabel.text = "\(totalDirections[0].trailLabel.text ?? ""); \(totalDirections[1].trailLabel.text ?? "")"
             self.viewFullDirectionsButton.isHidden = false
         }
         self.tripLbl.text = trip
         self.trailReportLabel.text = trailReports
+    }
+    
+    @objc func showFullDirections() {
+        
     }
     
     deinit {

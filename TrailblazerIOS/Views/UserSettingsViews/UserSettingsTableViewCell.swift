@@ -21,6 +21,7 @@ class UserSettingsTableViewCell : UITableViewCell
 
     lazy var myImageView : UIImageView  = {
         var imageView = UIImageView()
+        imageView.tintColor = .systemBlue
         guard let setting = self.setting else {return imageView}
         imageView.image = setting.image
         return imageView
@@ -50,6 +51,5 @@ class UserSettingsTableViewCell : UITableViewCell
     {
         self.addSubview(self.HStack)
         NSLayoutConstraint.activate([self.HStack.leadingAnchor.constraint(equalTo: self.leadingAnchor), self.HStack.topAnchor.constraint(equalTo: self.topAnchor, constant: self.bounds.height/2 - 7.5)])
-
     }
 }

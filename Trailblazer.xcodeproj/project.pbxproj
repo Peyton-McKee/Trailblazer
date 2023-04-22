@@ -39,6 +39,8 @@
 		153B2E3E28EDF26300A23163 /* CustomMKPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */; };
 		153BDE2929DB33E40066E5AA /* UserErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BDE2829DB33E40066E5AA /* UserErrors.swift */; };
 		153BDE2B29E0C6050066E5AA /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BDE2A29E0C6050066E5AA /* DirectionsView.swift */; };
+		153BDE2D29F1D4BF0066E5AA /* FullDirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BDE2C29F1D4BF0066E5AA /* FullDirectionsView.swift */; };
+		153BDE2F29F1D6300066E5AA /* FullDirectionsViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153BDE2E29F1D6300066E5AA /* FullDirectionsViewTableViewCell.swift */; };
 		153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153DAB9729255CFC001ABAAD /* MapInterpreter.swift */; };
 		153DABAD2936C44A001ABAAD /* Trailblazer Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1591DBB6291AE7B800978FD8 /* Trailblazer Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		153F2DB629BD700000CCD553 /* MapDelegate.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153F2DB529BD700000CCD553 /* MapDelegate.Utils.swift */; };
@@ -189,6 +191,8 @@
 		153B2E3D28EDF26300A23163 /* CustomMKPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMKPolyline.swift; sourceTree = "<group>"; };
 		153BDE2829DB33E40066E5AA /* UserErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserErrors.swift; sourceTree = "<group>"; };
 		153BDE2A29E0C6050066E5AA /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
+		153BDE2C29F1D4BF0066E5AA /* FullDirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDirectionsView.swift; sourceTree = "<group>"; };
+		153BDE2E29F1D6300066E5AA /* FullDirectionsViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDirectionsViewTableViewCell.swift; sourceTree = "<group>"; };
 		153DAB9729255CFC001ABAAD /* MapInterpreter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapInterpreter.swift; sourceTree = "<group>"; };
 		153F2DB529BD700000CCD553 /* MapDelegate.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDelegate.Utils.swift; sourceTree = "<group>"; };
 		153F2DB729BD701500CCD553 /* TextFieldDelegate.Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.Utils.swift; sourceTree = "<group>"; };
@@ -442,6 +446,7 @@
 				15D2F82529C40923000AE5B5 /* SearchBarView.swift */,
 				15A1C8202950F967007598D8 /* ToolTipView.swift */,
 				150D062F28F7797B0051F160 /* CustomMarkerAnnotationViews.swift */,
+				153BDE2C29F1D4BF0066E5AA /* FullDirectionsView.swift */,
 				153BDE2A29E0C6050066E5AA /* DirectionsView.swift */,
 			);
 			path = InteractiveMapViews;
@@ -620,6 +625,7 @@
 			isa = PBXGroup;
 			children = (
 				15545B1B28E4CD42005D0886 /* TrailSelectorTableViewCell.swift */,
+				153BDE2E29F1D6300066E5AA /* FullDirectionsViewTableViewCell.swift */,
 				150D063128F7D96A0051F160 /* TrailReportTypeTableViewCell.swift */,
 			);
 			path = TableViewCells;
@@ -828,6 +834,7 @@
 				15CA7EEC29C0EE5500388CFD /* MoreSettingsDocumentPickerDelegate.swift in Sources */,
 				1544ACE5295BF07200AC8E0A /* MapFile.swift in Sources */,
 				153B2E3C28ED1EDF00A23163 /* User.swift in Sources */,
+				153BDE2D29F1D4BF0066E5AA /* FullDirectionsView.swift in Sources */,
 				1521C49F2984B82B0085F868 /* RetrievingMapLoadingView.swift in Sources */,
 				153F2DE029BFA86C00CCD553 /* MapSelectorView.swift in Sources */,
 				153F2DBA29BD705F00CCD553 /* TableViewDelegate.Utils.swift in Sources */,
@@ -853,6 +860,7 @@
 				158749F827D82635001B9025 /* AppDelegate.swift in Sources */,
 				1544ACE72963D99300AC8E0A /* Point.swift in Sources */,
 				15F92C5A293BD5B000792054 /* RoutingPreferencesViewController.swift in Sources */,
+				153BDE2F29F1D6300066E5AA /* FullDirectionsViewTableViewCell.swift in Sources */,
 				158749FA27D82635001B9025 /* SceneDelegate.swift in Sources */,
 				153F2DE229BFA8AC00CCD553 /* MapSelectorTableViewDelegate.swift in Sources */,
 				153DAB9829255CFC001ABAAD /* MapInterpreter.swift in Sources */,

@@ -108,15 +108,15 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     lazy var routeOverviewMenu : PopUpMenuFramework = {
         let routeOverviewMenu = PopUpMenuFramework(vc: self, height: 300)
         routeOverviewMenu.view = self.routeOverviewView
-        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissRouteOverviewMenu))
+        let dismissTapGesture = UITapGestureRecognizer(target: self, action: #selector(self.dismissRouteOverviewMenu))
         routeOverviewMenu.transparentView.addGestureRecognizer(dismissTapGesture)
         return routeOverviewMenu
     }()
     
     lazy var routeOverviewView : RouteOverviewView = {
         let routeOverviewView = RouteOverviewView(frame: CGRect(x: 0, y: self.view.bounds.height, width: self.view.bounds.width, height: 200))
-        routeOverviewView.viewFullDirectionsButton.addTarget(self, action: #selector(presentFullDirections), for: .touchUpInside)
-        routeOverviewView.letsGoButton.addTarget(self, action: #selector(letsGoButtonPressed), for: .touchUpInside)
+        routeOverviewView.viewFullDirectionsButton.addTarget(self, action: #selector(self.presentFullDirections), for: .touchUpInside)
+        routeOverviewView.letsGoButton.addTarget(self, action: #selector(self.letsGoButtonPressed), for: .touchUpInside)
         return routeOverviewView
     }()
     
@@ -124,6 +124,12 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         let directionsView = DirectionsView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 100))
         directionsView.isHidden = true
         return directionsView
+    }()
+    
+    lazy var totalDirectionsView : FullDirectionView = {
+        let view = FullDirectionView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.9))
+        view.closeButton.addTarget(self, action: #selector(self.closeFullDirections), for: .touchUpInside)
+        return view
     }()
     
     
@@ -162,6 +168,8 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
         self.view.addSubview(self.loadingScreen)
         self.view.addSubview(self.mapLoadingView)
         self.view.addSubview(self.directionsView)
+        self.view.addSubview(self.totalDirectionsView)
+        self.totalDirectionsView.isHidden = true
         self.mapLoadingView.isHidden = false
         self.getMap(id: Self.mapId)
         self.tabBarController?.tabBar.backgroundColor = .black

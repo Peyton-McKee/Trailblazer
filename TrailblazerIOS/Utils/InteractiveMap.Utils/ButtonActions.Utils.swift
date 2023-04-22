@@ -55,4 +55,15 @@ extension InteractiveMapViewController {
         self.trailSelectorView.reloadMyTrails()
         self.showAllTrails()
     }
+    
+    @objc func presentFullDirections()
+    {
+        self.routeOverviewMenu.dismissItems()
+        self.totalDirectionsView.isHidden = false
+    }
+    
+    @objc func closeFullDirections() {
+        self.totalDirectionsView.isHidden = true
+        self.routeOverviewMenu.presentItems()
+    }
 }

@@ -36,7 +36,6 @@ final class DirectionsView : UIView {
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
         imageView.widthAnchor.constraint(equalToConstant: 60).isActive = true
         return imageView
@@ -61,6 +60,8 @@ final class DirectionsView : UIView {
         return stackView
     }()
     
+    var route: [Vertex<ImageAnnotation>] = []
+    
     let turnImage = UIImage(systemName: "arrow.triangle.turn.up.right.diamond.fill")!
     
     override init(frame: CGRect) {
@@ -74,6 +75,7 @@ final class DirectionsView : UIView {
     }
     
     public func displayUpcomingDirectionFor(route: [Vertex<ImageAnnotation>]) {
+        self.route = route
         guard let first = route.first(where: {$0.value.title != "Your Location"}) else {
             return
         }
@@ -91,13 +93,14 @@ final class DirectionsView : UIView {
             return
         }
         
-        guard let lastIndex = route.firstIndex(of: upcomingKeyAnnotation) else {
+        guard let lastIndex = route.firstIndex(of: upcomingKeyAnnotation), lastIndex > 1 else {
             return
         }
         
         let last = route[lastIndex - 2]
-        let upcomingPoint = CLLocation(latitude: upcomingKeyAnnotation.value.coordinate.latitude, longitude: upcomingKeyAnnotation.value.coordinate.longitude)
         let lastPoint = CLLocation(latitude: last.value.coordinate.latitude, longitude: last.value.coordinate.longitude)
+        
+        let upcomingPoint = CLLocation(latitude: upcomingKeyAnnotation.value.coordinate.latitude, longitude: upcomingKeyAnnotation.value.coordinate.longitude)
 
         let orientation: Orientation;
 
