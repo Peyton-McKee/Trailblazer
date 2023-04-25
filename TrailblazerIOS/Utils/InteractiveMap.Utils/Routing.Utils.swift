@@ -238,6 +238,7 @@ extension InteractiveMapViewController {
         var routes : [Route] = []
         var id = 0
         var foundTrails : [String] = []
+        var newOverlays: [CustomPolyline] = []
         for vertex in route{
             let polyLine = CustomPolyline(coordinates: [previousVertex.value.coordinate, vertex.value.coordinate], count: 2)
             switch previousVertex.value.difficulty
@@ -256,7 +257,7 @@ extension InteractiveMapViewController {
                 polyLine.color = .black
             }
             polyLine.initialAnnotation = previousVertex.value
-            self.interactiveMapView.addOverlay(polyLine, level: .aboveRoads)
+            newOverlays.append(polyLine)
             if let trailReport = vertex.value.trailReport
             {
                 foundAnnotations.append(trailReport)
@@ -272,9 +273,11 @@ extension InteractiveMapViewController {
         }
         let set1 = Set(previousAnnotations)
         let set2 = set1.subtracting(foundAnnotations)
-        self.interactiveMapView.removeAnnotations(Array(set2))
-        self.interactiveMapView.removeOverlays(previousOverlays)
-        if self.routeInProgress {
+        print(self.routeInProgress)
+        if (self.routeInProgress) {
+            self.interactiveMapView.removeAnnotations(Array(set2))
+            self.interactiveMapView.removeOverlays(previousOverlays)
+            self.interactiveMapView.addOverlays(newOverlays)
             self.interactiveMapView.addAnnotations(foundAnnotations)
             self.connectivityController.setRoute(route: routes)
             self.canFindPathAgain = true
