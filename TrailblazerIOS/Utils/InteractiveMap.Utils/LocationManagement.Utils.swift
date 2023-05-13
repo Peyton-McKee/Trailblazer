@@ -25,7 +25,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
         let userLocation = locations[0]
         var liftWaiting : Vertex<ImageAnnotation>?
         var timeBegan : Date?
-        if !isWaitingInLine{
+        if !isWaitingInLine {
             for vertex in self.baseLiftVertexes{
                 let liftLocation = CLLocation(latitude: vertex.value.coordinate.latitude, longitude: vertex.value.coordinate.longitude)
                 if userLocation.distance(from: liftLocation) <= radius
@@ -60,6 +60,7 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
                 })
             }
         }
+
         if locations[0].distance(from: CLLocation(latitude: self.interactiveMapView.center.x, longitude: self.interactiveMapView.center.y)) <= 7000
         {
             APIHandler.shared.saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))

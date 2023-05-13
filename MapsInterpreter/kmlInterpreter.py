@@ -29,7 +29,8 @@ def save_mountain_to_database(mapInfo: MapInfo):
     initialLocationLongitude = initialLocation[0]
     jsonMap = {'name': name, 'initialLocationLatitude': iniitalLocationLatitude, 'initialLocationLongitude': initialLocationLongitude, 'mountainReportUrl': mountainReportUrl,
 'trailStatusElementId': trailStatusElementId, 'liftStatusElementId': liftStatusElementId}
-    baseURL = "http://35.172.135.117/api"
+    #35.172.135.117
+    baseURL = "http://35.172.13/api"
     mapUrl = baseURL + '/maps'
     mapConnectorURL = baseURL + '/map-connectors'
     mapTrailURL = baseURL + '/map-trails'
@@ -68,7 +69,7 @@ def save_mountain_to_database(mapInfo: MapInfo):
                 mt = requests.post(mapPointURL, json= mapTrailPoint)
           print("Completed " + str(index) + " out of " + str(len(list(folder.features()))) + " " + folder.name + " trails")
 
-mountains = [sr, sugarloaf]
+mountains = [sugarloaf]
 
 for mountain in mountains:
    save_mountain_to_database(mountain)

@@ -14,9 +14,9 @@ final class ToggleOptionView: UIView {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
         stack.alignment = .center
-        stack.distribution = .fill
-        stack.spacing = 10
+        stack.distribution = .fillProportionally
         stack.layer.cornerRadius = 8
+        stack.spacing = 20
         stack.layer.shadowRadius = 8
         stack.layer.shadowOpacity = 0.5
         stack.layer.shadowOffset = .zero
@@ -30,7 +30,7 @@ final class ToggleOptionView: UIView {
     let alertLabel : UILabel = {
         var label = UILabel()
         label.textColor = .white
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
     

@@ -27,7 +27,6 @@ final class AlertPreferencesView: UIView {
         var label = UILabel()
         label.text = "My Alert Preferences"
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 

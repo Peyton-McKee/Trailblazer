@@ -73,7 +73,7 @@ class EdgeWeightedDigraph<Element: Equatable> {
         vertices.append(vertex)
     }
     
-    func removeLastVertex(){
+    func removeLastVertex() {
         vertices.removeLast()
     }
     

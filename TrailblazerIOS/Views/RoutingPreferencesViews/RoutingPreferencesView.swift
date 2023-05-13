@@ -32,7 +32,7 @@ final class RoutingPreferencesView: UIView {
         var stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.alignment = .fill
+        stackView.alignment = .center
         stackView.spacing = 10
         stackView.layer.cornerRadius = 15
         [self.routingLabel, self.routingPickerView].forEach{ stackView.addArrangedSubview($0)}
@@ -64,8 +64,8 @@ final class RoutingPreferencesView: UIView {
         var label = UILabel()
         label.text = "Select Your Preferred Routing Type:"
         label.textColor = .white
-        label.numberOfLines = 0
-        label.textAlignment = .center
+        label.numberOfLines = 2
+        label.textAlignment = .left
         return label
     }()
     

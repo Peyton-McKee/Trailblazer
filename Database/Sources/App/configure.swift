@@ -18,7 +18,7 @@ public func configure(_ app: Application) throws {
     //vapor-trailblazer.ctyve6nsk49p.us-east-1.rds.amazonaws.com
     app.databases.use(.postgres(
         hostname: Environment.get("DATABASE_HOST")
-        ?? "vapor-trailblazer.ctyve6nsk49p.us-east-1.rds.amazonaws.com",
+        ?? "localhost",
         port: databasePort,
         username: Environment.get("DATABASE_USERNAME")
         ?? "mckee_p",

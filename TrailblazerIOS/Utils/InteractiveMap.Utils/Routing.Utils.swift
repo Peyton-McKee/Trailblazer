@@ -24,50 +24,59 @@ extension InteractiveMapViewController {
         
         DispatchQueue.global().async {
             do {
-                let pathToDestination = try self.createRoute(origin: origin, destination: destination)
-                DispatchQueue.main.async { [self] in
-                    var directions = ""
+                var pathToDestination = try self.createRoute(origin: origin, destination: destination)
+                DispatchQueue.main.async{
+                    var directions : [DirectionsView] = []
+                    var seenTrails : [String] = []
                     var trailReports = ""
-                    var count = 0
                     var foundAnnotations : [ImageAnnotation] = []
-                    let mapImageAnnotations = self.interactiveMapView.annotations.filter({$0 as? ImageAnnotation != nil}) as! [ImageAnnotation]
                     for vertex in pathToDestination
                     {
-                        foundAnnotations = mapImageAnnotations.filter({
-                            if($0.coordinate == vertex.value.coordinate && !directions.contains($0.title!))
-                            {
-                                directions.append("\(vertex.value.title!); ")
-                                count += 1
-                                return true
-                            }
-                            return false
-                        })
-                        self.interactiveMapView.removeAnnotations(self.interactiveMapView.annotations)
-                        self.interactiveMapView.addAnnotations(foundAnnotations)
+                        if (!seenTrails.contains(vertex.value.title!)) {
+                            foundAnnotations.append(vertex.value)
+                            seenTrails.append(vertex.value.title!)
+                        }
                         if let trailReport = (vertex.value.trailReport)
                         {
                             trailReports.append("\(trailReport.subtitle!) ")
                         }
                     }
-                    self.loadingScreen.isHidden = true
-                    if(!self.routeInProgress)
-                    {
-                        do {
-                            self.initialLocation = try self.getClosestAnnotation(origin: origin ?? self.assignOrigin().value).value.title
-                        } catch {
-                            self.handle(error: error)
-                        }
-                        self.routeOverviewView.configureOverview(trip: "\(origin?.title ?? "Your Location") -> \(destination.title!)", trailReports: trailReports, totalDirections: directions, count: count)
-                        self.routeOverviewMenu.presentItems()
-                        self.displayRoute(origin: origin, destination: destination)
-                        self.routeInProgress = true
-                        
-                        let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
-                        let zoomCoordinate = destination.coordinate
-                        let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
-                        self.interactiveMapView.setRegion(zoomed, animated: true)
+
+                    self.interactiveMapView.removeAnnotations(self.interactiveMapView.annotations)
+                    self.interactiveMapView.addAnnotations(foundAnnotations)
+
+                    pathToDestination.remove(at: 0)
+                    while (!pathToDestination.isEmpty) {
+                        let newDirectionsView = DirectionsView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 100))
+                        let currentTrailTitle = pathToDestination[0].value.title
+                        guard let nextDirectionIndex = pathToDestination.firstIndex(where: {$0.value.title != currentTrailTitle}) else { break }
+                        newDirectionsView.displayUpcomingDirectionFor(route: Array(pathToDestination.prefix(through: nextDirectionIndex)))
+                        pathToDestination = Array(pathToDestination.suffix(from: nextDirectionIndex))
+                        directions.append(newDirectionsView)
                     }
-                    return
+
+                    self.loadingScreen.isHidden = true
+
+                    do {
+                        self.initialLocation = try self.getClosestAnnotation(origin: origin ?? self.assignOrigin().value).value.title
+                    } catch {
+                        self.handle(error: error)
+                    }
+
+                    self.routeOverviewView.configureOverview(trip: "\(origin?.title ?? "Your Location") -> \(destination.title!)", trailReports: trailReports, totalDirections: directions)
+                    self.totalDirectionsView.setDirections(directions: directions)
+                    self.totalDirectionsView.closeButton.removeTarget(self, action: #selector(self.closeFullDirections), for: .touchUpInside)
+                    self.totalDirectionsView.closeButton.addTarget(self, action: #selector(self.closeFullDirectionsAndPresentRouteOverview), for: .touchUpInside)
+
+                    self.routeOverviewMenu.presentItems()
+                    self.displayRoute(origin: origin, destination: destination)
+                    self.routeInProgress = true
+                    
+                    let zoomSpan = MKCoordinateSpan(latitudeDelta: CLLocationDegrees(180), longitudeDelta: CLLocationDegrees(180))
+                    let zoomCoordinate = destination.coordinate
+                    let zoomed = MKCoordinateRegion(center: zoomCoordinate, span: zoomSpan)
+                    self.interactiveMapView.setRegion(zoomed, animated: true)
+                    
                 }
             } catch {
                 DispatchQueue.main.async{
@@ -75,7 +84,6 @@ extension InteractiveMapViewController {
                     self.loadingScreen.isHidden = true
                     self.handle(error: error)
                 }
-                return
             }
         }
     }
@@ -112,7 +120,7 @@ extension InteractiveMapViewController {
         //something went wrong and couldnt find vertex that matches the selected origin (this should never happen)
         throw RoutingErrors.originNotFoundError
     }
-
+    
     private func manageRouteInProgress(originVertex: Vertex<ImageAnnotation>, destination: ImageAnnotation) throws -> [Vertex<ImageAnnotation>]
     {
         do {
@@ -202,14 +210,6 @@ extension InteractiveMapViewController {
         return Vertex<ImageAnnotation>(origin)
     }
     
-    
-    
-    @objc func presentFullDirections(fullDirections: String)
-    {
-        //show some sort of direction pop up
-        print(fullDirections)
-    }
-    
     /// displayRoute: void -> void
     /// Shows the selected route on the map
     func displayRoute(origin: ImageAnnotation?, destination: ImageAnnotation)
@@ -222,6 +222,7 @@ extension InteractiveMapViewController {
                 let newRoute = try self.createRoute(origin: origin, destination: destination)
                 DispatchQueue.main.async {
                     self.displayRouteHelper(route: newRoute, previousOverlays: previousOverlays, previousAnnotations: previousAnnotations)
+                    self.directionsView.displayUpcomingDirectionFor(route: newRoute)
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -233,11 +234,14 @@ extension InteractiveMapViewController {
     
     func displayRouteHelper(route: [Vertex<ImageAnnotation>], previousOverlays: [MKOverlay], previousAnnotations: [ImageAnnotation])
     {
-        var previousVertex = route[0]
+        guard var previousVertex = route.first else {
+            return
+        }
         var foundAnnotations : [ImageAnnotation] = []
         var routes : [Route] = []
         var id = 0
         var foundTrails : [String] = []
+        var newOverlays: [CustomPolyline] = []
         for vertex in route{
             let polyLine = CustomPolyline(coordinates: [previousVertex.value.coordinate, vertex.value.coordinate], count: 2)
             switch previousVertex.value.difficulty
@@ -256,7 +260,7 @@ extension InteractiveMapViewController {
                 polyLine.color = .black
             }
             polyLine.initialAnnotation = previousVertex.value
-            self.interactiveMapView.addOverlay(polyLine, level: .aboveRoads)
+            newOverlays.append(polyLine)
             if let trailReport = vertex.value.trailReport
             {
                 foundAnnotations.append(trailReport)
@@ -272,9 +276,11 @@ extension InteractiveMapViewController {
         }
         let set1 = Set(previousAnnotations)
         let set2 = set1.subtracting(foundAnnotations)
-        self.interactiveMapView.removeAnnotations(Array(set2))
-        self.interactiveMapView.removeOverlays(previousOverlays)
-        if self.routeInProgress {
+        print(self.routeInProgress)
+        if (self.routeInProgress) {
+            self.interactiveMapView.removeAnnotations(Array(set2))
+            self.interactiveMapView.removeOverlays(previousOverlays)
+            self.interactiveMapView.addOverlays(newOverlays)
             self.interactiveMapView.addAnnotations(foundAnnotations)
             self.connectivityController.setRoute(route: routes)
             self.canFindPathAgain = true

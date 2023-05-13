@@ -202,7 +202,7 @@ final class WebAnalysis: NSObject, WKNavigationDelegate {
         var substring: Substring
         for item in queryItems
         {
-            //print("\(item), \(queryLocation.contains(item))")
+//            print("\(item), \(queryLocation.contains(item))")
             if let trail = queryLocation.index(of: item)
             {
                 substring = queryLocation[..<trail]
