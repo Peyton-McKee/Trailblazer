@@ -123,12 +123,13 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     lazy var directionsView : DirectionsView = {
         let directionsView = DirectionsView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 100))
         directionsView.isHidden = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.displayFullDirectionsView))
+        directionsView.addGestureRecognizer(gestureRecognizer)
         return directionsView
     }()
     
     lazy var totalDirectionsView : FullDirectionView = {
         let view = FullDirectionView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height * 0.9))
-        view.closeButton.addTarget(self, action: #selector(self.closeFullDirections), for: .touchUpInside)
         return view
     }()
     

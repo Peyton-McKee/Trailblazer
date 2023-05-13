@@ -14,18 +14,15 @@ class LocationManager: CLLocationManager, ObservableObject {
     let notificationCenter = UNUserNotificationCenter.current()
     var trailReportRegion : CLCircularRegion?
 
-    // 1
     func makeTrailReportRegion(trailReport: TrailReport) {
-        // 2
         let region = CLCircularRegion(
             center: CLLocationCoordinate2D(latitude: trailReport.latitude, longitude: trailReport.longitude),
             radius: 75,
             identifier: UUID().uuidString)
-        // 3
         region.notifyOnEntry = true
-        // 4
         trailReportRegion = region
     }
+
     func unregesterNotification(for categoryIdentifier: String)
     {
         UNUserNotificationCenter.current().getPendingNotificationRequests { (notificationRequests) in
@@ -38,9 +35,8 @@ class LocationManager: CLLocationManager, ObservableObject {
            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: identifiers)
         }
     }
-    // 1
+    
     func registerNotification(title: String, body: String, trailReportID: String) {
-        // 2
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
         notificationContent.body = body
@@ -48,15 +44,12 @@ class LocationManager: CLLocationManager, ObservableObject {
         notificationContent.userInfo = ["TRAIL_REPORT": trailReportID]
         notificationContent.categoryIdentifier = body
         
-        // 3
         let trigger = UNLocationNotificationTrigger(region: trailReportRegion!, repeats: false)
-        // 4
         let request = UNNotificationRequest(
             identifier: UUID().uuidString,
             content: notificationContent,
             trigger: trigger)
         
-        // 5
         notificationCenter
             .add(request) { error in
                 if error != nil {
@@ -66,10 +59,8 @@ class LocationManager: CLLocationManager, ObservableObject {
         
     }
     
-    // 1
     override init() {
         super.init()
-        // 2
         notificationCenter.delegate = self
         let confirmAction = UNNotificationAction(identifier: "CONFIRM_ACTION", title: "Confirm", options: [])
         let noLongerThereAction = UNNotificationAction(identifier: "NOLONGERTHERE_ACTION", title: "No Longer There", options: [])
@@ -87,15 +78,12 @@ class LocationManager: CLLocationManager, ObservableObject {
     }
 }
 extension LocationManager: UNUserNotificationCenterDelegate {
-    // 1
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse,
         withCompletionHandler completionHandler: @escaping () -> Void
     ) {
-        // 2
         print("Received Notification")
-        // 3
         let userInfo = response.notification.request.content.userInfo
         let trailReport = userInfo["TRAIL_REPORT"] as! String
         
@@ -110,16 +98,13 @@ extension LocationManager: UNUserNotificationCenterDelegate {
         completionHandler()
     }
     
-    // 4
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler:
         @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        // 5
         print("Received Notification in Foreground")
-        // 6
         completionHandler(.sound)
     }
 }

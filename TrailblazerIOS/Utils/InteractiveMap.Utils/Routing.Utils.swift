@@ -65,6 +65,9 @@ extension InteractiveMapViewController {
 
                     self.routeOverviewView.configureOverview(trip: "\(origin?.title ?? "Your Location") -> \(destination.title!)", trailReports: trailReports, totalDirections: directions)
                     self.totalDirectionsView.setDirections(directions: directions)
+                    self.totalDirectionsView.closeButton.removeTarget(self, action: #selector(self.closeFullDirections), for: .touchUpInside)
+                    self.totalDirectionsView.closeButton.addTarget(self, action: #selector(self.closeFullDirectionsAndPresentRouteOverview), for: .touchUpInside)
+
                     self.routeOverviewMenu.presentItems()
                     self.displayRoute(origin: origin, destination: destination)
                     self.routeInProgress = true
