@@ -43,6 +43,7 @@ struct UsersController: RouteCollection
         }
         
     }
+    
     // 5
     func createHandler(_ req: Request)
     throws -> EventLoopFuture<User> {
@@ -57,18 +58,21 @@ struct UsersController: RouteCollection
             }
             
             return user.save(on: req.db).map{ user }
-           
+            
         }
     }
+    
     func getAllHandler(_ req: Request) -> EventLoopFuture<[User]> {
         User.query(on: req.db).all()
     }
+    
     func getHandler(_ req: Request)
     -> EventLoopFuture<User> {
         // 4
         User.find(req.parameters.get("userID"), on: req.db)
             .unwrap(or: Abort(.notFound))
     }
+    
     func getTrailReportsHandler(_ req: Request)
     -> EventLoopFuture<[TrailReport]> {
         // 2
@@ -79,6 +83,7 @@ struct UsersController: RouteCollection
                 user.$trailReports.get(on: req.db)
             }
     }
+    
     func getUserLocationsHandler(_ req: Request)
     -> EventLoopFuture<[UserLocation]> {
         // 2
@@ -89,6 +94,7 @@ struct UsersController: RouteCollection
                 user.$userLocations.get(on: req.db)
             }
     }
+    
     func updateHandler(_ req: Request) throws -> EventLoopFuture<User> {
         let updatedUser = try req.content.decode(User.self)
         return User.find(req.parameters.get("userID"), on: req.db)
@@ -100,6 +106,7 @@ struct UsersController: RouteCollection
                 }
             }
     }
+    
     func getUserRoutesHandler(_ req: Request)
     -> EventLoopFuture<[UserRoute]> {
         // 2
@@ -123,10 +130,10 @@ struct UsersController: RouteCollection
             .delete(force: true).transform(to: .noContent)
     }
     
-//    func login(req: Request) throws -> User {
-//        print(req)
-//        return try req.auth.require(User.self)
-//    }
+    //    func login(req: Request) throws -> User {
+    //        print(req)
+    //        return try req.auth.require(User.self)
+    //    }
     func checkIfUserExists(_ username: String, req: Request) -> EventLoopFuture<Bool> {
         User.query(on: req.db).filter(\.$username == username).first().map({ $0 != nil })
     }

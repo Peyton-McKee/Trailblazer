@@ -30,7 +30,7 @@ def save_mountain_to_database(mapInfo: MapInfo):
     jsonMap = {'name': name, 'initialLocationLatitude': iniitalLocationLatitude, 'initialLocationLongitude': initialLocationLongitude, 'mountainReportUrl': mountainReportUrl,
 'trailStatusElementId': trailStatusElementId, 'liftStatusElementId': liftStatusElementId}
     #35.172.135.117
-    baseURL = "http://35.172.13/api"
+    baseURL = "http://localhost:8080/api"
     mapUrl = baseURL + '/maps'
     mapConnectorURL = baseURL + '/map-connectors'
     mapTrailURL = baseURL + '/map-trails'
@@ -51,7 +51,7 @@ def save_mountain_to_database(mapInfo: MapInfo):
              for idx, coordinate in enumerate(e.geometry.coords):
                 lat = coordinate[1]
                 long = coordinate[0]
-                mapConnectorPoint = {'latitude': lat, 'longitude': long, 'time': [], 'mapConnectorId': mapConnector.json().get('id'), 'order': idx}
+                mapConnectorPoint = {'latitude': lat, 'longitude': long, 'time': [0.0], 'mapConnectorId': mapConnector.json().get('id'), 'order': idx}
                 mc = requests.post(mapPointURL, json= mapConnectorPoint)
           else :
              print(e.name)
@@ -65,11 +65,11 @@ def save_mountain_to_database(mapInfo: MapInfo):
              for idx, coordinate in enumerate(e.geometry.coords):
                 lat = coordinate[1]
                 long = coordinate[0]
-                mapTrailPoint = {'latitude': lat, 'longitude': long, 'time': [], 'mapTrailId': mapTrail.json().get('id'), 'order': idx}
+                mapTrailPoint = {'latitude': lat, 'longitude': long, 'time': [0.0], 'mapTrailId': mapTrail.json().get('id'), 'order': idx}
                 mt = requests.post(mapPointURL, json= mapTrailPoint)
           print("Completed " + str(index) + " out of " + str(len(list(folder.features()))) + " " + folder.name + " trails")
 
-mountains = [sugarloaf]
+mountains = [sugarloaf, sr]
 
 for mountain in mountains:
    save_mountain_to_database(mountain)

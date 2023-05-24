@@ -14,12 +14,12 @@ struct Point: Codable {
     var latitude: Float
     var longitude: Float
     var distance: Float?
-    var time: [Float] = []
+    var time: [Double] = []
     var order: Int
 }
 
 struct PointTimeUpdateData: Codable{
     var id: String
-    var time: [Float]
+    var time: [Double]
     
 }

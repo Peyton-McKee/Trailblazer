@@ -19,7 +19,7 @@ struct PointsController: RouteCollection {
         pointsRoute.delete(":pointId", use: deleteHandler)
         pointsRoute.delete( use: deleteAllHandler)
         pointsRoute.put(":pointId", use: updateHandler)
-
+        
     }
     
     func createHandler(_ req: Request)
@@ -28,15 +28,18 @@ struct PointsController: RouteCollection {
         let point = Point(latitude: data.latitude, longitude: data.longitude, mapTrailID: data.mapTrailId, mapConnectorID: data.mapConnectorId, time: data.time, order: data.order)
         return point.save(on: req.db).map { point }
     }
+    
     func getAllHandler(_ req: Request) -> EventLoopFuture<[Point]> {
         Point.query(on: req.db).all()
     }
+    
     func getHandler(_ req: Request)
     -> EventLoopFuture<Point> {
         
         Point.find(req.parameters.get("pointId"), on: req.db)
             .unwrap(or: Abort(.notFound))
     }
+    
     func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
         Point.find(req.parameters.get("pointId"), on: req.db)
             .unwrap(or: Abort(.notFound))
@@ -44,16 +47,24 @@ struct PointsController: RouteCollection {
                 point.delete(on: req.db).transform(to: .noContent)
             }
     }
-    func updateHandler(_ req: Request) throws -> EventLoopFuture<Point> {
-        let updatedPoint = try req.content.decode(updatePointTimeData.self)
-        return Point.find(req.parameters.get("pointId"), on: req.db)
-            .unwrap(or: Abort(.notFound)).flatMap { point in
-                point.time = updatedPoint.time
-                return point.save(on: req.db).map{
-                    point
-                }
-            }
+    
+    func updateHandler(_ req: Request) async throws -> Point {
+        guard let point = try? await Point.find(req.parameters.get("pointId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        let updatedPointData = try req.content.decode(updatePointTimeData.self)
+
+        point.time = updatedPointData.time
+        do {
+            try await point.update(on: req.db)
+        } catch {
+            print("ERROR: ", error)
+        }
+        
+        return point
+        
     }
+    
     func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
         Point.query(on: req.db)
             .delete(force: true).transform(to: .noContent)
@@ -64,11 +75,11 @@ struct CreatePointData: Content{
     let latitude: Float
     let longitude: Float
     let mapTrailId: UUID?
-    let time: [Float]
+    let time: [Double]
     let mapConnectorId: UUID?
     let order: Int
 }
 
 struct updatePointTimeData: Content {
-    let time: [Float]
+    let time: [Double]
 }

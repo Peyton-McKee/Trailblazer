@@ -9,7 +9,7 @@ final class MapInterpreter: NSObject {
     var distanceGraph = EdgeWeightedDigraph<ImageAnnotation>()
     var baseLiftVertexes = [Vertex<ImageAnnotation>]()
     let baseURL = APIHandler.shared.baseURL
-    
+    var trailReports = [TrailReport]()
     func createMap(map: Map)
     {
         self.mapView.removeOverlays(self.mapView.overlays)
@@ -47,7 +47,7 @@ final class MapInterpreter: NSObject {
             {
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
                 pointIds.append(point.id!)
-                trailTimes.append(point.time as! [Double])
+                trailTimes.append(point.time)
             }
             
             let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
@@ -55,8 +55,10 @@ final class MapInterpreter: NSObject {
             polyline.color = color
 
             let initialAnnotation = createAnnotation(title: trail.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: difficulty)
+            initialAnnotation.id = trail.points[0].id
             initialAnnotation.trailTimes = trailTimes
             initialAnnotation.ids = pointIds
+            initialAnnotation.times = trail.points[0].time
             self.mapView.addAnnotation(initialAnnotation)
             polyline.initialAnnotation = initialAnnotation
             polylines.append(polyline)
@@ -71,13 +73,15 @@ final class MapInterpreter: NSObject {
             {
                 coordinates.append(CLLocationCoordinate2D(latitude: Double(point.latitude), longitude: Double(point.longitude)))
                 pointIds.append(point.id!)
-                trailTimes.append(point.time as! [Double])
+                trailTimes.append(point.time)
             }
             
             let initialAnnotation = createAnnotation(title: connector.name, latitude: coordinates[0].latitude, longitude: coordinates[0].longitude, difficulty: .easy)
+            initialAnnotation.id = connector.points[0].id
             initialAnnotation.isConnector = true
             initialAnnotation.trailTimes = trailTimes
             initialAnnotation.ids = pointIds
+            initialAnnotation.times = connector.points[0].time
             
             let polyline = CustomPolyline(coordinates: coordinates, count: coordinates.count)
             polyline.title = connector.name
@@ -98,14 +102,17 @@ final class MapInterpreter: NSObject {
     private func createVertices(polylines: [CustomPolyline]) -> [Vertex<ImageAnnotation>] {
         var foundTrails : [String] = []
         var vertices = [Vertex<ImageAnnotation>]()
+        self.mapView.removeAnnotations(self.mapView.overlays)
+        self.baseLiftVertexes.removeAll()
         
         for polylineIndex in 0...polylines.count - 1
         {
-            guard let initialAnnotation = polylines[polylineIndex].initialAnnotation else {
+            let overlay = polylines[polylineIndex]
+
+            guard let initialAnnotation = overlay.initialAnnotation else {
                 print("Polyline Configured Incorrectly")
                 continue
             }
-            let overlay = polylines[polylineIndex]
             if !foundTrails.contains(overlay.title!)
             {
                 self.mapView.addAnnotation(initialAnnotation)
@@ -119,9 +126,9 @@ final class MapInterpreter: NSObject {
             for index in 0..<overlay.pointCount
             {
                 vertex = Vertex<ImageAnnotation>(createAnnotation(title: overlay.title!, latitude: overlay.points()[index].coordinate.latitude, longitude: overlay.points()[index].coordinate.longitude, difficulty: overlay.initialAnnotation!.difficulty!))
-                vertex.value.id = overlay.initialAnnotation?.ids![index]
-                vertex.value.times = overlay.initialAnnotation?.trailTimes![index]
-                vertex.value.isConnector = overlay.initialAnnotation!.isConnector
+                vertex.value.id = initialAnnotation.ids![index]
+                vertex.value.times = initialAnnotation.trailTimes![index]
+                vertex.value.isConnector = initialAnnotation.isConnector
                 vertices.append(vertex)
             }
         }
@@ -173,7 +180,7 @@ final class MapInterpreter: NSObject {
     
     private func timeWeightCalculation(_ vertex1: Vertex<ImageAnnotation>, _ vertex2: Vertex<ImageAnnotation>) -> Double {
         let weightArray = vertex2.value.times!
-        return weightArray.reduce(0.0, +) / Double(weightArray.count + 1)
+        return Double(weightArray.reduce(0.0, +) / Double(weightArray.count + 1))
     }
     
     private func addIntersectingPointsTo(graph: EdgeWeightedDigraph<ImageAnnotation>)
@@ -231,8 +238,9 @@ final class MapInterpreter: NSObject {
                 guard InteractiveMapViewController.currentUser.alertSettings.contains(report.type) else { continue }
                 NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": report])
             }
+            self.trailReports = trailReports
             NotificationCenter.default.post(name: Notification.Name.Names.configureTrailSelector, object: nil)
-            NotificationCenter.default.post(Notification(name: Notification.Name.Names.updateInitialRegion, userInfo: ["initialRegionLatitude": Double(map.initialLocationLatitude), "initialRegionLongitude": Double(map.initialLocationLongitude), "trailReports": trailReports]))
+            NotificationCenter.default.post(Notification(name: Notification.Name.Names.updateInitialRegion, userInfo: ["initialRegionLatitude": Double(map.initialLocationLatitude), "initialRegionLongitude": Double(map.initialLocationLongitude)]))
             
         })
     }

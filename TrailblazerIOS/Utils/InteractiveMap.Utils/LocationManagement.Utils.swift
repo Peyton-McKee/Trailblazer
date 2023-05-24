@@ -8,6 +8,7 @@
 import Foundation
 import CoreLocation
 
+
 extension InteractiveMapViewController: CLLocationManagerDelegate
 {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -21,19 +22,18 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
         guard let currentUserId = Self.currentUser.id else {
             return
         }
-        let radius = 30.0
+        
         let userLocation = locations[0]
-        var liftWaiting : Vertex<ImageAnnotation>?
-        var timeBegan : Date?
-        if !isWaitingInLine {
-            for vertex in self.baseLiftVertexes{
+
+        if !self.isWaitingInLine {
+            for vertex in MapInterpreter.shared.baseLiftVertexes{
                 let liftLocation = CLLocation(latitude: vertex.value.coordinate.latitude, longitude: vertex.value.coordinate.longitude)
-                if userLocation.distance(from: liftLocation) <= radius
+                if userLocation.distance(from: liftLocation) <= self.radius
                 {
-                    isWaitingInLine = true
-                    liftWaiting = vertex
-                    timeBegan = Date.now
-                    print("isWaiting in line for lift \(String(describing: liftWaiting?.value.title))")
+                    self.isWaitingInLine = true
+                    self.liftWaiting = vertex
+                    self.timeBegan = Date.now
+                    print("isWaiting in line for lift \(String(describing: self.liftWaiting?.value.title))")
                     break
                 }
             }
@@ -46,24 +46,28 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
             {
                 print("no longer waiting in line")
                 isWaitingInLine = false
-                lift.value.times?.append(Date.now.timeIntervalSince(startTime))
                 liftWaiting = nil
                 timeBegan = nil
-                guard let id = lift.value.id, let times = lift.value.times else { print("lift does not have id or times"); return }
-                APIHandler.shared.updatePointTime(point: PointTimeUpdateData(id: id, time: times as! [Float]), completion: {
+                print(lift.value.times)
+                print(lift.value.id)
+                guard let id = lift.value.id, var times = lift.value.times else { print("lift does not have id or times"); return }
+                times.append(Date.now.timeIntervalSince(startTime))
+                APIHandler.shared.updatePointTime(point: PointTimeUpdateData(id: id, time: times), completion: {
                     result in
-                    guard let point = try? result.get() else {
-                        print("test point update Success \(result)")
-                        return
+                    do {
+                        let point = try result.get()
+                        lift.value.times = point.time
+                        print(point)
+                    } catch {
+                        print(error)
                     }
-                    print(point)
                 })
             }
         }
 
         if locations[0].distance(from: CLLocation(latitude: self.interactiveMapView.center.x, longitude: self.interactiveMapView.center.y)) <= 7000
         {
-            APIHandler.shared.saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
+//            APIHandler.shared.saveUserLocation(UserLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude, timeReported: "\(locations[0].timestamp)", userID: currentUserId))
         }
         
     }

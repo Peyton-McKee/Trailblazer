@@ -15,14 +15,12 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     
     static var currentUser : User = User(username: "Guest", password: "", alertSettings: [], routingPreference: "")
     
-    static var mapId: String = {
+    static var mapId: String {
         if let str = UserDefaults.standard.value(forKey: "mapId") as? String {
             return str
         }
         return ""
-    }()
-    
-    static var trailReports : [TrailReport] = []
+    }
     
     var routeInProgress = false
     
@@ -31,9 +29,7 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     var selectedGraph: EdgeWeightedDigraph<ImageAnnotation> {
         return self.isRealTimeGraph ? WebAnalysis.shared.realTimeGraph : self.preferredRoutingGraph
     }
-    
-    var baseLiftVertexes: [Vertex<ImageAnnotation>] = []
-    
+        
     var preferredRoutingGraph : EdgeWeightedDigraph<ImageAnnotation> {
         return self.getPreferredGraph()
     }
@@ -72,6 +68,11 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     var cancelButtonYContraint = NSLayoutConstraint()
     
     var pathCreated: [Vertex<ImageAnnotation>] = []
+    
+    // Location Management
+    let radius = 30.0
+    var liftWaiting : Vertex<ImageAnnotation>?
+    var timeBegan : Date?
     
     let settingArray = [TrailReportType.moguls.rawValue, TrailReportType.ice.rawValue, TrailReportType.crowded.rawValue, TrailReportType.thinCover.rawValue, TrailReportType.longLiftLine.rawValue, TrailReportType.snowmaking.rawValue, "Cancel"]
     
@@ -207,9 +208,8 @@ class InteractiveMapViewController: UIViewController, ErrorHandler {
     }
 
     @objc func receiveDataFromMapInterpreter(_ sender: NSNotification) {
-        guard let latitude = sender.userInfo?["initialRegionLatitude"] as? Double, let longitude = sender.userInfo?["initialRegionLongitude"] as? Double, let trailReports = sender.userInfo?["trailReports"] as? [TrailReport] else { return }
+        guard let latitude = sender.userInfo?["initialRegionLatitude"] as? Double, let longitude = sender.userInfo?["initialRegionLongitude"] as? Double else { return }
         let initialRegion =  MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.1))
-        Self.trailReports = trailReports
         self.interactiveMapView.setBoundaryAround(region: initialRegion)
         self.updateSelectedGraphAndShowAllTrails()
         self.mapLoadingView.isHidden = true

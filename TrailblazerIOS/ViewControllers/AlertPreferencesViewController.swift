@@ -25,7 +25,7 @@ class AlertPreferencesViewController: UIViewController {
         }
         if sender.isOn {
             InteractiveMapViewController.currentUser.alertSettings.append(type)
-            for trailReport in InteractiveMapViewController.trailReports.filter({$0.type == type}){
+            for trailReport in MapInterpreter.shared.trailReports.filter({$0.type == type}){
                 NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": trailReport])
             }
         }

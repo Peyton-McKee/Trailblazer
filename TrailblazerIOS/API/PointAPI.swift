@@ -10,7 +10,7 @@ import Foundation
 extension APIHandler {
     func updatePointTime(point: PointTimeUpdateData, completion: @escaping (Result<Point, Error>) -> Void)
     {
-        let url = URL(string: "\(self.baseURL)/api/users/\(point.id)")!
+        let url = URL(string: "\(self.baseURL)/api/points/\(point.id)")!
         
         let encoder = JSONEncoder()
         
@@ -22,11 +22,12 @@ extension APIHandler {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 let decoder = JSONDecoder()
-                if let point = try? decoder.decode(Point.self, from: data) {
+                do {
+                    let point = try decoder.decode(Point.self, from: data)
                     completion(.success(point))
-                } else {
-                    completion(.failure(DecodingErrors.pointDecodingError))
-                    print("Could not update user")
+                } catch {
+                    print("Could not update point")
+                    completion(.failure(error))
                 }
             }
         }.resume()

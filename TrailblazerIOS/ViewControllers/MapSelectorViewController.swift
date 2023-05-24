@@ -35,7 +35,6 @@ class MapSelectorViewController : UIViewController, ErrorHandler {
     }
     
     func switchRootViewController(id: String) {
-        InteractiveMapViewController.mapId = id
         UserDefaults.standard.set(id, forKey: "mapId")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")

@@ -61,7 +61,7 @@ extension InteractiveMapViewController: MKMapViewDelegate
         }
         if (view.annotation?.title! == nil)
         {
-            self.selectedTrailReport = Self.trailReports.first(where: {$0.id == annotation.id})
+            self.selectedTrailReport = MapInterpreter.shared.trailReports.first(where: {$0.id == annotation.id})
             self.selectedTrailReportAnnotation = annotation
             self.cancelTrailReportView.isHidden = false
             return

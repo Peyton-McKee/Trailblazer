@@ -32,6 +32,7 @@ struct MapsController: RouteCollection {
         
         return map.save(on: req.db).map { map }
     }
+
     func getAllHandler(_ req: Request) -> EventLoopFuture<[Map]> {
         Map.query(on: req.db).all()
     }
@@ -59,6 +60,7 @@ struct MapsController: RouteCollection {
         
         return PublicMap(id: map.id!, name: map.name, initialLocationLatitude: map.initialLocationLatitude, initialLocationLongitude: map.initialLocationLongitude, mountainReportUrl: map.mountainReportUrl, trailStatusElementId: map.trailStatusElementId, liftStatusElementId: map.liftStatusElementId, mapTrail: publicMapTrails, mapConnector: publicMapConnectors)
     }
+
     func getMapTrailsHandler(_ req: Request)
     -> EventLoopFuture<[MapTrail]> {
         // 2
@@ -69,7 +71,6 @@ struct MapsController: RouteCollection {
                 map.$mapTrail.get(on: req.db)
             }
     }
-    
     
     func getMapConnectorsHandler(_ req: Request) -> EventLoopFuture<[MapConnector]> {
         Map.find(req.parameters.get("mapId"), on: req.db)
@@ -112,6 +113,7 @@ struct MapsController: RouteCollection {
         
         return .noContent
     }
+
     func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
         let maps = try await Map.query(on: req.db).all()
         
