@@ -13,7 +13,7 @@ enum UserRole
     case member
 }
 
-struct User : Codable{
+struct User : Codable {
     var id : String?
     var username : String
     var password : String?

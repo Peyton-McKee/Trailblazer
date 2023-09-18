@@ -19,36 +19,60 @@ struct UserLocationController: RouteCollection {
         userLocationsRoute.get(":ulId", use: getHandler)
         userLocationsRoute.delete(":ulId", use: deleteHandler)
         userLocationsRoute.delete( use: deleteAllHandler)
-
+        
     }
     
-    func createHandler(_ req: Request)
-    throws -> EventLoopFuture<UserLocation> {
+    /**
+     * Creates a user location in the database
+     */
+    func createHandler(_ req: Request) async throws -> UserLocation {
         let data = try req.content.decode(CreateUserLocationData.self)
         
         let userLocation = UserLocation(latitude: data.latitude, longitude: data.longitude, timeReported: data.timeReported, userID: data.userID)
         
-        return userLocation.save(on: req.db).map { userLocation }
-    }
-    func getAllHandler(_ req: Request) -> EventLoopFuture<[UserLocation]> {
-        UserLocation.query(on: req.db).all()
-    }
-    func getHandler(_ req: Request)
-    -> EventLoopFuture<UserLocation> {
+        try await userLocation.save(on: req.db)
         
-        UserLocation.find(req.parameters.get("ulId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
+        return userLocation
     }
-    func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        UserLocation.find(req.parameters.get("ulId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { userLocation in
-                userLocation.delete(on: req.db).transform(to: .noContent)
-            }
+    
+    /**
+     * Gets all the user locations from the database
+     */
+    func getAllHandler(_ req: Request) async throws -> [UserLocation] {
+        return try await UserLocation.query(on: req.db).all()
     }
-    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
-        UserLocation.query(on: req.db)
-            .delete(force: true).transform(to: .noContent)
+    
+    /**
+     * Gets the user location with the specified id
+     */
+    func getHandler(_ req: Request) async throws -> UserLocation {
+        guard let userLocation = try await UserLocation.find(req.parameters.get("ulId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        
+        return userLocation
+    }
+    
+    /**
+     * Deletes  the user location with the specified Id
+     */
+    func deleteHandler(_ req: Request) async throws -> HTTPStatus {
+        let userLocation = try await getHandler(req)
+        
+        try await userLocation.delete(on: req.db)
+        
+        return .noContent
+    }
+    
+    /**
+     * Deletes all the user locations from the database
+     */
+    func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
+        let allUserLocations = try await getAllHandler(req)
+        
+        try await allUserLocations.delete(on: req.db)
+        
+        return .noContent
     }
 }
 

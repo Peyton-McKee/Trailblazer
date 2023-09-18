@@ -19,36 +19,58 @@ struct UserRoutesController: RouteCollection {
         userRoutesRoute.get(":urId", use: getHandler)
         userRoutesRoute.delete(":urId", use: deleteHandler)
         userRoutesRoute.delete(use: deleteAllHandler)
-
+        
     }
     
-    func createHandler(_ req: Request)
-    throws -> EventLoopFuture<UserRoute> {
+    /**
+     * Creates a user route in the database
+     */
+    func createHandler(_ req: Request) throws -> EventLoopFuture<UserRoute> {
         let data = try req.content.decode(CreateUserRoutesData.self)
         
         let userLocation = UserRoute(destinationTrailName: data.destinationTrailName, originTrailName: data.originTrailName, dateMade: data.dateMade, timeTook: data.timeTook, userID: data.userID)
         
         return userLocation.save(on: req.db).map { userLocation }
     }
-    func getAllHandler(_ req: Request) -> EventLoopFuture<[UserRoute]> {
-        UserRoute.query(on: req.db).all()
+    
+    /**
+     * Gets all the user routes from the database
+     */
+    func getAllHandler(_ req: Request) async throws -> [UserRoute] {
+        return try await UserRoute.query(on: req.db).all()
     }
-    func getHandler(_ req: Request)
-    -> EventLoopFuture<UserRoute> {
+    
+    /**
+     * Gets the user route with the specifed id from the database
+     */
+    func getHandler(_ req: Request) async throws -> UserRoute {
+        guard let userRoute = try await UserRoute.find(req.parameters.get("urId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
         
-        UserRoute.find(req.parameters.get("urId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
+        return userRoute
     }
-    func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        UserRoute.find(req.parameters.get("urId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { userRoute in
-                userRoute.delete(on: req.db).transform(to: .noContent)
-            }
+    
+    /**
+     * Deletes the user route with the specified id from the database
+     */
+    func deleteHandler(_ req: Request) async throws -> HTTPStatus {
+        let userRoute = try await getHandler(req)
+        
+        try await userRoute.delete(on: req.db)
+        
+        return .noContent
     }
-    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
-        UserRoute.query(on: req.db)
-            .delete(force: true).transform(to: .noContent)
+    
+    /**
+     * Deletes all the user routes from the database
+     */
+    func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
+        let allUserRoutes = try await getAllHandler(req)
+        
+        try await allUserRoutes.delete(on: req.db)
+        
+        return .noContent
     }
 }
 

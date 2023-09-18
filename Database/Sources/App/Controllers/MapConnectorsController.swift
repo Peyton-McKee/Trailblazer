@@ -22,45 +22,64 @@ struct MapConnectorsController: RouteCollection {
         mapConnectorsRoute.delete( use: deleteAllHandler)
     }
     
-    func createHandler(_ req: Request)
-    throws -> EventLoopFuture<MapConnector> {
+    /**
+     * Creates a Map Connector in the database
+     */
+    func createHandler(_ req: Request) async throws -> MapConnector {
         let data = try req.content.decode(CreateMapConnectorData.self)
         
         let mapConnector = MapConnector(name: data.name, mapID: data.mapId)
         
-        return mapConnector.save(on: req.db).map { mapConnector }
-    }
-    func getAllHandler(_ req: Request) -> EventLoopFuture<[MapConnector]> {
-        MapConnector.query(on: req.db).all()
-    }
-    func getHandler(_ req: Request)
-    -> EventLoopFuture<MapConnector> {
+        try await mapConnector.save(on: req.db)
         
-        MapConnector.find(req.parameters.get("mcId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-    }
-    func getPointsHandler(_ req: Request)
-      -> EventLoopFuture<[Point]> {
-      // 2
-      MapConnector.find(req.parameters.get("mcId"), on: req.db)
-              .unwrap(or: Abort(.notFound))
-              .flatMap({
-                  mapConnector in
-                  mapConnector.$points.get(on: req.db)
-                  
-              })
+        return mapConnector
     }
     
-    func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        MapConnector.find(req.parameters.get("mcId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { mapConnector in
-                mapConnector.delete(on: req.db).transform(to: .noContent)
-            }
+    /**
+     * Gets all the maps in the database
+     */
+    func getAllHandler(_ req: Request) async throws -> [MapConnector] {
+        return try await MapConnector.query(on: req.db).all()
     }
-    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
-        MapConnector.query(on: req.db)
-            .delete(force: true).transform(to: .noContent)
+    
+    /**
+     * Gets a single map from the database with the given id
+     */
+    func getHandler(_ req: Request) async throws -> MapConnector {
+        guard let mapConnector = try await MapConnector.find(req.parameters.get("mcId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        return mapConnector
+    }
+    
+    /**
+     * Gets all the points for the given map connector
+     */
+    func getPointsHandler(_ req: Request) async throws -> [Point] {
+        let mapConnector = try await getHandler(req)
+        return try await mapConnector.$points.get(on: req.db)
+    }
+    
+    /**
+     * Deletes the map connector that correlates to the given map connector id
+     */
+    func deleteHandler(_ req: Request) async throws -> HTTPStatus {
+        let mapConnector = try await getHandler(req)
+        
+        try await mapConnector.delete(on: req.db)
+        
+        return .noContent
+    }
+    
+    /**
+     * Deletes all the map connectors in the database
+     */
+    func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
+        let allMapConnectors = try await getAllHandler(req)
+        
+        try await allMapConnectors.delete(on: req.db)
+        
+        return .noContent
     }
 }
 

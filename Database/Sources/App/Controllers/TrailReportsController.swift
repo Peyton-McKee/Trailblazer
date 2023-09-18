@@ -19,36 +19,60 @@ struct TrailReportsController: RouteCollection {
         trailReportsRoute.get(":trId", use: getHandler)
         trailReportsRoute.delete(":trId", use: deleteHandler)
         trailReportsRoute.delete( use: deleteAllHandler)
-
+        
     }
     
-    func createHandler(_ req: Request)
-    throws -> EventLoopFuture<TrailReport> {
+    /**
+     * Creates a trail report in the database
+     */
+    func createHandler(_ req: Request) async throws -> TrailReport {
         let data = try req.content.decode(CreateTrailReportData.self)
         
         let trailReport = TrailReport(type: data.type, latitude: data.latitude, longitude: data.longitude, dateMade: data.dateMade, trailMadeOn: data.trailMadeOn, userID: data.userID, mapID: data.mapID)
         
-        return trailReport.save(on: req.db).map { trailReport }
-    }
-    func getAllHandler(_ req: Request) -> EventLoopFuture<[TrailReport]> {
-        TrailReport.query(on: req.db).all()
-    }
-    func getHandler(_ req: Request)
-    -> EventLoopFuture<TrailReport> {
+        try await trailReport.save(on: req.db)
         
-        TrailReport.find(req.parameters.get("trId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
+        return trailReport
     }
-    func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        TrailReport.find(req.parameters.get("trId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { trailReport in
-                trailReport.delete(on: req.db).transform(to: .noContent)
-            }
+    
+    /**
+     * Gets all the trail reports in the databse
+     */
+    func getAllHandler(_ req: Request) async throws -> [TrailReport] {
+        return try await TrailReport.query(on: req.db).all()
     }
-    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
-        TrailReport.query(on: req.db)
-            .delete(force: true).transform(to: .noContent)
+    
+    /**
+     * Gets the trail report with the specified id from the database
+     */
+    func getHandler(_ req: Request) async throws -> TrailReport {
+        guard let trailReport = try await TrailReport.find(req.parameters.get("trId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        
+        return trailReport
+    }
+    
+    /**
+     * Deletes the trail report with the specified id from the database
+     */
+    func deleteHandler(_ req: Request) async throws -> HTTPStatus {
+        let trailReport = try await getHandler(req)
+        
+        try await trailReport.delete(on: req.db)
+        
+        return .noContent
+    }
+    
+    /**
+     * Deletes all the trail reports stored in the database
+     */
+    func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
+        let allTrailReports = try await getAllHandler(req)
+        
+        try await allTrailReports.delete(on: req.db)
+        
+        return .noContent
     }
 }
 

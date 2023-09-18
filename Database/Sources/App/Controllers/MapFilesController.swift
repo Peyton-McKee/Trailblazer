@@ -22,33 +22,57 @@ struct MapFilesController: RouteCollection {
         mapFilesRoute.delete(use: deleteAllHandler)
     }
     
-    func createHandler(_ req: Request)
-    throws -> EventLoopFuture<MapFile> {
+    /**
+     * Creates a map file in the database
+     */
+    func createHandler(_ req: Request) async throws -> MapFile {
         let data = try req.content.decode(CreateMapFileData.self)
         
         let mapFile = MapFile(title: data.title, file: data.file, link: data.link)
         
-        return mapFile.save(on: req.db).map { mapFile }
-    }
-    func getAllHandler(_ req: Request) -> EventLoopFuture<[MapFile]> {
-        MapFile.query(on: req.db).all()
-    }
-    func getHandler(_ req: Request)
-    -> EventLoopFuture<MapFile> {
-        MapFile.find(req.parameters.get("mapFileId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
+        try await mapFile.save(on: req.db)
         
+        return mapFile
     }
-    func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        MapFile.find(req.parameters.get("mapFileId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { mapFile in
-                mapFile.delete(on: req.db).transform(to: HTTPStatus.noContent)
-            }
+    
+    /**
+     * Gets all the map files in the database
+     */
+    func getAllHandler(_ req: Request) async throws -> [MapFile] {
+        return try await MapFile.query(on: req.db).all()
     }
-    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
-        MapFile.query(on: req.db)
-            .delete(force: true).transform(to: .noContent)
+    
+    /**
+     * Gets a single Map File from the database that correlates with the given mapFileId
+     */
+    func getHandler(_ req: Request) async throws -> MapFile {
+        guard let mapFile = try await MapFile.find(req.parameters.get("mapFileId"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        
+        return mapFile
+    }
+    
+    /**
+     * Deletes a map file from the database with the given mapFileId
+     */
+    func deleteHandler(_ req: Request) async throws -> HTTPStatus {
+        let mapFile = try await getHandler(req)
+        
+        try await mapFile.delete(on: req.db)
+        
+        return .noContent
+    }
+    
+    /**
+     * Deletes all the map files from the database
+     */
+    func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
+        let mapFiles = try await getAllHandler(req)
+        
+        try await mapFiles.delete(on: req.db)
+        
+        return .noContent
     }
 }
 

@@ -20,13 +20,12 @@ extension UserSignUp: Validatable {
         validations.add("password", as: String.self, is: .count(6...))
     }
 }
-// 1
+
 struct UsersController: RouteCollection
 {
     func boot(routes: RoutesBuilder) throws {
-        // 3
         let usersRoute = routes.grouped("api", "users")
-        // 4
+        
         usersRoute.post(use: createHandler)
         usersRoute.get(use: getAllHandler)
         usersRoute.get(":userID", use: getHandler)
@@ -44,97 +43,109 @@ struct UsersController: RouteCollection
         
     }
     
-    // 5
-    func createHandler(_ req: Request)
-    throws -> EventLoopFuture<User> {
-        // 6
+    /**
+     * Validates and creates a user in the database
+     */
+    func createHandler(_ req: Request) async throws -> User {
         try UserSignUp.validate(content: req)
         let userSignup = try req.content.decode(UserSignUp.self)
         let user = try User.create(from: userSignup)
         
-        return checkIfUserExists(userSignup.username, req: req).flatMap { exists in
-            guard !exists else {
-                return req.eventLoop.future(error: UserError.usernameTaken)
-            }
-            
-            return user.save(on: req.db).map{ user }
-            
+        if (try await doesUserExist(userSignup.username, req: req)) {
+            throw Abort(.custom(code: 400, reasonPhrase: UserError.usernameTaken.reason))
         }
+        
+        try await user.save(on: req.db)
+        
+        return user
     }
     
-    func getAllHandler(_ req: Request) -> EventLoopFuture<[User]> {
-        User.query(on: req.db).all()
+    /**
+     * Gets all the users from the database
+     */
+    func getAllHandler(_ req: Request) async throws -> [User] {
+        return try await User.query(on: req.db).all()
     }
     
-    func getHandler(_ req: Request)
-    -> EventLoopFuture<User> {
-        // 4
-        User.find(req.parameters.get("userID"), on: req.db)
-            .unwrap(or: Abort(.notFound))
+    /**
+     * Gets a single user from the database
+     */
+    func getHandler(_ req: Request) async throws -> User {
+        guard let user = try await User.find(req.parameters.get("userID"), on: req.db) else {
+            throw Abort(.notFound)
+        }
+        
+        return user
     }
     
-    func getTrailReportsHandler(_ req: Request)
-    -> EventLoopFuture<[TrailReport]> {
-        // 2
-        User.find(req.parameters.get("userID"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { user in
-                // 3
-                user.$trailReports.get(on: req.db)
-            }
+    /**
+     * Gets all of the users trail reports
+     */
+    func getTrailReportsHandler(_ req: Request) async throws -> [TrailReport] {
+        let user = try await getHandler(req)
+        
+        return try await user.$trailReports.get(on: req.db)
     }
     
-    func getUserLocationsHandler(_ req: Request)
-    -> EventLoopFuture<[UserLocation]> {
-        // 2
-        User.find(req.parameters.get("userID"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { user in
-                // 3
-                user.$userLocations.get(on: req.db)
-            }
+    /**
+     * Gets all the users userLocations
+     */
+    func getUserLocationsHandler(_ req: Request) async throws -> [UserLocation] {
+        let user = try await getHandler(req)
+        
+        return try await user.$userLocations.get(on: req.db)
     }
     
-    func updateHandler(_ req: Request) throws -> EventLoopFuture<User> {
+    /**
+     * Updates the users alert and routing preferences
+     */
+    func updateHandler(_ req: Request) async throws -> User {
         let updatedUser = try req.content.decode(User.self)
-        return User.find(req.parameters.get("userID"), on: req.db)
-            .unwrap(or: Abort(.notFound)).flatMap { user in
-                user.alertSettings = updatedUser.alertSettings
-                user.routingPreference = updatedUser.routingPreference
-                return user.save(on: req.db).map{
-                    user
-                }
-            }
+        let currentUser = try await getHandler(req)
+        
+        currentUser.alertSettings = updatedUser.alertSettings
+        currentUser.routingPreference = updatedUser.routingPreference
+        try await currentUser.save(on: req.db)
+        
+        return currentUser
     }
     
-    func getUserRoutesHandler(_ req: Request)
-    -> EventLoopFuture<[UserRoute]> {
-        // 2
-        User.find(req.parameters.get("userID"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { user in
-                // 3
-                user.$userRoutes.get(on: req.db)
-            }
+    /**
+     * Gets all of the users routes
+     */
+    func getUserRoutesHandler(_ req: Request) async throws -> [UserRoute] {
+        let user = try await getHandler(req)
+        
+        return try await user.$userRoutes.get(on: req.db)
     }
     
-    func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        User.find(req.parameters.get("userID"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { user in
-                user.delete(on: req.db).transform(to: .noContent)
-            }
-    }
-    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
-        User.query(on: req.db)
-            .delete(force: true).transform(to: .noContent)
+    /**
+     * Deletes the user from the database
+     */
+    func deleteHandler(_ req: Request) async throws -> HTTPStatus {
+        let user = try await getHandler(req)
+        
+        try await user.delete(on: req.db)
+            
+        return .noContent
     }
     
-    //    func login(req: Request) throws -> User {
-    //        print(req)
-    //        return try req.auth.require(User.self)
-    //    }
-    func checkIfUserExists(_ username: String, req: Request) -> EventLoopFuture<Bool> {
-        User.query(on: req.db).filter(\.$username == username).first().map({ $0 != nil })
+    /**
+     * Deletes all the users stored in the database
+     */
+    func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
+        let allUsers = try await getAllHandler(req)
+        
+        try await allUsers.delete(on: req.db)
+        
+        return .noContent
+    }
+    
+    /**
+     * Checks if the users username already exists in the database, returns true if it does
+     */
+    func doesUserExist(_ username: String, req: Request) async throws -> Bool {
+        return try await (User.query(on: req.db).filter(\.$username == username).first() != nil)
+        
     }
 }

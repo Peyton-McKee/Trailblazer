@@ -22,52 +22,76 @@ struct PointsController: RouteCollection {
         
     }
     
-    func createHandler(_ req: Request)
-    throws -> EventLoopFuture<Point> {
+    /**
+     * Creates a point in the database
+     */
+    func createHandler(_ req: Request) async throws -> Point {
         let data = try req.content.decode(CreatePointData.self)
-        let point = Point(latitude: data.latitude, longitude: data.longitude, mapTrailID: data.mapTrailId, mapConnectorID: data.mapConnectorId, time: data.time, order: data.order)
-        return point.save(on: req.db).map { point }
-    }
-    
-    func getAllHandler(_ req: Request) -> EventLoopFuture<[Point]> {
-        Point.query(on: req.db).all()
-    }
-    
-    func getHandler(_ req: Request)
-    -> EventLoopFuture<Point> {
         
-        Point.find(req.parameters.get("pointId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
+        let point = Point(latitude: data.latitude, longitude: data.longitude, mapTrailID: data.mapTrailId, mapConnectorID: data.mapConnectorId, time: data.time, order: data.order)
+        
+        try await point.save(on: req.db)
+        
+        return point
     }
     
-    func deleteHandler(_ req: Request) -> EventLoopFuture<HTTPStatus> {
-        Point.find(req.parameters.get("pointId"), on: req.db)
-            .unwrap(or: Abort(.notFound))
-            .flatMap { point in
-                point.delete(on: req.db).transform(to: .noContent)
-            }
+    /**
+     * Gets all the points from the database
+     */
+    func getAllHandler(_ req: Request) async throws -> [Point] {
+        return try await Point.query(on: req.db).all()
     }
     
-    func updateHandler(_ req: Request) async throws -> Point {
-        guard let point = try? await Point.find(req.parameters.get("pointId"), on: req.db) else {
+    /**
+     * Gets a single point from the database with the given point id
+     */
+    func getHandler(_ req: Request) async throws-> Point {
+        guard let point = try await Point.find(req.parameters.get("pointId"), on: req.db) else {
             throw Abort(.notFound)
         }
+        
+        return point
+    }
+    
+    /**
+     * Deletes a point from the database
+     */
+    func deleteHandler(_ req: Request) async throws -> HTTPStatus {
+        let point = try await getHandler(req)
+        
+        try await point.delete(on: req.db)
+        
+        return .noContent
+    }
+    
+    /**
+     * Updates the point in the database with a new time array
+     */
+    func updateHandler(_ req: Request) async throws -> Point {
+        let point = try await getHandler(req)
+        
         let updatedPointData = try req.content.decode(updatePointTimeData.self)
-
+        
         point.time = updatedPointData.time
         do {
             try await point.update(on: req.db)
         } catch {
             print("ERROR: ", error)
+            throw Abort(HTTPResponseStatus(statusCode: 400, reasonPhrase: error.localizedDescription))
         }
         
         return point
-        
     }
     
-    func deleteAllHandler(_ req: Request) ->EventLoopFuture<HTTPStatus> {
-        Point.query(on: req.db)
-            .delete(force: true).transform(to: .noContent)
+    /**
+     * Deletes all the points in the database
+     */
+    func deleteAllHandler(_ req: Request) async throws -> HTTPStatus {
+        let allPoints = try await getAllHandler(req)
+        
+        try await allPoints.delete(on: req.db)
+        
+        return .noContent
     }
 }
 
