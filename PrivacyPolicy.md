@@ -58,7 +58,7 @@ We reserve the right to modify this privacy policy. Updates will be communicated
 
 ### 13. Contact Information
 
-If you have any questions or concerns about your privacy, please contact us at [Your Contact Information].
+If you have any questions or concerns about your privacy, please contact us at mckee.p@northeastern.edu
 
 ### 14. Legal Requirements
 
