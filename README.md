@@ -1,7 +1,5 @@
 # Trailblazer
 
-The Waze of Skiing
-
 Setup Instructions:
 
 /* No longer necessary, for now you can just start the project by opening SundayRiver.xcodeproj and pressing "command R" */
@@ -32,6 +30,6 @@ Setup Instructions:
   
   Run the program (Command R)
 
-## Link To Testflight 
+## Contact Information
 
-https://testflight.apple.com/join/qY7GGL3a
+With any inquiries about the app feel free to reach out at mckee.p@northeastern.edu
