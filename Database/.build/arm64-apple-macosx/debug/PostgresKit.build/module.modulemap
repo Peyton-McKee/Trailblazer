@@ -1,4 +1,4 @@
 module PostgresKit {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/PostgresKit.build/PostgresKit-Swift.h"
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/PostgresKit.build/PostgresKit-Swift.h"
     requires objc
 }

@@ -4,7 +4,7 @@ b64e70d133116987544125770ab8912ab2d06b39	not-for-merge	branch 'beta' of https://
 2f06450ac97435d45280e6141df2c9c38cb5c1d7	not-for-merge	branch 'feature/use-swift-collections' of https://github.com/vapor/multipart-kit
 2676981c04b16deffeed763db795b2e16a160397	not-for-merge	branch 'joannis-performance' of https://github.com/vapor/multipart-kit
 ae89fefe60011d557c42ddb17e9e8a80bdd356ba	not-for-merge	branch 'linux-ci' of https://github.com/vapor/multipart-kit
-0d55c35e788451ee27222783c7d363cb88092fab	not-for-merge	branch 'main' of https://github.com/vapor/multipart-kit
+d722ba47ee4acdef7faf9de6b5497753e3ad1c74	not-for-merge	branch 'main' of https://github.com/vapor/multipart-kit
 fc15a1617ade3e0d5ef2be72c671f1a9f2a8fec6	not-for-merge	branch 'vapor-1' of https://github.com/vapor/multipart-kit
 3d0d7da9dfa7ab08185d5dc4b9dfee6c098149c3	not-for-merge	'refs/pull/1/head' of https://github.com/vapor/multipart-kit
 d891c02fc2a40ae1114b891d3bd506f06eeed189	not-for-merge	'refs/pull/10/head' of https://github.com/vapor/multipart-kit
@@ -65,6 +65,9 @@ b55af93b7ca697a318462481d9260a79f3372820	not-for-merge	'refs/pull/71/head' of ht
 2180c1619774854d83a1f32976aacfc2e872ee67	not-for-merge	'refs/pull/83/head' of https://github.com/vapor/multipart-kit
 3ae35797431665770d1d2a27b51c32dbcf63927a	not-for-merge	'refs/pull/84/head' of https://github.com/vapor/multipart-kit
 8c3e757d3dde7fc184c6d184123bcacb13a9bde4	not-for-merge	'refs/pull/85/head' of https://github.com/vapor/multipart-kit
+3b75d9f4c3ac4e14535e9fd8632693105b79fbd6	not-for-merge	'refs/pull/87/head' of https://github.com/vapor/multipart-kit
+bba4803a3d4ca0ef9a92e850cfc9ec4781aabede	not-for-merge	'refs/pull/88/head' of https://github.com/vapor/multipart-kit
+cc0d786e694dc997c4c36ef30760243f86ec0f08	not-for-merge	'refs/pull/89/head' of https://github.com/vapor/multipart-kit
 0904266cac07df572774dad7cfbc5ac2ea184815	not-for-merge	'refs/pull/9/head' of https://github.com/vapor/multipart-kit
 5e666ae71242efd95a49b230ed67249b24365857	not-for-merge	tag '1.0.0' of https://github.com/vapor/multipart-kit
 2ea24e535f67fd1a28ee4b3159c3d976c824f8a3	not-for-merge	tag '1.0.1' of https://github.com/vapor/multipart-kit
@@ -104,3 +107,5 @@ df545a16fc2904c8d1fecf1f1c2500a4e584401f	not-for-merge	tag '4.3.0' of https://gi
 82f255699b1de9ba1f34dfc6b99e99aba5a1f8eb	not-for-merge	tag '4.5.0' of https://github.com/vapor/multipart-kit
 2dd9368a3c9580792b77c7ef364f3735909d9996	not-for-merge	tag '4.5.1' of https://github.com/vapor/multipart-kit
 0d55c35e788451ee27222783c7d363cb88092fab	not-for-merge	tag '4.5.2' of https://github.com/vapor/multipart-kit
+3a31859efeb054cdcd407fe152802ddc5c58bbce	not-for-merge	tag '4.5.3' of https://github.com/vapor/multipart-kit
+1adfd69df2da08f7931d4281b257475e32c96734	not-for-merge	tag '4.5.4' of https://github.com/vapor/multipart-kit

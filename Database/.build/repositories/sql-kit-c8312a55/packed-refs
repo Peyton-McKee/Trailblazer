@@ -1,6 +1,5 @@
 # pack-refs with: peeled fully-peeled sorted 
 2a0d3eeca0986fdafcc86b30816c400522cf51dd refs/heads/case-syntax-support
-b5a45be946e7ded9a3fef0ad37615c02c935bb29 refs/heads/experimental/instrumented-queries
 3c5413a229bc2abc962dab17ea66d25e448ad344 refs/heads/main
 a230d5e32c850c0d77e7484bdf518e4029e44efe refs/pull/1/head
 51af6668ab46df55a9ae1fe2cf18d5650ee2db8e refs/pull/10/head

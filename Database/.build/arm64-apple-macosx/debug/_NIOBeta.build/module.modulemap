@@ -1,4 +1,4 @@
 module _NIOBeta {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/_NIOBeta.build/_NIOBeta-Swift.h"
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/_NIOBeta.build/_NIOBeta-Swift.h"
     requires objc
 }

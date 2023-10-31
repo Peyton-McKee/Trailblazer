@@ -1,4 +1,4 @@
 module MultipartKit {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/MultipartKit.build/MultipartKit-Swift.h"
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/MultipartKit.build/MultipartKit-Swift.h"
     requires objc
 }

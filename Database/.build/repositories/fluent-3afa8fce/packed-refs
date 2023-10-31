@@ -1,6 +1,5 @@
 # pack-refs with: peeled fully-peeled sorted 
 783819d8838d15e1a05b459aa0fd1bde1e37ac26 refs/heads/3
-05f69a51bccacff0d57ff46c9adbd52816694cb7 refs/heads/experimental/instrumented-queries
 26c446002f03c5ab34b20d86873014ef3d92d0da refs/heads/main
 99b624f4132083dbb165c731a9054172c9e76269 refs/pull/1/head
 4aa1c1f8767d96bacc162312ef62d61b1f94193d refs/pull/10/head

@@ -1,0 +1,4 @@
+module VaporBridges {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/VaporBridges.build/VaporBridges-Swift.h"
+    requires objc
+}

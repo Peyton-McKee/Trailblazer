@@ -1,4 +1,4 @@
 module Logging {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Logging.build/Logging-Swift.h"
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/Logging.build/Logging-Swift.h"
     requires objc
 }

@@ -1,4 +1,4 @@
 module RealModule {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/RealModule.build/RealModule-Swift.h"
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/RealModule.build/RealModule-Swift.h"
     requires objc
 }

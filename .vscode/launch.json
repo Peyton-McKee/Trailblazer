@@ -1,0 +1,28 @@
+{
+   "configurations": [
+      {
+         "type": "lldb",
+         "request": "launch",
+         "sourceLanguages": [
+            "swift"
+         ],
+         "name": "Debug Run (Database)",
+         "program": "${workspaceFolder:Trailblazer}/Database/.build/debug/Run",
+         "args": [],
+         "cwd": "${workspaceFolder:Trailblazer}/Database",
+         "preLaunchTask": "swift: Build Debug Run (Database)"
+      },
+      {
+         "type": "lldb",
+         "request": "launch",
+         "sourceLanguages": [
+            "swift"
+         ],
+         "name": "Release Run (Database)",
+         "program": "${workspaceFolder:Trailblazer}/Database/.build/release/Run",
+         "args": [],
+         "cwd": "${workspaceFolder:Trailblazer}/Database",
+         "preLaunchTask": "swift: Build Release Run (Database)"
+      }
+   ]
+}

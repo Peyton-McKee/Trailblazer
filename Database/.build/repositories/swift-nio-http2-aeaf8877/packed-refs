@@ -1,5 +1,4 @@
 # pack-refs with: peeled fully-peeled sorted 
-c08e1d56ffe333c5d7292f83ed4e99a996bf0a5d refs/heads/gh-pages
 00576e6f1efa5c46dca2ca3081dc56dd233b402d refs/heads/main
 c58cf08ec59472870654639aaefd014c039af963 refs/heads/nghttp2-support-branch
 17ed17635e3436d154d360862ce1868666b9fd13 refs/pull/1/head

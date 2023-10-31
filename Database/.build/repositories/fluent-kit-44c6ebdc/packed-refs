@@ -1,7 +1,6 @@
 # pack-refs with: peeled fully-peeled sorted 
 f96e057bbe1e2e1ce86fd48d89fe445dd4b2290f refs/heads/add-querybuilder-set
 ad9eebb4b06a4e0d3ae605677105582002e7f5fe refs/heads/even-more-raw-sql-conveniences
-9edaee1b46ff848620d50d3a7888f1420394be2e refs/heads/experimental/instrumented-queries
 38670d2eefcba27530272946d627ac8d4e45f017 refs/heads/main
 0ad7eee906b27fc94532cccaa014e757d813e0e9 refs/heads/query-history-gm
 c7ebb490abea6c5b85252c5c8906b9b7917e1dec refs/heads/tn-group-decode
@@ -245,10 +244,8 @@ d61aa8b60a92f5f687cf112444f0c45452d1c627 refs/pull/485/head
 af19c82b3f75836c7cb8b827f3356226fd22694e refs/pull/486/head
 ba85d372f7d51f0f0909cb65f2e3dccc4f3c1d74 refs/pull/487/head
 0b223ff263b9067e062f2a3cc7c324011bc83a17 refs/pull/488/head
-8800acf3cb82e3bf53c6d7fb12250b62363f630d refs/pull/488/merge
 6c01f2869e309da2fe32fc7a6bbef485586fd4f6 refs/pull/489/head
 6eb1e05036ed9d07fb94747367c0928aa670f954 refs/pull/492/head
-b4e43b91dd115bcd967dff03271af5eb25ad8f8c refs/pull/492/merge
 5af962377faae1256fe7bbe7b85f59938450c3b2 refs/pull/493/head
 677e0c3f3e2dab209082bd7c00c72211c30201a7 refs/pull/494/head
 b36099b0e7a45964829ab36163e35276451f0ba1 refs/pull/496/head

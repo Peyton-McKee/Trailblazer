@@ -1,4 +1,4 @@
 module Crypto {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/arm64-apple-macosx/debug/Crypto.build/Crypto-Swift.h"
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/Crypto.build/Crypto-Swift.h"
     requires objc
 }

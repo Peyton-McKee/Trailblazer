@@ -41,6 +41,23 @@
       {
         "basedOn" : null,
         "packageRef" : {
+          "identity" : "bridges",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/SwifQL/Bridges.git",
+          "name" : "Bridges"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "7ae80c06ccce9dd12f394a41c8e9b4c6f72065e6",
+            "version" : "1.0.0-rc.4.13.6"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "Bridges"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
           "identity" : "console-kit",
           "kind" : "remoteSourceControl",
           "location" : "https://github.com/vapor/console-kit.git",
@@ -160,6 +177,23 @@
       {
         "basedOn" : null,
         "packageRef" : {
+          "identity" : "postgresbridge",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/SwifQL/PostgresBridge.git",
+          "name" : "PostgresBridge"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "4fc11593700c4893c993323e719665929fcfc16c",
+            "version" : "1.0.0-rc.4.6.0"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "PostgresBridge"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
           "identity" : "routing-kit",
           "kind" : "remoteSourceControl",
           "location" : "https://github.com/vapor/routing-kit.git",
@@ -190,6 +224,23 @@
           "name" : "sourceControlCheckout"
         },
         "subpath" : "sql-kit"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "swifql",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/SwifQL/SwifQL.git",
+          "name" : "SwifQL"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "e398112f94e6d85a971fc5d6af3da3fc06bd047f",
+            "version" : "2.0.0-beta.3.20.1"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "SwifQL"
       },
       {
         "basedOn" : null,
@@ -432,6 +483,23 @@
       {
         "basedOn" : null,
         "packageRef" : {
+          "identity" : "vaporbridges",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/SwifQL/VaporBridges.git",
+          "name" : "VaporBridges"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "3dab7b04cb5a1dac0bd9ab6a00b72014e8888cb0",
+            "version" : "1.0.0-rc.1.4.0"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "VaporBridges"
+      },
+      {
+        "basedOn" : null,
+        "packageRef" : {
           "identity" : "websocket-kit",
           "kind" : "remoteSourceControl",
           "location" : "https://github.com/vapor/websocket-kit.git",
@@ -448,5 +516,5 @@
       }
     ]
   },
-  "version" : 5
+  "version" : 6
 }

@@ -1,11 +1,8 @@
-41fe772f8828748ec292ed01a928740c4d8af2c5	not-for-merge	branch 'feature/BitSet' of https://github.com/apple/swift-collections
-7499bc29e897c6823d15d65e7ceee088ac3ca612	not-for-merge	branch 'feature/PersistentCollections' of https://github.com/apple/swift-collections
-8b1436f9283c299d060fe6e07b781a431c09846f	not-for-merge	branch 'feature/SortedCollections' of https://github.com/apple/swift-collections
-1071b372942289dbd3209ede40f613d339cca8e1	not-for-merge	branch 'fix-name-lookup-weirdness' of https://github.com/apple/swift-collections
-418378107c87a4b312e29a51f773ce0e4e12e199	not-for-merge	branch 'main' of https://github.com/apple/swift-collections
+939cfd25234472b4dc91c3caeab304d15bca9a73	not-for-merge	branch 'main' of https://github.com/apple/swift-collections
 762bc5757de4bcf86cc3b3266e3df93f76469089	not-for-merge	branch 'nate/zip_dispatch_benchmarking' of https://github.com/apple/swift-collections
-8bf9206b53882c2651ace4837c9fa06727e60e0c	not-for-merge	branch 'release/1.0' of https://github.com/apple/swift-collections
-f6d125e5553f3a0a36daeedcbcad10831e06ff3c	not-for-merge	branch 'release/1.1' of https://github.com/apple/swift-collections
+a902f1823a7ff3c9ab2fba0f992396b948eda307	not-for-merge	branch 'release/1.0' of https://github.com/apple/swift-collections
+873690c60e35d647e10b0d0d69799abae2001234	not-for-merge	branch 'release/1.1' of https://github.com/apple/swift-collections
+0c002200bbee27acc8a663075da69120f666b4e5	not-for-merge	branch 'silence-32bit-warning' of https://github.com/apple/swift-collections
 4138ccd68efeb8505d7f03555584fb7953531315	not-for-merge	branch 'wip-filter-set' of https://github.com/apple/swift-collections
 c65cd649fb91f64636f2f1ef5da4991987139f68	not-for-merge	'refs/pull/10/head' of https://github.com/apple/swift-collections
 6a9703c3f13061291eff1baf8af4fce1e6ce35af	not-for-merge	'refs/pull/100/head' of https://github.com/apple/swift-collections
@@ -21,10 +18,8 @@ cfca1038b53eecd4fc50da15cc715f966904012e	not-for-merge	'refs/pull/11/head' of ht
 7f57a0ed1c8b1d44eacab95d3cfd57d87482b25a	not-for-merge	'refs/pull/112/head' of https://github.com/apple/swift-collections
 efefae56531b30d75553f234134e3c83bd26c6a6	not-for-merge	'refs/pull/113/head' of https://github.com/apple/swift-collections
 565b1ab20bef052f52fad4ebe112803facb325e3	not-for-merge	'refs/pull/114/head' of https://github.com/apple/swift-collections
-045e3b822ea849c589788ff9203f2c0aaf6e0aad	not-for-merge	'refs/pull/114/merge' of https://github.com/apple/swift-collections
 8b3af12ece11ea7b0e748749c39a59c59269ca25	not-for-merge	'refs/pull/115/head' of https://github.com/apple/swift-collections
 8be0f192e8f120969427cb2645aabe6f5fdf15a1	not-for-merge	'refs/pull/116/head' of https://github.com/apple/swift-collections
-18ec8971592f46014e41e88e04c868caf7838bab	not-for-merge	'refs/pull/116/merge' of https://github.com/apple/swift-collections
 771bca404c0ee603bb6cc2ea3a19cfc4ebc3d001	not-for-merge	'refs/pull/117/head' of https://github.com/apple/swift-collections
 95be379a3ac1e4278d114a22501267065062b39a	not-for-merge	'refs/pull/118/head' of https://github.com/apple/swift-collections
 f41f2cae69dc6ffcc178227a0a46607561fa925c	not-for-merge	'refs/pull/119/head' of https://github.com/apple/swift-collections
@@ -72,7 +67,6 @@ ba303dca1d72860f0b253778f193010af20f9b79	not-for-merge	'refs/pull/184/head' of h
 f71ebd9494b3b0b8c1450017f8c30fb61e4dcc37	not-for-merge	'refs/pull/188/head' of https://github.com/apple/swift-collections
 66651795d89e760188908bb65b3398aa30b84897	not-for-merge	'refs/pull/189/head' of https://github.com/apple/swift-collections
 832e58027cdb86e618089ebdf2e3474da915c357	not-for-merge	'refs/pull/190/head' of https://github.com/apple/swift-collections
-04bf2b005fcce3a4db220013d29c0f7a62fd7b8a	not-for-merge	'refs/pull/190/merge' of https://github.com/apple/swift-collections
 9b7c6ecb10599568876b1108005b189de54d9ce9	not-for-merge	'refs/pull/191/head' of https://github.com/apple/swift-collections
 4604c1bc381c4d164a030d11830701b2897a0002	not-for-merge	'refs/pull/192/head' of https://github.com/apple/swift-collections
 0b86bb11d24e187ab6ab930f582f75ae00bcabf9	not-for-merge	'refs/pull/193/head' of https://github.com/apple/swift-collections
@@ -81,14 +75,112 @@ c7c0a094f91bd5cce90b1dc1f3feeb9d2508e7f5	not-for-merge	'refs/pull/194/head' of h
 7cec5d1ed71d0c29fc7515725401c8a711a01074	not-for-merge	'refs/pull/196/head' of https://github.com/apple/swift-collections
 b83d06b43337cc2855c1b55ba1cdba854724110b	not-for-merge	'refs/pull/197/head' of https://github.com/apple/swift-collections
 6286cd0b99741db984e5c1115a4c748bc42efec1	not-for-merge	'refs/pull/198/head' of https://github.com/apple/swift-collections
-47eedb8c495157648655fdfc33fcf624594885d0	not-for-merge	'refs/pull/198/merge' of https://github.com/apple/swift-collections
+8b06c61c7e4ecb6777895a8fba275a44ec8c5e01	not-for-merge	'refs/pull/199/head' of https://github.com/apple/swift-collections
+5aed92655d73228211985c933e0d5141d8203a09	not-for-merge	'refs/pull/200/head' of https://github.com/apple/swift-collections
+51604cd196265a1e4444cef0a7ac749e34f5e64e	not-for-merge	'refs/pull/201/head' of https://github.com/apple/swift-collections
+2a81cb1186ac3483183df32ba8c3e2fe7360cbcb	not-for-merge	'refs/pull/202/head' of https://github.com/apple/swift-collections
+6dbc8b8c4f36ff470060464d69066e2e094a194f	not-for-merge	'refs/pull/203/head' of https://github.com/apple/swift-collections
+6b428b5a7fadfae0120db4fc96a3d5b14f7b7c36	not-for-merge	'refs/pull/204/head' of https://github.com/apple/swift-collections
+b1506b62250f074d23cddc6d0318277dda5d21dc	not-for-merge	'refs/pull/205/head' of https://github.com/apple/swift-collections
+2e872739d3a6201e2b888c73f08ef54ae4125d6d	not-for-merge	'refs/pull/206/head' of https://github.com/apple/swift-collections
+4c842df1b8cfc9611762bdf5fbd9023ab2d3d333	not-for-merge	'refs/pull/207/head' of https://github.com/apple/swift-collections
+1228e9c1628925843575a11c1de8342e402c7c30	not-for-merge	'refs/pull/208/head' of https://github.com/apple/swift-collections
 b6184b667bd8f636558522f18cc2fe993a825679	not-for-merge	'refs/pull/21/head' of https://github.com/apple/swift-collections
+fc8092d0441e0073831d6b170c74b6cca0da9bf5	not-for-merge	'refs/pull/210/head' of https://github.com/apple/swift-collections
+cfc3d4a5179e61c36d77babd9fd3029a0f85cff4	not-for-merge	'refs/pull/211/head' of https://github.com/apple/swift-collections
+36e31eefb68878fd5cbbe0033c8675f203289cc8	not-for-merge	'refs/pull/211/merge' of https://github.com/apple/swift-collections
+02ea4e849230bc2326c83c5560822a228d83afab	not-for-merge	'refs/pull/212/head' of https://github.com/apple/swift-collections
+1490835b289653b145b91a16fe5522d928509efb	not-for-merge	'refs/pull/213/head' of https://github.com/apple/swift-collections
+2b4ec22949acbfa99f9e22c390d850a650f3d298	not-for-merge	'refs/pull/214/head' of https://github.com/apple/swift-collections
+5e0a0149a4c9b2ab407f65b257b5b36bc589307d	not-for-merge	'refs/pull/215/head' of https://github.com/apple/swift-collections
+734730d72460e7bd536e8021d4aa711cb3aa75b2	not-for-merge	'refs/pull/216/head' of https://github.com/apple/swift-collections
+381cf5d17e46f2d3266bd1be7295118647443313	not-for-merge	'refs/pull/217/head' of https://github.com/apple/swift-collections
+3c6cb8cd56d04392bf9f79a2d5020fc2abf1958d	not-for-merge	'refs/pull/218/head' of https://github.com/apple/swift-collections
+67fdff5a25539a51ce2a8bf574a7e4a6b72ebfb8	not-for-merge	'refs/pull/219/head' of https://github.com/apple/swift-collections
 fbdf73e1b787a0ac113e930dff73382f612698d4	not-for-merge	'refs/pull/22/head' of https://github.com/apple/swift-collections
+d3987c79a1214e279a49a09304c13322560c8a1b	not-for-merge	'refs/pull/220/head' of https://github.com/apple/swift-collections
+5783b82d72e620f37545924d46bdbfb429f03cbb	not-for-merge	'refs/pull/221/head' of https://github.com/apple/swift-collections
+2df7f6d3a8fe5f9bb12b5034da2e095424694d44	not-for-merge	'refs/pull/222/head' of https://github.com/apple/swift-collections
+72e2df59e3ea600f4d5e67a324bd6df1a7acbd41	not-for-merge	'refs/pull/223/head' of https://github.com/apple/swift-collections
+98d62d236bef8c30af5b7015ccbb7db66f43399e	not-for-merge	'refs/pull/224/head' of https://github.com/apple/swift-collections
+ba7e3927e76ff55b0579770fb036ffce6ea07b3c	not-for-merge	'refs/pull/225/head' of https://github.com/apple/swift-collections
+207029a613dca008e708370c09fc69010cf6a11d	not-for-merge	'refs/pull/226/head' of https://github.com/apple/swift-collections
+68bc6567be4c1ae96cfea1217b9e5cee63421c6a	not-for-merge	'refs/pull/227/head' of https://github.com/apple/swift-collections
+1c147e3b06edbe0b00217e38e94d2d3bc4b4c6a7	not-for-merge	'refs/pull/228/head' of https://github.com/apple/swift-collections
 5aa603edfe8c13e0256141cb45f70ec427fe94c1	not-for-merge	'refs/pull/23/head' of https://github.com/apple/swift-collections
+d19fb14c46266a20cba9c5362923c6a076e74407	not-for-merge	'refs/pull/230/head' of https://github.com/apple/swift-collections
+a32048d44ee028b915565c3093ec5305e41aa6f1	not-for-merge	'refs/pull/231/head' of https://github.com/apple/swift-collections
+4448454fbc79b8052acc6b6e7eb6c75c70d1ee2f	not-for-merge	'refs/pull/232/head' of https://github.com/apple/swift-collections
+14e86daeebe18bd32466a1f2bd2d8da936aa6508	not-for-merge	'refs/pull/233/head' of https://github.com/apple/swift-collections
+581490a7351be07e465100628ded472aaa137a99	not-for-merge	'refs/pull/234/head' of https://github.com/apple/swift-collections
+ff2d526c1baa53df478db47156bbdd68fcaed4df	not-for-merge	'refs/pull/235/head' of https://github.com/apple/swift-collections
+98d519ec12ec6bc209ad61fed2e7e2101e312566	not-for-merge	'refs/pull/237/head' of https://github.com/apple/swift-collections
+339f1677450d7a8f43518d61cfd93be85fa080c3	not-for-merge	'refs/pull/238/head' of https://github.com/apple/swift-collections
+ff85ea9e4f1cf6fd50fb758cde3dedf01a742f52	not-for-merge	'refs/pull/240/head' of https://github.com/apple/swift-collections
+18c4f6dc5a771cd3f90ef3e7ae02a99e09e89115	not-for-merge	'refs/pull/241/head' of https://github.com/apple/swift-collections
+3d66da5f5baa3585aa4b5fe8f9d9eaaee5e5a6ef	not-for-merge	'refs/pull/242/head' of https://github.com/apple/swift-collections
+2c33149e4e2cb9a5b2616cdbad9eabb5f51f0e0c	not-for-merge	'refs/pull/243/head' of https://github.com/apple/swift-collections
+a2f4b18ae02cd14a8488c357c75fef3f2c2a9013	not-for-merge	'refs/pull/244/head' of https://github.com/apple/swift-collections
+69768b6eacd442681bc8424cc76516e7e24fdacc	not-for-merge	'refs/pull/245/head' of https://github.com/apple/swift-collections
+f8252436e5e4384eaa1a68560db380d83b7c71eb	not-for-merge	'refs/pull/246/head' of https://github.com/apple/swift-collections
+889234a1fd79cbc16343e6d96328760b71b6b249	not-for-merge	'refs/pull/246/merge' of https://github.com/apple/swift-collections
+b8ed4950368d4d54cefd2b8bfe14c329e057172c	not-for-merge	'refs/pull/247/head' of https://github.com/apple/swift-collections
+10a01bd9fb383668a987ec8f512da627dbe55f9e	not-for-merge	'refs/pull/248/head' of https://github.com/apple/swift-collections
+470bf29d014757caae7222f3a41aea0b86b6ee1c	not-for-merge	'refs/pull/249/head' of https://github.com/apple/swift-collections
 b43076ca7b46b8216590766fd446ae538ab91c5a	not-for-merge	'refs/pull/25/head' of https://github.com/apple/swift-collections
+c0853ebef8dad7eddb6a44b76dac0f42f699b96a	not-for-merge	'refs/pull/251/head' of https://github.com/apple/swift-collections
+089666b32ba82c06a166e072ebcdf988108b66b7	not-for-merge	'refs/pull/252/head' of https://github.com/apple/swift-collections
+fef38395004569688a967b88c70d8774c63f5fc5	not-for-merge	'refs/pull/254/head' of https://github.com/apple/swift-collections
+972578a44da6463eb8f88552cc7d30cf0b6de9a4	not-for-merge	'refs/pull/259/head' of https://github.com/apple/swift-collections
+0c2071ecda7a50dcdc8ec435a45b3b830b3e5bcf	not-for-merge	'refs/pull/259/merge' of https://github.com/apple/swift-collections
 4e2f86b6cd24a124d69bf9257d2ffa751d11da8f	not-for-merge	'refs/pull/26/head' of https://github.com/apple/swift-collections
+580beb4c121a85f60aaf6f10403e7f457c81ccb9	not-for-merge	'refs/pull/260/head' of https://github.com/apple/swift-collections
+5b4e4e032fc56ca77b888ca36b7a342e9932e5fa	not-for-merge	'refs/pull/260/merge' of https://github.com/apple/swift-collections
+3e6df33472d54ed83dffe3bca7a3c8f65bab4c43	not-for-merge	'refs/pull/263/head' of https://github.com/apple/swift-collections
+fcd6800b9d1171fbe0a00f51a72afac32b0a1987	not-for-merge	'refs/pull/264/head' of https://github.com/apple/swift-collections
+5dc7a8970eabcf6aaa49529b5ef6401f5128637e	not-for-merge	'refs/pull/265/head' of https://github.com/apple/swift-collections
+1666222de2200b2a614a0d5184751b8b6f7309b0	not-for-merge	'refs/pull/266/head' of https://github.com/apple/swift-collections
+e6ecdac581c3f03f442111b87655702e0664df67	not-for-merge	'refs/pull/267/head' of https://github.com/apple/swift-collections
+26de4aa094c87a9efd793f3ec37ec7facea24184	not-for-merge	'refs/pull/268/head' of https://github.com/apple/swift-collections
+73936bba69bd49e025aa8113fa81caa7f76ed571	not-for-merge	'refs/pull/269/head' of https://github.com/apple/swift-collections
+454c84b5e4253e462dac5472b853ee222ca93368	not-for-merge	'refs/pull/270/head' of https://github.com/apple/swift-collections
+9c3328e235e5f17c06328f021a5d11e7221690f5	not-for-merge	'refs/pull/271/head' of https://github.com/apple/swift-collections
+96d71628887275fc3010a0979cdebef15edde911	not-for-merge	'refs/pull/272/head' of https://github.com/apple/swift-collections
+4b6978bf8b220c9c7d03d1f8124d537fbbddc32a	not-for-merge	'refs/pull/273/head' of https://github.com/apple/swift-collections
+7f63914a7161923e9af6889ed0f954de1ed4c7f0	not-for-merge	'refs/pull/275/head' of https://github.com/apple/swift-collections
+ac0c075ccc0fe2754a41dd777bb39507e73efe5b	not-for-merge	'refs/pull/276/head' of https://github.com/apple/swift-collections
+a8dad62bc9c76f1f455a372c91759e7bb1e92e63	not-for-merge	'refs/pull/277/head' of https://github.com/apple/swift-collections
+99adbe97af48017fb51d884936f6bb87c27166c2	not-for-merge	'refs/pull/278/head' of https://github.com/apple/swift-collections
+b0fe7ca8bad02599faa6a308b561f71d4d5e3b4b	not-for-merge	'refs/pull/279/head' of https://github.com/apple/swift-collections
+dce7b156e7276d44c3641f05bf675d90fea16523	not-for-merge	'refs/pull/280/head' of https://github.com/apple/swift-collections
+c4ad48826105dd299f45473784d22bf395b56863	not-for-merge	'refs/pull/281/head' of https://github.com/apple/swift-collections
+1f204555aa1678c0aa01cfba5836920acb8c5537	not-for-merge	'refs/pull/282/head' of https://github.com/apple/swift-collections
+992e0f3446b4f608f5ead9dd6edc92f6bbc0b0a0	not-for-merge	'refs/pull/283/head' of https://github.com/apple/swift-collections
+3f4d8f9912c9c3f5bacef6e6543b3f5b93168f65	not-for-merge	'refs/pull/284/head' of https://github.com/apple/swift-collections
+9befd06185369d287deee36f3d0de65f41edabb1	not-for-merge	'refs/pull/285/head' of https://github.com/apple/swift-collections
+0c002200bbee27acc8a663075da69120f666b4e5	not-for-merge	'refs/pull/286/head' of https://github.com/apple/swift-collections
+de0f59418503fc0c4866395751d930be3abbf17c	not-for-merge	'refs/pull/287/head' of https://github.com/apple/swift-collections
+a5fda7c368e06561fba87dd33c47443e879dd6da	not-for-merge	'refs/pull/288/head' of https://github.com/apple/swift-collections
 989bd7f2db6d9e7aa91881389359e369d621e3d9	not-for-merge	'refs/pull/29/head' of https://github.com/apple/swift-collections
+03c9ef743ad9de4eea816225afa2fc52490339cc	not-for-merge	'refs/pull/290/head' of https://github.com/apple/swift-collections
+03e7f0c401e771f4a4c529eae4d3fde91f5bd355	not-for-merge	'refs/pull/291/head' of https://github.com/apple/swift-collections
+9c88dce30d213e1844ce60476e7d3eba2b1f1e60	not-for-merge	'refs/pull/292/head' of https://github.com/apple/swift-collections
+671cff0b3e579cbdad3a0818031063588d866ad2	not-for-merge	'refs/pull/296/head' of https://github.com/apple/swift-collections
+b3d089e37d0d4adc07bdbf1ecd14e9be3786bf25	not-for-merge	'refs/pull/297/head' of https://github.com/apple/swift-collections
+2f6606401781d32f3ffe3e245f2ba946acefe97e	not-for-merge	'refs/pull/298/head' of https://github.com/apple/swift-collections
+8fbc1d318cf4c48931ffc6d204123284087fad0c	not-for-merge	'refs/pull/299/head' of https://github.com/apple/swift-collections
+cf2cbd6ce39cbbdf7c60b76a8dca8e38b80486fc	not-for-merge	'refs/pull/300/head' of https://github.com/apple/swift-collections
+09c09f0f734c006186df57595dc823159e0d49ef	not-for-merge	'refs/pull/302/head' of https://github.com/apple/swift-collections
+a58628449c5e398433472b1bfd7e67e0acbe09fc	not-for-merge	'refs/pull/303/head' of https://github.com/apple/swift-collections
+a82138e714dcd28ef5b7bacc4b708acc118e87ac	not-for-merge	'refs/pull/304/head' of https://github.com/apple/swift-collections
+f26aac302039fb3f8fd27ea53a8836581054428d	not-for-merge	'refs/pull/304/merge' of https://github.com/apple/swift-collections
+1cf3b88cb3d237183cacd6482e4adaec48b17bb5	not-for-merge	'refs/pull/307/head' of https://github.com/apple/swift-collections
+fcb8a4b2c8b7acad6f64b6befea70d8a657e7527	not-for-merge	'refs/pull/307/merge' of https://github.com/apple/swift-collections
 ccd11e55dd4991055b260bb39d7e20ceb09046e9	not-for-merge	'refs/pull/31/head' of https://github.com/apple/swift-collections
+9efa05c583441159bd505dfde340cf774d6144e0	not-for-merge	'refs/pull/314/head' of https://github.com/apple/swift-collections
+bf742617f30870372ed235c6ccf4515ea0a204d3	not-for-merge	'refs/pull/315/head' of https://github.com/apple/swift-collections
+b6e227b9d779fe7405dc410812cb3aba6d2b529a	not-for-merge	'refs/pull/316/head' of https://github.com/apple/swift-collections
+d54d208eed5343180ababf8ca210558eb344bbb2	not-for-merge	'refs/pull/316/merge' of https://github.com/apple/swift-collections
 171edb86e347f70d85ac593c139d26d6b4d3bbea	not-for-merge	'refs/pull/32/head' of https://github.com/apple/swift-collections
 85b00faba7071b5d7babb426bc06aa401ac8814d	not-for-merge	'refs/pull/34/head' of https://github.com/apple/swift-collections
 f6380bb6608eb7d43c199b3d0ab2f932d300a338	not-for-merge	'refs/pull/36/head' of https://github.com/apple/swift-collections
@@ -104,7 +196,6 @@ ca939f84e132eb64a44db49c8092c8ec261b3092	not-for-merge	'refs/pull/46/head' of ht
 137bd464c14792cadc721d90afd412c2e7735424	not-for-merge	'refs/pull/48/head' of https://github.com/apple/swift-collections
 3fe754c0804d97b446a8ca70b3e4aa8d9c17c831	not-for-merge	'refs/pull/49/head' of https://github.com/apple/swift-collections
 dff2b1783badd696c3135abd8e26c3b7ad2e67fd	not-for-merge	'refs/pull/51/head' of https://github.com/apple/swift-collections
-fe5f7e66436109c55d7fdf9b508794dfe3d68688	not-for-merge	'refs/pull/51/merge' of https://github.com/apple/swift-collections
 5e6b95649be69c3e9d6c326f2a7c2ba88c25f460	not-for-merge	'refs/pull/52/head' of https://github.com/apple/swift-collections
 4432aa8d79607328e6e96ae2a89f878ea58b27fe	not-for-merge	'refs/pull/53/head' of https://github.com/apple/swift-collections
 788c17c16b5bc88466d1a0a96f0bf7eaef8b9352	not-for-merge	'refs/pull/54/head' of https://github.com/apple/swift-collections
@@ -150,3 +241,5 @@ d45e63421d3dff834949ac69d3c37691e994bd69	not-for-merge	tag '0.0.3' of https://gi
 2d33a0ea89c961dcb2b3da2157963d9c0370347e	not-for-merge	tag '1.0.1' of https://github.com/apple/swift-collections
 48254824bb4248676bf7ce56014ff57b142b77eb	not-for-merge	tag '1.0.2' of https://github.com/apple/swift-collections
 f504716c27d2e5d4144fa4794b12129301d17729	not-for-merge	tag '1.0.3' of https://github.com/apple/swift-collections
+937e904258d22af6e447a0b72c0bc67583ef64a2	not-for-merge	tag '1.0.4' of https://github.com/apple/swift-collections
+a902f1823a7ff3c9ab2fba0f992396b948eda307	not-for-merge	tag '1.0.5' of https://github.com/apple/swift-collections

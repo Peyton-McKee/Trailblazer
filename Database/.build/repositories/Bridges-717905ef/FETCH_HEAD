@@ -1,0 +1,65 @@
+ffffc24132bf73767dc1009bfada1eaa8297cf2f	not-for-merge	branch 'became-more-lightweight' of https://github.com/SwifQL/Bridges
+fc4dd8bdc7f468e4a72503fb77d0904a385bd315	not-for-merge	branch 'implement-conveniences' of https://github.com/SwifQL/Bridges
+7ae80c06ccce9dd12f394a41c8e9b4c6f72065e6	not-for-merge	branch 'master' of https://github.com/SwifQL/Bridges
+25c1b758907cfb51b48e72e621a90ff6dfaeeff0	not-for-merge	branch 'replace-name-with-migrationName' of https://github.com/SwifQL/Bridges
+c4602684fb05ac1122ef2a0599c2b07ff70a7aaf	not-for-merge	branch 'upgrade-database-identifier' of https://github.com/SwifQL/Bridges
+ffffc24132bf73767dc1009bfada1eaa8297cf2f	not-for-merge	'refs/pull/1/head' of https://github.com/SwifQL/Bridges
+96a361351bf01f51ad94e117af4b079b6d917b98	not-for-merge	'refs/pull/10/head' of https://github.com/SwifQL/Bridges
+2701a5e6c26f1a9677e44c2e1d98457d5a5b951a	not-for-merge	'refs/pull/10/merge' of https://github.com/SwifQL/Bridges
+b5a7af1a54d2e49e50551ab0c718aeb750581888	not-for-merge	'refs/pull/11/head' of https://github.com/SwifQL/Bridges
+1a66653c9d7efcd781a1317a3d6fd7f5f81c703e	not-for-merge	'refs/pull/16/head' of https://github.com/SwifQL/Bridges
+fd79304a4281e5f2cd5ffee7d818a9651818046b	not-for-merge	'refs/pull/2/head' of https://github.com/SwifQL/Bridges
+2c3f18016cee958fcd19be203801dd12f19deedf	not-for-merge	'refs/pull/3/head' of https://github.com/SwifQL/Bridges
+25c1b758907cfb51b48e72e621a90ff6dfaeeff0	not-for-merge	'refs/pull/4/head' of https://github.com/SwifQL/Bridges
+04132e19ae91041cb1d16dfd0a28eb149593a420	not-for-merge	'refs/pull/5/head' of https://github.com/SwifQL/Bridges
+c4602684fb05ac1122ef2a0599c2b07ff70a7aaf	not-for-merge	'refs/pull/6/head' of https://github.com/SwifQL/Bridges
+fc4dd8bdc7f468e4a72503fb77d0904a385bd315	not-for-merge	'refs/pull/7/head' of https://github.com/SwifQL/Bridges
+a17136c61ffd53e4fa830b4e2e6abf5432f34dfc	not-for-merge	'refs/pull/8/head' of https://github.com/SwifQL/Bridges
+a6af4bacfbc9418834880dd767b4d575690b568f	not-for-merge	'refs/pull/9/head' of https://github.com/SwifQL/Bridges
+f7eae1cd47accb4628f19e9b38ee315c90247659	not-for-merge	tag '1.0.0-beta.1.0.0' of https://github.com/SwifQL/Bridges
+22f4f4afb51af77777a92903818de7b7273bc0d4	not-for-merge	tag '1.0.0-beta.1.1.0' of https://github.com/SwifQL/Bridges
+13a02f7613077a3759c678efeb5ab01481339942	not-for-merge	tag '1.0.0-beta.1.2.0' of https://github.com/SwifQL/Bridges
+05e228bb8184938d052a18b66ee86edb48ab5960	not-for-merge	tag '1.0.0-beta.1.2.1' of https://github.com/SwifQL/Bridges
+17933ae4887cf263fed55137e398642caed21459	not-for-merge	tag '1.0.0-beta.1.3.0' of https://github.com/SwifQL/Bridges
+52cd31052eb53b8cbc99309295ba236d80096a1c	not-for-merge	tag '1.0.0-beta.2.0.0' of https://github.com/SwifQL/Bridges
+1db410eb7dec56bb3c2f42aa15306a3eb8ea5e52	not-for-merge	tag '1.0.0-beta.2.1.0' of https://github.com/SwifQL/Bridges
+8067238085d0965adb8323f6a2d26ea282d67685	not-for-merge	tag '1.0.0-beta.2.2.0' of https://github.com/SwifQL/Bridges
+1c76b35e00cbdd45266e7abd90811e406d38895f	not-for-merge	tag '1.0.0-beta.2.2.1' of https://github.com/SwifQL/Bridges
+ced0939e24b94f9a05b16bb8d7816bf61dc7b8fe	not-for-merge	tag '1.0.0-beta.2.3.0' of https://github.com/SwifQL/Bridges
+c1214ef992700c9df890b5f27a8502ec01d1b931	not-for-merge	tag '1.0.0-beta.2.4.0' of https://github.com/SwifQL/Bridges
+a3ff646cba30e0bf618a98cba9e2f7995d547074	not-for-merge	tag '1.0.0-beta.2.5.0' of https://github.com/SwifQL/Bridges
+8e4eb374a25100b6f64b4b42394a9a21f542cf1e	not-for-merge	tag '1.0.0-beta.2.6.0' of https://github.com/SwifQL/Bridges
+81145d1893e437bf13382971856820eda2e4b145	not-for-merge	tag '1.0.0-beta.2.7.0' of https://github.com/SwifQL/Bridges
+a6fe9075234511dda38e7ef2fe8b84eceec38656	not-for-merge	tag '1.0.0-beta.2.7.1' of https://github.com/SwifQL/Bridges
+395f69ad3825df346160ce211f1e980b84d0809f	not-for-merge	tag '1.0.0-rc.1.0.0' of https://github.com/SwifQL/Bridges
+44124506e701460566bef91ded07c4995dd10d0e	not-for-merge	tag '1.0.0-rc.1.1.0' of https://github.com/SwifQL/Bridges
+2e73503ef6771fc1e332a2daea4984fc4bdb1ae2	not-for-merge	tag '1.0.0-rc.1.2.0' of https://github.com/SwifQL/Bridges
+b7f658c42eee30af7927ed256301eaea88c6b6de	not-for-merge	tag '1.0.0-rc.2.0.0' of https://github.com/SwifQL/Bridges
+4b67eecdb4a6a61786f93713916ecc3f9da36e9e	not-for-merge	tag '1.0.0-rc.3.0.0' of https://github.com/SwifQL/Bridges
+b98b3c97cae57d07c619f64f26997d94cbed889b	not-for-merge	tag '1.0.0-rc.3.1.0' of https://github.com/SwifQL/Bridges
+f14c9f2a11f6c8f5b562d6d0f2c9a65ff863714a	not-for-merge	tag '1.0.0-rc.3.2.0' of https://github.com/SwifQL/Bridges
+6db2cb4171585ab1f32f5456a17ba5534dc6d609	not-for-merge	tag '1.0.0-rc.3.2.1' of https://github.com/SwifQL/Bridges
+7ad89f4dbc7ae038d36487aed68b733381ca67aa	not-for-merge	tag '1.0.0-rc.4.0.0' of https://github.com/SwifQL/Bridges
+e7d956ab92308b7a58c2d2571726945510fd0ac7	not-for-merge	tag '1.0.0-rc.4.0.1' of https://github.com/SwifQL/Bridges
+8247038bb10855ff608f88eca0c4d24e7f7170e2	not-for-merge	tag '1.0.0-rc.4.1.0' of https://github.com/SwifQL/Bridges
+1321b842e2421c9d822f682d021fdc60d8c529c3	not-for-merge	tag '1.0.0-rc.4.10.0' of https://github.com/SwifQL/Bridges
+ab8c34f0c357ada40d83f16e0fb2e3821e018ef1	not-for-merge	tag '1.0.0-rc.4.11.0' of https://github.com/SwifQL/Bridges
+4ad944b11fba9b639435e7403ded2e7d1c6f574b	not-for-merge	tag '1.0.0-rc.4.12.0' of https://github.com/SwifQL/Bridges
+6c3ce814cbb08048787bf0634757a2fd0809e891	not-for-merge	tag '1.0.0-rc.4.13.0' of https://github.com/SwifQL/Bridges
+1f4d03a2ada30ef53830b37678e465a06d7e04af	not-for-merge	tag '1.0.0-rc.4.13.1' of https://github.com/SwifQL/Bridges
+64d226adbd435009cbb0a4ea8a6f3da382f1851a	not-for-merge	tag '1.0.0-rc.4.13.2' of https://github.com/SwifQL/Bridges
+30668dc7e342e81cdc5c87a12645cc3dbe3e868c	not-for-merge	tag '1.0.0-rc.4.13.3' of https://github.com/SwifQL/Bridges
+bbe5a300cef7afce07ba0d5c9cc668e54fde4131	not-for-merge	tag '1.0.0-rc.4.13.4' of https://github.com/SwifQL/Bridges
+0e80b4df1b4a157b7e449ce6ca70e98775de8471	not-for-merge	tag '1.0.0-rc.4.13.5' of https://github.com/SwifQL/Bridges
+8d874f9441dd2e9082872afc95d17b9e3439a76b	not-for-merge	tag '1.0.0-rc.4.13.6' of https://github.com/SwifQL/Bridges
+a9d2b6097ce128035ff543a5abf199d4a8c722dd	not-for-merge	tag '1.0.0-rc.4.2.0' of https://github.com/SwifQL/Bridges
+8d4cef3d42d2c4addc12726d0568891a9ed2e80b	not-for-merge	tag '1.0.0-rc.4.3.0' of https://github.com/SwifQL/Bridges
+b4042211c3f8413ae3f14af18beb83931cb57601	not-for-merge	tag '1.0.0-rc.4.4.0' of https://github.com/SwifQL/Bridges
+7438b6b5d4637f1b1bd183df0f60c51dc2e871da	not-for-merge	tag '1.0.0-rc.4.5.0' of https://github.com/SwifQL/Bridges
+941ec7c24a3e0624108255fcad867cf1e292254a	not-for-merge	tag '1.0.0-rc.4.6.0' of https://github.com/SwifQL/Bridges
+e92e6ddcca9c49100d37070ca8ef3cf7b4b34f6d	not-for-merge	tag '1.0.0-rc.4.7.0' of https://github.com/SwifQL/Bridges
+135c516162b9e22a407cf2f165fd4fbbc253889d	not-for-merge	tag '1.0.0-rc.4.7.1' of https://github.com/SwifQL/Bridges
+8aee1de6f59d224a86da0fe75c84fae29995d22f	not-for-merge	tag '1.0.0-rc.4.7.2' of https://github.com/SwifQL/Bridges
+d1a00297636ff7ac9e15c0935c15eda298d7737e	not-for-merge	tag '1.0.0-rc.4.8.0' of https://github.com/SwifQL/Bridges
+d334a548005b182bbfdab7cc4787445441015764	not-for-merge	tag '1.0.0-rc.4.8.1' of https://github.com/SwifQL/Bridges
+c1202300a7cd11268d3f31e7d89b46775665c36f	not-for-merge	tag '1.0.0-rc.4.9.0' of https://github.com/SwifQL/Bridges

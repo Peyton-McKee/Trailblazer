@@ -1,8 +1,4 @@
 # pack-refs with: peeled fully-peeled sorted 
-41fe772f8828748ec292ed01a928740c4d8af2c5 refs/heads/feature/BitSet
-7499bc29e897c6823d15d65e7ceee088ac3ca612 refs/heads/feature/PersistentCollections
-8b1436f9283c299d060fe6e07b781a431c09846f refs/heads/feature/SortedCollections
-1071b372942289dbd3209ede40f613d339cca8e1 refs/heads/fix-name-lookup-weirdness
 418378107c87a4b312e29a51f773ce0e4e12e199 refs/heads/main
 762bc5757de4bcf86cc3b3266e3df93f76469089 refs/heads/nate/zip_dispatch_benchmarking
 45c3f308ace81849b61af604b1bd18bf8db15459 refs/heads/release/1.0
@@ -22,10 +18,8 @@ cfca1038b53eecd4fc50da15cc715f966904012e refs/pull/11/head
 7f57a0ed1c8b1d44eacab95d3cfd57d87482b25a refs/pull/112/head
 efefae56531b30d75553f234134e3c83bd26c6a6 refs/pull/113/head
 565b1ab20bef052f52fad4ebe112803facb325e3 refs/pull/114/head
-045e3b822ea849c589788ff9203f2c0aaf6e0aad refs/pull/114/merge
 8b3af12ece11ea7b0e748749c39a59c59269ca25 refs/pull/115/head
 8be0f192e8f120969427cb2645aabe6f5fdf15a1 refs/pull/116/head
-18ec8971592f46014e41e88e04c868caf7838bab refs/pull/116/merge
 771bca404c0ee603bb6cc2ea3a19cfc4ebc3d001 refs/pull/117/head
 95be379a3ac1e4278d114a22501267065062b39a refs/pull/118/head
 f41f2cae69dc6ffcc178227a0a46607561fa925c refs/pull/119/head
@@ -73,7 +67,6 @@ ba303dca1d72860f0b253778f193010af20f9b79 refs/pull/184/head
 f71ebd9494b3b0b8c1450017f8c30fb61e4dcc37 refs/pull/188/head
 66651795d89e760188908bb65b3398aa30b84897 refs/pull/189/head
 832e58027cdb86e618089ebdf2e3474da915c357 refs/pull/190/head
-04bf2b005fcce3a4db220013d29c0f7a62fd7b8a refs/pull/190/merge
 b6184b667bd8f636558522f18cc2fe993a825679 refs/pull/21/head
 fbdf73e1b787a0ac113e930dff73382f612698d4 refs/pull/22/head
 5aa603edfe8c13e0256141cb45f70ec427fe94c1 refs/pull/23/head
@@ -96,7 +89,6 @@ ca939f84e132eb64a44db49c8092c8ec261b3092 refs/pull/46/head
 137bd464c14792cadc721d90afd412c2e7735424 refs/pull/48/head
 3fe754c0804d97b446a8ca70b3e4aa8d9c17c831 refs/pull/49/head
 dff2b1783badd696c3135abd8e26c3b7ad2e67fd refs/pull/51/head
-fe5f7e66436109c55d7fdf9b508794dfe3d68688 refs/pull/51/merge
 5e6b95649be69c3e9d6c326f2a7c2ba88c25f460 refs/pull/52/head
 4432aa8d79607328e6e96ae2a89f878ea58b27fe refs/pull/53/head
 788c17c16b5bc88466d1a0a96f0bf7eaef8b9352 refs/pull/54/head

@@ -1,0 +1,4 @@
+module SwifQL {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/SwifQL.build/SwifQL-Swift.h"
+    requires objc
+}

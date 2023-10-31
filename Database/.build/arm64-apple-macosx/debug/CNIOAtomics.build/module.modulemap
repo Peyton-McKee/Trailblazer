@@ -1,4 +1,4 @@
 module CNIOAtomics {
-    umbrella header "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/CNIOAtomics/include/CNIOAtomics.h"
+    umbrella header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/checkouts/swift-nio/Sources/CNIOAtomics/include/CNIOAtomics.h"
     export *
 }

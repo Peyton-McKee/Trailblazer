@@ -1,0 +1,4 @@
+module Bridges {
+    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/Bridges.build/Bridges-Swift.h"
+    requires objc
+}
