@@ -3534,7 +3534,7 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>Barker Mountain Express</name>
+        <name>Barker 6</name>
         <styleUrl>#line-A52714-1200-nodesc</styleUrl>
         <LineString>
           <tessellate>1</tessellate>
