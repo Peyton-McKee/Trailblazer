@@ -1,0 +1,118 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnCreateTrailReport(
+  $filter: ModelSubscriptionTrailReportFilterInput
+) {
+  onCreateTrailReport(filter: $filter) {
+    id
+    type
+    trailMadeOn
+    active
+    mapId
+    map {
+      id
+      name
+      storageKey
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    mapTrailReportsId
+    __typename
+  }
+}
+
+subscription OnUpdateTrailReport(
+  $filter: ModelSubscriptionTrailReportFilterInput
+) {
+  onUpdateTrailReport(filter: $filter) {
+    id
+    type
+    trailMadeOn
+    active
+    mapId
+    map {
+      id
+      name
+      storageKey
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    mapTrailReportsId
+    __typename
+  }
+}
+
+subscription OnDeleteTrailReport(
+  $filter: ModelSubscriptionTrailReportFilterInput
+) {
+  onDeleteTrailReport(filter: $filter) {
+    id
+    type
+    trailMadeOn
+    active
+    mapId
+    map {
+      id
+      name
+      storageKey
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    mapTrailReportsId
+    __typename
+  }
+}
+
+subscription OnCreateMap($filter: ModelSubscriptionMapFilterInput) {
+  onCreateMap(filter: $filter) {
+    id
+    name
+    storageKey
+    trailReports {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdateMap($filter: ModelSubscriptionMapFilterInput) {
+  onUpdateMap(filter: $filter) {
+    id
+    name
+    storageKey
+    trailReports {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeleteMap($filter: ModelSubscriptionMapFilterInput) {
+  onDeleteMap(filter: $filter) {
+    id
+    name
+    storageKey
+    trailReports {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}

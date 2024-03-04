@@ -1,4 +1,0 @@
-module Backtrace {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/Backtrace.build/Backtrace-Swift.h"
-    requires objc
-}

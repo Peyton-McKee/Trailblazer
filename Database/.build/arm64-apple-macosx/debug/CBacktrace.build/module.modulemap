@@ -1,4 +1,0 @@
-module CBacktrace {
-    umbrella "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/checkouts/swift-backtrace/Sources/CBacktrace/include"
-    export *
-}

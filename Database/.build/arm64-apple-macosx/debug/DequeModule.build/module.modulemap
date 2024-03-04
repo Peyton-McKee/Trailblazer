@@ -1,4 +1,0 @@
-module DequeModule {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/DequeModule.build/DequeModule-Swift.h"
-    requires objc
-}

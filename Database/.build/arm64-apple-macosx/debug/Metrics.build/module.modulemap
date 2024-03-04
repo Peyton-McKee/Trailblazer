@@ -1,4 +1,0 @@
-module Metrics {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/Metrics.build/Metrics-Swift.h"
-    requires objc
-}

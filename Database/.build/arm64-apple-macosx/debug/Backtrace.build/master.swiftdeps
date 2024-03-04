@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "b3773325f8fb2cd4c809c7f2c26186c340081d1b7f0f451d78c356d109f737b8"
-build_start_time: [1665452298, 776855945]
-build_end_time: [1665452298, 857167959]
-inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-backtrace/Sources/Backtrace/Backtrace.swift": [1665452289, 515906572]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-backtrace/Sources/Backtrace/Demangle.swift": [1665452289, 515976667]

@@ -1,4 +1,0 @@
-module CNIOExtrasZlib {
-    umbrella header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/checkouts/swift-nio-extras/Sources/CNIOExtrasZlib/include/CNIOExtrasZlib.h"
-    export *
-}

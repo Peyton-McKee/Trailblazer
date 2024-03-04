@@ -1,4 +1,0 @@
-module FluentBenchmark {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/FluentBenchmark.build/FluentBenchmark-Swift.h"
-    requires objc
-}

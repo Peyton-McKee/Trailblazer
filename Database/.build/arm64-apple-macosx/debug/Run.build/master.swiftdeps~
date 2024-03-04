@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "2ea2394db23fe75bfc11ce487493a1f9c73825097bf34548202a5e67bc0720f4"
-build_start_time: [1665451841, 591496944]
-build_end_time: [1665451841, 800642013]
-inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/Sources/Run/main.swift": [1665451658, 482758998]

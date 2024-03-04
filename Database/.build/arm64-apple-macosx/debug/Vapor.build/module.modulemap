@@ -1,4 +1,0 @@
-module Vapor {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/Vapor.build/Vapor-Swift.h"
-    requires objc
-}

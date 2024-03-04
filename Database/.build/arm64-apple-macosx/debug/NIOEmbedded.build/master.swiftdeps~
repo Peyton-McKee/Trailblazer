@@ -1,9 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "24d36dde41c6331ea6db872fe67c1e78eeaee3b6bb03f49fe574442594bc5972"
-build_start_time: [1665451828, 740592002]
-build_end_time: [1665451829, 67576885]
-inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOEmbedded/AsyncTestingChannel.swift": [1665451811, 578245162]
-  ? "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOEmbedded/AsyncTestingEventLoop.swift"
-  : [1665451811, 578381538]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/NIOEmbedded/Embedded.swift": [1665451811, 578573226]

@@ -1,4 +1,0 @@
-module NIOFoundationCompat {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/NIOFoundationCompat.build/NIOFoundationCompat-Swift.h"
-    requires objc
-}

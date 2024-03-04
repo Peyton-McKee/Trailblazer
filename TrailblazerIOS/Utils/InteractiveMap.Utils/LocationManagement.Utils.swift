@@ -44,12 +44,9 @@ extension InteractiveMapViewController: CLLocationManagerDelegate
             }
             if userLocation.distance(from: CLLocation(latitude: lift.value.coordinate.latitude, longitude: lift.value.coordinate.longitude)) > radius
             {
-                print("no longer waiting in line")
                 isWaitingInLine = false
                 liftWaiting = nil
                 timeBegan = nil
-                print(lift.value.times)
-                print(lift.value.id)
                 guard let id = lift.value.id, var times = lift.value.times else { print("lift does not have id or times"); return }
                 times.append(Date.now.timeIntervalSince(startTime))
                 APIHandler.shared.updatePointTime(point: PointTimeUpdateData(id: id, time: times), completion: {

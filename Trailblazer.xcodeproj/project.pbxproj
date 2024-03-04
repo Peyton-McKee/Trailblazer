@@ -130,6 +130,14 @@
 		15F92C56293AC9C300792054 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C55293AC9C300792054 /* UserSetting.swift */; };
 		15F92C58293BD5A200792054 /* AlertPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */; };
 		15F92C5A293BD5B000792054 /* RoutingPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */; };
+		195B4A4FEFC053FC70D9DB6C /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 0CA0A6169AE495DDBFD48813 /* awsconfiguration.json */; };
+		2D31CFEFDF238D943AB70F24 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0754A3F1A7B06F59AB37A78 /* AmplifyModels.swift */; };
+		3CE6A8DBD0EDBA2714F6C8C7 /* TrailReport+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FDA451E80ECDAC89D8147C /* TrailReport+Schema.swift */; };
+		49319A1E2AA8F1F3ECC171E8 /* TrailReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C6F0EB85013B64A8C95A38 /* TrailReportType.swift */; };
+		5834D3D829AF18C84E3B2003 /* Map+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF14856D2A02CB25F9E157E /* Map+Schema.swift */; };
+		70528EFC10C7C774D1728C47 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = C116D531ADA7C1C9DCF6131A /* amplifyconfiguration.json */; };
+		7BF1C2D44D9633BAB2655AC4 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD0A12FBD303999062075D0 /* Map.swift */; };
+		E10358E0F344EF2F92A26E52 /* TrailReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8BD7A4C9CE01207C10C84E /* TrailReport.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,6 +165,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0CA0A6169AE495DDBFD48813 /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		150828D52943AF320060B341 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		150828D8294A89640060B341 /* DecodingErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodingErrors.swift; sourceTree = "<group>"; };
 		150C6EAE29031BD70055AD59 /* SideMenuFramework.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuFramework.swift; sourceTree = "<group>"; };
@@ -281,6 +290,13 @@
 		15F92C55293AC9C300792054 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		15F92C57293BD5A200792054 /* AlertPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPreferencesViewController.swift; sourceTree = "<group>"; };
 		15F92C59293BD5B000792054 /* RoutingPreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingPreferencesViewController.swift; sourceTree = "<group>"; };
+		5BF14856D2A02CB25F9E157E /* Map+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Map+Schema.swift"; path = "amplify/generated/models/Map+Schema.swift"; sourceTree = "<group>"; };
+		62FDA451E80ECDAC89D8147C /* TrailReport+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "TrailReport+Schema.swift"; path = "amplify/generated/models/TrailReport+Schema.swift"; sourceTree = "<group>"; };
+		78C6F0EB85013B64A8C95A38 /* TrailReportType.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = TrailReportType.swift; path = amplify/generated/models/TrailReportType.swift; sourceTree = "<group>"; };
+		BAD0A12FBD303999062075D0 /* Map.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Map.swift; path = amplify/generated/models/Map.swift; sourceTree = "<group>"; };
+		C116D531ADA7C1C9DCF6131A /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		D0754A3F1A7B06F59AB37A78 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		EA8BD7A4C9CE01207C10C84E /* TrailReport.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = TrailReport.swift; path = amplify/generated/models/TrailReport.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -524,6 +540,8 @@
 				153DABAB2936B9C8001ABAAD /* Shared */,
 				158749F527D82635001B9025 /* Products */,
 				153DABAC2936C44A001ABAAD /* Frameworks */,
+				6065655975EF88A5AE37997E /* AmplifyConfig */,
+				6443C9764957B8FE41E81EEB /* AmplifyModels */,
 			);
 			sourceTree = "<group>";
 		};
@@ -679,6 +697,28 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		6065655975EF88A5AE37997E /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				0CA0A6169AE495DDBFD48813 /* awsconfiguration.json */,
+				C116D531ADA7C1C9DCF6131A /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
+		6443C9764957B8FE41E81EEB /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				D0754A3F1A7B06F59AB37A78 /* AmplifyModels.swift */,
+				5BF14856D2A02CB25F9E157E /* Map+Schema.swift */,
+				BAD0A12FBD303999062075D0 /* Map.swift */,
+				62FDA451E80ECDAC89D8147C /* TrailReport+Schema.swift */,
+				EA8BD7A4C9CE01207C10C84E /* TrailReport.swift */,
+				78C6F0EB85013B64A8C95A38 /* TrailReportType.swift */,
+			);
+			name = AmplifyModels;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -697,6 +737,8 @@
 				153F2DB429BD332700CCD553 /* PBXTargetDependency */,
 			);
 			name = Trailblazer;
+			packageProductDependencies = (
+			);
 			productName = SundayRiver;
 			productReference = 158749F427D82635001B9025 /* Trailblazer.app */;
 			productType = "com.apple.product-type.application";
@@ -745,6 +787,8 @@
 				Base,
 			);
 			mainGroup = 158749EB27D82635001B9025;
+			packageReferences = (
+			);
 			productRefGroup = 158749F527D82635001B9025 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -769,6 +813,8 @@
 				158749FF27D82635001B9025 /* Main.storyboard in Resources */,
 				15545B1A28E4ABD1005D0886 /* Tiles in Resources */,
 				150D0642290066C00051F160 /* MogulSquare.png in Resources */,
+				195B4A4FEFC053FC70D9DB6C /* awsconfiguration.json in Resources */,
+				70528EFC10C7C774D1728C47 /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -894,6 +940,12 @@
 				15B703F529BCFBF400F634FD /* Routing.Utils.swift in Sources */,
 				15B703F329BC1E4500F634FD /* TrailSelector.Utils.swift in Sources */,
 				15213F032904800D0027749B /* BellmanFordGraphStructure.swift in Sources */,
+				2D31CFEFDF238D943AB70F24 /* AmplifyModels.swift in Sources */,
+				5834D3D829AF18C84E3B2003 /* Map+Schema.swift in Sources */,
+				7BF1C2D44D9633BAB2655AC4 /* Map.swift in Sources */,
+				3CE6A8DBD0EDBA2714F6C8C7 /* TrailReport+Schema.swift in Sources */,
+				E10358E0F344EF2F92A26E52 /* TrailReport.swift in Sources */,
+				49319A1E2AA8F1F3ECC171E8 /* TrailReportType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

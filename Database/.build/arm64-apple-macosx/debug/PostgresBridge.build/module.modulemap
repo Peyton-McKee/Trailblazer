@@ -1,4 +1,0 @@
-module PostgresBridge {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/PostgresBridge.build/PostgresBridge-Swift.h"
-    requires objc
-}

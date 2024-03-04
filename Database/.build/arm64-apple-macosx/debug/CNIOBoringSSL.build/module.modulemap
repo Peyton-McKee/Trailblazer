@@ -1,4 +1,0 @@
-module CNIOBoringSSL {
-    umbrella header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/checkouts/swift-nio-ssl/Sources/CNIOBoringSSL/include/CNIOBoringSSL.h"
-    export *
-}

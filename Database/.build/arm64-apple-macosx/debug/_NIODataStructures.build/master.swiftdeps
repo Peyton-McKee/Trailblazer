@@ -1,7 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "f89c38864e2aa9bff12f546773b6d8761e5f0253512a8ec28213f0ddacaf1fd1"
-build_start_time: [1665452292, 893805027]
-build_end_time: [1665452293, 55659055]
-inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/_NIODataStructures/Heap.swift": [1665452289, 954339027]
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-nio/Sources/_NIODataStructures/PriorityQueue.swift": [1665452289, 954421043]
