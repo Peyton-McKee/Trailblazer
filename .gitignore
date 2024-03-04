@@ -1,13 +1,6 @@
-.DS_Store
-Trailblazer.xcodeproj/project.xcworkspace/xcuserdata/peytonmckee.xcuserdatad/UserInterfaceState.xcuserstate
-
-Database/.swiftpm/xcode/package.xcworkspace/xcuserdata/peytonmckee.xcuserdatad/UserInterfaceState.xcuserstate
-
-Trailblazer.xcodeproj/xcuserdata/peytonmckee.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
-
-Trailblazer.xcodeproj/project.xcworkspace/xcuserdata/peytonmckee.xcuserdatad/IDEFindNavigatorScopes.plist
-
-**/.build/**
+**/.DS_Store
+**/xcuserdata
+**/.build
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
