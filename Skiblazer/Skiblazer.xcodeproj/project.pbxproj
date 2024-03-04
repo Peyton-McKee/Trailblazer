@@ -26,6 +26,14 @@
 		156726D82B96386F00D2771A /* Authenticator in Frameworks */ = {isa = PBXBuildFile; productRef = 156726D72B96386F00D2771A /* Authenticator */; };
 		156726DB2B9638D500D2771A /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156726DA2B9638D500D2771A /* APIHandler.swift */; };
 		156726DD2B9638E000D2771A /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156726DC2B9638E000D2771A /* AppContext.swift */; };
+		2881635E44E8561812D94DE9 /* TrailReport+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD63BF4592CA3465936FC30 /* TrailReport+Schema.swift */; };
+		8F49EC2B526461F31CC0A9DE /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B4549539C7193B603BA42C /* Map.swift */; };
+		90C6B042F6BD7D0B1306D10A /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 96E374E414D32E280482420E /* awsconfiguration.json */; };
+		A97816EA6DFFBE375B59FC78 /* Map+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CE621493F04CABBD879834 /* Map+Schema.swift */; };
+		A9F06FD0A41B939D2D476B05 /* AmplifyModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB169DD58F9B8F85F8DFAA76 /* AmplifyModels.swift */; };
+		B665FC34F0DA5A0543C0B087 /* TrailReportType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7222D95EE783F89EFFB7A782 /* TrailReportType.swift */; };
+		C2A47CCEC14B852236F90D3C /* TrailReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33EE8549E8CE60FBB65D71BF /* TrailReport.swift */; };
+		DCBA4199475512BF48F83C2F /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 838621CF94C9474C412D64EF /* amplifyconfiguration.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +44,14 @@
 		156726B62B9637C100D2771A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		156726DA2B9638D500D2771A /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		156726DC2B9638E000D2771A /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppContext.swift; path = Skiblazer/AppContext.swift; sourceTree = SOURCE_ROOT; };
+		33EE8549E8CE60FBB65D71BF /* TrailReport.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = TrailReport.swift; path = amplify/generated/models/TrailReport.swift; sourceTree = "<group>"; };
+		7222D95EE783F89EFFB7A782 /* TrailReportType.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = TrailReportType.swift; path = amplify/generated/models/TrailReportType.swift; sourceTree = "<group>"; };
+		838621CF94C9474C412D64EF /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = amplifyconfiguration.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		96E374E414D32E280482420E /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = awsconfiguration.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		A2B4549539C7193B603BA42C /* Map.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = Map.swift; path = amplify/generated/models/Map.swift; sourceTree = "<group>"; };
+		CFD63BF4592CA3465936FC30 /* TrailReport+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "TrailReport+Schema.swift"; path = "amplify/generated/models/TrailReport+Schema.swift"; sourceTree = "<group>"; };
+		D3CE621493F04CABBD879834 /* Map+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "Map+Schema.swift"; path = "amplify/generated/models/Map+Schema.swift"; sourceTree = "<group>"; };
+		EB169DD58F9B8F85F8DFAA76 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +83,8 @@
 			children = (
 				156726AE2B9637C000D2771A /* Skiblazer */,
 				156726AD2B9637C000D2771A /* Products */,
+				18424CE96119586B091FC321 /* AmplifyConfig */,
+				1B429EC6DA784FC6F9E68F67 /* AmplifyModels */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +123,28 @@
 				156726DC2B9638E000D2771A /* AppContext.swift */,
 			);
 			path = Singletons;
+			sourceTree = "<group>";
+		};
+		18424CE96119586B091FC321 /* AmplifyConfig */ = {
+			isa = PBXGroup;
+			children = (
+				96E374E414D32E280482420E /* awsconfiguration.json */,
+				838621CF94C9474C412D64EF /* amplifyconfiguration.json */,
+			);
+			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
+		1B429EC6DA784FC6F9E68F67 /* AmplifyModels */ = {
+			isa = PBXGroup;
+			children = (
+				EB169DD58F9B8F85F8DFAA76 /* AmplifyModels.swift */,
+				D3CE621493F04CABBD879834 /* Map+Schema.swift */,
+				A2B4549539C7193B603BA42C /* Map.swift */,
+				CFD63BF4592CA3465936FC30 /* TrailReport+Schema.swift */,
+				33EE8549E8CE60FBB65D71BF /* TrailReport.swift */,
+				7222D95EE783F89EFFB7A782 /* TrailReportType.swift */,
+			);
+			name = AmplifyModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,6 +226,8 @@
 			files = (
 				156726B72B9637C100D2771A /* Preview Assets.xcassets in Resources */,
 				156726B42B9637C100D2771A /* Assets.xcassets in Resources */,
+				90C6B042F6BD7D0B1306D10A /* awsconfiguration.json in Resources */,
+				DCBA4199475512BF48F83C2F /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +242,12 @@
 				156726DD2B9638E000D2771A /* AppContext.swift in Sources */,
 				156726B22B9637C000D2771A /* ContentView.swift in Sources */,
 				156726B02B9637C000D2771A /* SkiblazerApp.swift in Sources */,
+				A9F06FD0A41B939D2D476B05 /* AmplifyModels.swift in Sources */,
+				A97816EA6DFFBE375B59FC78 /* Map+Schema.swift in Sources */,
+				8F49EC2B526461F31CC0A9DE /* Map.swift in Sources */,
+				2881635E44E8561812D94DE9 /* TrailReport+Schema.swift in Sources */,
+				C2A47CCEC14B852236F90D3C /* TrailReport.swift in Sources */,
+				B665FC34F0DA5A0543C0B087 /* TrailReportType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,15 @@
+{
+  "resourceName": "skiblazerstorage",
+  "policyUUID": "edd90afa",
+  "bucketName": "skiblazerstorage",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE"
+}

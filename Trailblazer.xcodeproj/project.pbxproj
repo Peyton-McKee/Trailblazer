@@ -737,8 +737,6 @@
 				153F2DB429BD332700CCD553 /* PBXTargetDependency */,
 			);
 			name = Trailblazer;
-			packageProductDependencies = (
-			);
 			productName = SundayRiver;
 			productReference = 158749F427D82635001B9025 /* Trailblazer.app */;
 			productType = "com.apple.product-type.application";
@@ -787,8 +785,6 @@
 				Base,
 			);
 			mainGroup = 158749EB27D82635001B9025;
-			packageReferences = (
-			);
 			productRefGroup = 158749F527D82635001B9025 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";

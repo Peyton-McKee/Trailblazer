@@ -1,0 +1,75 @@
+# this is an auto generated file. This will be overwritten
+
+query GetTrailReport($id: ID!) {
+  getTrailReport(id: $id) {
+    id
+    type
+    trailMadeOn
+    active
+    mapId
+    map {
+      id
+      name
+      storageKeyPrefix
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    mapTrailReportsId
+    __typename
+  }
+}
+
+query ListTrailReports(
+  $filter: ModelTrailReportFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTrailReports(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      type
+      trailMadeOn
+      active
+      mapId
+      createdAt
+      updatedAt
+      mapTrailReportsId
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+
+query GetMap($id: ID!) {
+  getMap(id: $id) {
+    id
+    name
+    storageKeyPrefix
+    trailReports {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+query ListMaps($filter: ModelMapFilterInput, $limit: Int, $nextToken: String) {
+  listMaps(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      storageKeyPrefix
+      createdAt
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
