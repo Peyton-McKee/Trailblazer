@@ -45,15 +45,17 @@ struct SkiblazerMap: View {
             .ignoresSafeArea()
             .overlay(alignment: .topTrailing) {
                 VStack {
-                    Button {
-                        self.viewModel.cancelRoute()
-                    } label: {
-                        Image(systemName: SystemImageName.close.rawValue)
+                    if (self.viewModel.routeInProgress) {
+                        Button {
+                            self.viewModel.cancelRoute()
+                        } label: {
+                            Image(systemName: SystemImageName.close.rawValue)
+                        }
+                        .foregroundStyle(.primary)
+                        .padding(8)
+                        .background(Color.red)
+                        .clipShape(.buttonBorder)
                     }
-                    .foregroundStyle(.primary)
-                    .padding(8)
-                    .background(Color.red)
-                    .clipShape(.buttonBorder)
                     
                     Button {
                         self.viewModel.onRealTimeSelected()

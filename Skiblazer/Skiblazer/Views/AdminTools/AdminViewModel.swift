@@ -60,9 +60,9 @@ class AdminViewModel: LoadableObject {
         Task {
             do {
                 try await APIHandler.uploadMap(self.mapName, photoData, urls, mountainReportUrl: self.mountainReportUrl, trailStatusElementId: self.trailStatusElementId, liftStatusElementId: self.liftStatusElementId)
+
                 DispatchQueue.main.async {
                     self.toast = Toast(style: .success, message: "Successfully Uploaded Map")
-
                     self.load(.init())
                 }
             } catch {
@@ -74,7 +74,9 @@ class AdminViewModel: LoadableObject {
     func selectPhoto(_ result: Result<Data?, Error>) {
         switch result {
         case .success(let data):
-            self.photoData = data
+            DispatchQueue.main.async {
+                self.photoData = data
+            }
         case .failure(let error):
             self.fail(error, .init())
         }

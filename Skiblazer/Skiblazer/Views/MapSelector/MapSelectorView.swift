@@ -13,16 +13,24 @@ struct MapSelectorView: View {
     @Binding var path: [HomeNavigation]
     var body: some View {
         AsyncContentView(source: self.viewModel) { props in
-            List {
-                ForEach(props.maps, id: \.id) { map in
-                    ZStack {
-                        FullWidthImageView(map.storageKeyPrefix + "image", map.name) {
-                            AppContext.shared.selectedMap = map
-                            self.path.append(.mapView(map: map))
+            Group {
+                if props.maps.isEmpty {
+                    SkiblazerLabel("No Maps Found")
+                } else {
+                    List {
+                        ForEach(props.maps, id: \.id) { map in
+                            ZStack {
+                                FullWidthImageView(map.storageKeyPrefix + "image", map.name) {
+                                    AppContext.shared.selectedMap = map
+                                    self.path.append(.mapView(map: map))
+                                }
+                            }
                         }
                     }
                 }
             }
+            .navigationTitle("Select a Map")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

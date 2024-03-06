@@ -60,11 +60,14 @@ class MapViewModel: NSObject, LoadableObject {
     }
     
     func onRealTimeSelected() {
-        if self.isRealTime {
+        self.cancelRoute()
+        guard !self.isRealTime else {
             self.isRealTime = false
             self.context.selectedGraph = self.mapInterpreter.difficultyGraph
             self.trailsToDisplay = self.transformPointsToTrails(self.mapInterpreter.difficultyGraph.vertices.map { $0.value })
+            return
         }
+        
         self.transitionState(.loading)
         DispatchQueue.global().async {
             while !self.webAnalysis.isReady && self.webAnalysis.error == nil {}
@@ -76,8 +79,8 @@ class MapViewModel: NSObject, LoadableObject {
             
             DispatchQueue.main.async {
                 self.isRealTime = true
-                self.trailsToDisplay = self.transformPointsToTrails(self.webAnalysis.realTimeGraph.vertices.map { $0.value })
                 self.context.selectedGraph = self.webAnalysis.realTimeGraph
+                self.trailsToDisplay = self.transformPointsToTrails(self.webAnalysis.realTimeGraph.vertices.map { $0.value })
                 self.load(.init())
             }
         }
@@ -108,8 +111,10 @@ class MapViewModel: NSObject, LoadableObject {
                 let points = try self.createRoute(origin: origin, destination: destination, graph: self.context.selectedGraph)
                 let trails = self.transformPointsToTrails(points.map { $0.value })
                 DispatchQueue.main.async {
-                    self.trailsToDisplay = trails
-                    self.load(.init())
+                    if self.routeInProgress {
+                        self.trailsToDisplay = trails
+                        self.load(.init())
+                    }
                 }
             } catch {
                 self.cancelRoute(error)
