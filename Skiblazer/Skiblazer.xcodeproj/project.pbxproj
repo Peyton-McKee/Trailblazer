@@ -7,6 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		150146F42B964348006EBED6 /* SRMoon.png in Resources */ = {isa = PBXBuildFile; fileRef = 150146EF2B964348006EBED6 /* SRMoon.png */; };
+		150146F52B964348006EBED6 /* SRSun120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 150146F02B964348006EBED6 /* SRSun120x120.png */; };
+		150146F62B964348006EBED6 /* MogulSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150146F12B964348006EBED6 /* MogulSquare.png */; };
+		150146F72B964348006EBED6 /* SRSun.png in Resources */ = {isa = PBXBuildFile; fileRef = 150146F22B964348006EBED6 /* SRSun.png */; };
+		150146F82B964348006EBED6 /* IcySquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 150146F32B964348006EBED6 /* IcySquare.png */; };
+		150146FA2B9643FA006EBED6 /* Dijkstra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150146F92B9643FA006EBED6 /* Dijkstra.swift */; };
+		150146FD2B9644C6006EBED6 /* SkiblazerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150146FC2B9644C6006EBED6 /* SkiblazerButton.swift */; };
+		150147002B964522006EBED6 /* HomeNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150146FF2B964522006EBED6 /* HomeNavigation.swift */; };
+		150147032B964563006EBED6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147022B964563006EBED6 /* HomeView.swift */; };
+		150147052B967AAD006EBED6 /* MapSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147042B967AAD006EBED6 /* MapSelectorView.swift */; };
+		1501470A2B967B74006EBED6 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147072B967B74006EBED6 /* LoadingState.swift */; };
+		1501470B2B967B74006EBED6 /* LoadableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147082B967B74006EBED6 /* LoadableObject.swift */; };
+		1501470C2B967B74006EBED6 /* AsyncContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147092B967B74006EBED6 /* AsyncContentView.swift */; };
+		150147132B967BA1006EBED6 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501470F2B967BA1006EBED6 /* ToastView.swift */; };
+		150147142B967BA1006EBED6 /* ToastStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147102B967BA1006EBED6 /* ToastStyle.swift */; };
+		150147152B967BA1006EBED6 /* ToastViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147112B967BA1006EBED6 /* ToastViewModifier.swift */; };
+		150147162B967BA1006EBED6 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147122B967BA1006EBED6 /* Toast.swift */; };
+		150147182B967BAA006EBED6 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147172B967BAA006EBED6 /* LoadingIndicator.swift */; };
+		1501471A2B967BB4006EBED6 /* SystemImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147192B967BB4006EBED6 /* SystemImageName.swift */; };
+		1501471C2B967BF4006EBED6 /* MapSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501471B2B967BF4006EBED6 /* MapSelectorViewModel.swift */; };
+		1501471E2B967C9C006EBED6 /* SkiblazerMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501471D2B967C9C006EBED6 /* SkiblazerMap.swift */; };
+		150147212B967CAB006EBED6 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147202B967CAB006EBED6 /* MapViewModel.swift */; };
+		150147232B967D38006EBED6 /* MapInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147222B967D37006EBED6 /* MapInfo.swift */; };
+		150147292B967D8F006EBED6 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147252B967D8F006EBED6 /* Geometry.swift */; };
+		1501472A2B967D8F006EBED6 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147262B967D8F006EBED6 /* Feature.swift */; };
+		1501472C2B967D8F006EBED6 /* GeoJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150147282B967D8F006EBED6 /* GeoJson.swift */; };
+		1501472E2B967EDB006EBED6 /* StorageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501472D2B967EDB006EBED6 /* StorageExtension.swift */; };
+		150147302B9684B5006EBED6 /* MapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1501472F2B9684B5006EBED6 /* MapExtension.swift */; };
 		156726B02B9637C000D2771A /* SkiblazerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156726AF2B9637C000D2771A /* SkiblazerApp.swift */; };
 		156726B22B9637C000D2771A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156726B12B9637C000D2771A /* ContentView.swift */; };
 		156726B42B9637C100D2771A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156726B32B9637C100D2771A /* Assets.xcassets */; };
@@ -26,6 +54,29 @@
 		156726D82B96386F00D2771A /* Authenticator in Frameworks */ = {isa = PBXBuildFile; productRef = 156726D72B96386F00D2771A /* Authenticator */; };
 		156726DB2B9638D500D2771A /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156726DA2B9638D500D2771A /* APIHandler.swift */; };
 		156726DD2B9638E000D2771A /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156726DC2B9638E000D2771A /* AppContext.swift */; };
+		1598240D2B968CFB002BFD98 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 1598240C2B968CFB002BFD98 /* MapboxMaps */; };
+		1598240F2B968D57002BFD98 /* ValidationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598240E2B968D57002BFD98 /* ValidationUtils.swift */; };
+		159824122B96A4CF002BFD98 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824112B96A4CF002BFD98 /* AdminView.swift */; };
+		159824142B96A4D3002BFD98 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824132B96A4D3002BFD98 /* AdminViewModel.swift */; };
+		159824182B96A5AC002BFD98 /* AsyncImageLoaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824162B96A5AC002BFD98 /* AsyncImageLoaderModel.swift */; };
+		159824192B96A5AC002BFD98 /* AsyncImageLoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824172B96A5AC002BFD98 /* AsyncImageLoaderView.swift */; };
+		1598241B2B96A5B8002BFD98 /* FullWidthImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598241A2B96A5B8002BFD98 /* FullWidthImageView.swift */; };
+		1598241D2B96A5CD002BFD98 /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598241C2B96A5CD002BFD98 /* DocumentPicker.swift */; };
+		1598241F2B96A5E5002BFD98 /* CustomPhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598241E2B96A5E5002BFD98 /* CustomPhotoPicker.swift */; };
+		159824222B96A6D7002BFD98 /* InternalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824212B96A6D7002BFD98 /* InternalError.swift */; };
+		159824242B96A835002BFD98 /* SkiblazerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824232B96A835002BFD98 /* SkiblazerLabel.swift */; };
+		159824262B96A857002BFD98 /* FontName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824252B96A857002BFD98 /* FontName.swift */; };
+		159824282B96A8BE002BFD98 /* DownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824272B96A8BD002BFD98 /* DownloadError.swift */; };
+		1598242A2B96AA8F002BFD98 /* FormSubmitButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824292B96AA8F002BFD98 /* FormSubmitButton.swift */; };
+		1598242C2B96AAA1002BFD98 /* DocumentSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598242B2B96AAA1002BFD98 /* DocumentSelectorButton.swift */; };
+		1598242E2B96C0D7002BFD98 /* SubmissionText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598242D2B96C0D7002BFD98 /* SubmissionText.swift */; };
+		159824322B97B010002BFD98 /* FormError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824312B97B010002BFD98 /* FormError.swift */; };
+		159824342B97B72E002BFD98 /* UploadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824332B97B72E002BFD98 /* UploadError.swift */; };
+		159824382B98064A002BFD98 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824372B98064A002BFD98 /* Point.swift */; };
+		1598243A2B9807BF002BFD98 /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824392B9807BF002BFD98 /* Difficulty.swift */; };
+		159824402B9809F4002BFD98 /* MapInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598243F2B9809F4002BFD98 /* MapInterpreter.swift */; };
+		159824422B980C72002BFD98 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824412B980C72002BFD98 /* Theme.swift */; };
+		159824442B980EE5002BFD98 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824432B980EE5002BFD98 /* Trail.swift */; };
 		2881635E44E8561812D94DE9 /* TrailReport+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD63BF4592CA3465936FC30 /* TrailReport+Schema.swift */; };
 		8F49EC2B526461F31CC0A9DE /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B4549539C7193B603BA42C /* Map.swift */; };
 		90C6B042F6BD7D0B1306D10A /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 96E374E414D32E280482420E /* awsconfiguration.json */; };
@@ -37,6 +88,35 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		150146EF2B964348006EBED6 /* SRMoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRMoon.png; sourceTree = "<group>"; };
+		150146F02B964348006EBED6 /* SRSun120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRSun120x120.png; sourceTree = "<group>"; };
+		150146F12B964348006EBED6 /* MogulSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MogulSquare.png; sourceTree = "<group>"; };
+		150146F22B964348006EBED6 /* SRSun.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SRSun.png; sourceTree = "<group>"; };
+		150146F32B964348006EBED6 /* IcySquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IcySquare.png; sourceTree = "<group>"; };
+		150146F92B9643FA006EBED6 /* Dijkstra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dijkstra.swift; sourceTree = "<group>"; };
+		150146FC2B9644C6006EBED6 /* SkiblazerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkiblazerButton.swift; sourceTree = "<group>"; };
+		150146FF2B964522006EBED6 /* HomeNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigation.swift; sourceTree = "<group>"; };
+		150147022B964563006EBED6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		150147042B967AAD006EBED6 /* MapSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorView.swift; sourceTree = "<group>"; };
+		150147072B967B74006EBED6 /* LoadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		150147082B967B74006EBED6 /* LoadableObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadableObject.swift; sourceTree = "<group>"; };
+		150147092B967B74006EBED6 /* AsyncContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncContentView.swift; sourceTree = "<group>"; };
+		1501470F2B967BA1006EBED6 /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		150147102B967BA1006EBED6 /* ToastStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastStyle.swift; sourceTree = "<group>"; };
+		150147112B967BA1006EBED6 /* ToastViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToastViewModifier.swift; sourceTree = "<group>"; };
+		150147122B967BA1006EBED6 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
+		150147172B967BAA006EBED6 /* LoadingIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		150147192B967BB4006EBED6 /* SystemImageName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemImageName.swift; sourceTree = "<group>"; };
+		1501471B2B967BF4006EBED6 /* MapSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelectorViewModel.swift; sourceTree = "<group>"; };
+		1501471D2B967C9C006EBED6 /* SkiblazerMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkiblazerMap.swift; sourceTree = "<group>"; };
+		150147202B967CAB006EBED6 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		150147222B967D37006EBED6 /* MapInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInfo.swift; sourceTree = "<group>"; };
+		150147252B967D8F006EBED6 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		150147262B967D8F006EBED6 /* Feature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		150147282B967D8F006EBED6 /* GeoJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoJson.swift; sourceTree = "<group>"; };
+		1501472D2B967EDB006EBED6 /* StorageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageExtension.swift; sourceTree = "<group>"; };
+		1501472F2B9684B5006EBED6 /* MapExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtension.swift; sourceTree = "<group>"; };
+		150147312B968917006EBED6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		156726AC2B9637C000D2771A /* Skiblazer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skiblazer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		156726AF2B9637C000D2771A /* SkiblazerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkiblazerApp.swift; sourceTree = "<group>"; };
 		156726B12B9637C000D2771A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,14 +124,36 @@
 		156726B62B9637C100D2771A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		156726DA2B9638D500D2771A /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		156726DC2B9638E000D2771A /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppContext.swift; path = Skiblazer/AppContext.swift; sourceTree = SOURCE_ROOT; };
-		33EE8549E8CE60FBB65D71BF /* TrailReport.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = TrailReport.swift; path = amplify/generated/models/TrailReport.swift; sourceTree = "<group>"; };
-		7222D95EE783F89EFFB7A782 /* TrailReportType.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = TrailReportType.swift; path = amplify/generated/models/TrailReportType.swift; sourceTree = "<group>"; };
-		838621CF94C9474C412D64EF /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = amplifyconfiguration.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
-		96E374E414D32E280482420E /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; lastKnownFileType = text.json; name = awsconfiguration.json; path = awsconfiguration.json; sourceTree = "<group>"; };
-		A2B4549539C7193B603BA42C /* Map.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = Map.swift; path = amplify/generated/models/Map.swift; sourceTree = "<group>"; };
-		CFD63BF4592CA3465936FC30 /* TrailReport+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "TrailReport+Schema.swift"; path = "amplify/generated/models/TrailReport+Schema.swift"; sourceTree = "<group>"; };
-		D3CE621493F04CABBD879834 /* Map+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = "Map+Schema.swift"; path = "amplify/generated/models/Map+Schema.swift"; sourceTree = "<group>"; };
-		EB169DD58F9B8F85F8DFAA76 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; lastKnownFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
+		1598240E2B968D57002BFD98 /* ValidationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtils.swift; sourceTree = "<group>"; };
+		159824112B96A4CF002BFD98 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		159824132B96A4D3002BFD98 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
+		159824162B96A5AC002BFD98 /* AsyncImageLoaderModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageLoaderModel.swift; sourceTree = "<group>"; };
+		159824172B96A5AC002BFD98 /* AsyncImageLoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageLoaderView.swift; sourceTree = "<group>"; };
+		1598241A2B96A5B8002BFD98 /* FullWidthImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullWidthImageView.swift; sourceTree = "<group>"; };
+		1598241C2B96A5CD002BFD98 /* DocumentPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		1598241E2B96A5E5002BFD98 /* CustomPhotoPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPhotoPicker.swift; sourceTree = "<group>"; };
+		159824212B96A6D7002BFD98 /* InternalError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalError.swift; sourceTree = "<group>"; };
+		159824232B96A835002BFD98 /* SkiblazerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkiblazerLabel.swift; sourceTree = "<group>"; };
+		159824252B96A857002BFD98 /* FontName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontName.swift; sourceTree = "<group>"; };
+		159824272B96A8BD002BFD98 /* DownloadError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadError.swift; sourceTree = "<group>"; };
+		159824292B96AA8F002BFD98 /* FormSubmitButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormSubmitButton.swift; sourceTree = "<group>"; };
+		1598242B2B96AAA1002BFD98 /* DocumentSelectorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentSelectorButton.swift; sourceTree = "<group>"; };
+		1598242D2B96C0D7002BFD98 /* SubmissionText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubmissionText.swift; sourceTree = "<group>"; };
+		159824312B97B010002BFD98 /* FormError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormError.swift; sourceTree = "<group>"; };
+		159824332B97B72E002BFD98 /* UploadError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadError.swift; sourceTree = "<group>"; };
+		159824372B98064A002BFD98 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		159824392B9807BF002BFD98 /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
+		1598243F2B9809F4002BFD98 /* MapInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInterpreter.swift; sourceTree = "<group>"; };
+		159824412B980C72002BFD98 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		159824432B980EE5002BFD98 /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
+		33EE8549E8CE60FBB65D71BF /* TrailReport.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = TrailReport.swift; path = amplify/generated/models/TrailReport.swift; sourceTree = "<group>"; };
+		7222D95EE783F89EFFB7A782 /* TrailReportType.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = TrailReportType.swift; path = amplify/generated/models/TrailReportType.swift; sourceTree = "<group>"; };
+		838621CF94C9474C412D64EF /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		96E374E414D32E280482420E /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		A2B4549539C7193B603BA42C /* Map.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = Map.swift; path = amplify/generated/models/Map.swift; sourceTree = "<group>"; };
+		CFD63BF4592CA3465936FC30 /* TrailReport+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "TrailReport+Schema.swift"; path = "amplify/generated/models/TrailReport+Schema.swift"; sourceTree = "<group>"; };
+		D3CE621493F04CABBD879834 /* Map+Schema.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = "Map+Schema.swift"; path = "amplify/generated/models/Map+Schema.swift"; sourceTree = "<group>"; };
+		EB169DD58F9B8F85F8DFAA76 /* AmplifyModels.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = AmplifyModels.swift; path = amplify/generated/models/AmplifyModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +173,7 @@
 				156726D52B96386100D2771A /* CoreMLPredictionsPlugin in Frameworks */,
 				156726C32B96386100D2771A /* AWSCognitoAuthPlugin in Frameworks */,
 				156726CB2B96386100D2771A /* AWSPinpointPushNotificationsPlugin in Frameworks */,
+				1598240D2B968CFB002BFD98 /* MapboxMaps in Frameworks */,
 				156726C52B96386100D2771A /* AWSDataStorePlugin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -78,6 +181,115 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		150146EE2B964348006EBED6 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				150146EF2B964348006EBED6 /* SRMoon.png */,
+				150146F02B964348006EBED6 /* SRSun120x120.png */,
+				150146F12B964348006EBED6 /* MogulSquare.png */,
+				150146F22B964348006EBED6 /* SRSun.png */,
+				150146F32B964348006EBED6 /* IcySquare.png */,
+			);
+			name = Images;
+			path = ../../TrailblazerIOS/Images;
+			sourceTree = "<group>";
+		};
+		150146FB2B9644B7006EBED6 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				159824232B96A835002BFD98 /* SkiblazerLabel.swift */,
+				1598242B2B96AAA1002BFD98 /* DocumentSelectorButton.swift */,
+				1598241E2B96A5E5002BFD98 /* CustomPhotoPicker.swift */,
+				1598241A2B96A5B8002BFD98 /* FullWidthImageView.swift */,
+				1598241C2B96A5CD002BFD98 /* DocumentPicker.swift */,
+				150147172B967BAA006EBED6 /* LoadingIndicator.swift */,
+				150146FC2B9644C6006EBED6 /* SkiblazerButton.swift */,
+				159824292B96AA8F002BFD98 /* FormSubmitButton.swift */,
+				159824152B96A5AC002BFD98 /* AsyncImageLoader */,
+				1501470E2B967BA1006EBED6 /* Toast */,
+				150147062B967B74006EBED6 /* AsyncContentLoader */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		150146FE2B964515006EBED6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1598242D2B96C0D7002BFD98 /* SubmissionText.swift */,
+				159824252B96A857002BFD98 /* FontName.swift */,
+				150147192B967BB4006EBED6 /* SystemImageName.swift */,
+				159824392B9807BF002BFD98 /* Difficulty.swift */,
+				150146FF2B964522006EBED6 /* HomeNavigation.swift */,
+				1501472F2B9684B5006EBED6 /* MapExtension.swift */,
+				150147222B967D37006EBED6 /* MapInfo.swift */,
+				1501472D2B967EDB006EBED6 /* StorageExtension.swift */,
+				159824372B98064A002BFD98 /* Point.swift */,
+				159824432B980EE5002BFD98 /* Trail.swift */,
+				150147242B967D8F006EBED6 /* GeoJSON */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		150147012B96455A006EBED6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				150147022B964563006EBED6 /* HomeView.swift */,
+				159824102B96A4C5002BFD98 /* AdminTools */,
+				1501471F2B967CA2006EBED6 /* Map */,
+				1501470D2B967B7C006EBED6 /* MapSelector */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		150147062B967B74006EBED6 /* AsyncContentLoader */ = {
+			isa = PBXGroup;
+			children = (
+				150147072B967B74006EBED6 /* LoadingState.swift */,
+				150147082B967B74006EBED6 /* LoadableObject.swift */,
+				150147092B967B74006EBED6 /* AsyncContentView.swift */,
+			);
+			path = AsyncContentLoader;
+			sourceTree = "<group>";
+		};
+		1501470D2B967B7C006EBED6 /* MapSelector */ = {
+			isa = PBXGroup;
+			children = (
+				150147042B967AAD006EBED6 /* MapSelectorView.swift */,
+				1501471B2B967BF4006EBED6 /* MapSelectorViewModel.swift */,
+			);
+			path = MapSelector;
+			sourceTree = "<group>";
+		};
+		1501470E2B967BA1006EBED6 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				1501470F2B967BA1006EBED6 /* ToastView.swift */,
+				150147102B967BA1006EBED6 /* ToastStyle.swift */,
+				150147112B967BA1006EBED6 /* ToastViewModifier.swift */,
+				150147122B967BA1006EBED6 /* Toast.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		1501471F2B967CA2006EBED6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				1501471D2B967C9C006EBED6 /* SkiblazerMap.swift */,
+				150147202B967CAB006EBED6 /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		150147242B967D8F006EBED6 /* GeoJSON */ = {
+			isa = PBXGroup;
+			children = (
+				150147252B967D8F006EBED6 /* Geometry.swift */,
+				150147262B967D8F006EBED6 /* Feature.swift */,
+				150147282B967D8F006EBED6 /* GeoJson.swift */,
+			);
+			path = GeoJSON;
+			sourceTree = "<group>";
+		};
 		156726A32B9637C000D2771A = {
 			isa = PBXGroup;
 			children = (
@@ -99,10 +311,16 @@
 		156726AE2B9637C000D2771A /* Skiblazer */ = {
 			isa = PBXGroup;
 			children = (
+				150147312B968917006EBED6 /* Info.plist */,
 				156726AF2B9637C000D2771A /* SkiblazerApp.swift */,
 				156726B12B9637C000D2771A /* ContentView.swift */,
+				159824202B96A6CA002BFD98 /* Errors */,
 				156726D92B9638CC00D2771A /* Singletons */,
+				150147012B96455A006EBED6 /* Views */,
+				150146FE2B964515006EBED6 /* Utils */,
+				150146FB2B9644B7006EBED6 /* Components */,
 				156726B32B9637C100D2771A /* Assets.xcassets */,
+				150146EE2B964348006EBED6 /* Images */,
 				156726B52B9637C100D2771A /* Preview Content */,
 			);
 			path = Skiblazer;
@@ -120,9 +338,42 @@
 			isa = PBXGroup;
 			children = (
 				156726DA2B9638D500D2771A /* APIHandler.swift */,
+				150146F92B9643FA006EBED6 /* Dijkstra.swift */,
+				1598243F2B9809F4002BFD98 /* MapInterpreter.swift */,
+				159824412B980C72002BFD98 /* Theme.swift */,
 				156726DC2B9638E000D2771A /* AppContext.swift */,
+				1598240E2B968D57002BFD98 /* ValidationUtils.swift */,
 			);
 			path = Singletons;
+			sourceTree = "<group>";
+		};
+		159824102B96A4C5002BFD98 /* AdminTools */ = {
+			isa = PBXGroup;
+			children = (
+				159824112B96A4CF002BFD98 /* AdminView.swift */,
+				159824132B96A4D3002BFD98 /* AdminViewModel.swift */,
+			);
+			path = AdminTools;
+			sourceTree = "<group>";
+		};
+		159824152B96A5AC002BFD98 /* AsyncImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				159824162B96A5AC002BFD98 /* AsyncImageLoaderModel.swift */,
+				159824172B96A5AC002BFD98 /* AsyncImageLoaderView.swift */,
+			);
+			path = AsyncImageLoader;
+			sourceTree = "<group>";
+		};
+		159824202B96A6CA002BFD98 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				159824272B96A8BD002BFD98 /* DownloadError.swift */,
+				159824332B97B72E002BFD98 /* UploadError.swift */,
+				159824212B96A6D7002BFD98 /* InternalError.swift */,
+				159824312B97B010002BFD98 /* FormError.swift */,
+			);
+			path = Errors;
 			sourceTree = "<group>";
 		};
 		18424CE96119586B091FC321 /* AmplifyConfig */ = {
@@ -177,6 +428,7 @@
 				156726D22B96386100D2771A /* Amplify */,
 				156726D42B96386100D2771A /* CoreMLPredictionsPlugin */,
 				156726D72B96386F00D2771A /* Authenticator */,
+				1598240C2B968CFB002BFD98 /* MapboxMaps */,
 			);
 			productName = Skiblazer;
 			productReference = 156726AC2B9637C000D2771A /* Skiblazer.app */;
@@ -209,6 +461,7 @@
 			packageReferences = (
 				156726BD2B96386100D2771A /* XCRemoteSwiftPackageReference "amplify-swift" */,
 				156726D62B96386F00D2771A /* XCRemoteSwiftPackageReference "amplify-ui-swift-authenticator" */,
+				1598240B2B968CFB002BFD98 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 			);
 			productRefGroup = 156726AD2B9637C000D2771A /* Products */;
 			projectDirPath = "";
@@ -224,10 +477,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				150146F42B964348006EBED6 /* SRMoon.png in Resources */,
 				156726B72B9637C100D2771A /* Preview Assets.xcassets in Resources */,
+				150146F82B964348006EBED6 /* IcySquare.png in Resources */,
 				156726B42B9637C100D2771A /* Assets.xcassets in Resources */,
 				90C6B042F6BD7D0B1306D10A /* awsconfiguration.json in Resources */,
+				150146F62B964348006EBED6 /* MogulSquare.png in Resources */,
+				150146F52B964348006EBED6 /* SRSun120x120.png in Resources */,
 				DCBA4199475512BF48F83C2F /* amplifyconfiguration.json in Resources */,
+				150146F72B964348006EBED6 /* SRSun.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,16 +496,61 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1598242E2B96C0D7002BFD98 /* SubmissionText.swift in Sources */,
+				159824182B96A5AC002BFD98 /* AsyncImageLoaderModel.swift in Sources */,
+				150147182B967BAA006EBED6 /* LoadingIndicator.swift in Sources */,
+				1501471C2B967BF4006EBED6 /* MapSelectorViewModel.swift in Sources */,
+				1501470B2B967B74006EBED6 /* LoadableObject.swift in Sources */,
 				156726DB2B9638D500D2771A /* APIHandler.swift in Sources */,
+				159824222B96A6D7002BFD98 /* InternalError.swift in Sources */,
+				159824402B9809F4002BFD98 /* MapInterpreter.swift in Sources */,
+				150147292B967D8F006EBED6 /* Geometry.swift in Sources */,
+				150147052B967AAD006EBED6 /* MapSelectorView.swift in Sources */,
+				1598241F2B96A5E5002BFD98 /* CustomPhotoPicker.swift in Sources */,
+				159824442B980EE5002BFD98 /* Trail.swift in Sources */,
+				150147032B964563006EBED6 /* HomeView.swift in Sources */,
 				156726DD2B9638E000D2771A /* AppContext.swift in Sources */,
+				150147152B967BA1006EBED6 /* ToastViewModifier.swift in Sources */,
 				156726B22B9637C000D2771A /* ContentView.swift in Sources */,
+				150147002B964522006EBED6 /* HomeNavigation.swift in Sources */,
+				1501471A2B967BB4006EBED6 /* SystemImageName.swift in Sources */,
+				159824142B96A4D3002BFD98 /* AdminViewModel.swift in Sources */,
+				1501472A2B967D8F006EBED6 /* Feature.swift in Sources */,
+				159824322B97B010002BFD98 /* FormError.swift in Sources */,
+				1501470C2B967B74006EBED6 /* AsyncContentView.swift in Sources */,
 				156726B02B9637C000D2771A /* SkiblazerApp.swift in Sources */,
+				1598241B2B96A5B8002BFD98 /* FullWidthImageView.swift in Sources */,
+				150147132B967BA1006EBED6 /* ToastView.swift in Sources */,
 				A9F06FD0A41B939D2D476B05 /* AmplifyModels.swift in Sources */,
+				150146FA2B9643FA006EBED6 /* Dijkstra.swift in Sources */,
 				A97816EA6DFFBE375B59FC78 /* Map+Schema.swift in Sources */,
+				159824422B980C72002BFD98 /* Theme.swift in Sources */,
+				1501471E2B967C9C006EBED6 /* SkiblazerMap.swift in Sources */,
 				8F49EC2B526461F31CC0A9DE /* Map.swift in Sources */,
 				2881635E44E8561812D94DE9 /* TrailReport+Schema.swift in Sources */,
+				159824192B96A5AC002BFD98 /* AsyncImageLoaderView.swift in Sources */,
+				1598242C2B96AAA1002BFD98 /* DocumentSelectorButton.swift in Sources */,
+				150147142B967BA1006EBED6 /* ToastStyle.swift in Sources */,
+				1501472E2B967EDB006EBED6 /* StorageExtension.swift in Sources */,
+				1598241D2B96A5CD002BFD98 /* DocumentPicker.swift in Sources */,
+				159824242B96A835002BFD98 /* SkiblazerLabel.swift in Sources */,
+				159824282B96A8BE002BFD98 /* DownloadError.swift in Sources */,
+				1501470A2B967B74006EBED6 /* LoadingState.swift in Sources */,
+				159824262B96A857002BFD98 /* FontName.swift in Sources */,
+				1598243A2B9807BF002BFD98 /* Difficulty.swift in Sources */,
+				1598242A2B96AA8F002BFD98 /* FormSubmitButton.swift in Sources */,
+				150147232B967D38006EBED6 /* MapInfo.swift in Sources */,
+				1598240F2B968D57002BFD98 /* ValidationUtils.swift in Sources */,
+				159824382B98064A002BFD98 /* Point.swift in Sources */,
+				159824342B97B72E002BFD98 /* UploadError.swift in Sources */,
 				C2A47CCEC14B852236F90D3C /* TrailReport.swift in Sources */,
+				150147162B967BA1006EBED6 /* Toast.swift in Sources */,
+				159824122B96A4CF002BFD98 /* AdminView.swift in Sources */,
 				B665FC34F0DA5A0543C0B087 /* TrailReportType.swift in Sources */,
+				1501472C2B967D8F006EBED6 /* GeoJson.swift in Sources */,
+				150146FD2B9644C6006EBED6 /* SkiblazerButton.swift in Sources */,
+				150147302B9684B5006EBED6 /* MapExtension.swift in Sources */,
+				150147212B967CAB006EBED6 /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +687,7 @@
 				DEVELOPMENT_TEAM = STGT8VT9K6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Skiblazer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Skiblazer;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -391,7 +695,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -416,6 +720,7 @@
 				DEVELOPMENT_TEAM = STGT8VT9K6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Skiblazer/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Skiblazer;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -423,7 +728,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -475,6 +780,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.0;
+			};
+		};
+		1598240B2B968CFB002BFD98 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -544,6 +857,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 156726D62B96386F00D2771A /* XCRemoteSwiftPackageReference "amplify-ui-swift-authenticator" */;
 			productName = Authenticator;
+		};
+		1598240C2B968CFB002BFD98 /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1598240B2B968CFB002BFD98 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

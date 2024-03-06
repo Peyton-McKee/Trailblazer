@@ -6,6 +6,8 @@ public struct TrailReport: Model {
   public let id: String
   public var type: TrailReportType
   public var trailMadeOn: String
+  public var latitude: Double
+  public var longitude: Double
   public var active: Bool
   public var mapId: String
   public var map: Map
@@ -15,12 +17,16 @@ public struct TrailReport: Model {
   public init(id: String = UUID().uuidString,
       type: TrailReportType,
       trailMadeOn: String,
+      latitude: Double,
+      longitude: Double,
       active: Bool,
       mapId: String,
       map: Map) {
     self.init(id: id,
       type: type,
       trailMadeOn: trailMadeOn,
+      latitude: latitude,
+      longitude: longitude,
       active: active,
       mapId: mapId,
       map: map,
@@ -30,6 +36,8 @@ public struct TrailReport: Model {
   internal init(id: String = UUID().uuidString,
       type: TrailReportType,
       trailMadeOn: String,
+      latitude: Double,
+      longitude: Double,
       active: Bool,
       mapId: String,
       map: Map,
@@ -38,6 +46,8 @@ public struct TrailReport: Model {
       self.id = id
       self.type = type
       self.trailMadeOn = trailMadeOn
+      self.latitude = latitude
+      self.longitude = longitude
       self.active = active
       self.mapId = mapId
       self.map = map

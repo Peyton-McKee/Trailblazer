@@ -13,6 +13,8 @@ type TrailReport @model {
   id: ID!
   type: TrailReportType!
   trailMadeOn: String!
+  latitude: Float!
+  longitude: Float!
   active: Boolean! @default(value: "true")
 
   mapId: ID!
@@ -23,6 +25,9 @@ type Map @model {
   id: ID!
   name: String!
   storageKeyPrefix: String!
+  mountainReportUrl: String
+  trailStatusElementId: String
+  liftStatusElementId: String
 
   trailReports: [TrailReport!]! @hasMany
 }

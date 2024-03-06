@@ -9,8 +9,7 @@ import Foundation
 import MapKit
 import SwiftUI
 
-enum Difficulty: String
-{
+enum Difficulty: String {
     case easy = "Easy"
     case intermediate = "Intermediate"
     case advanced = "Advanced"
@@ -19,13 +18,13 @@ enum Difficulty: String
     case terrainPark = "Terrain Park"
 }
 
-class ImageAnnotation : NSObject, MKAnnotation{
+class ImageAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
     var colour: UIColor
     var difficulty: Difficulty?
-    var trailReport : ImageAnnotation?
+    var trailReport: ImageAnnotation?
     var image: UIImage?
     var status: Status?
     var id: String?
@@ -33,7 +32,7 @@ class ImageAnnotation : NSObject, MKAnnotation{
     var trailTimes: [[Double]]?
     var ids: [String]?
     var times: [Double]?
-    
+
     override init() {
         self.coordinate = CLLocationCoordinate2D()
         self.title = nil
@@ -44,41 +43,42 @@ class ImageAnnotation : NSObject, MKAnnotation{
         self.colour = UIColor.white
     }
 }
+
 //
 //
-//class TrailsDatabase : NSObject {
-//    
+// class TrailsDatabase : NSObject {
+//
 //    static let CommonlyJunctionedTrailNames = ["Tin Woodsman", "Vortex", "Northern Lights", "Airglow", "Dream Maker", "Grand Rapids"]
-//    
+//
 //    static let Lifts =
 //    [Lift(name: "Barker Express", annotations: [createAnnotation(title: "Barker Express", latitude: 44.470336293576615, longitude: -70.86235471500864, difficulty: .lift), createAnnotation(title: "topBarker", latitude: 44.45939892927216, longitude: -70.87209354638405, difficulty: .lift)]),
-//    
+//
 //     Lift(name: "Southridge Express", annotations: [createAnnotation(title: "South Ridge Express", latitude: 44.47349766967515, longitude: -70.85804872495724, difficulty: .lift), createAnnotation(title: "topSouthridge", latitude: 44.47140473269554, longitude: -70.8690669747966, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "Quantum Leap Triple", annotations: [createAnnotation(title: "Quantum Leap Triple", latitude: 44.47135602096759, longitude: -70.88539833730681, difficulty: .lift), createAnnotation(title: "Top of Quantum Leap Triple", latitude: 44.469956233389304, longitude: -70.88004779413315, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "Locke Triple", annotations: [createAnnotation(title: "Locke Triple", latitude: 44.46939397490112, longitude: -70.8620473764752, difficulty: .lift), createAnnotation(title: "topLocke", latitude: 44.45732043619839, longitude: -70.86721732867319, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "North Peak Express", annotations: [createAnnotation(title: "North Peak Express", latitude: 44.47392442992593, longitude: -70.86496661448741, difficulty: .lift), createAnnotation(title: "Top of North Peak Express", latitude: 44.47016716972932, longitude: -70.87984653186034, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "Southridge Chondola", annotations: [createAnnotation(title: "Chondola", latitude: 44.473098413827294, longitude: -70.85745769220948, difficulty: .lift), createAnnotation(title: "Top of Chondola", latitude: 44.468643133308056, longitude: -70.87985424949272, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "Spruce Triple", annotations: [createAnnotation(title: "Spruce", latitude: 44.46956649226089, longitude: -70.86889775439303, difficulty: .lift), createAnnotation(title: "Top of Spruce", latitude: 44.463183391461904, longitude: -70.88237835188288, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "Tempest Quad", annotations: [createAnnotation(title: "Tempest Quad", latitude: 44.46906778899057, longitude: -70.84833766968724, difficulty: .lift), createAnnotation(title: "topTempest", latitude: 44.464289208270316, longitude: -70.86019280483269, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "White Heat Quad", annotations: [createAnnotation(title: "White Heat Quad", latitude: 44.46537254108104, longitude: -70.85170418417664, difficulty: .lift), createAnnotation(title: "topWHQ", latitude: 44.458371170992024, longitude: -70.8598457828036, difficulty: .lift)]),
-//    
+//
 //     Lift(name: "Little White Cap Quad", annotations: [createAnnotation(title: "Little White Cap Quad", latitude: 44.46919453030537, longitude: -70.84688269791349, difficulty: .lift), createAnnotation(title: "topLWC", latitude: 44.46127568629244, longitude: -70.85098869452358, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "Aurora", annotations: [createAnnotation(title: "Aurora Lift", latitude: 44.471807197499686, longitude: -70.88638321700229, difficulty: .lift), createAnnotation(title: "Top of Aurora", latitude: 44.46308843335746, longitude: -70.88975714956065, difficulty: .lift)]),
-//     
+//
 //     Lift(name: "Jordan Double", annotations: [createAnnotation(title: "Jordan Double", latitude: 44.47185220242018, longitude: -70.8868831674901, difficulty: .lift), createAnnotation(title: "Jordan Double", latitude: 44.471727779664356, longitude: -70.89391070242685, difficulty: .lift)]),
-//     
+//
 //    Lift(name: "Jordan", annotations: [createAnnotation(title: "Jordan Lift", latitude: 44.4717323221508, longitude: -70.89489548889809, difficulty: .lift), createAnnotation(title: "Top of Jordan", latitude: 44.46239249702886, longitude: -70.90754291060291, difficulty: .lift)])]
-//     
-//     
-//     
+//
+//
+//
 //    static let barkerTrails : [Trail] = [
 //        Trail(name: "Three Mile Trail", difficulty: .easy, annotations: [createAnnotation(title: "Three Mile Trail", latitude: 44.45995830676152, longitude: -70.87507133018418, difficulty: .easy), createAnnotation(title: "bend13ML", latitude: 44.45972825558672, longitude: -70.87556509196926, difficulty: .easy), createAnnotation(title: "bend23ML", latitude: 44.46103810206512, longitude: -70.87679718913374, difficulty: .easy), createAnnotation(title: "sluiceJunction3ML", latitude: 44.464324531330846, longitude: -70.87687849056759, difficulty: .easy), createAnnotation(title: "gnarniaJunction3ML", latitude: 44.465957595619486, longitude: -70.8768278709139, difficulty: .easy), createAnnotation(title: "RBJunction3ML", latitude: 44.46666992104078, longitude: -70.87694136884294, difficulty: .easy), createAnnotation(title: "AEJunction3ML", latitude: 44.46748978213407, longitude: -70.87829904642872, difficulty: .easy), createAnnotation(title: "bend33ML", latitude: 44.46769951569971, longitude: -70.87866743914817, difficulty: .easy), createAnnotation(title: "end3ML", latitude: 44.468481491163516, longitude: -70.87867359271134, difficulty: .easy)]),
 //        Trail(name: "Lazy River", difficulty: .intermediate, annotations: [createAnnotation(title: "Lazy River", latitude: 44.458918811247116, longitude: -70.87286678674761, difficulty: .easy), createAnnotation(title: "bend1LR", latitude: 44.45975604858868, longitude: -70.87375252691037, difficulty: .easy), createAnnotation(title: "3MLJunctionLR", latitude: 44.46004325902246, longitude: -70.87506172749464, difficulty: .easy), createAnnotation(title: "bend2LR", latitude: 44.46123880707136, longitude: -70.87588644774648, difficulty: .intermediate), createAnnotation(title: "bend3LR", latitude: 44.461611844923105, longitude: -70.8752208740192, difficulty: .intermediate), createAnnotation(title: "bend4LR", latitude: 44.46401321903339, longitude: -70.8742869902883, difficulty: .intermediate), createAnnotation(title: "sluiceJunctionLR", latitude: 44.46500701360254, longitude: -70.87456240448098, difficulty: .intermediate), createAnnotation(title: "gnarniaJunctionLR", latitude: 44.467083004155505, longitude: -70.87430538506386, difficulty: .intermediate), createAnnotation(title: "RBJunctionLR", latitude: 44.46761344275562, longitude: -70.87362002109518, difficulty: .intermediate), createAnnotation(title: "bend5LR", latitude: 44.46870630852191, longitude: -70.87166224609365, difficulty: .intermediate), createAnnotation(title: "AEJunctionLR", latitude: 44.46944563240094, longitude: -70.87141169656348, difficulty: .intermediate), createAnnotation(title: "GRJunctionLR", latitude: 44.470136513568576, longitude: -70.87047939858917, difficulty: .intermediate), createAnnotation(title: "endLR", latitude: 44.470801087998225, longitude: -70.87009348888205, difficulty: .intermediate)]),
@@ -89,13 +89,13 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        Trail(name: "Top Gun", difficulty: .expertsOnly, annotations: [createAnnotation(title: "Top Gun", latitude: 44.46052492553666, longitude: -70.87122997646192, difficulty: .expertsOnly), createAnnotation(title: "bend1TG", latitude: 44.4632487372244, longitude: -70.87123330508894, difficulty: .expertsOnly), createAnnotation(title: "LSPJunctionTG", latitude: 44.46695531620989, longitude: -70.86638410668483, difficulty: .expertsOnly)]),
 //        Trail(name: "Ecstasy", difficulty: .intermediate, annotations: [createAnnotation(title: "Ecstasy", latitude: 44.45966692011528, longitude: -70.87135166364119, difficulty: .intermediate), createAnnotation(title: "bend1Ecstasy", latitude: 44.460016590788584, longitude: -70.87084852853677, difficulty: .intermediate), createAnnotation(title: "bend2Ecstasy", latitude: 44.46032795232815, longitude: -70.86718600985445, difficulty: .intermediate), createAnnotation(title: "southPawJunctionEcstasy", latitude: 44.461297881305626, longitude: -70.8663917106066, difficulty: .intermediate), createAnnotation(title: "uppercutJunctionEcstasy", latitude: 44.4613493437183, longitude: -70.86555394520701, difficulty: .intermediate)]),
 //        Trail(name: "Jungle Road", difficulty: .intermediate, annotations: [createAnnotation(title: "Jungle Road", latitude: 44.45966830075108, longitude: -70.87132308134012, difficulty: .intermediate), createAnnotation(title: "bend1JR", latitude: 44.459513174807036, longitude: -70.87016928026638, difficulty: .intermediate), createAnnotation(title: "bend2JR", latitude: 44.45902428223, longitude: -70.86971606313978, difficulty: .intermediate), createAnnotation(title: "GPJunctionJR", latitude: 44.45888651945049, longitude: -70.86907843269005, difficulty: .intermediate), createAnnotation(title: "USPJunctionJR", latitude: 44.45866032666825, longitude: -70.86775321054346, difficulty: .intermediate)]),
-//        
+//
 //        Trail(name: "Southpaw", difficulty: .intermediate, annotations: [createAnnotation(title: "Southpaw", latitude: 44.46276805273417, longitude: -70.86601223095431, difficulty: .intermediate), createAnnotation(title: "bend2SP", latitude: 44.46319899549631, longitude: -70.86688265387109, difficulty: .intermediate), createAnnotation(title: "bend3SouthPaw", latitude: 44.46375343519025, longitude: -70.86722425833486, difficulty: .intermediate), createAnnotation(title: "agonyJunctionSP", latitude: 44.464981534834564, longitude: -70.86704927562877, difficulty: .intermediate), createAnnotation(title: "LSPJunction2SP", latitude: 44.466084243678694, longitude: -70.86595438952699, difficulty: .intermediate)]),
-//        
+//
 //        Trail(name: "Rocking Chair", difficulty: .intermediate, annotations: [createAnnotation(title: "Rocking Chair", latitude: 44.46633242158953, longitude: -70.86542313921537, difficulty: .intermediate), createAnnotation(title: "bend1RC", latitude: 44.46893816110395, longitude: -70.86396468658349, difficulty: .intermediate), createAnnotation(title: "endRC", latitude: 44.46955007566205, longitude: -70.86287985731924, difficulty: .intermediate)]),
-//        
+//
 //        Trail(name: "Tourist Trap", difficulty: .intermediate, annotations: [createAnnotation(title: "Tourist Trap", latitude: 44.46966600600691, longitude: -70.86793455018984, difficulty: .intermediate), createAnnotation(title: "OHJunctionTT", latitude: 44.469923339149595, longitude: -70.8664134016417, difficulty: .intermediate), createAnnotation(title: "endTT", latitude: 44.4695232038773, longitude: -70.86444287724876, difficulty: .intermediate)])]
-//    
+//
 //    static let southRidgeTrails : [Trail] = [
 //        Trail(name: "Ridge Run", difficulty: .easy, annotations: [createAnnotation(title: "Ridge Run", latitude: 44.47162071063281, longitude: -70.86932648218762, difficulty: .easy), createAnnotation(title: "EFJunctionRR", latitude: 44.47261225258012, longitude: -70.86990943502828, difficulty: .easy), createAnnotation(title: "3DJunctionRR", latitude: 44.473566373346806, longitude: -70.87061356821667, difficulty: .easy), createAnnotation(title: "bend1RR", latitude: 44.47397519114789, longitude: -70.87096271327214, difficulty: .easy), createAnnotation(title: "T72JunctionRR", latitude: 44.47471498969679, longitude: -70.87081490034599, difficulty: .easy), createAnnotation(title: "DMJunctionRR", latitude: 44.47547018726526, longitude: -70.87077704736517, difficulty: .easy), createAnnotation(title: "STJunctionRR", latitude: 44.47549070157672, longitude: -70.87076078836633, difficulty: .easy), createAnnotation(title: "LCJunctionRR", latitude: 44.47642562084904, longitude: -70.87058426814676, difficulty: .easy), createAnnotation(title: "bend2RR", latitude: 44.477270343557755, longitude: -70.86901116770413, difficulty: .easy), createAnnotation(title: "bend3RR", latitude: 44.47805677665824, longitude: -70.86628295857128, difficulty: .easy), createAnnotation(title: "bend4RR", latitude: 44.477370343898286, longitude: -70.86223738949299, difficulty: .easy), createAnnotation(title: "bend5RR", latitude: 44.47528005782332, longitude: -70.85938331721208, difficulty: .easy), createAnnotation(title: "bend6RR", latitude: 44.474310447199095, longitude: -70.8586525348936, difficulty: .easy), createAnnotation(title: "endRR", latitude: 44.473842509608566, longitude: -70.85888489822734, difficulty: .easy)]),
 //        Trail(name: "Broadway", difficulty: .easy, annotations: [createAnnotation(title: "Broadway", latitude: 44.471513238602334, longitude: -70.86920055180396, difficulty: .easy), createAnnotation(title: "NWJunctionBroadway", latitude: 44.471887698950034, longitude: -70.8661872983771, difficulty: .easy), createAnnotation(title: "MBJunctionBroadway", latitude: 44.47158910946508, longitude: -70.8644627972387, difficulty: .easy), createAnnotation(title: "WVJunctionBroadway", latitude: 44.47170856243638, longitude: -70.86377512631796, difficulty: .easy), createAnnotation(title: "WLJunctionBroadway", latitude: 44.471612194301656, longitude: -70.86164965039356, difficulty: .easy), createAnnotation(title: "endBroadway", latitude: 44.473152286875425, longitude: -70.85843285655504, difficulty: .easy)]),
@@ -111,7 +111,7 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        Trail(name: "Sundance", difficulty: .easy, annotations: [createAnnotation(title: "Sundance", latitude: 44.47216841473903, longitude: -70.8634803194262, difficulty: .easy), createAnnotation(title: "DD&SPRJunctionSD", latitude: 44.472564511416515, longitude: -70.86321930085626, difficulty: .easy), createAnnotation(title: "RRJunctionSD", latitude: 44.47319380222498, longitude: -70.86221130612768, difficulty: .easy), createAnnotation(title: "bend1Sundance", latitude: 44.47362558473599, longitude: -70.86151793333684, difficulty: .easy), createAnnotation(title: "botSundance", latitude: 44.47378191784132, longitude: -70.85906270396109, difficulty: .easy)]),
 //        Trail(name: "Exit Right", difficulty: .easy, annotations: [createAnnotation(title: "Exit Right", latitude: 44.47135372033121, longitude: -70.86992747990317, difficulty: .easy), createAnnotation(title: "endER", latitude: 44.470999193012005, longitude: -70.86952416392006, difficulty: .easy)]),
 //        Trail(name: "Exit Left", difficulty: .easy, annotations: [createAnnotation(title: "Exit Left", latitude: 44.471211769327596, longitude: -70.8696094100586, difficulty: .easy), createAnnotation(title: "endEL", latitude: 44.471840249971066, longitude: -70.86955148201567, difficulty: .easy)])]
-//    
+//
 //    static let lockeTrails = [
 //        Trail(name: "Goat Path", difficulty: .intermediate, annotations: [createAnnotation(title: "Goat Path", latitude: 44.45743693264429, longitude: -70.86818892101017, difficulty: .intermediate), createAnnotation(title: "UCJunctionGP", latitude: 44.45786227278814, longitude: -70.86913280437817, difficulty: .intermediate), createAnnotation(title: "JRJunctionGP", latitude: 44.45886904088148, longitude: -70.86905920108418, difficulty: .intermediate), createAnnotation(title: "EcstasyJunctionGP", latitude: 44.46009835256276, longitude: -70.86883828571136, difficulty: .intermediate), createAnnotation(title: "bend2GP", latitude: 44.4603351555924, longitude: -70.86913902016163, difficulty: .intermediate), createAnnotation(title: "bend3GP", latitude: 44.460895287117395, longitude: -70.87009791704583, difficulty: .intermediate), createAnnotation(title: "agonyJunctionGP", latitude: 44.46124547051831, longitude: -70.87023187988675, difficulty: .intermediate), createAnnotation(title: "TGJunctionGP", latitude: 44.46140278721097, longitude: -70.87133062704991, difficulty: .intermediate), createAnnotation(title: "LRJunctionGP", latitude: 44.46135362157697, longitude: -70.87305328528684, difficulty: .intermediate)]),
 //        Trail(name: "Upper Cut", difficulty: .advanced, annotations: [createAnnotation(title: "Upper Cut", latitude: 44.45793322767762, longitude: -70.8690652225351, difficulty: .advanced), createAnnotation(title: "JRJunctionUC", latitude: 44.458659942193506, longitude: -70.86819410200806, difficulty: .advanced), createAnnotation(title: "bend1UC", latitude: 44.45904928433035, longitude: -70.86815468450483, difficulty: .advanced), createAnnotation(title: "ecstasyJunctionUC", latitude: 44.46032095392963, longitude: -70.86720227324808, difficulty: .advanced)]),
@@ -122,12 +122,12 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        Trail(name: "Bim's Whim", difficulty: .advanced, annotations: [createAnnotation(title: "Bim's Whim", latitude: 44.456793321867444, longitude: -70.86712462149937, difficulty: .advanced), createAnnotation(title: "bend1BW", latitude: 44.456946452067335, longitude: -70.86630273398389, difficulty: .advanced), createAnnotation(title: "bend2BW", latitude: 44.4568473617074, longitude: -70.86612639969591, difficulty: .advanced), createAnnotation(title: "bend3BW", latitude: 44.45732031661159, longitude: -70.86470570901785, difficulty: .advanced), createAnnotation(title: "bend4BW", latitude: 44.45754295004562, longitude: -70.86285456570242, difficulty: .advanced), createAnnotation(title: "bend5BW", latitude: 44.457997380038236, longitude: -70.8626604982426, difficulty: .advanced), createAnnotation(title: "SalvationJunctionBW", latitude: 44.45853385118159, longitude: -70.86296829173801, difficulty: .advanced), createAnnotation(title: "WCJunctionBW", latitude: 44.45820011192838, longitude: -70.86006621322885, difficulty: .advanced)]),
 //        Trail(name: "Cascades", difficulty: .intermediate, annotations: [createAnnotation(title: "Cascades", latitude: 44.46255933194429, longitude: -70.86203560633224, difficulty: .intermediate), createAnnotation(title: "SnowboundJunctionCascades", latitude: 44.46319273953846, longitude: -70.86139710396205, difficulty: .intermediate), createAnnotation(title: "TempestJunctionCascades", latitude: 44.46462844765911, longitude: -70.86130681480886, difficulty: .intermediate), createAnnotation(title: "endCascades", latitude: 44.46878916321214, longitude: -70.86107505455976, difficulty: .intermediate)]),
 //        Trail(name: "Monday Mourning", difficulty: .advanced, annotations: [createAnnotation(title: "Monday Mourning", latitude: 44.462402841818104, longitude: -70.8633472124859, difficulty: .advanced), createAnnotation(title: "endMM", latitude: 44.46900202714522, longitude: -70.86215258113216, difficulty: .advanced)]),
-//       
+//
 //        Trail(name: "RoadRunner", difficulty: .easy, annotations: [createAnnotation(title: "Road Runner", latitude: 44.46917904218135, longitude: -70.86087320257772, difficulty: .easy), createAnnotation(title: "WFJunctionRR", latitude: 44.46959335316187, longitude: -70.85819076306049, difficulty: .easy), createAnnotation(title: "bend1RR", latitude: 44.47009494574761, longitude: -70.85451613671009, difficulty: .easy), createAnnotation(title: "bend2RR", latitude: 44.470044402373766, longitude: -70.85152006733094, difficulty: .easy), createAnnotation(title: "endRR", latitude: 44.469276188899386, longitude: -70.8481848535303, difficulty: .easy)]),
 //    Trail(name: "Lower Upper Cut", difficulty: .intermediate, annotations: [createAnnotation(title: "Lower Uppercut", latitude: 44.46137352810597, longitude: -70.86642583630629, difficulty: .intermediate), createAnnotation(title: "SPJunctinLUC", latitude: 44.46213546672406, longitude: -70.86638870223543, difficulty: .intermediate), createAnnotation(title: "bottomUppercut", latitude: 44.46253123478195, longitude: -70.86535354781799, difficulty: .intermediate)]),
 //    Trail(name: "Lower Sunday Punch", difficulty: .intermediate, annotations: [createAnnotation(title: "Lower Sunday Punch", latitude: 44.462333820213146, longitude: -70.86448440473603, difficulty: .intermediate), createAnnotation(title: "LUCJunctionLSP", latitude: 44.4625240631385, longitude: -70.86520501198373, difficulty: .intermediate), createAnnotation(title: "bend1SP", latitude: 44.46367022702908, longitude: -70.86500787270711, difficulty: .intermediate), createAnnotation(title: "SP&RCJunctionLSP", latitude: 44.466043015366544, longitude: -70.86592477230046, difficulty: .intermediate), createAnnotation(title: "TGJunctionLSP", latitude: 44.4669271429763, longitude: -70.8661816527247, difficulty: .intermediate), createAnnotation(title: "RSJunctionLSP", latitude: 44.46749072664456, longitude: -70.86647954730529, difficulty: .intermediate), createAnnotation(title: "TTJunctionLSP", latitude: 44.46954650476462, longitude: -70.86438018168907, difficulty: .intermediate), createAnnotation(title: "endLSP", latitude: 44.46971832425021, longitude: -70.86315139834717, difficulty: .intermediate)]),
 //    Trail(name: "Tightwire", difficulty: .advanced, annotations: [createAnnotation(title: "Tightwire", latitude: 44.46315831820998, longitude: -70.86468326750321, difficulty: .advanced), createAnnotation(title: "bend1TW", latitude: 44.46641701498706, longitude: -70.86342087036127, difficulty: .advanced), createAnnotation(title: "RCJunctionTW", latitude: 44.467342723580636, longitude: -70.86453099495536, difficulty: .advanced)])]
-//    
+//
 //    static let whiteCapTrails = [
 //        Trail(name: "Salvation", difficulty: .intermediate, annotations: [createAnnotation(title: "Salvation", latitude: 44.458483169096866, longitude: -70.86042598349411, difficulty: .intermediate), createAnnotation(title: "BWJunctionSalvation", latitude: 44.45863953323299, longitude: -70.86282693916186, difficulty: .intermediate), createAnnotation(title: "bend1Salvation", latitude: 44.45914311488431, longitude: -70.86304708493333, difficulty: .intermediate), createAnnotation(title: "BW2JunctionSalvation", latitude: 44.45951743622001, longitude: -70.86368555648342, difficulty: .intermediate), createAnnotation(title: "HOJunctionSalvation", latitude: 44.46083349948976, longitude: -70.86157913730908, difficulty: .intermediate)]),
 //        Trail(name: "Heat's Off", difficulty: .intermediate, annotations: [createAnnotation(title: "Heat's Off", latitude: 44.46083349948976, longitude: -70.86157913730908, difficulty: .intermediate), createAnnotation(title: "endHO", latitude: 44.46268057168865, longitude: -70.86187494293544, difficulty: .intermediate)]),
@@ -145,14 +145,14 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        Trail(name: "Starstruck", difficulty: .advanced, annotations: [createAnnotation(title: "Starstruck", latitude: 44.462366577991936, longitude: -70.85023061415602, difficulty: .advanced), createAnnotation(title: "endSS", latitude: 44.465180263232845, longitude: -70.84833131680686, difficulty: .advanced)]),
 //        Trail(name: "Starwood", difficulty: .advanced, annotations: [createAnnotation(title: "Starwood", latitude: 44.46241446591349, longitude: -70.8507002102812, difficulty: .advanced), createAnnotation(title: "endSW", latitude: 44.46396229245787, longitude: -70.85054627662946, difficulty: .advanced)]),
 //        Trail(name: "Starburst", difficulty: .intermediate, annotations: [createAnnotation(title: "Starburst", latitude: 44.461385599781984, longitude: -70.85104671815832, difficulty: .intermediate), createAnnotation(title: "GCJunctionSB", latitude: 44.462125462757015, longitude: -70.85059522694398, difficulty: .intermediate), createAnnotation(title: "endSB", latitude: 44.465833998663086, longitude: -70.84866001313974, difficulty: .intermediate)]),
-//        
+//
 //        Trail(name: "Bear Paw", difficulty: .easy, annotations: [createAnnotation(title: "Bear Paw", latitude: 44.464488845043874, longitude: -70.85983989724394, difficulty: .easy), createAnnotation(title: "bend1BP", latitude: 44.46512084628069, longitude: -70.86087861514909, difficulty: .easy), createAnnotation(title: "bend2BP", latitude: 44.46564809786406, longitude: -70.85988118338261, difficulty: .easy), createAnnotation(title: "bend3BP", latitude: 44.46581879162974, longitude: -70.8608567740475, difficulty: .easy), createAnnotation(title: "bend4BP", latitude: 44.466301304643146, longitude: -70.8598652996761, difficulty: .easy), createAnnotation(title: "bend5BP", latitude: 44.46661617345175, longitude: -70.86027643202667, difficulty: .easy), createAnnotation(title: "cutOffJunctionBP", latitude: 44.46724231626774, longitude: -70.8600064219411, difficulty: .easy), createAnnotation(title: "endCutOffJunctionBP", latitude: 44.46747235977663, longitude: -70.86040408841197, difficulty: .easy), createAnnotation(title: "bend6BP", latitude: 44.468299103853134, longitude: -70.8596350907055, difficulty: .easy), createAnnotation(title: "endBP", latitude: 44.468980738321356, longitude: -70.86091806671445, difficulty: .easy)]),
 //        Trail(name: "WildFire", difficulty: .intermediate, annotations: [createAnnotation(title: "WildFire", latitude: 44.46476940739254, longitude: -70.85985454988528, difficulty: .intermediate), createAnnotation(title: "bend1WF", latitude: 44.46607118239925, longitude: -70.85928376323406, difficulty: .intermediate), createAnnotation(title: "COJunctionWF", latitude: 44.46704711700395, longitude: -70.85951170909081, difficulty: .intermediate), createAnnotation(title: "CBJunctionWF", latitude: 44.4681116238182, longitude: -70.85925461516578, difficulty: .intermediate), createAnnotation(title: "endWF", latitude: 44.4695193767508, longitude: -70.85819717521642, difficulty: .intermediate)]),
 //        Trail(name: "Cut Off", difficulty: .intermediate, annotations: [createAnnotation(title: "Cut Off", latitude: 44.46718599867918, longitude: -70.85977825361167, difficulty: .intermediate), createAnnotation(title: "endCutOff", latitude: 44.46757047502923, longitude: -70.86058997806956, difficulty: .intermediate)]),
 //        Trail(name: "Snowbound", difficulty: .advanced, annotations: [createAnnotation(title: "Snowbound", latitude: 44.4631925840547, longitude: -70.86116574162392, difficulty: .advanced), createAnnotation(title: "endSnowbound", latitude: 44.46296477969226, longitude: -70.85888925862076, difficulty: .advanced)]),
 //        Trail(name: "Cut Back", difficulty: .intermediate, annotations: [createAnnotation(title: "Cut Back", latitude: 44.46822319671841, longitude: -70.85944907531936, difficulty: .intermediate)])]
-//        
-//    
+//
+//
 //    static let spruceTrails : [Trail] = [
 //        Trail(name: "Sirius", difficulty: .easy, annotations: [createAnnotation(title: "Sirius", latitude: 44.46402015560722, longitude: -70.88287192667336, difficulty: .easy), createAnnotation(title: "endSirius", latitude: 44.463942115466686, longitude: -70.88490373252286, difficulty: .easy)]),
 //        Trail(name: "Upper Downdraft", difficulty: .advanced, annotations: [createAnnotation(title: "Upper Downdraft", latitude: 44.46400513990251, longitude: -70.88273316778006, difficulty: .advanced), createAnnotation(title: "endDowndraft", latitude: 44.466716217333456, longitude: -70.88179847448035, difficulty: .advanced)]),
@@ -161,7 +161,7 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        Trail(name: "Gnarnia", difficulty: .expertsOnly, annotations: [createAnnotation(title: "Gnarnia", latitude: 44.46504255184882, longitude: -70.87895361782995, difficulty: .expertsOnly), createAnnotation(title: "3MLJunctionGnarnia", latitude: 44.46591263745777, longitude: -70.87662346618372, difficulty: .expertsOnly), createAnnotation(title: "endGnarnia", latitude: 44.4670794114396, longitude: -70.87444062902327, difficulty: .expertsOnly)]),
 //        //19
 //        Trail(name: "Lower Downdraft", difficulty: .intermediate, annotations: [createAnnotation(title: "LowerDowndraft", latitude: 44.46860992943861, longitude: -70.87879804629708, difficulty: .intermediate), createAnnotation(title: "GRJunctionLD", latitude: 44.46959736320973, longitude: -70.87530580117387, difficulty: .intermediate), createAnnotation(title: "AEJunctionLD", latitude: 44.46918178597036, longitude: -70.874023955678, difficulty: .intermediate)]),]
-//    
+//
 //    static let jordanTrails = [
 //        Trail(name: "Lollapalooza", difficulty: .easy, annotations: [createAnnotation(title: "Lollapalooza", latitude: 44.462722133198504, longitude: -70.90801346676562, difficulty: .easy), createAnnotation(title: "Bend1Lolla", latitude: 44.46896537000713, longitude: -70.91051231074235, difficulty: .easy), createAnnotation(title: "Bend2Lolla", latitude: 44.47320361662942, longitude: -70.90307864281174, difficulty: .easy)]),
 //        //1
@@ -170,12 +170,12 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        Trail(name: "Rogue Angel", difficulty: .intermediate, annotations: [createAnnotation(title: "Rogue Angel", latitude: 44.46239298417106, longitude: -70.90692334506952, difficulty: .intermediate), createAnnotation(title: "MidRogue", latitude: 44.46633955610793, longitude: -70.90488744187293, difficulty: .intermediate), createAnnotation(title: "BotRogue", latitude: 44.470166735232745, longitude: -70.89713414576988, difficulty: .intermediate)]),
 //        //3
 //        Trail(name: "iCaramba!", difficulty: .expertsOnly, annotations: [createAnnotation(title: "iCaramba!", latitude: 44.463279337031715, longitude: -70.90610218702001, difficulty: .expertsOnly), createAnnotation(title: "botCaram", latitude: 44.46845226794425, longitude: -70.89911260345167, difficulty: .expertsOnly)])]
-//    
-//    
+//
+//
 //    static let OzTrails : [Trail] = [
 //        Trail(name: "Tin Woodsman", difficulty: .expertsOnly, annotations: [createAnnotation(title: "Tin Woodsman", latitude: 44.46000309303237, longitude: -70.90520452974141, difficulty: .expertsOnly), createAnnotation(title: "Tin Woodsman", latitude: 44.460493480812396, longitude: -70.90366928411956, difficulty: .expertsOnly), createAnnotation(title: "endWoodsman", latitude: 44.46555178523853, longitude: -70.89955012783363, difficulty: .expertsOnly)]),
 //        Trail(name: "Kansas", difficulty: .easy, annotations: [createAnnotation(title: "Kansas", latitude: 44.46217702622463, longitude: -70.90716492905683, difficulty: .easy), createAnnotation(title: "bend1Kans", latitude: 44.4616778233863, longitude: -70.90722336991544, difficulty: .easy), createAnnotation(title: "ozJunctionKans", latitude: 44.46123534688093, longitude: -70.904483474769, difficulty: .easy), createAnnotation(title: "Tin Woodsman Junction of Kansasa", latitude: 44.460493480812396, longitude: -70.90366928411956, difficulty: .easy), createAnnotation(title: "bend2Kans", latitude: 44.460163849745214, longitude: -70.90148578576282, difficulty: .easy), createAnnotation(title: "bend3Kans", latitude: 44.46120348032429, longitude: -70.89721818116446, difficulty: .easy), createAnnotation(title: "bend4Kans", latitude: 44.461197797114906, longitude: -70.89514601904098, difficulty: .easy), createAnnotation(title: "endKans", latitude: 44.46460234637316, longitude: -70.89052023312101, difficulty: .easy)])]
-//    
+//
 //    static let AuroraTrails = [
 //        Trail(name: "Cyclone", difficulty: .easy, annotations: [createAnnotation(title: "Cyclone", latitude: 44.46456443017323, longitude: -70.88952523556077, difficulty: .easy), createAnnotation(title: "Cyclone", latitude: 44.46558362151272, longitude: -70.89119954539368, difficulty: .easy), createAnnotation(title: "Poppy Fields Junction of Cyclone", latitude: 44.465180155636666, longitude: -70.89860031454471, difficulty: .easy), createAnnotation(title: "Woodsman Junction of Cyclone", latitude: 44.46618881509814, longitude: -70.89898577127133, difficulty: .easy), createAnnotation(title: "iCaramba Junction of Cyclone", latitude: 44.468756233263775, longitude: -70.89862601165983, difficulty: .easy), createAnnotation(title: "Rogue Angel Junction of Cyclone", latitude: 44.47025995431891, longitude: -70.89703279052316, difficulty: .easy)]),
 //        //7
@@ -194,9 +194,9 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        Trail(name: "Borealis", difficulty: .easy, annotations: [createAnnotation(title: "Borealis", latitude: 44.46278170427937, longitude: -70.8895517763241, difficulty: .easy), createAnnotation(title: "bend1Borealis", latitude: 44.46248534478416, longitude: -70.88749443819064, difficulty: .easy), createAnnotation(title: "bend2Borealis", latitude: 44.4632449499215, longitude: -70.88551136371929, difficulty: .easy), createAnnotation(title: "vortexJunctionBorealis", latitude: 44.463909310290184, longitude: -70.88505530436773, difficulty: .easy), createAnnotation(title: "bend3Borealis", latitude: 44.46363692988425, longitude: -70.88602217785332, difficulty: .easy), createAnnotation(title: "endBorealis", latitude: 44.46456958036436, longitude: -70.88903941153798, difficulty: .easy)]),
 //        //15
 //        Trail(name: "Vortex", difficulty: .expertsOnly, annotations: [createAnnotation(title: "Vortex", latitude: 44.464086260411534, longitude: -70.88472455446858, difficulty: .expertsOnly), createAnnotation(title: "Vortex", latitude: 44.465875965885864, longitude: -70.88498076829377, difficulty: .expertsOnly), createAnnotation(title: "botVertex", latitude: 44.468935280601265, longitude: -70.88537258035753, difficulty: .expertsOnly)]),
-//        
+//
 //        Trail(name: "Quantum Leap", difficulty: .expertsOnly, annotations: [createAnnotation(title: "Quantum Leap", latitude: 44.47035064728613, longitude: -70.88015704719764, difficulty: .expertsOnly), createAnnotation(title: "backsideJunctionQL", latitude: 44.47122504001555, longitude: -70.88101932258316, difficulty: .expertsOnly), createAnnotation(title: "bend1QL", latitude: 44.47168976730243, longitude: -70.8815677621026, difficulty: .expertsOnly), createAnnotation(title: "botQuantum", latitude: 44.47158096623986, longitude: -70.8846825390319, difficulty: .expertsOnly)]),]
-//    
+//
 //    static let NorthPeakTrails = [
 //        //13
 //        Trail(name: "Paradigm", difficulty: .intermediate, annotations: [createAnnotation(title: "Paradigm", latitude: 44.46924157923843, longitude: -70.88073865336285, difficulty: .intermediate), createAnnotation(title: "bend1Paradigm", latitude: 44.4684834073092, longitude: -70.88413019219388, difficulty: .intermediate), createAnnotation(title: "Vortex Junction of Paradigm", latitude: 44.469151693786706, longitude: -70.88538404261011, difficulty: .intermediate), createAnnotation(title: "botParadigm", latitude: 44.4704364585831, longitude: -70.88622009554196, difficulty: .intermediate)]),
@@ -204,7 +204,7 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        Trail(name: "Second Mile", difficulty: .easy, annotations: [createAnnotation(title: "Second Mile", latitude: 44.46943702535925, longitude: -70.8789654647034, difficulty: .easy), createAnnotation(title: "Grand Rapids Junction of Second Mile", latitude: 44.47032406589279, longitude: -70.8781603365251, difficulty: .easy), createAnnotation(title: "Dream Maker Terrain Park Junction of Second Mile", latitude: 44.47088989413925, longitude: -70.87745792932414, difficulty: .easy), createAnnotation(title: "Escapade Junction of Second Mile", latitude: 44.471003653600654, longitude: -70.87608625181753, difficulty: .easy), createAnnotation(title: "3D Junction of Second Mile", latitude: 44.47182260784928, longitude: -70.87552946703043, difficulty: .easy), createAnnotation(title: "T72 Junction of Second Mile", latitude: 44.47240398079546, longitude: -70.87625359900291, difficulty: .easy), createAnnotation(title: "Dream Maker Junction of Second Mile", latitude: 44.472801490123636, longitude: -70.87674741037038, difficulty: .easy), createAnnotation(title: "endSM", latitude: 44.473345284763425, longitude: -70.87706137962822, difficulty: .easy)]),
 //        //18
 //        Trail(name: "Grand Rapids", difficulty: .intermediate, annotations: [createAnnotation(title: "Grand Rapids", latitude: 44.469956233389304, longitude: -70.88004779413315, difficulty: .intermediate), createAnnotation(title: "Grand Rapids", latitude: 44.47031418756157, longitude: -70.87814112970221, difficulty: .intermediate), createAnnotation(title: "bend1GR", latitude: 44.46985270909712, longitude: -70.87704051030686, difficulty: .intermediate), createAnnotation(title: "Downdraft Junction of Grand Rapids", latitude: 44.47013967347965, longitude: -70.8751210217859, difficulty: .intermediate), createAnnotation(title: "bend2GR", latitude: 44.46988573312703, longitude: -70.87342068410626, difficulty: .intermediate), createAnnotation(title: "bend3GR", latitude: 44.470165629165166, longitude: -70.87145465636517, difficulty: .intermediate), createAnnotation(title: "lazyRiverJunction", latitude: 44.46994988535315, longitude: -70.87066371925623, difficulty: .intermediate), createAnnotation(title: "endGR", latitude: 44.469782541751115, longitude: -70.86966881640289, difficulty: .intermediate)]),
-//        
+//
 //        //20
 //        Trail(name: "Dream Maker", difficulty: .easy, annotations: [createAnnotation(title: "Dream Maker", latitude: 44.47041324409543, longitude: -70.87983797942842, difficulty: .easy), createAnnotation(title: "bend1DM", latitude: 44.47115946746551, longitude: -70.87910663287175, difficulty: .easy), createAnnotation(title: "TPJunctionDM", latitude: 44.47116183566172, longitude: -70.87818807321169, difficulty: .easy), createAnnotation(title: "Dream Maker", latitude: 44.47266041086979, longitude: -70.87677881029504, difficulty: .easy), createAnnotation(title: "Bend2DM", latitude: 44.47420077369788, longitude: -70.87533495049598, difficulty: .easy), createAnnotation(title: "Bend3DM", latitude: 44.47533196146996, longitude: -70.87194777471294, difficulty: .easy), createAnnotation(title: "Ridge Run Junction of Dream Maker", latitude: 44.47537671715984, longitude: -70.87087950264689, difficulty: .easy), createAnnotation(title: "T72JunctionDM", latitude: 44.47487871455419, longitude: -70.86698253348032, difficulty: .easy)]),
 //        //21
@@ -218,7 +218,7 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        //25
 //        Trail(name: "3D", difficulty: .terrainPark, annotations: [createAnnotation(title: "3D", latitude: 44.47198060772869, longitude: -70.87525217806382, difficulty: .terrainPark), createAnnotation(title: "Last Mile Junction of 3D", latitude: 44.47277555409285, longitude: -70.87325638692266, difficulty: .terrainPark), createAnnotation(title: "Ridge Run Junction of 3D", latitude: 44.47357813833369, longitude: -70.87069873813503, difficulty: .terrainPark), createAnnotation(title: "bend13D", latitude: 44.47391397246592, longitude: -70.86865469996928, difficulty: .intermediate), createAnnotation(title: "bot3D", latitude: 44.474622082181334, longitude: -70.86708734917693, difficulty: .terrainPark)]),
 //        Trail(name: "Second Thoughts", difficulty: .easy, annotations: [createAnnotation(title: "Second Thoughts", latitude: 44.47638729191411, longitude: -70.870552774431, difficulty: .easy), createAnnotation(title: "bend1ST", latitude: 44.47629604259682, longitude: -70.86976874309151, difficulty: .easy), createAnnotation(title: "endSecondThoughts", latitude: 44.475530029337875, longitude: -70.86868889749921, difficulty: .easy)])]
-//    
+//
 //    //Spruce
 //    static let botSpruce = Vertex<ImageAnnotation>(Lifts[6].annotations[0])
 //    static let topSpruce = Vertex<ImageAnnotation>(Lifts[6].annotations[1])
@@ -277,13 +277,13 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //    static let bend4Kans = Vertex<ImageAnnotation>( OzTrails[1].annotations[6])
 //    static let endKans = Vertex<ImageAnnotation>(OzTrails[1].annotations[7])
 //    static let kansas = [topKans, bend1Kans, ozJunctionKans, woodsmanJunctionKans, bend2Kans, bend3Kans, bend4Kans, endKans]
-//    
+//
 //    //tin woodsman
 //    static let topWoodsman = Vertex<ImageAnnotation>(OzTrails[0].annotations[0])
 //    static let junctionWoodsman = Vertex<ImageAnnotation>(OzTrails[0].annotations[1])
 //    static let endWoodsman = Vertex<ImageAnnotation>(OzTrails[0].annotations[2])
 //    static let tinWoodsman = [topWoodsman, junctionWoodsman, endWoodsman]
-//    
+//
 //    //cyclone
 //    static let topCyclone = Vertex<ImageAnnotation>(AuroraTrails[0].annotations[0])
 //    static let northernLightsJunctionCyclone = Vertex<ImageAnnotation>(AuroraTrails[0].annotations[1])
@@ -851,41 +851,41 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //    static let starburst = [topStarB, GCJunctionSB, endStarB]
 //
 //    static let realTimeGraph = EdgeWeightedDigraph<ImageAnnotation>()
-//    
+//
 //    static let keyAnnotations = [botSpruce, botQLT, botNP, botChondola, auroraSideJD, jordanSideJD, botAurora, botJord, topLol, topExcal, topRogue, topCaram, topKans, junctionWoodsman, topCyclone, northernLightsJunctionCyclone, kansasNLJunction, witchWayTop, cycloneJunctionAirglow, topBlackHole, topFirestar, startLO, topBorealis, kansasJunctionVortex, topParadigm, startSM, SMJunctionGR, topQuantum, topGR, topLD, topDM, Bend2DM, topT72, topSensation, topDMTP, topEscapade, top3D, botBarker, start3ML, startLR, startSluice, topRS, topAgony, topTG, topEcstasy, startJR, topLUC, topSP, topLSP, topRC, topTW, botSouthridge, startRR, topLE, topBroadway, topLLR, startThataway, topMB, topLCL, topWV, topWL, topNW, topSpectator, topDD, topSD, topST, topER, topEL, topSirius, topDowndraft, topAE, topRB, topGnarnia, topTT, botLocke, topGP, topUC, topUSP, topLL, topJW, topT2, topBW, topCC, topMM, topBP, topWF, topCO, topCB, topRR, topSB, botTQ, botWHQ, topSalvation, topObsession, topChutzpah, topWH, topSW, topTempest, topJibe, topHON, topGC, topMS, topAssumption, topSL, topSS, topStarW, topStarB, botLWCQ, northernLightsTop]
-//    
+//
 //    static let jordanTrailsAnnotations = [lollapalooza, excalibur, rogueAngel, iCaramba]
-//    
+//
 //    static let auroraTrailAnnotations = [cyclone, northernLights, witchWay, airglow, blackHole, firestar, lightsOut, borealis, vortex, quantumLeap]
-//    
+//
 //    static let northPeakTrailAnnotations = [paradigm, secondMile, grandRapids, dreamMaker, T72, sensation, DMTP, escapeade, threeD, secondThoughts]
-//    
+//
 //    static let barkerTrailAnnotations = [threeMileTrail, lazyRiver, sluice, rightStuff, agony, topGun, ecstasy, jungleRoad, southPaw, rockingChair, touristTrap]
-//    
+//
 //    static let southRidgeTrailAnnotations = [ridgeRun, broadway, lowerLazyRiver, thataway, mixingBowl, lowerChondiLine, whoVille, wonderland, northway, spectator, doubleDipper, sundance, exitRight, exitLeft]
-//    
+//
 //    static let ozTrailAnnotations = [tinWoodsman, kansas]
 //
 //    static let spruceTrailAnnotations = [sirius, upperDowndraft, americanExpress, riskyBusiness, gnarnia, lowerDowndraft]
-//    
+//
 //    static let lockeTrailAnnotations = [goatPath, upperCut, upperSundayPunch, lockeLine, jimsWhim, T2, bimsWhim, cascades, mondayMourning, roadRunner, lowerUpperCut, sundayPunch, tightWire]
-//    
+//
 //    static let whiteCapTrailAnnotations = [salvation, heatsOff, obsession, chutzpah, whiteHeat, shockWave, tempest, jibe, heatsOn, greenCheese, moonStruck, assumption, starlight, starStruck, starwood, starburst, bearPaw, wildFire, cutOff, snowBound, cutBack]
-//    
+//
 //    static var trails = [jordanTrailsAnnotations, auroraTrailAnnotations, northPeakTrailAnnotations, barkerTrailAnnotations, southRidgeTrailAnnotations, ozTrailAnnotations, spruceTrailAnnotations, lockeTrailAnnotations, whiteCapTrailAnnotations, lifts]
-//    
+//
 //    static let lifts = [barker, southridge, QLT, locke, northPeak, chondola, spruce, TQ, WHQ, LWCQ, aurora, jordanDouble, jordan]
-//    
+//
 //    static var annotations = [botSpruce, topSpruce, botQLT, topQLT, botNP, topNP, botChondola, topChondola, auroraSideJD, jordanSideJD, botAurora, topAurora, botJord, topJord,  botLWCQ, topLWCQ, topLol, bend1Lol, bend2Lol, topExcal, bend1Excal, midExcal, botExcal, topRogue, midRogue, botRogue, topCaram, botCaram, topKans, bend1Kans, ozJunctionKans, woodsmanJunctionKans, bend2Kans, bend3Kans, bend4Kans, endKans, topWoodsman, junctionWoodsman, endWoodsman, topCyclone, northernLightsJunctionCyclone, poppyFieldsJunctionCyclone, woodsmanJunctionCyclone, carambaJunctionCyclone, rogueAngelJunctionCyclone, northernLightsTop, witchWayJunctionNL, kansasNLJunction, cycloneJunctionNL, bend1NL, fireStarJunctionNL, witchWayTop, kansJunctionWitchWay, topAirglow, cycloneJunctionAirglow, bend1Airglow, blackHoleJunctionAirglow, bend2Airglow, botAirglow, topBlackHole, botBlackHole, topFirestar, bend1Firestar, bend2Firestar, endFirestar, topBorealis, bend1Borealis, bend2Borealis, vortexJunctionBorealis,bend3Borealis, endBorealis, topVortex, kansasJunctionVortex, botVortex, topParadigm, bend1Paradigm, vortexJunctionParadigm, botParadigm, startSM, GRJunctionSM, DMTerrainJunctionSM, escapadeJunctionSM, ThreeDJunctionSM, T72JunctionSM, DMJunctionSM, endSM, topQuantum, backsideJunctionQL, bend1QL, botQuantum, topGR, SMJunctionGR, bend1GR, downdraftJunctionGR, bend2GR, bend3GR, lazyRiverJunctionGR, endGR, topLD, GRJunctionLD, AEJunctionLD, topDM, bend1DM, bend1GP, TPJunctionDM, Bend2DM, Bend3DM, RRJunctionDM, T72JunctionDM, topT72, lastMileJunctionT72, RRJunctionT72, endT72, topSensation, bend1Sensation, bend2Sensation, bend3Sensation, QLJunctionSensation, topDMTP, botDMTP, topEscapade, bend1Escapade, LMJunctionEscapade, top3D, LMJunction3D, RRJunction3D, bend13D, bot3D, startLO, vortexJunctionLO, UpperDownDraftJunctionLO, endLightsOut, botBarker, topBarker, start3ML, bend13ML, sluiceJunction3ML, gnarniaJunction3ML, RBJunction3ML, AEJunction3ML, bend23ML, bend33ML, end3ML, startLR, bend1LR, ThreeMLJunctionLR, bend2LR, bend3LR, bend4LR, sluiceJunctionLR, gnarniaJunctionLR, RBJunctionLR, bend5LR, AEJunctionLR, GRJunctionLR, endLR, startSluice, bend1Sluice, endSluice, topRS, bend1RS, bend2RS, bend3RS, LSPJunctionRS, topAgony, TGJunctionAgony, endAgony, topTG, bend1TG, LSPJunctionTG, topEcstasy, bend1Ecstasy, bend2Ecstasy, southPawEcstasy, uppercutJunctionEcstasy, startJR, bend1JR, bend2JR, GPJunctionJR, USPJunctionJR, topSP, bend1SP, bend2SP, agonyJunctionSP, LSP2JunctionSP, topLUC, botLUC, topLSP, SPJunctionuLSP, bend1LSP, SPRCJunctionLSP, TGJunctionLSP, RSJunctionLSP, TTJunctionLSP, endLSP, topRC, bend1RC, endRC, topTW, bend1TW, RCJunctionTW, botSouthridge, topSouthridge, startRR, EFJunctionRR, TDJunctionRR, bend1RR, T72JunctionRR, DMJunctionRR, STJunctionRR, LCJunctionRR, bend2RR, bend3RR, bend4RR, bend5RR, bend6RR, endRR, topLE, broadwayJunctionLE, NWJunctionLE, endLE, topBroadway, NWJunctionBroadway, MBJunctionBroadway, WVJunctionBroadway, WLJunctionBroadway, endBroadway, topLLR, bend1LLR, broadwayJunctionLLR, endLLR, startThataway, endThataway, topMB, bend1MB, endMB, topLCL, endLCL, topWV, endWV, topWL, endWL, topNW, LEJunctionNW, EFJunctionNW, endNW, topSpectator, sundanceJunctionSpectator, endSpectator, topDD, DMJunctionDD, endDD, topSD, DDSPRJunctionSD, DMJunctionSD, bend1SD, botSD, topST, bend1ST, endST, topER, endER, topEL, endEL, topSirius, endSirius, topDowndraft, endDowndraft, topAE, TMLJunctionAE, bend1AE, LRJunctionAE, topRB, bend1RB, bend2RB, LRJunctionRB, topGnarnia, TMLJunctionGnarnia, endGnarnia, topTT, OHJunctionTT, endTT, botLocke, topLocke, topGP, UCJunctionGP, JRJunctionGP, EcstasyJunctionGP, bend2GP, agonyJunctionGP, TGJunctionGP, LRJunctionGP, topUC, JRJunctionUC, bend1UC, ecstasyJunctionUC, topUSP, JRJunctionUSP, bend1USP, bend2USP, LLUSP, bend3USP, GrandJunctionUSP, topLL, JWJunctionLL, USPJunctionLL, EcstasyJunctionLL, topT2, LLJunctionT2, JWJunctionT2, endT2, topJW, LLJunctionJW, T2JunctionJW, topBW, bend1BW, bend2BW, bend3BW, bend4BW, bend5BW, salvationJunctionBW, WCJunctionBW, topCC, SBJunctionCC, TempestJunctionCC, endCC, topMM, endMM, topBP, bend1BP, bend2BP, bend3BP, bend4BP, bend5BP, COJunctionBP, endCOJunctionBP, bend6BP, endBP, topWF, bend1WF, COJunctionWF, CBJunctionWF, endWF, topCO, endCO, topCB, topRR, WFJunctionRoadR, bend1RoadR, bend2RoadR, endRoadR, topSB, endSB, botTQ, topTQ, botWHQ, topWHQ, topSalvation, BWJunctionSalvation, bend1Salvation, BWJunctionSalvation, bend1Salvation, BW2JunctionSalvation, HOJunctionSalvation, topHO, endHO, topObsession, bend1Obsession, HOJunctionObsession, SBJunctionObsession, bend2Obsession, HOnJunctionObsession, topChutzpah, midChutzpah, endChutzpah, topWH, chutzpahJunctionWH, assumptionJunctionWH, topSW, bend1SW, bend2SW, assumptionJunctionSW, topTempest, HOJunctionTempest, endTempest, topJibe, bend1Jibe, endJibe, topHON, obsessionJunctionHON, assumptionJunctionHON, SLJunctionHON, topGC, SBJunctionGC, endGC, topMS, bend1MS, bend2MS, bend3MS, GCJunctionMS, bend4MS, SBJunctionMS, SLJunctionMS, endMS, topAssumption, SWJunctionAssumption, WHJunctionAssumption, WHQJunctionAssumption, topSL, bend1SL, bend2SL, bend3SL, HOJunctionSL, MSJunctionSL, topSS, endSS, topStarW, endStarW, topStarB, GCJunctionSB, endStarB]
-//    
+//
 //    static let graph = EdgeWeightedDigraph<ImageAnnotation>()
-//    
+//
 //    static func addVertexes(){
 //        for vertex in annotations{
 //            graph.addVertex(vertex)
 //        }
 //    }
-//    
+//
 //    static func createEdges(graph: EdgeWeightedDigraph<ImageAnnotation>)
 //    {
 //        //Jordan
@@ -1553,9 +1553,9 @@ class ImageAnnotation : NSObject, MKAnnotation{
 //        graph.addEdge(direction: .undirected, from: GCJunctionSB, to: topStarW, weight: 1)
 //        graph.addEdge(direction: .directed, from: topStarW, to: endStarW, weight: 300)
 //        graph.addEdge(direction: .directed, from: endStarW, to: bend3SL, weight: 300)
-//        
+//
 //    }
-//}
+// }
 func createAnnotation(title: String?, latitude: Double, longitude: Double, difficulty: Difficulty) -> ImageAnnotation
 {
     let point = ImageAnnotation()

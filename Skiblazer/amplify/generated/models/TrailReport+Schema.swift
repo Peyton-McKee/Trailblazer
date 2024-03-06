@@ -8,6 +8,8 @@ extension TrailReport {
     case id
     case type
     case trailMadeOn
+    case latitude
+    case longitude
     case active
     case mapId
     case map
@@ -32,6 +34,8 @@ extension TrailReport {
       .field(trailReport.id, is: .required, ofType: .string),
       .field(trailReport.type, is: .required, ofType: .enum(type: TrailReportType.self)),
       .field(trailReport.trailMadeOn, is: .required, ofType: .string),
+      .field(trailReport.latitude, is: .required, ofType: .double),
+      .field(trailReport.longitude, is: .required, ofType: .double),
       .field(trailReport.active, is: .required, ofType: .bool),
       .field(trailReport.mapId, is: .required, ofType: .string),
       .belongsTo(trailReport.map, is: .required, ofType: Map.self, targetNames: ["mapTrailReportsId"]),

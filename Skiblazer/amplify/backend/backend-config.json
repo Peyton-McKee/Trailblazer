@@ -1,4 +1,10 @@
 {
+  "analytics": {
+    "skiblazer": {
+      "providerPlugin": "awscloudformation",
+      "service": "Pinpoint"
+    }
+  },
   "api": {
     "skiblazer": {
       "dependsOn": [],
@@ -104,7 +110,22 @@
   },
   "storage": {
     "skiblazerstorage": {
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "skiblazer8f0dae09"
+        },
+        {
+          "attributes": [
+            "skiblazerpoolGroupRole"
+          ],
+          "category": "auth",
+          "resourceName": "userPoolGroups"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "S3"
     }
