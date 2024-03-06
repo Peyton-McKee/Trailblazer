@@ -19,10 +19,14 @@ class MapViewModel: NSObject, LoadableObject {
     
     @ObservedObject var context = AppContext.shared
     
+    @ObservedObject var webAnalysis = WebAnalysis.shared
+    
     @Published var routeInProgress = false
     
     @Published var currentPath: [Vertex<Point>] = []
     
+    private var isRealTime = false
+        
     private var isLoadingRoute = false
     
     var map: Map
@@ -39,12 +43,13 @@ class MapViewModel: NSObject, LoadableObject {
             do {
                 let map = try await APIHandler.getMapInfo(self.map)
                 try await self.mapInterpreter.createMap(map: map)
+                self.webAnalysis.makeRequest(graph: self.mapInterpreter.difficultyGraph)
                 
                 let points = self.mapInterpreter.difficultyGraph.vertices.map { $0.value }
 
                 let trails = self.transformPointsToTrails(points)
                 DispatchQueue.main.async {
-                    AppContext.shared.selectedGraph = self.mapInterpreter.difficultyGraph
+                    self.context.selectedGraph = self.mapInterpreter.difficultyGraph
                     self.trailsToDisplay = trails
                     self.load(.init())
                 }
@@ -54,21 +59,42 @@ class MapViewModel: NSObject, LoadableObject {
         }
     }
     
-    func onMapTap(_ coordinate: CLLocationCoordinate2D) {
+    func onRealTimeSelected() {
+        if self.isRealTime {
+            self.isRealTime = false
+            self.context.selectedGraph = self.mapInterpreter.difficultyGraph
+            self.trailsToDisplay = self.transformPointsToTrails(self.mapInterpreter.difficultyGraph.vertices.map { $0.value })
+        }
         self.transitionState(.loading)
-        self.routeInProgress = true
-        do {
-            let closestPoint = try self.getClosestPoint(origin: coordinate, graph: self.mapInterpreter.difficultyGraph)
-            self.findAndDisplayRoute(destination: closestPoint.value)
-        } catch {
-            self.cancelRoute(error)
+        DispatchQueue.global().async {
+            while !self.webAnalysis.isReady && self.webAnalysis.error == nil {}
+            
+            if let error = self.webAnalysis.error {
+                self.fail(error, .init())
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.isRealTime = true
+                self.trailsToDisplay = self.transformPointsToTrails(self.webAnalysis.realTimeGraph.vertices.map { $0.value })
+                self.context.selectedGraph = self.webAnalysis.realTimeGraph
+                self.load(.init())
+            }
         }
     }
-
-    func onPolylineClicked(_ trail: Trail) {
-        self.transitionState(.loading)
-        self.routeInProgress = true
-        self.findAndDisplayRoute(destination: trail.firstPoint)
+    
+    func onMapTap(_ coordinate: CLLocationCoordinate2D) {
+        DispatchQueue.main.async {
+            self.transitionState(.loading)
+            self.cancelRoute()
+            self.routeInProgress = true
+            do {
+                let closestPoint = try self.getClosestPoint(origin: coordinate, graph: self.context.selectedGraph)
+                self.findAndDisplayRoute(destination: closestPoint.value)
+            } catch {
+                self.cancelRoute(error)
+            }
+        }
     }
     
     func findAndDisplayRoute(_ origin: Point? = nil, destination: Point) {
@@ -92,16 +118,14 @@ class MapViewModel: NSObject, LoadableObject {
     }
     
     func cancelRoute(_ error: Error? = nil) {
-        DispatchQueue.main.async {
-            self.routeInProgress = false
-            self.trailsToDisplay = self.transformPointsToTrails(self.mapInterpreter.difficultyGraph.vertices.map { $0.value })
-            self.currentPath = []
-            self.isLoadingRoute = false
-            self.mapInterpreter.difficultyGraph.removeVertices({$0.value.title == "Your Location"})
+        self.routeInProgress = false
+        self.trailsToDisplay = self.transformPointsToTrails(self.mapInterpreter.difficultyGraph.vertices.map { $0.value })
+        self.currentPath = []
+        self.isLoadingRoute = false
+        self.mapInterpreter.difficultyGraph.removeVertices { $0.value.title == "Your Location" }
             
-            if let error = error {
-                self.fail(error, .init())
-            }
+        if let error = error {
+            self.fail(error, .init())
         }
     }
     
@@ -187,7 +211,6 @@ class MapViewModel: NSObject, LoadableObject {
                 newGraph.addVertex(vertex)
             }
             
-            
             print("path graph with \(newGraph.verticesCount()) vertices and \(newGraph.edgesCount()) edges")
             return try self.createRouteHelper(graph: newGraph, originVertex: closestVertex, destination: destination)
             
@@ -226,7 +249,7 @@ class MapViewModel: NSObject, LoadableObject {
         guard let latitude = LocationManager.shared.location?.coordinate.latitude, let longitude = LocationManager.shared.location?.coordinate.longitude, LocationManager.shared.authorizationStatus == .authorizedWhenInUse else {
             throw UserErrors.userDoesNotHaveLocationServicesEnabledError
         }
-        let origin = Point(coordinate: .init(latitude: latitude, longitude: longitude), title: "Your Location", difficulty: .easy)
+        let origin = Point(coordinate: .init(latitude: latitude, longitude: longitude), title: "Your Location", difficulty: .easy, status: .closed)
         return Vertex<Point>(origin)
     }
     
@@ -250,7 +273,6 @@ class MapViewModel: NSObject, LoadableObject {
 
 extension MapViewModel: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         if self.routeInProgress && !self.isLoadingRoute
 //            && self.currentPath.first?.value.title == "Your Location"
         {

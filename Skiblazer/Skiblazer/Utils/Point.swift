@@ -16,4 +16,5 @@ struct Point: Equatable {
     var title: String
     var difficulty: Difficulty
     var trailReport: TrailReport?
+    var status: TrailStatus = .closed
 }

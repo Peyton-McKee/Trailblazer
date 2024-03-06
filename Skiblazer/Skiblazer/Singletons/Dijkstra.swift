@@ -77,8 +77,8 @@ class DirectedEdge<Element: Equatable> {
 
 extension DirectedEdge: Equatable {
     static func == (lhs: DirectedEdge, rhs: DirectedEdge) -> Bool {
-        return lhs.source == rhs.source &&
-            lhs.destination == rhs.destination &&
+        return lhs.source.value == rhs.source.value &&
+            lhs.destination.value == rhs.destination.value &&
             lhs.weight == rhs.weight
     }
 }

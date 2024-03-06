@@ -17,6 +17,7 @@ struct MapSelectorView: View {
                 ForEach(props.maps, id: \.id) { map in
                     ZStack {
                         FullWidthImageView(map.storageKeyPrefix + "image", map.name) {
+                            AppContext.shared.selectedMap = map
                             self.path.append(.mapView(map: map))
                         }
                     }

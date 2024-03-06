@@ -21,6 +21,10 @@ class AdminViewModel: LoadableObject {
     @Published var liftsJsonUrl: URL?
 
     @Published var mapName: String = ""
+    @Published var mountainReportUrl: String = ""
+    @Published var trailStatusElementId: String = ""
+    @Published var liftStatusElementId: String = ""
+
     @Published var photoData: Data?
     @Published var toast: Toast?
 
@@ -55,7 +59,7 @@ class AdminViewModel: LoadableObject {
         let urls = [(StorageExtension.easy, easyTrailsJsonUrl), (StorageExtension.intermediate, intermediateTrailsJsonUrl), (StorageExtension.advanced, advancedTrailsJsonUrl), (StorageExtension.expertsOnly, expertTrailsJsonUrl), (StorageExtension.terrainPark, terrainParksJsonUrl), (StorageExtension.connector, connectorsJsonUrl), (StorageExtension.lift, liftsJsonUrl)]
         Task {
             do {
-                try await APIHandler.uploadMap(self.mapName, photoData, urls)
+                try await APIHandler.uploadMap(self.mapName, photoData, urls, mountainReportUrl: self.mountainReportUrl, trailStatusElementId: self.trailStatusElementId, liftStatusElementId: self.liftStatusElementId)
                 DispatchQueue.main.async {
                     self.toast = Toast(style: .success, message: "Successfully Uploaded Map")
 

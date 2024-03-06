@@ -14,6 +14,7 @@ enum InternalError : Error {
     case failedToAccessFileURL
     case podIdDoesNotRelateToVendor
     case couldNotConstructValidURL
+    case mapDoesNotSupportRealTimeStatus
 }
 
 extension InternalError: LocalizedError {
@@ -31,6 +32,8 @@ extension InternalError: LocalizedError {
             return "No vendor found for this pod."
         case .couldNotConstructValidURL:
             return "Could not construct a valid URL for Network Request"
+        case .mapDoesNotSupportRealTimeStatus:
+            return "This map does not support real time status"
         }
     }
 }

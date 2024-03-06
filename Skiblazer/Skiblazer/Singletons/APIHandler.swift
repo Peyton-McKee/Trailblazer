@@ -76,7 +76,7 @@ class APIHandler {
         return image
     }
 
-    static func uploadMap(_ name: String, _ image: Data, _ urls: [(StorageExtension, URL)]) async throws {
+    static func uploadMap(_ name: String, _ image: Data, _ urls: [(StorageExtension, URL)], mountainReportUrl: String, trailStatusElementId: String, liftStatusElementId: String) async throws {
         try await Self.uploadImageData(name + "-image", image)
         try await withThrowingTaskGroup(of: Void.self) { group in
             for (key, url) in urls {
@@ -88,7 +88,11 @@ class APIHandler {
             try await group.reduce(into: ()) { _, _ in }
         }
 
-        let map = Map(name: name, storageKeyPrefix: name + "-")
+        let mountainUrl = mountainReportUrl.isEmpty ? nil : mountainReportUrl
+        let trailStatus = trailStatusElementId.isEmpty ? nil : trailStatusElementId
+        let liftStatus = liftStatusElementId.isEmpty ? nil : liftStatusElementId
+
+        let map = Map(name: name, storageKeyPrefix: name + "-", mountainReportUrl: mountainUrl, trailStatusElementId: trailStatus, liftStatusElementId: liftStatus)
         let task = try await Amplify.API.mutate(request: .create(map))
         _ = try task.get()
     }

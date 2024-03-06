@@ -24,7 +24,7 @@ struct SkiblazerMap: View {
                         .lineColor(.init(trail.color))
                         .lineWidth(self.lineWidth)
                 }
-                
+
                 Puck2D()
                     .showsAccuracyRing(true)
             }
@@ -43,6 +43,30 @@ struct SkiblazerMap: View {
                 }
             }
             .ignoresSafeArea()
+            .overlay(alignment: .topTrailing) {
+                VStack {
+                    Button {
+                        self.viewModel.cancelRoute()
+                    } label: {
+                        Image(systemName: SystemImageName.close.rawValue)
+                    }
+                    .foregroundStyle(.primary)
+                    .padding(8)
+                    .background(Color.red)
+                    .clipShape(.buttonBorder)
+                    
+                    Button {
+                        self.viewModel.onRealTimeSelected()
+                    } label: {
+                        Image(systemName: SystemImageName.time.rawValue)
+                    }
+                    .foregroundStyle(.primary)
+                    .padding(8)
+                    .background(Color.blue)
+                    .clipShape(.buttonBorder)
+                }
+                .padding()
+            }
         }
     }
 }

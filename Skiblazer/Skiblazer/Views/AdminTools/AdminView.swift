@@ -56,7 +56,17 @@ struct AdminView: View {
                     CustomPhotoPicker(photoPickerItem: self.photoPickerItem, isPhotoSelected: self.isPhotoSelected) { result in
                         self.viewModel.selectPhoto(result)
                     }
+                }
                 
+                Section("Map Web Info") {
+                    TextField("Enter Mountain Status URL", text: self.$viewModel.mountainReportUrl)
+                    
+                    TextField("Enter Mountain Trail Status Element Id", text: self.$viewModel.trailStatusElementId)
+                    
+                    TextField("Enter Mountain Lift Status Element Id", text: self.$viewModel.liftStatusElementId)
+                }
+                
+                Section {
                     FormSubmitButton(submissionText: .save) {
                         DispatchQueue.main.async {
                             self.viewModel.saveMap()

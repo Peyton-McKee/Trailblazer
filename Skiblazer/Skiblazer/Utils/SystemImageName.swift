@@ -40,4 +40,5 @@ enum SystemImageName: String {
     case toys = "theatermask.and.paintbrush"
     case current = "plus"
     case cart = "cart.circle"
+    case time = "timer.circle"
 }
