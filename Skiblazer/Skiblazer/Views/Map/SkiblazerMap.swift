@@ -23,13 +23,13 @@ struct SkiblazerMap: View {
                     PolylineAnnotation(lineCoordinates: trail.coordinates)
                         .lineColor(.init(trail.color))
                         .lineWidth(self.lineWidth)
-                        .onTapGesture {
-                            self.viewModel.onPolylineClicked(trail)
-                        }
                 }
                 
                 Puck2D()
                     .showsAccuracyRing(true)
+            }
+            .onMapTapGesture { info in
+                self.viewModel.onMapTap(info.coordinate)
             }
             .mapStyle(.satellite)
             .cameraBounds(self.bounds)

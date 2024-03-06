@@ -53,6 +53,17 @@ class MapViewModel: NSObject, LoadableObject {
             }
         }
     }
+    
+    func onMapTap(_ coordinate: CLLocationCoordinate2D) {
+        self.transitionState(.loading)
+        self.routeInProgress = true
+        do {
+            let closestPoint = try self.getClosestPoint(origin: coordinate, graph: self.mapInterpreter.difficultyGraph)
+            self.findAndDisplayRoute(destination: closestPoint.value)
+        } catch {
+            self.cancelRoute(error)
+        }
+    }
 
     func onPolylineClicked(_ trail: Trail) {
         self.transitionState(.loading)
@@ -75,7 +86,20 @@ class MapViewModel: NSObject, LoadableObject {
                     self.load(.init())
                 }
             } catch {
-                self.routeInProgress = false
+                self.cancelRoute(error)
+            }
+        }
+    }
+    
+    func cancelRoute(_ error: Error? = nil) {
+        DispatchQueue.main.async {
+            self.routeInProgress = false
+            self.trailsToDisplay = self.transformPointsToTrails(self.mapInterpreter.difficultyGraph.vertices.map { $0.value })
+            self.currentPath = []
+            self.isLoadingRoute = false
+            self.mapInterpreter.difficultyGraph.removeVertices({$0.value.title == "Your Location"})
+            
+            if let error = error {
                 self.fail(error, .init())
             }
         }
@@ -99,11 +123,7 @@ class MapViewModel: NSObject, LoadableObject {
     /// Creates a route for the easiest path from the users location to the selected destination
     func createRoute(origin: Point? = nil, destination: Point, graph: EdgeWeightedDigraph<Point>) throws -> [Vertex<Point>] {
         guard let origin = origin else {
-            do {
-                return try self.manageRouteInProgress(originVertex: self.assignOrigin(), destination: destination, graph: graph)
-            } catch {
-                throw error
-            }
+            return try self.manageRouteInProgress(originVertex: self.assignOrigin(), destination: destination, graph: graph)
         }
         var originVertex = Vertex<Point>(origin)
         var found = false
@@ -115,11 +135,7 @@ class MapViewModel: NSObject, LoadableObject {
             }
         }
         if found {
-            do {
-                return try self.manageRouteInProgress(originVertex: originVertex, destination: destination, graph: graph)
-            } catch {
-                throw error
-            }
+            return try self.manageRouteInProgress(originVertex: originVertex, destination: destination, graph: graph)
         }
         // something went wrong and couldnt find vertex that matches the selected origin (this should never happen)
         throw RoutingErrors.originNotFoundError
@@ -128,7 +144,7 @@ class MapViewModel: NSObject, LoadableObject {
     private func manageRouteInProgress(originVertex: Vertex<Point>, destination: Point, graph: EdgeWeightedDigraph<Point>) throws -> [Vertex<Point>]
     {
         do {
-            let closestVertex = try self.getClosestAnnotation(origin: originVertex.value, graph: graph)
+            let closestVertex = try self.getClosestPoint(origin: originVertex.value.coordinate, graph: graph)
             
             guard !self.userDidCompleteRoute(closestVertex: closestVertex, destination: destination) else {
                 // Then youve completed your journey
@@ -146,13 +162,13 @@ class MapViewModel: NSObject, LoadableObject {
                 return []
             }
             
-            guard self.routeInProgress && self.currentPath.contains(closestVertex) else {
+            var pathGraph = self.currentPath
+            
+            guard self.routeInProgress && pathGraph.contains(closestVertex) else {
                 graph.addVertex(originVertex)
                 graph.addEdge(direction: .undirected, from: originVertex, to: closestVertex, weight: 1)
                 return try self.createRouteHelper(graph: graph, originVertex: originVertex, destination: destination)
             }
-            
-            var pathGraph = self.currentPath
             
             pathGraph.removeAll(where: { $0.value.title == "Your Location" })
             
@@ -171,10 +187,9 @@ class MapViewModel: NSObject, LoadableObject {
                 newGraph.addVertex(vertex)
             }
             
-            newGraph.addEdge(direction: .undirected, from: originVertex, to: closestVertex, weight: 1)
             
             print("path graph with \(newGraph.verticesCount()) vertices and \(newGraph.edgesCount()) edges")
-            return try self.createRouteHelper(graph: newGraph, originVertex: originVertex, destination: destination)
+            return try self.createRouteHelper(graph: newGraph, originVertex: closestVertex, destination: destination)
             
         } catch {
             throw error
@@ -219,26 +234,26 @@ class MapViewModel: NSObject, LoadableObject {
     /// paramaters:
     ///     - origin: The annotation you want to find the nearest annotation for
     /// Finds the annotation the least distacne from the passed in origin
-    func getClosestAnnotation(origin: Point, graph: EdgeWeightedDigraph<Point>) throws -> Vertex<Point> {
+    func getClosestPoint(origin: CLLocationCoordinate2D, graph: EdgeWeightedDigraph<Point>) throws -> Vertex<Point> {
         graph.removeVertices { $0.value.title == "Your Location" }
-        guard var closestAnnotation = graph.vertices.first else {
+        guard var closestVertex = graph.vertices.first else {
             throw GraphErrors.selectedGraphHasNoVerticesError
         }
-        for annotation in graph.vertices {
-            if sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < sqrt(pow(closestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(closestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) {
-                closestAnnotation = annotation
+        for vertex in graph.vertices {
+            if sqrt(pow(vertex.value.coordinate.latitude - origin.latitude, 2) + pow(vertex.value.coordinate.longitude - origin.longitude, 2)) < sqrt(pow(closestVertex.value.coordinate.latitude - origin.latitude, 2) + pow(closestVertex.value.coordinate.longitude - origin.longitude, 2)) {
+                closestVertex = vertex
             }
         }
-        return closestAnnotation
+        return closestVertex
     }
 }
 
 extension MapViewModel: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Updated", self.routeInProgress, self.isLoadingRoute, self.currentPath.first)
-        if self.routeInProgress && !self.isLoadingRoute && self.currentPath.first?.value.title == "Your Location"
+        
+        if self.routeInProgress && !self.isLoadingRoute
+//            && self.currentPath.first?.value.title == "Your Location"
         {
-            
             // the last element of path created is our destination
             if let destination = self.currentPath.last?.value {
                 self.findAndDisplayRoute(destination: destination)
