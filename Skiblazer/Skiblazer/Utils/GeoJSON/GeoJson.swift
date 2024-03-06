@@ -28,7 +28,7 @@ struct GeoJSON: Decodable {
 
             let geometry = try propertiesContainer.decode(Geometry.self, forKey: .geometry)
             let properties = try propertiesContainer.decode([String: String].self, forKey: .properties)
-            let name = properties["name"] ?? ""
+            let name = properties["Name"] ?? ""
 
             self.features.append(Feature(geometry: geometry, name: name))
         }

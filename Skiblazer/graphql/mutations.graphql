@@ -8,12 +8,17 @@ mutation CreateTrailReport(
     id
     type
     trailMadeOn
+    latitude
+    longitude
     active
     mapId
     map {
       id
       name
       storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
       createdAt
       updatedAt
       __typename
@@ -33,12 +38,17 @@ mutation UpdateTrailReport(
     id
     type
     trailMadeOn
+    latitude
+    longitude
     active
     mapId
     map {
       id
       name
       storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
       createdAt
       updatedAt
       __typename
@@ -58,12 +68,17 @@ mutation DeleteTrailReport(
     id
     type
     trailMadeOn
+    latitude
+    longitude
     active
     mapId
     map {
       id
       name
       storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
       createdAt
       updatedAt
       __typename
@@ -83,6 +98,9 @@ mutation CreateMap(
     id
     name
     storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
     trailReports {
       nextToken
       __typename
@@ -101,6 +119,9 @@ mutation UpdateMap(
     id
     name
     storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
     trailReports {
       nextToken
       __typename
@@ -119,6 +140,9 @@ mutation DeleteMap(
     id
     name
     storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
     trailReports {
       nextToken
       __typename

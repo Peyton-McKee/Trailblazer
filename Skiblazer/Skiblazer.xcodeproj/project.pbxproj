@@ -77,6 +77,11 @@
 		159824402B9809F4002BFD98 /* MapInterpreter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598243F2B9809F4002BFD98 /* MapInterpreter.swift */; };
 		159824422B980C72002BFD98 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824412B980C72002BFD98 /* Theme.swift */; };
 		159824442B980EE5002BFD98 /* Trail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824432B980EE5002BFD98 /* Trail.swift */; };
+		159824492B981C6B002BFD98 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824482B981C6B002BFD98 /* LocationManager.swift */; };
+		1598244B2B981EB0002BFD98 /* GraphErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598244A2B981EB0002BFD98 /* GraphErrors.swift */; };
+		1598244D2B981EB5002BFD98 /* RoutingErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598244C2B981EB5002BFD98 /* RoutingErrors.swift */; };
+		1598244F2B981F8F002BFD98 /* UserErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598244E2B981F8F002BFD98 /* UserErrors.swift */; };
+		159824532B98E7BD002BFD98 /* Game Test.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 159824522B98E7BD002BFD98 /* Game Test.gpx */; };
 		2881635E44E8561812D94DE9 /* TrailReport+Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFD63BF4592CA3465936FC30 /* TrailReport+Schema.swift */; };
 		8F49EC2B526461F31CC0A9DE /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B4549539C7193B603BA42C /* Map.swift */; };
 		90C6B042F6BD7D0B1306D10A /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = 96E374E414D32E280482420E /* awsconfiguration.json */; };
@@ -146,6 +151,11 @@
 		1598243F2B9809F4002BFD98 /* MapInterpreter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInterpreter.swift; sourceTree = "<group>"; };
 		159824412B980C72002BFD98 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		159824432B980EE5002BFD98 /* Trail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trail.swift; sourceTree = "<group>"; };
+		159824482B981C6B002BFD98 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		1598244A2B981EB0002BFD98 /* GraphErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphErrors.swift; path = ../../../TrailblazerIOS/Errors/GraphErrors.swift; sourceTree = "<group>"; };
+		1598244C2B981EB5002BFD98 /* RoutingErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoutingErrors.swift; path = ../../../TrailblazerIOS/Errors/RoutingErrors.swift; sourceTree = "<group>"; };
+		1598244E2B981F8F002BFD98 /* UserErrors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserErrors.swift; path = ../../../TrailblazerIOS/Errors/UserErrors.swift; sourceTree = "<group>"; };
+		159824522B98E7BD002BFD98 /* Game Test.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Game Test.gpx"; path = "../../../Shared/Game Test.gpx"; sourceTree = "<group>"; };
 		33EE8549E8CE60FBB65D71BF /* TrailReport.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = TrailReport.swift; path = amplify/generated/models/TrailReport.swift; sourceTree = "<group>"; };
 		7222D95EE783F89EFFB7A782 /* TrailReportType.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; name = TrailReportType.swift; path = amplify/generated/models/TrailReportType.swift; sourceTree = "<group>"; };
 		838621CF94C9474C412D64EF /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
@@ -215,6 +225,7 @@
 		150146FE2B964515006EBED6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				159824522B98E7BD002BFD98 /* Game Test.gpx */,
 				1598242D2B96C0D7002BFD98 /* SubmissionText.swift */,
 				159824252B96A857002BFD98 /* FontName.swift */,
 				150147192B967BB4006EBED6 /* SystemImageName.swift */,
@@ -341,6 +352,7 @@
 				150146F92B9643FA006EBED6 /* Dijkstra.swift */,
 				1598243F2B9809F4002BFD98 /* MapInterpreter.swift */,
 				159824412B980C72002BFD98 /* Theme.swift */,
+				159824482B981C6B002BFD98 /* LocationManager.swift */,
 				156726DC2B9638E000D2771A /* AppContext.swift */,
 				1598240E2B968D57002BFD98 /* ValidationUtils.swift */,
 			);
@@ -370,7 +382,10 @@
 			children = (
 				159824272B96A8BD002BFD98 /* DownloadError.swift */,
 				159824332B97B72E002BFD98 /* UploadError.swift */,
+				1598244E2B981F8F002BFD98 /* UserErrors.swift */,
+				1598244A2B981EB0002BFD98 /* GraphErrors.swift */,
 				159824212B96A6D7002BFD98 /* InternalError.swift */,
+				1598244C2B981EB5002BFD98 /* RoutingErrors.swift */,
 				159824312B97B010002BFD98 /* FormError.swift */,
 			);
 			path = Errors;
@@ -477,6 +492,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				159824532B98E7BD002BFD98 /* Game Test.gpx in Resources */,
 				150146F42B964348006EBED6 /* SRMoon.png in Resources */,
 				156726B72B9637C100D2771A /* Preview Assets.xcassets in Resources */,
 				150146F82B964348006EBED6 /* IcySquare.png in Resources */,
@@ -537,17 +553,21 @@
 				159824282B96A8BE002BFD98 /* DownloadError.swift in Sources */,
 				1501470A2B967B74006EBED6 /* LoadingState.swift in Sources */,
 				159824262B96A857002BFD98 /* FontName.swift in Sources */,
+				1598244D2B981EB5002BFD98 /* RoutingErrors.swift in Sources */,
+				1598244B2B981EB0002BFD98 /* GraphErrors.swift in Sources */,
 				1598243A2B9807BF002BFD98 /* Difficulty.swift in Sources */,
 				1598242A2B96AA8F002BFD98 /* FormSubmitButton.swift in Sources */,
 				150147232B967D38006EBED6 /* MapInfo.swift in Sources */,
 				1598240F2B968D57002BFD98 /* ValidationUtils.swift in Sources */,
 				159824382B98064A002BFD98 /* Point.swift in Sources */,
 				159824342B97B72E002BFD98 /* UploadError.swift in Sources */,
+				1598244F2B981F8F002BFD98 /* UserErrors.swift in Sources */,
 				C2A47CCEC14B852236F90D3C /* TrailReport.swift in Sources */,
 				150147162B967BA1006EBED6 /* Toast.swift in Sources */,
 				159824122B96A4CF002BFD98 /* AdminView.swift in Sources */,
 				B665FC34F0DA5A0543C0B087 /* TrailReportType.swift in Sources */,
 				1501472C2B967D8F006EBED6 /* GeoJson.swift in Sources */,
+				159824492B981C6B002BFD98 /* LocationManager.swift in Sources */,
 				150146FD2B9644C6006EBED6 /* SkiblazerButton.swift in Sources */,
 				150147302B9684B5006EBED6 /* MapExtension.swift in Sources */,
 				150147212B967CAB006EBED6 /* MapViewModel.swift in Sources */,

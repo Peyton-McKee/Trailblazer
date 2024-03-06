@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class AppContext {
+class AppContext: ObservableObject {
     static var shared = AppContext()
-    
+    @Published var selectedGraph: EdgeWeightedDigraph<Point> = .init()
 }

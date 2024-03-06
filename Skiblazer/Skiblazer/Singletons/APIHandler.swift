@@ -52,7 +52,7 @@ class APIHandler {
             throw APIError.invalidConfiguration("Map does not contain necessary files to complete download", "Make sure your map has an image and easy, intermediate, advanced, experts only, connector trails as well as lifts and terrain parks", nil)
         }
 
-        return .init(id: map.id, easyTrails: easyTrails, intermediateTrails: intermediateTrails, advancedTrails: advancedTrails, expertsOnlyTrails: expertsOnlyTrails, lifts: lifts, connectors: connectors, terrainParks: terrainParks, name: map.name, image: image)
+        return .init(easyTrails: easyTrails, intermediateTrails: intermediateTrails, advancedTrails: advancedTrails, expertsOnlyTrails: expertsOnlyTrails, lifts: lifts, connectors: connectors, terrainParks: terrainParks, map: map)
     }
 
     static func uploadDocument(_ documentUrl: URL, _ key: String) async throws {

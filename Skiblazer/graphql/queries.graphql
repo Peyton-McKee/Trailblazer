@@ -5,12 +5,17 @@ query GetTrailReport($id: ID!) {
     id
     type
     trailMadeOn
+    latitude
+    longitude
     active
     mapId
     map {
       id
       name
       storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
       createdAt
       updatedAt
       __typename
@@ -32,6 +37,8 @@ query ListTrailReports(
       id
       type
       trailMadeOn
+      latitude
+      longitude
       active
       mapId
       createdAt
@@ -49,6 +56,9 @@ query GetMap($id: ID!) {
     id
     name
     storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
     trailReports {
       nextToken
       __typename
@@ -65,6 +75,9 @@ query ListMaps($filter: ModelMapFilterInput, $limit: Int, $nextToken: String) {
       id
       name
       storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
       createdAt
       updatedAt
       __typename

@@ -7,12 +7,17 @@ subscription OnCreateTrailReport(
     id
     type
     trailMadeOn
+    latitude
+    longitude
     active
     mapId
     map {
       id
       name
       storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
       createdAt
       updatedAt
       __typename
@@ -31,12 +36,17 @@ subscription OnUpdateTrailReport(
     id
     type
     trailMadeOn
+    latitude
+    longitude
     active
     mapId
     map {
       id
       name
       storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
       createdAt
       updatedAt
       __typename
@@ -55,12 +65,17 @@ subscription OnDeleteTrailReport(
     id
     type
     trailMadeOn
+    latitude
+    longitude
     active
     mapId
     map {
       id
       name
       storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
       createdAt
       updatedAt
       __typename
@@ -77,6 +92,9 @@ subscription OnCreateMap($filter: ModelSubscriptionMapFilterInput) {
     id
     name
     storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
     trailReports {
       nextToken
       __typename
@@ -92,6 +110,9 @@ subscription OnUpdateMap($filter: ModelSubscriptionMapFilterInput) {
     id
     name
     storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
     trailReports {
       nextToken
       __typename
@@ -107,6 +128,9 @@ subscription OnDeleteMap($filter: ModelSubscriptionMapFilterInput) {
     id
     name
     storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
     trailReports {
       nextToken
       __typename

@@ -425,8 +425,8 @@ import AWSAppSync
 public struct CreateTrailReportInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID? = nil, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, mapTrailReportsId: GraphQLID) {
-    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "mapTrailReportsId": mapTrailReportsId]
+  public init(id: GraphQLID? = nil, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, mapTrailReportsId: GraphQLID) {
+    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "mapTrailReportsId": mapTrailReportsId]
   }
 
   public var id: GraphQLID? {
@@ -453,6 +453,24 @@ public struct CreateTrailReportInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "trailMadeOn")
+    }
+  }
+
+  public var latitude: Double {
+    get {
+      return graphQLMap["latitude"] as! Double
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "latitude")
+    }
+  }
+
+  public var longitude: Double {
+    get {
+      return graphQLMap["longitude"] as! Double
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "longitude")
     }
   }
 
@@ -528,8 +546,8 @@ public enum TrailReportType: RawRepresentable, Equatable, JSONDecodable, JSONEnc
 public struct ModelTrailReportConditionInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(type: ModelTrailReportTypeInput? = nil, trailMadeOn: ModelStringInput? = nil, active: ModelBooleanInput? = nil, mapId: ModelIDInput? = nil, and: [ModelTrailReportConditionInput?]? = nil, or: [ModelTrailReportConditionInput?]? = nil, not: ModelTrailReportConditionInput? = nil, mapTrailReportsId: ModelIDInput? = nil) {
-    graphQLMap = ["type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "and": and, "or": or, "not": not, "mapTrailReportsId": mapTrailReportsId]
+  public init(type: ModelTrailReportTypeInput? = nil, trailMadeOn: ModelStringInput? = nil, latitude: ModelFloatInput? = nil, longitude: ModelFloatInput? = nil, active: ModelBooleanInput? = nil, mapId: ModelIDInput? = nil, and: [ModelTrailReportConditionInput?]? = nil, or: [ModelTrailReportConditionInput?]? = nil, not: ModelTrailReportConditionInput? = nil, mapTrailReportsId: ModelIDInput? = nil) {
+    graphQLMap = ["type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "and": and, "or": or, "not": not, "mapTrailReportsId": mapTrailReportsId]
   }
 
   public var type: ModelTrailReportTypeInput? {
@@ -547,6 +565,24 @@ public struct ModelTrailReportConditionInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "trailMadeOn")
+    }
+  }
+
+  public var latitude: ModelFloatInput? {
+    get {
+      return graphQLMap["latitude"] as! ModelFloatInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "latitude")
+    }
+  }
+
+  public var longitude: ModelFloatInput? {
+    get {
+      return graphQLMap["longitude"] as! ModelFloatInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "longitude")
     }
   }
 
@@ -892,6 +928,95 @@ public struct ModelSizeInput: GraphQLMapConvertible {
   }
 }
 
+public struct ModelFloatInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  public init(ne: Double? = nil, eq: Double? = nil, le: Double? = nil, lt: Double? = nil, ge: Double? = nil, gt: Double? = nil, between: [Double?]? = nil, attributeExists: Bool? = nil, attributeType: ModelAttributeTypes? = nil) {
+    graphQLMap = ["ne": ne, "eq": eq, "le": le, "lt": lt, "ge": ge, "gt": gt, "between": between, "attributeExists": attributeExists, "attributeType": attributeType]
+  }
+
+  public var ne: Double? {
+    get {
+      return graphQLMap["ne"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "ne")
+    }
+  }
+
+  public var eq: Double? {
+    get {
+      return graphQLMap["eq"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "eq")
+    }
+  }
+
+  public var le: Double? {
+    get {
+      return graphQLMap["le"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "le")
+    }
+  }
+
+  public var lt: Double? {
+    get {
+      return graphQLMap["lt"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "lt")
+    }
+  }
+
+  public var ge: Double? {
+    get {
+      return graphQLMap["ge"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "ge")
+    }
+  }
+
+  public var gt: Double? {
+    get {
+      return graphQLMap["gt"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "gt")
+    }
+  }
+
+  public var between: [Double?]? {
+    get {
+      return graphQLMap["between"] as! [Double?]?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "between")
+    }
+  }
+
+  public var attributeExists: Bool? {
+    get {
+      return graphQLMap["attributeExists"] as! Bool?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "attributeExists")
+    }
+  }
+
+  public var attributeType: ModelAttributeTypes? {
+    get {
+      return graphQLMap["attributeType"] as! ModelAttributeTypes?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "attributeType")
+    }
+  }
+}
+
 public struct ModelBooleanInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
@@ -1064,8 +1189,8 @@ public struct ModelIDInput: GraphQLMapConvertible {
 public struct UpdateTrailReportInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, type: TrailReportType? = nil, trailMadeOn: String? = nil, active: Bool? = nil, mapId: GraphQLID? = nil, mapTrailReportsId: GraphQLID? = nil) {
-    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "mapTrailReportsId": mapTrailReportsId]
+  public init(id: GraphQLID, type: TrailReportType? = nil, trailMadeOn: String? = nil, latitude: Double? = nil, longitude: Double? = nil, active: Bool? = nil, mapId: GraphQLID? = nil, mapTrailReportsId: GraphQLID? = nil) {
+    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "mapTrailReportsId": mapTrailReportsId]
   }
 
   public var id: GraphQLID {
@@ -1092,6 +1217,24 @@ public struct UpdateTrailReportInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "trailMadeOn")
+    }
+  }
+
+  public var latitude: Double? {
+    get {
+      return graphQLMap["latitude"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "latitude")
+    }
+  }
+
+  public var longitude: Double? {
+    get {
+      return graphQLMap["longitude"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "longitude")
     }
   }
 
@@ -1143,8 +1286,8 @@ public struct DeleteTrailReportInput: GraphQLMapConvertible {
 public struct CreateMapInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID? = nil, name: String, storageKeyPrefix: String) {
-    graphQLMap = ["id": id, "name": name, "storageKeyPrefix": storageKeyPrefix]
+  public init(id: GraphQLID? = nil, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil) {
+    graphQLMap = ["id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId]
   }
 
   public var id: GraphQLID? {
@@ -1173,13 +1316,40 @@ public struct CreateMapInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "storageKeyPrefix")
     }
   }
+
+  public var mountainReportUrl: String? {
+    get {
+      return graphQLMap["mountainReportUrl"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "mountainReportUrl")
+    }
+  }
+
+  public var trailStatusElementId: String? {
+    get {
+      return graphQLMap["trailStatusElementId"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "trailStatusElementId")
+    }
+  }
+
+  public var liftStatusElementId: String? {
+    get {
+      return graphQLMap["liftStatusElementId"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "liftStatusElementId")
+    }
+  }
 }
 
 public struct ModelMapConditionInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(name: ModelStringInput? = nil, storageKeyPrefix: ModelStringInput? = nil, and: [ModelMapConditionInput?]? = nil, or: [ModelMapConditionInput?]? = nil, not: ModelMapConditionInput? = nil) {
-    graphQLMap = ["name": name, "storageKeyPrefix": storageKeyPrefix, "and": and, "or": or, "not": not]
+  public init(name: ModelStringInput? = nil, storageKeyPrefix: ModelStringInput? = nil, mountainReportUrl: ModelStringInput? = nil, trailStatusElementId: ModelStringInput? = nil, liftStatusElementId: ModelStringInput? = nil, and: [ModelMapConditionInput?]? = nil, or: [ModelMapConditionInput?]? = nil, not: ModelMapConditionInput? = nil) {
+    graphQLMap = ["name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "and": and, "or": or, "not": not]
   }
 
   public var name: ModelStringInput? {
@@ -1197,6 +1367,33 @@ public struct ModelMapConditionInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "storageKeyPrefix")
+    }
+  }
+
+  public var mountainReportUrl: ModelStringInput? {
+    get {
+      return graphQLMap["mountainReportUrl"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "mountainReportUrl")
+    }
+  }
+
+  public var trailStatusElementId: ModelStringInput? {
+    get {
+      return graphQLMap["trailStatusElementId"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "trailStatusElementId")
+    }
+  }
+
+  public var liftStatusElementId: ModelStringInput? {
+    get {
+      return graphQLMap["liftStatusElementId"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "liftStatusElementId")
     }
   }
 
@@ -1231,8 +1428,8 @@ public struct ModelMapConditionInput: GraphQLMapConvertible {
 public struct UpdateMapInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, name: String? = nil, storageKeyPrefix: String? = nil) {
-    graphQLMap = ["id": id, "name": name, "storageKeyPrefix": storageKeyPrefix]
+  public init(id: GraphQLID, name: String? = nil, storageKeyPrefix: String? = nil, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil) {
+    graphQLMap = ["id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId]
   }
 
   public var id: GraphQLID {
@@ -1261,6 +1458,33 @@ public struct UpdateMapInput: GraphQLMapConvertible {
       graphQLMap.updateValue(newValue, forKey: "storageKeyPrefix")
     }
   }
+
+  public var mountainReportUrl: String? {
+    get {
+      return graphQLMap["mountainReportUrl"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "mountainReportUrl")
+    }
+  }
+
+  public var trailStatusElementId: String? {
+    get {
+      return graphQLMap["trailStatusElementId"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "trailStatusElementId")
+    }
+  }
+
+  public var liftStatusElementId: String? {
+    get {
+      return graphQLMap["liftStatusElementId"] as! String?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "liftStatusElementId")
+    }
+  }
 }
 
 public struct DeleteMapInput: GraphQLMapConvertible {
@@ -1283,8 +1507,8 @@ public struct DeleteMapInput: GraphQLMapConvertible {
 public struct ModelTrailReportFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelIDInput? = nil, type: ModelTrailReportTypeInput? = nil, trailMadeOn: ModelStringInput? = nil, active: ModelBooleanInput? = nil, mapId: ModelIDInput? = nil, and: [ModelTrailReportFilterInput?]? = nil, or: [ModelTrailReportFilterInput?]? = nil, not: ModelTrailReportFilterInput? = nil, mapTrailReportsId: ModelIDInput? = nil) {
-    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "and": and, "or": or, "not": not, "mapTrailReportsId": mapTrailReportsId]
+  public init(id: ModelIDInput? = nil, type: ModelTrailReportTypeInput? = nil, trailMadeOn: ModelStringInput? = nil, latitude: ModelFloatInput? = nil, longitude: ModelFloatInput? = nil, active: ModelBooleanInput? = nil, mapId: ModelIDInput? = nil, and: [ModelTrailReportFilterInput?]? = nil, or: [ModelTrailReportFilterInput?]? = nil, not: ModelTrailReportFilterInput? = nil, mapTrailReportsId: ModelIDInput? = nil) {
+    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "and": and, "or": or, "not": not, "mapTrailReportsId": mapTrailReportsId]
   }
 
   public var id: ModelIDInput? {
@@ -1311,6 +1535,24 @@ public struct ModelTrailReportFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "trailMadeOn")
+    }
+  }
+
+  public var latitude: ModelFloatInput? {
+    get {
+      return graphQLMap["latitude"] as! ModelFloatInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "latitude")
+    }
+  }
+
+  public var longitude: ModelFloatInput? {
+    get {
+      return graphQLMap["longitude"] as! ModelFloatInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "longitude")
     }
   }
 
@@ -1372,8 +1614,8 @@ public struct ModelTrailReportFilterInput: GraphQLMapConvertible {
 public struct ModelMapFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelIDInput? = nil, name: ModelStringInput? = nil, storageKeyPrefix: ModelStringInput? = nil, and: [ModelMapFilterInput?]? = nil, or: [ModelMapFilterInput?]? = nil, not: ModelMapFilterInput? = nil) {
-    graphQLMap = ["id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "and": and, "or": or, "not": not]
+  public init(id: ModelIDInput? = nil, name: ModelStringInput? = nil, storageKeyPrefix: ModelStringInput? = nil, mountainReportUrl: ModelStringInput? = nil, trailStatusElementId: ModelStringInput? = nil, liftStatusElementId: ModelStringInput? = nil, and: [ModelMapFilterInput?]? = nil, or: [ModelMapFilterInput?]? = nil, not: ModelMapFilterInput? = nil) {
+    graphQLMap = ["id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "and": and, "or": or, "not": not]
   }
 
   public var id: ModelIDInput? {
@@ -1400,6 +1642,33 @@ public struct ModelMapFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "storageKeyPrefix")
+    }
+  }
+
+  public var mountainReportUrl: ModelStringInput? {
+    get {
+      return graphQLMap["mountainReportUrl"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "mountainReportUrl")
+    }
+  }
+
+  public var trailStatusElementId: ModelStringInput? {
+    get {
+      return graphQLMap["trailStatusElementId"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "trailStatusElementId")
+    }
+  }
+
+  public var liftStatusElementId: ModelStringInput? {
+    get {
+      return graphQLMap["liftStatusElementId"] as! ModelStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "liftStatusElementId")
     }
   }
 
@@ -1434,8 +1703,8 @@ public struct ModelMapFilterInput: GraphQLMapConvertible {
 public struct ModelSubscriptionTrailReportFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelSubscriptionIDInput? = nil, type: ModelSubscriptionStringInput? = nil, trailMadeOn: ModelSubscriptionStringInput? = nil, active: ModelSubscriptionBooleanInput? = nil, mapId: ModelSubscriptionIDInput? = nil, and: [ModelSubscriptionTrailReportFilterInput?]? = nil, or: [ModelSubscriptionTrailReportFilterInput?]? = nil) {
-    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "and": and, "or": or]
+  public init(id: ModelSubscriptionIDInput? = nil, type: ModelSubscriptionStringInput? = nil, trailMadeOn: ModelSubscriptionStringInput? = nil, latitude: ModelSubscriptionFloatInput? = nil, longitude: ModelSubscriptionFloatInput? = nil, active: ModelSubscriptionBooleanInput? = nil, mapId: ModelSubscriptionIDInput? = nil, and: [ModelSubscriptionTrailReportFilterInput?]? = nil, or: [ModelSubscriptionTrailReportFilterInput?]? = nil) {
+    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "and": and, "or": or]
   }
 
   public var id: ModelSubscriptionIDInput? {
@@ -1462,6 +1731,24 @@ public struct ModelSubscriptionTrailReportFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "trailMadeOn")
+    }
+  }
+
+  public var latitude: ModelSubscriptionFloatInput? {
+    get {
+      return graphQLMap["latitude"] as! ModelSubscriptionFloatInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "latitude")
+    }
+  }
+
+  public var longitude: ModelSubscriptionFloatInput? {
+    get {
+      return graphQLMap["longitude"] as! ModelSubscriptionFloatInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "longitude")
     }
   }
 
@@ -1734,6 +2021,95 @@ public struct ModelSubscriptionStringInput: GraphQLMapConvertible {
   }
 }
 
+public struct ModelSubscriptionFloatInput: GraphQLMapConvertible {
+  public var graphQLMap: GraphQLMap
+
+  public init(ne: Double? = nil, eq: Double? = nil, le: Double? = nil, lt: Double? = nil, ge: Double? = nil, gt: Double? = nil, between: [Double?]? = nil, `in`: [Double?]? = nil, notIn: [Double?]? = nil) {
+    graphQLMap = ["ne": ne, "eq": eq, "le": le, "lt": lt, "ge": ge, "gt": gt, "between": between, "in": `in`, "notIn": notIn]
+  }
+
+  public var ne: Double? {
+    get {
+      return graphQLMap["ne"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "ne")
+    }
+  }
+
+  public var eq: Double? {
+    get {
+      return graphQLMap["eq"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "eq")
+    }
+  }
+
+  public var le: Double? {
+    get {
+      return graphQLMap["le"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "le")
+    }
+  }
+
+  public var lt: Double? {
+    get {
+      return graphQLMap["lt"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "lt")
+    }
+  }
+
+  public var ge: Double? {
+    get {
+      return graphQLMap["ge"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "ge")
+    }
+  }
+
+  public var gt: Double? {
+    get {
+      return graphQLMap["gt"] as! Double?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "gt")
+    }
+  }
+
+  public var between: [Double?]? {
+    get {
+      return graphQLMap["between"] as! [Double?]?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "between")
+    }
+  }
+
+  public var `in`: [Double?]? {
+    get {
+      return graphQLMap["in"] as! [Double?]?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "in")
+    }
+  }
+
+  public var notIn: [Double?]? {
+    get {
+      return graphQLMap["notIn"] as! [Double?]?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "notIn")
+    }
+  }
+}
+
 public struct ModelSubscriptionBooleanInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
@@ -1763,8 +2139,8 @@ public struct ModelSubscriptionBooleanInput: GraphQLMapConvertible {
 public struct ModelSubscriptionMapFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelSubscriptionIDInput? = nil, name: ModelSubscriptionStringInput? = nil, storageKeyPrefix: ModelSubscriptionStringInput? = nil, and: [ModelSubscriptionMapFilterInput?]? = nil, or: [ModelSubscriptionMapFilterInput?]? = nil) {
-    graphQLMap = ["id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "and": and, "or": or]
+  public init(id: ModelSubscriptionIDInput? = nil, name: ModelSubscriptionStringInput? = nil, storageKeyPrefix: ModelSubscriptionStringInput? = nil, mountainReportUrl: ModelSubscriptionStringInput? = nil, trailStatusElementId: ModelSubscriptionStringInput? = nil, liftStatusElementId: ModelSubscriptionStringInput? = nil, and: [ModelSubscriptionMapFilterInput?]? = nil, or: [ModelSubscriptionMapFilterInput?]? = nil) {
+    graphQLMap = ["id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "and": and, "or": or]
   }
 
   public var id: ModelSubscriptionIDInput? {
@@ -1794,6 +2170,33 @@ public struct ModelSubscriptionMapFilterInput: GraphQLMapConvertible {
     }
   }
 
+  public var mountainReportUrl: ModelSubscriptionStringInput? {
+    get {
+      return graphQLMap["mountainReportUrl"] as! ModelSubscriptionStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "mountainReportUrl")
+    }
+  }
+
+  public var trailStatusElementId: ModelSubscriptionStringInput? {
+    get {
+      return graphQLMap["trailStatusElementId"] as! ModelSubscriptionStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "trailStatusElementId")
+    }
+  }
+
+  public var liftStatusElementId: ModelSubscriptionStringInput? {
+    get {
+      return graphQLMap["liftStatusElementId"] as! ModelSubscriptionStringInput?
+    }
+    set {
+      graphQLMap.updateValue(newValue, forKey: "liftStatusElementId")
+    }
+  }
+
   public var and: [ModelSubscriptionMapFilterInput?]? {
     get {
       return graphQLMap["and"] as! [ModelSubscriptionMapFilterInput?]?
@@ -1815,7 +2218,7 @@ public struct ModelSubscriptionMapFilterInput: GraphQLMapConvertible {
 
 public final class CreateTrailReportMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateTrailReport($input: CreateTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  createTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "mutation CreateTrailReport($input: CreateTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  createTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var input: CreateTrailReportInput
   public var condition: ModelTrailReportConditionInput?
@@ -1863,6 +2266,8 @@ public final class CreateTrailReportMutation: GraphQLMutation {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("type", type: .nonNull(.scalar(TrailReportType.self))),
         GraphQLField("trailMadeOn", type: .nonNull(.scalar(String.self))),
+        GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
@@ -1877,8 +2282,8 @@ public final class CreateTrailReportMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -1914,6 +2319,24 @@ public final class CreateTrailReportMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "trailMadeOn")
+        }
+      }
+
+      public var latitude: Double {
+        get {
+          return snapshot["latitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "latitude")
+        }
+      }
+
+      public var longitude: Double {
+        get {
+          return snapshot["longitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "longitude")
         }
       }
 
@@ -1979,6 +2402,9 @@ public final class CreateTrailReportMutation: GraphQLMutation {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+          GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+          GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+          GraphQLField("liftStatusElementId", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
         ]
@@ -1989,8 +2415,8 @@ public final class CreateTrailReportMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, storageKeyPrefix: String, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -2029,6 +2455,33 @@ public final class CreateTrailReportMutation: GraphQLMutation {
           }
         }
 
+        public var mountainReportUrl: String? {
+          get {
+            return snapshot["mountainReportUrl"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+          }
+        }
+
+        public var trailStatusElementId: String? {
+          get {
+            return snapshot["trailStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+          }
+        }
+
+        public var liftStatusElementId: String? {
+          get {
+            return snapshot["liftStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "liftStatusElementId")
+          }
+        }
+
         public var createdAt: String {
           get {
             return snapshot["createdAt"]! as! String
@@ -2053,7 +2506,7 @@ public final class CreateTrailReportMutation: GraphQLMutation {
 
 public final class UpdateTrailReportMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateTrailReport($input: UpdateTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  updateTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "mutation UpdateTrailReport($input: UpdateTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  updateTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var input: UpdateTrailReportInput
   public var condition: ModelTrailReportConditionInput?
@@ -2101,6 +2554,8 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("type", type: .nonNull(.scalar(TrailReportType.self))),
         GraphQLField("trailMadeOn", type: .nonNull(.scalar(String.self))),
+        GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
@@ -2115,8 +2570,8 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -2152,6 +2607,24 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "trailMadeOn")
+        }
+      }
+
+      public var latitude: Double {
+        get {
+          return snapshot["latitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "latitude")
+        }
+      }
+
+      public var longitude: Double {
+        get {
+          return snapshot["longitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "longitude")
         }
       }
 
@@ -2217,6 +2690,9 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+          GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+          GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+          GraphQLField("liftStatusElementId", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
         ]
@@ -2227,8 +2703,8 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, storageKeyPrefix: String, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -2267,6 +2743,33 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
           }
         }
 
+        public var mountainReportUrl: String? {
+          get {
+            return snapshot["mountainReportUrl"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+          }
+        }
+
+        public var trailStatusElementId: String? {
+          get {
+            return snapshot["trailStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+          }
+        }
+
+        public var liftStatusElementId: String? {
+          get {
+            return snapshot["liftStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "liftStatusElementId")
+          }
+        }
+
         public var createdAt: String {
           get {
             return snapshot["createdAt"]! as! String
@@ -2291,7 +2794,7 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
 
 public final class DeleteTrailReportMutation: GraphQLMutation {
   public static let operationString =
-    "mutation DeleteTrailReport($input: DeleteTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  deleteTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "mutation DeleteTrailReport($input: DeleteTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  deleteTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var input: DeleteTrailReportInput
   public var condition: ModelTrailReportConditionInput?
@@ -2339,6 +2842,8 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("type", type: .nonNull(.scalar(TrailReportType.self))),
         GraphQLField("trailMadeOn", type: .nonNull(.scalar(String.self))),
+        GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
@@ -2353,8 +2858,8 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -2390,6 +2895,24 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "trailMadeOn")
+        }
+      }
+
+      public var latitude: Double {
+        get {
+          return snapshot["latitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "latitude")
+        }
+      }
+
+      public var longitude: Double {
+        get {
+          return snapshot["longitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "longitude")
         }
       }
 
@@ -2455,6 +2978,9 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+          GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+          GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+          GraphQLField("liftStatusElementId", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
         ]
@@ -2465,8 +2991,8 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, storageKeyPrefix: String, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -2505,6 +3031,33 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
           }
         }
 
+        public var mountainReportUrl: String? {
+          get {
+            return snapshot["mountainReportUrl"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+          }
+        }
+
+        public var trailStatusElementId: String? {
+          get {
+            return snapshot["trailStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+          }
+        }
+
+        public var liftStatusElementId: String? {
+          get {
+            return snapshot["liftStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "liftStatusElementId")
+          }
+        }
+
         public var createdAt: String {
           get {
             return snapshot["createdAt"]! as! String
@@ -2529,7 +3082,7 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
 
 public final class CreateMapMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateMap($input: CreateMapInput!, $condition: ModelMapConditionInput) {\n  createMap(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation CreateMap($input: CreateMapInput!, $condition: ModelMapConditionInput) {\n  createMap(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    mountainReportUrl\n    trailStatusElementId\n    liftStatusElementId\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
 
   public var input: CreateMapInput
   public var condition: ModelMapConditionInput?
@@ -2577,6 +3130,9 @@ public final class CreateMapMutation: GraphQLMutation {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+        GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+        GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+        GraphQLField("liftStatusElementId", type: .scalar(String.self)),
         GraphQLField("trailReports", type: .object(TrailReport.selections)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -2588,8 +3144,8 @@ public final class CreateMapMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, storageKeyPrefix: String, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -2625,6 +3181,33 @@ public final class CreateMapMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "storageKeyPrefix")
+        }
+      }
+
+      public var mountainReportUrl: String? {
+        get {
+          return snapshot["mountainReportUrl"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+        }
+      }
+
+      public var trailStatusElementId: String? {
+        get {
+          return snapshot["trailStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+        }
+      }
+
+      public var liftStatusElementId: String? {
+        get {
+          return snapshot["liftStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "liftStatusElementId")
         }
       }
 
@@ -2697,7 +3280,7 @@ public final class CreateMapMutation: GraphQLMutation {
 
 public final class UpdateMapMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateMap($input: UpdateMapInput!, $condition: ModelMapConditionInput) {\n  updateMap(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation UpdateMap($input: UpdateMapInput!, $condition: ModelMapConditionInput) {\n  updateMap(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    mountainReportUrl\n    trailStatusElementId\n    liftStatusElementId\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
 
   public var input: UpdateMapInput
   public var condition: ModelMapConditionInput?
@@ -2745,6 +3328,9 @@ public final class UpdateMapMutation: GraphQLMutation {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+        GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+        GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+        GraphQLField("liftStatusElementId", type: .scalar(String.self)),
         GraphQLField("trailReports", type: .object(TrailReport.selections)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -2756,8 +3342,8 @@ public final class UpdateMapMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, storageKeyPrefix: String, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -2793,6 +3379,33 @@ public final class UpdateMapMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "storageKeyPrefix")
+        }
+      }
+
+      public var mountainReportUrl: String? {
+        get {
+          return snapshot["mountainReportUrl"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+        }
+      }
+
+      public var trailStatusElementId: String? {
+        get {
+          return snapshot["trailStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+        }
+      }
+
+      public var liftStatusElementId: String? {
+        get {
+          return snapshot["liftStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "liftStatusElementId")
         }
       }
 
@@ -2865,7 +3478,7 @@ public final class UpdateMapMutation: GraphQLMutation {
 
 public final class DeleteMapMutation: GraphQLMutation {
   public static let operationString =
-    "mutation DeleteMap($input: DeleteMapInput!, $condition: ModelMapConditionInput) {\n  deleteMap(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
+    "mutation DeleteMap($input: DeleteMapInput!, $condition: ModelMapConditionInput) {\n  deleteMap(input: $input, condition: $condition) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    mountainReportUrl\n    trailStatusElementId\n    liftStatusElementId\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
 
   public var input: DeleteMapInput
   public var condition: ModelMapConditionInput?
@@ -2913,6 +3526,9 @@ public final class DeleteMapMutation: GraphQLMutation {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+        GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+        GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+        GraphQLField("liftStatusElementId", type: .scalar(String.self)),
         GraphQLField("trailReports", type: .object(TrailReport.selections)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -2924,8 +3540,8 @@ public final class DeleteMapMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, storageKeyPrefix: String, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -2961,6 +3577,33 @@ public final class DeleteMapMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "storageKeyPrefix")
+        }
+      }
+
+      public var mountainReportUrl: String? {
+        get {
+          return snapshot["mountainReportUrl"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+        }
+      }
+
+      public var trailStatusElementId: String? {
+        get {
+          return snapshot["trailStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+        }
+      }
+
+      public var liftStatusElementId: String? {
+        get {
+          return snapshot["liftStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "liftStatusElementId")
         }
       }
 
@@ -3033,7 +3676,7 @@ public final class DeleteMapMutation: GraphQLMutation {
 
 public final class GetTrailReportQuery: GraphQLQuery {
   public static let operationString =
-    "query GetTrailReport($id: ID!) {\n  getTrailReport(id: $id) {\n    __typename\n    id\n    type\n    trailMadeOn\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "query GetTrailReport($id: ID!) {\n  getTrailReport(id: $id) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var id: GraphQLID
 
@@ -3079,6 +3722,8 @@ public final class GetTrailReportQuery: GraphQLQuery {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("type", type: .nonNull(.scalar(TrailReportType.self))),
         GraphQLField("trailMadeOn", type: .nonNull(.scalar(String.self))),
+        GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
@@ -3093,8 +3738,8 @@ public final class GetTrailReportQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -3130,6 +3775,24 @@ public final class GetTrailReportQuery: GraphQLQuery {
         }
         set {
           snapshot.updateValue(newValue, forKey: "trailMadeOn")
+        }
+      }
+
+      public var latitude: Double {
+        get {
+          return snapshot["latitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "latitude")
+        }
+      }
+
+      public var longitude: Double {
+        get {
+          return snapshot["longitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "longitude")
         }
       }
 
@@ -3195,6 +3858,9 @@ public final class GetTrailReportQuery: GraphQLQuery {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+          GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+          GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+          GraphQLField("liftStatusElementId", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
         ]
@@ -3205,8 +3871,8 @@ public final class GetTrailReportQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, storageKeyPrefix: String, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -3245,6 +3911,33 @@ public final class GetTrailReportQuery: GraphQLQuery {
           }
         }
 
+        public var mountainReportUrl: String? {
+          get {
+            return snapshot["mountainReportUrl"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+          }
+        }
+
+        public var trailStatusElementId: String? {
+          get {
+            return snapshot["trailStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+          }
+        }
+
+        public var liftStatusElementId: String? {
+          get {
+            return snapshot["liftStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "liftStatusElementId")
+          }
+        }
+
         public var createdAt: String {
           get {
             return snapshot["createdAt"]! as! String
@@ -3269,7 +3962,7 @@ public final class GetTrailReportQuery: GraphQLQuery {
 
 public final class ListTrailReportsQuery: GraphQLQuery {
   public static let operationString =
-    "query ListTrailReports($filter: ModelTrailReportFilterInput, $limit: Int, $nextToken: String) {\n  listTrailReports(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      type\n      trailMadeOn\n      active\n      mapId\n      createdAt\n      updatedAt\n      mapTrailReportsId\n    }\n    nextToken\n  }\n}"
+    "query ListTrailReports($filter: ModelTrailReportFilterInput, $limit: Int, $nextToken: String) {\n  listTrailReports(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      type\n      trailMadeOn\n      latitude\n      longitude\n      active\n      mapId\n      createdAt\n      updatedAt\n      mapTrailReportsId\n    }\n    nextToken\n  }\n}"
 
   public var filter: ModelTrailReportFilterInput?
   public var limit: Int?
@@ -3365,6 +4058,8 @@ public final class ListTrailReportsQuery: GraphQLQuery {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("type", type: .nonNull(.scalar(TrailReportType.self))),
           GraphQLField("trailMadeOn", type: .nonNull(.scalar(String.self))),
+          GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+          GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
           GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
           GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
@@ -3378,8 +4073,8 @@ public final class ListTrailReportsQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-          self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+        public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+          self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
         }
 
         public var __typename: String {
@@ -3415,6 +4110,24 @@ public final class ListTrailReportsQuery: GraphQLQuery {
           }
           set {
             snapshot.updateValue(newValue, forKey: "trailMadeOn")
+          }
+        }
+
+        public var latitude: Double {
+          get {
+            return snapshot["latitude"]! as! Double
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "latitude")
+          }
+        }
+
+        public var longitude: Double {
+          get {
+            return snapshot["longitude"]! as! Double
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "longitude")
           }
         }
 
@@ -3469,7 +4182,7 @@ public final class ListTrailReportsQuery: GraphQLQuery {
 
 public final class GetMapQuery: GraphQLQuery {
   public static let operationString =
-    "query GetMap($id: ID!) {\n  getMap(id: $id) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
+    "query GetMap($id: ID!) {\n  getMap(id: $id) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    mountainReportUrl\n    trailStatusElementId\n    liftStatusElementId\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
 
   public var id: GraphQLID
 
@@ -3515,6 +4228,9 @@ public final class GetMapQuery: GraphQLQuery {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+        GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+        GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+        GraphQLField("liftStatusElementId", type: .scalar(String.self)),
         GraphQLField("trailReports", type: .object(TrailReport.selections)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -3526,8 +4242,8 @@ public final class GetMapQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, storageKeyPrefix: String, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -3563,6 +4279,33 @@ public final class GetMapQuery: GraphQLQuery {
         }
         set {
           snapshot.updateValue(newValue, forKey: "storageKeyPrefix")
+        }
+      }
+
+      public var mountainReportUrl: String? {
+        get {
+          return snapshot["mountainReportUrl"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+        }
+      }
+
+      public var trailStatusElementId: String? {
+        get {
+          return snapshot["trailStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+        }
+      }
+
+      public var liftStatusElementId: String? {
+        get {
+          return snapshot["liftStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "liftStatusElementId")
         }
       }
 
@@ -3635,7 +4378,7 @@ public final class GetMapQuery: GraphQLQuery {
 
 public final class ListMapsQuery: GraphQLQuery {
   public static let operationString =
-    "query ListMaps($filter: ModelMapFilterInput, $limit: Int, $nextToken: String) {\n  listMaps(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      createdAt\n      updatedAt\n    }\n    nextToken\n  }\n}"
+    "query ListMaps($filter: ModelMapFilterInput, $limit: Int, $nextToken: String) {\n  listMaps(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    nextToken\n  }\n}"
 
   public var filter: ModelMapFilterInput?
   public var limit: Int?
@@ -3731,6 +4474,9 @@ public final class ListMapsQuery: GraphQLQuery {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+          GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+          GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+          GraphQLField("liftStatusElementId", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
         ]
@@ -3741,8 +4487,8 @@ public final class ListMapsQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, storageKeyPrefix: String, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -3781,6 +4527,33 @@ public final class ListMapsQuery: GraphQLQuery {
           }
         }
 
+        public var mountainReportUrl: String? {
+          get {
+            return snapshot["mountainReportUrl"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+          }
+        }
+
+        public var trailStatusElementId: String? {
+          get {
+            return snapshot["trailStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+          }
+        }
+
+        public var liftStatusElementId: String? {
+          get {
+            return snapshot["liftStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "liftStatusElementId")
+          }
+        }
+
         public var createdAt: String {
           get {
             return snapshot["createdAt"]! as! String
@@ -3805,7 +4578,7 @@ public final class ListMapsQuery: GraphQLQuery {
 
 public final class OnCreateTrailReportSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnCreateTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onCreateTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "subscription OnCreateTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onCreateTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var filter: ModelSubscriptionTrailReportFilterInput?
 
@@ -3851,6 +4624,8 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("type", type: .nonNull(.scalar(TrailReportType.self))),
         GraphQLField("trailMadeOn", type: .nonNull(.scalar(String.self))),
+        GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
@@ -3865,8 +4640,8 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -3902,6 +4677,24 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "trailMadeOn")
+        }
+      }
+
+      public var latitude: Double {
+        get {
+          return snapshot["latitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "latitude")
+        }
+      }
+
+      public var longitude: Double {
+        get {
+          return snapshot["longitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "longitude")
         }
       }
 
@@ -3967,6 +4760,9 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+          GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+          GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+          GraphQLField("liftStatusElementId", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
         ]
@@ -3977,8 +4773,8 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, storageKeyPrefix: String, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -4017,6 +4813,33 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
           }
         }
 
+        public var mountainReportUrl: String? {
+          get {
+            return snapshot["mountainReportUrl"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+          }
+        }
+
+        public var trailStatusElementId: String? {
+          get {
+            return snapshot["trailStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+          }
+        }
+
+        public var liftStatusElementId: String? {
+          get {
+            return snapshot["liftStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "liftStatusElementId")
+          }
+        }
+
         public var createdAt: String {
           get {
             return snapshot["createdAt"]! as! String
@@ -4041,7 +4864,7 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
 
 public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnUpdateTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onUpdateTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "subscription OnUpdateTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onUpdateTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var filter: ModelSubscriptionTrailReportFilterInput?
 
@@ -4087,6 +4910,8 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("type", type: .nonNull(.scalar(TrailReportType.self))),
         GraphQLField("trailMadeOn", type: .nonNull(.scalar(String.self))),
+        GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
@@ -4101,8 +4926,8 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -4138,6 +4963,24 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "trailMadeOn")
+        }
+      }
+
+      public var latitude: Double {
+        get {
+          return snapshot["latitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "latitude")
+        }
+      }
+
+      public var longitude: Double {
+        get {
+          return snapshot["longitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "longitude")
         }
       }
 
@@ -4203,6 +5046,9 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+          GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+          GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+          GraphQLField("liftStatusElementId", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
         ]
@@ -4213,8 +5059,8 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, storageKeyPrefix: String, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -4253,6 +5099,33 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
           }
         }
 
+        public var mountainReportUrl: String? {
+          get {
+            return snapshot["mountainReportUrl"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+          }
+        }
+
+        public var trailStatusElementId: String? {
+          get {
+            return snapshot["trailStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+          }
+        }
+
+        public var liftStatusElementId: String? {
+          get {
+            return snapshot["liftStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "liftStatusElementId")
+          }
+        }
+
         public var createdAt: String {
           get {
             return snapshot["createdAt"]! as! String
@@ -4277,7 +5150,7 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
 
 public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnDeleteTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onDeleteTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "subscription OnDeleteTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onDeleteTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var filter: ModelSubscriptionTrailReportFilterInput?
 
@@ -4323,6 +5196,8 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("type", type: .nonNull(.scalar(TrailReportType.self))),
         GraphQLField("trailMadeOn", type: .nonNull(.scalar(String.self))),
+        GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
+        GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
         GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
@@ -4337,8 +5212,8 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -4374,6 +5249,24 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "trailMadeOn")
+        }
+      }
+
+      public var latitude: Double {
+        get {
+          return snapshot["latitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "latitude")
+        }
+      }
+
+      public var longitude: Double {
+        get {
+          return snapshot["longitude"]! as! Double
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "longitude")
         }
       }
 
@@ -4439,6 +5332,9 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
           GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("name", type: .nonNull(.scalar(String.self))),
           GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+          GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+          GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+          GraphQLField("liftStatusElementId", type: .scalar(String.self)),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
         ]
@@ -4449,8 +5345,8 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, name: String, storageKeyPrefix: String, createdAt: String, updatedAt: String) {
-          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "createdAt": createdAt, "updatedAt": updatedAt])
+        public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, createdAt: String, updatedAt: String) {
+          self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "createdAt": createdAt, "updatedAt": updatedAt])
         }
 
         public var __typename: String {
@@ -4489,6 +5385,33 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
           }
         }
 
+        public var mountainReportUrl: String? {
+          get {
+            return snapshot["mountainReportUrl"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+          }
+        }
+
+        public var trailStatusElementId: String? {
+          get {
+            return snapshot["trailStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+          }
+        }
+
+        public var liftStatusElementId: String? {
+          get {
+            return snapshot["liftStatusElementId"] as? String
+          }
+          set {
+            snapshot.updateValue(newValue, forKey: "liftStatusElementId")
+          }
+        }
+
         public var createdAt: String {
           get {
             return snapshot["createdAt"]! as! String
@@ -4513,7 +5436,7 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
 
 public final class OnCreateMapSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnCreateMap($filter: ModelSubscriptionMapFilterInput) {\n  onCreateMap(filter: $filter) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnCreateMap($filter: ModelSubscriptionMapFilterInput) {\n  onCreateMap(filter: $filter) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    mountainReportUrl\n    trailStatusElementId\n    liftStatusElementId\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
 
   public var filter: ModelSubscriptionMapFilterInput?
 
@@ -4559,6 +5482,9 @@ public final class OnCreateMapSubscription: GraphQLSubscription {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+        GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+        GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+        GraphQLField("liftStatusElementId", type: .scalar(String.self)),
         GraphQLField("trailReports", type: .object(TrailReport.selections)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -4570,8 +5496,8 @@ public final class OnCreateMapSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, storageKeyPrefix: String, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -4607,6 +5533,33 @@ public final class OnCreateMapSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "storageKeyPrefix")
+        }
+      }
+
+      public var mountainReportUrl: String? {
+        get {
+          return snapshot["mountainReportUrl"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+        }
+      }
+
+      public var trailStatusElementId: String? {
+        get {
+          return snapshot["trailStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+        }
+      }
+
+      public var liftStatusElementId: String? {
+        get {
+          return snapshot["liftStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "liftStatusElementId")
         }
       }
 
@@ -4679,7 +5632,7 @@ public final class OnCreateMapSubscription: GraphQLSubscription {
 
 public final class OnUpdateMapSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnUpdateMap($filter: ModelSubscriptionMapFilterInput) {\n  onUpdateMap(filter: $filter) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnUpdateMap($filter: ModelSubscriptionMapFilterInput) {\n  onUpdateMap(filter: $filter) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    mountainReportUrl\n    trailStatusElementId\n    liftStatusElementId\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
 
   public var filter: ModelSubscriptionMapFilterInput?
 
@@ -4725,6 +5678,9 @@ public final class OnUpdateMapSubscription: GraphQLSubscription {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+        GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+        GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+        GraphQLField("liftStatusElementId", type: .scalar(String.self)),
         GraphQLField("trailReports", type: .object(TrailReport.selections)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -4736,8 +5692,8 @@ public final class OnUpdateMapSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, storageKeyPrefix: String, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -4773,6 +5729,33 @@ public final class OnUpdateMapSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "storageKeyPrefix")
+        }
+      }
+
+      public var mountainReportUrl: String? {
+        get {
+          return snapshot["mountainReportUrl"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+        }
+      }
+
+      public var trailStatusElementId: String? {
+        get {
+          return snapshot["trailStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+        }
+      }
+
+      public var liftStatusElementId: String? {
+        get {
+          return snapshot["liftStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "liftStatusElementId")
         }
       }
 
@@ -4845,7 +5828,7 @@ public final class OnUpdateMapSubscription: GraphQLSubscription {
 
 public final class OnDeleteMapSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnDeleteMap($filter: ModelSubscriptionMapFilterInput) {\n  onDeleteMap(filter: $filter) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
+    "subscription OnDeleteMap($filter: ModelSubscriptionMapFilterInput) {\n  onDeleteMap(filter: $filter) {\n    __typename\n    id\n    name\n    storageKeyPrefix\n    mountainReportUrl\n    trailStatusElementId\n    liftStatusElementId\n    trailReports {\n      __typename\n      nextToken\n    }\n    createdAt\n    updatedAt\n  }\n}"
 
   public var filter: ModelSubscriptionMapFilterInput?
 
@@ -4891,6 +5874,9 @@ public final class OnDeleteMapSubscription: GraphQLSubscription {
         GraphQLField("id", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("name", type: .nonNull(.scalar(String.self))),
         GraphQLField("storageKeyPrefix", type: .nonNull(.scalar(String.self))),
+        GraphQLField("mountainReportUrl", type: .scalar(String.self)),
+        GraphQLField("trailStatusElementId", type: .scalar(String.self)),
+        GraphQLField("liftStatusElementId", type: .scalar(String.self)),
         GraphQLField("trailReports", type: .object(TrailReport.selections)),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -4902,8 +5888,8 @@ public final class OnDeleteMapSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, name: String, storageKeyPrefix: String, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
-        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
+      public init(id: GraphQLID, name: String, storageKeyPrefix: String, mountainReportUrl: String? = nil, trailStatusElementId: String? = nil, liftStatusElementId: String? = nil, trailReports: TrailReport? = nil, createdAt: String, updatedAt: String) {
+        self.init(snapshot: ["__typename": "Map", "id": id, "name": name, "storageKeyPrefix": storageKeyPrefix, "mountainReportUrl": mountainReportUrl, "trailStatusElementId": trailStatusElementId, "liftStatusElementId": liftStatusElementId, "trailReports": trailReports.flatMap { $0.snapshot }, "createdAt": createdAt, "updatedAt": updatedAt])
       }
 
       public var __typename: String {
@@ -4939,6 +5925,33 @@ public final class OnDeleteMapSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "storageKeyPrefix")
+        }
+      }
+
+      public var mountainReportUrl: String? {
+        get {
+          return snapshot["mountainReportUrl"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "mountainReportUrl")
+        }
+      }
+
+      public var trailStatusElementId: String? {
+        get {
+          return snapshot["trailStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "trailStatusElementId")
+        }
+      }
+
+      public var liftStatusElementId: String? {
+        get {
+          return snapshot["liftStatusElementId"] as? String
+        }
+        set {
+          snapshot.updateValue(newValue, forKey: "liftStatusElementId")
         }
       }
 
