@@ -29,12 +29,10 @@ final class MapInterpreter: ObservableObject
         
         let difficultyGraph = self.createGraph(vertices: self.createVertices(trails: trails), weightCaclulation: self.difficultyWeightCalculation)
         let distanceGraph = self.createGraph(vertices: self.createVertices(trails: trails), weightCaclulation: self.distanceWeightCalculation)
-        try await self.assignTrailReportsFromDB(map: map.map)
+        self.difficultyGraph = difficultyGraph
+        self.distanceGraph = distanceGraph
         
-        DispatchQueue.main.async {
-            self.difficultyGraph = difficultyGraph
-            self.distanceGraph = distanceGraph
-        }
+        try await self.assignTrailReportsFromDB(map: map.map)
     }
     
     private func transformFeatureToTrail(_ feature: Feature, _ difficulty: Difficulty) -> Trail
@@ -154,11 +152,16 @@ final class MapInterpreter: ObservableObject
         for report in trailReports
         {
             let point = Point(coordinate: .init(latitude: report.latitude, longitude: report.longitude), title: report.type.rawValue, difficulty: .easy)
-            var closestTrail = self.getClosestAnnotation(graph: self.distanceGraph, origin: point).value
-            closestTrail.trailReport = report
-                
-            closestTrail = self.getClosestAnnotation(graph: self.difficultyGraph, origin: point).value
-            closestTrail.trailReport = report
+            
+            if var closestVertex = try? self.getClosestPoint(origin: point.coordinate, graph: self.distanceGraph)
+            {
+                closestVertex.value.trailReport = report
+            }
+            
+            if var closestVertex = try? self.getClosestPoint(origin: point.coordinate, graph: self.difficultyGraph)
+            {
+                closestVertex.value.trailReport = report
+            }
                 
 //            NotificationCenter.default.post(name: Notification.Name.Names.createNotification, object: nil, userInfo: ["report": report])
         }
@@ -167,38 +170,25 @@ final class MapInterpreter: ObservableObject
 //        NotificationCenter.default.post(Notification(name: Notification.Name.Names.updateInitialRegion, userInfo: ["initialRegionLatitude": Double(map.initialLocationLatitude), "initialRegionLongitude": Double(map.initialLocationLongitude)]))
     }
     
-    /// getClosestAnnotation: Point -> Vertex<Point>
-    /// paramaters:
-    ///     - origin: The annotation you want to find the nearest annotation for
-    /// Finds the annotation the least distacne from the passed in origin
-    private func getClosestAnnotation(graph: EdgeWeightedDigraph<Point>, origin: Point) -> Vertex<Point>
+    private func getClosestPoint(origin: CLLocationCoordinate2D, graph: EdgeWeightedDigraph<Point>) throws -> Vertex<Point>
     {
-        var closestAnnotation = graph.vertices[0]
-        for annotation in graph.vertices
+        guard var closestVertex = graph.vertices.first
+        else
         {
-            if sqrt(pow(annotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(annotation.value.coordinate.longitude - origin.coordinate.longitude, 2)) < sqrt(pow(closestAnnotation.value.coordinate.latitude - origin.coordinate.latitude, 2) + pow(closestAnnotation.value.coordinate.longitude - origin.coordinate.longitude, 2))
+            throw GraphErrors.selectedGraphHasNoVerticesError
+        }
+        for vertex in graph.vertices
+        {
+            if sqrt(pow(vertex.value.coordinate.latitude - origin.latitude, 2) + pow(vertex.value.coordinate.longitude - origin.longitude, 2)) < sqrt(pow(closestVertex.value.coordinate.latitude - origin.latitude, 2) + pow(closestVertex.value.coordinate.longitude - origin.longitude, 2))
             {
-                closestAnnotation = annotation
+                closestVertex = vertex
             }
         }
-        return closestAnnotation
+        return closestVertex
     }
     
     private func getIntersectingPoints(graph: EdgeWeightedDigraph<Point>, vertex: Vertex<Point>) -> [Vertex<Point>]
     {
         return graph.vertices.filter(({ $0.value.title != vertex.value.title && $0.value.coordinate == vertex.value.coordinate }))
-    }
-    
-    private func getClosestPoint(graph: EdgeWeightedDigraph<Point>, vertex: Vertex<Point>) -> Vertex<Point>
-    {
-        var closestVertex: Vertex<Point> = graph.vertices.filter { $0 != vertex }[0]
-        for point in graph.vertices.filter({ $0 != vertex })
-        {
-            if sqrt(pow(point.value.coordinate.latitude - vertex.value.coordinate.latitude, 2) + pow(point.value.coordinate.longitude - vertex.value.coordinate.longitude, 2)) < sqrt(pow(closestVertex.value.coordinate.latitude - vertex.value.coordinate.latitude, 2) + pow(closestVertex.value.coordinate.longitude - vertex.value.coordinate.longitude, 2))
-            {
-                closestVertex = point
-            }
-        }
-        return closestVertex
     }
 }

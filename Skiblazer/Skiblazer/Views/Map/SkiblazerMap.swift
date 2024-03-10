@@ -28,7 +28,7 @@ struct SkiblazerMap: View {
 
                     PointAnnotationGroup(self.viewModel.trailsToDisplay) { trail in
                         PointAnnotation(coordinate: trail.firstPoint.coordinate)
-                            .image(named: "intermediate-pin")
+                            .image(.init(image: .init(resource: .intermediatePin), name: trail.id.uuidString))
                             .iconOffset([0, -20])
                             .iconColor(.init(trail.color))
                             .textField("\(trail.title)")
@@ -42,7 +42,7 @@ struct SkiblazerMap: View {
 
                     PointAnnotationGroup(self.viewModel.trailReportsToDisplay) { report in
                         PointAnnotation(coordinate: .init(latitude: report.latitude, longitude: report.longitude))
-                            .image(.init(image: .init(resource: .intermediatePin), name: report.id))
+                            //                            .image(.init(image: .init(resource: .intermediatePin), name: report.id))
                             .iconOffset([0, -20])
                             .iconColor(.init(report.type.color))
                             .textField(report.type.pointString)
@@ -64,6 +64,7 @@ struct SkiblazerMap: View {
                     self.viewModel.onMapLongPress(info.coordinate)
                 }
                 .mapStyle(.satellite)
+                .ornamentOptions(.init(compass: .init(visibility: .hidden)))
                 .cameraBounds(self.bounds)
             }
             .sheet(isPresented: self.$viewModel.showTrailReportSelector) {
@@ -87,68 +88,68 @@ struct SkiblazerMap: View {
                     self.bounds = .init(bounds: .init(southwest: .init(latitude: firstLiftCoord.latitude + self.radius, longitude: firstLiftCoord.longitude - self.radius), northeast: .init(latitude: firstLiftCoord.latitude - self.radius, longitude: firstLiftCoord.longitude + self.radius)))
                 }
             }
+            .navigationBarTitleDisplayMode(.inline)
             .ignoresSafeArea()
             .overlay(alignment: .topTrailing) {
-                VStack {
-                    Button {
-                        self.viewModel.onTrailSelectorButtonPressed()
-                    } label: {
-                        Image(systemName: SystemImageName.search.rawValue)
-                    }
-                    .foregroundStyle(.primary)
-                    .padding(8)
-                    .background(Color.blue)
-                    .clipShape(.buttonBorder)
-                    .sheet(isPresented: self.$viewModel.showTrailSelector) {
-                        TrailSelectorView(trails: self.viewModel.totalTrails) {
-                            self.viewModel.onTrailSelected($0)
-                        }
+                HStack {
+                    if self.viewModel.routeInProgress {
+                        FullDirectionsView(route: self.viewModel.currentPath, showFullDirections: self.$viewModel.showFullDirectionsView)
+                            .transition(.move(edge: .top))
+                            .ignoresSafeArea()
+                            .padding()
+                            .background(
+                                Color(.systemBackground)
+                                    .shadow(color: .primary, radius: 5, y: 6)
+                                    .clipShape(.rect(cornerRadius: 8))
+                            )
                     }
 
-                    if self.viewModel.routeInProgress {
+                    VStack {
                         Button {
-                            self.viewModel.cancelRoute()
+                            self.viewModel.onTrailSelectorButtonPressed()
                         } label: {
-                            Image(systemName: SystemImageName.close.rawValue)
+                            Image(systemName: SystemImageName.search.rawValue)
                         }
                         .foregroundStyle(.primary)
                         .padding(8)
-                        .background(Color.red)
+                        .background(Color.blue)
+                        .clipShape(.buttonBorder)
+                        .sheet(isPresented: self.$viewModel.showTrailSelector) {
+                            TrailSelectorView(trails: self.viewModel.totalTrails) {
+                                self.viewModel.onTrailSelected($0)
+                            }
+                        }
+
+                        if self.viewModel.routeInProgress {
+                            Button {
+                                self.viewModel.cancelRoute()
+                            } label: {
+                                Image(systemName: SystemImageName.close.rawValue)
+                            }
+                            .foregroundStyle(.primary)
+                            .padding(8)
+                            .background(Color.red)
+                            .clipShape(.buttonBorder)
+                        }
+
+                        Button {
+                            self.viewModel.onRealTimeSelected()
+                        } label: {
+                            Image(systemName: SystemImageName.time.rawValue)
+                        }
+                        .foregroundStyle(.primary)
+                        .padding(8)
+                        .background(Color.blue)
                         .clipShape(.buttonBorder)
                     }
-
-                    Button {
-                        self.viewModel.onRealTimeSelected()
-                    } label: {
-                        Image(systemName: SystemImageName.time.rawValue)
-                    }
-                    .foregroundStyle(.primary)
-                    .padding(8)
-                    .background(Color.blue)
-                    .clipShape(.buttonBorder)
+                    .padding()
                 }
-                .padding()
+                .padding(.leading, 8)
             }
         }
     }
 
     var clusterOptions: ClusterOptions {
-        let circleRadiusExpression = Exp(.step) {
-            Exp(.get) { "point_count" }
-            25
-            5
-            10
-        }
-
-        let circleColorExpression = Exp(.step) {
-            Exp(.get) { "point_count" }
-            UIColor.yellow
-            5
-            UIColor.green
-            10
-            UIColor.red
-        }
-
         // Create expression to get the total count of annotations in a cluster
         let sumExpression = Exp {
             Exp(.sum) {
@@ -163,20 +164,7 @@ struct SkiblazerMap: View {
             "sum": sumExpression
         ]
 
-        let textFieldExpression = Exp(.switchCase) {
-            Exp(.has) { "point_count" }
-            Exp(.concat) {
-                Exp(.string) { "Count:\n" }
-                Exp(.get) { "sum" }
-            }
-            Exp(.string) { "" }
-        }
-
         return ClusterOptions(
-            //            circleRadius: .expression(circleRadiusExpression),
-//            circleColor: .expression(circleColorExpression),
-//            textColor: .constant(StyleColor(.black)),
-//            textField: .expression(textFieldExpression),
             circleColor: .constant(.init(.clear)),
             textColor: .constant(.init(.clear)),
             clusterRadius: 20,

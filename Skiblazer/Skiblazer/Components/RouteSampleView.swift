@@ -21,29 +21,33 @@ struct RouteSampleView: View {
                     .fontWeight(.bold)
             }
 
-            if trails.count >= 2 {
-                SkiblazerLabel("\(trails[0].title); \(trails[1].title)", fontSize: 20)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
-                if (trails.count > 3) {
-                    SkiblazerLabel("See More Details")
-                        .onTapGesture {
-                            
-                        }
+            VStack(spacing: 5) {
+                if trails.count >= 2 {
+                    SkiblazerLabel("\(trails[0].title); \(trails[1].title)", fontSize: 20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+
+                    if trails.count > 3 {
+                        SkiblazerLabel("See More Details", fontSize: 14)
+                            .onTapGesture {}
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
             }
 
-            SkiblazerLabel(self.trailReports.reduce("") { next, report in
-                next + report.type.formatted + ", "
-            }, fontSize: 20)
-                .frame(maxWidth: .infinity, alignment: .leading)
-
-            Spacer()
-
-            SkiblazerButton("Let's Go!") {
-                self.onLetsGoPressed()
+            if !self.trailReports.isEmpty {
+                SkiblazerLabel("Caution:  \(self.trailReports.map { $0.type.formatted }.joined(separator: ", "))", fontSize: 14)
+                    .foregroundStyle(.red)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .frame(maxWidth: .infinity)
+
+            VStack(spacing: 0) {
+                Spacer(minLength: 0)
+
+                SkiblazerButton("Let's Go!") {
+                    self.onLetsGoPressed()
+                }
+                .frame(maxWidth: .infinity)
+            }
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .padding()

@@ -127,14 +127,6 @@ final class DirectionsView : UIView {
     }
     
     // Function to determine the orientation of three points
-    func determineOrientation(p1: CLLocation, p2: CLLocation, p3: CLLocation) -> Orientation {
-        let val = (p2.coordinate.longitude - p1.coordinate.longitude) * (p3.coordinate.latitude - p2.coordinate.latitude) - (p2.coordinate.latitude - p1.coordinate.latitude) * (p3.coordinate.longitude - p2.coordinate.longitude)
-        if val == 0 {
-            return .straight // Points are collinear
-        } else if val > 0 {
-            return .right // Clockwise orientation
-        } else {
-            return .left// Counterclockwise orientation
-        }
-    }
+    
+    
 }

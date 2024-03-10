@@ -30,7 +30,7 @@ extension TrailReportType {
         case .powder:
             return "🌨️\n Powder"
         case .thinCover:
-            return "🍂\n Thing Cover"
+            return "🍂\n Thin Cover"
         }
     }
 

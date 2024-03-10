@@ -46,4 +46,6 @@ enum SystemImageName: String {
     case thincover = "leaf.fill"
     case powder = "cloud.snow.fill"
     case search = "magnifyingglass"
+    case straight = "arrow.triangle.merge"
+    case turn = "arrow.triangle.turn.up.right.diamond.fill"
 }

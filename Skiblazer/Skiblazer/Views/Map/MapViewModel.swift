@@ -37,6 +37,8 @@ class MapViewModel: NSObject, LoadableObject {
     
     @Published var selectedCoordinate: CLLocationCoordinate2D?
     
+    @Published var showFullDirectionsView = false
+    
     private var isRealTime = false
     
     private var isLoadingRoute = false
@@ -147,13 +149,13 @@ class MapViewModel: NSObject, LoadableObject {
             return
         }
         
+        self.transitionState(.loading)
         Task {
             do {
                 let trailReport = try await APIHandler.createTrailReport(type, coordinate, trailMadeOn.value.title)
-                DispatchQueue.main.async {
-                    self.trailReportsToDisplay.append(trailReport)
-                    self.load(.init())
-                }
+                let closestPoint = try self.getClosestPoint(origin: coordinate, graph: self.context.selectedGraph)
+                closestPoint.value.trailReport = trailReport
+                self.load(.init())
             } catch {
                 self.fail(error, .init())
             }
@@ -172,6 +174,7 @@ class MapViewModel: NSObject, LoadableObject {
                 let points = try self.createRoute(origin: origin, destination: destination, graph: self.context.selectedGraph).map { $0.value }
                 let trails = self.transformPointsToTrails(points)
                 let trailReports = self.getTrailReportsFromPoints(points)
+
                 DispatchQueue.main.async {
                     if self.routeInProgress {
                         self.trailsToDisplay = trails
@@ -195,6 +198,10 @@ class MapViewModel: NSObject, LoadableObject {
         if let error = error {
             self.fail(error, .init())
         }
+    }
+    
+    func showFullDirections() {
+        self.showFullDirectionsView = true
     }
     
     private func getTrailReportsFromPoints(_ points: [Point]) -> [TrailReport] {
