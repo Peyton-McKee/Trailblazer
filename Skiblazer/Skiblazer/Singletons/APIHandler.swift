@@ -6,6 +6,7 @@
 //
 
 import Amplify
+import CoreLocation
 import SwiftUI
 
 class APIHandler {
@@ -104,5 +105,16 @@ class APIHandler {
 
         let task = Amplify.Storage.uploadData(key: key, data: data)
         _ = try await task.value
+    }
+
+    static func createTrailReport(_ type: TrailReportType, _ coordinate: CLLocationCoordinate2D, _ trailMadeOn: String) async throws -> TrailReport {
+        guard let selectedMap = AppContext.shared.selectedMap else {
+            throw APIError.invalidConfiguration("No map selected", "Make sure a map is selected before creating a report", nil)
+        }
+
+        let trailReport = TrailReport(type: type, trailMadeOn: trailMadeOn, latitude: coordinate.latitude, longitude: coordinate.longitude, active: true, map: selectedMap)
+        let request = try await Amplify.API.mutate(request: .create(trailReport))
+        let report = try request.get()
+        return report
     }
 }

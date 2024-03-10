@@ -10,7 +10,6 @@ subscription OnCreateTrailReport(
     latitude
     longitude
     active
-    mapId
     map {
       id
       name
@@ -39,7 +38,6 @@ subscription OnUpdateTrailReport(
     latitude
     longitude
     active
-    mapId
     map {
       id
       name
@@ -68,7 +66,6 @@ subscription OnDeleteTrailReport(
     latitude
     longitude
     active
-    mapId
     map {
       id
       name

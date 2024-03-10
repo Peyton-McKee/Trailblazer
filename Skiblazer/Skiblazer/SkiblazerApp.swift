@@ -16,6 +16,8 @@ import SwiftUI
 
 @main
 struct SkiblazerApp: App {
+    @ObservedObject var environment = CustomEnvironment()
+
     init() {
         MapboxOptions.accessToken = ValidationUtils.getMapBoxAccessToken()
     }
@@ -38,6 +40,20 @@ struct SkiblazerApp: App {
             ContentView()
                 .onAppear {
                     self.configureAmplify()
+                }
+                .environment(\.keyboardFocused, self.environment.keyboardFocused)
+                .environmentObject(environment)
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        // the Spacer will push the Done button to the far right of the keyboard as pictured.
+                        Spacer()
+
+                        Button(action: {
+                            environment.keyboardFocused = false
+                        }, label: {
+                            Text("Done")
+                        })
+                    }
                 }
         }
     }

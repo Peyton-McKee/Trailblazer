@@ -11,7 +11,6 @@ extension TrailReport {
     case latitude
     case longitude
     case active
-    case mapId
     case map
     case createdAt
     case updatedAt
@@ -37,7 +36,6 @@ extension TrailReport {
       .field(trailReport.latitude, is: .required, ofType: .double),
       .field(trailReport.longitude, is: .required, ofType: .double),
       .field(trailReport.active, is: .required, ofType: .bool),
-      .field(trailReport.mapId, is: .required, ofType: .string),
       .belongsTo(trailReport.map, is: .required, ofType: Map.self, targetNames: ["mapTrailReportsId"]),
       .field(trailReport.createdAt, is: .optional, isReadOnly: true, ofType: .dateTime),
       .field(trailReport.updatedAt, is: .optional, isReadOnly: true, ofType: .dateTime)

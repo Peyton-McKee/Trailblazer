@@ -425,8 +425,8 @@ import AWSAppSync
 public struct CreateTrailReportInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID? = nil, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, mapTrailReportsId: GraphQLID) {
-    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "mapTrailReportsId": mapTrailReportsId]
+  public init(id: GraphQLID? = nil, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapTrailReportsId: GraphQLID) {
+    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapTrailReportsId": mapTrailReportsId]
   }
 
   public var id: GraphQLID? {
@@ -480,15 +480,6 @@ public struct CreateTrailReportInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "active")
-    }
-  }
-
-  public var mapId: GraphQLID {
-    get {
-      return graphQLMap["mapId"] as! GraphQLID
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "mapId")
     }
   }
 
@@ -546,8 +537,8 @@ public enum TrailReportType: RawRepresentable, Equatable, JSONDecodable, JSONEnc
 public struct ModelTrailReportConditionInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(type: ModelTrailReportTypeInput? = nil, trailMadeOn: ModelStringInput? = nil, latitude: ModelFloatInput? = nil, longitude: ModelFloatInput? = nil, active: ModelBooleanInput? = nil, mapId: ModelIDInput? = nil, and: [ModelTrailReportConditionInput?]? = nil, or: [ModelTrailReportConditionInput?]? = nil, not: ModelTrailReportConditionInput? = nil, mapTrailReportsId: ModelIDInput? = nil) {
-    graphQLMap = ["type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "and": and, "or": or, "not": not, "mapTrailReportsId": mapTrailReportsId]
+  public init(type: ModelTrailReportTypeInput? = nil, trailMadeOn: ModelStringInput? = nil, latitude: ModelFloatInput? = nil, longitude: ModelFloatInput? = nil, active: ModelBooleanInput? = nil, and: [ModelTrailReportConditionInput?]? = nil, or: [ModelTrailReportConditionInput?]? = nil, not: ModelTrailReportConditionInput? = nil, mapTrailReportsId: ModelIDInput? = nil) {
+    graphQLMap = ["type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "and": and, "or": or, "not": not, "mapTrailReportsId": mapTrailReportsId]
   }
 
   public var type: ModelTrailReportTypeInput? {
@@ -592,15 +583,6 @@ public struct ModelTrailReportConditionInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "active")
-    }
-  }
-
-  public var mapId: ModelIDInput? {
-    get {
-      return graphQLMap["mapId"] as! ModelIDInput?
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "mapId")
     }
   }
 
@@ -1189,8 +1171,8 @@ public struct ModelIDInput: GraphQLMapConvertible {
 public struct UpdateTrailReportInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: GraphQLID, type: TrailReportType? = nil, trailMadeOn: String? = nil, latitude: Double? = nil, longitude: Double? = nil, active: Bool? = nil, mapId: GraphQLID? = nil, mapTrailReportsId: GraphQLID? = nil) {
-    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "mapTrailReportsId": mapTrailReportsId]
+  public init(id: GraphQLID, type: TrailReportType? = nil, trailMadeOn: String? = nil, latitude: Double? = nil, longitude: Double? = nil, active: Bool? = nil, mapTrailReportsId: GraphQLID? = nil) {
+    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapTrailReportsId": mapTrailReportsId]
   }
 
   public var id: GraphQLID {
@@ -1244,15 +1226,6 @@ public struct UpdateTrailReportInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "active")
-    }
-  }
-
-  public var mapId: GraphQLID? {
-    get {
-      return graphQLMap["mapId"] as! GraphQLID?
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "mapId")
     }
   }
 
@@ -1507,8 +1480,8 @@ public struct DeleteMapInput: GraphQLMapConvertible {
 public struct ModelTrailReportFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelIDInput? = nil, type: ModelTrailReportTypeInput? = nil, trailMadeOn: ModelStringInput? = nil, latitude: ModelFloatInput? = nil, longitude: ModelFloatInput? = nil, active: ModelBooleanInput? = nil, mapId: ModelIDInput? = nil, and: [ModelTrailReportFilterInput?]? = nil, or: [ModelTrailReportFilterInput?]? = nil, not: ModelTrailReportFilterInput? = nil, mapTrailReportsId: ModelIDInput? = nil) {
-    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "and": and, "or": or, "not": not, "mapTrailReportsId": mapTrailReportsId]
+  public init(id: ModelIDInput? = nil, type: ModelTrailReportTypeInput? = nil, trailMadeOn: ModelStringInput? = nil, latitude: ModelFloatInput? = nil, longitude: ModelFloatInput? = nil, active: ModelBooleanInput? = nil, and: [ModelTrailReportFilterInput?]? = nil, or: [ModelTrailReportFilterInput?]? = nil, not: ModelTrailReportFilterInput? = nil, mapTrailReportsId: ModelIDInput? = nil) {
+    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "and": and, "or": or, "not": not, "mapTrailReportsId": mapTrailReportsId]
   }
 
   public var id: ModelIDInput? {
@@ -1562,15 +1535,6 @@ public struct ModelTrailReportFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "active")
-    }
-  }
-
-  public var mapId: ModelIDInput? {
-    get {
-      return graphQLMap["mapId"] as! ModelIDInput?
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "mapId")
     }
   }
 
@@ -1703,8 +1667,8 @@ public struct ModelMapFilterInput: GraphQLMapConvertible {
 public struct ModelSubscriptionTrailReportFilterInput: GraphQLMapConvertible {
   public var graphQLMap: GraphQLMap
 
-  public init(id: ModelSubscriptionIDInput? = nil, type: ModelSubscriptionStringInput? = nil, trailMadeOn: ModelSubscriptionStringInput? = nil, latitude: ModelSubscriptionFloatInput? = nil, longitude: ModelSubscriptionFloatInput? = nil, active: ModelSubscriptionBooleanInput? = nil, mapId: ModelSubscriptionIDInput? = nil, and: [ModelSubscriptionTrailReportFilterInput?]? = nil, or: [ModelSubscriptionTrailReportFilterInput?]? = nil) {
-    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "and": and, "or": or]
+  public init(id: ModelSubscriptionIDInput? = nil, type: ModelSubscriptionStringInput? = nil, trailMadeOn: ModelSubscriptionStringInput? = nil, latitude: ModelSubscriptionFloatInput? = nil, longitude: ModelSubscriptionFloatInput? = nil, active: ModelSubscriptionBooleanInput? = nil, and: [ModelSubscriptionTrailReportFilterInput?]? = nil, or: [ModelSubscriptionTrailReportFilterInput?]? = nil) {
+    graphQLMap = ["id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "and": and, "or": or]
   }
 
   public var id: ModelSubscriptionIDInput? {
@@ -1758,15 +1722,6 @@ public struct ModelSubscriptionTrailReportFilterInput: GraphQLMapConvertible {
     }
     set {
       graphQLMap.updateValue(newValue, forKey: "active")
-    }
-  }
-
-  public var mapId: ModelSubscriptionIDInput? {
-    get {
-      return graphQLMap["mapId"] as! ModelSubscriptionIDInput?
-    }
-    set {
-      graphQLMap.updateValue(newValue, forKey: "mapId")
     }
   }
 
@@ -2218,7 +2173,7 @@ public struct ModelSubscriptionMapFilterInput: GraphQLMapConvertible {
 
 public final class CreateTrailReportMutation: GraphQLMutation {
   public static let operationString =
-    "mutation CreateTrailReport($input: CreateTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  createTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "mutation CreateTrailReport($input: CreateTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  createTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var input: CreateTrailReportInput
   public var condition: ModelTrailReportConditionInput?
@@ -2269,7 +2224,6 @@ public final class CreateTrailReportMutation: GraphQLMutation {
         GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
-        GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -2282,8 +2236,8 @@ public final class CreateTrailReportMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -2346,15 +2300,6 @@ public final class CreateTrailReportMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "active")
-        }
-      }
-
-      public var mapId: GraphQLID {
-        get {
-          return snapshot["mapId"]! as! GraphQLID
-        }
-        set {
-          snapshot.updateValue(newValue, forKey: "mapId")
         }
       }
 
@@ -2506,7 +2451,7 @@ public final class CreateTrailReportMutation: GraphQLMutation {
 
 public final class UpdateTrailReportMutation: GraphQLMutation {
   public static let operationString =
-    "mutation UpdateTrailReport($input: UpdateTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  updateTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "mutation UpdateTrailReport($input: UpdateTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  updateTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var input: UpdateTrailReportInput
   public var condition: ModelTrailReportConditionInput?
@@ -2557,7 +2502,6 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
         GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
-        GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -2570,8 +2514,8 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -2634,15 +2578,6 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "active")
-        }
-      }
-
-      public var mapId: GraphQLID {
-        get {
-          return snapshot["mapId"]! as! GraphQLID
-        }
-        set {
-          snapshot.updateValue(newValue, forKey: "mapId")
         }
       }
 
@@ -2794,7 +2729,7 @@ public final class UpdateTrailReportMutation: GraphQLMutation {
 
 public final class DeleteTrailReportMutation: GraphQLMutation {
   public static let operationString =
-    "mutation DeleteTrailReport($input: DeleteTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  deleteTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "mutation DeleteTrailReport($input: DeleteTrailReportInput!, $condition: ModelTrailReportConditionInput) {\n  deleteTrailReport(input: $input, condition: $condition) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var input: DeleteTrailReportInput
   public var condition: ModelTrailReportConditionInput?
@@ -2845,7 +2780,6 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
         GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
-        GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -2858,8 +2792,8 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -2922,15 +2856,6 @@ public final class DeleteTrailReportMutation: GraphQLMutation {
         }
         set {
           snapshot.updateValue(newValue, forKey: "active")
-        }
-      }
-
-      public var mapId: GraphQLID {
-        get {
-          return snapshot["mapId"]! as! GraphQLID
-        }
-        set {
-          snapshot.updateValue(newValue, forKey: "mapId")
         }
       }
 
@@ -3676,7 +3601,7 @@ public final class DeleteMapMutation: GraphQLMutation {
 
 public final class GetTrailReportQuery: GraphQLQuery {
   public static let operationString =
-    "query GetTrailReport($id: ID!) {\n  getTrailReport(id: $id) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "query GetTrailReport($id: ID!) {\n  getTrailReport(id: $id) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var id: GraphQLID
 
@@ -3725,7 +3650,6 @@ public final class GetTrailReportQuery: GraphQLQuery {
         GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
-        GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -3738,8 +3662,8 @@ public final class GetTrailReportQuery: GraphQLQuery {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -3802,15 +3726,6 @@ public final class GetTrailReportQuery: GraphQLQuery {
         }
         set {
           snapshot.updateValue(newValue, forKey: "active")
-        }
-      }
-
-      public var mapId: GraphQLID {
-        get {
-          return snapshot["mapId"]! as! GraphQLID
-        }
-        set {
-          snapshot.updateValue(newValue, forKey: "mapId")
         }
       }
 
@@ -3962,7 +3877,7 @@ public final class GetTrailReportQuery: GraphQLQuery {
 
 public final class ListTrailReportsQuery: GraphQLQuery {
   public static let operationString =
-    "query ListTrailReports($filter: ModelTrailReportFilterInput, $limit: Int, $nextToken: String) {\n  listTrailReports(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      type\n      trailMadeOn\n      latitude\n      longitude\n      active\n      mapId\n      createdAt\n      updatedAt\n      mapTrailReportsId\n    }\n    nextToken\n  }\n}"
+    "query ListTrailReports($filter: ModelTrailReportFilterInput, $limit: Int, $nextToken: String) {\n  listTrailReports(filter: $filter, limit: $limit, nextToken: $nextToken) {\n    __typename\n    items {\n      __typename\n      id\n      type\n      trailMadeOn\n      latitude\n      longitude\n      active\n      createdAt\n      updatedAt\n      mapTrailReportsId\n    }\n    nextToken\n  }\n}"
 
   public var filter: ModelTrailReportFilterInput?
   public var limit: Int?
@@ -4061,7 +3976,6 @@ public final class ListTrailReportsQuery: GraphQLQuery {
           GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
           GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
           GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
-          GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
           GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
           GraphQLField("mapTrailReportsId", type: .nonNull(.scalar(GraphQLID.self))),
@@ -4073,8 +3987,8 @@ public final class ListTrailReportsQuery: GraphQLQuery {
           self.snapshot = snapshot
         }
 
-        public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-          self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+        public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+          self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
         }
 
         public var __typename: String {
@@ -4137,15 +4051,6 @@ public final class ListTrailReportsQuery: GraphQLQuery {
           }
           set {
             snapshot.updateValue(newValue, forKey: "active")
-          }
-        }
-
-        public var mapId: GraphQLID {
-          get {
-            return snapshot["mapId"]! as! GraphQLID
-          }
-          set {
-            snapshot.updateValue(newValue, forKey: "mapId")
           }
         }
 
@@ -4578,7 +4483,7 @@ public final class ListMapsQuery: GraphQLQuery {
 
 public final class OnCreateTrailReportSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnCreateTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onCreateTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "subscription OnCreateTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onCreateTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var filter: ModelSubscriptionTrailReportFilterInput?
 
@@ -4627,7 +4532,6 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
         GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
-        GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -4640,8 +4544,8 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -4704,15 +4608,6 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "active")
-        }
-      }
-
-      public var mapId: GraphQLID {
-        get {
-          return snapshot["mapId"]! as! GraphQLID
-        }
-        set {
-          snapshot.updateValue(newValue, forKey: "mapId")
         }
       }
 
@@ -4864,7 +4759,7 @@ public final class OnCreateTrailReportSubscription: GraphQLSubscription {
 
 public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnUpdateTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onUpdateTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "subscription OnUpdateTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onUpdateTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var filter: ModelSubscriptionTrailReportFilterInput?
 
@@ -4913,7 +4808,6 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
         GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
-        GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -4926,8 +4820,8 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -4990,15 +4884,6 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "active")
-        }
-      }
-
-      public var mapId: GraphQLID {
-        get {
-          return snapshot["mapId"]! as! GraphQLID
-        }
-        set {
-          snapshot.updateValue(newValue, forKey: "mapId")
         }
       }
 
@@ -5150,7 +5035,7 @@ public final class OnUpdateTrailReportSubscription: GraphQLSubscription {
 
 public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
   public static let operationString =
-    "subscription OnDeleteTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onDeleteTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    mapId\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
+    "subscription OnDeleteTrailReport($filter: ModelSubscriptionTrailReportFilterInput) {\n  onDeleteTrailReport(filter: $filter) {\n    __typename\n    id\n    type\n    trailMadeOn\n    latitude\n    longitude\n    active\n    map {\n      __typename\n      id\n      name\n      storageKeyPrefix\n      mountainReportUrl\n      trailStatusElementId\n      liftStatusElementId\n      createdAt\n      updatedAt\n    }\n    createdAt\n    updatedAt\n    mapTrailReportsId\n  }\n}"
 
   public var filter: ModelSubscriptionTrailReportFilterInput?
 
@@ -5199,7 +5084,6 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
         GraphQLField("latitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("longitude", type: .nonNull(.scalar(Double.self))),
         GraphQLField("active", type: .nonNull(.scalar(Bool.self))),
-        GraphQLField("mapId", type: .nonNull(.scalar(GraphQLID.self))),
         GraphQLField("map", type: .nonNull(.object(Map.selections))),
         GraphQLField("createdAt", type: .nonNull(.scalar(String.self))),
         GraphQLField("updatedAt", type: .nonNull(.scalar(String.self))),
@@ -5212,8 +5096,8 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
         self.snapshot = snapshot
       }
 
-      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, mapId: GraphQLID, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
-        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "mapId": mapId, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
+      public init(id: GraphQLID, type: TrailReportType, trailMadeOn: String, latitude: Double, longitude: Double, active: Bool, map: Map, createdAt: String, updatedAt: String, mapTrailReportsId: GraphQLID) {
+        self.init(snapshot: ["__typename": "TrailReport", "id": id, "type": type, "trailMadeOn": trailMadeOn, "latitude": latitude, "longitude": longitude, "active": active, "map": map.snapshot, "createdAt": createdAt, "updatedAt": updatedAt, "mapTrailReportsId": mapTrailReportsId])
       }
 
       public var __typename: String {
@@ -5276,15 +5160,6 @@ public final class OnDeleteTrailReportSubscription: GraphQLSubscription {
         }
         set {
           snapshot.updateValue(newValue, forKey: "active")
-        }
-      }
-
-      public var mapId: GraphQLID {
-        get {
-          return snapshot["mapId"]! as! GraphQLID
-        }
-        set {
-          snapshot.updateValue(newValue, forKey: "mapId")
         }
       }
 

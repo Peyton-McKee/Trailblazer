@@ -22,6 +22,11 @@ struct AsyncContentView<Source: LoadableObject, Content: View>: View {
                     }
             case .loading:
                 LoadingIndicator()
+            case .loadingRoute:
+                VStack {
+                    LoadingIndicator()
+                    SkiblazerLabel("Loading Route...")
+                }
             case .loadingAsyncImage:
                 Image(systemName: SystemImageName.photo.rawValue)
                     .resizable()

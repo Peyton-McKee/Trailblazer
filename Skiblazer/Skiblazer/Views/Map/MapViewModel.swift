@@ -12,9 +12,13 @@ struct MapProps {}
 
 class MapViewModel: NSObject, LoadableObject {
     @Published var state: LoadingState<MapProps> = .idle
-
+    
     @Published var trailsToDisplay: [Trail] = []
-
+    
+    @Published var totalTrails: [Trail] = []
+    
+    @Published var trailReportsToDisplay: [TrailReport] = []
+    
     @ObservedObject var mapInterpreter = MapInterpreter.shared
     
     @ObservedObject var context = AppContext.shared
@@ -25,18 +29,26 @@ class MapViewModel: NSObject, LoadableObject {
     
     @Published var currentPath: [Vertex<Point>] = []
     
+    @Published var showTrailReportSelector = false
+    
+    @Published var showTrailSelector = false
+    
+    @Published var showSampleRouteView = false
+    
+    @Published var selectedCoordinate: CLLocationCoordinate2D?
+    
     private var isRealTime = false
-        
+    
     private var isLoadingRoute = false
     
     var map: Map
-
+    
     init(map: Map) {
         self.map = map
         super.init()
         LocationManager.shared.delegate = self
     }
-
+    
     func load() {
         self.transitionState(.loading)
         Task {
@@ -45,18 +57,39 @@ class MapViewModel: NSObject, LoadableObject {
                 try await self.mapInterpreter.createMap(map: map)
                 self.webAnalysis.makeRequest(graph: self.mapInterpreter.difficultyGraph)
                 
-                let points = self.mapInterpreter.difficultyGraph.vertices.map { $0.value }
-
-                let trails = self.transformPointsToTrails(points)
                 DispatchQueue.main.async {
                     self.context.selectedGraph = self.mapInterpreter.difficultyGraph
-                    self.trailsToDisplay = trails
+                    self.refreshReportsAndTrails()
                     self.load(.init())
                 }
             } catch {
                 self.fail(error, .init())
             }
         }
+    }
+    
+    func onTrailSelectorButtonPressed() {
+        self.showTrailSelector.toggle()
+    }
+    
+    func onTrailSelected(_ trail: Trail) {
+        self.showTrailSelector = false
+        self.sampleRoute(destination: trail.firstPoint)
+    }
+    
+    private func sampleRoute(_ origin: Point? = nil, destination: Point) {
+        self.startRoute(origin, destination: destination)
+        self.showSampleRouteView = true
+    }
+    
+    func onLetsGoPressed() {
+        self.showSampleRouteView = false
+    }
+    
+    private func startRoute(_ origin: Point? = nil, destination: Point) {
+        self.transitionState(.loadingRoute)
+        self.cancelRoute()
+        self.findAndDisplayRoute(origin, destination: destination)
     }
     
     func onRealTimeSelected() {
@@ -80,27 +113,55 @@ class MapViewModel: NSObject, LoadableObject {
             DispatchQueue.main.async {
                 self.isRealTime = true
                 self.context.selectedGraph = self.webAnalysis.realTimeGraph
-                self.trailsToDisplay = self.transformPointsToTrails(self.webAnalysis.realTimeGraph.vertices.map { $0.value })
+                self.refreshReportsAndTrails()
                 self.load(.init())
             }
         }
     }
     
+    private func refreshReportsAndTrails() {
+        let points = self.context.selectedGraph.vertices.map { $0.value }
+        let trails = self.transformPointsToTrails(points)
+        self.totalTrails = trails
+        self.trailsToDisplay = trails
+        self.trailReportsToDisplay = self.getTrailReportsFromPoints(points)
+    }
+    
     func onMapTap(_ coordinate: CLLocationCoordinate2D) {
-        DispatchQueue.main.async {
-            self.transitionState(.loading)
-            self.cancelRoute()
-            self.routeInProgress = true
+        do {
+            let closestPoint = try self.getClosestPoint(origin: coordinate, graph: self.context.selectedGraph)
+            self.sampleRoute(destination: closestPoint.value)
+        } catch {
+            self.cancelRoute(error)
+        }
+    }
+    
+    func onMapLongPress(_ coordinate: CLLocationCoordinate2D) {
+        self.selectedCoordinate = coordinate
+        self.showTrailReportSelector.toggle()
+    }
+    
+    func onTrailReportTypeSelected(_ type: TrailReportType) {
+        self.showTrailReportSelector.toggle()
+        guard let coordinate = self.selectedCoordinate, let trailMadeOn = try? self.getClosestPoint(origin: coordinate, graph: self.context.selectedGraph) else {
+            return
+        }
+        
+        Task {
             do {
-                let closestPoint = try self.getClosestPoint(origin: coordinate, graph: self.context.selectedGraph)
-                self.findAndDisplayRoute(destination: closestPoint.value)
+                let trailReport = try await APIHandler.createTrailReport(type, coordinate, trailMadeOn.value.title)
+                DispatchQueue.main.async {
+                    self.trailReportsToDisplay.append(trailReport)
+                    self.load(.init())
+                }
             } catch {
-                self.cancelRoute(error)
+                self.fail(error, .init())
             }
         }
     }
     
     func findAndDisplayRoute(_ origin: Point? = nil, destination: Point) {
+        self.routeInProgress = true
         DispatchQueue.global().async {
             do {
                 defer {
@@ -108,13 +169,15 @@ class MapViewModel: NSObject, LoadableObject {
                 }
                 
                 self.isLoadingRoute = true
-                let points = try self.createRoute(origin: origin, destination: destination, graph: self.context.selectedGraph)
-                let trails = self.transformPointsToTrails(points.map { $0.value })
+                let points = try self.createRoute(origin: origin, destination: destination, graph: self.context.selectedGraph).map { $0.value }
+                let trails = self.transformPointsToTrails(points)
+                let trailReports = self.getTrailReportsFromPoints(points)
                 DispatchQueue.main.async {
                     if self.routeInProgress {
                         self.trailsToDisplay = trails
-                        self.load(.init())
+                        self.trailReportsToDisplay = trailReports
                     }
+                    self.load(.init())
                 }
             } catch {
                 self.cancelRoute(error)
@@ -128,10 +191,22 @@ class MapViewModel: NSObject, LoadableObject {
         self.currentPath = []
         self.isLoadingRoute = false
         self.mapInterpreter.difficultyGraph.removeVertices { $0.value.title == "Your Location" }
-            
+        
         if let error = error {
             self.fail(error, .init())
         }
+    }
+    
+    private func getTrailReportsFromPoints(_ points: [Point]) -> [TrailReport] {
+        var reports = [TrailReport]()
+        
+        for point in points {
+            if let report = point.trailReport {
+                reports.append(report)
+            }
+        }
+        
+        return reports
     }
     
     private func transformPointsToTrails(_ points: [Point]) -> [Trail] {
@@ -179,7 +254,7 @@ class MapViewModel: NSObject, LoadableObject {
                 // Then youve completed your journey
                 // figure out something to do buckoh
                 DispatchQueue.main.async {
-//                    self.cancelRoute()
+                    self.cancelRoute()
                 }
                 
 //                guard let currentUserId = Self.currentUser.id else {

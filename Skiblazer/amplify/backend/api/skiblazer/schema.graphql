@@ -17,7 +17,6 @@ type TrailReport @model {
   longitude: Float!
   active: Boolean! @default(value: "true")
 
-  mapId: ID!
   map: Map! @belongsTo
 }
 

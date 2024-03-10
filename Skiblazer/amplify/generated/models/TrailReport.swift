@@ -9,7 +9,6 @@ public struct TrailReport: Model {
   public var latitude: Double
   public var longitude: Double
   public var active: Bool
-  public var mapId: String
   public var map: Map
   public var createdAt: Temporal.DateTime?
   public var updatedAt: Temporal.DateTime?
@@ -20,7 +19,6 @@ public struct TrailReport: Model {
       latitude: Double,
       longitude: Double,
       active: Bool,
-      mapId: String,
       map: Map) {
     self.init(id: id,
       type: type,
@@ -28,7 +26,6 @@ public struct TrailReport: Model {
       latitude: latitude,
       longitude: longitude,
       active: active,
-      mapId: mapId,
       map: map,
       createdAt: nil,
       updatedAt: nil)
@@ -39,7 +36,6 @@ public struct TrailReport: Model {
       latitude: Double,
       longitude: Double,
       active: Bool,
-      mapId: String,
       map: Map,
       createdAt: Temporal.DateTime? = nil,
       updatedAt: Temporal.DateTime? = nil) {
@@ -49,7 +45,6 @@ public struct TrailReport: Model {
       self.latitude = latitude
       self.longitude = longitude
       self.active = active
-      self.mapId = mapId
       self.map = map
       self.createdAt = createdAt
       self.updatedAt = updatedAt

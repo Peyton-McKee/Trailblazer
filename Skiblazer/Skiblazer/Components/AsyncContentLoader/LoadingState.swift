@@ -14,4 +14,5 @@ enum LoadingState<Value> {
     case failed(Error, Value?)
     case loaded(Value)
     case empty
+    case loadingRoute
 }

@@ -41,4 +41,9 @@ enum SystemImageName: String {
     case current = "plus"
     case cart = "cart.circle"
     case time = "timer.circle"
+    case snowflake = "snowflake"
+    case moguls = "smoke.fill"
+    case thincover = "leaf.fill"
+    case powder = "cloud.snow.fill"
+    case search = "magnifyingglass"
 }
