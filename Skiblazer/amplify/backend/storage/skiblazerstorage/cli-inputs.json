@@ -1,23 +1,20 @@
 {
-  "resourceName": "skiblazerstorage",
-  "policyUUID": "edd90afa",
-  "bucketName": "skiblazerstorage",
+  "resourceName": "skiblazerStorage",
+  "policyUUID": "c9c286cb",
+  "bucketName": "skiblazerbucket",
   "storageAccess": "authAndGuest",
   "guestAccess": [
-    "CREATE_AND_UPDATE",
-    "READ",
-    "DELETE"
+    "READ"
   ],
   "authAccess": [
     "CREATE_AND_UPDATE",
     "READ",
     "DELETE"
   ],
+  "triggerFunction": "NONE",
   "groupAccess": {
     "skiblazerpool": [
-      "CREATE_AND_UPDATE",
-      "READ",
-      "DELETE"
+      "READ"
     ]
   }
 }

@@ -1,37 +1,33 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-skiblazer-dev-123548-authRole",
-      "UnauthRoleArn": "arn:aws:iam::145396720895:role/amplify-skiblazer-dev-123548-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::145396720895:role/amplify-skiblazer-dev-123548-authRole",
+      "AuthRoleName": "amplify-skiblazer-dev-162303-authRole",
+      "UnauthRoleArn": "arn:aws:iam::145396720895:role/amplify-skiblazer-dev-162303-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::145396720895:role/amplify-skiblazer-dev-162303-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-skiblazer-dev-123548-deployment",
-      "UnauthRoleName": "amplify-skiblazer-dev-123548-unauthRole",
-      "StackName": "amplify-skiblazer-dev-123548",
-      "StackId": "arn:aws:cloudformation:us-east-1:145396720895:stack/amplify-skiblazer-dev-123548/a4cd77d0-da4d-11ee-af8c-12e2635b299f",
-      "AmplifyAppId": "dmn1gb5gmnq5b",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-skiblazer-dev-123548-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "DeploymentBucketName": "amplify-skiblazer-dev-162303-deployment",
+      "UnauthRoleName": "amplify-skiblazer-dev-162303-unauthRole",
+      "StackName": "amplify-skiblazer-dev-162303",
+      "StackId": "arn:aws:cloudformation:us-east-1:145396720895:stack/amplify-skiblazer-dev-162303/2a3252f0-dfe5-11ee-825d-12c7f9623211",
+      "AmplifyAppId": "d2shp8bwifgbia"
     },
     "categories": {
-      "auth": {
-        "skiblazer8f0dae09": {},
-        "userPoolGroups": {}
-      },
       "function": {
-        "skiblazer8f0dae09PostConfirmation": {
-          "GROUP": "skiblazerpool",
-          "deploymentBucketName": "amplify-skiblazer-dev-123548-deployment",
-          "s3Key": "amplify-builds/skiblazer8f0dae09PostConfirmation-3139496553634f424d79-build.zip"
+        "skiblazer6dd7c5e3PostConfirmation": {
+          "GROUP": "skiblazerPool",
+          "deploymentBucketName": "amplify-skiblazer-dev-162303-deployment",
+          "s3Key": "amplify-builds/skiblazer6dd7c5e3PostConfirmation-344d4162455a66454e46-build.zip"
         }
       },
-      "storage": {
-        "skiblazerstorage": {}
+      "auth": {
+        "skiblazeraf3854a2": {},
+        "userPoolGroups": {}
       },
       "api": {
         "skiblazer": {}
       },
-      "analytics": {
-        "skiblazer": {}
+      "storage": {
+        "skiblazerStorage": {}
       }
     }
   }

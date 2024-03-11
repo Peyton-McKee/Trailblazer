@@ -39,16 +39,13 @@ class APIHandler {
             }
         }
 
-        let imageTask = Amplify.Storage.downloadData(key: map.storageKeyPrefix + "image")
-        let imageData = try await imageTask.value
-
         guard let easyTrails = data[StorageExtension.easy.rawValue],
               let intermediateTrails = data[StorageExtension.intermediate.rawValue],
               let advancedTrails = data[StorageExtension.advanced.rawValue],
               let expertsOnlyTrails = data[StorageExtension.expertsOnly.rawValue],
               let terrainParks = data[StorageExtension.terrainPark.rawValue],
               let lifts = data[StorageExtension.lift.rawValue],
-              let connectors = data[StorageExtension.connector.rawValue], let image = UIImage(data: imageData)
+              let connectors = data[StorageExtension.connector.rawValue]
         else {
             throw APIError.invalidConfiguration("Map does not contain necessary files to complete download", "Make sure your map has an image and easy, intermediate, advanced, experts only, connector trails as well as lifts and terrain parks", nil)
         }

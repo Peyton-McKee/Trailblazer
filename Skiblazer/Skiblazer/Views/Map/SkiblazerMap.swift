@@ -138,6 +138,28 @@ struct SkiblazerMap: View {
                             }
                         }
 
+                        Button {
+                            self.viewModel.onRealTimeSelected()
+                        } label: {
+                            Image(systemName: SystemImageName.time.rawValue)
+                        }
+                        .foregroundStyle(.primary)
+                        .padding(8)
+                        .background(Color.blue)
+                        .clipShape(.buttonBorder)
+
+                        Button {
+                            withAnimation {
+                                self.viewport = Viewport.followPuck(zoom: 14)
+                            }
+                        } label: {
+                            Image(systemName: SystemImageName.location.rawValue)
+                        }
+                        .foregroundStyle(.primary)
+                        .padding(8)
+                        .background(Color.blue)
+                        .clipShape(.buttonBorder)
+                        
                         if self.viewModel.routeInProgress {
                             Button {
                                 self.viewModel.cancelRoute()
@@ -149,16 +171,6 @@ struct SkiblazerMap: View {
                             .background(Color.red)
                             .clipShape(.buttonBorder)
                         }
-
-                        Button {
-                            self.viewModel.onRealTimeSelected()
-                        } label: {
-                            Image(systemName: SystemImageName.time.rawValue)
-                        }
-                        .foregroundStyle(.primary)
-                        .padding(8)
-                        .background(Color.blue)
-                        .clipShape(.buttonBorder)
                     }
                 }
                 .padding(.horizontal, 8)

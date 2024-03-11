@@ -22,6 +22,10 @@ extension TrailReport {
   public static let schema = defineSchema { model in
     let trailReport = TrailReport.keys
     
+    model.authRules = [
+      rule(allow: .public, operations: [.create, .update, .delete, .read])
+    ]
+    
     model.listPluralName = "TrailReports"
     model.syncPluralName = "TrailReports"
     

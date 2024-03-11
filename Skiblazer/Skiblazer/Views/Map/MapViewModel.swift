@@ -151,9 +151,11 @@ class MapViewModel: NSObject, LoadableObject {
         Task {
             do {
                 try await APIHandler.deleteTrailReport(report)
-                self.selectedTrailReport = nil
-                self.showNoLongerThereView.toggle()
-                self.load(.init())
+                DispatchQueue.main.async {
+                    self.selectedTrailReport = nil
+                    self.showNoLongerThereView.toggle()
+                    self.load(.init())
+                }
             } catch {
                 self.fail(error, .init())
             }

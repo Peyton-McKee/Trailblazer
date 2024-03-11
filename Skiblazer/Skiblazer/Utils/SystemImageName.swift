@@ -48,4 +48,5 @@ enum SystemImageName: String {
     case search = "magnifyingglass"
     case straight = "arrow.triangle.merge"
     case turn = "arrow.triangle.turn.up.right.diamond.fill"
+    case location = "location.circle"
 }

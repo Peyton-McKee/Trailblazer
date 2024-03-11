@@ -1,11 +1,4 @@
 export type AmplifyDependentResourcesAttributes = {
-  "analytics": {
-    "skiblazer": {
-      "Id": "string",
-      "Region": "string",
-      "appName": "string"
-    }
-  },
   "api": {
     "skiblazer": {
       "GraphQLAPIEndpointOutput": "string",
@@ -14,10 +7,9 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "skiblazer8f0dae09": {
+    "skiblazeraf3854a2": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
-      "CreatedSNSRole": "string",
       "IdentityPoolId": "string",
       "IdentityPoolName": "string",
       "UserPoolArn": "string",
@@ -29,7 +21,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
-    "skiblazer8f0dae09PostConfirmation": {
+    "skiblazer6dd7c5e3PostConfirmation": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
       "LambdaExecutionRoleArn": "string",
@@ -38,7 +30,7 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "storage": {
-    "skiblazerstorage": {
+    "skiblazerStorage": {
       "BucketName": "string",
       "Region": "string"
     }

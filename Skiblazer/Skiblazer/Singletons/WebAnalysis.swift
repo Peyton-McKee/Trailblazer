@@ -139,10 +139,6 @@ final class WebAnalysis: NSObject, WKNavigationDelegate, ObservableObject
                                     foundTrails.append(vertex.value.title)
                                     annotations.append(vertex.value)
                                 }
-                                if let trailReport = vertex.value.trailReport
-                                {
-//                                    annotations.append(trailReport)
-                                }
                                 for edge in vertex.adjacentEdges
                                 {
                                     if edge.destination.value.difficulty == .connector

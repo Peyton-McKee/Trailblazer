@@ -1,10 +1,4 @@
 {
-  "analytics": {
-    "skiblazer": {
-      "providerPlugin": "awscloudformation",
-      "service": "Pinpoint"
-    }
-  },
   "api": {
     "skiblazer": {
       "dependsOn": [],
@@ -24,21 +18,11 @@
     }
   },
   "auth": {
-    "skiblazer8f0dae09": {
+    "skiblazeraf3854a2": {
       "customAuth": false,
-      "dependsOn": [
-        {
-          "attributes": [
-            "Arn",
-            "Name"
-          ],
-          "category": "function",
-          "resourceName": "skiblazer8f0dae09PostConfirmation",
-          "triggerProvider": "Cognito"
-        }
-      ],
+      "dependsOn": [],
       "frontendAuthConfig": {
-        "mfaConfiguration": "OPTIONAL",
+        "mfaConfiguration": "OFF",
         "mfaTypes": [
           "SMS"
         ],
@@ -68,7 +52,7 @@
             "IdentityPoolId"
           ],
           "category": "auth",
-          "resourceName": "skiblazer8f0dae09"
+          "resourceName": "skiblazeraf3854a2"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -76,47 +60,47 @@
     }
   },
   "function": {
-    "skiblazer8f0dae09PostConfirmation": {
+    "skiblazer6dd7c5e3PostConfirmation": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     }
   },
   "parameters": {
-    "AMPLIFY_function_skiblazer8f0dae09PostConfirmation_GROUP": {
+    "AMPLIFY_function_skiblazer6dd7c5e3PostConfirmation_GROUP": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "skiblazer8f0dae09PostConfirmation"
+          "resourceName": "skiblazer6dd7c5e3PostConfirmation"
         }
       ]
     },
-    "AMPLIFY_function_skiblazer8f0dae09PostConfirmation_deploymentBucketName": {
+    "AMPLIFY_function_skiblazer6dd7c5e3PostConfirmation_deploymentBucketName": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "skiblazer8f0dae09PostConfirmation"
+          "resourceName": "skiblazer6dd7c5e3PostConfirmation"
         }
       ]
     },
-    "AMPLIFY_function_skiblazer8f0dae09PostConfirmation_s3Key": {
+    "AMPLIFY_function_skiblazer6dd7c5e3PostConfirmation_s3Key": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "skiblazer8f0dae09PostConfirmation"
+          "resourceName": "skiblazer6dd7c5e3PostConfirmation"
         }
       ]
     }
   },
   "storage": {
-    "skiblazerstorage": {
+    "skiblazerStorage": {
       "dependsOn": [
         {
           "attributes": [
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "skiblazer8f0dae09"
+          "resourceName": "skiblazeraf3854a2"
         },
         {
           "attributes": [

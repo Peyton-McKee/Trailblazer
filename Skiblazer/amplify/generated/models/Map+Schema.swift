@@ -22,6 +22,10 @@ extension Map {
   public static let schema = defineSchema { model in
     let map = Map.keys
     
+    model.authRules = [
+      rule(allow: .public, operations: [.create, .update, .delete, .read])
+    ]
+    
     model.listPluralName = "Maps"
     model.syncPluralName = "Maps"
     

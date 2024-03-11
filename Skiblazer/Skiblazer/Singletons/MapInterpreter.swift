@@ -153,12 +153,12 @@ final class MapInterpreter: ObservableObject
         {
             let point = Point(coordinate: .init(latitude: report.latitude, longitude: report.longitude), title: report.type.rawValue, difficulty: .easy)
             
-            if var closestVertex = try? self.getClosestPoint(origin: point.coordinate, graph: self.distanceGraph)
+            if let closestVertex = try? self.getClosestPoint(origin: point.coordinate, graph: self.distanceGraph)
             {
                 closestVertex.value.trailReport = report
             }
             
-            if var closestVertex = try? self.getClosestPoint(origin: point.coordinate, graph: self.difficultyGraph)
+            if let closestVertex = try? self.getClosestPoint(origin: point.coordinate, graph: self.difficultyGraph)
             {
                 closestVertex.value.trailReport = report
             }
