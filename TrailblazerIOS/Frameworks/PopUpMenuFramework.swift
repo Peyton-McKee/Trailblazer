@@ -45,9 +45,5 @@ class PopUpMenuFramework
             self.view!.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.height)
         }, completion: nil)
     }
-    
-    deinit {
-        print("deallocating pop up menu framework with view: \(self.view?.description)")
-    }
 }
 

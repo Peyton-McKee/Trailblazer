@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)"
-options: "cbb85ae876855958dc24ecbe6b117d198d6c998208b768c1a8f031d9f9cd3b52"
-build_start_time: [1665451820, 227912902]
-build_end_time: [1665451822, 927811145]
-inputs:
-  "/Users/peytonmckee/Documents/GitHub/Trailblazer/TILApp/.build/checkouts/swift-metrics/Sources/Metrics/Metrics.swift": [1665451811, 297359466]

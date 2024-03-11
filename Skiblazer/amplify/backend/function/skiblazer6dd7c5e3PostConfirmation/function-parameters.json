@@ -1,0 +1,16 @@
+{
+  "trigger": true,
+  "modules": [
+    "add-to-group"
+  ],
+  "parentResource": "skiblazer6dd7c5e3",
+  "functionName": "skiblazer6dd7c5e3PostConfirmation",
+  "resourceName": "skiblazer6dd7c5e3PostConfirmation",
+  "parentStack": "auth",
+  "triggerEnvs": "[]",
+  "triggerDir": "/snapshot/amplify-cli/build/node_modules/@aws-amplify/amplify-category-auth/provider-utils/awscloudformation/triggers/PostConfirmation",
+  "triggerTemplate": "PostConfirmation.json.ejs",
+  "triggerEventPath": "PostConfirmation.event.json",
+  "roleName": "skiblazer6dd7c5e3PostConfirmation",
+  "skipEdit": true
+}

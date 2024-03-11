@@ -1,4 +1,0 @@
-module CoreMetrics {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/CoreMetrics.build/CoreMetrics-Swift.h"
-    requires objc
-}

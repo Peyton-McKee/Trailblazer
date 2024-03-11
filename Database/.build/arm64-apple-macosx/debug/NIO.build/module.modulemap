@@ -1,4 +1,0 @@
-module NIO {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/NIO.build/NIO-Swift.h"
-    requires objc
-}

@@ -1,4 +1,0 @@
-module CVaporURLParser {
-    umbrella "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/checkouts/vapor/Sources/CVaporURLParser/include"
-    export *
-}

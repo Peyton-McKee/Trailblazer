@@ -1,4 +1,0 @@
-module NIOSSL {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/NIOSSL.build/NIOSSL-Swift.h"
-    requires objc
-}

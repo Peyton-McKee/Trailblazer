@@ -1,4 +1,0 @@
-module CNIOLinux {
-    umbrella header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/checkouts/swift-nio/Sources/CNIOLinux/include/CNIOLinux.h"
-    export *
-}

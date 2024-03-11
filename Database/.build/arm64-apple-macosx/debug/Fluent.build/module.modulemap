@@ -1,4 +1,0 @@
-module Fluent {
-    header "/Users/peytonmckee/Documents/GitHub/Trailblazer/Database/.build/arm64-apple-macosx/debug/Fluent.build/Fluent-Swift.h"
-    requires objc
-}

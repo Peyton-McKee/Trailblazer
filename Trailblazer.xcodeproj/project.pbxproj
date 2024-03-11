@@ -94,6 +94,7 @@
 		1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1591DBB8291AE7B800978FD8 /* TrailblazerApp.swift */; };
 		1591DBBD291AE7B900978FD8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBC291AE7B900978FD8 /* Assets.xcassets */; };
 		1591DBC0291AE7B900978FD8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1591DBBF291AE7B900978FD8 /* Preview Assets.xcassets */; };
+		159824452B981C4B002BFD98 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F629BD177300F634FD /* LocationManager.swift */; };
 		15A1C8212950F967007598D8 /* ToolTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A1C8202950F967007598D8 /* ToolTipView.swift */; };
 		15B703EF29BC1C5E00F634FD /* MapTapping.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703EE29BC1C5E00F634FD /* MapTapping.Utils.swift */; };
 		15B703F129BC1D4C00F634FD /* Configuration.Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B703F029BC1D4C00F634FD /* Configuration.Utils.swift */; };
@@ -408,13 +409,6 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		153DABAC2936C44A001ABAAD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		153F2DCA29BEB7E800CCD553 /* Singletons */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,7 +517,6 @@
 				1591DBB7291AE7B800978FD8 /* Trailblazer Watch App */,
 				153DABAB2936B9C8001ABAAD /* Shared */,
 				158749F527D82635001B9025 /* Products */,
-				153DABAC2936C44A001ABAAD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -903,6 +896,7 @@
 			files = (
 				15F92C542939A97D00792054 /* DirectionsDisplayView.swift in Sources */,
 				1591DBB9291AE7B800978FD8 /* TrailblazerApp.swift in Sources */,
+				159824452B981C4B002BFD98 /* LocationManager.swift in Sources */,
 				15489A4C2922BAD100898FD0 /* ConnectivityController.swift in Sources */,
 				15F92C522939A7B000792054 /* HomePageView.swift in Sources */,
 				15489A492922AF2F00898FD0 /* Connectivity.swift in Sources */,

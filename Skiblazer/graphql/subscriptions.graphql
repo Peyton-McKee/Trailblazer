@@ -1,0 +1,139 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnCreateTrailReport(
+  $filter: ModelSubscriptionTrailReportFilterInput
+) {
+  onCreateTrailReport(filter: $filter) {
+    id
+    type
+    trailMadeOn
+    latitude
+    longitude
+    active
+    map {
+      id
+      name
+      storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    mapTrailReportsId
+    __typename
+  }
+}
+
+subscription OnUpdateTrailReport(
+  $filter: ModelSubscriptionTrailReportFilterInput
+) {
+  onUpdateTrailReport(filter: $filter) {
+    id
+    type
+    trailMadeOn
+    latitude
+    longitude
+    active
+    map {
+      id
+      name
+      storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    mapTrailReportsId
+    __typename
+  }
+}
+
+subscription OnDeleteTrailReport(
+  $filter: ModelSubscriptionTrailReportFilterInput
+) {
+  onDeleteTrailReport(filter: $filter) {
+    id
+    type
+    trailMadeOn
+    latitude
+    longitude
+    active
+    map {
+      id
+      name
+      storageKeyPrefix
+      mountainReportUrl
+      trailStatusElementId
+      liftStatusElementId
+      createdAt
+      updatedAt
+      __typename
+    }
+    createdAt
+    updatedAt
+    mapTrailReportsId
+    __typename
+  }
+}
+
+subscription OnCreateMap($filter: ModelSubscriptionMapFilterInput) {
+  onCreateMap(filter: $filter) {
+    id
+    name
+    storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
+    trailReports {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnUpdateMap($filter: ModelSubscriptionMapFilterInput) {
+  onUpdateMap(filter: $filter) {
+    id
+    name
+    storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
+    trailReports {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
+
+subscription OnDeleteMap($filter: ModelSubscriptionMapFilterInput) {
+  onDeleteMap(filter: $filter) {
+    id
+    name
+    storageKeyPrefix
+    mountainReportUrl
+    trailStatusElementId
+    liftStatusElementId
+    trailReports {
+      nextToken
+      __typename
+    }
+    createdAt
+    updatedAt
+    __typename
+  }
+}
