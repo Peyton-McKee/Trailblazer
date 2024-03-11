@@ -117,4 +117,9 @@ class APIHandler {
         let report = try request.get()
         return report
     }
+    
+    static func deleteTrailReport(_ report: TrailReport) async throws {
+        let request = try await Amplify.API.mutate(request: .delete(report))
+        _ = try request.get()
+    }
 }

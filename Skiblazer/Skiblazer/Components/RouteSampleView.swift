@@ -12,6 +12,7 @@ struct RouteSampleView: View {
     var trailReports: [TrailReport]
 
     var onLetsGoPressed: () -> Void
+    var onSeeMoreDetailsPressed: () -> Void
 
     var body: some View {
         VStack(spacing: 20) {
@@ -28,7 +29,9 @@ struct RouteSampleView: View {
 
                     if trails.count > 3 {
                         SkiblazerLabel("See More Details", fontSize: 14)
-                            .onTapGesture {}
+                            .onTapGesture {
+                                self.onSeeMoreDetailsPressed()
+                            }
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                 }

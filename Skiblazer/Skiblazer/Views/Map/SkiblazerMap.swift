@@ -42,7 +42,6 @@ struct SkiblazerMap: View {
 
                     PointAnnotationGroup(self.viewModel.trailReportsToDisplay) { report in
                         PointAnnotation(coordinate: .init(latitude: report.latitude, longitude: report.longitude))
-                            //                            .image(.init(image: .init(resource: .intermediatePin), name: report.id))
                             .iconOffset([0, -20])
                             .iconColor(.init(report.type.color))
                             .textField(report.type.pointString)
@@ -51,6 +50,9 @@ struct SkiblazerMap: View {
                             .textColor(.init(.white))
                             .textHaloColor(.init(report.type.color))
                             .textHaloWidth(1)
+                            .onTapGesture {
+                                self.viewModel.onTrailReportTapped(report)
+                            }
                     }
                     .clusterOptions(clusterOptions)
 
@@ -64,7 +66,7 @@ struct SkiblazerMap: View {
                     self.viewModel.onMapLongPress(info.coordinate)
                 }
                 .mapStyle(.satellite)
-                .ornamentOptions(.init(compass: .init(visibility: .hidden)))
+                .ornamentOptions(.init(scaleBar: .init(visibility: .hidden), compass: .init(visibility: .hidden)))
                 .cameraBounds(self.bounds)
             }
             .sheet(isPresented: self.$viewModel.showTrailReportSelector) {
@@ -76,8 +78,21 @@ struct SkiblazerMap: View {
             .sheet(isPresented: self.$viewModel.showSampleRouteView) {
                 RouteSampleView(trails: self.viewModel.trailsToDisplay, trailReports: self.viewModel.trailReportsToDisplay) {
                     self.viewModel.onLetsGoPressed()
+                } onSeeMoreDetailsPressed: {
+                    self.viewModel.onSeeMoreDetailsPressed()
                 }
                 .presentationDetents([.fraction(0.3)])
+            }
+            .sheet(isPresented: self.$viewModel.showNoLongerThereView) {
+                if let trailReport = self.viewModel.selectedTrailReport {
+                    NoLongerThereView(trailReport: trailReport) { report in
+                        self.viewModel.onNoLongerTherePressed(report)
+                    } onCancelPressed: {
+                        self.viewModel.onNoLongerThereCancelPressed()
+                    }
+                    .padding()
+                    .presentationDetents([.fraction(0.15)])
+                }
             }
             .onAppear {
                 LocationManager.shared.requestWhenInUseAuthorization()
@@ -91,17 +106,20 @@ struct SkiblazerMap: View {
             .navigationBarTitleDisplayMode(.inline)
             .ignoresSafeArea()
             .overlay(alignment: .topTrailing) {
-                HStack {
+                HStack(alignment: .top) {
                     if self.viewModel.routeInProgress {
-                        FullDirectionsView(route: self.viewModel.currentPath, showFullDirections: self.$viewModel.showFullDirectionsView)
-                            .transition(.move(edge: .top))
-                            .ignoresSafeArea()
-                            .padding()
-                            .background(
-                                Color(.systemBackground)
-                                    .shadow(color: .primary, radius: 5, y: 6)
-                                    .clipShape(.rect(cornerRadius: 8))
-                            )
+                        GeometryContainer {
+                            FullDirectionsView(route: self.viewModel.currentPath, showFullDirections: self.$viewModel.showFullDirectionsView)
+                                .transition(
+                                    .asymmetric(
+                                        insertion: .opacity.combined(with: .move(edge: .top)),
+                                        removal: .opacity.combined(with: .move(edge: .top))))
+                                .padding()
+                                .background(
+                                    Color(.systemBackground)
+                                        .clipShape(.rect(cornerRadius: 8))
+                                        .shadow(color: .primary, radius: 5, y: 5))
+                        }
                     }
 
                     VStack {
@@ -142,9 +160,8 @@ struct SkiblazerMap: View {
                         .background(Color.blue)
                         .clipShape(.buttonBorder)
                     }
-                    .padding()
                 }
-                .padding(.leading, 8)
+                .padding(.horizontal, 8)
             }
         }
     }
@@ -169,7 +186,6 @@ struct SkiblazerMap: View {
             textColor: .constant(.init(.clear)),
             clusterRadius: 20,
             clusterMaxZoom: 100,
-            clusterProperties: clusterProperties
-        )
+            clusterProperties: clusterProperties)
     }
 }

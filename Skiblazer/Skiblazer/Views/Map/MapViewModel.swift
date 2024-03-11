@@ -39,6 +39,10 @@ class MapViewModel: NSObject, LoadableObject {
     
     @Published var showFullDirectionsView = false
     
+    @Published var showNoLongerThereView = false
+    
+    @Published var selectedTrailReport: TrailReport?
+    
     private var isRealTime = false
     
     private var isLoadingRoute = false
@@ -88,6 +92,18 @@ class MapViewModel: NSObject, LoadableObject {
         self.showSampleRouteView = false
     }
     
+    func onSeeMoreDetailsPressed() {
+        self.showSampleRouteView = false
+        withAnimation {
+            self.showFullDirectionsView = true
+        }
+    }
+    
+    func onTrailReportTapped(_ report: TrailReport) {
+        self.selectedTrailReport = report
+        self.showNoLongerThereView = true
+    }
+    
     private func startRoute(_ origin: Point? = nil, destination: Point) {
         self.transitionState(.loadingRoute)
         self.cancelRoute()
@@ -127,6 +143,26 @@ class MapViewModel: NSObject, LoadableObject {
         self.totalTrails = trails
         self.trailsToDisplay = trails
         self.trailReportsToDisplay = self.getTrailReportsFromPoints(points)
+    }
+    
+    func onNoLongerTherePressed(_ report: TrailReport) {
+        self.transitionState(.loading)
+        
+        Task {
+            do {
+                try await APIHandler.deleteTrailReport(report)
+                self.selectedTrailReport = nil
+                self.showNoLongerThereView.toggle()
+                self.load(.init())
+            } catch {
+                self.fail(error, .init())
+            }
+        }
+    }
+    
+    func onNoLongerThereCancelPressed() {
+        self.selectedTrailReport = nil
+        self.showNoLongerThereView.toggle()
     }
     
     func onMapTap(_ coordinate: CLLocationCoordinate2D) {

@@ -16,12 +16,12 @@ struct SingleDirectionView: View {
     var image: UIImage {
         switch self.direction {
         case .left:
-            let turnImage = UIImage(systemName: SystemImageName.turn.rawValue)!
-            return UIImage(cgImage: turnImage.cgImage!, scale: turnImage.scale, orientation: .upMirrored).withTintColor(.systemBlue)
+            return .init(systemName: SystemImageName.turn.rawValue)!
         case .right:
-            return .init(systemName: SystemImageName.turn.rawValue)!.withTintColor(.systemBlue)
+            let turnImage = UIImage(systemName: SystemImageName.turn.rawValue)!
+            return UIImage(cgImage: turnImage.cgImage!, scale: turnImage.scale, orientation: .upMirrored)
         case .straight:
-            return .init(systemName: SystemImageName.straight.rawValue)!.withTintColor(.systemBlue)
+            return .init(systemName: SystemImageName.straight.rawValue)!
         }
     }
 
@@ -39,9 +39,12 @@ struct SingleDirectionView: View {
             VStack {
                 Image(uiImage: self.image)
                     .resizable()
+                    .foregroundStyle(.primary)
                     .frame(width: 50, height: 50)
                     .aspectRatio(contentMode: .fit)
-                Text("\(self.distanceToUpcomingKeyAnnotation * 3.28084, specifier: "%.0f") feet")
+
+                let feet = round(Double(self.distanceToUpcomingKeyAnnotation * 3.28084) / 100) * 100
+                Text("\(feet < 1000 ? feet : self.distanceToUpcomingKeyAnnotation * 0.000621371, specifier: "\(feet < 1000 ? "%.0f" : "%0.1f")") \(feet < 1000 ? "feet" : "miles")")
             }
         }
     }

@@ -54,6 +54,8 @@
 		156726D82B96386F00D2771A /* Authenticator in Frameworks */ = {isa = PBXBuildFile; productRef = 156726D72B96386F00D2771A /* Authenticator */; };
 		156726DB2B9638D500D2771A /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156726DA2B9638D500D2771A /* APIHandler.swift */; };
 		156726DD2B9638E000D2771A /* AppContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156726DC2B9638E000D2771A /* AppContext.swift */; };
+		15762EDF2B9E222600C4018B /* ContainerDropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15762EDE2B9E222600C4018B /* ContainerDropShadow.swift */; };
+		15762EE12B9F758000C4018B /* NoLongerThereView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15762EE02B9F758000C4018B /* NoLongerThereView.swift */; };
 		1598240D2B968CFB002BFD98 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 1598240C2B968CFB002BFD98 /* MapboxMaps */; };
 		1598240F2B968D57002BFD98 /* ValidationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598240E2B968D57002BFD98 /* ValidationUtils.swift */; };
 		159824122B96A4CF002BFD98 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159824112B96A4CF002BFD98 /* AdminView.swift */; };
@@ -156,6 +158,8 @@
 		156726B62B9637C100D2771A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		156726DA2B9638D500D2771A /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
 		156726DC2B9638E000D2771A /* AppContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppContext.swift; path = Skiblazer/AppContext.swift; sourceTree = SOURCE_ROOT; };
+		15762EDE2B9E222600C4018B /* ContainerDropShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerDropShadow.swift; sourceTree = "<group>"; };
+		15762EE02B9F758000C4018B /* NoLongerThereView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoLongerThereView.swift; sourceTree = "<group>"; };
 		1598240E2B968D57002BFD98 /* ValidationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtils.swift; sourceTree = "<group>"; };
 		159824112B96A4CF002BFD98 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
 		159824132B96A4D3002BFD98 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				1598242B2B96AAA1002BFD98 /* DocumentSelectorButton.swift */,
 				1598241E2B96A5E5002BFD98 /* CustomPhotoPicker.swift */,
 				1598241A2B96A5B8002BFD98 /* FullWidthImageView.swift */,
+				15762EE02B9F758000C4018B /* NoLongerThereView.swift */,
 				1598241C2B96A5CD002BFD98 /* DocumentPicker.swift */,
 				150147172B967BAA006EBED6 /* LoadingIndicator.swift */,
 				159824872B9D50DC002BFD98 /* FullDirectionsView.swift */,
@@ -274,6 +279,7 @@
 				159824832B9BD1C0002BFD98 /* RouteSampleView.swift */,
 				159824722B99266F002BFD98 /* TrailReportSelector.swift */,
 				159824742B9926BF002BFD98 /* TrailReportRow.swift */,
+				15762EDE2B9E222600C4018B /* ContainerDropShadow.swift */,
 				159824782B9BC2CE002BFD98 /* TrailSelectorView.swift */,
 				1598247A2B9BC54A002BFD98 /* TrailSelectorRow.swift */,
 				1598247C2B9BC669002BFD98 /* TrailSelectorSection.swift */,
@@ -675,9 +681,11 @@
 				159824732B99266F002BFD98 /* TrailReportSelector.swift in Sources */,
 				1598244B2B981EB0002BFD98 /* GraphErrors.swift in Sources */,
 				1598243A2B9807BF002BFD98 /* Difficulty.swift in Sources */,
+				15762EE12B9F758000C4018B /* NoLongerThereView.swift in Sources */,
 				1598242A2B96AA8F002BFD98 /* FormSubmitButton.swift in Sources */,
 				150147232B967D38006EBED6 /* MapInfo.swift in Sources */,
 				1598240F2B968D57002BFD98 /* ValidationUtils.swift in Sources */,
+				15762EDF2B9E222600C4018B /* ContainerDropShadow.swift in Sources */,
 				159824382B98064A002BFD98 /* Point.swift in Sources */,
 				159824342B97B72E002BFD98 /* UploadError.swift in Sources */,
 				1598244F2B981F8F002BFD98 /* UserErrors.swift in Sources */,

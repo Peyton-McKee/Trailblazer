@@ -17,12 +17,13 @@ struct FullDirectionsView: View {
         var trails = [Trail]()
 
         for vertex in self.route {
-            if var trail = trails.first(where: { $0.title == vertex.value.title }) {
-                trail.coordinates.append(vertex.value.coordinate)
+            if let index = trails.firstIndex(where: { $0.title == vertex.value.title }) {
+                trails[index].coordinates.append(vertex.value.coordinate)
             } else {
                 trails.append(Trail(title: vertex.value.title, difficulty: vertex.value.difficulty, coordinates: [vertex.value.coordinate]))
             }
         }
+
         return trails
     }
 
@@ -34,13 +35,13 @@ struct FullDirectionsView: View {
                         Text("Approaching Destination")
                     } else {
                         List {
-                            ForEach(enumerating: 0 ..< (self.trails.count - Int(1))) { i in
-                                if self.trails[i].coordinates.count > 1, let last = self.trails[i].coordinates.last {
+                            ForEach(enumerating: 0 ..< (self.trails.count - 1)) { i in
+                                if self.trails[i].coordinates.count > 1 && self.trails[i + 1].coordinates.count > 1, let last = self.trails[i].coordinates.last, let first = self.trails[i].coordinates.first {
                                     SingleDirectionView(
                                         direction: self.determineDirection(
-                                            p1: self.trails[i].coordinates[self.trails[i].coordinates.count - 2],
+                                            p1: first,
                                             p2: last,
-                                            p3: self.trails[i + 1].firstPoint.coordinate
+                                            p3: self.trails[i + 1].coordinates[1]
                                         ),
                                         upcomingPoint: self.trails[i + 1].firstPoint,
                                         currentLocation: self.route[i].value
@@ -64,12 +65,12 @@ struct FullDirectionsView: View {
                 }
             } else if self.trails.count > 1 {
                 Group {
-                    if self.trails[0].coordinates.count > 1, let last = self.trails[0].coordinates.last {
+                    if self.trails[0].coordinates.count > 1 && self.trails[1].coordinates.count > 1, let last = self.trails.first?.coordinates.last, let first = self.trails.first?.coordinates.first {
                         SingleDirectionView(
                             direction: self.determineDirection(
-                                p1: self.trails[0].coordinates[self.trails[0].coordinates.count - 2],
+                                p1: first,
                                 p2: last,
-                                p3: self.trails[1].firstPoint.coordinate
+                                p3: self.trails[1].coordinates[1]
                             ),
                             upcomingPoint: self.trails[1].firstPoint,
                             currentLocation: self.route[0].value
@@ -93,6 +94,7 @@ struct FullDirectionsView: View {
 
     func determineDirection(p1: CLLocationCoordinate2D, p2: CLLocationCoordinate2D, p3: CLLocationCoordinate2D) -> Direction {
         let val = (p2.longitude - p1.longitude) * (p3.latitude - p2.latitude) - (p2.latitude - p1.latitude) * (p3.longitude - p2.longitude)
+        print(val)
         if val == 0 {
             return .straight // Points are collinear
         } else if val > 0 {
