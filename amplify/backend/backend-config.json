@@ -67,14 +67,6 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_skiblazer6dd7c5e3PostConfirmation_GROUP": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "skiblazer6dd7c5e3PostConfirmation"
-        }
-      ]
-    },
     "AMPLIFY_function_skiblazer6dd7c5e3PostConfirmation_deploymentBucketName": {
       "usedBy": [
         {

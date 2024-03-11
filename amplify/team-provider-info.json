@@ -12,16 +12,44 @@
       "AmplifyAppId": "d2shp8bwifgbia"
     },
     "categories": {
+      "auth": {
+        "skiblazeraf3854a2": {},
+        "userPoolGroups": {}
+      },
       "function": {
         "skiblazer6dd7c5e3PostConfirmation": {
-          "GROUP": "skiblazerPool",
           "deploymentBucketName": "amplify-skiblazer-dev-162303-deployment",
           "s3Key": "amplify-builds/skiblazer6dd7c5e3PostConfirmation-344d4162455a66454e46-build.zip"
         }
       },
+      "storage": {
+        "skiblazerStorage": {}
+      }
+    }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-skiblazer-prod-181035-authRole",
+      "UnauthRoleArn": "arn:aws:iam::145396720895:role/amplify-skiblazer-prod-181035-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::145396720895:role/amplify-skiblazer-prod-181035-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-skiblazer-prod-181035-deployment",
+      "UnauthRoleName": "amplify-skiblazer-prod-181035-unauthRole",
+      "StackName": "amplify-skiblazer-prod-181035",
+      "StackId": "arn:aws:cloudformation:us-east-1:145396720895:stack/amplify-skiblazer-prod-181035/2fe2efc0-dff4-11ee-a392-0e37aac051c5",
+      "AmplifyAppId": "d2shp8bwifgbia"
+    },
+    "categories": {
       "auth": {
         "skiblazeraf3854a2": {},
-        "userPoolGroups": {}
+        "userPoolGroups": {},
+        "skiblazer6dd7c5e3": {}
+      },
+      "function": {
+        "skiblazer6dd7c5e3PostConfirmation": {
+          "deploymentBucketName": "amplify-skiblazer-prod-181035-deployment",
+          "s3Key": "amplify-builds/skiblazer6dd7c5e3PostConfirmation-344d4162455a66454e46-build.zip"
+        }
       },
       "api": {
         "skiblazer": {}
