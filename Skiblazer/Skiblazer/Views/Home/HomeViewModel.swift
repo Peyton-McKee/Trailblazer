@@ -20,6 +20,12 @@ class HomeViewModel: LoadableObject {
         Task {
             do {
                 let currentSession = try await Amplify.Auth.fetchAuthSession()
+                if currentSession.isSignedIn {
+                    let currentUser  = try await Amplify.Auth.getCurrentUser()
+                    DispatchQueue.main.async {
+                        self.currentUser = currentUser
+                    }
+                }
                 
                 DispatchQueue.main.async {
                     self.isSignedIn = currentSession.isSignedIn

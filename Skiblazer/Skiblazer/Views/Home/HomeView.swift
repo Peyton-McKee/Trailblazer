@@ -74,7 +74,7 @@ struct HomeView: View {
                     }
                 }
                 .toolbar {
-                    if self.viewModel.isSignedIn {
+                    if self.viewModel.isSignedIn  && self.viewModel.currentUser?.username == "admin" {
                         Button("", systemImage: SystemImageName.more.rawValue) {
                             self.path.append(.admin)
                         }
